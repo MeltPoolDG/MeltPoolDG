@@ -1,6 +1,6 @@
 # MeltPoolDG
 
-:warning: [WIP] This project is work in progress. We will publish the code soon in this repository. In the meantime impressions will be shared on our [YouTube channel](https://www.youtube.com/channel/UCNZqFRMi-bBMaDMXC38AehA).
+:warning: [WIP] This project is work in progress. We will publish the code soon in this repository. In the meantime, impressions will be shared on our [YouTube channel](https://www.youtube.com/channel/UCNZqFRMi-bBMaDMXC38AehA).
 
 ## (DG)-FEM-based multi-phase flow solvers for high-fidelity metal additive manufacturing process simulations
 
@@ -18,7 +18,3 @@ The principal developers are (in chronological order of entering the project):
 * [Nils Much](https://www.mw.tum.de/lnm/staff/nils-much/) [@nmuch](https://github.com/nmuch), Technical University of Munich (DE)
 
 We gratefully acknowledge the contributions and discussions with Christoph Meier (Technical University of Munich) and Martin Kronbichler (Technical University of Munich/Uppsala University).
-
-## Documentation
-
-The installation procedure is described in the [WIKI](https://github.com/MeltPoolDG/MeltPoolDG/wiki). The documentation can be found under https://meltpooldg.github.io/MeltPoolDG/.
