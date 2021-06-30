@@ -1,6 +1,6 @@
 # MeltPoolDG
 
-This project is work in progress. We will publish the code soon in this repository. In the meantime impressions will be shared on our [YouTube channel](https://www.youtube.com/channel/UCNZqFRMi-bBMaDMXC38AehA).
+:warning: [WIP] This project is work in progress. We will publish the code soon in this repository. In the meantime impressions will be shared on our [YouTube channel](https://www.youtube.com/channel/UCNZqFRMi-bBMaDMXC38AehA).
 
 ## (DG)-FEM-based multi-phase flow solvers for high-fidelity metal additive manufacturing process simulations
 
