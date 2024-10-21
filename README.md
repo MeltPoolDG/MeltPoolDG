@@ -13,9 +13,9 @@ The aim of the `MeltPoolDG` project is to provide application-oriented, research
 ## Authors
 
 The principal developers are (in chronological order of entering the project):
-* [Magdalena Schreter-Fleischhacker](https://www.epc.ed.tum.de/sam/team/magdalena-schreter-fleischhacker/) [@mschreter](https://github.com/mschreter), Technical University of Munich (DE)
-* [Peter Munch](https://peterrum.github.io/) [@peterrum](https://github.com/peterrum), University of Augsburg (DE)
-* [Nils Much](https://www.epc.ed.tum.de/sam/team/nils-much/) [@nmuch](https://github.com/nmuch), Uppsala University
+* [Magdalena Schreter-Fleischhacker](https://www.epc.ed.tum.de/sam/team/magdalena-schreter-fleischhacker/) [@mschreter](https://github.com/mschreter), Technical University of Munich
+* [Peter Munch](https://peterrum.github.io/) [@peterrum](https://github.com/peterrum), Uppsala University
+* [Nils Much](https://www.epc.ed.tum.de/sam/team/nils-much/) [@nmuch](https://github.com/nmuch), Technical University of Munich 
 
 Magdalena Schreter-Fleischhacker has been supported by the Austrian Science Fund (FWF) via a FWF Schrödinger scholarship, FWF project number J-4577. 
 
