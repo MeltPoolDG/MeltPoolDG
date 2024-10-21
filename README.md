@@ -19,4 +19,4 @@ The principal developers are (in chronological order of entering the project):
 
 Magdalena Schreter-Fleischhacker has been supported by the Austrian Science Fund (FWF) via a FWF Schrödinger scholarship, FWF project number J-4577. 
 
-We gratefully acknowledge the contributions and discussions with Christoph Meier (Technical University of Munich), Martin Kronbichler (Ruhr University Bochum), Bruno Blais and Helen Papillone-Laroche (Polytechnique Montr'eal). 
+We gratefully acknowledge the contributions and discussions with Christoph Meier (Technical University of Munich), Martin Kronbichler (Ruhr University Bochum), Bruno Blais and Helen Papillone-Laroche (Polytechnique Montréal). 
