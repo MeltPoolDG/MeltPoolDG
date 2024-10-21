@@ -1,6 +1,8 @@
 # MeltPoolDG
 
-:warning: [WIP] This project is work in progress. The code is available upon request (magdalena.schreter@tum.de). Impressions will be shared on our [YouTube channel](https://www.youtube.com/channel/UCNZqFRMi-bBMaDMXC38AehA).
+:warning: [WIP] This project is work in progress. 
+
+The code is available upon request (magdalena.schreter@tum.de). Impressions will be shared on our [YouTube channel](https://www.youtube.com/channel/UCNZqFRMi-bBMaDMXC38AehA).
 
 ## (DG)-FEM-based multi-phase flow solvers for high-fidelity metal additive manufacturing process simulations
 
@@ -11,7 +13,7 @@ The aim of the `MeltPoolDG` project is to provide application-oriented, research
 ## Authors
 
 The principal developers are (in chronological order of entering the project):
-* [Magdalena Schreter-Fleischhacker]([https://www.uibk.ac.at/bft/mitarbeiter/schreter.html](https://www.epc.ed.tum.de/sam/team/magdalena-schreter-fleischhacker/) [@mschreter](https://github.com/mschreter), Technical University of Munich (DE)
+* [Magdalena Schreter-Fleischhacker](https://www.epc.ed.tum.de/sam/team/magdalena-schreter-fleischhacker/) [@mschreter](https://github.com/mschreter), Technical University of Munich (DE)
 * [Peter Munch](https://peterrum.github.io/) [@peterrum](https://github.com/peterrum), University of Augsburg (DE)
 * [Nils Much](https://www.epc.ed.tum.de/sam/team/nils-much/) [@nmuch](https://github.com/nmuch), Uppsala University
 
