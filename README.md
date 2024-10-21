@@ -1,6 +1,6 @@
 # MeltPoolDG
 
-:warning: [WIP] This project is work in progress. 
+:warning: [WIP] This project is work in progress since 2021.
 
 The code is available upon request (magdalena.schreter@tum.de). Impressions will be shared on our [YouTube channel](https://www.youtube.com/channel/UCNZqFRMi-bBMaDMXC38AehA).
 
