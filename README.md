@@ -1,4 +1,4 @@
-# MeltPoolDG
+<img align="left" width="324" src="doc/logo_text_text.png">  
 
 :warning: [WIP] This project is work in progress since 2021. We are planning to make the code publicly available in the coming years as part of our broader efforts to share our research openly.
 For collaboration requests, please contact magdalena.schreter@tum.de. Impressions will be shared on our [YouTube channel](https://www.youtube.com/channel/UCNZqFRMi-bBMaDMXC38AehA).
