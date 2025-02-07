@@ -1,0 +1,247 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✋ How to Contribute &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=bf588caa" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="💻 How to Work With MeltPoolDG" href="howto.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto.html">💻 How to Work With MeltPoolDG</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">✋ How to Contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-formatting">Code Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#making-changes-and-pushing-to-the-repository">Making Changes and Pushing to the Repository</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-the-latest-master-branch">Get the latest <code class="docutils literal notranslate"><span class="pre">master</span></code> branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-new-branch-for-your-changes">Create a new branch for your changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#rebasing-your-changes-to-the-latest-main-branch">Rebasing Your Changes to the Latest <code class="docutils literal notranslate"><span class="pre">main</span></code> Branch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#handling-merge-conflicts">Handling Merge Conflicts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#squashing-commits-into-one">Squashing Commits into One</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">✋ How to Contribute</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/contributing.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-contribute">
+<h1>✋ How to Contribute<a class="headerlink" href="#how-to-contribute" title="Link to this heading"></a></h1>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
+<p>To run the tests in verbose mode, execute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ctest<span class="w"> </span>-V
+</pre></div>
+</div>
+</section>
+<section id="code-formatting">
+<h2>Code Formatting<a class="headerlink" href="#code-formatting" title="Link to this heading"></a></h2>
+<p>Make sure that <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> is installed. To format all <code class="docutils literal notranslate"><span class="pre">*.cc</span></code> files in the <code class="docutils literal notranslate"><span class="pre">application</span></code> folder, navigate to the root directory of the project and execute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>clang-format<span class="w"> </span>-i<span class="w"> </span>application/*.cc
+</pre></div>
+</div>
+</section>
+<section id="making-changes-and-pushing-to-the-repository">
+<h2>Making Changes and Pushing to the Repository<a class="headerlink" href="#making-changes-and-pushing-to-the-repository" title="Link to this heading"></a></h2>
+<section id="get-the-latest-master-branch">
+<h3>Get the latest <code class="docutils literal notranslate"><span class="pre">master</span></code> branch<a class="headerlink" href="#get-the-latest-master-branch" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>origin
+git<span class="w"> </span>rebase<span class="w"> </span>origin/master
+</pre></div>
+</div>
+</section>
+<section id="create-a-new-branch-for-your-changes">
+<h3>Create a new branch for your changes<a class="headerlink" href="#create-a-new-branch-for-your-changes" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="s2">&quot;my_branch&quot;</span>
+</pre></div>
+</div>
+<p>Make your changes accordingly. Once you are finished and ready to commit, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Format the files according to the <strong>Code Formatting</strong> section.</p></li>
+<li><p>Verify your changes using:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>diff
+git<span class="w"> </span>status
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Add modified files:</p></li>
+</ol>
+<ul class="simple">
+<li><p>To add all tracked files that have changed:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>-u
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To add a new or specific file (e.g., <code class="docutils literal notranslate"><span class="pre">new.cc</span></code>):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>new.cc
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Check the staged files:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Commit and push your changes:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add a useful description&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>my_branch
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Open a pull request on GitHub.</p></li>
+</ol>
+</section>
+</section>
+<section id="rebasing-your-changes-to-the-latest-main-branch">
+<h2>Rebasing Your Changes to the Latest <code class="docutils literal notranslate"><span class="pre">main</span></code> Branch<a class="headerlink" href="#rebasing-your-changes-to-the-latest-main-branch" title="Link to this heading"></a></h2>
+<p>If you are working on a branch <code class="docutils literal notranslate"><span class="pre">my_branch</span></code> and need to rebase onto the latest <code class="docutils literal notranslate"><span class="pre">main</span></code>, follow these steps.</p>
+<p><strong>WARNING:</strong> If you are an inexperienced Git user, make sure to create a backup before proceeding.</p>
+<ol class="arabic simple">
+<li><p>Ensure you are on the correct branch:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Commit your local changes:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>-u
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;my changes&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Fetch the latest changes from the remote repository:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>origin
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Start the rebase process:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>origin/main
+</pre></div>
+</div>
+<p>If there are no merge conflicts, force-push the rebased commit history:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>origin<span class="w"> </span>my_branch
+</pre></div>
+</div>
+<section id="handling-merge-conflicts">
+<h3>Handling Merge Conflicts<a class="headerlink" href="#handling-merge-conflicts" title="Link to this heading"></a></h3>
+<p>If there are merge conflicts in a file (e.g., <code class="docutils literal notranslate"><span class="pre">my_file_with_merge_conflicts.hpp</span></code>), resolve them by manually editing the file. Remove conflict markers (<code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="pre">HEAD</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></code>) and ensure the code is correct.</p>
+<p>Once resolved, continue rebasing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>my_file_with_merge_conflicts.hpp
+git<span class="w"> </span>rebase<span class="w"> </span>--continue
+</pre></div>
+</div>
+<p>Repeat this process until the rebase completes successfully. Finally, force-push your changes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>origin<span class="w"> </span>my_branch
+</pre></div>
+</div>
+</section>
+</section>
+<section id="squashing-commits-into-one">
+<h2>Squashing Commits into One<a class="headerlink" href="#squashing-commits-into-one" title="Link to this heading"></a></h2>
+<p>If you want to squash multiple commits into a single commit on <code class="docutils literal notranslate"><span class="pre">my_branch</span></code>, follow the steps outlined in <a class="reference external" href="https://www.redswitches.com/blog/squash-commits/#step-1-switch-to-the-branch">this guide</a>.</p>
+<p><strong>WARNING:</strong> If you are an inexperienced Git user, make sure to create a backup before proceeding.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="howto.html" class="btn btn-neutral float-left" title="💻 How to Work With MeltPoolDG" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
