@@ -1,4 +1,30 @@
 var searchData=
 [
-  ['create_5fdoxygen_2emd_0',['create_doxygen.md',['../create__doxygen_8md.html',1,'']]]
+  ['adaflo_5fwrapper_2ecpp_0',['adaflo_wrapper.cpp',['../adaflo__wrapper_8cpp.html',1,'']]],
+  ['adaflo_5fwrapper_2ehpp_1',['adaflo_wrapper.hpp',['../adaflo__wrapper_8hpp.html',1,'']]],
+  ['adaflo_5fwrapper_5fparameters_2ecpp_2',['adaflo_wrapper_parameters.cpp',['../adaflo__wrapper__parameters_8cpp.html',1,'']]],
+  ['adaflo_5fwrapper_5fparameters_2ehpp_3',['adaflo_wrapper_parameters.hpp',['../adaflo__wrapper__parameters_8hpp.html',1,'']]],
+  ['advection_5fdg_5foperation_2ecpp_4',['advection_DG_operation.cpp',['../advection__DG__operation_8cpp.html',1,'']]],
+  ['advection_5fdg_5foperation_2ehpp_5',['advection_DG_operation.hpp',['../advection__DG__operation_8hpp.html',1,'']]],
+  ['advection_5fdg_5foperator_2ecpp_6',['advection_DG_operator.cpp',['../advection__DG__operator_8cpp.html',1,'']]],
+  ['advection_5fdg_5foperator_2ehpp_7',['advection_DG_operator.hpp',['../advection__DG__operator_8hpp.html',1,'']]],
+  ['advection_5fdiffusion_2ecpp_8',['advection_diffusion.cpp',['../advection__diffusion_8cpp.html',1,'']]],
+  ['advection_5fdiffusion_2ehpp_9',['advection_diffusion.hpp',['../advection__diffusion_8hpp.html',1,'']]],
+  ['advection_5fdiffusion_5fadaflo_5fwrapper_2ecpp_10',['advection_diffusion_adaflo_wrapper.cpp',['../advection__diffusion__adaflo__wrapper_8cpp.html',1,'']]],
+  ['advection_5fdiffusion_5fadaflo_5fwrapper_2ehpp_11',['advection_diffusion_adaflo_wrapper.hpp',['../advection__diffusion__adaflo__wrapper_8hpp.html',1,'']]],
+  ['advection_5fdiffusion_5fcase_2ehpp_12',['advection_diffusion_case.hpp',['../advection__diffusion__case_8hpp.html',1,'']]],
+  ['advection_5fdiffusion_5fdata_2ecpp_13',['advection_diffusion_data.cpp',['../advection__diffusion__data_8cpp.html',1,'']]],
+  ['advection_5fdiffusion_5fdata_2ehpp_14',['advection_diffusion_data.hpp',['../advection__diffusion__data_8hpp.html',1,'']]],
+  ['advection_5fdiffusion_5fdg_2ecpp_15',['advection_diffusion_DG.cpp',['../advection__diffusion__DG_8cpp.html',1,'']]],
+  ['advection_5fdiffusion_5fdg_2ehpp_16',['advection_diffusion_DG.hpp',['../advection__diffusion__DG_8hpp.html',1,'']]],
+  ['advection_5fdiffusion_5foperation_2ecpp_17',['advection_diffusion_operation.cpp',['../advection__diffusion__operation_8cpp.html',1,'']]],
+  ['advection_5fdiffusion_5foperation_2ehpp_18',['advection_diffusion_operation.hpp',['../advection__diffusion__operation_8hpp.html',1,'']]],
+  ['advection_5fdiffusion_5foperation_5fbase_2ehpp_19',['advection_diffusion_operation_base.hpp',['../advection__diffusion__operation__base_8hpp.html',1,'']]],
+  ['advection_5fdiffusion_5foperator_2ecpp_20',['advection_diffusion_operator.cpp',['../advection__diffusion__operator_8cpp.html',1,'']]],
+  ['advection_5fdiffusion_5foperator_2ehpp_21',['advection_diffusion_operator.hpp',['../advection__diffusion__operator_8hpp.html',1,'']]],
+  ['advection_5fdiffusion_5fproblem_2ecpp_22',['advection_diffusion_problem.cpp',['../advection__diffusion__problem_8cpp.html',1,'']]],
+  ['advection_5fdiffusion_5fproblem_2ehpp_23',['advection_diffusion_problem.hpp',['../advection__diffusion__problem_8hpp.html',1,'']]],
+  ['amr_2ehpp_24',['amr.hpp',['../amr_8hpp.html',1,'']]],
+  ['amr_5fdata_2ecpp_25',['amr_data.cpp',['../amr__data_8cpp.html',1,'']]],
+  ['amr_5fdata_2ehpp_26',['amr_data.hpp',['../amr__data_8hpp.html',1,'']]]
 ];

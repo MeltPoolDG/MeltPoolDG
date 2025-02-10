@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['gamma_0',['gamma',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#aaa515ca28008519feac07bf579ecaf52',1,'MeltPoolDG::Flow::CompressibleFlowData']]],
+  ['gamma_5fa_1',['gamma_A',['../structMeltPoolDG_1_1Heat_1_1HeatData_1_1Cut_1_1GhostPenalty.html#a390cb850813d69f45fc0bc529b30cfd7',1,'MeltPoolDG::Heat::HeatData::Cut::GhostPenalty']]],
+  ['gamma_5fa_5fdegree_5f0_2',['gamma_A_degree_0',['../structMeltPoolDG_1_1GhostPenaltyParam.html#a9691d74ce3058fda5c75b79f869040db',1,'MeltPoolDG::GhostPenaltyParam']]],
+  ['gamma_5fa_5fdegree_5f1_3',['gamma_A_degree_1',['../structMeltPoolDG_1_1GhostPenaltyParam.html#a0081f0ba5e3a9330b929d684c208824a',1,'MeltPoolDG::GhostPenaltyParam']]],
+  ['gamma_5fa_5fdegree_5f2_4',['gamma_A_degree_2',['../structMeltPoolDG_1_1GhostPenaltyParam.html#aa8c07931386b1be2cc948b67d13ea07a',1,'MeltPoolDG::GhostPenaltyParam']]],
+  ['gamma_5fm_5',['gamma_M',['../structMeltPoolDG_1_1Heat_1_1HeatData_1_1Cut_1_1GhostPenalty.html#a197b7250a45de64d72c3086c8faa0ddd',1,'MeltPoolDG::Heat::HeatData::Cut::GhostPenalty']]],
+  ['gamma_5fm_5fdegree_5f0_6',['gamma_M_degree_0',['../structMeltPoolDG_1_1GhostPenaltyParam.html#abdda6a00d97e8a27a5f0b6e31fea2527',1,'MeltPoolDG::GhostPenaltyParam']]],
+  ['gamma_5fm_5fdegree_5f1_7',['gamma_M_degree_1',['../structMeltPoolDG_1_1GhostPenaltyParam.html#aa7701d385b006d0edf1984b07d105f64',1,'MeltPoolDG::GhostPenaltyParam']]],
+  ['gamma_5fm_5fdegree_5f2_8',['gamma_M_degree_2',['../structMeltPoolDG_1_1GhostPenaltyParam.html#a395e08b97afd263381469c632257e979',1,'MeltPoolDG::GhostPenaltyParam']]],
+  ['gas_9',['gas',['../structMeltPoolDG_1_1MaterialData.html#a5f2abfb6a7658123a7c9dd9d7e74d391',1,'MeltPoolDG::MaterialData']]],
+  ['gas_5ffraction_10',['gas_fraction',['../structMeltPoolDG_1_1MaterialParameterValues.html#a42342176c21c8c0b869d37dc8fe25ad2',1,'MeltPoolDG::MaterialParameterValues']]],
+  ['gas_5fphase_5fweight_11',['gas_phase_weight',['../structMeltPoolDG_1_1LevelSet_1_1DeltaApproximationPhaseWeightedData.html#a783f5af09b4fe31afcae1db6a59b0110',1,'MeltPoolDG::LevelSet::DeltaApproximationPhaseWeightedData']]],
+  ['gas_5fphase_5fweight_5f2_12',['gas_phase_weight_2',['../structMeltPoolDG_1_1LevelSet_1_1DeltaApproximationPhaseWeightedData.html#a1d792ed636b611195eccfce30c708c19',1,'MeltPoolDG::LevelSet::DeltaApproximationPhaseWeightedData']]],
+  ['gauss_13',['Gauss',['../namespaceMeltPoolDG_1_1Heat.html#a9a1ad484f8e1a8ae18d9ccc7d7be7e43',1,'MeltPoolDG::Heat']]],
+  ['ghost_5fpenalty_14',['ghost_penalty',['../structMeltPoolDG_1_1Heat_1_1HeatData_1_1Cut.html#a9bc96afe0fde75d2a61ba5f48dcd4c3d',1,'MeltPoolDG::Heat::HeatData::Cut::ghost_penalty'],['../structMeltPoolDG_1_1CutParam.html#af49ada19095887765ca786803ccce1ae',1,'MeltPoolDG::CutParam::ghost_penalty']]],
+  ['global_5frefinements_15',['global_refinements',['../structMeltPoolDG_1_1BaseData.html#a72054f7d9c67c24655bef198ca7cc502',1,'MeltPoolDG::BaseData']]],
+  ['gradient_5ferror_5fevaluation_5fdistance_5fcell_5fproportion_16',['gradient_error_evaluation_distance_cell_proportion',['../structMeltPoolDG_1_1LevelSet_1_1LevelSetData_1_1ReinitilizationDGSpecificData.html#a4cc203144394f99e1111df2c8bfa5867',1,'MeltPoolDG::LevelSet::LevelSetData::ReinitilizationDGSpecificData']]],
+  ['gravity_17',['gravity',['../structMeltPoolDG_1_1Flow_1_1FlowData.html#aadbf2a7ce327715759cd8e1556ed125a',1,'MeltPoolDG::Flow::FlowData']]],
+  ['gravity_5fconstant_18',['gravity_constant',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a4a5023cf768a71ed4272b2c96e003048',1,'MeltPoolDG::Flow::CompressibleFlowData']]],
+  ['gusarov_19',['gusarov',['../structMeltPoolDG_1_1Heat_1_1LaserData.html#a3793d08f60b4a021e32eff4cea99eb6d',1,'MeltPoolDG::Heat::LaserData']]]
+];
