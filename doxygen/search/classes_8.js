@@ -11,7 +11,11 @@ var searchData=
   ['heatdiffusemultiphaseoperator_8',['HeatDiffuseMultiPhaseOperator',['../classMeltPoolDG_1_1Heat_1_1HeatDiffuseMultiPhaseOperator.html',1,'MeltPoolDG::Heat']]],
   ['heatdiffuseoperation_9',['HeatDiffuseOperation',['../classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html',1,'MeltPoolDG::Heat']]],
   ['heatoperationbase_10',['HeatOperationBase',['../classMeltPoolDG_1_1Heat_1_1HeatOperationBase.html',1,'MeltPoolDG::Heat']]],
-  ['heattransferproblem_11',['HeatTransferProblem',['../classMeltPoolDG_1_1Heat_1_1HeatTransferProblem.html',1,'MeltPoolDG::Heat']]],
-  ['helmholtzdgoperator_12',['HelmholtzDGOperator',['../classMeltPoolDG_1_1LevelSet_1_1HelmholtzDGOperator.html',1,'MeltPoolDG::LevelSet']]],
-  ['helmholtzdgoperator_3c_20dim_2c_20double_20_3e_13',['HelmholtzDGOperator&lt; dim, double &gt;',['../classMeltPoolDG_1_1LevelSet_1_1HelmholtzDGOperator.html',1,'MeltPoolDG::LevelSet']]]
+  ['heattransfercase_11',['HeatTransferCase',['../classMeltPoolDG_1_1Heat_1_1HeatTransferCase.html',1,'MeltPoolDG::Heat']]],
+  ['heattransfercaseparameters_12',['HeatTransferCaseParameters',['../structMeltPoolDG_1_1Heat_1_1HeatTransferCaseParameters.html',1,'MeltPoolDG::Heat']]],
+  ['heattransfercaseparameters_3c_20double_20_3e_13',['HeatTransferCaseParameters&lt; double &gt;',['../structMeltPoolDG_1_1Heat_1_1HeatTransferCaseParameters.html',1,'MeltPoolDG::Heat']]],
+  ['heattransferproblem_14',['HeatTransferProblem',['../classMeltPoolDG_1_1Heat_1_1HeatTransferProblem.html',1,'MeltPoolDG::Heat']]],
+  ['helmholtzdgoperator_15',['HelmholtzDGOperator',['../classMeltPoolDG_1_1LevelSet_1_1HelmholtzDGOperator.html',1,'MeltPoolDG::LevelSet']]],
+  ['helmholtzdgoperator_3c_20dim_2c_20double_20_3e_16',['HelmholtzDGOperator&lt; dim, double &gt;',['../classMeltPoolDG_1_1LevelSet_1_1HelmholtzDGOperator.html',1,'MeltPoolDG::LevelSet']]],
+  ['horizontallevelset_17',['HorizontalLevelSet',['../classMeltPoolDG_1_1Simulation_1_1UnidirectionalHeatTransfer_1_1HorizontalLevelSet.html',1,'MeltPoolDG::Simulation::UnidirectionalHeatTransfer']]]
 ];

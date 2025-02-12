@@ -23,11 +23,15 @@ var searchData=
   ['meltpooldg_3a_3asimulation_3a_3aadvectiondiffusion_20',['AdvectionDiffusion',['../namespaceMeltPoolDG_1_1Simulation_1_1AdvectionDiffusion.html',1,'MeltPoolDG::Simulation']]],
   ['meltpooldg_3a_3asimulation_3a_3aadvectiondiffusiondg_21',['AdvectionDiffusionDG',['../namespaceMeltPoolDG_1_1Simulation_1_1AdvectionDiffusionDG.html',1,'MeltPoolDG::Simulation']]],
   ['meltpooldg_3a_3asimulation_3a_3acompressibleflow_22',['CompressibleFlow',['../namespaceMeltPoolDG_1_1Simulation_1_1CompressibleFlow.html',1,'MeltPoolDG::Simulation']]],
-  ['meltpooldg_3a_3asimulation_3a_3aradiativetransport_23',['RadiativeTransport',['../namespaceMeltPoolDG_1_1Simulation_1_1RadiativeTransport.html',1,'MeltPoolDG::Simulation']]],
-  ['meltpooldg_3a_3autilities_24',['Utilities',['../namespaceMeltPoolDG_1_1Utilities.html',1,'MeltPoolDG']]],
-  ['meltpooldg_3a_3autilities_3a_3amatrixfree_25',['MatrixFree',['../namespaceMeltPoolDG_1_1Utilities_1_1MatrixFree.html',1,'MeltPoolDG::Utilities']]],
-  ['meltpooldg_3a_3autilityfunctions_26',['UtilityFunctions',['../namespaceMeltPoolDG_1_1UtilityFunctions.html',1,'MeltPoolDG']]],
-  ['meltpooldg_3a_3autilityfunctions_3a_3acharacteristicfunctions_27',['CharacteristicFunctions',['../namespaceMeltPoolDG_1_1UtilityFunctions_1_1CharacteristicFunctions.html',1,'MeltPoolDG::UtilityFunctions']]],
-  ['meltpooldg_3a_3autils_28',['Utils',['../namespaceMeltPoolDG_1_1Utils.html',1,'MeltPoolDG']]],
-  ['meltpooldg_3a_3avectortools_29',['VectorTools',['../namespaceMeltPoolDG_1_1VectorTools.html',1,'MeltPoolDG']]]
+  ['meltpooldg_3a_3asimulation_3a_3ameltfrontpropagation_23',['MeltFrontPropagation',['../namespaceMeltPoolDG_1_1Simulation_1_1MeltFrontPropagation.html',1,'MeltPoolDG::Simulation']]],
+  ['meltpooldg_3a_3asimulation_3a_3apowderbed_24',['PowderBed',['../namespaceMeltPoolDG_1_1Simulation_1_1PowderBed.html',1,'MeltPoolDG::Simulation']]],
+  ['meltpooldg_3a_3asimulation_3a_3aradiativetransport_25',['RadiativeTransport',['../namespaceMeltPoolDG_1_1Simulation_1_1RadiativeTransport.html',1,'MeltPoolDG::Simulation']]],
+  ['meltpooldg_3a_3asimulation_3a_3asolidificationslab_26',['SolidificationSlab',['../namespaceMeltPoolDG_1_1Simulation_1_1SolidificationSlab.html',1,'MeltPoolDG::Simulation']]],
+  ['meltpooldg_3a_3asimulation_3a_3aunidirectionalheattransfer_27',['UnidirectionalHeatTransfer',['../namespaceMeltPoolDG_1_1Simulation_1_1UnidirectionalHeatTransfer.html',1,'MeltPoolDG::Simulation']]],
+  ['meltpooldg_3a_3autilities_28',['Utilities',['../namespaceMeltPoolDG_1_1Utilities.html',1,'MeltPoolDG']]],
+  ['meltpooldg_3a_3autilities_3a_3amatrixfree_29',['MatrixFree',['../namespaceMeltPoolDG_1_1Utilities_1_1MatrixFree.html',1,'MeltPoolDG::Utilities']]],
+  ['meltpooldg_3a_3autilityfunctions_30',['UtilityFunctions',['../namespaceMeltPoolDG_1_1UtilityFunctions.html',1,'MeltPoolDG']]],
+  ['meltpooldg_3a_3autilityfunctions_3a_3acharacteristicfunctions_31',['CharacteristicFunctions',['../namespaceMeltPoolDG_1_1UtilityFunctions_1_1CharacteristicFunctions.html',1,'MeltPoolDG::UtilityFunctions']]],
+  ['meltpooldg_3a_3autils_32',['Utils',['../namespaceMeltPoolDG_1_1Utils.html',1,'MeltPoolDG']]],
+  ['meltpooldg_3a_3avectortools_33',['VectorTools',['../namespaceMeltPoolDG_1_1VectorTools.html',1,'MeltPoolDG']]]
 ];

@@ -11,8 +11,9 @@ var searchData=
   ['heat_5fdiffuse_5foperator_2ecpp_8',['heat_diffuse_operator.cpp',['../heat__diffuse__operator_8cpp.html',1,'']]],
   ['heat_5fdiffuse_5foperator_2ehpp_9',['heat_diffuse_operator.hpp',['../heat__diffuse__operator_8hpp.html',1,'']]],
   ['heat_5foperation_5fbase_2ehpp_10',['heat_operation_base.hpp',['../heat__operation__base_8hpp.html',1,'']]],
-  ['heat_5ftransfer_5fproblem_2ecpp_11',['heat_transfer_problem.cpp',['../heat__transfer__problem_8cpp.html',1,'']]],
-  ['heat_5ftransfer_5fproblem_2ehpp_12',['heat_transfer_problem.hpp',['../heat__transfer__problem_8hpp.html',1,'']]],
-  ['helmholtz_5fdg_5foperator_2ecpp_13',['helmholtz_DG_operator.cpp',['../helmholtz__DG__operator_8cpp.html',1,'']]],
-  ['helmholtz_5fdg_5foperator_2ehpp_14',['helmholtz_DG_operator.hpp',['../helmholtz__DG__operator_8hpp.html',1,'']]]
+  ['heat_5ftransfer_5fcase_2ehpp_11',['heat_transfer_case.hpp',['../heat__transfer__case_8hpp.html',1,'']]],
+  ['heat_5ftransfer_5fproblem_2ecpp_12',['heat_transfer_problem.cpp',['../heat__transfer__problem_8cpp.html',1,'']]],
+  ['heat_5ftransfer_5fproblem_2ehpp_13',['heat_transfer_problem.hpp',['../heat__transfer__problem_8hpp.html',1,'']]],
+  ['helmholtz_5fdg_5foperator_2ecpp_14',['helmholtz_DG_operator.cpp',['../helmholtz__DG__operator_8cpp.html',1,'']]],
+  ['helmholtz_5fdg_5foperator_2ehpp_15',['helmholtz_DG_operator.hpp',['../helmholtz__DG__operator_8hpp.html',1,'']]]
 ];

@@ -7,8 +7,10 @@ var searchData=
   ['inflowflowfield_4',['InflowFlowField',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1InflowFlowField.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
   ['initialflowfield_5',['InitialFlowField',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1InitialFlowField.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
   ['initializephi_6',['InitializePhi',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusionDG_1_1InitializePhi.html',1,'MeltPoolDG::Simulation::AdvectionDiffusionDG']]],
-  ['initiallevelsetfield_7',['InitialLevelSetField',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusion_1_1InitialLevelSetField.html',1,'MeltPoolDG::Simulation::AdvectionDiffusion']]],
-  ['is_5fconvertible_8',['is_convertible',['../structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html',1,'dealii::Patterns::Tools']]],
-  ['isentropicvortexexactsolution_9',['IsentropicVortexExactSolution',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1IsentropicVortexExactSolution.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
-  ['iterationmonitor_10',['IterationMonitor',['../classMeltPoolDG_1_1IterationMonitor.html',1,'MeltPoolDG']]]
+  ['initiallevelset_7',['InitialLevelSet',['../classMeltPoolDG_1_1Simulation_1_1MeltFrontPropagation_1_1InitialLevelSet.html',1,'MeltPoolDG::Simulation::MeltFrontPropagation']]],
+  ['initiallevelsetfield_8',['InitialLevelSetField',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusion_1_1InitialLevelSetField.html',1,'MeltPoolDG::Simulation::AdvectionDiffusion']]],
+  ['initiallevelsetheaviside_9',['InitialLevelSetHeaviside',['../classMeltPoolDG_1_1Simulation_1_1MeltFrontPropagation_1_1InitialLevelSetHeaviside.html',1,'MeltPoolDG::Simulation::MeltFrontPropagation']]],
+  ['is_5fconvertible_10',['is_convertible',['../structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html',1,'dealii::Patterns::Tools']]],
+  ['isentropicvortexexactsolution_11',['IsentropicVortexExactSolution',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1IsentropicVortexExactSolution.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
+  ['iterationmonitor_12',['IterationMonitor',['../classMeltPoolDG_1_1IterationMonitor.html',1,'MeltPoolDG']]]
 ];

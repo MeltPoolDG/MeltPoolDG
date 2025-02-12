@@ -84,7 +84,7 @@ var searchData=
   ['do_5fprint_5fparameters_81',['do_print_parameters',['../structMeltPoolDG_1_1BaseData.html#a129c7a46787944f0860b5cd39a181341',1,'MeltPoolDG::BaseData']]],
   ['do_5frefine_5fall_5finterface_5fcells_82',['do_refine_all_interface_cells',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#ac47f39824308e3f127e250b2d80eb3e4',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
   ['do_5fsave_83',['do_save',['../classMeltPoolDG_1_1Restart_1_1RestartMonitor.html#ac32a751a3e658fdf5d2fdb07bed4b495',1,'MeltPoolDG::Restart::RestartMonitor']]],
-  ['do_5fsolidification_84',['do_solidification',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#a1680e746a7843b1b11932c358a885f71',1,'MeltPoolDG::MeltPool::MeltPoolProblem::do_solidification'],['../classMeltPoolDG_1_1Heat_1_1HeatTransferProblem.html#ab0f5f8aeef7fc53c5b704a41dcaac682',1,'MeltPoolDG::Heat::HeatTransferProblem::do_solidification']]],
+  ['do_5fsolidification_84',['do_solidification',['../structMeltPoolDG_1_1Heat_1_1HeatTransferCaseParameters.html#ac839ee90c77ddff8db228a04721056e4',1,'MeltPoolDG::Heat::HeatTransferCaseParameters::do_solidification'],['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#a1680e746a7843b1b11932c358a885f71',1,'MeltPoolDG::MeltPool::MeltPoolProblem::do_solidification']]],
   ['do_5fuser_5fdefined_5fpostprocessing_85',['do_user_defined_postprocessing',['../structMeltPoolDG_1_1OutputData.html#a85d133511b704c566f671839273de348',1,'MeltPoolDG::OutputData']]],
   ['dof_5fidx_86',['dof_idx',['../classMeltPoolDG_1_1OperatorBase.html#ab362cf1ef08f778dd4eeb5e7e1fa6576',1,'MeltPoolDG::OperatorBase']]],
   ['dof_5fmonitor_2ehpp_87',['dof_monitor.hpp',['../dof__monitor_8hpp.html',1,'']]],

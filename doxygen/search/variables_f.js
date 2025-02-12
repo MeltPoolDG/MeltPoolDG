@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['rad_5ftrans_0',['rad_trans',['../structMeltPoolDG_1_1RadiativeTransport_1_1RadiativeTransportCaseParameters.html#abfec496f850107ed08c580acc1f5f10b',1,'MeltPoolDG::RadiativeTransport::RadiativeTransportCaseParameters']]],
+  ['rad_5ftrans_0',['rad_trans',['../structMeltPoolDG_1_1RadiativeTransport_1_1RadiativeTransportCaseParameters.html#abfec496f850107ed08c580acc1f5f10b',1,'MeltPoolDG::RadiativeTransport::RadiativeTransportCaseParameters::rad_trans'],['../structMeltPoolDG_1_1Heat_1_1HeatTransferCaseParameters.html#acb38dd23067789c3cb281edf0c638359',1,'MeltPoolDG::Heat::HeatTransferCaseParameters::rad_trans']]],
   ['radiation_1',['radiation',['../structMeltPoolDG_1_1Heat_1_1HeatData.html#aefebfe65ae46d2e3a7dc636a5c4604b8',1,'MeltPoolDG::Heat::HeatData']]],
   ['radius_2',['radius',['../structMeltPoolDG_1_1Heat_1_1LaserData.html#a7e4c97ebd1de181774d6e0bd8f16fe50',1,'MeltPoolDG::Heat::LaserData']]],
   ['ready_5ffor_5ftime_5fadvance_3',['ready_for_time_advance',['../classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html#a3871b784eaaa83f91ba22d08e9cacf66',1,'MeltPoolDG::LevelSet::AdvectionDiffusionOperationBase']]],
@@ -8,14 +8,15 @@ var searchData=
   ['reference_5ftemperature_5',['reference_temperature',['../structMeltPoolDG_1_1Flow_1_1SurfaceTensionData.html#a2536e0c76bc74789569568ce0c1f5bd5',1,'MeltPoolDG::Flow::SurfaceTensionData']]],
   ['refine_5fgas_5fdomain_6',['refine_gas_domain',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#ab4f396fcfe442c42c5546f33e1a8b714',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
   ['reflectivity_7',['reflectivity',['../structMeltPoolDG_1_1Heat_1_1LaserData_1_1GusarovData.html#a77cd7eb347948ed1bc463aea382b0121',1,'MeltPoolDG::Heat::LaserData::GusarovData']]],
-  ['reinit_8',['reinit',['../structMeltPoolDG_1_1LevelSet_1_1LevelSetData.html#a5aaf21da404effaf1c3b84394e2ea500',1,'MeltPoolDG::LevelSet::LevelSetData']]],
-  ['reinit_5fvector_9',['reinit_vector',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a028737eb90dadace4d22caa098c9f4dd',1,'MeltPoolDG::NewtonRaphsonSolver']]],
-  ['rel_5ftolerance_10',['rel_tolerance',['../structMeltPoolDG_1_1RadiativeTransport_1_1PseudoTimeSteppingData.html#ac8d3a0d9350da1c7e603321f628d294b',1,'MeltPoolDG::RadiativeTransport::PseudoTimeSteppingData']]],
-  ['residual_11',['residual',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a5b4a7d2d802fe5c9b6941bf6a24173e7',1,'MeltPoolDG::NewtonRaphsonSolver']]],
-  ['residual_5ftolerance_12',['residual_tolerance',['../structMeltPoolDG_1_1NonlinearSolverData.html#a71579db94d3171c09daae9f4a0b4428a',1,'MeltPoolDG::NonlinearSolverData']]],
-  ['residual_5ftolerance_5falt_13',['residual_tolerance_alt',['../structMeltPoolDG_1_1NonlinearSolverData.html#a1c49609188af42db1819e160e952fe79',1,'MeltPoolDG::NonlinearSolverData']]],
-  ['restart_14',['restart',['../structMeltPoolDG_1_1Parameters.html#ab0e681c963adb34f2003c0a713a3c469',1,'MeltPoolDG::Parameters']]],
-  ['rs_5fdiv_5fc_15',['rs_div_c',['../classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperatorImplicitBase.html#a173c9b7cd6dcac245f08eb99df8e9aab',1,'MeltPoolDG::Flow::CompressibleFlowOperatorImplicitBase']]],
-  ['rte_16',['rte',['../structMeltPoolDG_1_1Parameters.html#a7526cea303a360726d02fbffc0bc69c7',1,'MeltPoolDG::Parameters']]],
-  ['rte_5fboundary_5fid_17',['rte_boundary_id',['../structMeltPoolDG_1_1Heat_1_1LaserData.html#af1e40c5a11621ac0f1361e1fdd27a52f',1,'MeltPoolDG::Heat::LaserData']]]
+  ['registrar_8',['registrar',['../classMeltPoolDG_1_1Simulation_1_1SolidificationSlab_1_1SimulationSolidificationSlab.html#a9b0ea6e26e829983285b01e29af4fc4c',1,'MeltPoolDG::Simulation::SolidificationSlab::SimulationSolidificationSlab::registrar'],['../classMeltPoolDG_1_1Simulation_1_1UnidirectionalHeatTransfer_1_1SimulationUnidirectionalHeatTransfer.html#a3392c6b0fce198ec4215183f3d1d6fed',1,'MeltPoolDG::Simulation::UnidirectionalHeatTransfer::SimulationUnidirectionalHeatTransfer::registrar'],['../classMeltPoolDG_1_1Simulation_1_1PowderBed_1_1SimulationPowderBed.html#a761a8048f217b808a82f26f62f84ef7f',1,'MeltPoolDG::Simulation::PowderBed::SimulationPowderBed::registrar'],['../classMeltPoolDG_1_1Simulation_1_1MeltFrontPropagation_1_1SimulationMeltFrontPropagation.html#a8ca27dab59ebbf97c3f660b458f280e3',1,'MeltPoolDG::Simulation::MeltFrontPropagation::SimulationMeltFrontPropagation::registrar']]],
+  ['reinit_9',['reinit',['../structMeltPoolDG_1_1LevelSet_1_1LevelSetData.html#a5aaf21da404effaf1c3b84394e2ea500',1,'MeltPoolDG::LevelSet::LevelSetData']]],
+  ['reinit_5fvector_10',['reinit_vector',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a028737eb90dadace4d22caa098c9f4dd',1,'MeltPoolDG::NewtonRaphsonSolver']]],
+  ['rel_5ftolerance_11',['rel_tolerance',['../structMeltPoolDG_1_1RadiativeTransport_1_1PseudoTimeSteppingData.html#ac8d3a0d9350da1c7e603321f628d294b',1,'MeltPoolDG::RadiativeTransport::PseudoTimeSteppingData']]],
+  ['residual_12',['residual',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a5b4a7d2d802fe5c9b6941bf6a24173e7',1,'MeltPoolDG::NewtonRaphsonSolver']]],
+  ['residual_5ftolerance_13',['residual_tolerance',['../structMeltPoolDG_1_1NonlinearSolverData.html#a71579db94d3171c09daae9f4a0b4428a',1,'MeltPoolDG::NonlinearSolverData']]],
+  ['residual_5ftolerance_5falt_14',['residual_tolerance_alt',['../structMeltPoolDG_1_1NonlinearSolverData.html#a1c49609188af42db1819e160e952fe79',1,'MeltPoolDG::NonlinearSolverData']]],
+  ['restart_15',['restart',['../structMeltPoolDG_1_1Parameters.html#ab0e681c963adb34f2003c0a713a3c469',1,'MeltPoolDG::Parameters']]],
+  ['rs_5fdiv_5fc_16',['rs_div_c',['../classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperatorImplicitBase.html#a173c9b7cd6dcac245f08eb99df8e9aab',1,'MeltPoolDG::Flow::CompressibleFlowOperatorImplicitBase']]],
+  ['rte_17',['rte',['../structMeltPoolDG_1_1Parameters.html#a7526cea303a360726d02fbffc0bc69c7',1,'MeltPoolDG::Parameters']]],
+  ['rte_5fboundary_5fid_18',['rte_boundary_id',['../structMeltPoolDG_1_1Heat_1_1LaserData.html#af1e40c5a11621ac0f1361e1fdd27a52f',1,'MeltPoolDG::Heat::LaserData']]]
 ];
