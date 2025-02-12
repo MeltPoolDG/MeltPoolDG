@@ -14,5 +14,5 @@ var searchData=
   ['evaporationsourcetermscontinuous_11',['EvaporationSourceTermsContinuous',['../classMeltPoolDG_1_1Evaporation_1_1EvaporationSourceTermsContinuous.html',1,'MeltPoolDG::Evaporation']]],
   ['evaporationsourcetermssharp_12',['EvaporationSourceTermsSharp',['../classMeltPoolDG_1_1Evaporation_1_1EvaporationSourceTermsSharp.html',1,'MeltPoolDG::Evaporation']]],
   ['evaporativecooling_13',['EvaporativeCooling',['../classMeltPoolDG_1_1Evaporation_1_1EvaporativeCooling.html',1,'MeltPoolDG::Evaporation']]],
-  ['exactsolution_14',['ExactSolution',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusionDG_1_1ExactSolution.html',1,'MeltPoolDG::Simulation::AdvectionDiffusionDG']]]
+  ['exactsolution_14',['exactsolution',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusionDG_1_1ExactSolution.html',1,'MeltPoolDG::Simulation::AdvectionDiffusionDG::ExactSolution&lt; dim &gt;'],['../classMeltPoolDG_1_1Simulation_1_1ReinitCircle_1_1ExactSolution.html',1,'MeltPoolDG::Simulation::ReinitCircle::ExactSolution&lt; dim &gt;'],['../classMeltPoolDG_1_1Simulation_1_1ReinitCircleDG_1_1ExactSolution.html',1,'MeltPoolDG::Simulation::ReinitCircleDG::ExactSolution&lt; dim &gt;']]]
 ];

@@ -13,7 +13,7 @@ var searchData=
   ['convection_10',['convection',['../structMeltPoolDG_1_1Heat_1_1HeatData.html#acabb0e6de5db4119b681d369819f2977',1,'MeltPoolDG::Heat::HeatData']]],
   ['convection_5fcoefficient_11',['convection_coefficient',['../structMeltPoolDG_1_1Heat_1_1HeatData_1_1ConvectionBC.html#a4e158d57a871061afd4d09b3393e53d4',1,'MeltPoolDG::Heat::HeatData::ConvectionBC']]],
   ['courant_5fnumber_12',['courant_number',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a9e764f62d00d9f6bed9462027c88a6c2',1,'MeltPoolDG::Flow::CompressibleFlowData']]],
-  ['curv_13',['curv',['../structMeltPoolDG_1_1LevelSet_1_1LevelSetData.html#ac03870578343eecfc632828e1832f43f',1,'MeltPoolDG::LevelSet::LevelSetData']]],
+  ['curv_13',['curv',['../structMeltPoolDG_1_1LevelSet_1_1LevelSetData.html#ac03870578343eecfc632828e1832f43f',1,'MeltPoolDG::LevelSet::LevelSetData::curv'],['../structMeltPoolDG_1_1LevelSet_1_1ReinitializationCaseParameters.html#a3c28936fd4dd7f7ff7eb6eaab6939f5f',1,'MeltPoolDG::LevelSet::ReinitializationCaseParameters::curv']]],
   ['curvature_5fdg_5fspecific_5fdata_14',['curvature_DG_specific_data',['../structMeltPoolDG_1_1LevelSet_1_1CurvatureData.html#aeac8fa37531297322033c90b9c566e67',1,'MeltPoolDG::LevelSet::CurvatureData']]],
   ['cut_15',['cut',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#afa34969d35a3b8461e4f33682e4b8b0c',1,'MeltPoolDG::Flow::CompressibleFlowData::cut'],['../structMeltPoolDG_1_1Heat_1_1HeatData.html#a706b8489bbd9d27e304d2f67b081e89d',1,'MeltPoolDG::Heat::HeatData::cut']]]
 ];

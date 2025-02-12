@@ -123,58 +123,48 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionProblem.html#a21306b6bb3459704d22a0dee08ac333e">run</a>();</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">/*</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">     *  This function initials the relevant member data</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">     *  for the computation of the advection-diffusion problem</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    setup_dof_system();</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    initialize();</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    compute_advection_velocity(Function&lt;dim&gt; &amp;advec_func);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">/*</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">     *  perform output of results</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    output_results(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> time_step, <span class="keywordtype">double</span> current_time);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">/*</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">     *  perform mesh refinement</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    refine_mesh();</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    std::unique_ptr&lt;CaseType&gt; simulation_case;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    std::unique_ptr&lt;CaseType&gt; simulation_case;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    DoFHandler&lt;dim&gt;                       dof_handler;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    AffineConstraints&lt;double&gt;             constraints;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    AffineConstraints&lt;double&gt;             hanging_node_constraints;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    AffineConstraints&lt;double&gt;             hanging_node_constraints_with_zero_dirichlet;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    DoFHandler&lt;dim&gt;                       dof_handler_velocity;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    AffineConstraints&lt;double&gt;             hanging_node_constraints_velocity;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    std::shared_ptr&lt;ScratchData&lt;dim&gt;&gt;     scratch_data;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1LevelSet.html#a453b11d145879dcf7795d7582b53cea7">VectorType</a>                            advection_velocity;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::unique_ptr&lt;TimeIterator&lt;double&gt;&gt; time_iterator;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    std::unique_ptr&lt;AdvectionDiffusionOperationBase&lt;dim&gt;&gt; advec_diff_operation;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    std::unique_ptr&lt;Profiling::ProfilingMonitor&lt;double&gt;&gt;  profiling_monitor;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> advec_diff_dof_idx;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> advec_diff_hanging_nodes_dof_idx;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> advec_diff_adaflo_dof_idx;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> velocity_dof_idx;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> advec_diff_quad_idx;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    std::unique_ptr&lt;Postprocessor&lt;dim&gt;&gt; post_processor;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    setup_dof_system();</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    DoFHandler&lt;dim&gt;                       dof_handler;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    AffineConstraints&lt;double&gt;             constraints;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    AffineConstraints&lt;double&gt;             hanging_node_constraints;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    AffineConstraints&lt;double&gt;             hanging_node_constraints_with_zero_dirichlet;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    DoFHandler&lt;dim&gt;                       dof_handler_velocity;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    AffineConstraints&lt;double&gt;             hanging_node_constraints_velocity;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    std::shared_ptr&lt;ScratchData&lt;dim&gt;&gt;     scratch_data;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1LevelSet.html#a453b11d145879dcf7795d7582b53cea7">VectorType</a>                            advection_velocity;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    std::unique_ptr&lt;TimeIterator&lt;double&gt;&gt; time_iterator;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    std::unique_ptr&lt;AdvectionDiffusionOperationBase&lt;dim&gt;&gt; advec_diff_operation;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    std::unique_ptr&lt;Profiling::ProfilingMonitor&lt;double&gt;&gt;  profiling_monitor;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> advec_diff_dof_idx;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> advec_diff_hanging_nodes_dof_idx;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> advec_diff_adaflo_dof_idx;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> velocity_dof_idx;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> advec_diff_quad_idx;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    std::unique_ptr&lt;Postprocessor&lt;dim&gt;&gt; post_processor;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  };</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    initialize();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    compute_advection_velocity(Function&lt;dim&gt; &amp;advec_func);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    output_results(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> time_step, <span class="keywordtype">double</span> current_time);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    refine_mesh();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  };</div>
 </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>} <span class="comment">// namespace MeltPoolDG::LevelSet</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>} <span class="comment">// namespace MeltPoolDG::LevelSet</span></div>
 <div class="ttc" id="aadvection__diffusion__case_8hpp_html"><div class="ttname"><a href="advection__diffusion__case_8hpp.html">advection_diffusion_case.hpp</a></div></div>
 <div class="ttc" id="aadvection__diffusion__operation__base_8hpp_html"><div class="ttname"><a href="advection__diffusion__operation__base_8hpp.html">advection_diffusion_operation_base.hpp</a></div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionCase_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionCase.html">MeltPoolDG::LevelSet::AdvectionDiffusionCase</a></div><div class="ttdef"><b>Definition</b> advection_diffusion_case.hpp:50</div></div>
