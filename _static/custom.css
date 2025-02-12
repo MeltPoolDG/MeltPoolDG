@@ -100,3 +100,61 @@ code {
     border-radius: 3px; /* Optional: rounded corners for inline code */
     padding: 0 4px; /* Optional: space around the code */
 }
+
+/* Make the slideshow container responsive */
+.youtube-slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 960px; /* Max width for larger screens */
+    margin: 0 auto; /* Centering */
+    padding-top: 56.25%; /* 16:9 aspect ratio (height / width = 9 / 16) */
+    background-color: #000; /* Black background to fill empty space */
+}
+
+/* Make the iframe responsive */
+.youtube-slideshow iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Button Styles */
+.slideshow-button {
+    font-size: 2em; /* Larger font size for arrows */
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 10; /* Ensure buttons appear on top of the video */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Position buttons on left and right */
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
+
+/* Hover effect for buttons */
+.slideshow-button:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* Darken button on hover */
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+    .slideshow-button {
+        font-size: 1.5em; /* Smaller arrows on mobile */
+    }
+    .youtube-slideshow {
+        padding-top: 56.25%; /* Maintain aspect ratio */
+    }
+}
