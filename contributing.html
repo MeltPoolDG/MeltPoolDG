@@ -49,20 +49,22 @@
 <li class="toctree-l1"><a class="reference internal" href="howto.html">💻 How to Work With MeltPoolDG</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">✋ How to Contribute</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#forking-the-repository">🌟 Forking the repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#testing">🧪 Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#code-formatting">🎨 Code Formatting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-pre-commit-hooks">🔧 Installing Pre-commit Hooks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#making-changes-and-pushing-to-the-repository">🚀 Making Changes and Pushing to the Repository</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#get-the-latest-master-branch">📥 Get the Latest <code class="docutils literal notranslate"><span class="pre">master</span></code> Branch</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1"></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-a-new-branch">🌿 Create a New Branch</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#rebasing-your-branch-onto-the-latest-master">🔄 Rebasing Your Branch onto the Latest <code class="docutils literal notranslate"><span class="pre">master</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#handling-merge-conflicts">⚔️ Handling Merge Conflicts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">🧪 Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-formatting">🎨 Code Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-pre-commit-hooks">🔧 Installing Pre-commit Hooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#useful-git-commands">💻 Useful GIT commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rebasing-your-branch-onto-the-latest-master">🔄 Rebasing Your Branch onto the Latest <code class="docutils literal notranslate"><span class="pre">master</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#handling-merge-conflicts">⚔️ Handling Merge Conflicts</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#squashing-commits-into-one">🛠 Squashing Commits into One</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#squashing-commits-into-one">🛠 Squashing Commits into One</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -109,6 +111,65 @@
 </div>
 <p>Now, you are ready to start contributing!</p>
 </section>
+<section id="making-changes-and-pushing-to-the-repository">
+<h2>🚀 Making Changes and Pushing to the Repository<a class="headerlink" href="#making-changes-and-pushing-to-the-repository" title="Link to this heading"></a></h2>
+<section id="get-the-latest-master-branch">
+<h3>📥 Get the Latest <code class="docutils literal notranslate"><span class="pre">master</span></code> Branch<a class="headerlink" href="#get-the-latest-master-branch" title="Link to this heading"></a></h3>
+<p>Before making changes, ensure your local branch is up to date with the original repository (see <strong>Useful GIT commands</strong> section):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>upstream
+git<span class="w"> </span>rebase<span class="w"> </span>upstream/master
+</pre></div>
+</div>
+</section>
+<section id="create-a-new-branch">
+<h3>🌿 Create a New Branch<a class="headerlink" href="#create-a-new-branch" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="s2">&quot;my_branch&quot;</span>
+</pre></div>
+</div>
+<p>Make your changes. Once ready to commit, follow these steps:</p>
+<ol class="arabic">
+<li><p>Format your code (see <strong>Code Formatting</strong> section). Alternatively, precommit hooks may help to not forget about formatting upon pushing the code (see <strong>Installing Pre-commit Hooks</strong> section). Make sure that all corresponding tests are passing (see <strong>Testing</strong> section)</p></li>
+<li><p>Verify your changes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>diff
+git<span class="w"> </span>status
+</pre></div>
+</div>
+</li>
+<li><p>Add modified files:</p>
+<ul>
+<li><p>To add all changed files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>-u
+</pre></div>
+</div>
+</li>
+<li><p>To add a specific new file (e.g., <code class="docutils literal notranslate"><span class="pre">new.cc</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>new.cc
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Check staged files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+</li>
+<li><p>Commit and push your changes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add a useful description&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>my_branch
+</pre></div>
+</div>
+</li>
+<li><p>Open a <strong>Pull Request</strong> on GitHub.</p></li>
+<li><p>Add labels to the PR.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Use the label <img alt="ready to test" src="https://img.shields.io/badge/ready%20to%20test-green" /> to trigger CI checks.</p></li>
+<li><p>Use <img alt="faster CI" src="https://img.shields.io/badge/mp-advec-diff?style=flat&amp;labelColor=%23D4C5F9&amp;color=%23D4C5F9" /> to specify regular expressions for <code class="docutils literal notranslate"><span class="pre">ctest</span> <span class="pre">-R</span></code> to ensure <strong>faster CI runs</strong>.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
 <section id="testing">
 <h2>🧪 Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
 <p>To run tests in <strong>verbose</strong> mode, execute:</p>
@@ -139,72 +200,10 @@
 </div>
 </section>
 <hr class="docutils" />
-<section id="making-changes-and-pushing-to-the-repository">
-<h2>🚀 Making Changes and Pushing to the Repository<a class="headerlink" href="#making-changes-and-pushing-to-the-repository" title="Link to this heading"></a></h2>
-<section id="get-the-latest-master-branch">
-<h3>📥 Get the Latest <code class="docutils literal notranslate"><span class="pre">master</span></code> Branch<a class="headerlink" href="#get-the-latest-master-branch" title="Link to this heading"></a></h3>
-<p>Before making changes, ensure your local branch is up to date:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:MeltPoolDG/MeltPoolDG-dev.git
-git<span class="w"> </span>fetch<span class="w"> </span>origin
-git<span class="w"> </span>rebase<span class="w"> </span>origin/master
-</pre></div>
-</div>
-</section>
-<section id="id1">
-<h3><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
-</section>
-<section id="create-a-new-branch">
-<h3>🌿 Create a New Branch<a class="headerlink" href="#create-a-new-branch" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="s2">&quot;my_branch&quot;</span>
-</pre></div>
-</div>
-<p>Make your changes. Once ready to commit, follow these steps:</p>
-<ol class="arabic">
-<li><p>Format your code (see <strong>Code Formatting</strong> section).</p></li>
-<li><p>Verify your changes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>diff
-git<span class="w"> </span>status
-</pre></div>
-</div>
-</li>
-<li><p>Add modified files:</p>
-<ul>
-<li><p>To add all changed files:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>-u
-</pre></div>
-</div>
-</li>
-<li><p>To add a specific new file (e.g., <code class="docutils literal notranslate"><span class="pre">new.cc</span></code>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>new.cc
-</pre></div>
-</div>
-</li>
-</ul>
-</li>
-<li><p>Check staged files:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
-</pre></div>
-</div>
-</li>
-<li><p>Commit and push your changes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add a useful description&quot;</span>
-git<span class="w"> </span>push<span class="w"> </span>my_remote<span class="w"> </span>my_branch
-</pre></div>
-</div>
-</li>
-<li><p>Open a <strong>Pull Request</strong> on GitHub.</p></li>
-<li><p>Add labels to the PR.</p>
-<ul class="simple">
-<li><p>Use the label <span style="background-color: #8BD909; padding: 4px;">ready to test</span> to trigger CI checks.</p></li>
-<li><p>Use <strong>lilac-colored labels</strong> <span style="background-color: #D4C5F9; padding: 4px;">labels</span> to specify regular expressions for <strong>faster CI runs</strong>.</p></li>
-</ul>
-</li>
-</ol>
-</section>
-</section>
-<hr class="docutils" />
+<section id="useful-git-commands">
+<h2>💻 Useful GIT commands<a class="headerlink" href="#useful-git-commands" title="Link to this heading"></a></h2>
 <section id="rebasing-your-branch-onto-the-latest-master">
-<h2>🔄 Rebasing Your Branch onto the Latest <code class="docutils literal notranslate"><span class="pre">master</span></code><a class="headerlink" href="#rebasing-your-branch-onto-the-latest-master" title="Link to this heading"></a></h2>
+<h3>🔄 Rebasing Your Branch onto the Latest <code class="docutils literal notranslate"><span class="pre">master</span></code><a class="headerlink" href="#rebasing-your-branch-onto-the-latest-master" title="Link to this heading"></a></h3>
 <p>If you’re working on <code class="docutils literal notranslate"><span class="pre">my_branch</span></code> and need to update it with the latest <code class="docutils literal notranslate"><span class="pre">master</span></code>, follow these steps.</p>
 <p>⚠ <strong>Warning:</strong> If you are unfamiliar with rebasing, create a backup before proceeding.</p>
 <ol class="arabic">
@@ -236,7 +235,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 </li>
 </ol>
 <section id="handling-merge-conflicts">
-<h3>⚔️ Handling Merge Conflicts<a class="headerlink" href="#handling-merge-conflicts" title="Link to this heading"></a></h3>
+<h4>⚔️ Handling Merge Conflicts<a class="headerlink" href="#handling-merge-conflicts" title="Link to this heading"></a></h4>
 <p>If you encounter a merge conflict in <code class="docutils literal notranslate"><span class="pre">my_file.hpp</span></code>:</p>
 <ol class="arabic">
 <li><p>Open the file and manually resolve the conflict by removing conflict markers (<code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">=======</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></code>).</p></li>
@@ -261,12 +260,13 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 </section>
 <hr class="docutils" />
 <section id="squashing-commits-into-one">
-<h2>🛠 Squashing Commits into One<a class="headerlink" href="#squashing-commits-into-one" title="Link to this heading"></a></h2>
+<h3>🛠 Squashing Commits into One<a class="headerlink" href="#squashing-commits-into-one" title="Link to this heading"></a></h3>
 <p>To squash multiple commits into a single commit:</p>
 <p>🔗 <a class="reference external" href="https://www.redswitches.com/blog/squash-commits/#step-1-switch-to-the-branch">Follow this guide</a>.</p>
 <p>⚠ <strong>Warning:</strong> Squashing rewrites commit history. If unsure, create a backup before proceeding.</p>
 <hr class="docutils" />
 <p>Happy coding! 🎉</p>
+</section>
 </section>
 </section>
 

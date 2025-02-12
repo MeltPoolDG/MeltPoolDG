@@ -17,6 +17,56 @@ git remote add upstream https://github.com/MeltPoolDG/MeltPoolDG-dev.git
 ```
 Now, you are ready to start contributing!
 
+## 🚀 Making Changes and Pushing to the Repository
+
+### 📥 Get the Latest `master` Branch
+
+Before making changes, ensure your local branch is up to date with the original repository (see **[Useful GIT commands](#-useful-git-commands)** section):
+```bash
+git fetch upstream
+git rebase upstream/master
+```
+### 🌿 Create a New Branch
+
+```bash
+git checkout -b "my_branch"
+```
+
+Make your changes. Once ready to commit, follow these steps:
+
+1. Format your code (see **[Code Formatting](#-code-formatting)** section). Alternatively, precommit hooks may help to not forget about formatting upon pushing the code (see **[Installing Pre-commit Hooks](#-installing-pre-commit-hooks)** section). Make sure that all corresponding tests are passing (see **[Testing](#-testing)** section)
+2. Verify your changes:
+
+   ```bash
+   git diff
+   git status
+   ```
+3. Add modified files:
+   - To add all changed files:
+     ```bash
+     git add -u
+     ```
+   - To add a specific new file (e.g., `new.cc`):
+     ```bash
+     git add new.cc
+     ```
+4. Check staged files:
+   ```bash
+   git status
+   ```
+5. Commit and push your changes:
+   ```bash
+   git commit -m "Add a useful description"
+   git push origin my_branch
+   ```
+6. Open a **Pull Request** on GitHub.
+7. Add labels to the PR.
+- Use the label ![ready to test](https://img.shields.io/badge/ready%20to%20test-green) to trigger CI checks.
+- Use ![faster CI](https://img.shields.io/badge/mp-advec-diff?style=flat&labelColor=%23D4C5F9&color=%23D4C5F9) to specify regular expressions for `ctest -R` to ensure **faster CI runs**.
+
+
+---
+
 ## 🧪 Testing
 
 To run tests in **verbose** mode, execute:
@@ -56,63 +106,8 @@ pre-commit install
 ```
 
 ---
-
-## 🚀 Making Changes and Pushing to the Repository
-
-### 📥 Get the Latest `master` Branch
-
-Before making changes, ensure your local branch is up to date:
-
-```bash
-git clone git@github.com:MeltPoolDG/MeltPoolDG-dev.git
-git fetch origin
-git rebase origin/master
-```
-###
-
-### 🌿 Create a New Branch
-
-```bash
-git checkout -b "my_branch"
-```
-
-Make your changes. Once ready to commit, follow these steps:
-
-1. Format your code (see **Code Formatting** section).
-2. Verify your changes:
-
-   ```bash
-   git diff
-   git status
-   ```
-
-3. Add modified files:
-
-   - To add all changed files:
-     ```bash
-     git add -u
-     ```
-   - To add a specific new file (e.g., `new.cc`):
-     ```bash
-     git add new.cc
-     ```
-4. Check staged files:
-   ```bash
-   git status
-   ```
-5. Commit and push your changes:
-   ```bash
-   git commit -m "Add a useful description"
-   git push my_remote my_branch
-   ```
-6. Open a **Pull Request** on GitHub.
-7. Add labels to the PR.
-   - Use the label <span style="background-color: #8BD909; padding: 4px;">ready to test</span> to trigger CI checks.
-   - Use **lilac-colored labels** <span style="background-color: #D4C5F9; padding: 4px;">labels</span> to specify regular expressions for **faster CI runs**.
-
----
-
-## 🔄 Rebasing Your Branch onto the Latest `master`
+## 💻 Useful GIT commands
+### 🔄 Rebasing Your Branch onto the Latest `master`
 
 If you're working on `my_branch` and need to update it with the latest `master`, follow these steps.
 
@@ -140,7 +135,7 @@ If you're working on `my_branch` and need to update it with the latest `master`,
    git push -f origin my_branch
    ```
 
-### ⚔️ Handling Merge Conflicts
+#### ⚔️ Handling Merge Conflicts
 
 If you encounter a merge conflict in `my_file.hpp`:
 
@@ -161,7 +156,7 @@ If you encounter a merge conflict in `my_file.hpp`:
 
 ---
 
-## 🛠 Squashing Commits into One
+### 🛠 Squashing Commits into One
 
 To squash multiple commits into a single commit:
 
