@@ -15,7 +15,7 @@ var searchData=
   ['map_5fcompare_3c_20const_20wchar_5ft_20_2a_20_3e_12',['map_compare&lt; const wchar_t * &gt;',['../structbetter__enums_1_1map__compare_3_01const_01wchar__t_01_5_01_4.html',1,'better_enums']]],
   ['mappinginfotype_13',['MappingInfoType',['../namespaceMeltPoolDG_1_1CutUtil.html#a65482f1d63bf468a14abfe61d4a6278a',1,'MeltPoolDG::CutUtil']]],
   ['mappinginfovectortype_14',['MappingInfoVectorType',['../namespaceMeltPoolDG_1_1CutUtil.html#a2f7423e0844ee248df7ba907faaccba1',1,'MeltPoolDG::CutUtil']]],
-  ['material_15',['material',['../classMeltPoolDG_1_1Material.html',1,'MeltPoolDG::Material&lt; number &gt;'],['../classMeltPoolDG_1_1Material.html#ad1acc473b1b85dda2458a34489fdb247',1,'MeltPoolDG::Material::Material()'],['../structMeltPoolDG_1_1Heat_1_1HeatTransferCaseParameters.html#a85ec8d5d825bf27be4a98a8ffd1b4c27',1,'MeltPoolDG::Heat::HeatTransferCaseParameters::material'],['../structMeltPoolDG_1_1Parameters.html#af521c14411c50e2e4175515feea618f0',1,'MeltPoolDG::Parameters::material']]],
+  ['material_15',['material',['../classMeltPoolDG_1_1Material.html',1,'MeltPoolDG::Material&lt; number &gt;'],['../structMeltPoolDG_1_1Heat_1_1HeatTransferCaseParameters.html#a85ec8d5d825bf27be4a98a8ffd1b4c27',1,'MeltPoolDG::Heat::HeatTransferCaseParameters::material'],['../structMeltPoolDG_1_1Parameters.html#af521c14411c50e2e4175515feea618f0',1,'MeltPoolDG::Parameters::material'],['../classMeltPoolDG_1_1Material.html#ad1acc473b1b85dda2458a34489fdb247',1,'MeltPoolDG::Material::Material()']]],
   ['material_2ecpp_16',['material.cpp',['../material_8cpp.html',1,'']]],
   ['material_2ehpp_17',['material.hpp',['../material_8hpp.html',1,'']]],
   ['material_2etemplates_2ehpp_18',['material.templates.hpp',['../material_8templates_8hpp.html',1,'']]],
