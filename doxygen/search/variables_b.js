@@ -1,18 +1,18 @@
 var searchData=
 [
-  ['material_0',['material',['../structMeltPoolDG_1_1Heat_1_1HeatTransferCaseParameters.html#a85ec8d5d825bf27be4a98a8ffd1b4c27',1,'MeltPoolDG::Heat::HeatTransferCaseParameters::material'],['../structMeltPoolDG_1_1Parameters.html#af521c14411c50e2e4175515feea618f0',1,'MeltPoolDG::Parameters::material']]],
+  ['material_0',['material',['../structMeltPoolDG_1_1Heat_1_1HeatTransferCaseParameters.html#a85ec8d5d825bf27be4a98a8ffd1b4c27',1,'MeltPoolDG::Heat::HeatTransferCaseParameters::material'],['../structMeltPoolDG_1_1LevelSet_1_1LevelSetCaseParameters.html#a7164d816fa105f6b4c190f1e2a3498da',1,'MeltPoolDG::LevelSet::LevelSetCaseParameters::material'],['../structMeltPoolDG_1_1Parameters.html#af521c14411c50e2e4175515feea618f0',1,'MeltPoolDG::Parameters::material']]],
   ['max_5fchange_5ffactor_5ftime_5fstep_5fsize_1',['max_change_factor_time_step_size',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#abd66b65f0fd42f42521998b2b8a19ce1',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
   ['max_5fgrid_5frefinement_5flevel_2',['max_grid_refinement_level',['../structMeltPoolDG_1_1AdaptiveMeshingData.html#a4b99911b05de37829dbf1bdd6d40823a',1,'MeltPoolDG::AdaptiveMeshingData']]],
   ['max_5fn_5fsteps_3',['max_n_steps',['../structMeltPoolDG_1_1TimeSteppingData.html#ac837678bd69f569c8c4a12cac3c8f5ab',1,'MeltPoolDG::TimeSteppingData']]],
   ['max_5fnonlinear_5fiterations_4',['max_nonlinear_iterations',['../structMeltPoolDG_1_1NonlinearSolverData.html#a99544d86da7ffe07f83e06d7348a8736',1,'MeltPoolDG::NonlinearSolverData']]],
   ['max_5fnonlinear_5fiterations_5falt_5',['max_nonlinear_iterations_alt',['../structMeltPoolDG_1_1NonlinearSolverData.html#acd95a896cc56a09fcefd3372c4270d9e',1,'MeltPoolDG::NonlinearSolverData']]],
-  ['max_5ftemperature_6',['max_temperature',['../structMeltPoolDG_1_1Heat_1_1LaserData_1_1AnalyticalData.html#a3e530ba42aa7cae5165f748dcc2a8aaf',1,'MeltPoolDG::Heat::LaserData::AnalyticalData::max_temperature'],['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#afef3955ee846f0027f77fb4475be1a68',1,'MeltPoolDG::MeltPool::MeltPoolProblem::max_temperature']]],
+  ['max_5ftemperature_6',['max_temperature',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#afef3955ee846f0027f77fb4475be1a68',1,'MeltPoolDG::MeltPool::MeltPoolProblem::max_temperature'],['../structMeltPoolDG_1_1Heat_1_1LaserData_1_1AnalyticalData.html#a3e530ba42aa7cae5165f748dcc2a8aaf',1,'MeltPoolDG::Heat::LaserData::AnalyticalData::max_temperature']]],
   ['min_5fgrid_5frefinement_5flevel_7',['min_grid_refinement_level',['../structMeltPoolDG_1_1AdaptiveMeshingData.html#a6d5bdcccdd9daf1ff9a98b70b844afb4',1,'MeltPoolDG::AdaptiveMeshingData']]],
   ['model_8',['model',['../structMeltPoolDG_1_1Heat_1_1LaserData.html#a7067ffd19af9f79430aaac55f61e73b4',1,'MeltPoolDG::Heat::LaserData']]],
   ['molar_5fmass_9',['molar_mass',['../structMeltPoolDG_1_1MaterialData.html#a81c2cfeb3e9e5c07bde887f893821c0b',1,'MeltPoolDG::MaterialData']]],
   ['monitoring_5fvector_10',['monitoring_vector',['../classMeltPoolDG_1_1TimeIntegratorBase.html#acfd46a0c83ab8df6c0468bc1c643c4a7',1,'MeltPoolDG::TimeIntegratorBase']]],
   ['mp_11',['mp',['../structMeltPoolDG_1_1Parameters.html#a7a77fbea81ad5ea4686a8de15ac2f485',1,'MeltPoolDG::Parameters']]],
-  ['mp_5fheat_5fup_12',['mp_heat_up',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#a3877dda1d8841fccf9cb5dc84f30ca80',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
+  ['mp_5fheat_5fup_12',['mp_heat_up',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#ace442e47376f05b1ba81882169079f17',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
   ['mpi_5fcommunicator_13',['mpi_communicator',['../classMeltPoolDG_1_1SimulationCaseBase.html#ad5da13bb9d195a972be8c9ac0f64ca3a',1,'MeltPoolDG::SimulationCaseBase']]],
   ['mushy_5fzone_14',['mushy_zone',['../namespaceMeltPoolDG.html#a72118a774a46f0c3af6b5160ba779b0e',1,'MeltPoolDG']]],
   ['mushy_5fzone_5fmorphology_15',['mushy_zone_morphology',['../structMeltPoolDG_1_1Flow_1_1DarcyDampingData.html#a65654f279161c106bfb6959c9649ea1c',1,'MeltPoolDG::Flow::DarcyDampingData']]]

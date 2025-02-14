@@ -24,7 +24,7 @@ var searchData=
   ['start_5ftime_21',['start_time',['../structMeltPoolDG_1_1TimeSteppingData.html#aad4ec80a0cf594e81db429f5d94ac2b4',1,'MeltPoolDG::TimeSteppingData']]],
   ['stefan_5fboltzmann_5fconstant_22',['stefan_boltzmann_constant',['../namespaceMeltPoolDG_1_1PhysicalConstants.html#abda09cc50137f0ccfcc4bd1e2b3a48b3',1,'MeltPoolDG::PhysicalConstants']]],
   ['sticking_5fconstant_23',['sticking_constant',['../structMeltPoolDG_1_1Evaporation_1_1RecoilPressureData.html#a3f752c61178e5919b4f46982b37c1163',1,'MeltPoolDG::Evaporation::RecoilPressureData']]],
-  ['strategy_24',['strategy',['../classMeltPoolDG_1_1LevelSet_1_1LevelSetProblem.html#a47bd7292df0d19c0f5e891acf402220a',1,'MeltPoolDG::LevelSet::LevelSetProblem::strategy'],['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#a1e399bc41549c26ac8909832d42c9a2c',1,'MeltPoolDG::MeltPool::MeltPoolProblem::strategy']]],
+  ['strategy_24',['strategy',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#a1e399bc41549c26ac8909832d42c9a2c',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
   ['subsonic_5foutflow_5ffixed_5fenergy_25',['subsonic_outflow_fixed_energy',['../classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperatorBase.html#a6ee7a513ce9e26782c5369e7159f67ac',1,'MeltPoolDG::Flow::CompressibleFlowOperatorBase']]],
   ['subsonic_5foutflow_5ffixed_5fpressure_26',['subsonic_outflow_fixed_pressure',['../classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperatorBase.html#ab53e78d973f531e9cc0be387ca1f34c7',1,'MeltPoolDG::Flow::CompressibleFlowOperatorBase']]],
   ['substrate_5flevel_27',['substrate_level',['../structMeltPoolDG_1_1MeltPool_1_1PowderBedData.html#a95f71f89549ab4745a92333d8996916e',1,'MeltPoolDG::MeltPool::PowderBedData']]],
