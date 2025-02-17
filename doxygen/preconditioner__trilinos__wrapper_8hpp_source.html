@@ -86,180 +86,183 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;deal.II/base/exceptions.h&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;deal.II/lac/dynamic_sparsity_pattern.h&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;deal.II/lac/la_parallel_block_vector.h&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;deal.II/lac/trilinos_sparse_matrix.h&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="scratch__data_8hpp.html">meltpooldg/core/scratch_data.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;any&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;deal.II/dofs/dof_tools.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;deal.II/lac/dynamic_sparsity_pattern.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;deal.II/lac/la_parallel_block_vector.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;deal.II/lac/sparsity_tools.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;deal.II/lac/trilinos_sparse_matrix.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="scratch__data_8hpp.html">meltpooldg/core/scratch_data.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG.html">MeltPoolDG</a></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> OperatorType, <span class="keyword">typename</span> VectorType&gt;</div>
-<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="conceptMeltPoolDG_1_1DealiipreconditionerWrapperOperatorType.html">   26</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="conceptMeltPoolDG_1_1DealiipreconditionerWrapperOperatorType.html">DealiipreconditionerWrapperOperatorType</a> =</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">requires</span>(<span class="keyword">const</span> OperatorType op, dealii::TrilinosWrappers::SparseMatrix &amp;matrix) {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      op.compute_system_matrix_from_matrixfree(matrix);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    };</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;any&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG.html">MeltPoolDG</a></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> OperatorType, <span class="keyword">typename</span> VectorType&gt;</div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="conceptMeltPoolDG_1_1DealiipreconditionerWrapperOperatorType.html">   29</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="conceptMeltPoolDG_1_1DealiipreconditionerWrapperOperatorType.html">DealiipreconditionerWrapperOperatorType</a> =</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">requires</span>(<span class="keyword">const</span> OperatorType op, dealii::TrilinosWrappers::SparseMatrix &amp;matrix) {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>      op.compute_system_matrix_from_matrixfree(matrix);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    };</div>
 </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> VectorType, <span class="keyword">typename</span> DealiiPreconditionerType, <span class="keyword">typename</span> OperatorType&gt;</div>
-<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html">   38</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html">DealiiPreconditionerWrapper</a></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#afa9a9c7bd242c9269c4f8a1709ab1c11">   49</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#afa9a9c7bd242c9269c4f8a1709ab1c11">DealiiPreconditionerWrapper</a>(<span class="keyword">const</span> OperatorType *operator_in,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                                         <span class="keyword">const</span> <span class="keywordtype">bool</span>          do_matrix_free = <span class="keyword">true</span>)</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      : eq_operator(operator_in)</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      , do_matrix_free(do_matrix_free)</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    {}</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> VectorType, <span class="keyword">typename</span> DealiiPreconditionerType, <span class="keyword">typename</span> OperatorType&gt;</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html">   41</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html">DealiiPreconditionerWrapper</a></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#afa9a9c7bd242c9269c4f8a1709ab1c11">   52</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#afa9a9c7bd242c9269c4f8a1709ab1c11">DealiiPreconditionerWrapper</a>(<span class="keyword">const</span> OperatorType *operator_in,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                                         <span class="keyword">const</span> <span class="keywordtype">bool</span>          do_matrix_free = <span class="keyword">true</span>)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      : eq_operator(operator_in)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      , do_matrix_free(do_matrix_free)</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    {}</div>
 </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00062" data-start="{" data-end="}">
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#a8a8189277437a1948e577e43cf8596b3">   62</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#a8a8189277437a1948e577e43cf8596b3">vmult</a>(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a> &amp;src)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="comment">// deal.II trilinos preconditioner do not support vmult(BlockVectorType&amp; BlockVectorType&amp;).</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <span class="comment">// This is done manually if required.</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      <span class="comment">// TODO: Can this be done more elegnat?</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;dealii::LinearAlgebra::distributed::BlockVector&lt;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                                     <span class="keyword">typename</span> VectorType::value_type&gt;,</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                                   <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a>&gt;)</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> b = 0; b &lt; dst.n_blocks(); ++b)</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>          preconditioner.vmult(dst.block(b), src.block(b));</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        preconditioner.vmult(dst, src);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#a8a8189277437a1948e577e43cf8596b3">   65</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#a8a8189277437a1948e577e43cf8596b3">vmult</a>(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a> &amp;src)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      <span class="comment">// deal.II trilinos preconditioner do not support vmult(BlockVectorType&amp; BlockVectorType&amp;).</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      <span class="comment">// This is done manually if required.</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      <span class="comment">// TODO: Can this be done more elegant?</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;dealii::LinearAlgebra::distributed::BlockVector&lt;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                                     <span class="keyword">typename</span> VectorType::value_type&gt;,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                                   <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a>&gt;)</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> b = 0; b &lt; dst.n_blocks(); ++b)</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>          preconditioner.vmult(dst.block(b), src.block(b));</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        preconditioner.vmult(dst, src);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
 </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00088" data-start="{" data-end="}">
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#a4b674d81d2e93bac334985af27770d83">   88</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#a4b674d81d2e93bac334985af27770d83">update</a>(<span class="keyword">const</span> std::any &amp;external_preconditioner_matrix = std::any())</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    {</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      dealii::TrilinosWrappers::SparseMatrix *preconditioner_matrix_ptr;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keywordflow">if</span> (not external_preconditioner_matrix.has_value())</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        {</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>          <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (<a class="code hl_concept" href="conceptMeltPoolDG_1_1DealiipreconditionerWrapperOperatorType.html">DealiipreconditionerWrapperOperatorType&lt;OperatorType, VectorType&gt;</a>)</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            {</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>              Assert(eq_operator != <span class="keyword">nullptr</span>,</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                     dealii::ExcMessage(<span class="stringliteral">&quot;The provided operator has no valid address (nullptr).&quot;</span>));</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>              eq_operator-&gt;compute_system_matrix_from_matrixfree(preconditioner_system_matrix);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>              preconditioner_matrix_ptr = &amp;preconditioner_system_matrix;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            }</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>          <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            {</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>              AssertThrow(<span class="keyword">false</span>,</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                          dealii::ExcMessage(</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                            <span class="stringliteral">&quot;Neither a rule to compute the preconditioner matrix nor an external&quot;</span></div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                            <span class="stringliteral">&quot; preconditioner matrix are provided.&quot;</span>));</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            }</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        }</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        {</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>          Assert(external_preconditioner_matrix.has_value(),</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                 dealii::ExcMessage(</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                   <span class="stringliteral">&quot;No external system matrix has been passed to the preconditioner!&quot;</span>));</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>          preconditioner_matrix_ptr =</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            std::any_cast&lt;dealii::TrilinosWrappers::SparseMatrix *&gt;(external_preconditioner_matrix);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        }</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      preconditioner.initialize(*preconditioner_matrix_ptr,</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                                <span class="keyword">typename</span> DealiiPreconditionerType::AdditionalData());</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00091" data-start="{" data-end="}">
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#a4b674d81d2e93bac334985af27770d83">   91</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#a4b674d81d2e93bac334985af27770d83">update</a>(<span class="keyword">const</span> std::any &amp;external_preconditioner_matrix = std::any())</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      dealii::TrilinosWrappers::SparseMatrix *preconditioner_matrix_ptr;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      <span class="keywordflow">if</span> (not external_preconditioner_matrix.has_value())</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>          <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (<a class="code hl_concept" href="conceptMeltPoolDG_1_1DealiipreconditionerWrapperOperatorType.html">DealiipreconditionerWrapperOperatorType&lt;OperatorType, VectorType&gt;</a>)</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>              Assert(eq_operator != <span class="keyword">nullptr</span>,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                     dealii::ExcMessage(<span class="stringliteral">&quot;The provided operator has no valid address (nullptr).&quot;</span>));</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>              eq_operator-&gt;compute_system_matrix_from_matrixfree(preconditioner_system_matrix);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>              preconditioner_matrix_ptr = &amp;preconditioner_system_matrix;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>          <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>              AssertThrow(<span class="keyword">false</span>,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                          dealii::ExcMessage(</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                            <span class="stringliteral">&quot;Neither a rule to compute the preconditioner matrix nor an external&quot;</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                            <span class="stringliteral">&quot; preconditioner matrix are provided.&quot;</span>));</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>          Assert(external_preconditioner_matrix.has_value(),</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                 dealii::ExcMessage(</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                   <span class="stringliteral">&quot;No external system matrix has been passed to the preconditioner!&quot;</span>));</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>          preconditioner_matrix_ptr =</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            std::any_cast&lt;dealii::TrilinosWrappers::SparseMatrix *&gt;(external_preconditioner_matrix);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      preconditioner.initialize(*preconditioner_matrix_ptr,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                                <span class="keyword">typename</span> DealiiPreconditionerType::AdditionalData());</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }</div>
 </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00130" data-start="{" data-end="}">
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#ad3a9e19f30106cf842253855b306b591">  130</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#ad3a9e19f30106cf842253855b306b591">reinit</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim&gt;</a> &amp;scratch_data, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dof_idx)</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    {</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      <span class="keywordflow">if</span> (eq_operator != <span class="keyword">nullptr</span> &amp;&amp; do_matrix_free)</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        {</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>          dsp.reinit(scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#ac1a5639dd4078275151d4b4633cc014b">get_dof_handler</a>(dof_idx).n_dofs(),</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                     scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#ac1a5639dd4078275151d4b4633cc014b">get_dof_handler</a>(dof_idx).n_dofs(),</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                     scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#adfeb951081514f0d05c98bc9505047b3">get_locally_relevant_dofs</a>(dof_idx));</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>          <span class="keywordflow">if</span> (scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a3cb61099b06c0db1af94ce7585924889">is_FE_DGQ</a>(dof_idx))</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>            {</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>              dealii::DoFTools::make_flux_sparsity_pattern(scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#ac1a5639dd4078275151d4b4633cc014b">get_dof_handler</a>(dof_idx),</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                                                           dsp,</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                                                           scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a2495fb57dbfc09d446671b7db1df472c">get_constraint</a>(dof_idx),</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>                                                           <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            }</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>          <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            {</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>              dealii::DoFTools::make_sparsity_pattern(scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#ac1a5639dd4078275151d4b4633cc014b">get_dof_handler</a>(dof_idx),</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>                                                      dsp,</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                                                      scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a2495fb57dbfc09d446671b7db1df472c">get_constraint</a>(dof_idx));</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            }</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>          dealii::SparsityTools::distribute_sparsity_pattern(</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>            dsp,</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a02dc02f559b02a6728407b21815a37a7">get_locally_owned_dofs</a>(dof_idx),</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>            scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a8a9dfc2f2bbe571476bca69b29867fbb">get_mpi_comm</a>(),</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#adfeb951081514f0d05c98bc9505047b3">get_locally_relevant_dofs</a>(dof_idx));</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>          preconditioner_system_matrix.reinit(scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a02dc02f559b02a6728407b21815a37a7">get_locally_owned_dofs</a>(dof_idx),</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                                              scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a02dc02f559b02a6728407b21815a37a7">get_locally_owned_dofs</a>(dof_idx),</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                                              dsp,</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                                              scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a8a9dfc2f2bbe571476bca69b29867fbb">get_mpi_comm</a>());</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        }</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00133" data-start="{" data-end="}">
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#ad3a9e19f30106cf842253855b306b591">  133</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#ad3a9e19f30106cf842253855b306b591">reinit</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim&gt;</a> &amp;scratch_data, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dof_idx)</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>      <span class="keywordflow">if</span> (eq_operator != <span class="keyword">nullptr</span> &amp;&amp; do_matrix_free)</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        {</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>          dsp.reinit(scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a6bb1c39eb661b4347e814fbb28ff62b4">get_dof_handler</a>(dof_idx).n_dofs(),</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                     scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a6bb1c39eb661b4347e814fbb28ff62b4">get_dof_handler</a>(dof_idx).n_dofs(),</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                     scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a5b572f327928d1e54a2e372d29e98dd8">get_locally_relevant_dofs</a>(dof_idx));</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>          <span class="keywordflow">if</span> (scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a7fabea79caf8179d8fc97635b118347c">is_FE_DGQ</a>(dof_idx))</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>            {</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>              dealii::DoFTools::make_flux_sparsity_pattern(scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a6bb1c39eb661b4347e814fbb28ff62b4">get_dof_handler</a>(dof_idx),</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                                                           dsp,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                                                           scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#afc7551cf501225f4cf858bce51d20e36">get_constraint</a>(dof_idx),</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                                                           <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            }</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>          <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>              dealii::DoFTools::make_sparsity_pattern(scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a6bb1c39eb661b4347e814fbb28ff62b4">get_dof_handler</a>(dof_idx),</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                                                      dsp,</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                                                      scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#afc7551cf501225f4cf858bce51d20e36">get_constraint</a>(dof_idx));</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>          dealii::SparsityTools::distribute_sparsity_pattern(</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            dsp,</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a78c3827702dce44aa31e39bf1c816961">get_locally_owned_dofs</a>(dof_idx),</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a5e4842157d910902fd950ca14871331f">get_mpi_comm</a>(),</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a5b572f327928d1e54a2e372d29e98dd8">get_locally_relevant_dofs</a>(dof_idx));</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>          preconditioner_system_matrix.reinit(scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a78c3827702dce44aa31e39bf1c816961">get_locally_owned_dofs</a>(dof_idx),</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                                              scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a78c3827702dce44aa31e39bf1c816961">get_locally_owned_dofs</a>(dof_idx),</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                                              dsp,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                                              scratch_data.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#a5e4842157d910902fd950ca14871331f">get_mpi_comm</a>());</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    }</div>
 </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    DealiiPreconditionerType               preconditioner;</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    dealii::TrilinosWrappers::SparseMatrix preconditioner_system_matrix;</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    dealii::DynamicSparsityPattern         dsp;</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keyword">const</span> OperatorType *eq_operator;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span>          do_matrix_free;</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  };</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    DealiiPreconditionerType               preconditioner;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    dealii::TrilinosWrappers::SparseMatrix preconditioner_system_matrix;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    dealii::DynamicSparsityPattern         dsp;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keyword">const</span> OperatorType *eq_operator;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span>          do_matrix_free;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  };</div>
 </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> VectorType&gt;</div>
-<div class="foldopen" id="foldopen00177" data-start="{" data-end="};">
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1IdentityPreconditioner.html">  177</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1IdentityPreconditioner.html">IdentityPreconditioner</a></div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>  {</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00181" data-start="{" data-end="}">
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1IdentityPreconditioner.html#a5f875363da6fd9900757436f2ec8e395">  181</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1IdentityPreconditioner.html#a5f875363da6fd9900757436f2ec8e395">vmult</a>(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a> &amp;src)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      dst = src;</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    }</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> VectorType&gt;</div>
+<div class="foldopen" id="foldopen00180" data-start="{" data-end="};">
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1IdentityPreconditioner.html">  180</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1IdentityPreconditioner.html">IdentityPreconditioner</a></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00184" data-start="{" data-end="}">
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1IdentityPreconditioner.html#a5f875363da6fd9900757436f2ec8e395">  184</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1IdentityPreconditioner.html#a5f875363da6fd9900757436f2ec8e395">vmult</a>(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a> &amp;src)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>      dst = src;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    }</div>
 </div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00187" data-start="{" data-end="}">
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1IdentityPreconditioner.html#abc43566834eb56d74a0a074d64a883c7">  187</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1IdentityPreconditioner.html#abc43566834eb56d74a0a074d64a883c7">update</a>(<span class="keyword">const</span> std::any &amp;)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="keyword">    </span>{}</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00190" data-start="{" data-end="}">
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1IdentityPreconditioner.html#abc43566834eb56d74a0a074d64a883c7">  190</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1IdentityPreconditioner.html#abc43566834eb56d74a0a074d64a883c7">update</a>(<span class="keyword">const</span> std::any &amp;)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="keyword">    </span>{}</div>
 </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00191" data-start="{" data-end="}">
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1IdentityPreconditioner.html#a57d35cad4c104132cffa6cabf80eb153">  191</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1IdentityPreconditioner.html#a57d35cad4c104132cffa6cabf80eb153">reinit</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim&gt;</a> &amp;, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="keyword">    </span>{}</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00194" data-start="{" data-end="}">
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1IdentityPreconditioner.html#a57d35cad4c104132cffa6cabf80eb153">  194</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1IdentityPreconditioner.html#a57d35cad4c104132cffa6cabf80eb153">reinit</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim&gt;</a> &amp;, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="keyword">    </span>{}</div>
 </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>  };</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  };</div>
 </div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>} <span class="comment">// namespace MeltPoolDG</span></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1DealiiPreconditionerWrapper_html"><div class="ttname"><a href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html">MeltPoolDG::DealiiPreconditionerWrapper</a></div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:39</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1DealiiPreconditionerWrapper_html_a4b674d81d2e93bac334985af27770d83"><div class="ttname"><a href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#a4b674d81d2e93bac334985af27770d83">MeltPoolDG::DealiiPreconditionerWrapper::update</a></div><div class="ttdeci">void update(const std::any &amp;external_preconditioner_matrix=std::any())</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:88</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1DealiiPreconditionerWrapper_html_a8a8189277437a1948e577e43cf8596b3"><div class="ttname"><a href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#a8a8189277437a1948e577e43cf8596b3">MeltPoolDG::DealiiPreconditionerWrapper::vmult</a></div><div class="ttdeci">void vmult(VectorType &amp;dst, const VectorType &amp;src) const</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:62</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1DealiiPreconditionerWrapper_html_ad3a9e19f30106cf842253855b306b591"><div class="ttname"><a href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#ad3a9e19f30106cf842253855b306b591">MeltPoolDG::DealiiPreconditionerWrapper::reinit</a></div><div class="ttdeci">void reinit(const ScratchData&lt; dim &gt; &amp;scratch_data, const unsigned int dof_idx)</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:130</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1DealiiPreconditionerWrapper_html_afa9a9c7bd242c9269c4f8a1709ab1c11"><div class="ttname"><a href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#afa9a9c7bd242c9269c4f8a1709ab1c11">MeltPoolDG::DealiiPreconditionerWrapper::DealiiPreconditionerWrapper</a></div><div class="ttdeci">DealiiPreconditionerWrapper(const OperatorType *operator_in, const bool do_matrix_free=true)</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:49</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1IdentityPreconditioner_html"><div class="ttname"><a href="classMeltPoolDG_1_1IdentityPreconditioner.html">MeltPoolDG::IdentityPreconditioner</a></div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:178</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1IdentityPreconditioner_html_a57d35cad4c104132cffa6cabf80eb153"><div class="ttname"><a href="classMeltPoolDG_1_1IdentityPreconditioner.html#a57d35cad4c104132cffa6cabf80eb153">MeltPoolDG::IdentityPreconditioner::reinit</a></div><div class="ttdeci">void reinit(const ScratchData&lt; dim &gt; &amp;, unsigned int) const</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:191</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1IdentityPreconditioner_html_a5f875363da6fd9900757436f2ec8e395"><div class="ttname"><a href="classMeltPoolDG_1_1IdentityPreconditioner.html#a5f875363da6fd9900757436f2ec8e395">MeltPoolDG::IdentityPreconditioner::vmult</a></div><div class="ttdeci">void vmult(VectorType &amp;dst, const VectorType &amp;src) const</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:181</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1IdentityPreconditioner_html_abc43566834eb56d74a0a074d64a883c7"><div class="ttname"><a href="classMeltPoolDG_1_1IdentityPreconditioner.html#abc43566834eb56d74a0a074d64a883c7">MeltPoolDG::IdentityPreconditioner::update</a></div><div class="ttdeci">void update(const std::any &amp;) const</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:187</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdef"><b>Definition</b> scratch_data.hpp:44</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_a02dc02f559b02a6728407b21815a37a7"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#a02dc02f559b02a6728407b21815a37a7">MeltPoolDG::ScratchData::get_locally_owned_dofs</a></div><div class="ttdeci">const IndexSet &amp; get_locally_owned_dofs(const unsigned int dof_idx) const</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:495</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_a2495fb57dbfc09d446671b7db1df472c"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#a2495fb57dbfc09d446671b7db1df472c">MeltPoolDG::ScratchData::get_constraint</a></div><div class="ttdeci">const AffineConstraints&lt; number &gt; &amp; get_constraint(const unsigned int constraint_index) const</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:337</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_a3cb61099b06c0db1af94ce7585924889"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#a3cb61099b06c0db1af94ce7585924889">MeltPoolDG::ScratchData::is_FE_DGQ</a></div><div class="ttdeci">bool is_FE_DGQ(const unsigned int dof_idx, const unsigned int component=0) const</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:545</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_a8a9dfc2f2bbe571476bca69b29867fbb"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#a8a9dfc2f2bbe571476bca69b29867fbb">MeltPoolDG::ScratchData::get_mpi_comm</a></div><div class="ttdeci">MPI_Comm get_mpi_comm(const unsigned int dof_idx=0) const</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:487</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_ac1a5639dd4078275151d4b4633cc014b"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#ac1a5639dd4078275151d4b4633cc014b">MeltPoolDG::ScratchData::get_dof_handler</a></div><div class="ttdeci">const DoFHandler&lt; dim, spacedim &gt; &amp; get_dof_handler(const unsigned int dof_idx) const</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:404</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_adfeb951081514f0d05c98bc9505047b3"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#adfeb951081514f0d05c98bc9505047b3">MeltPoolDG::ScratchData::get_locally_relevant_dofs</a></div><div class="ttdeci">const IndexSet &amp; get_locally_relevant_dofs(const unsigned int dof_idx) const</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:503</div></div>
-<div class="ttc" id="aconceptMeltPoolDG_1_1DealiipreconditionerWrapperOperatorType_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1DealiipreconditionerWrapperOperatorType.html">MeltPoolDG::DealiipreconditionerWrapperOperatorType</a></div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:26</div></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1DealiiPreconditionerWrapper_html"><div class="ttname"><a href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html">MeltPoolDG::DealiiPreconditionerWrapper</a></div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:42</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1DealiiPreconditionerWrapper_html_a4b674d81d2e93bac334985af27770d83"><div class="ttname"><a href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#a4b674d81d2e93bac334985af27770d83">MeltPoolDG::DealiiPreconditionerWrapper::update</a></div><div class="ttdeci">void update(const std::any &amp;external_preconditioner_matrix=std::any())</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:91</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1DealiiPreconditionerWrapper_html_a8a8189277437a1948e577e43cf8596b3"><div class="ttname"><a href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#a8a8189277437a1948e577e43cf8596b3">MeltPoolDG::DealiiPreconditionerWrapper::vmult</a></div><div class="ttdeci">void vmult(VectorType &amp;dst, const VectorType &amp;src) const</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:65</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1DealiiPreconditionerWrapper_html_ad3a9e19f30106cf842253855b306b591"><div class="ttname"><a href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#ad3a9e19f30106cf842253855b306b591">MeltPoolDG::DealiiPreconditionerWrapper::reinit</a></div><div class="ttdeci">void reinit(const ScratchData&lt; dim &gt; &amp;scratch_data, const unsigned int dof_idx)</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:133</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1DealiiPreconditionerWrapper_html_afa9a9c7bd242c9269c4f8a1709ab1c11"><div class="ttname"><a href="classMeltPoolDG_1_1DealiiPreconditionerWrapper.html#afa9a9c7bd242c9269c4f8a1709ab1c11">MeltPoolDG::DealiiPreconditionerWrapper::DealiiPreconditionerWrapper</a></div><div class="ttdeci">DealiiPreconditionerWrapper(const OperatorType *operator_in, const bool do_matrix_free=true)</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:52</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1IdentityPreconditioner_html"><div class="ttname"><a href="classMeltPoolDG_1_1IdentityPreconditioner.html">MeltPoolDG::IdentityPreconditioner</a></div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:181</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1IdentityPreconditioner_html_a57d35cad4c104132cffa6cabf80eb153"><div class="ttname"><a href="classMeltPoolDG_1_1IdentityPreconditioner.html#a57d35cad4c104132cffa6cabf80eb153">MeltPoolDG::IdentityPreconditioner::reinit</a></div><div class="ttdeci">void reinit(const ScratchData&lt; dim &gt; &amp;, unsigned int) const</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:194</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1IdentityPreconditioner_html_a5f875363da6fd9900757436f2ec8e395"><div class="ttname"><a href="classMeltPoolDG_1_1IdentityPreconditioner.html#a5f875363da6fd9900757436f2ec8e395">MeltPoolDG::IdentityPreconditioner::vmult</a></div><div class="ttdeci">void vmult(VectorType &amp;dst, const VectorType &amp;src) const</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:184</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1IdentityPreconditioner_html_abc43566834eb56d74a0a074d64a883c7"><div class="ttname"><a href="classMeltPoolDG_1_1IdentityPreconditioner.html#abc43566834eb56d74a0a074d64a883c7">MeltPoolDG::IdentityPreconditioner::update</a></div><div class="ttdeci">void update(const std::any &amp;) const</div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:190</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdef"><b>Definition</b> scratch_data.hpp:47</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_a5b572f327928d1e54a2e372d29e98dd8"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#a5b572f327928d1e54a2e372d29e98dd8">MeltPoolDG::ScratchData::get_locally_relevant_dofs</a></div><div class="ttdeci">const IndexSet &amp; get_locally_relevant_dofs(const unsigned int dof_idx) const</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:495</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_a5e4842157d910902fd950ca14871331f"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#a5e4842157d910902fd950ca14871331f">MeltPoolDG::ScratchData::get_mpi_comm</a></div><div class="ttdeci">MPI_Comm get_mpi_comm(const unsigned int dof_idx=0) const</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:481</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_a6bb1c39eb661b4347e814fbb28ff62b4"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#a6bb1c39eb661b4347e814fbb28ff62b4">MeltPoolDG::ScratchData::get_dof_handler</a></div><div class="ttdeci">const DoFHandler&lt; dim, spacedim &gt; &amp; get_dof_handler(const unsigned int dof_idx) const</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:404</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_a78c3827702dce44aa31e39bf1c816961"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#a78c3827702dce44aa31e39bf1c816961">MeltPoolDG::ScratchData::get_locally_owned_dofs</a></div><div class="ttdeci">const IndexSet &amp; get_locally_owned_dofs(const unsigned int dof_idx) const</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:488</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_a7fabea79caf8179d8fc97635b118347c"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#a7fabea79caf8179d8fc97635b118347c">MeltPoolDG::ScratchData::is_FE_DGQ</a></div><div class="ttdeci">bool is_FE_DGQ(const unsigned int dof_idx, const unsigned int component=0) const</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:534</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_afc7551cf501225f4cf858bce51d20e36"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#afc7551cf501225f4cf858bce51d20e36">MeltPoolDG::ScratchData::get_constraint</a></div><div class="ttdeci">const AffineConstraints&lt; number &gt; &amp; get_constraint(const unsigned int constraint_index) const</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:341</div></div>
+<div class="ttc" id="aconceptMeltPoolDG_1_1DealiipreconditionerWrapperOperatorType_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1DealiipreconditionerWrapperOperatorType.html">MeltPoolDG::DealiipreconditionerWrapperOperatorType</a></div><div class="ttdef"><b>Definition</b> preconditioner_trilinos_wrapper.hpp:29</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> base_data.hpp:9</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_html_a9ee666dd6476290a02b4dfc9f2c567ee"><div class="ttname"><a href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">MeltPoolDG::VectorType</a></div><div class="ttdeci">LinearAlgebra::distributed::Vector&lt; double &gt; VectorType</div><div class="ttdef"><b>Definition</b> utility_functions.hpp:139</div></div>
 <div class="ttc" id="ascratch__data_8hpp_html"><div class="ttname"><a href="scratch__data_8hpp.html">scratch_data.hpp</a></div></div>

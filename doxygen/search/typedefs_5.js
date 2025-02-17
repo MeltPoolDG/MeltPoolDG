@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['mappinginfotype_0',['MappingInfoType',['../namespaceMeltPoolDG_1_1CutUtil.html#a65482f1d63bf468a14abfe61d4a6278a',1,'MeltPoolDG::CutUtil']]],
-  ['mappinginfovectortype_1',['MappingInfoVectorType',['../namespaceMeltPoolDG_1_1CutUtil.html#a2f7423e0844ee248df7ba907faaccba1',1,'MeltPoolDG::CutUtil']]]
+  ['scalar_0',['scalar',['../classMeltPoolDG_1_1LevelSet_1_1AdvectionDGOperator.html#af58ec12035f45989523c938a498cd446',1,'MeltPoolDG::LevelSet::AdvectionDGOperator']]],
+  ['simulationcreator_1',['SimulationCreator',['../classMeltPoolDG_1_1SimulationCaseFactory.html#a9c807a9d35cdaae7c1cc11482934392d',1,'MeltPoolDG::SimulationCaseFactory']]],
+  ['sparsematrixtype_2',['SparseMatrixType',['../classMeltPoolDG_1_1LevelSet_1_1NormalVectorOperator.html#a1f0e207729e23258d0e770eefa4ebae5',1,'MeltPoolDG::LevelSet::NormalVectorOperator']]]
 ];

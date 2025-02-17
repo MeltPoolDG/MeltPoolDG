@@ -16,7 +16,7 @@ var searchData=
   ['matrix_5fvector_5fproduct_13',['matrix_vector_product',['../namespaceMeltPoolDG_1_1VectorTools.html#acbaf56b2b7300d9c23059431f1b08bf4',1,'MeltPoolDG::VectorTools']]],
   ['matrixtypeobject_14',['MatrixTypeObject',['../structMatrixTypeObject.html#afaad352f5fb89318dceae9fa66ed30bb',1,'MatrixTypeObject']]],
   ['max_5felement_15',['max_element',['../namespaceMeltPoolDG_1_1VectorTools.html#ab6e1044c7bfe7605319ddcd3cb93b422',1,'MeltPoolDG::VectorTools']]],
-  ['meltfrontpropagation_16',['MeltFrontPropagation',['../classMeltPoolDG_1_1MeltPool_1_1MeltFrontPropagation.html#ab54444374b15225a1f9d849629a3fa43',1,'MeltPoolDG::MeltPool::MeltFrontPropagation']]],
+  ['meltfrontpropagation_16',['MeltFrontPropagation',['../classMeltPoolDG_1_1MeltPool_1_1MeltFrontPropagation.html#a99e3fafd048ae3a564dd4d34bd2e47a9',1,'MeltPoolDG::MeltPool::MeltFrontPropagation']]],
   ['meltpoolcase_17',['MeltPoolCase',['../classMeltPoolDG_1_1MeltPoolCase.html#add1f3c6b8d96f42860ff492784dec1ae',1,'MeltPoolDG::MeltPoolCase']]],
   ['meltpoolproblem_18',['MeltPoolProblem',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#a380c99b8c16809a23352441faebcef16',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
   ['merge_5fhnc_5finto_5fdbc_19',['merge_HNC_into_DBC',['../namespaceMeltPoolDG_1_1Constraints.html#a1eeeb50e4b102a401533402fa006c095',1,'MeltPoolDG::Constraints']]],
