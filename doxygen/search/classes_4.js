@@ -14,8 +14,9 @@ var searchData=
   ['deltaapproximationphaseweighteddata_3c_20number_20_3e_11',['DeltaApproximationPhaseWeightedData&lt; number &gt;',['../structMeltPoolDG_1_1LevelSet_1_1DeltaApproximationPhaseWeightedData.html',1,'MeltPoolDG::LevelSet']]],
   ['deltaapproximationreciprocalphaseweighted_12',['DeltaApproximationReciprocalPhaseWeighted',['../classMeltPoolDG_1_1LevelSet_1_1DeltaApproximationReciprocalPhaseWeighted.html',1,'MeltPoolDG::LevelSet']]],
   ['deltaapproximationreciprocaltimesheavisidephaseweighted_13',['DeltaApproximationReciprocalTimesHeavisidePhaseWeighted',['../classMeltPoolDG_1_1LevelSet_1_1DeltaApproximationReciprocalTimesHeavisidePhaseWeighted.html',1,'MeltPoolDG::LevelSet']]],
-  ['dirichletcondition_14',['dirichletcondition',['../classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1DirichletCondition.html',1,'MeltPoolDG::Simulation::VortexBubble::DirichletCondition&lt; dim &gt;'],['../classMeltPoolDG_1_1Simulation_1_1VortexBubbleDG_1_1DirichletCondition.html',1,'MeltPoolDG::Simulation::VortexBubbleDG::DirichletCondition&lt; dim &gt;']]],
-  ['dirichletconditions_15',['DirichletConditions',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusionDG_1_1DirichletConditions.html',1,'MeltPoolDG::Simulation::AdvectionDiffusionDG']]],
-  ['divergencecalculator_16',['DivergenceCalculator',['../classMeltPoolDG_1_1PostProcessingTools_1_1DivergenceCalculator.html',1,'MeltPoolDG::PostProcessingTools']]],
-  ['dofmonitor_17',['DoFMonitor',['../classMeltPoolDG_1_1DoFMonitor.html',1,'MeltPoolDG']]]
+  ['diffuse_14',['Diffuse',['../structMeltPoolDG_1_1Heat_1_1HeatData_1_1Diffuse.html',1,'MeltPoolDG::Heat::HeatData']]],
+  ['dirichletcondition_15',['dirichletcondition',['../classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1DirichletCondition.html',1,'MeltPoolDG::Simulation::VortexBubble::DirichletCondition&lt; dim &gt;'],['../classMeltPoolDG_1_1Simulation_1_1VortexBubbleDG_1_1DirichletCondition.html',1,'MeltPoolDG::Simulation::VortexBubbleDG::DirichletCondition&lt; dim &gt;']]],
+  ['dirichletconditions_16',['DirichletConditions',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusionDG_1_1DirichletConditions.html',1,'MeltPoolDG::Simulation::AdvectionDiffusionDG']]],
+  ['divergencecalculator_17',['DivergenceCalculator',['../classMeltPoolDG_1_1PostProcessingTools_1_1DivergenceCalculator.html',1,'MeltPoolDG::PostProcessingTools']]],
+  ['dofmonitor_18',['DoFMonitor',['../classMeltPoolDG_1_1DoFMonitor.html',1,'MeltPoolDG']]]
 ];

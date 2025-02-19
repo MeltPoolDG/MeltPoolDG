@@ -29,7 +29,7 @@ var searchData=
   ['divergencecalculator_26',['DivergenceCalculator',['../classMeltPoolDG_1_1PostProcessingTools_1_1DivergenceCalculator.html#a9bfb8ae925f0319d75a168103af72c12',1,'MeltPoolDG::PostProcessingTools::DivergenceCalculator']]],
   ['do_5fdomain_5fintegral_5fresidual_27',['do_domain_integral_residual',['../namespaceMeltPoolDG_1_1Heat_1_1internal.html#ae1df4bddd082755bde3e52abc39d4abc',1,'MeltPoolDG::Heat::internal']]],
   ['do_5fdomain_5fintegral_5ftangent_28',['do_domain_integral_tangent',['../namespaceMeltPoolDG_1_1Heat_1_1internal.html#a16647e8938cd8b751f30ef244590a99e',1,'MeltPoolDG::Heat::internal']]],
-  ['do_5fghost_5fpenalty_5fterms_29',['do_ghost_penalty_terms',['../namespaceMeltPoolDG_1_1Heat_1_1internal.html#a46e3df5afc48a24c26fce355171c9e57',1,'MeltPoolDG::Heat::internal']]],
+  ['do_5fghost_5fpenalty_5fterms_29',['do_ghost_penalty_terms',['../namespaceMeltPoolDG_1_1Heat_1_1internal.html#a32699743ef2069e89dcab17bda132560',1,'MeltPoolDG::Heat::internal']]],
   ['do_5fimmersed_5fboundary_5fintegral_5fresidual_30',['do_immersed_boundary_integral_residual',['../namespaceMeltPoolDG_1_1Heat_1_1internal.html#ab7a6cd2f14d81179e2f5b841e3948a07',1,'MeltPoolDG::Heat::internal']]],
   ['do_5fimmersed_5fboundary_5fintegral_5ftangent_31',['do_immersed_boundary_integral_tangent',['../namespaceMeltPoolDG_1_1Heat_1_1internal.html#a1f83231a0b73a56b2830dd9465205ac4',1,'MeltPoolDG::Heat::internal']]],
   ['do_5finterface_5fintegral_5fresidual_32',['do_interface_integral_residual',['../namespaceMeltPoolDG_1_1Heat_1_1internal.html#a38a5d423dd36af2d22fe2c9a94c81dce',1,'MeltPoolDG::Heat::internal']]],

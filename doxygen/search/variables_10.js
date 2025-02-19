@@ -20,7 +20,7 @@ var searchData=
   ['specific_5fgas_5fconstant_17',['specific_gas_constant',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a5b919692d30160d319380b24b6300b1f',1,'MeltPoolDG::Flow::CompressibleFlowData']]],
   ['specific_5fheat_5fcapacity_18',['specific_heat_capacity',['../structMeltPoolDG_1_1MaterialParameterValues.html#a11e4801aa2f445212d1b7960426b9692',1,'MeltPoolDG::MaterialParameterValues']]],
   ['specific_5fheat_5fcapacity_5ftimes_5fdensity_19',['specific_heat_capacity_times_density',['../namespaceMeltPoolDG_1_1LevelSet.html#a63652ccaa53ad1c140fc92193b9a5a7e',1,'MeltPoolDG::LevelSet']]],
-  ['stabilization_20',['stabilization',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData_1_1Cut.html#a0238e2ee2b1e2433d2bfb4ae95b2ba13',1,'MeltPoolDG::Flow::CompressibleFlowData::Cut']]],
+  ['stabilization_20',['stabilization',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData_1_1Cut.html#a1742bda777f7ce138809a5e41b56c58e',1,'MeltPoolDG::Flow::CompressibleFlowData::Cut::stabilization'],['../structMeltPoolDG_1_1Heat_1_1HeatData_1_1Cut.html#a14d26e704ea5750a865c44bfe11aa3f6',1,'MeltPoolDG::Heat::HeatData::Cut::stabilization']]],
   ['start_5ftime_21',['start_time',['../structMeltPoolDG_1_1TimeSteppingData.html#aad4ec80a0cf594e81db429f5d94ac2b4',1,'MeltPoolDG::TimeSteppingData']]],
   ['stefan_5fboltzmann_5fconstant_22',['stefan_boltzmann_constant',['../namespaceMeltPoolDG_1_1PhysicalConstants.html#abda09cc50137f0ccfcc4bd1e2b3a48b3',1,'MeltPoolDG::PhysicalConstants']]],
   ['sticking_5fconstant_23',['sticking_constant',['../structMeltPoolDG_1_1Evaporation_1_1RecoilPressureData.html#a3f752c61178e5919b4f46982b37c1163',1,'MeltPoolDG::Evaporation::RecoilPressureData']]],

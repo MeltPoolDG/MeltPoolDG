@@ -31,6 +31,7 @@ var searchData=
   ['cut_28',['cut',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData_1_1Cut.html',1,'MeltPoolDG::Flow::CompressibleFlowData::Cut'],['../structMeltPoolDG_1_1Heat_1_1HeatData_1_1Cut.html',1,'MeltPoolDG::Heat::HeatData&lt; number &gt;::Cut']]],
   ['cutcompressibleflowoperation_29',['CutCompressibleFlowOperation',['../classMeltPoolDG_1_1Flow_1_1CutCompressibleFlowOperation.html',1,'MeltPoolDG::Flow']]],
   ['cutcompressibleflowoperator_30',['CutCompressibleFlowOperator',['../classMeltPoolDG_1_1Flow_1_1CutCompressibleFlowOperator.html',1,'MeltPoolDG::Flow']]],
-  ['cutparam_31',['CutParam',['../structMeltPoolDG_1_1CutParam.html',1,'MeltPoolDG']]],
-  ['cutparam_3c_20double_20_3e_32',['CutParam&lt; double &gt;',['../structMeltPoolDG_1_1CutParam.html',1,'MeltPoolDG']]]
+  ['cutstabilizationdata_31',['CutStabilizationData',['../structMeltPoolDG_1_1CutStabilizationData.html',1,'MeltPoolDG']]],
+  ['cutstabilizationdata_3c_20double_20_3e_32',['CutStabilizationData&lt; double &gt;',['../structMeltPoolDG_1_1CutStabilizationData.html',1,'MeltPoolDG']]],
+  ['cutstabilizationdata_3c_20number_20_3e_33',['CutStabilizationData&lt; number &gt;',['../structMeltPoolDG_1_1CutStabilizationData.html',1,'MeltPoolDG']]]
 ];
