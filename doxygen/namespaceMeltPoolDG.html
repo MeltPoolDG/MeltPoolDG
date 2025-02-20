@@ -95,7 +95,7 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1FiniteElementUtils" id="r_namespaceMeltPoolDG_1_1FiniteElementUtils"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html">FiniteElementUtils</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1Flow" id="r_namespaceMeltPoolDG_1_1Flow"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html">Flow</a></td></tr>
-<tr class="memdesc:namespaceMeltPoolDG_1_1Flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of calulator functions for the compressible Navier-Stokes equations. <br /></td></tr>
+<tr class="memdesc:namespaceMeltPoolDG_1_1Flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper class taking care of all boundary condition related computations for the compressible flow solver. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1Heat" id="r_namespaceMeltPoolDG_1_1Heat"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Heat.html">Heat</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,6 +156,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1GhostPenaltyData.html">GhostPenaltyData</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1IdentityPreconditioner.html">IdentityPreconditioner</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ImplicitExplicitIntegrator.html">ImplicitExplicitIntegrator</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1IterationMonitor.html">IterationMonitor</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -310,21 +312,21 @@ Functions</h2></td></tr>
 <tr class="separator:aa5e6eaaaa6924e557abe01f20654f012"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3bf6a5780fcde54b57d484c8e8b2d1c0" id="r_a3bf6a5780fcde54b57d484c8e8b2d1c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a3bf6a5780fcde54b57d484c8e8b2d1c0">BETTER_ENUM</a> (PredictorType, <a class="el" href="namespaceMeltPoolDG.html#aab9575e612e8c720bbb25e0a6bd86044">char</a>, none, linear_extrapolation, least_squares_projection) template&lt; typename number</td></tr>
 <tr class="separator:a3bf6a5780fcde54b57d484c8e8b2d1c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a118fd5fdea967155c11908f350ae2b9c" id="r_a118fd5fdea967155c11908f350ae2b9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a118fd5fdea967155c11908f350ae2b9c">BETTER_ENUM</a> (TimeIntegratorSchemes, int, not_initialized, LSRK_stage_3_order_3, LSRK_stage_5_order_4, LSRK_stage_7_order_4, LSRK_stage_9_order_5, implicit_euler, explicit_euler, crank_nicolson, bdf_1, bdf_2, bdf_3, bdf_4, bdf_5, bdf_6) struct TimeIntegratorData</td></tr>
-<tr class="separator:a118fd5fdea967155c11908f350ae2b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c8556344a0becc488abdbafc2979cce" id="r_a7c8556344a0becc488abdbafc2979cce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a7c8556344a0becc488abdbafc2979cce">BETTER_ENUM</a> (TimeIntegratorSchemes, int, not_initialized, LSRK_stage_3_order_3, LSRK_stage_5_order_4, LSRK_stage_7_order_4, LSRK_stage_9_order_5, implicit_euler, explicit_euler, crank_nicolson, bdf_1, bdf_2, bdf_3, bdf_4, bdf_5, bdf_6, imex) struct TimeIntegratorData</td></tr>
+<tr class="separator:a7c8556344a0becc488abdbafc2979cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b0c5047783ff62e1d315230d33700ee" id="r_a9b0c5047783ff62e1d315230d33700ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a9b0c5047783ff62e1d315230d33700ee">time_integrator_scheme_is_explicit</a> (const TimeIntegratorSchemes scheme)</td></tr>
 <tr class="separator:a9b0c5047783ff62e1d315230d33700ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac94f8afc454b29d4cd80be2f185ebfde" id="r_ac94f8afc454b29d4cd80be2f185ebfde"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ac94f8afc454b29d4cd80be2f185ebfde">time_integrator_scheme_is_implicit</a> (const TimeIntegratorSchemes scheme)</td></tr>
 <tr class="separator:ac94f8afc454b29d4cd80be2f185ebfde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade263d8770e67470cac9c6b4f35047cc" id="r_ade263d8770e67470cac9c6b4f35047cc"><td class="memTemplParams" colspan="2">template&lt;typename number , typename PDEOperator &gt; </td></tr>
-<tr class="memitem:ade263d8770e67470cac9c6b4f35047cc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number, PDEOperator &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ade263d8770e67470cac9c6b4f35047cc">explicit_time_integrator_factory</a> (const TimeIntegratorData &amp;params, dealii::TimerOutput &amp;timer)</td></tr>
-<tr class="separator:ade263d8770e67470cac9c6b4f35047cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c0b5fa9d493626eb103003ea9c79c4e" id="r_a9c0b5fa9d493626eb103003ea9c79c4e"><td class="memTemplParams" colspan="2">template&lt;typename number , typename PDEOperator &gt; </td></tr>
-<tr class="memitem:a9c0b5fa9d493626eb103003ea9c79c4e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number, PDEOperator &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a9c0b5fa9d493626eb103003ea9c79c4e">implicit_time_integrator_factory</a> (const TimeIntegratorData &amp;params, dealii::TimerOutput &amp;timer)</td></tr>
-<tr class="separator:a9c0b5fa9d493626eb103003ea9c79c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d416ff295b0e169795c0783c19ae041" id="r_a1d416ff295b0e169795c0783c19ae041"><td class="memTemplParams" colspan="2">template&lt;typename number , typename PDEOperator , typename <a class="el" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a>  = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;&gt; </td></tr>
-<tr class="memitem:a1d416ff295b0e169795c0783c19ae041"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number, PDEOperator &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a1d416ff295b0e169795c0783c19ae041">time_integrator_factory</a> (const TimeIntegratorData &amp;params, const LinearSolverData&lt; number &gt; &amp;linear_solver_data, dealii::TimerOutput &amp;timer)</td></tr>
-<tr class="separator:a1d416ff295b0e169795c0783c19ae041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a280a637cc00f0c94bcfac9f640179af3" id="r_a280a637cc00f0c94bcfac9f640179af3"><td class="memTemplParams" colspan="2">template&lt;typename number , typename PDEOperator &gt; </td></tr>
+<tr class="memitem:a280a637cc00f0c94bcfac9f640179af3"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a280a637cc00f0c94bcfac9f640179af3">explicit_time_integrator_factory</a> (const PDEOperator &amp;pde_operator, const TimeIntegratorData &amp;params, dealii::TimerOutput &amp;timer)</td></tr>
+<tr class="separator:a280a637cc00f0c94bcfac9f640179af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46875fc0430874ef74c3ff2712bafc83" id="r_a46875fc0430874ef74c3ff2712bafc83"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename PDEOperator &gt; </td></tr>
+<tr class="memitem:a46875fc0430874ef74c3ff2712bafc83"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a46875fc0430874ef74c3ff2712bafc83">implicit_time_integrator_factory</a> (const PDEOperator &amp;pde_operator, const TimeIntegratorData &amp;params, const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim &gt; &amp;scratch_data, const unsigned int dof_idx)</td></tr>
+<tr class="separator:a46875fc0430874ef74c3ff2712bafc83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54a2aa39da98e7c9abdef9aa8078757c" id="r_a54a2aa39da98e7c9abdef9aa8078757c"><td class="memTemplParams" colspan="2">template&lt;typename number , typename PDEOperator , typename <a class="el" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a>  = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;&gt; </td></tr>
+<tr class="memitem:a54a2aa39da98e7c9abdef9aa8078757c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a54a2aa39da98e7c9abdef9aa8078757c">time_integrator_factory</a> (const PDEOperator &amp;pde_operator, const TimeIntegratorData &amp;params, const LinearSolverData&lt; number &gt; &amp;linear_solver_data, dealii::TimerOutput &amp;timer)</td></tr>
+<tr class="separator:a54a2aa39da98e7c9abdef9aa8078757c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a014c065225b65242cd22b5df68a59e7f" id="r_a014c065225b65242cd22b5df68a59e7f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a014c065225b65242cd22b5df68a59e7f">now</a> (const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a> &amp;amr, const int n_time_step)</td></tr>
 <tr class="separator:a014c065225b65242cd22b5df68a59e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68ada01dd6ebf531dbcad7a470c157d9" id="r_a68ada01dd6ebf531dbcad7a470c157d9"><td class="memTemplParams" colspan="2">template&lt;int dim, typename <a class="el" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a> &gt; </td></tr>
@@ -693,8 +695,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a118fd5fdea967155c11908f350ae2b9c" name="a118fd5fdea967155c11908f350ae2b9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a118fd5fdea967155c11908f350ae2b9c">&#9670;&#160;</a></span>BETTER_ENUM() <span class="overload">[5/6]</span></h2>
+<a id="a7c8556344a0becc488abdbafc2979cce" name="a7c8556344a0becc488abdbafc2979cce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c8556344a0becc488abdbafc2979cce">&#9670;&#160;</a></span>BETTER_ENUM() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -793,6 +795,12 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bdf_6&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">imex&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -811,11 +819,12 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+<p>Number of time steps after which thre preconditioner gets updated.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespaceMeltPoolDG_a118fd5fdea967155c11908f350ae2b9c_cgraph.png" border="0" usemap="#anamespaceMeltPoolDG_a118fd5fdea967155c11908f350ae2b9c_cgraph" alt=""/></div>
-<map name="anamespaceMeltPoolDG_a118fd5fdea967155c11908f350ae2b9c_cgraph" id="anamespaceMeltPoolDG_a118fd5fdea967155c11908f350ae2b9c_cgraph">
+<div class="center"><img src="namespaceMeltPoolDG_a7c8556344a0becc488abdbafc2979cce_cgraph.png" border="0" usemap="#anamespaceMeltPoolDG_a7c8556344a0becc488abdbafc2979cce_cgraph" alt=""/></div>
+<map name="anamespaceMeltPoolDG_a7c8556344a0becc488abdbafc2979cce_cgraph" id="anamespaceMeltPoolDG_a7c8556344a0becc488abdbafc2979cce_cgraph">
 <area shape="rect" title=" " alt="" coords="5,13,209,38"/>
 <area shape="rect" href="structMeltPoolDG_1_1NonlinearSolverData.html#ae086600de201d5a4713dd86ca2278d51" title=" " alt="" coords="257,5,468,45"/>
 <area shape="poly" title=" " alt="" coords="210,23,244,23,244,28,210,28"/>
@@ -1127,8 +1136,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ade263d8770e67470cac9c6b4f35047cc" name="ade263d8770e67470cac9c6b4f35047cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade263d8770e67470cac9c6b4f35047cc">&#9670;&#160;</a></span>explicit_time_integrator_factory()</h2>
+<a id="a280a637cc00f0c94bcfac9f640179af3" name="a280a637cc00f0c94bcfac9f640179af3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a280a637cc00f0c94bcfac9f640179af3">&#9670;&#160;</a></span>explicit_time_integrator_factory()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1136,8 +1145,14 @@ Here is the call graph for this function:</div>
 template&lt;typename number , typename PDEOperator &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number, PDEOperator &gt; * MeltPoolDG::explicit_time_integrator_factory </td>
+          <td class="memname"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; * MeltPoolDG::explicit_time_integrator_factory </td>
           <td>(</td>
+          <td class="paramtype">const PDEOperator &amp;&#160;</td>
+          <td class="paramname"><em>pde_operator</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const TimeIntegratorData &amp;&#160;</td>
           <td class="paramname"><em>params</em>, </td>
         </tr>
@@ -1173,8 +1188,8 @@ template&lt;typename number , typename PDEOperator &gt; </div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespaceMeltPoolDG_ade263d8770e67470cac9c6b4f35047cc_cgraph.png" border="0" usemap="#anamespaceMeltPoolDG_ade263d8770e67470cac9c6b4f35047cc_cgraph" alt=""/></div>
-<map name="anamespaceMeltPoolDG_ade263d8770e67470cac9c6b4f35047cc_cgraph" id="anamespaceMeltPoolDG_ade263d8770e67470cac9c6b4f35047cc_cgraph">
+<div class="center"><img src="namespaceMeltPoolDG_a280a637cc00f0c94bcfac9f640179af3_cgraph.png" border="0" usemap="#anamespaceMeltPoolDG_a280a637cc00f0c94bcfac9f640179af3_cgraph" alt=""/></div>
+<map name="anamespaceMeltPoolDG_a280a637cc00f0c94bcfac9f640179af3_cgraph" id="anamespaceMeltPoolDG_a280a637cc00f0c94bcfac9f640179af3_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,188,45"/>
 <area shape="rect" href="namespaceMeltPoolDG_1_1Utils.html#a0df095ceeb5ccde83d10d155500a8d77" title=" " alt="" coords="236,5,381,45"/>
 <area shape="poly" title=" " alt="" coords="189,23,222,23,222,28,189,28"/>
@@ -1351,25 +1366,37 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a9c0b5fa9d493626eb103003ea9c79c4e" name="a9c0b5fa9d493626eb103003ea9c79c4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c0b5fa9d493626eb103003ea9c79c4e">&#9670;&#160;</a></span>implicit_time_integrator_factory()</h2>
+<a id="a46875fc0430874ef74c3ff2712bafc83" name="a46875fc0430874ef74c3ff2712bafc83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46875fc0430874ef74c3ff2712bafc83">&#9670;&#160;</a></span>implicit_time_integrator_factory()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename number , typename PDEOperator &gt; </div>
+template&lt;int dim, typename number , typename PDEOperator &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number, PDEOperator &gt; * MeltPoolDG::implicit_time_integrator_factory </td>
+          <td class="memname"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; * MeltPoolDG::implicit_time_integrator_factory </td>
           <td>(</td>
+          <td class="paramtype">const PDEOperator &amp;&#160;</td>
+          <td class="paramname"><em>pde_operator</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const TimeIntegratorData &amp;&#160;</td>
           <td class="paramname"><em>params</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">dealii::TimerOutput &amp;&#160;</td>
-          <td class="paramname"><em>timer</em>&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>dof_idx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1397,8 +1424,8 @@ template&lt;typename number , typename PDEOperator &gt; </div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespaceMeltPoolDG_a9c0b5fa9d493626eb103003ea9c79c4e_cgraph.png" border="0" usemap="#anamespaceMeltPoolDG_a9c0b5fa9d493626eb103003ea9c79c4e_cgraph" alt=""/></div>
-<map name="anamespaceMeltPoolDG_a9c0b5fa9d493626eb103003ea9c79c4e_cgraph" id="anamespaceMeltPoolDG_a9c0b5fa9d493626eb103003ea9c79c4e_cgraph">
+<div class="center"><img src="namespaceMeltPoolDG_a46875fc0430874ef74c3ff2712bafc83_cgraph.png" border="0" usemap="#anamespaceMeltPoolDG_a46875fc0430874ef74c3ff2712bafc83_cgraph" alt=""/></div>
+<map name="anamespaceMeltPoolDG_a46875fc0430874ef74c3ff2712bafc83_cgraph" id="anamespaceMeltPoolDG_a46875fc0430874ef74c3ff2712bafc83_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,188,45"/>
 <area shape="rect" href="namespaceMeltPoolDG_1_1Utils.html#a0df095ceeb5ccde83d10d155500a8d77" title=" " alt="" coords="236,5,381,45"/>
 <area shape="poly" title=" " alt="" coords="189,23,222,23,222,28,189,28"/>
@@ -1667,8 +1694,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a1d416ff295b0e169795c0783c19ae041" name="a1d416ff295b0e169795c0783c19ae041"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d416ff295b0e169795c0783c19ae041">&#9670;&#160;</a></span>time_integrator_factory()</h2>
+<a id="a54a2aa39da98e7c9abdef9aa8078757c" name="a54a2aa39da98e7c9abdef9aa8078757c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54a2aa39da98e7c9abdef9aa8078757c">&#9670;&#160;</a></span>time_integrator_factory()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1676,8 +1703,14 @@ Here is the call graph for this function:</div>
 template&lt;typename number , typename PDEOperator , typename <a class="el" href="namespaceMeltPoolDG.html#a9ee666dd6476290a02b4dfc9f2c567ee">VectorType</a>  = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number, PDEOperator &gt; * MeltPoolDG::time_integrator_factory </td>
+          <td class="memname"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; * MeltPoolDG::time_integrator_factory </td>
           <td>(</td>
+          <td class="paramtype">const PDEOperator &amp;&#160;</td>
+          <td class="paramname"><em>pde_operator</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const TimeIntegratorData &amp;&#160;</td>
           <td class="paramname"><em>params</em>, </td>
         </tr>
@@ -1720,8 +1753,8 @@ template&lt;typename number , typename PDEOperator , typename <a class="el" href
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespaceMeltPoolDG_a1d416ff295b0e169795c0783c19ae041_cgraph.png" border="0" usemap="#anamespaceMeltPoolDG_a1d416ff295b0e169795c0783c19ae041_cgraph" alt=""/></div>
-<map name="anamespaceMeltPoolDG_a1d416ff295b0e169795c0783c19ae041_cgraph" id="anamespaceMeltPoolDG_a1d416ff295b0e169795c0783c19ae041_cgraph">
+<div class="center"><img src="namespaceMeltPoolDG_a54a2aa39da98e7c9abdef9aa8078757c_cgraph.png" border="0" usemap="#anamespaceMeltPoolDG_a54a2aa39da98e7c9abdef9aa8078757c_cgraph" alt=""/></div>
+<map name="anamespaceMeltPoolDG_a54a2aa39da98e7c9abdef9aa8078757c_cgraph" id="anamespaceMeltPoolDG_a54a2aa39da98e7c9abdef9aa8078757c_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,213,45"/>
 <area shape="rect" href="namespaceMeltPoolDG_1_1Utils.html#a0df095ceeb5ccde83d10d155500a8d77" title=" " alt="" coords="261,5,407,45"/>
 <area shape="poly" title=" " alt="" coords="214,23,247,23,247,28,214,28"/>

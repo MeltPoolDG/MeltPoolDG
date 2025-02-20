@@ -9,10 +9,9 @@ var searchData=
   ['nearest_5fpoint_6',['nearest_point',['../structMeltPoolDG_1_1LevelSet_1_1LevelSetData.html#a9a3a15fc2d7f0f23385600e42dc4e8e4',1,'MeltPoolDG::LevelSet::LevelSetData']]],
   ['nitsche_5fparameter_7',['nitsche_parameter',['../structMeltPoolDG_1_1CutStabilizationData.html#a419294d1b8db11dd6dbe6b86ef702e1f',1,'MeltPoolDG::CutStabilizationData']]],
   ['nlsolve_8',['nlsolve',['../structMeltPoolDG_1_1Heat_1_1HeatData.html#a47323f620346e67367e86009930abe88',1,'MeltPoolDG::Heat::HeatData']]],
-  ['no_5fslip_5fadiabatic_5fwall_5fboundaries_9',['no_slip_adiabatic_wall_boundaries',['../classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperatorBase.html#a91ac3360e5c625875fe8edff89ef9715',1,'MeltPoolDG::Flow::CompressibleFlowOperatorBase']]],
-  ['none_10',['none',['../namespaceMeltPoolDG_1_1RadiativeTransport.html#a6887b34c8b4b512b0f8007026060618b',1,'MeltPoolDG::RadiativeTransport']]],
-  ['norm_5fof_5fsolution_5fvector_11',['norm_of_solution_vector',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a3deb3fb464db8b6738d103eb704f9376',1,'MeltPoolDG::NewtonRaphsonSolver']]],
-  ['normal_5fdg_5fspecific_5fdata_12',['normal_DG_specific_data',['../structMeltPoolDG_1_1LevelSet_1_1NormalVectorData.html#aae905fa56b55f31cfa7b45f5d126c5b4',1,'MeltPoolDG::LevelSet::NormalVectorData']]],
-  ['normal_5fvec_13',['normal_vec',['../structMeltPoolDG_1_1LevelSet_1_1LevelSetData.html#a8253c666685abcc6a141a3e1b135f870',1,'MeltPoolDG::LevelSet::LevelSetData::normal_vec'],['../structMeltPoolDG_1_1LevelSet_1_1ReinitializationCaseParameters.html#ac6aaf6a6313a7cd4b1c45d40c7f5fc48',1,'MeltPoolDG::LevelSet::ReinitializationCaseParameters::normal_vec']]],
-  ['numerical_5fflux_5ftype_14',['numerical_flux_type',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#ac9fb5f88efd1cc042cc1f38ed5cba9ea',1,'MeltPoolDG::Flow::CompressibleFlowData']]]
+  ['none_9',['none',['../namespaceMeltPoolDG_1_1RadiativeTransport.html#a6887b34c8b4b512b0f8007026060618b',1,'MeltPoolDG::RadiativeTransport']]],
+  ['norm_5fof_5fsolution_5fvector_10',['norm_of_solution_vector',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a3deb3fb464db8b6738d103eb704f9376',1,'MeltPoolDG::NewtonRaphsonSolver']]],
+  ['normal_5fdg_5fspecific_5fdata_11',['normal_DG_specific_data',['../structMeltPoolDG_1_1LevelSet_1_1NormalVectorData.html#aae905fa56b55f31cfa7b45f5d126c5b4',1,'MeltPoolDG::LevelSet::NormalVectorData']]],
+  ['normal_5fvec_12',['normal_vec',['../structMeltPoolDG_1_1LevelSet_1_1LevelSetData.html#a8253c666685abcc6a141a3e1b135f870',1,'MeltPoolDG::LevelSet::LevelSetData::normal_vec'],['../structMeltPoolDG_1_1LevelSet_1_1ReinitializationCaseParameters.html#ac6aaf6a6313a7cd4b1c45d40c7f5fc48',1,'MeltPoolDG::LevelSet::ReinitializationCaseParameters::normal_vec']]],
+  ['numerical_5fflux_5ftype_13',['numerical_flux_type',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a75c515f417be899691abe183af1a35c4',1,'MeltPoolDG::Flow::CompressibleFlowData']]]
 ];

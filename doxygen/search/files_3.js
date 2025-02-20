@@ -7,6 +7,15 @@ var searchData=
   ['delta_5fapproximation_5fphase_5fweighted_2ehpp_4',['delta_approximation_phase_weighted.hpp',['../delta__approximation__phase__weighted_8hpp.html',1,'']]],
   ['delta_5fapproximation_5fphase_5fweighted_5fdata_2ecpp_5',['delta_approximation_phase_weighted_data.cpp',['../delta__approximation__phase__weighted__data_8cpp.html',1,'']]],
   ['delta_5fapproximation_5fphase_5fweighted_5fdata_2ehpp_6',['delta_approximation_phase_weighted_data.hpp',['../delta__approximation__phase__weighted__data_8hpp.html',1,'']]],
-  ['divergence_5fcalc_2ehpp_7',['divergence_calc.hpp',['../divergence__calc_8hpp.html',1,'']]],
-  ['dof_5fmonitor_2ehpp_8',['dof_monitor.hpp',['../dof__monitor_8hpp.html',1,'']]]
+  ['dg_5fcompressible_5fflow_5foperation_2ecpp_7',['dg_compressible_flow_operation.cpp',['../dg__compressible__flow__operation_8cpp.html',1,'']]],
+  ['dg_5fcompressible_5fflow_5foperation_2ehpp_8',['dg_compressible_flow_operation.hpp',['../dg__compressible__flow__operation_8hpp.html',1,'']]],
+  ['dg_5fcompressible_5fflow_5foperator_5fbase_2ehpp_9',['dg_compressible_flow_operator_base.hpp',['../dg__compressible__flow__operator__base_8hpp.html',1,'']]],
+  ['dg_5fcompressible_5fflow_5foperator_5fexplicit_2ecpp_10',['dg_compressible_flow_operator_explicit.cpp',['../dg__compressible__flow__operator__explicit_8cpp.html',1,'']]],
+  ['dg_5fcompressible_5fflow_5foperator_5fexplicit_2ehpp_11',['dg_compressible_flow_operator_explicit.hpp',['../dg__compressible__flow__operator__explicit_8hpp.html',1,'']]],
+  ['dg_5fcompressible_5fflow_5foperator_5fimplicit_2ecpp_12',['dg_compressible_flow_operator_implicit.cpp',['../dg__compressible__flow__operator__implicit_8cpp.html',1,'']]],
+  ['dg_5fcompressible_5fflow_5foperator_5fimplicit_2ehpp_13',['dg_compressible_flow_operator_implicit.hpp',['../dg__compressible__flow__operator__implicit_8hpp.html',1,'']]],
+  ['dg_5fcompressible_5fflow_5foperator_5fimplicit_5fexplicit_2ecpp_14',['dg_compressible_flow_operator_implicit_explicit.cpp',['../dg__compressible__flow__operator__implicit__explicit_8cpp.html',1,'']]],
+  ['dg_5fcompressible_5fflow_5foperator_5fimplicit_5fexplicit_2ehpp_15',['dg_compressible_flow_operator_implicit_explicit.hpp',['../dg__compressible__flow__operator__implicit__explicit_8hpp.html',1,'']]],
+  ['divergence_5fcalc_2ehpp_16',['divergence_calc.hpp',['../divergence__calc_8hpp.html',1,'']]],
+  ['dof_5fmonitor_2ehpp_17',['dof_monitor.hpp',['../dof__monitor_8hpp.html',1,'']]]
 ];

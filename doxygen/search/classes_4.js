@@ -14,9 +14,15 @@ var searchData=
   ['deltaapproximationphaseweighteddata_3c_20number_20_3e_11',['DeltaApproximationPhaseWeightedData&lt; number &gt;',['../structMeltPoolDG_1_1LevelSet_1_1DeltaApproximationPhaseWeightedData.html',1,'MeltPoolDG::LevelSet']]],
   ['deltaapproximationreciprocalphaseweighted_12',['DeltaApproximationReciprocalPhaseWeighted',['../classMeltPoolDG_1_1LevelSet_1_1DeltaApproximationReciprocalPhaseWeighted.html',1,'MeltPoolDG::LevelSet']]],
   ['deltaapproximationreciprocaltimesheavisidephaseweighted_13',['DeltaApproximationReciprocalTimesHeavisidePhaseWeighted',['../classMeltPoolDG_1_1LevelSet_1_1DeltaApproximationReciprocalTimesHeavisidePhaseWeighted.html',1,'MeltPoolDG::LevelSet']]],
-  ['diffuse_14',['Diffuse',['../structMeltPoolDG_1_1Heat_1_1HeatData_1_1Diffuse.html',1,'MeltPoolDG::Heat::HeatData']]],
-  ['dirichletcondition_15',['dirichletcondition',['../classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1DirichletCondition.html',1,'MeltPoolDG::Simulation::VortexBubble::DirichletCondition&lt; dim &gt;'],['../classMeltPoolDG_1_1Simulation_1_1VortexBubbleDG_1_1DirichletCondition.html',1,'MeltPoolDG::Simulation::VortexBubbleDG::DirichletCondition&lt; dim &gt;']]],
-  ['dirichletconditions_16',['DirichletConditions',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusionDG_1_1DirichletConditions.html',1,'MeltPoolDG::Simulation::AdvectionDiffusionDG']]],
-  ['divergencecalculator_17',['DivergenceCalculator',['../classMeltPoolDG_1_1PostProcessingTools_1_1DivergenceCalculator.html',1,'MeltPoolDG::PostProcessingTools']]],
-  ['dofmonitor_18',['DoFMonitor',['../classMeltPoolDG_1_1DoFMonitor.html',1,'MeltPoolDG']]]
+  ['dgcompressibleflowoperation_14',['DGCompressibleFlowOperation',['../classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html',1,'MeltPoolDG::Flow']]],
+  ['dgcompressibleflowoperatorbase_15',['DGCompressibleFlowOperatorBase',['../classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorBase.html',1,'MeltPoolDG::Flow']]],
+  ['dgcompressibleflowoperatorbase_3c_20double_20_3e_16',['DGCompressibleFlowOperatorBase&lt; double &gt;',['../classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorBase.html',1,'MeltPoolDG::Flow']]],
+  ['dgcompressibleflowoperatorexplicit_17',['DGCompressibleFlowOperatorExplicit',['../classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorExplicit.html',1,'MeltPoolDG::Flow']]],
+  ['dgcompressibleflowoperatorimplicit_18',['DGCompressibleFlowOperatorImplicit',['../classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorImplicit.html',1,'MeltPoolDG::Flow']]],
+  ['dgcompressibleflowoperatorimplicitexplicit_19',['DGCompressibleFlowOperatorImplicitExplicit',['../classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorImplicitExplicit.html',1,'MeltPoolDG::Flow']]],
+  ['diffuse_20',['Diffuse',['../structMeltPoolDG_1_1Heat_1_1HeatData_1_1Diffuse.html',1,'MeltPoolDG::Heat::HeatData']]],
+  ['dirichletcondition_21',['dirichletcondition',['../classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1DirichletCondition.html',1,'MeltPoolDG::Simulation::VortexBubble::DirichletCondition&lt; dim &gt;'],['../classMeltPoolDG_1_1Simulation_1_1VortexBubbleDG_1_1DirichletCondition.html',1,'MeltPoolDG::Simulation::VortexBubbleDG::DirichletCondition&lt; dim &gt;']]],
+  ['dirichletconditions_22',['DirichletConditions',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusionDG_1_1DirichletConditions.html',1,'MeltPoolDG::Simulation::AdvectionDiffusionDG']]],
+  ['divergencecalculator_23',['DivergenceCalculator',['../classMeltPoolDG_1_1PostProcessingTools_1_1DivergenceCalculator.html',1,'MeltPoolDG::PostProcessingTools']]],
+  ['dofmonitor_24',['DoFMonitor',['../classMeltPoolDG_1_1DoFMonitor.html',1,'MeltPoolDG']]]
 ];

@@ -112,234 +112,236 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number,</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            ExplicitPDEOperator&lt;number, LinearAlgebra::distributed::Vector&lt;number&gt;&gt; PDEOperator&gt;</div>
 <div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html">   41</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html">LowStorageExplicitRungeKuttaIntegrator</a> final</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt;number, PDEOperator&gt;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  {</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">   45</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab019c7d4bad4743b5b1099d34cbd5f29">   53</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab019c7d4bad4743b5b1099d34cbd5f29">LowStorageExplicitRungeKuttaIntegrator</a>(<span class="keyword">const</span> TimeIntegratorData &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a2cc2315f7641b895b8c468258040c659">time_integrator_data</a>,</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                                           dealii::TimerOutput      &amp;timer)</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      : <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt;number, PDEOperator&gt;(<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a2cc2315f7641b895b8c468258040c659">time_integrator_data</a>)</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      , timer(timer)</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      <span class="keywordflow">switch</span> (<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a2cc2315f7641b895b8c468258040c659">time_integrator_data</a>.integrator_type)</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <span class="keywordflow">case</span> TimeIntegratorSchemes::LSRK_stage_3_order_3: {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>              <span class="comment">// Three-stage, third order scheme given in deal.II. While its stability region is</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>              <span class="comment">// significantly smaller than for the other schemes, it only involves three stages,</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>              <span class="comment">// making it very competitive in terms of the work per stage.</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>              bi       = {{0.245170287303492, 0.184896052186740, 0.569933660509768}};</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>              ai       = {{0.755726351946097, 0.386954477304099}};</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>              n_stages = 3;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>              <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            }</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            <span class="keywordflow">case</span> TimeIntegratorSchemes::LSRK_stage_5_order_4: {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>              <span class="comment">// Five-stage, fourth order scheme RK4(3)5[2R+]C by Kennedy et al.</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>              bi       = {{1153189308089. / 22510343858157.,</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                           1772645290293. / 4653164025191.,</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                           -1672844663538. / 4480602732383.,</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                           2114624349019. / 3568978502595.,</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                           5198255086312. / 14908931495163.}};</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>              ai       = {{970286171893. / 4311952581923.,</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                           6584761158862. / 12103376702013.,</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                           2251764453980. / 15575788980749.,</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                           26877169314380. / 34165994151039.}};</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>              n_stages = 5;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>              <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">case</span> TimeIntegratorSchemes::LSRK_stage_7_order_4: {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>              <span class="comment">// Seven-stage, fourth order scheme given in deal.II</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>              bi       = {{0.0941840925477795334,</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                           0.149683694803496998,</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                           0.285204742060440058,</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                           -0.122201846148053668,</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                           0.0605151571191401122,</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                           0.345986987898399296,</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                           0.186627171718797670}};</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>              ai       = {{0.241566650129646868 + bi[0],</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                           0.0423866513027719953 + bi[1],</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                           0.215602732678803776 + bi[2],</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                           0.232328007537583987 + bi[3],</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                           0.256223412574146438 + bi[4],</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                           0.0978694102142697230 + bi[5]}};</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>              n_stages = 7;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>              <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            }</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            <span class="keywordflow">case</span> TimeIntegratorSchemes::LSRK_stage_9_order_5: {</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>              <span class="comment">// Nine-stage, fifth order RK5(4)9[2R+]S scheme by Kennedy et al. It is the most</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>              <span class="comment">// accurate among the schemes used here, but the higher order of accuracy sacrifices</span></div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>              <span class="comment">// some stability, so the step length normalized per stage is less than for the fourth</span></div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>              <span class="comment">// order schemes.</span></div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>              bi       = {{2274579626619. / 23610510767302.,</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                           693987741272. / 12394497460941.,</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                           -347131529483. / 15096185902911.,</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                           1144057200723. / 32081666971178.,</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                           1562491064753. / 11797114684756.,</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                           13113619727965. / 44346030145118.,</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                           393957816125. / 7825732611452.,</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                           720647959663. / 6565743875477.,</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                           3559252274877. / 14424734981077.}};</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>              ai       = {{1107026461565. / 5417078080134.,</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                           38141181049399. / 41724347789894.,</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                           493273079041. / 11940823631197.,</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                           1851571280403. / 6147804934346.,</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                           11782306865191. / 62590030070788.,</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                           9452544825720. / 13648368537481.,</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                           4435885630781. / 26285702406235.,</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                           2357909744247. / 11371140753790.}};</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>              n_stages = 9;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>              <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            }</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>          <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            AssertThrow(<span class="keyword">false</span>, dealii::ExcNotImplemented());</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        }</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>      <span class="comment">// Compute c-coefficients</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>      ci.reserve(n_stages);</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      ci.push_back(0.0);</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      number sum_previous_bi = 0.0;</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> stage = 1; stage &lt; n_stages; ++stage)</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        {</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>          ci.push_back(sum_previous_bi + ai[stage - 1]);</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>          sum_previous_bi += bi[stage - 1];</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        }</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html">   41</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html">LowStorageExplicitRungeKuttaIntegrator</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt;number&gt;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">   44</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#af83ccfe06492f5df722e1bd148271927">   54</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#af83ccfe06492f5df722e1bd148271927">LowStorageExplicitRungeKuttaIntegrator</a>(<span class="keyword">const</span> PDEOperator        &amp;pde_operator,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                                           <span class="keyword">const</span> TimeIntegratorData &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a3a61c56185e3bd427e451cc51a882fa4">time_integrator_data</a>,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                                           dealii::TimerOutput      &amp;timer)</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      : <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt;number&gt;(<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a3a61c56185e3bd427e451cc51a882fa4">time_integrator_data</a>)</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      , pde_operator(pde_operator)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      , timer(timer)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keywordflow">switch</span> (<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a3a61c56185e3bd427e451cc51a882fa4">time_integrator_data</a>.integrator_type)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            <span class="keywordflow">case</span> TimeIntegratorSchemes::LSRK_stage_3_order_3: {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>              <span class="comment">// Three-stage, third order scheme given in deal.II. While its stability region is</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>              <span class="comment">// significantly smaller than for the other schemes, it only involves three stages,</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>              <span class="comment">// making it very competitive in terms of the work per stage.</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>              bi       = {{0.245170287303492, 0.184896052186740, 0.569933660509768}};</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>              ai       = {{0.755726351946097, 0.386954477304099}};</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>              n_stages = 3;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>              <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="keywordflow">case</span> TimeIntegratorSchemes::LSRK_stage_5_order_4: {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>              <span class="comment">// Five-stage, fourth order scheme RK4(3)5[2R+]C by Kennedy et al.</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>              bi       = {{1153189308089. / 22510343858157.,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                           1772645290293. / 4653164025191.,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                           -1672844663538. / 4480602732383.,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                           2114624349019. / 3568978502595.,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                           5198255086312. / 14908931495163.}};</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>              ai       = {{970286171893. / 4311952581923.,</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                           6584761158862. / 12103376702013.,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                           2251764453980. / 15575788980749.,</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                           26877169314380. / 34165994151039.}};</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>              n_stages = 5;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>              <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <span class="keywordflow">case</span> TimeIntegratorSchemes::LSRK_stage_7_order_4: {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>              <span class="comment">// Seven-stage, fourth order scheme given in deal.II</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>              bi       = {{0.0941840925477795334,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                           0.149683694803496998,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                           0.285204742060440058,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                           -0.122201846148053668,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                           0.0605151571191401122,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                           0.345986987898399296,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                           0.186627171718797670}};</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>              ai       = {{0.241566650129646868 + bi[0],</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                           0.0423866513027719953 + bi[1],</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                           0.215602732678803776 + bi[2],</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                           0.232328007537583987 + bi[3],</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                           0.256223412574146438 + bi[4],</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                           0.0978694102142697230 + bi[5]}};</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>              n_stages = 7;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>              <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            <span class="keywordflow">case</span> TimeIntegratorSchemes::LSRK_stage_9_order_5: {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>              <span class="comment">// Nine-stage, fifth order RK5(4)9[2R+]S scheme by Kennedy et al. It is the most</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>              <span class="comment">// accurate among the schemes used here, but the higher order of accuracy sacrifices</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>              <span class="comment">// some stability, so the step length normalized per stage is less than for the fourth</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>              <span class="comment">// order schemes.</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>              bi       = {{2274579626619. / 23610510767302.,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                           693987741272. / 12394497460941.,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                           -347131529483. / 15096185902911.,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                           1144057200723. / 32081666971178.,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                           1562491064753. / 11797114684756.,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                           13113619727965. / 44346030145118.,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                           393957816125. / 7825732611452.,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                           720647959663. / 6565743875477.,</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                           3559252274877. / 14424734981077.}};</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>              ai       = {{1107026461565. / 5417078080134.,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                           38141181049399. / 41724347789894.,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                           493273079041. / 11940823631197.,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                           1851571280403. / 6147804934346.,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                           11782306865191. / 62590030070788.,</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                           9452544825720. / 13648368537481.,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                           4435885630781. / 26285702406235.,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                           2357909744247. / 11371140753790.}};</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>              n_stages = 9;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>              <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>          <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            AssertThrow(<span class="keyword">false</span>, dealii::ExcNotImplemented());</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        }</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      <span class="comment">// Compute c-coefficients</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>      ci.reserve(n_stages);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>      ci.push_back(0.0);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>      number sum_previous_bi = 0.0;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> stage = 1; stage &lt; n_stages; ++stage)</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>          ci.push_back(sum_previous_bi + ai[stage - 1]);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>          sum_previous_bi += bi[stage - 1];</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    }</div>
 </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
-<div class="foldopen" id="foldopen00142" data-start="{" data-end="}">
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#aa7c0b14c6ea08c25bab52da0f0464e64">  142</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#aa7c0b14c6ea08c25bab52da0f0464e64">required_solution_history_size</a>()<span class="keyword"> const override</span></div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>      <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="foldopen" id="foldopen00145" data-start="{" data-end="}">
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#aa7c0b14c6ea08c25bab52da0f0464e64">  145</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#aa7c0b14c6ea08c25bab52da0f0464e64">required_solution_history_size</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
 </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00155" data-start="{" data-end="}">
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a19e4fcadc835b1baf5736d351823f078">  155</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a19e4fcadc835b1baf5736d351823f078">reinit</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> &amp;vector_template)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>      rk_register_ki.reinit(vector_template);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>      rk_register_ri.reinit(vector_template);</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    }</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00158" data-start="{" data-end="}">
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a19e4fcadc835b1baf5736d351823f078">  158</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a19e4fcadc835b1baf5736d351823f078">reinit</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> &amp;vector_template)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      rk_register_ki.reinit(vector_template);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      rk_register_ri.reinit(vector_template);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    }</div>
 </div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00166" data-start="{" data-end="}">
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a48a1844b7808a3b7d731083e18c86e10">  166</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a48a1844b7808a3b7d731083e18c86e10">reinit</a>(const ::TimeIntegration::SolutionHistory&lt;VectorType&gt; &amp;solution_history)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a19e4fcadc835b1baf5736d351823f078">reinit</a>(solution_history.get_current_solution());</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00169" data-start="{" data-end="}">
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a48a1844b7808a3b7d731083e18c86e10">  169</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a48a1844b7808a3b7d731083e18c86e10">reinit</a>(const ::TimeIntegration::SolutionHistory&lt;VectorType&gt; &amp;solution_history)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>      <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a19e4fcadc835b1baf5736d351823f078">reinit</a>(solution_history.get_current_solution());</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    }</div>
 </div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00189" data-start="{" data-end="}">
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a0ffa8df6642c70e845fbe7c9ef5716b6">  189</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a0ffa8df6642c70e845fbe7c9ef5716b6">perform_time_step</a>(</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>      <span class="keyword">const</span> PDEOperator                                                   &amp;pde_operator,</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      <span class="keyword">const</span> number                                                         current_time,</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>      <span class="keyword">const</span> number                                                         time_step,</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>      <a class="code hl_class" href="classTimeIntegration_1_1SolutionHistory.html">::TimeIntegration::SolutionHistory&lt;VectorType&gt;</a>                      &amp;solution_history,</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(number, <a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> &amp;, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> &amp;)&gt; &amp;stage_pre_processing,</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(number, <a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> &amp;, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> &amp;)&gt; &amp;stage_post_processing)<span class="keyword"></span></div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="keyword">      override</span></div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>      Assert(solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#ad64fd05ccc06d7015b4b9f7f4337eb1f">size</a>() &gt;= <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#aa7c0b14c6ea08c25bab52da0f0464e64">required_solution_history_size</a>(),</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>             dealii::ExcMessage(</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>               <span class="stringliteral">&quot;The size of the solution history object does not fit the requirements of the &quot;</span></div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>               <span class="stringliteral">&quot;chosen time integration scheme.&quot;</span>));</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>      TimerOutput::Scope timer_section(timer, <span class="stringliteral">&quot;Explicit Runge-Kutta time integration&quot;</span>);</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>      rk_register_ri = 0.;</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>      <span class="keywordflow">if</span> (stage_pre_processing)</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        stage_pre_processing(current_time, rk_register_ri, solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#ab534a84196e9154fab1e7868249aa5f0">get_current_solution</a>());</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>      pde_operator.apply_operator(</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        current_time,</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        rk_register_ri,</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#ab534a84196e9154fab1e7868249aa5f0">get_current_solution</a>(),</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        [&amp;](<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> start_range, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> end_range) {</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>          DEAL_II_OPENMP_SIMD_PRAGMA</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>          for (unsigned int i = start_range; i &lt; end_range; ++i)</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>            {</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>              const number k_i   = rk_register_ri.local_element(i);</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>              const number sol_i = solution_history.get_current_solution().local_element(i);</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>              solution_history.get_current_solution().local_element(i) =</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                sol_i + bi[0] * time_step * k_i;</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>              rk_register_ri.local_element(i) = sol_i + ai[0] * time_step * k_i;</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>            }</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        });</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      <span class="keywordflow">if</span> (stage_post_processing)</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        stage_post_processing(current_time + ci[1] * time_step, rk_register_ri, rk_register_ri);</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> stage = 1; stage &lt; bi.size(); ++stage)</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        {</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>          rk_register_ki = 0.;</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>          <span class="keywordflow">if</span> (stage_pre_processing)</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>            stage_pre_processing(current_time + ci[stage - 1] * time_step,</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                                 rk_register_ki,</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                                 rk_register_ri);</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>          pde_operator.apply_operator(</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            current_time,</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            rk_register_ki,</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            rk_register_ri,</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>            [&amp;](<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> start_range, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> end_range) {</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>              <span class="keywordflow">if</span> (stage &lt; bi.size() - 1)</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                {</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                  DEAL_II_OPENMP_SIMD_PRAGMA</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                  for (unsigned int i = start_range; i &lt; end_range; ++i)</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                    {</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                      const number k_i   = rk_register_ki.local_element(i);</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                      const number sol_i = solution_history.get_current_solution().local_element(i);</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>                      solution_history.get_current_solution().local_element(i) =</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                        sol_i + bi[stage] * time_step * k_i;</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                      rk_register_ki.local_element(i) = sol_i + ai[stage] * time_step * k_i;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                    }</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                }</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>              <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                {</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                  DEAL_II_OPENMP_SIMD_PRAGMA</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>                  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = start_range; i &lt; end_range; ++i)</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                    {</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>                      <span class="keyword">const</span> number k_i   = rk_register_ki.local_element(i);</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                      <span class="keyword">const</span> number sol_i = solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#ab534a84196e9154fab1e7868249aa5f0">get_current_solution</a>().local_element(i);</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                      solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#ab534a84196e9154fab1e7868249aa5f0">get_current_solution</a>().local_element(i) =</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                        sol_i + bi[stage] * time_step * k_i;</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                    }</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                }</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>            });</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>          <span class="keywordflow">if</span> (stage_post_processing)</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>            stage_post_processing(current_time + ci[stage] * time_step,</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                                  rk_register_ki,</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                                  rk_register_ki);</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>          rk_register_ri.swap(rk_register_ki);</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        }</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    }</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00191" data-start="{" data-end="}">
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a50502f6112b19620263f3aeded42a603">  191</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a50502f6112b19620263f3aeded42a603">perform_time_step</a>(</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>      <span class="keyword">const</span> number                                                         current_time,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>      <span class="keyword">const</span> number                                                         time_step,</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>      <a class="code hl_class" href="classTimeIntegration_1_1SolutionHistory.html">::TimeIntegration::SolutionHistory&lt;VectorType&gt;</a>                      &amp;solution_history,</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(number, <a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> &amp;, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> &amp;)&gt; &amp;stage_pre_processing,</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(number, <a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> &amp;, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> &amp;)&gt; &amp;stage_post_processing)<span class="keyword"></span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="keyword">      override</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>      Assert(solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#ad64fd05ccc06d7015b4b9f7f4337eb1f">size</a>() &gt;= <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#aa7c0b14c6ea08c25bab52da0f0464e64">required_solution_history_size</a>(),</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>             dealii::ExcMessage(</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>               <span class="stringliteral">&quot;The size of the solution history object does not fit the requirements of the &quot;</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>               <span class="stringliteral">&quot;chosen time integration scheme.&quot;</span>));</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>      TimerOutput::Scope timer_section(timer, <span class="stringliteral">&quot;Explicit Runge-Kutta time integration&quot;</span>);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>      rk_register_ri = 0.;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>      <span class="keywordflow">if</span> (stage_pre_processing)</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        stage_pre_processing(current_time, rk_register_ri, solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#ab534a84196e9154fab1e7868249aa5f0">get_current_solution</a>());</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      pde_operator.apply_operator(</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        current_time,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        rk_register_ri,</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#ab534a84196e9154fab1e7868249aa5f0">get_current_solution</a>(),</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        [&amp;](<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> start_range, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> end_range) {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>          DEAL_II_OPENMP_SIMD_PRAGMA</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>          for (unsigned int i = start_range; i &lt; end_range; ++i)</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>            {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>              const number k_i   = rk_register_ri.local_element(i);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>              const number sol_i = solution_history.get_current_solution().local_element(i);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>              solution_history.get_current_solution().local_element(i) =</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                sol_i + bi[0] * time_step * k_i;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>              rk_register_ri.local_element(i) = sol_i + ai[0] * time_step * k_i;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            }</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        });</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>      <span class="keywordflow">if</span> (stage_post_processing)</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        stage_post_processing(current_time + ci[1] * time_step, rk_register_ri, rk_register_ri);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> stage = 1; stage &lt; bi.size(); ++stage)</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        {</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>          rk_register_ki = 0.;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>          <span class="keywordflow">if</span> (stage_pre_processing)</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>            stage_pre_processing(current_time + ci[stage - 1] * time_step,</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                                 rk_register_ki,</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                                 rk_register_ri);</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>          pde_operator.apply_operator(</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            current_time,</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            rk_register_ki,</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>            rk_register_ri,</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>            [&amp;](<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> start_range, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> end_range) {</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>              <span class="keywordflow">if</span> (stage &lt; bi.size() - 1)</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                {</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                  DEAL_II_OPENMP_SIMD_PRAGMA</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                  for (unsigned int i = start_range; i &lt; end_range; ++i)</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                    {</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                      const number k_i   = rk_register_ki.local_element(i);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>                      const number sol_i = solution_history.get_current_solution().local_element(i);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                      solution_history.get_current_solution().local_element(i) =</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                        sol_i + bi[stage] * time_step * k_i;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                      rk_register_ki.local_element(i) = sol_i + ai[stage] * time_step * k_i;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                    }</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                }</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>              <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                {</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>                  DEAL_II_OPENMP_SIMD_PRAGMA</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = start_range; i &lt; end_range; ++i)</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>                    {</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                      <span class="keyword">const</span> number k_i   = rk_register_ki.local_element(i);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                      <span class="keyword">const</span> number sol_i = solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#ab534a84196e9154fab1e7868249aa5f0">get_current_solution</a>().local_element(i);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                      solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#ab534a84196e9154fab1e7868249aa5f0">get_current_solution</a>().local_element(i) =</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                        sol_i + bi[stage] * time_step * k_i;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                    }</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                }</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>            });</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>          <span class="keywordflow">if</span> (stage_post_processing)</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            stage_post_processing(current_time + ci[stage] * time_step,</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                                  rk_register_ki,</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                                  rk_register_ki);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>          rk_register_ri.swap(rk_register_ki);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        }</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    }</div>
 </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    std::vector&lt;number&gt; bi;</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    std::vector&lt;number&gt; ai;</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    std::vector&lt;number&gt; ci;</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_stages;</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="comment">// register for time integrator</span></div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    LinearAlgebra::distributed::Vector&lt;number&gt; rk_register_ri;</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    LinearAlgebra::distributed::Vector&lt;number&gt; rk_register_ki;</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    TimerOutput &amp;timer;</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>  };</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    std::vector&lt;number&gt; bi;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    std::vector&lt;number&gt; ai;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    std::vector&lt;number&gt; ci;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_stages;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="comment">// register for time integrator</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    LinearAlgebra::distributed::Vector&lt;number&gt; rk_register_ri;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    LinearAlgebra::distributed::Vector&lt;number&gt; rk_register_ki;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keyword">const</span> PDEOperator &amp;pde_operator;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    TimerOutput &amp;timer;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>  };</div>
 </div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>} <span class="comment">// namespace MeltPoolDG</span></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator</a></div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:43</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_a0ffa8df6642c70e845fbe7c9ef5716b6"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a0ffa8df6642c70e845fbe7c9ef5716b6">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::perform_time_step</a></div><div class="ttdeci">void perform_time_step(const PDEOperator &amp;pde_operator, const number current_time, const number time_step, ::TimeIntegration::SolutionHistory&lt; VectorType &gt; &amp;solution_history, const std::function&lt; void(number, VectorType &amp;, const VectorType &amp;)&gt; &amp;stage_pre_processing, const std::function&lt; void(number, VectorType &amp;, const VectorType &amp;)&gt; &amp;stage_post_processing) override</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:189</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_a19e4fcadc835b1baf5736d351823f078"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a19e4fcadc835b1baf5736d351823f078">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::reinit</a></div><div class="ttdeci">void reinit(const VectorType &amp;vector_template) override</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:155</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_a48a1844b7808a3b7d731083e18c86e10"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a48a1844b7808a3b7d731083e18c86e10">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::reinit</a></div><div class="ttdeci">void reinit(const ::TimeIntegration::SolutionHistory&lt; VectorType &gt; &amp;solution_history) override</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:166</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_aa7c0b14c6ea08c25bab52da0f0464e64"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#aa7c0b14c6ea08c25bab52da0f0464e64">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::required_solution_history_size</a></div><div class="ttdeci">unsigned int required_solution_history_size() const override</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:142</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_ab019c7d4bad4743b5b1099d34cbd5f29"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab019c7d4bad4743b5b1099d34cbd5f29">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::LowStorageExplicitRungeKuttaIntegrator</a></div><div class="ttdeci">LowStorageExplicitRungeKuttaIntegrator(const TimeIntegratorData &amp;time_integrator_data, dealii::TimerOutput &amp;timer)</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:53</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_ab82d067bc6187112c777cdc0b65859d9"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:45</div></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator</a></div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:42</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_a19e4fcadc835b1baf5736d351823f078"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a19e4fcadc835b1baf5736d351823f078">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::reinit</a></div><div class="ttdeci">void reinit(const VectorType &amp;vector_template) override</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:158</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_a48a1844b7808a3b7d731083e18c86e10"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a48a1844b7808a3b7d731083e18c86e10">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::reinit</a></div><div class="ttdeci">void reinit(const ::TimeIntegration::SolutionHistory&lt; VectorType &gt; &amp;solution_history) override</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:169</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_a50502f6112b19620263f3aeded42a603"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a50502f6112b19620263f3aeded42a603">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::perform_time_step</a></div><div class="ttdeci">void perform_time_step(const number current_time, const number time_step, ::TimeIntegration::SolutionHistory&lt; VectorType &gt; &amp;solution_history, const std::function&lt; void(number, VectorType &amp;, const VectorType &amp;)&gt; &amp;stage_pre_processing, const std::function&lt; void(number, VectorType &amp;, const VectorType &amp;)&gt; &amp;stage_post_processing) override</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:191</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_aa7c0b14c6ea08c25bab52da0f0464e64"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#aa7c0b14c6ea08c25bab52da0f0464e64">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::required_solution_history_size</a></div><div class="ttdeci">unsigned int required_solution_history_size() const override</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:145</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_ab82d067bc6187112c777cdc0b65859d9"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:44</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_af83ccfe06492f5df722e1bd148271927"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#af83ccfe06492f5df722e1bd148271927">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::LowStorageExplicitRungeKuttaIntegrator</a></div><div class="ttdeci">LowStorageExplicitRungeKuttaIntegrator(const PDEOperator &amp;pde_operator, const TimeIntegratorData &amp;time_integrator_data, dealii::TimerOutput &amp;timer)</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:54</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegratorBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegratorBase.html">MeltPoolDG::TimeIntegratorBase</a></div><div class="ttdef"><b>Definition</b> time_integrator_base.hpp:40</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegratorBase_html_a2cc2315f7641b895b8c468258040c659"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegratorBase.html#a2cc2315f7641b895b8c468258040c659">MeltPoolDG::TimeIntegratorBase::time_integrator_data</a></div><div class="ttdeci">const TimeIntegratorData time_integrator_data</div><div class="ttdef"><b>Definition</b> time_integrator_base.hpp:126</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegratorBase_html_a3a61c56185e3bd427e451cc51a882fa4"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegratorBase.html#a3a61c56185e3bd427e451cc51a882fa4">MeltPoolDG::TimeIntegratorBase::time_integrator_data</a></div><div class="ttdeci">const TimeIntegratorData time_integrator_data</div><div class="ttdef"><b>Definition</b> time_integrator_base.hpp:128</div></div>
 <div class="ttc" id="aclassTimeIntegration_1_1SolutionHistory_html"><div class="ttname"><a href="classTimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory</a></div><div class="ttdef"><b>Definition</b> solution_history.hpp:23</div></div>
 <div class="ttc" id="aclassTimeIntegration_1_1SolutionHistory_html_ab534a84196e9154fab1e7868249aa5f0"><div class="ttname"><a href="classTimeIntegration_1_1SolutionHistory.html#ab534a84196e9154fab1e7868249aa5f0">TimeIntegration::SolutionHistory::get_current_solution</a></div><div class="ttdeci">const VectorType &amp; get_current_solution() const</div><div class="ttdef"><b>Definition</b> solution_history.hpp:104</div></div>
 <div class="ttc" id="aclassTimeIntegration_1_1SolutionHistory_html_ad64fd05ccc06d7015b4b9f7f4337eb1f"><div class="ttname"><a href="classTimeIntegration_1_1SolutionHistory.html#ad64fd05ccc06d7015b4b9f7f4337eb1f">TimeIntegration::SolutionHistory::size</a></div><div class="ttdeci">unsigned int size() const</div><div class="ttdef"><b>Definition</b> solution_history.hpp:140</div></div>
