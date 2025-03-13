@@ -49,7 +49,7 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">⬇️ Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#download">Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-the-repository">Download the repository</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installation-of-cmake">Installation of CMake</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installation-of-numdiff">Installation of numdiff</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installation-of-clang-format">Installation of clang-format</a></li>
@@ -96,83 +96,87 @@
 <h1>⬇️ Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
-<section id="download">
-<h3>Download<a class="headerlink" href="#download" title="Link to this heading"></a></h3>
-<p>Download the repository via</p>
+<section id="download-the-repository">
+<h3>Download the repository<a class="headerlink" href="#download-the-repository" title="Link to this heading"></a></h3>
+<p>Clone the repository via:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:MeltPoolDG/MeltPoolDG-dev.git
 </pre></div>
 </div>
 </section>
 <section id="installation-of-cmake">
 <h3>Installation of CMake<a class="headerlink" href="#installation-of-cmake" title="Link to this heading"></a></h3>
-<p>Make sure that you install CMake &gt;= 3.17.0 either via the package manager of your linux distribution or downloading from https://cmake.org.</p>
+<p>Make sure that you install CMake &gt;= 3.17.0, either via the package manager of your linux distribution or by downloading from https://cmake.org.</p>
 </section>
 <section id="installation-of-numdiff">
 <h3>Installation of numdiff<a class="headerlink" href="#installation-of-numdiff" title="Link to this heading"></a></h3>
-<p>For our testing infrastructure we rely on the tool <code class="docutils literal notranslate"><span class="pre">numdiff</span></code>. Usually, it can installed via the package manager of your linux distribution, e.g. for Ubuntu systems</p>
+<p>Our testing infrastructure relies on the tool <code class="docutils literal notranslate"><span class="pre">numdiff</span></code>. It is typically available through the package manager of your Linux distribution. For Ubuntu, install it using:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>numdiff
 </pre></div>
 </div>
 </section>
 <section id="installation-of-clang-format">
 <h3>Installation of clang-format<a class="headerlink" href="#installation-of-clang-format" title="Link to this heading"></a></h3>
-<p>We rely on clang-format 11. In case, your OS does not support this version, it can be installed manually by executing</p>
+<p>We require clang-format 16. If your OS does not support this version, you can install it manually by running:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>path_to_dealii/dealii/contrib/utilities/download_clang_format
 </pre></div>
 </div>
 <p>You could add it to your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> file as follows</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PATH</span><span class="s2">:path_to_dealii/dealii/contrib/utilities/programs/clang-11/bin&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PATH</span><span class="s2">:path_to_dealii/dealii/contrib/utilities/programs/clang-16/bin&quot;</span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="full-installation-of-meltpooldg-including-dependencies-recommended">
 <h2>Full installation of MeltPoolDG including dependencies (recommended)<a class="headerlink" href="#full-installation-of-meltpooldg-including-dependencies-recommended" title="Link to this heading"></a></h2>
-<p>To perform a full installation of MeltPoolDG including the dependencies, simply execute</p>
+<p>To install MeltPoolDG along with its dependencies, simply run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>MeltPoolDG-dev
 bash<span class="w"> </span>scripts/config/install.sh
 </pre></div>
 </div>
-<p>and follow the command line instructions. In the default case, the following folder structure will be generated:</p>
+<p>Follow the command-line instructions. By default, the following directory tree will be created:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>external_libs/
 ├─<span class="w"> </span>dealii-build/
-├─<span class="w"> </span>p4est-install/
+├─<span class="w"> </span>p4est-build/
 ├─<span class="w"> </span>trilinos-install/
 ├─<span class="w"> </span>adaflo/
 │<span class="w">  </span>├─<span class="w"> </span>build_release/
 │<span class="w">  </span>├─<span class="w"> </span>build_debug/
 │<span class="w">  </span>├─<span class="w"> </span>include/
 MeltPoolDG-dev/
+├─<span class="w"> </span>build_debug/
 ├─<span class="w"> </span>build_release/
 </pre></div>
 </div>
-<p>MeltPoolDG will be built in release mode into <code class="docutils literal notranslate"><span class="pre">MeltPoolDG-dev/build_release</span></code>.</p>
+<p>MeltPoolDG is compiled in release mode in <code class="docutils literal notranslate"><span class="pre">MeltPoolDG-dev/build_release</span></code> and in debug mode in <code class="docutils literal notranslate"><span class="pre">MeltPoolDG-dev/build_debug</span></code>.</p>
 </section>
 <section id="manual-installation">
 <h2>Manual installation<a class="headerlink" href="#manual-installation" title="Link to this heading"></a></h2>
 <section id="installation-of-dependencies">
 <h3>Installation of dependencies<a class="headerlink" href="#installation-of-dependencies" title="Link to this heading"></a></h3>
-<p>To install the dependencies (p4est, Trilinos, deal.II and adaflo), first change to your target folder:</p>
+<p>To manually install the dependencies (p4est, Trilinos, deal.II and adaflo), first create the target directory:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>..
 mkdir<span class="w"> </span>-p<span class="w"> </span>external_libs
 <span class="nb">cd</span><span class="w"> </span>external_libs
 </pre></div>
 </div>
-<p>Then, run the installtion script by passing the number of processes as command line arguments:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install the dependencies with 8 processes</span>
-bash<span class="w"> </span>../MeltPoolDG-dev/scripts/config/download_and_install_dependencies.sh<span class="w"> </span><span class="m">8</span>
+<p>Then, run the installation script with the desired number of processes and build configuration (<code class="docutils literal notranslate"><span class="pre">Debug</span></code>, <code class="docutils literal notranslate"><span class="pre">Release</span></code> or <code class="docutils literal notranslate"><span class="pre">DebugRelease</span></code> [default]):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install the dependencies with 8 processes and DebugRelease configuration</span>
+bash<span class="w"> </span>path_to_meltpooldg/MeltPoolDG-dev/scripts/config/download_and_install_dependencies.sh<span class="w"> </span><span class="m">8</span><span class="w"> </span>DebugRelease
 </pre></div>
 </div>
 </section>
 <section id="building-meltpooldg">
 <h3>Building MeltPoolDG<a class="headerlink" href="#building-meltpooldg" title="Link to this heading"></a></h3>
-<p>Given a full installation of dependencies into e.g. <code class="docutils literal notranslate"><span class="pre">external_libs</span></code>, MeltPoolDG can be built in release mode by executing <code class="docutils literal notranslate"><span class="pre">scripts/config/install_meltpooldg.sh</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install MeltPoolDG with e.g. 8 processes</span>
-scripts/config/install_meltpooldg.sh<span class="w"> </span><span class="m">8</span><span class="w"> </span>external_libs/dealii-build<span class="w"> </span>external_libs/adaflo/include<span class="w"> </span>external_libs/adaflo/build_release
+<p>Once all dependencies are installed (e.g. in <code class="docutils literal notranslate"><span class="pre">external_libs</span></code>), MeltPoolDG can be built in DebugRelease mode using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># build MeltPoolDG with 8 processes in DebugRelease configuration and create the build folders insource, indicated by the last argument</span>
+<span class="nb">cd</span><span class="w"> </span>path_to_meltpooldg/MeltPoolDG-dev
+scripts/config/install_meltpooldg.sh<span class="w"> </span><span class="m">8</span><span class="w"> </span>external_libs/dealii-build<span class="w"> </span>external_libs/adaflo/include<span class="w"> </span>external_libs/adaflo/build_release<span class="w"> </span>DebugRelease<span class="w"> </span>.
 </pre></div>
 </div>
-<p>This installs MeltPoolDG into a build folder <code class="docutils literal notranslate"><span class="pre">build_release</span></code>. Alternatively, one can execute the following commands manually. First, configure CMake</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build
+<p>Alternatively, you can manually configure and build the project using CMake.
+Create a build directory and configure CMake:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path_to_meltpooldg/MeltPoolDG-dev
+mkdir<span class="w"> </span>build
 <span class="nb">cd</span><span class="w"> </span>build
 cmake<span class="w"> </span><span class="se">\</span>
 <span class="w">        </span>-DADAFLO_LIB<span class="o">=</span>external_libs/adaflo/build_release<span class="w"> </span><span class="se">\ </span><span class="c1"># change to external_libs/adaflo/build_debug for debug mode</span>
@@ -184,10 +188,11 @@ cmake<span class="w"> </span><span class="se">\</span>
 <span class="w">        </span>..
 </pre></div>
 </div>
-<p>and subsequently, build MeltPoolDG with e.g. 8 processes by executing</p>
+<p>Then compile MeltPoolDG using e.g. 8 processes by executing</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-j8
 </pre></div>
 </div>
+<p>Happy computing :-).</p>
 </section>
 </section>
 </section>
