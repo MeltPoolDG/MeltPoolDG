@@ -49,7 +49,14 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">⬇️ Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">💻 How to Work With MeltPoolDG</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#glossary">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coding-conventions">Coding conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-guidelines">General guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#class-structure-example">Class Structure Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation-and-comments">Documentation and comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-add-new-parameters">How to add new parameters</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">✋ How to Contribute</a></li>
@@ -82,12 +89,104 @@
              
   <section id="how-to-work-with-meltpooldg">
 <h1>💻 How to Work With MeltPoolDG<a class="headerlink" href="#how-to-work-with-meltpooldg" title="Link to this heading"></a></h1>
-<section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
-<p>To run the tests in verbose mode, execute:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ctest<span class="w"> </span>-V
+<section id="glossary">
+<h2>Glossary<a class="headerlink" href="#glossary" title="Link to this heading"></a></h2>
+<p><strong>Application:</strong> Handles the solution of a potentially time-dependent and coupled problem between individual operations for an application-specific simulation case.</p>
+<p><strong>Data:</strong> A structured collection of input data required for a specific class.</p>
+<p><strong>Operation:</strong> Executes the solution of a single time step for a specific (sub)problem, typically including both nonlinear and linear solvers for a given operator.</p>
+<p><strong>Operator:</strong> Assembles a matrix, a vector or performs the matrix-vector product depending on the formulation (matrix-free or not).</p>
+<p><strong>Parameter:</strong> A defined set of individual data collections specific to a simulation case.</p>
+<p><strong>Simulation Case:</strong> Encompasses all user-defined and case-specific building blocks of a simulation, including triangulation, parameters, initial conditions, boundary conditions etc.</p>
+</section>
+<section id="coding-conventions">
+<h2>Coding conventions<a class="headerlink" href="#coding-conventions" title="Link to this heading"></a></h2>
+<p>Our coding conventions are primarily based on <a class="reference external" href="https://www.dealii.org/current/doxygen/deal.II/CodingConventions.html">deal.II</a>. For unclear cases, we typically refer to the <a class="reference external" href="https://google.github.io/styleguide/cppguide.html">Google C++ style guide</a>.</p>
+<p>However, some key conventions we follow may differ from these sources.</p>
+<section id="general-guidelines">
+<h3>General guidelines<a class="headerlink" href="#general-guidelines" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The minimum required template parameters should be <code class="docutils literal notranslate"><span class="pre">number</span></code> and <code class="docutils literal notranslate"><span class="pre">dim</span></code> (if applicable)</p></li>
+<li><p>Use file extensions as follows:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.cpp</span></code> for source files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.hpp</span></code> for header files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.cc</span></code> for unit tests</p></li>
+</ul>
+</li>
+<li><p>The minmal namespace scope is <code class="docutils literal notranslate"><span class="pre">MeltPoolDG</span></code>.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">pragma</span> <span class="pre">once</span></code> as the header include guard.</p></li>
+<li><p>Avoid <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">namespace</span> <span class="pre">dealii</span></code> in header files; always use fully qualified names (<code class="docutils literal notranslate"><span class="pre">std::string</span></code>, <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>) in headers.</p></li>
+<li><p>Avoid public variables; instead, use getter functions to access private data.</p></li>
+<li><p>Prefer the alternative logical operators <code class="docutils literal notranslate"><span class="pre">not</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code> and etc. instead of <code class="docutils literal notranslate"><span class="pre">!</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>.</p></li>
+<li><p>Ensure <strong>one blank line</strong> between function definitions and declarations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CamelCase</span></code> for class names or namespace names and <code class="docutils literal notranslate"><span class="pre">snake_case</span></code> for variables and functions</p></li>
+<li><p>Always include <strong>one blank line at the end of each file</strong> for compatibility and readability.</p></li>
+<li><p>avoid public variables and use getter functions instead</p></li>
+<li><p>Follow this class structure in header files:</p></li>
+</ul>
+</section>
+<section id="class-structure-example">
+<h3>Class Structure Example<a class="headerlink" href="#class-structure-example" title="Link to this heading"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// 1) Header guard</span>
+<span class="cp">#pragma once</span>
+
+<span class="c1">// 2) Included headers</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="c1">// 3) Namespace</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">MeltPoolDG</span><span class="w"> </span><span class="p">{</span>
+
+<span class="c1">// 4) Forward declaration</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AnotherClass</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">// 5) Public section</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// 6) Constructors &amp; Destructor</span>
+<span class="w">    </span><span class="n">MyClass</span><span class="p">();</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">MyClass</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+<span class="w">    </span><span class="o">~</span><span class="n">MyClass</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// 7) Public Methods</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">doSomething</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getName</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+
+<span class="c1">// 8) Private or Protected section</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// 9) Using directives</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">VectorType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 10) Private members and functions</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">helperFunction</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace MeltPoolDG</span>
 </pre></div>
 </div>
+</section>
+<section id="documentation-and-comments">
+<h3>Documentation and comments<a class="headerlink" href="#documentation-and-comments" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">//</span></code> for inline comments within the code.</p></li>
+<li><p>Follow the Doxygen format for documentation of functions, classes, variables in header files.</p></li>
+</ul>
+</section>
+</section>
+<section id="how-to-add-new-parameters">
+<h2>How to add new parameters<a class="headerlink" href="#how-to-add-new-parameters" title="Link to this heading"></a></h2>
+<p>When adding new parameters to a data structure using <code class="docutils literal notranslate"><span class="pre">ParameterHandler::add_parameters()</span></code>, follow these conventions. A best-practice example can be found <a class="reference external" href="https://github.com/MeltPoolDG/MeltPoolDG-dev/blob/master/source/level_set/advection_diffusion_data.cpp">here</a>.</p>
+<ul class="simple">
+<li><p>Use meaningful variable names that are self-explanatory, avoiding abbreviations.</p></li>
+<li><p>Carefully decide whether to provide useful default values or require users to explicitly set a value by initializing it to an invalid state.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">BetterEnum</span></code> over <code class="docutils literal notranslate"><span class="pre">std::string</span></code>. This allows for faster comparisons and reduces the risk of errors by automatically triggering an assertion for invalid types.</p></li>
+<li><p>Use <a class="reference external" href="https://dealii.org/current/doxygen/deal.II/namespacePatterns.html">dealii::Patterns</a> to validate the parameter.</p></li>
+<li><p>If the pattern-based validation is insufficient, add an assertion during the <code class="docutils literal notranslate"><span class="pre">check_input_parameters()</span></code> operation to prevent invalid parameters.</p></li>
+<li><p>Provide a helpful description of the meaning of the parameter. If applicable, also add SI units in the description.</p></li>
+</ul>
 </section>
 </section>
 
