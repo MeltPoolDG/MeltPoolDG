@@ -1,6 +1,6 @@
 # ✋ How to Contribute
 
-## 🌟 Forking the repository
+## Forking the repository
 
 Before making any changes, you need to fork the repository to your own GitHub account. You can do this by clicking the Fork button at the top right corner of the repository page on GitHub. Once forked, clone your forked repository to your local machine:
 
@@ -17,16 +17,16 @@ git remote add upstream https://github.com/MeltPoolDG/MeltPoolDG-dev.git
 ```
 Now, you are ready to start contributing!
 
-## 🚀 Making Changes and Pushing to the Repository
+## Making Changes and Pushing to the Repository
 
-### 📥 Get the Latest `master` Branch
+### Get the Latest `master` Branch
 
 Before making changes, ensure your local branch is up to date with the original repository (see **[Useful GIT commands](#-useful-git-commands)** section):
 ```bash
 git fetch upstream
 git rebase upstream/master
 ```
-### 🌿 Create a New Branch
+### Create a New Branch
 
 ```bash
 git checkout -b "my_branch"
@@ -67,7 +67,7 @@ Make your changes. Once ready to commit, follow these steps:
 
 ---
 
-## 🧪 Testing
+## Testing
 
 To run tests in **verbose** mode, execute:
 
@@ -83,7 +83,7 @@ ctest -R mp-advec-diff
 
 ---
 
-## 🎨 Code Formatting
+## Code Formatting
 
 Ensure that `clang-format` and `autopep8` are installed. We use the `clang-format` version provided by **deal.II (v16)**, which can be installed via the following script:
 
@@ -96,8 +96,22 @@ scripts/formatting/format-all
 ```
 
 ---
+## How to use `clang-tidy` to check your code
 
-## 🔧 Installing Pre-commit Hooks
+To run clang-tidy on your code, you typically need a `compile_commands.json` file, which describes how each file in your project is compiled. You can generate this using `CMake`:
+
+```bash
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON #...
+```
+Navigate to the root directory of `MeltPoolDG`, then run `clang-tidy` on the library with:
+```bash
+cd MeltPoolDG-dev
+bash scripts/utilities/run_clang_tidy.sh <build_directory> <number_of_processes>
+```
+providing the `<build_directory>` e.g. `build_release` and the `<number_of_processes>` for the check e.g. 4. The output will be written to `./<build_directory>/clang-tidy-detailed.log` and `./<build_directory>/clang-tidy.log`. Make sure that you don't produce any warnings.
+
+---
+## Installing Pre-commit Hooks
 
 Ensure you have `pre-commit` installed. Then, install the hooks by executing the following command in the root directory of the repository:
 
@@ -106,8 +120,8 @@ pre-commit install
 ```
 
 ---
-## 💻 Useful GIT commands
-### 🔄 Rebasing Your Branch onto the Latest `master`
+## Useful GIT commands
+### Rebasing Your Branch onto the Latest `master`
 
 If you're working on `my_branch` and need to update it with the latest `master`, follow these steps.
 
@@ -135,7 +149,7 @@ If you're working on `my_branch` and need to update it with the latest `master`,
    git push -f origin my_branch
    ```
 
-#### ⚔️ Handling Merge Conflicts
+#### Handling Merge Conflicts
 
 If you encounter a merge conflict in `my_file.hpp`:
 
@@ -156,7 +170,7 @@ If you encounter a merge conflict in `my_file.hpp`:
 
 ---
 
-### 🛠 Squashing Commits into One
+### Squashing Commits into One
 
 To squash multiple commits into a single commit:
 
