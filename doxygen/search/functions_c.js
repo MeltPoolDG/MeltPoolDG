@@ -26,6 +26,6 @@ var searchData=
   ['merge_5fhnc_5finto_5fdbc_23',['merge_HNC_into_DBC',['../namespaceMeltPoolDG_1_1Constraints.html#a1eeeb50e4b102a401533402fa006c095',1,'MeltPoolDG::Constraints']]],
   ['merge_5ftwo_5findicator_5ffields_24',['merge_two_indicator_fields',['../namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#aecaf2e5ae3536cb8f5c0352be2eeb073',1,'MeltPoolDG::LevelSet::Tools']]],
   ['min_5felement_25',['min_element',['../namespaceMeltPoolDG_1_1VectorTools.html#ac19eac059076c475e277c290e78c7ef7',1,'MeltPoolDG::VectorTools']]],
-  ['move_5flaser_26',['move_laser',['../classMeltPoolDG_1_1Heat_1_1LaserOperation.html#a0a98b31658d2c0a21fdf6a7d856866ad',1,'MeltPoolDG::Heat::LaserOperation']]],
+  ['move_5flaser_26',['move_laser',['../classMeltPoolDG_1_1Heat_1_1LaserOperation.html#a3786a49a2af0f1c67db08097508abb30',1,'MeltPoolDG::Heat::LaserOperation']]],
   ['movinglevelset_27',['MovingLevelSet',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1MovingLevelSet.html#a6e96ee6a7bbb64ab7cdeecf449dba332',1,'MeltPoolDG::Simulation::CompressibleFlow::MovingLevelSet']]]
 ];

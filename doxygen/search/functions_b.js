@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['laserheatsourceprojectionbased_0',['LaserHeatSourceProjectionBased',['../classMeltPoolDG_1_1Heat_1_1LaserHeatSourceProjectionBased.html#a04dc261860e60f35b57b8ac92c310ca3',1,'MeltPoolDG::Heat::LaserHeatSourceProjectionBased']]],
-  ['laserheatsourcevolumetric_1',['LaserHeatSourceVolumetric',['../classMeltPoolDG_1_1Heat_1_1LaserHeatSourceVolumetric.html#a6e86504700a44b0a260622efcf54e713',1,'MeltPoolDG::Heat::LaserHeatSourceVolumetric']]],
-  ['laseroperation_2',['LaserOperation',['../classMeltPoolDG_1_1Heat_1_1LaserOperation.html#a67bfafd70312a47294324f7129be4841',1,'MeltPoolDG::Heat::LaserOperation']]],
+  ['laserheatsourceprojectionbased_0',['LaserHeatSourceProjectionBased',['../classMeltPoolDG_1_1Heat_1_1LaserHeatSourceProjectionBased.html#a6f29c8b86e82a84bbacc99e8f179fc06',1,'MeltPoolDG::Heat::LaserHeatSourceProjectionBased']]],
+  ['laserheatsourcevolumetric_1',['LaserHeatSourceVolumetric',['../classMeltPoolDG_1_1Heat_1_1LaserHeatSourceVolumetric.html#a0be7c7e82879f8ba1e3f3833bc559446',1,'MeltPoolDG::Heat::LaserHeatSourceVolumetric']]],
+  ['laseroperation_2',['LaserOperation',['../classMeltPoolDG_1_1Heat_1_1LaserOperation.html#abc1f4724952e8153d2f7025c3737d42e',1,'MeltPoolDG::Heat::LaserOperation']]],
   ['leastsquaresprojection_3',['LeastSquaresProjection',['../classMeltPoolDG_1_1LeastSquaresProjection.html#a3dd02c52b3ae544c87c5290e740a542f',1,'MeltPoolDG::LeastSquaresProjection']]],
   ['less_4',['less',['../structbetter__enums_1_1map__compare.html#acc484428961e669d7f3e6ac67e86aa52',1,'better_enums::map_compare::less()'],['../structbetter__enums_1_1map__compare_3_01const_01char_01_5_01_4.html#a4ad056e5d61495762399c88344f1ce72',1,'better_enums::map_compare&lt; const char * &gt;::less()'],['../structbetter__enums_1_1map__compare_3_01const_01wchar__t_01_5_01_4.html#a3d92f104915178f31373c48579a2a9d8',1,'better_enums::map_compare&lt; const wchar_t * &gt;::less()']]],
   ['levelsetcase_5',['LevelSetCase',['../classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#acc03aae90b244f0c105ba9d1eb25b646',1,'MeltPoolDG::LevelSet::LevelSetCase']]],
