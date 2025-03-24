@@ -35,6 +35,7 @@ However, some key conventions we follow may differ from these sources.
 - `CamelCase` for class names or namespace names and `snake_case` for variables and functions
 - Always include **one blank line at the end of each file** for compatibility and readability.
 - avoid public variables and use getter functions instead
+- concat nested namespace to reduce codelines `namespace MeltPoolDG::MyNamespace {}` instead of `namespace MeltPoolDG{ namespace MyNameSpace {} }`
 - Follow this class structure in header files:
 
 ### Class Structure Example
