@@ -154,8 +154,7 @@ var menudata={children:[
 {text:"t",url:"functions_vars_t.html#index_t"},
 {text:"u",url:"functions_vars_u.html#index_u"},
 {text:"v",url:"functions_vars_v.html#index_v"},
-{text:"w",url:"functions_vars_w.html#index_w"},
-{text:"z",url:"functions_vars_z.html#index_z"}]},
+{text:"w",url:"functions_vars_w.html#index_w"}]},
 {text:"Typedefs",url:"functions_type.html",children:[
 {text:"b",url:"functions_type.html#index_b"},
 {text:"c",url:"functions_type.html#index_c"},

@@ -33,8 +33,5 @@ var searchData=
   ['solutiontransferoperator_3c_20dim_2c_20number_20_3e_30',['SolutionTransferOperator&lt; dim, number &gt;',['../classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html',1,'MeltPoolDG::CutUtil']]],
   ['state_31',['state',['../structMeltPoolDG_1_1Heat_1_1GaussProjectionIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GaussProjectionIntensityProfile&lt; dim, number &gt;::State'],['../structMeltPoolDG_1_1Heat_1_1GaussVolumetricIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GaussVolumetricIntensityProfile&lt; dim, number &gt;::State'],['../structMeltPoolDG_1_1Heat_1_1GusarovIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GusarovIntensityProfile&lt; dim, number &gt;::State']]],
   ['steadyinflowfield_32',['SteadyInflowField',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SteadyInflowField.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
-  ['surfacetensiondata_33',['SurfaceTensionData',['../structMeltPoolDG_1_1Flow_1_1SurfaceTensionData.html',1,'MeltPoolDG::Flow']]],
-  ['surfacetensiondata_3c_20double_20_3e_34',['SurfaceTensionData&lt; double &gt;',['../structMeltPoolDG_1_1Flow_1_1SurfaceTensionData.html',1,'MeltPoolDG::Flow']]],
-  ['surfacetensiondata_3c_20number_20_3e_35',['SurfaceTensionData&lt; number &gt;',['../structMeltPoolDG_1_1Flow_1_1SurfaceTensionData.html',1,'MeltPoolDG::Flow']]],
-  ['surfacetensionoperation_36',['SurfaceTensionOperation',['../classMeltPoolDG_1_1Flow_1_1SurfaceTensionOperation.html',1,'MeltPoolDG::Flow']]]
+  ['surfacetensionoperation_33',['SurfaceTensionOperation',['../classMeltPoolDG_1_1Flow_1_1SurfaceTensionOperation.html',1,'MeltPoolDG::Flow']]]
 ];

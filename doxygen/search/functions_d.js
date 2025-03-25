@@ -1,7 +1,7 @@
 var searchData=
 [
   ['n_5fblocks_0',['n_blocks',['../namespacedealii_1_1internal.html#abdefc1220a62c47c1f410d237180ebfa',1,'dealii::internal']]],
-  ['nearestpoint_1',['NearestPoint',['../classMeltPoolDG_1_1LevelSet_1_1Tools_1_1NearestPoint.html#ac62969d20ff4972c284c6f11c75b259f',1,'MeltPoolDG::LevelSet::Tools::NearestPoint']]],
+  ['nearestpoint_1',['NearestPoint',['../classMeltPoolDG_1_1LevelSet_1_1Tools_1_1NearestPoint.html#a7318b3093e7706cdc2f7357a3c7de646',1,'MeltPoolDG::LevelSet::Tools::NearestPoint']]],
   ['newtonraphsonsolver_2',['NewtonRaphsonSolver',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a7927a625cf24e141e80970be4a72680f',1,'MeltPoolDG::NewtonRaphsonSolver']]],
   ['normalize_3',['normalize',['../namespaceMeltPoolDG_1_1UtilityFunctions_1_1CharacteristicFunctions.html#a9d7d5299571e899ab256c8b7bb6e8ef9',1,'MeltPoolDG::UtilityFunctions::CharacteristicFunctions::normalize()'],['../namespaceMeltPoolDG_1_1VectorTools.html#ab9c17af85f393f97e33d699c512c3b85',1,'MeltPoolDG::VectorTools::normalize(const VectorizedArray&lt; number &gt; &amp;in, const double zero=1e-16)'],['../namespaceMeltPoolDG_1_1VectorTools.html#a79d7f1a3ebde274039e9147f9fb2aed3',1,'MeltPoolDG::VectorTools::normalize(const Tensor&lt; 1, dim, VectorizedArray&lt; number &gt; &gt; &amp;in, const double zero=1e-16)']]],
   ['normalvectordata_4',['NormalVectorData',['../structMeltPoolDG_1_1LevelSet_1_1NormalVectorData.html#afff96a5a011d40b45b0ef822e070533e',1,'MeltPoolDG::LevelSet::NormalVectorData']]],

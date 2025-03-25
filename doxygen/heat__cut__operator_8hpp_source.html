@@ -134,221 +134,226 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;scratch_data;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Heat_1_1HeatData.html">HeatData&lt;number&gt;</a>              &amp;heat_data;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1Material.html">Material&lt;number&gt;</a>               material;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   temp_dof_idx;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   temp_hanging_nodes_dof_idx;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   temp_quad_idx;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">const</span> VectorType &amp;temperature;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    dealii::NonMatching::MappingInfo&lt;dim, dim, dealii::VectorizedArray&lt;number&gt;&gt;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      &amp;mapping_info_surface;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">const</span> std::vector&lt;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      std::shared_ptr&lt;dealii::NonMatching::MappingInfo&lt;dim, dim, dealii::VectorizedArray&lt;number&gt;&gt;&gt;&gt;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      &amp;mapping_info_cells;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// use FE_DGQ for FEPointEvaluation (DoF numbering reasons)</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">const</span> dealii::FE_DGQ&lt;dim&gt;   fe_point_temp;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>          n_dofs_per_cell;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">const</span> dealii::FESystem&lt;dim&gt; fe_point_vel;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>          n_dofs_per_cell_vel;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">// coefficients for weighted average operator for two-phase case</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">const</span> number kappa_l;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">const</span> number kappa_g;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// ScratchData&#39;s DoFHandler indices for ..</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> heat_cut_dof_idx;              <span class="comment">// .. CutFEM DoFs with Dirichlet BCs</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> heat_cut_no_bc_dof_idx;        <span class="comment">// .. CutFEM DoFs without Dirichlet BCs</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> heat_continuous_no_bc_dof_idx; <span class="comment">// .. continuous DoFs without Dirichlet BCs</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// ScratchData&#39;s Quadrature index</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> heat_quad_idx;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">const</span> VectorType &amp;temperature;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    dealii::NonMatching::MappingInfo&lt;dim, dim, dealii::VectorizedArray&lt;number&gt;&gt;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      &amp;mapping_info_surface;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">const</span> std::vector&lt;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      std::shared_ptr&lt;dealii::NonMatching::MappingInfo&lt;dim, dim, dealii::VectorizedArray&lt;number&gt;&gt;&gt;&gt;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      &amp;mapping_info_cells;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// use FE_DGQ for FEPointEvaluation (DoF numbering reasons)</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">const</span> dealii::FE_DGQ&lt;dim&gt;   temperature_reference_finite_element;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>          n_dofs_per_cell;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">const</span> dealii::FESystem&lt;dim&gt; velocity_reference_finite_element;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>          n_dofs_per_cell_vel;</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_lanes = dealii::VectorizedArray&lt;number&gt;::size();</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">// weighted averaged Nitsche term factor for two-phase case</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    number weighted_nitsche_factor;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    number cell_side_length = 0.;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    number ost_factor_implicit; <span class="comment">// delta_t * theta</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    number ost_factor_explicit; <span class="comment">// delta_t * (1. - theta)</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    number nitsche_factor;      <span class="comment">// delta_t * gamma_Gamma / h</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// TODO boundary conditions, radiation etc.</span></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// optional: evaporative heat cooling</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    std::unique_ptr&lt;Evaporation::EvaporativeCooling&lt;number&gt;&gt; evapor_cooling;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">// optional: laser intensity and direction</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    std::shared_ptr&lt;const dealii::Function&lt;dim, number&gt;&gt; laser_intensity_profile;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    dealii::Tensor&lt;1, dim, number&gt;                       laser_direction;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// coefficients for weighted average operator for two-phase case</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">const</span> number kappa_l;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">const</span> number kappa_g;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_lanes = dealii::VectorizedArray&lt;number&gt;::size();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">// weighted averaged Nitsche term factor for two-phase case</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    number weighted_nitsche_factor;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    number cell_side_length = 0.;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    number ost_factor_implicit; <span class="comment">// delta_t * theta</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    number ost_factor_explicit; <span class="comment">// delta_t * (1. - theta)</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    number nitsche_factor;      <span class="comment">// delta_t * gamma_Gamma / h</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="comment">// TODO boundary conditions, radiation etc.</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// optional: evaporative heat cooling</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    std::unique_ptr&lt;Evaporation::EvaporativeCooling&lt;number&gt;&gt; evapor_cooling;</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// optional: flow velocity for internal convection</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> vel_dof_idx;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keyword">const</span> VectorType  *velocity;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// optional: laser intensity and direction</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    std::shared_ptr&lt;const dealii::Function&lt;dim, number&gt;&gt; laser_intensity_profile;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    dealii::Tensor&lt;1, dim, number&gt;                       laser_direction;</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="comment">// optional: melting/solidification effects</span></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> do_solidification;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <a class="code hl_class" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html">HeatCutOperator</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a>        &amp;scratch_data_in,</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Heat_1_1HeatData.html">HeatData&lt;number&gt;</a>                     &amp;heat_data_in,</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1MaterialData.html">MaterialData&lt;number&gt;</a>                 &amp;material_data_in,</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                    <span class="keyword">const</span> Evaporation::EvaporationData&lt;number&gt; &amp;evapor_data_in,</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                          temp_dof_idx_in,</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                          temp_hanging_nodes_dof_idx_in,</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                          temp_quad_idx_in,</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                    <span class="keyword">const</span> VectorType                           &amp;temperature_in,</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                    dealii::NonMatching::MappingInfo&lt;dim, dim, dealii::VectorizedArray&lt;number&gt;&gt;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                      &amp;mapping_info_surface_in,</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                    <span class="keyword">const</span> std::vector&lt;std::shared_ptr&lt;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                      dealii::NonMatching::MappingInfo&lt;dim, dim, dealii::VectorizedArray&lt;number&gt;&gt;&gt;&gt;</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                                      &amp;mapping_info_cells_in,</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                    <span class="keyword">const</span> <span class="keywordtype">bool</span>         do_solidification_in,</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> vel_dof_idx_in = 0,</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                    <span class="keyword">const</span> VectorType  *velocity_in    = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a6358e16cdee3d8fd15b54316aa3cd15a">register_laser_intensity_function_and_direction</a>(</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>      std::shared_ptr&lt;<span class="keyword">const</span> dealii::Function&lt;dim, number&gt;&gt; laser_intensity_profile_in,</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      <span class="keyword">const</span> dealii::Tensor&lt;1, dim, number&gt;                &amp;laser_direction_in);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="comment">// optional: flow velocity for internal convection</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> vel_dof_idx;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">const</span> VectorType  *velocity;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// optional: melting/solidification effects</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> do_solidification;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <a class="code hl_class" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html">HeatCutOperator</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a>        &amp;scratch_data_in,</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Heat_1_1HeatData.html">HeatData&lt;number&gt;</a>                     &amp;heat_data_in,</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1MaterialData.html">MaterialData&lt;number&gt;</a>                 &amp;material_data_in,</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                    <span class="keyword">const</span> Evaporation::EvaporationData&lt;number&gt; &amp;evapor_data_in,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                          heat_cut_dof_idx_in,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                          heat_cut_no_bc_dof_idx_in,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                          heat_continuous_no_bc_dof_idx_in,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                          heat_quad_idx_in,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                    <span class="keyword">const</span> VectorType                           &amp;temperature_in,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                    dealii::NonMatching::MappingInfo&lt;dim, dim, dealii::VectorizedArray&lt;number&gt;&gt;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                      &amp;mapping_info_surface_in,</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                    <span class="keyword">const</span> std::vector&lt;std::shared_ptr&lt;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                      dealii::NonMatching::MappingInfo&lt;dim, dim, dealii::VectorizedArray&lt;number&gt;&gt;&gt;&gt;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                                      &amp;mapping_info_cells_in,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                    <span class="keyword">const</span> <span class="keywordtype">bool</span>         do_solidification_in,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> vel_dof_idx_in = 0,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                    <span class="keyword">const</span> VectorType  *velocity_in    = <span class="keyword">nullptr</span>);</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a4f4cef243141a6c15ab0d74206f62503">reinit</a>() <span class="keyword">final</span>;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a27953ddbf16a9ae84e8ddec6ba91b6da">init_time_advance</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> dt);</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#aacf2a586bfefcc6c51adfd56e2b3dead">update_ghost_values</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">/*</span></div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment">     *    matrix-free implementation</span></div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#aab97efd3877c8987ffb510629667b09d">vmult</a>(VectorType &amp;dst, <span class="keyword">const</span> VectorType &amp;src) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#aa7e48024a0c5ba32a04cd97ae00316ff">compute_inverse_diagonal_from_matrixfree</a>(VectorType &amp;diagonal) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a2faf354c9dd353f8deebf00e67fd1cad">compute_system_matrix_from_matrixfree</a>(</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>      dealii::TrilinosWrappers::SparseMatrix &amp;system_matrix) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a9fd946a67faa00f56a1135a92186c6bd">create_rhs</a>(VectorType &amp;residual, <span class="keyword">const</span> VectorType &amp;temperature_old) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    number</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a87faf8d13e0750fc13c8135286c7ce1e">compute_cut_L2_norm</a>(<span class="keyword">const</span> VectorType &amp;solution) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    dealii::VectorizedArray&lt;number&gt;</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    compute_qVapor(<span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; &amp;T) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    dealii::VectorizedArray&lt;number&gt;</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    compute_qVapor_derivative(<span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; &amp;T) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="comment">/*</span></div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment">     * Local appliers for consistent tangent modulus</span></div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    tangent_cell_operation_liquid(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_index,</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>                                  DomainEval&lt;&gt;      &amp;eval_l,</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>                                  DomainEval&lt;&gt;      *T_eval_l,</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>                                  DomainEval&lt;dim&gt;   *vel_eval,</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>                                  <span class="keyword">const</span> <span class="keywordtype">bool</span>         do_reinit_cell = <span class="keyword">true</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    tangent_cell_operation_gas(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_index,</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                               DomainEval&lt;&gt;      &amp;eval_g,</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>                               DomainEval&lt;dim&gt;   *vel_eval,</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                               <span class="keyword">const</span> <span class="keywordtype">bool</span>         do_reinit_cell = <span class="keyword">true</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    tangent_cell_operation_intersected_one_phase(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_index,</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>                                                 DomainEval&lt;&gt;      &amp;eval_cell_l,</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                                                 PointEval&lt;&gt;       &amp;eval_subdomain_l,</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>                                                 PointEval&lt;&gt;       *eval_interface_l,</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>                                                 DomainEval&lt;&gt;      *T_eval_cell_l,</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>                                                 PointEval&lt;&gt;       *T_eval_subdomain_l,</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>                                                 PointEval&lt;&gt;       *T_eval_interface_l,</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                                                 DomainEval&lt;dim&gt;   *vel_eval,</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                                                 PointEval&lt;dim&gt;    *vel_eval_subdomain_l,</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                                                 <span class="keyword">const</span> <span class="keywordtype">bool</span>         do_reinit_cell = <span class="keyword">true</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    tangent_cell_operation_intersected_two_phase(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_index,</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>                                                 DomainEval&lt;&gt;      &amp;eval_cell_l,</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                                                 DomainEval&lt;&gt;      &amp;eval_cell_g,</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                                                 PointEval&lt;&gt;       &amp;eval_subdomain_l,</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                                                 PointEval&lt;&gt;       &amp;eval_subdomain_g,</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                                                 PointEval&lt;&gt;       &amp;eval_interface_l,</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>                                                 PointEval&lt;&gt;       &amp;eval_interface_g,</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                                                 DomainEval&lt;&gt;      *T_eval_cell_l,</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                                                 DomainEval&lt;&gt;      *T_eval_cell_g,</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>                                                 PointEval&lt;&gt;       *T_eval_subdomain_l,</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                                                 PointEval&lt;&gt;       *T_eval_interface_l,</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>                                                 PointEval&lt;&gt;       *T_eval_interface_g,</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>                                                 DomainEval&lt;dim&gt;   *vel_eval,</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>                                                 PointEval&lt;dim&gt;    *vel_eval_subdomain_l,</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>                                                 PointEval&lt;dim&gt;    *vel_eval_subdomain_g,</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                                                 <span class="keyword">const</span> <span class="keywordtype">bool</span>         do_reinit_cell = <span class="keyword">true</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    tangent_cell_loop(</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number, dealii::VectorizedArray&lt;number&gt;&gt; &amp;matrix_free_in,</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      VectorType                                                             &amp;dst,</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>      <span class="keyword">const</span> VectorType                                                       &amp;src,</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt;                            &amp;cell_range) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    tangent_inner_face_loop(</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number, dealii::VectorizedArray&lt;number&gt;&gt; &amp;matrix_free_in,</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      VectorType                                                             &amp;dst,</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>      <span class="keyword">const</span> VectorType                                                       &amp;src,</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt;                            &amp;face_range) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    tangent_boundary_face_loop(</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number, dealii::VectorizedArray&lt;number&gt;&gt; &amp;matrix_free_in,</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>      VectorType                                                             &amp;dst,</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>      <span class="keyword">const</span> VectorType                                                       &amp;src,</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt;                            &amp;face_range) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="comment">/*</span></div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment">     * Local appliers for residual</span></div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    residual_cell_loop(</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number, dealii::VectorizedArray&lt;number&gt;&gt; &amp;matrix_free,</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      VectorType                                                             &amp;residual,</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>      <span class="keyword">const</span> VectorType                                                       &amp;temperature_new,</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt;                            &amp;cell_range) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    residual_inner_face_loop(</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number, dealii::VectorizedArray&lt;number&gt;&gt; &amp;matrix_free_in,</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>      VectorType                                                             &amp;residual,</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>      <span class="keyword">const</span> VectorType                                                       &amp;temperature_new,</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt;                            &amp;face_range) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    residual_boundary_face_loop(</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number, dealii::VectorizedArray&lt;number&gt;&gt; &amp;matrix_free_in,</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>      VectorType                                                             &amp;residual,</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>      <span class="keyword">const</span> VectorType                                                       &amp;temperature_new,</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt;                            &amp;face_range) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    internal_compute_diagonal_or_system_matrix(</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>      [[maybe_unused]] VectorType                             &amp;diagonal,</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>      [[maybe_unused]] dealii::TrilinosWrappers::SparseMatrix &amp;system_matrix,</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>      <span class="keyword">const</span> <span class="keywordtype">bool</span>                                               do_diagonal) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  };</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a6358e16cdee3d8fd15b54316aa3cd15a">register_laser_intensity_function_and_direction</a>(</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      std::shared_ptr&lt;<span class="keyword">const</span> dealii::Function&lt;dim, number&gt;&gt; laser_intensity_profile_in,</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>      <span class="keyword">const</span> dealii::Tensor&lt;1, dim, number&gt;                &amp;laser_direction_in);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a4f4cef243141a6c15ab0d74206f62503">reinit</a>() <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a27953ddbf16a9ae84e8ddec6ba91b6da">init_time_advance</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> dt);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#aacf2a586bfefcc6c51adfd56e2b3dead">update_ghost_values</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment">     *    matrix-free implementation</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#aab97efd3877c8987ffb510629667b09d">vmult</a>(VectorType &amp;dst, <span class="keyword">const</span> VectorType &amp;src) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#aa7e48024a0c5ba32a04cd97ae00316ff">compute_inverse_diagonal_from_matrixfree</a>(VectorType &amp;diagonal) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a2faf354c9dd353f8deebf00e67fd1cad">compute_system_matrix_from_matrixfree</a>(</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      dealii::TrilinosWrappers::SparseMatrix &amp;system_matrix) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a9fd946a67faa00f56a1135a92186c6bd">create_rhs</a>(VectorType &amp;residual, <span class="keyword">const</span> VectorType &amp;temperature_old) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    number</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a87faf8d13e0750fc13c8135286c7ce1e">compute_cut_L2_norm</a>(<span class="keyword">const</span> VectorType &amp;solution) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    dealii::VectorizedArray&lt;number&gt;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    compute_qVapor(<span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; &amp;T) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    dealii::VectorizedArray&lt;number&gt;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    compute_qVapor_derivative(<span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; &amp;T) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment">     * Local appliers for consistent tangent modulus</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    tangent_cell_operation_liquid(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_index,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>                                  DomainEval&lt;&gt;      &amp;eval_l,</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>                                  DomainEval&lt;&gt;      *T_eval_l,</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                                  DomainEval&lt;dim&gt;   *vel_eval,</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>                                  <span class="keyword">const</span> <span class="keywordtype">bool</span>         do_reinit_cell = <span class="keyword">true</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    tangent_cell_operation_gas(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_index,</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>                               DomainEval&lt;&gt;      &amp;eval_g,</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>                               DomainEval&lt;dim&gt;   *vel_eval,</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                               <span class="keyword">const</span> <span class="keywordtype">bool</span>         do_reinit_cell = <span class="keyword">true</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    tangent_cell_operation_intersected_one_phase(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_index,</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>                                                 DomainEval&lt;&gt;      &amp;eval_cell_l,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                                                 PointEval&lt;&gt;       &amp;eval_subdomain_l,</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                                                 PointEval&lt;&gt;       *eval_interface_l,</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                                                 DomainEval&lt;&gt;      *T_eval_cell_l,</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                                                 PointEval&lt;&gt;       *T_eval_subdomain_l,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>                                                 PointEval&lt;&gt;       *T_eval_interface_l,</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>                                                 DomainEval&lt;dim&gt;   *vel_eval,</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>                                                 PointEval&lt;dim&gt;    *vel_eval_subdomain_l,</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                                                 <span class="keyword">const</span> <span class="keywordtype">bool</span>         do_reinit_cell = <span class="keyword">true</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    tangent_cell_operation_intersected_two_phase(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_index,</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>                                                 DomainEval&lt;&gt;      &amp;eval_cell_l,</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                                                 DomainEval&lt;&gt;      &amp;eval_cell_g,</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                                                 PointEval&lt;&gt;       &amp;eval_subdomain_l,</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>                                                 PointEval&lt;&gt;       &amp;eval_subdomain_g,</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                                                 PointEval&lt;&gt;       &amp;eval_interface_l,</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>                                                 PointEval&lt;&gt;       &amp;eval_interface_g,</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>                                                 DomainEval&lt;&gt;      *T_eval_cell_l,</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>                                                 DomainEval&lt;&gt;      *T_eval_cell_g,</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>                                                 PointEval&lt;&gt;       *T_eval_subdomain_l,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                                                 PointEval&lt;&gt;       *T_eval_interface_l,</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>                                                 PointEval&lt;&gt;       *T_eval_interface_g,</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                                                 DomainEval&lt;dim&gt;   *vel_eval,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>                                                 PointEval&lt;dim&gt;    *vel_eval_subdomain_l,</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                                                 PointEval&lt;dim&gt;    *vel_eval_subdomain_g,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                                                 <span class="keyword">const</span> <span class="keywordtype">bool</span>         do_reinit_cell = <span class="keyword">true</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    tangent_cell_loop(</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number, dealii::VectorizedArray&lt;number&gt;&gt; &amp;matrix_free_in,</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>      VectorType                                                             &amp;dst,</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      <span class="keyword">const</span> VectorType                                                       &amp;src,</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt;                            &amp;cell_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    tangent_inner_face_loop(</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number, dealii::VectorizedArray&lt;number&gt;&gt; &amp;matrix_free_in,</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>      VectorType                                                             &amp;dst,</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>      <span class="keyword">const</span> VectorType                                                       &amp;src,</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt;                            &amp;face_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    tangent_boundary_face_loop(</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number, dealii::VectorizedArray&lt;number&gt;&gt; &amp;matrix_free_in,</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>      VectorType                                                             &amp;dst,</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>      <span class="keyword">const</span> VectorType                                                       &amp;src,</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt;                            &amp;face_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="comment">     * Local appliers for residual</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    residual_cell_loop(</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number, dealii::VectorizedArray&lt;number&gt;&gt; &amp;matrix_free,</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>      VectorType                                                             &amp;residual,</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>      <span class="keyword">const</span> VectorType                                                       &amp;temperature_new,</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt;                            &amp;cell_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    residual_inner_face_loop(</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number, dealii::VectorizedArray&lt;number&gt;&gt; &amp;matrix_free_in,</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>      VectorType                                                             &amp;residual,</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>      <span class="keyword">const</span> VectorType                                                       &amp;temperature_new,</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt;                            &amp;face_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    residual_boundary_face_loop(</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number, dealii::VectorizedArray&lt;number&gt;&gt; &amp;matrix_free_in,</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>      VectorType                                                             &amp;residual,</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>      <span class="keyword">const</span> VectorType                                                       &amp;temperature_new,</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt;                            &amp;face_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    internal_compute_diagonal_or_system_matrix(</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>      [[maybe_unused]] VectorType                             &amp;diagonal,</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>      [[maybe_unused]] dealii::TrilinosWrappers::SparseMatrix &amp;system_matrix,</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>      <span class="keyword">const</span> <span class="keywordtype">bool</span>                                               do_diagonal) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>  };</div>
 </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>} <span class="comment">// namespace MeltPoolDG::Heat</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>} <span class="comment">// namespace MeltPoolDG::Heat</span></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html">MeltPoolDG::Heat::HeatCutOperator</a></div><div class="ttdef"><b>Definition</b> heat_cut_operator.hpp:33</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_a27953ddbf16a9ae84e8ddec6ba91b6da"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a27953ddbf16a9ae84e8ddec6ba91b6da">MeltPoolDG::Heat::HeatCutOperator::init_time_advance</a></div><div class="ttdeci">void init_time_advance(const double dt)</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:550</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_a2faf354c9dd353f8deebf00e67fd1cad"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a2faf354c9dd353f8deebf00e67fd1cad">MeltPoolDG::Heat::HeatCutOperator::compute_system_matrix_from_matrixfree</a></div><div class="ttdeci">void compute_system_matrix_from_matrixfree(dealii::TrilinosWrappers::SparseMatrix &amp;system_matrix) const final</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:1872</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_a4f4cef243141a6c15ab0d74206f62503"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a4f4cef243141a6c15ab0d74206f62503">MeltPoolDG::Heat::HeatCutOperator::reinit</a></div><div class="ttdeci">void reinit() final</div><div class="ttdoc">Reinitialize data structures. Can be overridden by derived classes.</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:531</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_a6358e16cdee3d8fd15b54316aa3cd15a"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a6358e16cdee3d8fd15b54316aa3cd15a">MeltPoolDG::Heat::HeatCutOperator::register_laser_intensity_function_and_direction</a></div><div class="ttdeci">void register_laser_intensity_function_and_direction(std::shared_ptr&lt; const dealii::Function&lt; dim, number &gt; &gt; laser_intensity_profile_in, const dealii::Tensor&lt; 1, dim, number &gt; &amp;laser_direction_in)</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:519</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_a87faf8d13e0750fc13c8135286c7ce1e"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a87faf8d13e0750fc13c8135286c7ce1e">MeltPoolDG::Heat::HeatCutOperator::compute_cut_L2_norm</a></div><div class="ttdeci">number compute_cut_L2_norm(const VectorType &amp;solution) const</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:2220</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_a9fd946a67faa00f56a1135a92186c6bd"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a9fd946a67faa00f56a1135a92186c6bd">MeltPoolDG::Heat::HeatCutOperator::create_rhs</a></div><div class="ttdeci">void create_rhs(VectorType &amp;residual, const VectorType &amp;temperature_old) const final</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:596</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_aa7e48024a0c5ba32a04cd97ae00316ff"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#aa7e48024a0c5ba32a04cd97ae00316ff">MeltPoolDG::Heat::HeatCutOperator::compute_inverse_diagonal_from_matrixfree</a></div><div class="ttdeci">void compute_inverse_diagonal_from_matrixfree(VectorType &amp;diagonal) const final</div><div class="ttdoc">Compute the inverse diagonal using matrix-free techniques.</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:1855</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_aab97efd3877c8987ffb510629667b09d"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#aab97efd3877c8987ffb510629667b09d">MeltPoolDG::Heat::HeatCutOperator::vmult</a></div><div class="ttdeci">void vmult(VectorType &amp;dst, const VectorType &amp;src) const final</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:574</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_aacf2a586bfefcc6c51adfd56e2b3dead"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#aacf2a586bfefcc6c51adfd56e2b3dead">MeltPoolDG::Heat::HeatCutOperator::update_ghost_values</a></div><div class="ttdeci">void update_ghost_values() const</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:564</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_a27953ddbf16a9ae84e8ddec6ba91b6da"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a27953ddbf16a9ae84e8ddec6ba91b6da">MeltPoolDG::Heat::HeatCutOperator::init_time_advance</a></div><div class="ttdeci">void init_time_advance(const double dt)</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:554</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_a2faf354c9dd353f8deebf00e67fd1cad"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a2faf354c9dd353f8deebf00e67fd1cad">MeltPoolDG::Heat::HeatCutOperator::compute_system_matrix_from_matrixfree</a></div><div class="ttdeci">void compute_system_matrix_from_matrixfree(dealii::TrilinosWrappers::SparseMatrix &amp;system_matrix) const final</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:1888</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_a4f4cef243141a6c15ab0d74206f62503"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a4f4cef243141a6c15ab0d74206f62503">MeltPoolDG::Heat::HeatCutOperator::reinit</a></div><div class="ttdeci">void reinit() final</div><div class="ttdoc">Reinitialize data structures. Can be overridden by derived classes.</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:535</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_a6358e16cdee3d8fd15b54316aa3cd15a"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a6358e16cdee3d8fd15b54316aa3cd15a">MeltPoolDG::Heat::HeatCutOperator::register_laser_intensity_function_and_direction</a></div><div class="ttdeci">void register_laser_intensity_function_and_direction(std::shared_ptr&lt; const dealii::Function&lt; dim, number &gt; &gt; laser_intensity_profile_in, const dealii::Tensor&lt; 1, dim, number &gt; &amp;laser_direction_in)</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:523</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_a87faf8d13e0750fc13c8135286c7ce1e"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a87faf8d13e0750fc13c8135286c7ce1e">MeltPoolDG::Heat::HeatCutOperator::compute_cut_L2_norm</a></div><div class="ttdeci">number compute_cut_L2_norm(const VectorType &amp;solution) const</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:2241</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_a9fd946a67faa00f56a1135a92186c6bd"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a9fd946a67faa00f56a1135a92186c6bd">MeltPoolDG::Heat::HeatCutOperator::create_rhs</a></div><div class="ttdeci">void create_rhs(VectorType &amp;residual, const VectorType &amp;temperature_old) const final</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:600</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_aa7e48024a0c5ba32a04cd97ae00316ff"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#aa7e48024a0c5ba32a04cd97ae00316ff">MeltPoolDG::Heat::HeatCutOperator::compute_inverse_diagonal_from_matrixfree</a></div><div class="ttdeci">void compute_inverse_diagonal_from_matrixfree(VectorType &amp;diagonal) const final</div><div class="ttdoc">Compute the inverse diagonal using matrix-free techniques.</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:1871</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_aab97efd3877c8987ffb510629667b09d"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#aab97efd3877c8987ffb510629667b09d">MeltPoolDG::Heat::HeatCutOperator::vmult</a></div><div class="ttdeci">void vmult(VectorType &amp;dst, const VectorType &amp;src) const final</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:578</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatCutOperator_html_aacf2a586bfefcc6c51adfd56e2b3dead"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#aacf2a586bfefcc6c51adfd56e2b3dead">MeltPoolDG::Heat::HeatCutOperator::update_ghost_values</a></div><div class="ttdeci">void update_ghost_values() const</div><div class="ttdef"><b>Definition</b> heat_cut_operator.cpp:568</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Material_html"><div class="ttname"><a href="classMeltPoolDG_1_1Material.html">MeltPoolDG::Material</a></div><div class="ttdef"><b>Definition</b> material.hpp:102</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1OperatorMatrixFree_html"><div class="ttname"><a href="classMeltPoolDG_1_1OperatorMatrixFree.html">MeltPoolDG::OperatorMatrixFree</a></div><div class="ttdoc">Operator handling matrix-free computations.</div><div class="ttdef"><b>Definition</b> operator_base.hpp:189</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1OperatorMatrixFree_html_a25017ec452d297063530d7ddd2520a7e"><div class="ttname"><a href="classMeltPoolDG_1_1OperatorMatrixFree.html#a25017ec452d297063530d7ddd2520a7e">MeltPoolDG::OperatorMatrixFree::SparseMatrixType</a></div><div class="ttdeci">dealii::TrilinosWrappers::SparseMatrix SparseMatrixType</div><div class="ttdef"><b>Definition</b> operator_base.hpp:193</div></div>
@@ -361,7 +366,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aheat__data_8hpp_html"><div class="ttname"><a href="heat__data_8hpp.html">heat_data.hpp</a></div></div>
 <div class="ttc" id="amaterial_8hpp_html"><div class="ttname"><a href="material_8hpp.html">material.hpp</a></div></div>
 <div class="ttc" id="amaterial__data_8hpp_html"><div class="ttname"><a href="material__data_8hpp.html">material_data.hpp</a></div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1Heat_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Heat.html">MeltPoolDG::Heat</a></div><div class="ttdef"><b>Definition</b> heat_cut_operation.hpp:34</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Heat_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Heat.html">MeltPoolDG::Heat</a></div><div class="ttdef"><b>Definition</b> heat_cut_operation.hpp:37</div></div>
 <div class="ttc" id="aoperator__base_8hpp_html"><div class="ttname"><a href="operator__base_8hpp.html">operator_base.hpp</a></div></div>
 <div class="ttc" id="ascratch__data_8hpp_html"><div class="ttname"><a href="scratch__data_8hpp.html">scratch_data.hpp</a></div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1Heat_1_1HeatData_html"><div class="ttname"><a href="structMeltPoolDG_1_1Heat_1_1HeatData.html">MeltPoolDG::Heat::HeatData</a></div><div class="ttdef"><b>Definition</b> heat_data.hpp:18</div></div>
