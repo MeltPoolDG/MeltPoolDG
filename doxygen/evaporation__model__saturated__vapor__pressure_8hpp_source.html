@@ -81,55 +81,50 @@ $(document).ready(function() { init_codefold(0); });
   <div class="headertitle"><div class="title">evaporation_model_saturated_vapor_pressure.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="evaporation__model__saturated__vapor__pressure_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* ---------------------------------------------------------------------</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Author: Magdalena Schreter, TUM, February 2024</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * ---------------------------------------------------------------------*/</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="evaporation__model__base_8hpp.html">meltpooldg/phase_change/evaporation_model_base.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="recoil__pressure__data_8hpp.html">meltpooldg/phase_change/recoil_pressure_data.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1Evaporation.html">MeltPoolDG::Evaporation</a></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number&gt;</div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure.html">   24</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure.html">EvaporationModelSaturatedVaporPressure</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelBase.html">EvaporationModelBase</a>&lt;number&gt;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Evaporation_1_1RecoilPressureData.html">RecoilPressureData&lt;number&gt;</a> recoil_data;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">const</span> number                     boiling_temperature;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">const</span> number                     sticking_constant;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">const</span> number                     molar_mass;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">const</span> number                     latent_heat_evaporation;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// Model constant computed as molar_mass/(2*pi*molar_gas_constant)</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">const</span> number Cm;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure.html">EvaporationModelSaturatedVaporPressure</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Evaporation_1_1RecoilPressureData.html">RecoilPressureData&lt;number&gt;</a> &amp;recoil_data,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                                           <span class="keyword">const</span> number                      boiling_temperature,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                                           <span class="keyword">const</span> number                      molar_mass,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                                           <span class="keyword">const</span> number latent_heat_evaporation);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">/*</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">     * The evaporative mass flux is computed as</span></div>
+<a href="evaporation__model__saturated__vapor__pressure_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="code" href="evaporation__model__base_8hpp.html">meltpooldg/phase_change/evaporation_model_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="recoil__pressure__data_8hpp.html">meltpooldg/phase_change/recoil_pressure_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1Evaporation.html">MeltPoolDG::Evaporation</a></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure.html">   19</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure.html">EvaporationModelSaturatedVaporPressure</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelBase.html">EvaporationModelBase</a>&lt;number&gt;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Evaporation_1_1RecoilPressureData.html">RecoilPressureData&lt;number&gt;</a> recoil_data;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">const</span> number                     boiling_temperature;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">const</span> number                     sticking_constant;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">const</span> number                     molar_mass;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">const</span> number                     latent_heat_evaporation;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// Model constant computed as molar_mass/(2*pi*molar_gas_constant)</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">const</span> number Cm;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure.html">EvaporationModelSaturatedVaporPressure</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Evaporation_1_1RecoilPressureData.html">RecoilPressureData&lt;number&gt;</a> &amp;recoil_data,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                                           <span class="keyword">const</span> number                      boiling_temperature,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                                           <span class="keyword">const</span> number                      molar_mass,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                                           <span class="keyword">const</span> number latent_heat_evaporation);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">     * The evaporative mass flux is computed as</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">     *                                    ______</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">     *                                   /  M</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">     * .                                /-------</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">     * m(T) = 0.82 · c_s  · p_sat(T) · √  2πR T</span></div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">     *</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">     *                                    ______</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">     *                                   /  M</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">     * .                                /-------</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">     * m(T) = 0.82 · c_s  · p_sat(T) · √  2πR T</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">     *</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">     * where c_s is the sticking coefficient, p_sat(T) is the saturated vapor</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">     * pressure, M the molar mass, R the molar gas constant and T the temperature.</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    number</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure.html#ae39d9c445713653dae2cb4b775f3f6ce">local_compute_evaporative_mass_flux</a>(<span class="keyword">const</span> number T) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  };</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">     * where c_s is the sticking coefficient, p_sat(T) is the saturated vapor</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">     * pressure, M the molar mass, R the molar gas constant and T the temperature.</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    number</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure.html#ae39d9c445713653dae2cb4b775f3f6ce">local_compute_evaporative_mass_flux</a>(<span class="keyword">const</span> number T) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  };</div>
 </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>} <span class="comment">// namespace MeltPoolDG::Evaporation</span></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1EvaporationModelBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelBase.html">MeltPoolDG::Evaporation::EvaporationModelBase</a></div><div class="ttdef"><b>Definition</b> evaporation_model_base.hpp:18</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure_html"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure.html">MeltPoolDG::Evaporation::EvaporationModelSaturatedVaporPressure</a></div><div class="ttdef"><b>Definition</b> evaporation_model_saturated_vapor_pressure.hpp:25</div></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>} <span class="comment">// namespace MeltPoolDG::Evaporation</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1EvaporationModelBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelBase.html">MeltPoolDG::Evaporation::EvaporationModelBase</a></div><div class="ttdef"><b>Definition</b> evaporation_model_base.hpp:13</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure_html"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure.html">MeltPoolDG::Evaporation::EvaporationModelSaturatedVaporPressure</a></div><div class="ttdef"><b>Definition</b> evaporation_model_saturated_vapor_pressure.hpp:20</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure_html_ae39d9c445713653dae2cb4b775f3f6ce"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelSaturatedVaporPressure.html#ae39d9c445713653dae2cb4b775f3f6ce">MeltPoolDG::Evaporation::EvaporationModelSaturatedVaporPressure::local_compute_evaporative_mass_flux</a></div><div class="ttdeci">number local_compute_evaporative_mass_flux(const number T) const final</div><div class="ttdef"><b>Definition</b> evaporation_model_saturated_vapor_pressure.cpp:28</div></div>
 <div class="ttc" id="aevaporation__model__base_8hpp_html"><div class="ttname"><a href="evaporation__model__base_8hpp.html">evaporation_model_base.hpp</a></div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Evaporation_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Evaporation.html">MeltPoolDG::Evaporation</a></div><div class="ttdef"><b>Definition</b> evaporation_data.hpp:15</div></div>

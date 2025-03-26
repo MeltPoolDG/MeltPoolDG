@@ -3,7 +3,7 @@ var searchData=
   ['identitypreconditioner_0',['IdentityPreconditioner',['../classMeltPoolDG_1_1IdentityPreconditioner.html',1,'MeltPoolDG']]],
   ['implicitexplicitintegrator_1',['ImplicitExplicitIntegrator',['../classMeltPoolDG_1_1ImplicitExplicitIntegrator.html',1,'MeltPoolDG']]],
   ['incompressiblematerialbase_2',['IncompressibleMaterialBase',['../classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html',1,'MeltPoolDG::Flow']]],
-  ['incompressiblematerialbase_3c_20dim_2c_20double_20_3e_3',['IncompressibleMaterialBase&lt; dim, double &gt;',['../classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html',1,'MeltPoolDG::Flow']]],
+  ['incompressiblematerialbase_3c_20dim_2c_20number_20_3e_3',['IncompressibleMaterialBase&lt; dim, number &gt;',['../classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html',1,'MeltPoolDG::Flow']]],
   ['incompressiblenewtonianfluidevaporationmaterial_4',['IncompressibleNewtonianFluidEvaporationMaterial',['../classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html',1,'MeltPoolDG::Evaporation']]],
   ['inflowflowfield_5',['InflowFlowField',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1InflowFlowField.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
   ['initialflowfield_6',['InitialFlowField',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1InitialFlowField.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],

@@ -81,49 +81,44 @@ $(document).ready(function() { init_codefold(0); });
   <div class="headertitle"><div class="title">evaporation_model_hardt_wondra.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="evaporation__model__hardt__wondra_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* ---------------------------------------------------------------------</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Author: Magdalena Schreter, UIBK/TUM, June 2021</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * ---------------------------------------------------------------------*/</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="evaporation__model__base_8hpp.html">meltpooldg/phase_change/evaporation_model_base.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1Evaporation.html">MeltPoolDG::Evaporation</a></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number&gt;</div>
-<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html">   41</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html">EvaporationModelHardtWondra</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelBase.html">EvaporationModelBase</a>&lt;number&gt;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">const</span> number evaporative_mass_transfer_coefficient;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">const</span> number boiling_temperature;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html">EvaporationModelHardtWondra</a>(<span class="keyword">const</span> number evaporation_coefficient,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                                <span class="keyword">const</span> number latent_heat_of_evaporation,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                                <span class="keyword">const</span> number density_vapor,</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                                <span class="keyword">const</span> number molar_mass_vapor,</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                                <span class="keyword">const</span> number boiling_temperature);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html">EvaporationModelHardtWondra</a>(<span class="keyword">const</span> number evaporative_mass_transfer_coefficient,</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                                <span class="keyword">const</span> number boiling_temperature);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">/*</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">     * According to Schrage&#39;s theory the evaporative mass flux at the interface is computed</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">     * as follows</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">     *  .</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">     *  m = α_v &lt; T - T_v &gt;</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">     *</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">     *  with the evaporative mass transfer coefficient α_v  and the heaviside function &lt;...&gt;.</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">     */</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    number</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html#a8941b66286205cf03cca7f03136b1edd">local_compute_evaporative_mass_flux</a>(<span class="keyword">const</span> number T) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  };</div>
+<a href="evaporation__model__hardt__wondra_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="code" href="evaporation__model__base_8hpp.html">meltpooldg/phase_change/evaporation_model_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1Evaporation.html">MeltPoolDG::Evaporation</a></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html">   36</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html">EvaporationModelHardtWondra</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelBase.html">EvaporationModelBase</a>&lt;number&gt;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">const</span> number evaporative_mass_transfer_coefficient;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">const</span> number boiling_temperature;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html">EvaporationModelHardtWondra</a>(<span class="keyword">const</span> number evaporation_coefficient,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                                <span class="keyword">const</span> number latent_heat_of_evaporation,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                                <span class="keyword">const</span> number density_vapor,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                                <span class="keyword">const</span> number molar_mass_vapor,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                                <span class="keyword">const</span> number boiling_temperature);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html">EvaporationModelHardtWondra</a>(<span class="keyword">const</span> number evaporative_mass_transfer_coefficient,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                                <span class="keyword">const</span> number boiling_temperature);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">     * According to Schrage&#39;s theory the evaporative mass flux at the interface is computed</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">     * as follows</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">     *  .</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">     *  m = α_v &lt; T - T_v &gt;</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">     *  with the evaporative mass transfer coefficient α_v  and the heaviside function &lt;...&gt;.</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    number</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html#a8941b66286205cf03cca7f03136b1edd">local_compute_evaporative_mass_flux</a>(<span class="keyword">const</span> number T) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  };</div>
 </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>} <span class="comment">// namespace MeltPoolDG::Evaporation</span></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1EvaporationModelBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelBase.html">MeltPoolDG::Evaporation::EvaporationModelBase</a></div><div class="ttdef"><b>Definition</b> evaporation_model_base.hpp:18</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra_html"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html">MeltPoolDG::Evaporation::EvaporationModelHardtWondra</a></div><div class="ttdef"><b>Definition</b> evaporation_model_hardt_wondra.hpp:42</div></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>} <span class="comment">// namespace MeltPoolDG::Evaporation</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1EvaporationModelBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelBase.html">MeltPoolDG::Evaporation::EvaporationModelBase</a></div><div class="ttdef"><b>Definition</b> evaporation_model_base.hpp:13</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra_html"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html">MeltPoolDG::Evaporation::EvaporationModelHardtWondra</a></div><div class="ttdef"><b>Definition</b> evaporation_model_hardt_wondra.hpp:37</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra_html_a8941b66286205cf03cca7f03136b1edd"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelHardtWondra.html#a8941b66286205cf03cca7f03136b1edd">MeltPoolDG::Evaporation::EvaporationModelHardtWondra::local_compute_evaporative_mass_flux</a></div><div class="ttdeci">number local_compute_evaporative_mass_flux(const number T) const final</div><div class="ttdef"><b>Definition</b> evaporation_model_hardt_wondra.cpp:48</div></div>
 <div class="ttc" id="aevaporation__model__base_8hpp_html"><div class="ttname"><a href="evaporation__model__base_8hpp.html">evaporation_model_base.hpp</a></div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Evaporation_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Evaporation.html">MeltPoolDG::Evaporation</a></div><div class="ttdef"><b>Definition</b> evaporation_data.hpp:15</div></div>
