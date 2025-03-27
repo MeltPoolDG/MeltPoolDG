@@ -4,7 +4,7 @@ var searchData=
   ['map_5fcompare_1',['map_compare',['../structbetter__enums_1_1map__compare.html',1,'better_enums']]],
   ['map_5fcompare_3c_20const_20char_20_2a_20_3e_2',['map_compare&lt; const char * &gt;',['../structbetter__enums_1_1map__compare_3_01const_01char_01_5_01_4.html',1,'better_enums']]],
   ['map_5fcompare_3c_20const_20wchar_5ft_20_2a_20_3e_3',['map_compare&lt; const wchar_t * &gt;',['../structbetter__enums_1_1map__compare_3_01const_01wchar__t_01_5_01_4.html',1,'better_enums']]],
-  ['material_4',['Material',['../classMeltPoolDG_1_1Material.html',1,'MeltPoolDG']]],
+  ['material_4',['material',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData_1_1Material.html',1,'MeltPoolDG::Flow::CompressibleFlowData&lt; number &gt;::Material'],['../classMeltPoolDG_1_1Material.html',1,'MeltPoolDG::Material&lt; number &gt;']]],
   ['materialdata_5',['MaterialData',['../structMeltPoolDG_1_1MaterialData.html',1,'MeltPoolDG']]],
   ['materialdata_3c_20double_20_3e_6',['MaterialData&lt; double &gt;',['../structMeltPoolDG_1_1MaterialData.html',1,'MeltPoolDG']]],
   ['materialdata_3c_20number_20_3e_7',['MaterialData&lt; number &gt;',['../structMeltPoolDG_1_1MaterialData.html',1,'MeltPoolDG']]],

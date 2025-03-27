@@ -158,8 +158,60 @@ Functions</h2></td></tr>
 <tr class="memitem:a0da853b6eeeb5a114c08255d3889ef4e" id="r_a0da853b6eeeb5a114c08255d3889ef4e"><td class="memTemplParams" colspan="2">template&lt;int a, int b, int c, typename number &gt; </td></tr>
 <tr class="memitem:a0da853b6eeeb5a114c08255d3889ef4e"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, a, dealii::Tensor&lt; 1, c, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a0da853b6eeeb5a114c08255d3889ef4e">matrix_matrix_product</a> (const dealii::Tensor&lt; 1, a, dealii::Tensor&lt; 1, b, number &gt; &gt; &amp;matrix1, const dealii::Tensor&lt; 1, b, dealii::Tensor&lt; 1, c, number &gt; &gt; &amp;matrix2)</td></tr>
 <tr class="separator:a0da853b6eeeb5a114c08255d3889ef4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2edda794ac71b1a54cbad3675f047126" id="r_a2edda794ac71b1a54cbad3675f047126"><td class="memTemplParams" colspan="2">template&lt;typename TypeWeight , typename TypeTerm &gt; </td></tr>
+<tr class="memitem:a2edda794ac71b1a54cbad3675f047126"><td class="memTemplItemLeft" align="right" valign="top">TypeTerm&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a2edda794ac71b1a54cbad3675f047126">calculate_arithmetic_phase_weighted_average</a> (const TypeWeight &amp;weight_a, const TypeTerm &amp;term_a, const TypeWeight &amp;weight_b, const TypeTerm &amp;term_b)</td></tr>
+<tr class="separator:a2edda794ac71b1a54cbad3675f047126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ccc8595c97ca5beec80cdbabd02307e" id="r_a6ccc8595c97ca5beec80cdbabd02307e"><td class="memTemplParams" colspan="2">template&lt;int dim_1, int dim_2, typename number &gt; </td></tr>
+<tr class="memitem:a6ccc8595c97ca5beec80cdbabd02307e"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim_1, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a6ccc8595c97ca5beec80cdbabd02307e">contract_tensor_with_vector</a> (const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &amp;tensor, const dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &amp;vector)</td></tr>
+<tr class="separator:a6ccc8595c97ca5beec80cdbabd02307e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a7167ae04b644aebcc20fdcabe96f81" id="r_a7a7167ae04b644aebcc20fdcabe96f81"><td class="memTemplParams" colspan="2">template&lt;int dim_1, int dim_2, typename number &gt; </td></tr>
+<tr class="memitem:a7a7167ae04b644aebcc20fdcabe96f81"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim_1, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a7a7167ae04b644aebcc20fdcabe96f81">contract_average_tensor_with_vector</a> (const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &amp;tensor_1, const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &amp;tensor_2, const dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &amp;vector)</td></tr>
+<tr class="separator:a7a7167ae04b644aebcc20fdcabe96f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a2edda794ac71b1a54cbad3675f047126" name="a2edda794ac71b1a54cbad3675f047126"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2edda794ac71b1a54cbad3675f047126">&#9670;&#160;</a></span>calculate_arithmetic_phase_weighted_average()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TypeWeight , typename TypeTerm &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">TypeTerm MeltPoolDG::UtilityFunctions::calculate_arithmetic_phase_weighted_average </td>
+          <td>(</td>
+          <td class="paramtype">const TypeWeight &amp;&#160;</td>
+          <td class="paramname"><em>weight_a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TypeTerm &amp;&#160;</td>
+          <td class="paramname"><em>term_a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TypeWeight &amp;&#160;</td>
+          <td class="paramname"><em>weight_b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TypeTerm &amp;&#160;</td>
+          <td class="paramname"><em>term_b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Helper function for the computation of a weighted average: weight_a * term_a + weight_b * term_b </p>
+
+</div>
+</div>
 <a id="a0fecc4670807fad24e80b28304f10e1e" name="a0fecc4670807fad24e80b28304f10e1e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0fecc4670807fad24e80b28304f10e1e">&#9670;&#160;</a></span>compute_gradient_at_interpolated_dof_values()</h2>
 
@@ -302,6 +354,93 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="215,30,249,30,249,35,215,35"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="a7a7167ae04b644aebcc20fdcabe96f81" name="a7a7167ae04b644aebcc20fdcabe96f81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a7167ae04b644aebcc20fdcabe96f81">&#9670;&#160;</a></span>contract_average_tensor_with_vector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim_1, int dim_2, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::Tensor&lt; 1, dim_1, dealii::VectorizedArray&lt; number &gt; &gt; MeltPoolDG::UtilityFunctions::contract_average_tensor_with_vector </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tensor_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tensor_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Contracts the average of two given second order tensors with a vector, which results in a vector. Note that the second order tensors are provided as two nested first order tensors in this function.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tensor_1</td><td>First second order tensor of type 'dealii::Tensor&lt;1, dim_1, dealii::Tensor&lt;1, dim_2, dealii::VectorizedArray&lt;number&gt;&gt;&gt;' </td></tr>
+    <tr><td class="paramname">tensor_2</td><td>Second second order tensor of type 'dealii::Tensor&lt;1, dim_1, dealii::Tensor&lt;1, dim_2, dealii::VectorizedArray&lt;number&gt;&gt;&gt;' </td></tr>
+    <tr><td class="paramname">vector</td><td>Vector of type 'dealii::Tensor&lt;1, dim_2, dealii::VectorizedArray&lt;number&gt;&gt;'</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of the contraction, i.e. result_i = 0.5 * (tensor_1_ij + tensor_2_ij) * vector_j. The result has vector type 'dealii::Tensor&lt;1, dim_1, dealii::VectorizedArray&lt;number&gt;&gt;'.</dd></dl>
+<p>@ note The dimensions of the provided tensors and the vector have to match, i.e. the second basis of the tensors and the vector must have the same dimension <code>dim_2</code>. </p>
+
+</div>
+</div>
+<a id="a6ccc8595c97ca5beec80cdbabd02307e" name="a6ccc8595c97ca5beec80cdbabd02307e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ccc8595c97ca5beec80cdbabd02307e">&#9670;&#160;</a></span>contract_tensor_with_vector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim_1, int dim_2, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::Tensor&lt; 1, dim_1, dealii::VectorizedArray&lt; number &gt; &gt; MeltPoolDG::UtilityFunctions::contract_tensor_with_vector </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Contracts the given second order tensor with a vector, which results in a vector. Note that the second order tensor is provided as two nested first order tensors in this function.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tensor</td><td>Second order tensor of type 'dealii::Tensor&lt;1, dim_1, dealii::Tensor&lt;1, dim_2, dealii::VectorizedArray&lt;number&gt;&gt;&gt;' </td></tr>
+    <tr><td class="paramname">vector</td><td>Vector of type 'dealii::Tensor&lt;1, dim_2, dealii::VectorizedArray&lt;number&gt;&gt;'</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of the contraction, i.e. result_i = tensor_ij * vector_j. The result has vector type 'dealii::Tensor&lt;1, dim_1, dealii::VectorizedArray&lt;number&gt;&gt;'.</dd></dl>
+<p>@ note The dimensions of the provided tensor and the vector have to match, i.e. the second basis of the tensor and the vector must have the same dimension <code>dim_2</code>. </p>
 
 </div>
 </div>

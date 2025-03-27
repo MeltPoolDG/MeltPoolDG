@@ -18,7 +18,7 @@ var searchData=
   ['newton_5fraphson_5fsolver_2ehpp_15',['newton_raphson_solver.hpp',['../newton__raphson__solver_8hpp.html',1,'']]],
   ['newtonraphsonsolver_16',['newtonraphsonsolver',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html',1,'MeltPoolDG::NewtonRaphsonSolver&lt; VectorType &gt;'],['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a7927a625cf24e141e80970be4a72680f',1,'MeltPoolDG::NewtonRaphsonSolver::NewtonRaphsonSolver()']]],
   ['newtonraphsonsolver_3c_20vectortype_20_3e_17',['NewtonRaphsonSolver&lt; VectorType &gt;',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html',1,'MeltPoolDG']]],
-  ['nitsche_5fparameter_18',['nitsche_parameter',['../structMeltPoolDG_1_1CutStabilizationData.html#a419294d1b8db11dd6dbe6b86ef702e1f',1,'MeltPoolDG::CutStabilizationData']]],
+  ['nitsche_5fparameter_18',['nitsche_parameter',['../structMeltPoolDG_1_1CutStabilizationData.html#a232c2130e9021c02bd11e528768a38e2',1,'MeltPoolDG::CutStabilizationData']]],
   ['nlsolve_19',['nlsolve',['../structMeltPoolDG_1_1Heat_1_1HeatData.html#a47323f620346e67367e86009930abe88',1,'MeltPoolDG::Heat::HeatData']]],
   ['none_20',['none',['../namespaceMeltPoolDG_1_1MaterialUpdateFlags.html#a397bd27b52958ba6e97ec970377c12a5ac2f6f8073b4f63ea683902f409b21a0f',1,'MeltPoolDG::MaterialUpdateFlags::none'],['../namespaceMeltPoolDG_1_1RadiativeTransport.html#a6887b34c8b4b512b0f8007026060618b',1,'MeltPoolDG::RadiativeTransport::none'],['../classMeltPoolDG_1_1Material.html#adb7665872e6dfe060776b5e1afcc7b79a33ae781a6dc78c840429729dcad53c25',1,'MeltPoolDG::Material::none']]],
   ['nonlinear_5fsolver_5fdata_2ecpp_21',['nonlinear_solver_data.cpp',['../nonlinear__solver__data_8cpp.html',1,'']]],
@@ -51,5 +51,5 @@ var searchData=
   ['note_20semantics_20slightly_20modified_48',['@note semantics slightly modified',['../namespaceMeltPoolDG_1_1UtilityFunctions.html#autotoc_md1',1,'']]],
   ['now_49',['now',['../classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html#a531d1e36eb0619a5b69e50e8d90c52cc',1,'MeltPoolDG::Profiling::ProfilingMonitor::now()'],['../classMeltPoolDG_1_1ConditionalOStream.html#aac718c38be4d9aaabb4b937582892410',1,'MeltPoolDG::ConditionalOStream::now()'],['../namespaceMeltPoolDG.html#a014c065225b65242cd22b5df68a59e7f',1,'MeltPoolDG::now()']]],
   ['numbers_2ehpp_50',['numbers.hpp',['../numbers_8hpp.html',1,'']]],
-  ['numerical_5fflux_5ftype_51',['numerical_flux_type',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a75c515f417be899691abe183af1a35c4',1,'MeltPoolDG::Flow::CompressibleFlowData']]]
+  ['numerical_5fflux_5ftype_51',['numerical_flux_type',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a0b9cd2ab90a102f51665a36163967d30',1,'MeltPoolDG::Flow::CompressibleFlowData']]]
 ];
