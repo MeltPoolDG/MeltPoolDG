@@ -2,7 +2,7 @@ var searchData=
 [
   ['enable_5fpre_5fpost_0',['enable_pre_post',['../classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperator.html#a1bd8d26dace589cb219936e77d6a2d02',1,'MeltPoolDG::LevelSet::AdvectionDiffusionOperator']]],
   ['end_1',['end',['../structbetter__enums_1_1__iterable.html#a5ae6805cc8e28ba17c08afd6b5487764',1,'better_enums::_iterable']]],
-  ['evaluate_5fat_5finterface_2',['evaluate_at_interface',['../namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#af0479b1838f22eecfa2cac4b1c8ea27e',1,'MeltPoolDG::LevelSet::Tools']]],
+  ['evaluate_5fat_5finterface_2',['evaluate_at_interface',['../namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#acf2569149fd7b9786b1232eacb9a59a7',1,'MeltPoolDG::LevelSet::Tools']]],
   ['evaluate_5ffunction_3',['evaluate_function',['../namespaceMeltPoolDG_1_1Heat_1_1internal.html#a0ea064c4c26c79d4b38008a7f7e3ee77',1,'MeltPoolDG::Heat::internal']]],
   ['evaluate_5ffunction_5fat_5fvectorized_5fpoints_4',['evaluate_function_at_vectorized_points',['../namespaceMeltPoolDG_1_1VectorTools.html#a340c98b31c25ad6874b2b7515e2b9433',1,'MeltPoolDG::VectorTools::evaluate_function_at_vectorized_points(const Function&lt; dim &gt; &amp;function, const Point&lt; dim, VectorizedArray&lt; number &gt; &gt; &amp;p_vectorized, const unsigned int component)'],['../namespaceMeltPoolDG_1_1VectorTools.html#a0de35800f03db3334715967fb151530e',1,'MeltPoolDG::VectorTools::evaluate_function_at_vectorized_points(const Function&lt; dim &gt; &amp;func, const Point&lt; dim, VectorizedArray&lt; double &gt; &gt; &amp;points)']]],
   ['evaluate_5fintersected_5fdomain_5',['evaluate_intersected_domain',['../namespaceMeltPoolDG_1_1CutUtil.html#a510b1e034ecaf40ee4915be595f6761e',1,'MeltPoolDG::CutUtil']]],

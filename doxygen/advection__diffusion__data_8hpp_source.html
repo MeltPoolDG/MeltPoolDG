@@ -96,13 +96,13 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1LevelSet.html#a43b16109b35745c9c6ccc98f20ab2968">   15</a></span>  <a class="code hl_define" href="better__enum_8hpp.html#a47df33c8d3d71e48df5272f4df0ac4d9">BETTER_ENUM</a>(ConvectionStabilizationType,</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1LevelSet.html#a8610366c7e8221fbce9237f7f4ec770b">   15</a></span>  <a class="code hl_define" href="better__enum_8hpp.html#a47df33c8d3d71e48df5272f4df0ac4d9">BETTER_ENUM</a>(ConvectionStabilizationType,</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>              <span class="keywordtype">char</span>,</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>              none,</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>              <span class="comment">// streamline upwind Petrov-Galerkin stabilization</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>              SUPG)</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number = <span class="keywordtype">double</span>&gt;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number&gt;</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keyword">struct </span>AdvectionDiffusionData</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  {</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    AdvectionDiffusionData();</div>
@@ -118,7 +118,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">struct </span>ConvectionStabilizationData</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    {</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      ConvectionStabilizationType type        = ConvectionStabilizationType::none;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      <span class="keywordtype">double</span>                      coefficient = -1.0;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      number                      coefficient = -1.0;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    } conv_stab;</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    PredictorData&lt;number&gt;    predictor;</div>
@@ -139,7 +139,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aenum_8hpp_html"><div class="ttname"><a href="enum_8hpp.html">enum.hpp</a></div></div>
 <div class="ttc" id="afinite__element__data_8hpp_html"><div class="ttname"><a href="finite__element__data_8hpp.html">finite_element_data.hpp</a></div></div>
 <div class="ttc" id="alinear__solver__data_8hpp_html"><div class="ttname"><a href="linear__solver__data_8hpp.html">linear_solver_data.hpp</a></div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1LevelSet_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div><div class="ttdef"><b>Definition</b> advection_DG_operation.hpp:26</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1LevelSet_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div><div class="ttdef"><b>Definition</b> advection_DG_operation.hpp:21</div></div>
 <div class="ttc" id="apredictor__data_8hpp_html"><div class="ttname"><a href="predictor__data_8hpp.html">predictor_data.hpp</a></div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1FiniteElementData_html"><div class="ttname"><a href="structMeltPoolDG_1_1FiniteElementData.html">MeltPoolDG::FiniteElementData</a></div><div class="ttdef"><b>Definition</b> finite_element_data.hpp:12</div></div>
 <div class="ttc" id="atime__integrator__data_8hpp_html"><div class="ttname"><a href="time__integrator__data_8hpp.html">time_integrator_data.hpp</a></div></div>

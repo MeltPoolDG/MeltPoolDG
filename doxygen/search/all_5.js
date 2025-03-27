@@ -14,7 +14,7 @@ var searchData=
   ['eosdata_11',['EOSData',['../structMeltPoolDG_1_1Flow_1_1EOSData.html',1,'MeltPoolDG::Flow']]],
   ['eosdata_3c_20double_20_3e_12',['EOSData&lt; double &gt;',['../structMeltPoolDG_1_1Flow_1_1EOSData.html',1,'MeltPoolDG::Flow']]],
   ['eosdata_3c_20number_20_3e_13',['EOSData&lt; number &gt;',['../structMeltPoolDG_1_1Flow_1_1EOSData.html',1,'MeltPoolDG::Flow']]],
-  ['evaluate_5fat_5finterface_14',['evaluate_at_interface',['../namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#af0479b1838f22eecfa2cac4b1c8ea27e',1,'MeltPoolDG::LevelSet::Tools']]],
+  ['evaluate_5fat_5finterface_14',['evaluate_at_interface',['../namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#acf2569149fd7b9786b1232eacb9a59a7',1,'MeltPoolDG::LevelSet::Tools']]],
   ['evaluate_5ffunction_15',['evaluate_function',['../namespaceMeltPoolDG_1_1Heat_1_1internal.html#a0ea064c4c26c79d4b38008a7f7e3ee77',1,'MeltPoolDG::Heat::internal']]],
   ['evaluate_5ffunction_5fat_5fvectorized_5fpoints_16',['evaluate_function_at_vectorized_points',['../namespaceMeltPoolDG_1_1VectorTools.html#a0de35800f03db3334715967fb151530e',1,'MeltPoolDG::VectorTools::evaluate_function_at_vectorized_points(const Function&lt; dim &gt; &amp;func, const Point&lt; dim, VectorizedArray&lt; double &gt; &gt; &amp;points)'],['../namespaceMeltPoolDG_1_1VectorTools.html#a340c98b31c25ad6874b2b7515e2b9433',1,'MeltPoolDG::VectorTools::evaluate_function_at_vectorized_points(const Function&lt; dim &gt; &amp;function, const Point&lt; dim, VectorizedArray&lt; number &gt; &gt; &amp;p_vectorized, const unsigned int component)']]],
   ['evaluate_5fintersected_5fdomain_17',['evaluate_intersected_domain',['../namespaceMeltPoolDG_1_1CutUtil.html#a510b1e034ecaf40ee4915be595f6761e',1,'MeltPoolDG::CutUtil']]],
