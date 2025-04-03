@@ -1,13 +1,13 @@
 var searchData=
 [
-  ['d_5fdensity_5fd_5ft_0',['d_density_d_T',['../structMeltPoolDG_1_1MaterialParameterValues.html#ab4cfd34dc44a8158ae79b383d3bf99fe',1,'MeltPoolDG::MaterialParameterValues']]],
-  ['d_5fspecific_5fheat_5fcapacity_5fd_5ft_1',['d_specific_heat_capacity_d_T',['../structMeltPoolDG_1_1MaterialParameterValues.html#adc4f086f3489f02d13283ec69c0df673',1,'MeltPoolDG::MaterialParameterValues']]],
-  ['d_5fthermal_5fconductivity_5fd_5ft_2',['d_thermal_conductivity_d_T',['../structMeltPoolDG_1_1MaterialParameterValues.html#a5c136965a38e97a5d3624aa28ec7bbc2',1,'MeltPoolDG::MaterialParameterValues']]],
-  ['d_5fvolume_5fspecific_5fheat_5fcapacity_5fd_5ft_3',['d_volume_specific_heat_capacity_d_T',['../structMeltPoolDG_1_1MaterialParameterValues.html#a8c92e2382315a0f65fd356bd58457c59',1,'MeltPoolDG::MaterialParameterValues']]],
+  ['d_5fdensity_5fd_5ft_0',['d_density_d_T',['../structMeltPoolDG_1_1MaterialParameterValues.html#add47725a97850660ef67becd16ff5883',1,'MeltPoolDG::MaterialParameterValues']]],
+  ['d_5fspecific_5fheat_5fcapacity_5fd_5ft_1',['d_specific_heat_capacity_d_T',['../structMeltPoolDG_1_1MaterialParameterValues.html#a19c9d82badfc551292de360a10d77ce2',1,'MeltPoolDG::MaterialParameterValues']]],
+  ['d_5fthermal_5fconductivity_5fd_5ft_2',['d_thermal_conductivity_d_T',['../structMeltPoolDG_1_1MaterialParameterValues.html#ac6550911b5470a94e513aa202b4a3fba',1,'MeltPoolDG::MaterialParameterValues']]],
+  ['d_5fvolume_5fspecific_5fheat_5fcapacity_5fd_5ft_3',['d_volume_specific_heat_capacity_d_T',['../structMeltPoolDG_1_1MaterialParameterValues.html#a609093d6ec6d20734af9c73e785f6ae9',1,'MeltPoolDG::MaterialParameterValues']]],
   ['darcy_5fdamping_4',['darcy_damping',['../structMeltPoolDG_1_1Flow_1_1FlowData.html#aff2910e67065ace8febe578e4c0d51df',1,'MeltPoolDG::Flow::FlowData']]],
   ['degree_5',['degree',['../structMeltPoolDG_1_1FiniteElementData.html#a83fc1cda1ace699b1f312b6f1ce76c47',1,'MeltPoolDG::FiniteElementData']]],
   ['delta_5fapproximation_5fphase_5fweighted_6',['delta_approximation_phase_weighted',['../structMeltPoolDG_1_1Heat_1_1LaserData.html#a6f072c71a9d423f300c644563d8fcc88',1,'MeltPoolDG::Heat::LaserData::delta_approximation_phase_weighted'],['../structMeltPoolDG_1_1Evaporation_1_1RecoilPressureData.html#a2a7f4222c3c69c175b67a21d4e8580aa',1,'MeltPoolDG::Evaporation::RecoilPressureData::delta_approximation_phase_weighted']]],
-  ['density_7',['density',['../structMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData_1_1Penalty_1_1Coefficients.html#af8b22af93d14065b05d52e7261516509',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseData::Penalty::Coefficients::density'],['../structMeltPoolDG_1_1MaterialParameterValues.html#a40e41cf306ecd2c7dd6bae535155a072',1,'MeltPoolDG::MaterialParameterValues::density']]],
+  ['density_7',['density',['../structMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData_1_1Penalty_1_1Coefficients.html#af8b22af93d14065b05d52e7261516509',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseData::Penalty::Coefficients::density'],['../structMeltPoolDG_1_1MaterialParameterValues.html#a5b548bae593f637c8916211ca9d94235',1,'MeltPoolDG::MaterialParameterValues::density']]],
   ['density_5fgas_5fphase_8',['density_gas_phase',['../structMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData_1_1Penalty_1_1TargetValues.html#a0bb8ebb50c2605ec16c8cdc03d33546b',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseData::Penalty::TargetValues']]],
   ['diffuse_9',['diffuse',['../structMeltPoolDG_1_1Heat_1_1HeatData.html#a8fa8911e4263659f0c94e2d487c48b67',1,'MeltPoolDG::Heat::HeatData']]],
   ['diffusion_5fterm_5fscaling_10',['diffusion_term_scaling',['../structMeltPoolDG_1_1RadiativeTransport_1_1PseudoTimeSteppingData.html#ab2aa96a6c4c75498a4ded8608aa3e544',1,'MeltPoolDG::RadiativeTransport::PseudoTimeSteppingData']]],
@@ -15,7 +15,7 @@ var searchData=
   ['directory_12',['directory',['../structMeltPoolDG_1_1OutputData.html#a5b1084e0c0228cd7d096d7278704320d',1,'MeltPoolDG::OutputData::directory'],['../structMeltPoolDG_1_1Restart_1_1RestartData.html#a97259cd0faa5b89651fe0440153d50d7',1,'MeltPoolDG::Restart::RestartData::directory']]],
   ['distribute_5fconstraints_13',['distribute_constraints',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a16ef5d08e8abbafca001c05f71f2f208',1,'MeltPoolDG::NewtonRaphsonSolver']]],
   ['do_5fadvect_5flevel_5fset_14',['do_advect_level_set',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#a553274beaad2a67c0d908ea9e94ac706',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
-  ['do_5famr_15',['do_amr',['../structMeltPoolDG_1_1AdaptiveMeshingData.html#a3b367e5bdfc45dc1b92c860f2272fe49',1,'MeltPoolDG::AdaptiveMeshingData']]],
+  ['do_5famr_15',['do_amr',['../structMeltPoolDG_1_1AdaptiveMeshingData.html#a9b05611c593e576aa096a401a12d493b',1,'MeltPoolDG::AdaptiveMeshingData']]],
   ['do_5fauto_5fdetect_5ffrequency_16',['do_auto_detect_frequency',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#a41574051eb3a9d441328ba5a7e390f81',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
   ['do_5fcfl_5ftime_5fstepping_17',['do_cfl_time_stepping',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#aee525a889f301a2da9999705b88c40dd',1,'MeltPoolDG::Flow::CompressibleFlowData']]],
   ['do_5fcurvature_5fcorrection_18',['do_curvature_correction',['../structMeltPoolDG_1_1LevelSet_1_1CurvatureData.html#a174a2812082c53798284382ab0d57768',1,'MeltPoolDG::LevelSet::CurvatureData']]],
@@ -24,7 +24,7 @@ var searchData=
   ['do_5fheat_5ftransfer_21',['do_heat_transfer',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#ab05891b006a63988c81fa6bd7c229522',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
   ['do_5flocalized_5fheaviside_22',['do_localized_heaviside',['../structMeltPoolDG_1_1LevelSet_1_1LevelSetData.html#a36c4a658875a3b1a178d76900597cfce',1,'MeltPoolDG::LevelSet::LevelSetData']]],
   ['do_5fmove_23',['do_move',['../structMeltPoolDG_1_1Heat_1_1LaserData.html#a4680d9a324414b9242ee6a3de878d90f',1,'MeltPoolDG::Heat::LaserData']]],
-  ['do_5fnot_5fmodify_5fboundary_5fcells_24',['do_not_modify_boundary_cells',['../structMeltPoolDG_1_1AdaptiveMeshingData.html#a6b8c30217a3025e6dd6ac53404fc12b8',1,'MeltPoolDG::AdaptiveMeshingData']]],
+  ['do_5fnot_5fmodify_5fboundary_5fcells_24',['do_not_modify_boundary_cells',['../structMeltPoolDG_1_1AdaptiveMeshingData.html#afbbe52a4027177d3e44c745c2c92c9c1',1,'MeltPoolDG::AdaptiveMeshingData']]],
   ['do_5fnot_5freinitialize_25',['do_not_reinitialize',['../structMeltPoolDG_1_1MeltPoolData.html#a9a883b705b962ce9e70aa545aec7782b',1,'MeltPoolDG::MeltPoolData']]],
   ['do_5fprint_5fparameters_26',['do_print_parameters',['../structMeltPoolDG_1_1BaseData.html#a129c7a46787944f0860b5cd39a181341',1,'MeltPoolDG::BaseData']]],
   ['do_5frefine_5fall_5finterface_5fcells_27',['do_refine_all_interface_cells',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#ac47f39824308e3f127e250b2d80eb3e4',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
@@ -33,5 +33,5 @@ var searchData=
   ['dof_5fidx_30',['dof_idx',['../classMeltPoolDG_1_1OperatorBase.html#a27ebe20e15810788d51edd0f5af9a242',1,'MeltPoolDG::OperatorBase::dof_idx'],['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html#a656673e4b4557e88d838db8ee5bdb083',1,'MeltPoolDG::Flow::CompressibleFlowScratchData::dof_idx']]],
   ['domain_5frepresentation_5ftype_31',['domain_representation_type',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#acb5a41be04fa2a2018c740d864c3565e',1,'MeltPoolDG::Flow::CompressibleFlowData']]],
   ['dsp_32',['dsp',['../classMeltPoolDG_1_1OperatorMatrixBased.html#afc621040cdade20110f25e6146376bff',1,'MeltPoolDG::OperatorMatrixBased']]],
-  ['dynamic_5fviscosity_33',['dynamic_viscosity',['../structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html#aa9220d22a20d1e4a96f13377fba64423',1,'MeltPoolDG::Flow::CompressibleFluidMaterialPhaseData::dynamic_viscosity'],['../structMeltPoolDG_1_1MaterialParameterValues.html#a5abeb43865990babb63e5036300c717d',1,'MeltPoolDG::MaterialParameterValues::dynamic_viscosity']]]
+  ['dynamic_5fviscosity_33',['dynamic_viscosity',['../structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html#aa9220d22a20d1e4a96f13377fba64423',1,'MeltPoolDG::Flow::CompressibleFluidMaterialPhaseData::dynamic_viscosity'],['../structMeltPoolDG_1_1MaterialParameterValues.html#a9107eccd30225fbf96c8505a1f7941ac',1,'MeltPoolDG::MaterialParameterValues::dynamic_viscosity']]]
 ];

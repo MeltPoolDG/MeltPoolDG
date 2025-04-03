@@ -2,7 +2,7 @@ var searchData=
 [
   ['n_5fdigits_5ftimestep_0',['n_digits_timestep',['../structMeltPoolDG_1_1ParaviewData.html#a3c099acf58ea24cd7c12815e05c694a5',1,'MeltPoolDG::ParaviewData']]],
   ['n_5fgroups_1',['n_groups',['../structMeltPoolDG_1_1ParaviewData.html#ad6882229be375d8791495cdc544f6b72',1,'MeltPoolDG::ParaviewData']]],
-  ['n_5finitial_5frefinement_5fcycles_2',['n_initial_refinement_cycles',['../structMeltPoolDG_1_1AdaptiveMeshingData.html#a61040f7fae5abbe794d76566d9011503',1,'MeltPoolDG::AdaptiveMeshingData']]],
+  ['n_5finitial_5frefinement_5fcycles_2',['n_initial_refinement_cycles',['../structMeltPoolDG_1_1AdaptiveMeshingData.html#a79268df8619790b30a91d19f3b0db640',1,'MeltPoolDG::AdaptiveMeshingData']]],
   ['n_5fmax_5fiter_3',['n_max_iter',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#aa69ec64169abc1280f51d99660f27784',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
   ['n_5fpatches_4',['n_patches',['../structMeltPoolDG_1_1ParaviewData.html#ad946444041106248487b21c4ebab6bae',1,'MeltPoolDG::ParaviewData']]],
   ['narrow_5fband_5',['narrow_band',['../structMeltPoolDG_1_1LevelSet_1_1CurvatureData.html#a4e6e955f865a9f1f3b988d8d8bccf720',1,'MeltPoolDG::LevelSet::CurvatureData::narrow_band'],['../structMeltPoolDG_1_1LevelSet_1_1NormalVectorData.html#a2ba8390a4c3a038f5e205ae7d2d4ea22',1,'MeltPoolDG::LevelSet::NormalVectorData::narrow_band']]],

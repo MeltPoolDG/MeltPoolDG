@@ -92,130 +92,119 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacedealii.html">dealii</a>;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacedealii.html">dealii</a></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="namespacedealii_1_1Patterns.html">   16</a></span>  <span class="keyword">namespace </span>Patterns</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  {</div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="namespacedealii_1_1Patterns_1_1Tools.html">   18</a></span>    <span class="keyword">namespace </span>Tools</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html">   24</a></span>      <span class="keyword">struct </span><a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html">has_values</a></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>      {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">static</span> <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        detect(...);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keyword">static</span> <span class="keyword">decltype</span>(std::declval&lt;U const&gt;()._values())</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        detect(<span class="keyword">const</span> U &amp;);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>      <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html#a899fe734ca569b21177e1f99bbd1a65e">   35</a></span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html#a899fe734ca569b21177e1f99bbd1a65e">value</a> = !std::is_same&lt;void, decltype(detect(std::declval&lt;T&gt;()))&gt;<a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html#a899fe734ca569b21177e1f99bbd1a65e">::value</a>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      };</div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="}">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="namespacedealii_1_1Patterns.html">   12</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacedealii_1_1Patterns_1_1Tools.html">dealii::Patterns::Tools</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html">   18</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html">has_values</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">static</span> <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    detect(...);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">static</span> <span class="keyword">decltype</span>(std::declval&lt;U const&gt;()._values())</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    detect(<span class="keyword">const</span> U &amp;);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html#a899fe734ca569b21177e1f99bbd1a65e">   29</a></span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html#a899fe734ca569b21177e1f99bbd1a65e">value</a> = !std::is_same&lt;void, decltype(detect(std::declval&lt;T&gt;()))&gt;<a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html#a899fe734ca569b21177e1f99bbd1a65e">::value</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  };</div>
 </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html">   42</a></span>      <span class="keyword">struct </span><a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html">has_to_string</a></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      {</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keyword">static</span> <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        detect(...);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keyword">static</span> <span class="keyword">decltype</span>(std::declval&lt;U const&gt;()._to_string())</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        detect(<span class="keyword">const</span> U &amp;);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html#afdf157d7d4f10d0eb30a3c42eac14cfa">   53</a></span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html#afdf157d7d4f10d0eb30a3c42eac14cfa">value</a> = !std::is_same&lt;void, decltype(detect(std::declval&lt;T&gt;()))&gt;<a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html#afdf157d7d4f10d0eb30a3c42eac14cfa">::value</a>;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      };</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html">   36</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html">has_to_string</a></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">static</span> <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    detect(...);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">static</span> <span class="keyword">decltype</span>(std::declval&lt;U const&gt;()._to_string())</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    detect(<span class="keyword">const</span> U &amp;);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html#afdf157d7d4f10d0eb30a3c42eac14cfa">   47</a></span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html#afdf157d7d4f10d0eb30a3c42eac14cfa">value</a> = !std::is_same&lt;void, decltype(detect(std::declval&lt;T&gt;()))&gt;<a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html#afdf157d7d4f10d0eb30a3c42eac14cfa">::value</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  };</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00061" data-start="{" data-end="};">
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html">   61</a></span>      <span class="keyword">struct </span><a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html">has_from_string</a></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      {</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keyword">static</span> <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        detect(...);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">static</span> <span class="keyword">decltype</span>(std::declval&lt;U const&gt;()._from_string(0))</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        detect(<span class="keyword">const</span> U &amp;);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html#a77e59042ded98d01f52e3fc07ec9f1ce">   72</a></span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html#a77e59042ded98d01f52e3fc07ec9f1ce">value</a> = !std::is_same&lt;void, decltype(detect(std::declval&lt;T&gt;()))&gt;<a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html#a77e59042ded98d01f52e3fc07ec9f1ce">::value</a>;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      };</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="};">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html">   55</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html">has_from_string</a></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">static</span> <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    detect(...);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">static</span> <span class="keyword">decltype</span>(std::declval&lt;U const&gt;()._from_string(0))</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    detect(<span class="keyword">const</span> U &amp;);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html#a77e59042ded98d01f52e3fc07ec9f1ce">   66</a></span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html#a77e59042ded98d01f52e3fc07ec9f1ce">value</a> = !std::is_same&lt;void, decltype(detect(std::declval&lt;T&gt;()))&gt;<a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html#a77e59042ded98d01f52e3fc07ec9f1ce">::value</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  };</div>
 </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00080" data-start="{" data-end="};">
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html">   80</a></span>      <span class="keyword">struct </span><a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html">is_convertible</a></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      {</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html#ad098a347d110f51ab05fb2d5a1de6b5e">   82</a></span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html#ad098a347d110f51ab05fb2d5a1de6b5e">value</a> =</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>          <a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html">has_values&lt;T&gt;::value</a> &amp;&amp; <a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html">has_to_string&lt;T&gt;::value</a> &amp;&amp; <a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html">has_from_string&lt;T&gt;::value</a>;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      };</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="};">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html">   74</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html">is_convertible</a></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html#ad098a347d110f51ab05fb2d5a1de6b5e">   76</a></span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html#ad098a347d110f51ab05fb2d5a1de6b5e">value</a> =</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      <a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html">has_values&lt;T&gt;::value</a> &amp;&amp; <a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html">has_to_string&lt;T&gt;::value</a> &amp;&amp; <a class="code hl_struct" href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html">has_from_string&lt;T&gt;::value</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  };</div>
 </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="foldopen" id="foldopen00090" data-start="{" data-end="};">
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html">   90</a></span>      <span class="keyword">struct </span>Convert&lt;T, typename std::enable_if&lt;is_convertible&lt;T&gt;::value&gt;::type&gt;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      {</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keyword">static</span> std::unique_ptr&lt;Patterns::PatternBase&gt;</div>
-<div class="foldopen" id="foldopen00096" data-start="{" data-end="}">
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#ac385b837827eeacb99beec305d8a414d">   96</a></span>        <a class="code hl_function" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#ac385b837827eeacb99beec305d8a414d">to_pattern</a>()</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        {</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>          std::vector&lt;std::string&gt; values;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="foldopen" id="foldopen00084" data-start="{" data-end="};">
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html">   84</a></span>  <span class="keyword">struct </span>Convert&lt;T, typename std::enable_if&lt;is_convertible&lt;T&gt;::value&gt;::type&gt;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">static</span> std::unique_ptr&lt;Patterns::PatternBase&gt;</div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="}">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#ac385b837827eeacb99beec305d8a414d">   90</a></span>    <a class="code hl_function" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#ac385b837827eeacb99beec305d8a414d">to_pattern</a>()</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>      std::vector&lt;std::string&gt; values;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> i : T::_values())</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        values.push_back(i._to_string());</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      <span class="keywordflow">return</span> std::make_unique&lt;Patterns::Selection&gt;(boost::algorithm::join(values, <span class="stringliteral">&quot;|&quot;</span>));</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    }</div>
+</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>          <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> i : T::_values())</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            values.push_back(i._to_string());</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>          <span class="keywordflow">return</span> std::make_unique&lt;Patterns::Selection&gt;(boost::algorithm::join(values, <span class="stringliteral">&quot;|&quot;</span>));</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keyword">static</span> std::string</div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#a886cdec46e33ed79407c53c3dfef7993">  104</a></span>    <a class="code hl_function" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#a886cdec46e33ed79407c53c3dfef7993">to_string</a>(<span class="keyword">const</span> T &amp;t, <span class="keyword">const</span> Patterns::PatternBase &amp; = *Convert&lt;T&gt;::to_pattern())</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      <span class="keywordflow">return</span> t._to_string();</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    }</div>
 </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keyword">static</span> std::string</div>
-<div class="foldopen" id="foldopen00110" data-start="{" data-end="}">
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#a886cdec46e33ed79407c53c3dfef7993">  110</a></span>        <a class="code hl_function" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#a886cdec46e33ed79407c53c3dfef7993">to_string</a>(<span class="keyword">const</span> T &amp;t, <span class="keyword">const</span> Patterns::PatternBase &amp; = *Convert&lt;T&gt;::to_pattern())</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        {</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>          <span class="keywordflow">return</span> t._to_string();</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        }</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">static</span> T</div>
+<div class="foldopen" id="foldopen00113" data-start="{" data-end="}">
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#a2793272f4497efc1fa0e450ab3e7608c">  113</a></span>    <a class="code hl_function" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#a2793272f4497efc1fa0e450ab3e7608c">to_value</a>(<span class="keyword">const</span> std::string &amp;s, <span class="keyword">const</span> Patterns::PatternBase &amp; = *Convert&lt;T&gt;::to_pattern())</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      <span class="keywordflow">return</span> T::_from_string(s.c_str());</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
 </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keyword">static</span> T</div>
-<div class="foldopen" id="foldopen00119" data-start="{" data-end="}">
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#a2793272f4497efc1fa0e450ab3e7608c">  119</a></span>        <a class="code hl_function" href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#a2793272f4497efc1fa0e450ab3e7608c">to_value</a>(<span class="keyword">const</span> std::string &amp;s, <span class="keyword">const</span> Patterns::PatternBase &amp; = *Convert&lt;T&gt;::to_pattern())</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        {</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>          <span class="keywordflow">return</span> T::_from_string(s.c_str());</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  };</div>
 </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      };</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>} <span class="comment">// namespace dealii::Patterns::Tools</span></div>
 </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    } <span class="comment">// namespace Tools</span></div>
-</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  }   <span class="comment">// namespace Patterns</span></div>
-</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>} <span class="comment">// namespace dealii</span></div>
 <div class="ttc" id="abetter__enum_8hpp_html"><div class="ttname"><a href="better__enum_8hpp.html">better_enum.hpp</a></div></div>
-<div class="ttc" id="anamespacedealii_html"><div class="ttname"><a href="namespacedealii.html">dealii</a></div><div class="ttdef"><b>Definition</b> level_set_tools.hpp:57</div></div>
-<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465_html_a2793272f4497efc1fa0e450ab3e7608c"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#a2793272f4497efc1fa0e450ab3e7608c">dealii::Patterns::Tools::Convert&lt; T, typename std::enable_if&lt; is_convertible&lt; T &gt;::value &gt;::type &gt;::to_value</a></div><div class="ttdeci">static T to_value(const std::string &amp;s, const Patterns::PatternBase &amp;= *Convert&lt; T &gt;::to_pattern())</div><div class="ttdef"><b>Definition</b> enum.hpp:119</div></div>
-<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465_html_a886cdec46e33ed79407c53c3dfef7993"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#a886cdec46e33ed79407c53c3dfef7993">dealii::Patterns::Tools::Convert&lt; T, typename std::enable_if&lt; is_convertible&lt; T &gt;::value &gt;::type &gt;::to_string</a></div><div class="ttdeci">static std::string to_string(const T &amp;t, const Patterns::PatternBase &amp;= *Convert&lt; T &gt;::to_pattern())</div><div class="ttdef"><b>Definition</b> enum.hpp:110</div></div>
-<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465_html_ac385b837827eeacb99beec305d8a414d"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#ac385b837827eeacb99beec305d8a414d">dealii::Patterns::Tools::Convert&lt; T, typename std::enable_if&lt; is_convertible&lt; T &gt;::value &gt;::type &gt;::to_pattern</a></div><div class="ttdeci">static std::unique_ptr&lt; Patterns::PatternBase &gt; to_pattern()</div><div class="ttdef"><b>Definition</b> enum.hpp:96</div></div>
-<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1has__from__string_html"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html">dealii::Patterns::Tools::has_from_string</a></div><div class="ttdef"><b>Definition</b> enum.hpp:62</div></div>
-<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1has__from__string_html_a77e59042ded98d01f52e3fc07ec9f1ce"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html#a77e59042ded98d01f52e3fc07ec9f1ce">dealii::Patterns::Tools::has_from_string::value</a></div><div class="ttdeci">static const bool value</div><div class="ttdef"><b>Definition</b> enum.hpp:72</div></div>
-<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1has__to__string_html"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html">dealii::Patterns::Tools::has_to_string</a></div><div class="ttdef"><b>Definition</b> enum.hpp:43</div></div>
-<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1has__to__string_html_afdf157d7d4f10d0eb30a3c42eac14cfa"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html#afdf157d7d4f10d0eb30a3c42eac14cfa">dealii::Patterns::Tools::has_to_string::value</a></div><div class="ttdeci">static const bool value</div><div class="ttdef"><b>Definition</b> enum.hpp:53</div></div>
-<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1has__values_html"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html">dealii::Patterns::Tools::has_values</a></div><div class="ttdef"><b>Definition</b> enum.hpp:25</div></div>
-<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1has__values_html_a899fe734ca569b21177e1f99bbd1a65e"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html#a899fe734ca569b21177e1f99bbd1a65e">dealii::Patterns::Tools::has_values::value</a></div><div class="ttdeci">static const bool value</div><div class="ttdef"><b>Definition</b> enum.hpp:35</div></div>
-<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1is__convertible_html"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html">dealii::Patterns::Tools::is_convertible</a></div><div class="ttdef"><b>Definition</b> enum.hpp:81</div></div>
-<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1is__convertible_html_ad098a347d110f51ab05fb2d5a1de6b5e"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html#ad098a347d110f51ab05fb2d5a1de6b5e">dealii::Patterns::Tools::is_convertible::value</a></div><div class="ttdeci">static const bool value</div><div class="ttdef"><b>Definition</b> enum.hpp:82</div></div>
+<div class="ttc" id="anamespacedealii_1_1Patterns_1_1Tools_html"><div class="ttname"><a href="namespacedealii_1_1Patterns_1_1Tools.html">dealii::Patterns::Tools</a></div><div class="ttdef"><b>Definition</b> enum.hpp:13</div></div>
+<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465_html_a2793272f4497efc1fa0e450ab3e7608c"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#a2793272f4497efc1fa0e450ab3e7608c">dealii::Patterns::Tools::Convert&lt; T, typename std::enable_if&lt; is_convertible&lt; T &gt;::value &gt;::type &gt;::to_value</a></div><div class="ttdeci">static T to_value(const std::string &amp;s, const Patterns::PatternBase &amp;= *Convert&lt; T &gt;::to_pattern())</div><div class="ttdef"><b>Definition</b> enum.hpp:113</div></div>
+<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465_html_a886cdec46e33ed79407c53c3dfef7993"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#a886cdec46e33ed79407c53c3dfef7993">dealii::Patterns::Tools::Convert&lt; T, typename std::enable_if&lt; is_convertible&lt; T &gt;::value &gt;::type &gt;::to_string</a></div><div class="ttdeci">static std::string to_string(const T &amp;t, const Patterns::PatternBase &amp;= *Convert&lt; T &gt;::to_pattern())</div><div class="ttdef"><b>Definition</b> enum.hpp:104</div></div>
+<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465_html_ac385b837827eeacb99beec305d8a414d"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1Convert_3_01T_00_01typename_01std_1_1enable__if_3_01is__con708b23251bac23b00c7ff64b52ee0465.html#ac385b837827eeacb99beec305d8a414d">dealii::Patterns::Tools::Convert&lt; T, typename std::enable_if&lt; is_convertible&lt; T &gt;::value &gt;::type &gt;::to_pattern</a></div><div class="ttdeci">static std::unique_ptr&lt; Patterns::PatternBase &gt; to_pattern()</div><div class="ttdef"><b>Definition</b> enum.hpp:90</div></div>
+<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1has__from__string_html"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html">dealii::Patterns::Tools::has_from_string</a></div><div class="ttdef"><b>Definition</b> enum.hpp:56</div></div>
+<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1has__from__string_html_a77e59042ded98d01f52e3fc07ec9f1ce"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1has__from__string.html#a77e59042ded98d01f52e3fc07ec9f1ce">dealii::Patterns::Tools::has_from_string::value</a></div><div class="ttdeci">static const bool value</div><div class="ttdef"><b>Definition</b> enum.hpp:66</div></div>
+<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1has__to__string_html"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html">dealii::Patterns::Tools::has_to_string</a></div><div class="ttdef"><b>Definition</b> enum.hpp:37</div></div>
+<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1has__to__string_html_afdf157d7d4f10d0eb30a3c42eac14cfa"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1has__to__string.html#afdf157d7d4f10d0eb30a3c42eac14cfa">dealii::Patterns::Tools::has_to_string::value</a></div><div class="ttdeci">static const bool value</div><div class="ttdef"><b>Definition</b> enum.hpp:47</div></div>
+<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1has__values_html"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html">dealii::Patterns::Tools::has_values</a></div><div class="ttdef"><b>Definition</b> enum.hpp:19</div></div>
+<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1has__values_html_a899fe734ca569b21177e1f99bbd1a65e"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1has__values.html#a899fe734ca569b21177e1f99bbd1a65e">dealii::Patterns::Tools::has_values::value</a></div><div class="ttdeci">static const bool value</div><div class="ttdef"><b>Definition</b> enum.hpp:29</div></div>
+<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1is__convertible_html"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html">dealii::Patterns::Tools::is_convertible</a></div><div class="ttdef"><b>Definition</b> enum.hpp:75</div></div>
+<div class="ttc" id="astructdealii_1_1Patterns_1_1Tools_1_1is__convertible_html_ad098a347d110f51ab05fb2d5a1de6b5e"><div class="ttname"><a href="structdealii_1_1Patterns_1_1Tools_1_1is__convertible.html#ad098a347d110f51ab05fb2d5a1de6b5e">dealii::Patterns::Tools::is_convertible::value</a></div><div class="ttdeci">static const bool value</div><div class="ttdef"><b>Definition</b> enum.hpp:76</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
