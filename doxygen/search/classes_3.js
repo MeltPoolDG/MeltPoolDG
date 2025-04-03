@@ -51,6 +51,5 @@ var searchData=
   ['cut_48',['cut',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData_1_1Cut.html',1,'MeltPoolDG::Flow::CompressibleFlowData&lt; number &gt;::Cut'],['../structMeltPoolDG_1_1Heat_1_1HeatData_1_1Cut.html',1,'MeltPoolDG::Heat::HeatData&lt; number &gt;::Cut']]],
   ['cutdgcompressibleflowoperation_49',['CutDGCompressibleFlowOperation',['../classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperation.html',1,'MeltPoolDG::Flow']]],
   ['cutdgcompressibleflowoperator_50',['CutDGCompressibleFlowOperator',['../classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html',1,'MeltPoolDG::Flow']]],
-  ['cutstabilizationdata_51',['CutStabilizationData',['../structMeltPoolDG_1_1CutStabilizationData.html',1,'MeltPoolDG']]],
-  ['cutstabilizationdata_3c_20number_20_3e_52',['CutStabilizationData&lt; number &gt;',['../structMeltPoolDG_1_1CutStabilizationData.html',1,'MeltPoolDG']]]
+  ['cutstabilizationdata_51',['CutStabilizationData',['../structMeltPoolDG_1_1CutStabilizationData.html',1,'MeltPoolDG']]]
 ];
