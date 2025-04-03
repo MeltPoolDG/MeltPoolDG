@@ -5,7 +5,7 @@ var searchData=
   ['radius_2',['radius',['../structMeltPoolDG_1_1Heat_1_1LaserData.html#a7e4c97ebd1de181774d6e0bd8f16fe50',1,'MeltPoolDG::Heat::LaserData']]],
   ['ready_5ffor_5ftime_5fadvance_3',['ready_for_time_advance',['../classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html#aad8d3434b078bee4e444b76d4e4a2fee',1,'MeltPoolDG::LevelSet::AdvectionDiffusionOperationBase']]],
   ['reference_5fdensity_4',['reference_density',['../structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html#a7646f97d028b5fe93cce064e8cf151de',1,'MeltPoolDG::Flow::CompressibleFluidMaterialPhaseData']]],
-  ['refine_5fgas_5fdomain_5',['refine_gas_domain',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#ab4f396fcfe442c42c5546f33e1a8b714',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
+  ['refine_5fgas_5fdomain_5',['refine_gas_domain',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#a591995fb8af7757dfb87ca395f125633',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
   ['reflectivity_6',['reflectivity',['../structMeltPoolDG_1_1Heat_1_1LaserData_1_1GusarovData.html#a77cd7eb347948ed1bc463aea382b0121',1,'MeltPoolDG::Heat::LaserData::GusarovData']]],
   ['reinit_7',['reinit',['../structMeltPoolDG_1_1LevelSet_1_1ReinitializationCaseParameters.html#a0cea56a1bc4a124dcf04f2702a275ca2',1,'MeltPoolDG::LevelSet::ReinitializationCaseParameters::reinit'],['../structMeltPoolDG_1_1LevelSet_1_1LevelSetData.html#a5aaf21da404effaf1c3b84394e2ea500',1,'MeltPoolDG::LevelSet::LevelSetData::reinit']]],
   ['reinit_5fvector_8',['reinit_vector',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a028737eb90dadace4d22caa098c9f4dd',1,'MeltPoolDG::NewtonRaphsonSolver']]],

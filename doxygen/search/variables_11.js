@@ -5,7 +5,7 @@ var searchData=
   ['scan_5fspeed_2',['scan_speed',['../structMeltPoolDG_1_1Heat_1_1LaserData.html#ad461582bf6826458f5dc9c3bfe6d6189',1,'MeltPoolDG::Heat::LaserData']]],
   ['scratch_5fdata_3',['scratch_data',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html#a551e3041e188d5648b6029b32645ef76',1,'MeltPoolDG::Flow::CompressibleFlowScratchData']]],
   ['set_5fvelocity_5fto_5fzero_4',['set_velocity_to_zero',['../structMeltPoolDG_1_1MeltPoolData.html#a5a4a99a90923f68561a02fbc558b7bad',1,'MeltPoolDG::MeltPoolData']]],
-  ['slice_5flocation_5',['slice_location',['../structMeltPoolDG_1_1MeltPool_1_1PowderBedData.html#ae062f0ed45e779ad2d0d82a4a6d878a1',1,'MeltPoolDG::MeltPool::PowderBedData']]],
+  ['slice_5flocation_5',['slice_location',['../structMeltPoolDG_1_1MeltPool_1_1PowderBedData.html#a55c85d00d6097ae97e223e04960223c1',1,'MeltPoolDG::MeltPool::PowderBedData']]],
   ['solid_6',['solid',['../structMeltPoolDG_1_1MeltPoolData.html#a9304a3d72b77ffe726e18449093dec0f',1,'MeltPoolDG::MeltPoolData::solid'],['../structMeltPoolDG_1_1MaterialData.html#abf4eafd089829eefda7703e5a4559137',1,'MeltPoolDG::MaterialData::solid']]],
   ['solid_5ffraction_7',['solid_fraction',['../structMeltPoolDG_1_1MaterialParameterValues.html#a720f079ea85f2b3d34ac7160d489375a',1,'MeltPoolDG::MaterialParameterValues']]],
   ['solid_5ffraction_5flower_5flimit_8',['solid_fraction_lower_limit',['../structMeltPoolDG_1_1MeltPoolData.html#ac57dd45b6369da8ee6fff136d2617c2c',1,'MeltPoolDG::MeltPoolData']]],
@@ -22,8 +22,8 @@ var searchData=
   ['start_5ftime_19',['start_time',['../structMeltPoolDG_1_1TimeSteppingData.html#aad4ec80a0cf594e81db429f5d94ac2b4',1,'MeltPoolDG::TimeSteppingData']]],
   ['stefan_5fboltzmann_5fconstant_20',['stefan_boltzmann_constant',['../namespaceMeltPoolDG_1_1PhysicalConstants.html#abda09cc50137f0ccfcc4bd1e2b3a48b3',1,'MeltPoolDG::PhysicalConstants']]],
   ['sticking_5fconstant_21',['sticking_constant',['../structMeltPoolDG_1_1Evaporation_1_1RecoilPressureData.html#a3f752c61178e5919b4f46982b37c1163',1,'MeltPoolDG::Evaporation::RecoilPressureData']]],
-  ['strategy_22',['strategy',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#a1e399bc41549c26ac8909832d42c9a2c',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
-  ['substrate_5flevel_23',['substrate_level',['../structMeltPoolDG_1_1MeltPool_1_1PowderBedData.html#a95f71f89549ab4745a92333d8996916e',1,'MeltPoolDG::MeltPool::PowderBedData']]],
+  ['strategy_22',['strategy',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#ac729f9bd6286951742d4e3de25a9f40c',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
+  ['substrate_5flevel_23',['substrate_level',['../structMeltPoolDG_1_1MeltPool_1_1PowderBedData.html#a6a62c0734d90cfee748942eccfe8d9b2',1,'MeltPoolDG::MeltPool::PowderBedData']]],
   ['surface_5ftension_24',['surface_tension',['../structMeltPoolDG_1_1Flow_1_1FlowData.html#abe0dd50d66518aeaccbb2e7db1320ca0',1,'MeltPoolDG::Flow::FlowData']]],
   ['system_5fmatrix_25',['system_matrix',['../classMeltPoolDG_1_1OperatorMatrixBased.html#a8efabdb2c9b10e41de8ccfb4b511e7a6',1,'MeltPoolDG::OperatorMatrixBased']]]
 ];

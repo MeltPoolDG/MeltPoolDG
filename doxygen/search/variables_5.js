@@ -8,5 +8,5 @@ var searchData=
   ['flow_5',['flow',['../structMeltPoolDG_1_1Parameters.html#a65aaf296ec2985a4b51d84742350e3e2',1,'MeltPoolDG::Parameters::flow'],['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowCaseParameters.html#ae075ef4a875425af1c5b564557c5dfbd',1,'MeltPoolDG::Flow::CompressibleFlowCaseParameters::flow'],['../structMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseCaseParameters.html#a91fb8e2f7d77c74092f7b765a7a572ed',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseCaseParameters::flow']]],
   ['flow_5fdata_6',['flow_data',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html#a67df012e980b82c0c33ca2cfb31de02b',1,'MeltPoolDG::Flow::CompressibleFlowScratchData']]],
   ['formulation_7',['formulation',['../structMeltPoolDG_1_1Flow_1_1DarcyDampingData.html#adecef337faa3179bf0c695913e00e68b',1,'MeltPoolDG::Flow::DarcyDampingData']]],
-  ['fraction_5fof_5fmelting_5fpoint_5frefined_5fin_5fsolid_8',['fraction_of_melting_point_refined_in_solid',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#af2675ed72fba0251e94a3cd0fde5546e',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]]
+  ['fraction_5fof_5fmelting_5fpoint_5frefined_5fin_5fsolid_8',['fraction_of_melting_point_refined_in_solid',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#af4ca93e819d92240f208f446ebb61b14',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]]
 ];
