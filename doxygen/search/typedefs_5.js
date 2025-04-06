@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['scalar_0',['scalar',['../classMeltPoolDG_1_1LevelSet_1_1AdvectionDGOperator.html#a3b0534b1e9ee116b5dd1e1509e123274',1,'MeltPoolDG::LevelSet::AdvectionDGOperator']]],
-  ['simulationcreator_1',['SimulationCreator',['../classSimulationCaseFactory.html#a57c99e39b2420ad0ef686bcb6221422d',1,'SimulationCaseFactory']]],
-  ['sparsematrixtype_2',['sparsematrixtype',['../classMeltPoolDG_1_1OperatorMatrixBased.html#aaaf4f00c4fe9ee1d304dc1de52a417e9',1,'MeltPoolDG::OperatorMatrixBased::SparseMatrixType'],['../classMeltPoolDG_1_1OperatorMatrixFree.html#a25017ec452d297063530d7ddd2520a7e',1,'MeltPoolDG::OperatorMatrixFree::SparseMatrixType'],['../classMeltPoolDG_1_1LevelSet_1_1NormalVectorOperator.html#a97eb3cf531e1c265ddb49b6fa3421cee',1,'MeltPoolDG::LevelSet::NormalVectorOperator::SparseMatrixType']]],
-  ['sparsitypatterntype_3',['SparsityPatternType',['../classMeltPoolDG_1_1OperatorMatrixBased.html#aafff40ef5d4248f4522d64314aea15dd',1,'MeltPoolDG::OperatorMatrixBased']]]
+  ['normtype_0',['NormType',['../namespaceMeltPoolDG_1_1CutUtil.html#ad1bc179e224aa4b8a4142f518a442f34',1,'MeltPoolDG::CutUtil']]]
 ];

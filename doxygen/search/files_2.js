@@ -51,10 +51,12 @@ var searchData=
   ['cut_5fflow_5fover_5fcylinder_2ehpp_48',['cut_flow_over_cylinder.hpp',['../cut__flow__over__cylinder_8hpp.html',1,'']]],
   ['cut_5fmoving_5fcylinder_2ecpp_49',['cut_moving_cylinder.cpp',['../cut__moving__cylinder_8cpp.html',1,'']]],
   ['cut_5fmoving_5fcylinder_2ehpp_50',['cut_moving_cylinder.hpp',['../cut__moving__cylinder_8hpp.html',1,'']]],
-  ['cut_5funfitted_5finflow_2ecpp_51',['cut_unfitted_inflow.cpp',['../cut__unfitted__inflow_8cpp.html',1,'']]],
-  ['cut_5funfitted_5finflow_2ehpp_52',['cut_unfitted_inflow.hpp',['../cut__unfitted__inflow_8hpp.html',1,'']]],
-  ['cutdg_5fcompressible_5fflow_5foperation_2ecpp_53',['cutdg_compressible_flow_operation.cpp',['../cutdg__compressible__flow__operation_8cpp.html',1,'']]],
-  ['cutdg_5fcompressible_5fflow_5foperation_2ehpp_54',['cutdg_compressible_flow_operation.hpp',['../cutdg__compressible__flow__operation_8hpp.html',1,'']]],
-  ['cutdg_5fcompressible_5fflow_5foperator_2ecpp_55',['cutdg_compressible_flow_operator.cpp',['../cutdg__compressible__flow__operator_8cpp.html',1,'']]],
-  ['cutdg_5fcompressible_5fflow_5foperator_2ehpp_56',['cutdg_compressible_flow_operator.hpp',['../cutdg__compressible__flow__operator_8hpp.html',1,'']]]
+  ['cut_5fnorm_2ecpp_51',['cut_norm.cpp',['../cut__norm_8cpp.html',1,'']]],
+  ['cut_5fnorm_2ehpp_52',['cut_norm.hpp',['../cut__norm_8hpp.html',1,'']]],
+  ['cut_5funfitted_5finflow_2ecpp_53',['cut_unfitted_inflow.cpp',['../cut__unfitted__inflow_8cpp.html',1,'']]],
+  ['cut_5funfitted_5finflow_2ehpp_54',['cut_unfitted_inflow.hpp',['../cut__unfitted__inflow_8hpp.html',1,'']]],
+  ['cutdg_5fcompressible_5fflow_5foperation_2ecpp_55',['cutdg_compressible_flow_operation.cpp',['../cutdg__compressible__flow__operation_8cpp.html',1,'']]],
+  ['cutdg_5fcompressible_5fflow_5foperation_2ehpp_56',['cutdg_compressible_flow_operation.hpp',['../cutdg__compressible__flow__operation_8hpp.html',1,'']]],
+  ['cutdg_5fcompressible_5fflow_5foperator_2ecpp_57',['cutdg_compressible_flow_operator.cpp',['../cutdg__compressible__flow__operator_8cpp.html',1,'']]],
+  ['cutdg_5fcompressible_5fflow_5foperator_2ehpp_58',['cutdg_compressible_flow_operator.hpp',['../cutdg__compressible__flow__operator_8hpp.html',1,'']]]
 ];
