@@ -2,7 +2,7 @@ var searchData=
 [
   ['tangent_5fboundary_5floop_0',['tangent_boundary_loop',['../classMeltPoolDG_1_1Heat_1_1HeatDiffuseMultiPhaseOperator.html#a7b324b7ebd92e67164cfa037a5e32a5b',1,'MeltPoolDG::Heat::HeatDiffuseMultiPhaseOperator']]],
   ['tangent_5fcell_5floop_1',['tangent_cell_loop',['../classMeltPoolDG_1_1Heat_1_1HeatDiffuseMultiPhaseOperator.html#aaa4b12ec6f76555f64f5b29fb11f7dd6',1,'MeltPoolDG::Heat::HeatDiffuseMultiPhaseOperator']]],
-  ['tanh_2',['tanh',['../namespaceMeltPoolDG_1_1VectorTools.html#a535b7987b09ad2414a7ab28028196368',1,'MeltPoolDG::VectorTools::tanh(const ::dealii::VectorizedArray&lt; number, width &gt; &amp;x)'],['../namespaceMeltPoolDG_1_1VectorTools.html#a413ee4ed37f9706e18b2f9f0a0affaca',1,'MeltPoolDG::VectorTools::tanh(VectorizedArray&lt; number &gt; const &amp;arg)']]],
+  ['tanh_2',['tanh',['../namespaceMeltPoolDG_1_1VectorTools.html#ab37fde61d68c010a74a5cc8267dae680',1,'MeltPoolDG::VectorTools::tanh(const ::dealii::VectorizedArray&lt; number, width &gt; &amp;x)'],['../namespaceMeltPoolDG_1_1VectorTools.html#ac7ae85a487ab9f3d1e7839d8948815bb',1,'MeltPoolDG::VectorTools::tanh(dealii::VectorizedArray&lt; number &gt; const &amp;arg)']]],
   ['tanh_5fcharacteristic_5ffunction_3',['tanh_characteristic_function',['../namespaceMeltPoolDG_1_1UtilityFunctions_1_1CharacteristicFunctions.html#af27a15c13236a5c70cd61b8830a47b2a',1,'MeltPoolDG::UtilityFunctions::CharacteristicFunctions']]],
   ['time_5fintegrator_5ffactory_4',['time_integrator_factory',['../namespaceMeltPoolDG.html#a54a2aa39da98e7c9abdef9aa8078757c',1,'MeltPoolDG']]],
   ['time_5fintegrator_5fscheme_5fis_5fexplicit_5',['time_integrator_scheme_is_explicit',['../namespaceMeltPoolDG.html#a9b0c5047783ff62e1d315230d33700ee',1,'MeltPoolDG']]],

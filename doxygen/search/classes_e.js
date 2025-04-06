@@ -6,6 +6,5 @@ var searchData=
   ['operatormatrixbased_3',['OperatorMatrixBased',['../classMeltPoolDG_1_1OperatorMatrixBased.html',1,'MeltPoolDG']]],
   ['operatormatrixfree_4',['OperatorMatrixFree',['../classMeltPoolDG_1_1OperatorMatrixFree.html',1,'MeltPoolDG']]],
   ['optional_5',['optional',['../structbetter__enums_1_1optional.html',1,'better_enums']]],
-  ['outputdata_6',['OutputData',['../structMeltPoolDG_1_1OutputData.html',1,'MeltPoolDG']]],
-  ['outputdata_3c_20double_20_3e_7',['OutputData&lt; double &gt;',['../structMeltPoolDG_1_1OutputData.html',1,'MeltPoolDG']]]
+  ['outputdata_6',['OutputData',['../structMeltPoolDG_1_1OutputData.html',1,'MeltPoolDG']]]
 ];

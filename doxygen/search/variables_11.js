@@ -3,7 +3,7 @@ var searchData=
   ['save_0',['save',['../structMeltPoolDG_1_1Restart_1_1RestartData.html#a239ad9e64a9a365ad364b02177e78afa',1,'MeltPoolDG::Restart::RestartData']]],
   ['scale_5ffactor_1',['scale_factor',['../structMeltPoolDG_1_1TimeStepLimitData.html#aba7e20e62d24dd3a1319b4f75d1a05c8',1,'MeltPoolDG::TimeStepLimitData']]],
   ['scan_5fspeed_2',['scan_speed',['../structMeltPoolDG_1_1Heat_1_1LaserData.html#ad461582bf6826458f5dc9c3bfe6d6189',1,'MeltPoolDG::Heat::LaserData']]],
-  ['scratch_5fdata_3',['scratch_data',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html#a551e3041e188d5648b6029b32645ef76',1,'MeltPoolDG::Flow::CompressibleFlowScratchData']]],
+  ['scratch_5fdata_3',['scratch_data',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html#a67c532595c7a4b3411168476351065ff',1,'MeltPoolDG::Flow::CompressibleFlowScratchData']]],
   ['set_5fvelocity_5fto_5fzero_4',['set_velocity_to_zero',['../structMeltPoolDG_1_1MeltPoolData.html#a5a4a99a90923f68561a02fbc558b7bad',1,'MeltPoolDG::MeltPoolData']]],
   ['slice_5flocation_5',['slice_location',['../structMeltPoolDG_1_1MeltPool_1_1PowderBedData.html#a55c85d00d6097ae97e223e04960223c1',1,'MeltPoolDG::MeltPool::PowderBedData']]],
   ['solid_6',['solid',['../structMeltPoolDG_1_1MeltPoolData.html#a9304a3d72b77ffe726e18449093dec0f',1,'MeltPoolDG::MeltPoolData::solid'],['../structMeltPoolDG_1_1MaterialData.html#abf4eafd089829eefda7703e5a4559137',1,'MeltPoolDG::MaterialData::solid']]],

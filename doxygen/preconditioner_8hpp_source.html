@@ -92,7 +92,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG.html">MeltPoolDG</a></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> PreconditionerType, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dim, <span class="keyword">typename</span> VectorType&gt;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> PreconditionerType, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dim, <span class="keyword">typename</span> VectorType, <span class="keyword">typename</span> number&gt;</div>
 <div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="conceptMeltPoolDG_1_1PreconditionerTypeConcept.html">   19</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="conceptMeltPoolDG_1_1PreconditionerTypeConcept.html">PreconditionerTypeConcept</a> =</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">requires</span>(PreconditionerType preconditioner, <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;vec, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;const_vec) {</div>
@@ -100,145 +100,146 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      preconditioner.vmult(vec, const_vec);</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      preconditioner.reinit(std::declval&lt;ScratchData&lt;dim&gt;&gt;(), std::declval&lt;unsigned int&gt;());</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    };</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      preconditioner.reinit(std::declval&lt;ScratchData&lt;dim, dim, number&gt;&gt;(),</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                            std::declval&lt;unsigned int&gt;());</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    };</div>
 </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dim, <span class="keyword">typename</span> VectorType&gt;</div>
-<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html">   41</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Preconditioner.html">Preconditioner</a></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#aa514e046fd2e62ecc4d5eac92b02476a">   44</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#aa514e046fd2e62ecc4d5eac92b02476a">Preconditioner</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> PreconditionerType&gt;</div>
-<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#aa3dee9488f7d655b9b15890adb05e5ac">   52</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#aa3dee9488f7d655b9b15890adb05e5ac">Preconditioner</a>(PreconditionerType &amp;&amp;preconditioner)</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      : preconditioner_pimpl(new PreconditionerModel&lt;PreconditionerType&gt;(std::move(preconditioner)))</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    {}</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dim, <span class="keyword">typename</span> VectorType, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html">   42</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Preconditioner.html">Preconditioner</a></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#a73ffcb94d4c0d77bcb8b956769119746">   45</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#a73ffcb94d4c0d77bcb8b956769119746">Preconditioner</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> PreconditionerType&gt;</div>
+<div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#aa3fbd05d249c5d56a7b73998c052721b">   53</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#aa3fbd05d249c5d56a7b73998c052721b">Preconditioner</a>(PreconditionerType &amp;&amp;preconditioner)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      : preconditioner_pimpl(new PreconditionerModel&lt;PreconditionerType&gt;(std::move(preconditioner)))</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    {}</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#a1470d3105f01912897812a76edc45955">   63</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#a1470d3105f01912897812a76edc45955">vmult</a>(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;src)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      preconditioner_pimpl-&gt;vmult(dst, src);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#ae939209f00a0b55f4ea58ae19ba839ea">   64</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#ae939209f00a0b55f4ea58ae19ba839ea">vmult</a>(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;src)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      preconditioner_pimpl-&gt;vmult(dst, src);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
 </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#a7b3a32428246856c1f920395ca14e043">   72</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#a7b3a32428246856c1f920395ca14e043">update</a>(<span class="keyword">const</span> std::any &amp;external_setup = std::any())</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      <span class="keywordflow">if</span> (flag_update_preconditioner == always_update or flag_update_preconditioner == update_once)</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        preconditioner_pimpl-&gt;update(external_setup);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      <span class="keywordflow">if</span> (flag_update_preconditioner == update_once)</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        flag_update_preconditioner = do_not_update;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="}">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#a274d21a9943b17503be3af6bbdf36d0d">   73</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#a274d21a9943b17503be3af6bbdf36d0d">update</a>(<span class="keyword">const</span> std::any &amp;external_setup = std::any())</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      <span class="keywordflow">if</span> (flag_update_preconditioner == always_update or flag_update_preconditioner == update_once)</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        preconditioner_pimpl-&gt;update(external_setup);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      <span class="keywordflow">if</span> (flag_update_preconditioner == update_once)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        flag_update_preconditioner = do_not_update;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
 </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#a1f983f9d9db7a4ca94b0a12c74dae9eb">   85</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#a1f983f9d9db7a4ca94b0a12c74dae9eb">reinit</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim&gt;</a> &amp;scratch_data, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dof_idx)</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    {</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      preconditioner_pimpl-&gt;reinit(scratch_data, dof_idx);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00086" data-start="{" data-end="}">
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#ace543f6a1046d9532e479f6bff575990">   86</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#ace543f6a1046d9532e479f6bff575990">reinit</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;scratch_data, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dof_idx)</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      preconditioner_pimpl-&gt;reinit(scratch_data, dof_idx);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    }</div>
 </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">bool</span></div>
-<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#a24e2827c690e39233d8e6e0f8f4e29af">   97</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#a24e2827c690e39233d8e6e0f8f4e29af">is_initialized</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keywordflow">return</span> (preconditioner_pimpl != <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00098" data-start="{" data-end="}">
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#ae6b2ade02368cdc612c15ab39e46c6d3">   98</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#ae6b2ade02368cdc612c15ab39e46c6d3">is_initialized</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keywordflow">return</span> (preconditioner_pimpl != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
 </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#a14eed837550ac4cad3a043de7e0a4ca3">  106</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#a14eed837550ac4cad3a043de7e0a4ca3">clear</a>()</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    {</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      preconditioner_pimpl-&gt;reset(<span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00107" data-start="{" data-end="}">
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#a1ef4095b0df887c6f6ac9f4152900fbe">  107</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#a1ef4095b0df887c6f6ac9f4152900fbe">clear</a>()</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      preconditioner_pimpl-&gt;reset(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    }</div>
 </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00135" data-start="{" data-end="}">
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#a335439f95b4b0e37d5d450e86ca95505">  135</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#a335439f95b4b0e37d5d450e86ca95505">set_do_update_preconditioner</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> do_update, <span class="keyword">const</span> <span class="keywordtype">bool</span> do_overwrite = <span class="keyword">false</span>)</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    {</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      <span class="keywordflow">if</span> ((do_update || flag_update_preconditioner == update_once) &amp;&amp; not do_overwrite)</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        flag_update_preconditioner = update_once;</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>      <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        flag_update_preconditioner = do_not_update;</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00136" data-start="{" data-end="}">
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#a1d90b588b12cc474d7dc49d6828fe766">  136</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#a1d90b588b12cc474d7dc49d6828fe766">set_do_update_preconditioner</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> do_update, <span class="keyword">const</span> <span class="keywordtype">bool</span> do_overwrite = <span class="keyword">false</span>)</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      <span class="keywordflow">if</span> ((do_update || flag_update_preconditioner == update_once) &amp;&amp; not do_overwrite)</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        flag_update_preconditioner = update_once;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        flag_update_preconditioner = do_not_update;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    }</div>
 </div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keyword">struct </span>PreconditionerConcept</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    {</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      <span class="keyword">virtual</span> ~PreconditionerConcept() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      vmult(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;src) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>      update(<span class="keyword">const</span> std::any &amp;external_setup) = 0;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>      reinit(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim&gt;</a> &amp;scratch_data, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dof_idx) = 0;</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    };</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keyword">template</span> &lt;PreconditionerTypeConcept&lt;dim, VectorType&gt; PreconditionerType&gt;</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keyword">struct </span>PreconditionerModel final : <span class="keyword">public</span> PreconditionerConcept</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    {</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      <span class="keyword">explicit</span> PreconditionerModel(PreconditionerType &amp;&amp;preconditioner_in)</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        : preconditioner(std::forward&lt;PreconditionerType&gt;(preconditioner_in))</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>      {}</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>      <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>      vmult(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;src)<span class="keyword"> const override</span></div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        preconditioner.vmult(dst, src);</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>      }</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>      <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      update(<span class="keyword">const</span> std::any &amp;external_setup)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        preconditioner.update(external_setup);</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      }</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>      reinit(<span class="keyword">const</span> ScratchData&lt;dim&gt; &amp;scratch_data, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dof_idx)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        preconditioner.reinit(scratch_data, dof_idx);</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>      }</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>      PreconditionerType preconditioner;</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    };</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    std::unique_ptr&lt;PreconditionerConcept&gt; preconditioner_pimpl;</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keyword">enum</span></div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    {</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>      always_update,</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>      update_once,</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>      do_not_update</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    } flag_update_preconditioner{always_update};</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>  };</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keyword">struct </span>PreconditionerConcept</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    {</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      <span class="keyword">virtual</span> ~PreconditionerConcept() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      vmult(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;src) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>      update(<span class="keyword">const</span> std::any &amp;external_setup) = 0;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      reinit(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;scratch_data, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dof_idx) = 0;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    };</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keyword">template</span> &lt;PreconditionerTypeConcept&lt;dim, VectorType, number&gt; PreconditionerType&gt;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keyword">struct </span>PreconditionerModel final : <span class="keyword">public</span> PreconditionerConcept</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    {</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>      <span class="keyword">explicit</span> PreconditionerModel(PreconditionerType &amp;&amp;preconditioner_in)</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        : preconditioner(std::forward&lt;PreconditionerType&gt;(preconditioner_in))</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>      {}</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      vmult(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;src)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        preconditioner.vmult(dst, src);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>      }</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      update(<span class="keyword">const</span> std::any &amp;external_setup)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        preconditioner.update(external_setup);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>      reinit(<span class="keyword">const</span> ScratchData&lt;dim, dim, number&gt; &amp;scratch_data, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dof_idx)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        preconditioner.reinit(scratch_data, dof_idx);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      }</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>      PreconditionerType preconditioner;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    };</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    std::unique_ptr&lt;PreconditionerConcept&gt; preconditioner_pimpl;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keyword">enum</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>      always_update,</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>      update_once,</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>      do_not_update</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    } flag_update_preconditioner{always_update};</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  };</div>
 </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>} <span class="comment">// namespace MeltPoolDG</span></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html">MeltPoolDG::Preconditioner</a></div><div class="ttdef"><b>Definition</b> preconditioner.hpp:42</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_a1470d3105f01912897812a76edc45955"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#a1470d3105f01912897812a76edc45955">MeltPoolDG::Preconditioner::vmult</a></div><div class="ttdeci">void vmult(VectorType &amp;dst, const VectorType &amp;src) const</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:63</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_a14eed837550ac4cad3a043de7e0a4ca3"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#a14eed837550ac4cad3a043de7e0a4ca3">MeltPoolDG::Preconditioner::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:106</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_a1f983f9d9db7a4ca94b0a12c74dae9eb"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#a1f983f9d9db7a4ca94b0a12c74dae9eb">MeltPoolDG::Preconditioner::reinit</a></div><div class="ttdeci">void reinit(const ScratchData&lt; dim &gt; &amp;scratch_data, const unsigned int dof_idx)</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:85</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_a24e2827c690e39233d8e6e0f8f4e29af"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#a24e2827c690e39233d8e6e0f8f4e29af">MeltPoolDG::Preconditioner::is_initialized</a></div><div class="ttdeci">bool is_initialized() const</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:97</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_a335439f95b4b0e37d5d450e86ca95505"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#a335439f95b4b0e37d5d450e86ca95505">MeltPoolDG::Preconditioner::set_do_update_preconditioner</a></div><div class="ttdeci">void set_do_update_preconditioner(const bool do_update, const bool do_overwrite=false)</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:135</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_a7b3a32428246856c1f920395ca14e043"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#a7b3a32428246856c1f920395ca14e043">MeltPoolDG::Preconditioner::update</a></div><div class="ttdeci">void update(const std::any &amp;external_setup=std::any())</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:72</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_aa3dee9488f7d655b9b15890adb05e5ac"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#aa3dee9488f7d655b9b15890adb05e5ac">MeltPoolDG::Preconditioner::Preconditioner</a></div><div class="ttdeci">Preconditioner(PreconditionerType &amp;&amp;preconditioner)</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:52</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_aa514e046fd2e62ecc4d5eac92b02476a"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#aa514e046fd2e62ecc4d5eac92b02476a">MeltPoolDG::Preconditioner::Preconditioner</a></div><div class="ttdeci">Preconditioner()=default</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdef"><b>Definition</b> scratch_data.hpp:47</div></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html">MeltPoolDG::Preconditioner</a></div><div class="ttdef"><b>Definition</b> preconditioner.hpp:43</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_a1d90b588b12cc474d7dc49d6828fe766"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#a1d90b588b12cc474d7dc49d6828fe766">MeltPoolDG::Preconditioner::set_do_update_preconditioner</a></div><div class="ttdeci">void set_do_update_preconditioner(const bool do_update, const bool do_overwrite=false)</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:136</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_a1ef4095b0df887c6f6ac9f4152900fbe"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#a1ef4095b0df887c6f6ac9f4152900fbe">MeltPoolDG::Preconditioner::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:107</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_a274d21a9943b17503be3af6bbdf36d0d"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#a274d21a9943b17503be3af6bbdf36d0d">MeltPoolDG::Preconditioner::update</a></div><div class="ttdeci">void update(const std::any &amp;external_setup=std::any())</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:73</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_a73ffcb94d4c0d77bcb8b956769119746"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#a73ffcb94d4c0d77bcb8b956769119746">MeltPoolDG::Preconditioner::Preconditioner</a></div><div class="ttdeci">Preconditioner()=default</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_aa3fbd05d249c5d56a7b73998c052721b"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#aa3fbd05d249c5d56a7b73998c052721b">MeltPoolDG::Preconditioner::Preconditioner</a></div><div class="ttdeci">Preconditioner(PreconditionerType &amp;&amp;preconditioner)</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:53</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_ace543f6a1046d9532e479f6bff575990"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#ace543f6a1046d9532e479f6bff575990">MeltPoolDG::Preconditioner::reinit</a></div><div class="ttdeci">void reinit(const ScratchData&lt; dim, dim, number &gt; &amp;scratch_data, const unsigned int dof_idx)</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:86</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_ae6b2ade02368cdc612c15ab39e46c6d3"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#ae6b2ade02368cdc612c15ab39e46c6d3">MeltPoolDG::Preconditioner::is_initialized</a></div><div class="ttdeci">bool is_initialized() const</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:98</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html_ae939209f00a0b55f4ea58ae19ba839ea"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html#ae939209f00a0b55f4ea58ae19ba839ea">MeltPoolDG::Preconditioner::vmult</a></div><div class="ttdeci">void vmult(VectorType &amp;dst, const VectorType &amp;src) const</div><div class="ttdef"><b>Definition</b> preconditioner.hpp:64</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdef"><b>Definition</b> scratch_data.hpp:46</div></div>
 <div class="ttc" id="aconceptMeltPoolDG_1_1PreconditionerTypeConcept_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1PreconditionerTypeConcept.html">MeltPoolDG::PreconditionerTypeConcept</a></div><div class="ttdef"><b>Definition</b> preconditioner.hpp:19</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> base_data.hpp:9</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_html_a6b137e1980c6c6e24b2a3d032112a7dc"><div class="ttname"><a href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">MeltPoolDG::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; double &gt; VectorType</div><div class="ttdef"><b>Definition</b> utility_functions.hpp:138</div></div>

@@ -9,9 +9,8 @@ var searchData=
   ['nonlinearsolverdata_3c_20number_20_3e_6',['NonlinearSolverData&lt; number &gt;',['../structMeltPoolDG_1_1NonlinearSolverData.html',1,'MeltPoolDG']]],
   ['normaldgspecificdata_7',['NormalDGSpecificData',['../structMeltPoolDG_1_1LevelSet_1_1NormalVectorData_1_1NormalDGSpecificData.html',1,'MeltPoolDG::LevelSet::NormalVectorData']]],
   ['normalvectordata_8',['NormalVectorData',['../structMeltPoolDG_1_1LevelSet_1_1NormalVectorData.html',1,'MeltPoolDG::LevelSet']]],
-  ['normalvectordata_3c_20double_20_3e_9',['NormalVectorData&lt; double &gt;',['../structMeltPoolDG_1_1LevelSet_1_1NormalVectorData.html',1,'MeltPoolDG::LevelSet']]],
-  ['normalvectordgoperation_10',['NormalVectorDGOperation',['../classMeltPoolDG_1_1LevelSet_1_1NormalVectorDGOperation.html',1,'MeltPoolDG::LevelSet']]],
-  ['normalvectoroperation_11',['NormalVectorOperation',['../classMeltPoolDG_1_1LevelSet_1_1NormalVectorOperation.html',1,'MeltPoolDG::LevelSet']]],
-  ['normalvectoroperationbase_12',['NormalVectorOperationBase',['../classMeltPoolDG_1_1LevelSet_1_1NormalVectorOperationBase.html',1,'MeltPoolDG::LevelSet']]],
-  ['normalvectoroperator_13',['NormalVectorOperator',['../classMeltPoolDG_1_1LevelSet_1_1NormalVectorOperator.html',1,'MeltPoolDG::LevelSet']]]
+  ['normalvectordgoperation_9',['NormalVectorDGOperation',['../classMeltPoolDG_1_1LevelSet_1_1NormalVectorDGOperation.html',1,'MeltPoolDG::LevelSet']]],
+  ['normalvectoroperation_10',['NormalVectorOperation',['../classMeltPoolDG_1_1LevelSet_1_1NormalVectorOperation.html',1,'MeltPoolDG::LevelSet']]],
+  ['normalvectoroperationbase_11',['NormalVectorOperationBase',['../classMeltPoolDG_1_1LevelSet_1_1NormalVectorOperationBase.html',1,'MeltPoolDG::LevelSet']]],
+  ['normalvectoroperator_12',['NormalVectorOperator',['../classMeltPoolDG_1_1LevelSet_1_1NormalVectorOperator.html',1,'MeltPoolDG::LevelSet']]]
 ];

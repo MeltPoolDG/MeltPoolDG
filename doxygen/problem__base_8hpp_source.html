@@ -90,54 +90,51 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG.html">MeltPoolDG</a></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacedealii.html">dealii</a>;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  <span class="comment">// TODO: how can this template type be omited?</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> SimulationType = MeltPoolCase&lt;dim&gt;&gt;</div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ProblemBase.html">   14</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1ProblemBase.html">ProblemBase</a></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ProblemBase.html#a3e9a2ffd63c7966a5c14f4b40bd43cc5">   17</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classMeltPoolDG_1_1ProblemBase.html#a3e9a2ffd63c7966a5c14f4b40bd43cc5">~ProblemBase</a>()</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    {}</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <span class="comment">// TODO: how can this template type be omited?</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number, <span class="keyword">typename</span> SimulationType = MeltPoolCase&lt;dim, number&gt;&gt;</div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ProblemBase.html">   12</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1ProblemBase.html">ProblemBase</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ProblemBase.html#aba85b4b5fd74021316ab5d21ac4dbd37">   15</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classMeltPoolDG_1_1ProblemBase.html#aba85b4b5fd74021316ab5d21ac4dbd37">~ProblemBase</a>()</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    {}</div>
 </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ProblemBase.html#a258e310c4076de57d3e85121897c0c37">   21</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1ProblemBase.html#a258e310c4076de57d3e85121897c0c37">run</a>(std::shared_ptr&lt;SimulationType&gt; base_in) = 0;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="comment">// TODO: Move into free function</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ProblemBase.html#af430b32192526129a8b858cceb68793a">   26</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1ProblemBase.html#af430b32192526129a8b858cceb68793a">add_problem_specific_parameters</a>(<span class="keyword">const</span> std::string &amp;parameter_file)</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>      <a class="code hl_function" href="namespaceMeltPoolDG.html#aecf4c3c1e6b31aea046e166a6e7a1f05">add_and_parse_parameters</a>(</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        parameter_file, [<span class="keyword">this</span>](ParameterHandler &amp;prm) { <a class="code hl_function" href="classMeltPoolDG_1_1ProblemBase.html#a423175afb95db6b69a280d2034970168">add_parameters</a>(prm); }, <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ProblemBase.html#af46075dce97e36059dd7a935ede7b3a9">   19</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1ProblemBase.html#af46075dce97e36059dd7a935ede7b3a9">run</a>(std::shared_ptr&lt;SimulationType&gt; base_in) = 0;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// TODO: Move into free function</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ProblemBase.html#a118fbc9a72e4b9789eb81c2a61a46cd6">   24</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1ProblemBase.html#a118fbc9a72e4b9789eb81c2a61a46cd6">add_problem_specific_parameters</a>(<span class="keyword">const</span> std::string &amp;parameter_file)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      <a class="code hl_function" href="namespaceMeltPoolDG.html#a6a258d472a26c8bcc439c58827679a47">add_and_parse_parameters</a>(</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        parameter_file, [<span class="keyword">this</span>](ParameterHandler &amp;prm) { <a class="code hl_function" href="classMeltPoolDG_1_1ProblemBase.html#a8c370c4b3211179e57ae90e050be8fc5">add_parameters</a>(prm); }, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
 </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ProblemBase.html#a423175afb95db6b69a280d2034970168">   40</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1ProblemBase.html#a423175afb95db6b69a280d2034970168">add_parameters</a>(dealii::ParameterHandler &amp;)</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      AssertThrow(<span class="keyword">false</span>,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                  ExcMessage(</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                    <span class="stringliteral">&quot;If problem specific parameters should be added, &quot;</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                    <span class="stringliteral">&quot;add_parameters() has to be overriden in the derived class. Abort...&quot;</span>));</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ProblemBase.html#a8c370c4b3211179e57ae90e050be8fc5">   38</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1ProblemBase.html#a8c370c4b3211179e57ae90e050be8fc5">add_parameters</a>(dealii::ParameterHandler &amp;)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      AssertThrow(<span class="keyword">false</span>,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                  ExcMessage(</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                    <span class="stringliteral">&quot;If problem specific parameters should be added, &quot;</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                    <span class="stringliteral">&quot;add_parameters() has to be overriden in the derived class. Abort...&quot;</span>));</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  };</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  };</div>
 </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>} <span class="comment">// namespace MeltPoolDG</span></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ProblemBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1ProblemBase.html">MeltPoolDG::ProblemBase</a></div><div class="ttdef"><b>Definition</b> problem_base.hpp:15</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ProblemBase_html_a258e310c4076de57d3e85121897c0c37"><div class="ttname"><a href="classMeltPoolDG_1_1ProblemBase.html#a258e310c4076de57d3e85121897c0c37">MeltPoolDG::ProblemBase::run</a></div><div class="ttdeci">virtual void run(std::shared_ptr&lt; SimulationType &gt; base_in)=0</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ProblemBase_html_a3e9a2ffd63c7966a5c14f4b40bd43cc5"><div class="ttname"><a href="classMeltPoolDG_1_1ProblemBase.html#a3e9a2ffd63c7966a5c14f4b40bd43cc5">MeltPoolDG::ProblemBase::~ProblemBase</a></div><div class="ttdeci">virtual ~ProblemBase()</div><div class="ttdef"><b>Definition</b> problem_base.hpp:17</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ProblemBase_html_a423175afb95db6b69a280d2034970168"><div class="ttname"><a href="classMeltPoolDG_1_1ProblemBase.html#a423175afb95db6b69a280d2034970168">MeltPoolDG::ProblemBase::add_parameters</a></div><div class="ttdeci">virtual void add_parameters(dealii::ParameterHandler &amp;)</div><div class="ttdef"><b>Definition</b> problem_base.hpp:40</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1ProblemBase_html_af430b32192526129a8b858cceb68793a"><div class="ttname"><a href="classMeltPoolDG_1_1ProblemBase.html#af430b32192526129a8b858cceb68793a">MeltPoolDG::ProblemBase::add_problem_specific_parameters</a></div><div class="ttdeci">void add_problem_specific_parameters(const std::string &amp;parameter_file)</div><div class="ttdef"><b>Definition</b> problem_base.hpp:26</div></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ProblemBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1ProblemBase.html">MeltPoolDG::ProblemBase</a></div><div class="ttdef"><b>Definition</b> problem_base.hpp:13</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ProblemBase_html_a118fbc9a72e4b9789eb81c2a61a46cd6"><div class="ttname"><a href="classMeltPoolDG_1_1ProblemBase.html#a118fbc9a72e4b9789eb81c2a61a46cd6">MeltPoolDG::ProblemBase::add_problem_specific_parameters</a></div><div class="ttdeci">void add_problem_specific_parameters(const std::string &amp;parameter_file)</div><div class="ttdef"><b>Definition</b> problem_base.hpp:24</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ProblemBase_html_a8c370c4b3211179e57ae90e050be8fc5"><div class="ttname"><a href="classMeltPoolDG_1_1ProblemBase.html#a8c370c4b3211179e57ae90e050be8fc5">MeltPoolDG::ProblemBase::add_parameters</a></div><div class="ttdeci">virtual void add_parameters(dealii::ParameterHandler &amp;)</div><div class="ttdef"><b>Definition</b> problem_base.hpp:38</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ProblemBase_html_aba85b4b5fd74021316ab5d21ac4dbd37"><div class="ttname"><a href="classMeltPoolDG_1_1ProblemBase.html#aba85b4b5fd74021316ab5d21ac4dbd37">MeltPoolDG::ProblemBase::~ProblemBase</a></div><div class="ttdeci">virtual ~ProblemBase()</div><div class="ttdef"><b>Definition</b> problem_base.hpp:15</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ProblemBase_html_af46075dce97e36059dd7a935ede7b3a9"><div class="ttname"><a href="classMeltPoolDG_1_1ProblemBase.html#af46075dce97e36059dd7a935ede7b3a9">MeltPoolDG::ProblemBase::run</a></div><div class="ttdeci">virtual void run(std::shared_ptr&lt; SimulationType &gt; base_in)=0</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> base_data.hpp:9</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_html_aecf4c3c1e6b31aea046e166a6e7a1f05"><div class="ttname"><a href="namespaceMeltPoolDG.html#aecf4c3c1e6b31aea046e166a6e7a1f05">MeltPoolDG::add_and_parse_parameters</a></div><div class="ttdeci">void add_and_parse_parameters(const std::string &amp;parameter_file, const std::function&lt; void(ParameterHandler &amp;)&gt; &amp;add_parameters, const bool enable_print=false, const bool print_details=false)</div><div class="ttdoc">Adds parameters from a file to a ParameterHandler object.</div><div class="ttdef"><b>Definition</b> parameters_base.cpp:7</div></div>
-<div class="ttc" id="anamespacedealii_html"><div class="ttname"><a href="namespacedealii.html">dealii</a></div><div class="ttdef"><b>Definition</b> level_set_tools.hpp:57</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_a6a258d472a26c8bcc439c58827679a47"><div class="ttname"><a href="namespaceMeltPoolDG.html#a6a258d472a26c8bcc439c58827679a47">MeltPoolDG::add_and_parse_parameters</a></div><div class="ttdeci">void add_and_parse_parameters(const std::string &amp;parameter_file, const std::function&lt; void(dealii::ParameterHandler &amp;)&gt; &amp;add_parameters, const bool enable_print=false, const bool print_details=false)</div><div class="ttdoc">Adds parameters from a file to a ParameterHandler object.</div><div class="ttdef"><b>Definition</b> parameters_base.cpp:7</div></div>
 <div class="ttc" id="aparameters_8hpp_html"><div class="ttname"><a href="parameters_8hpp.html">parameters.hpp</a></div></div>
 <div class="ttc" id="aparameters__base_8hpp_html"><div class="ttname"><a href="parameters__base_8hpp.html">parameters_base.hpp</a></div></div>
 <div class="ttc" id="asimulation__base_8hpp_html"><div class="ttname"><a href="simulation__base_8hpp.html">simulation_base.hpp</a></div></div>

@@ -156,8 +156,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordtype">void</span></div>
 <div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#ae844a352c8df752904b1585dc4f2d3d2">  106</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#ae844a352c8df752904b1585dc4f2d3d2">set_boundary_conditions</a>(<span class="keyword">const</span> std::shared_ptr&lt;<a class="code hl_class" href="classMeltPoolDG_1_1SimulationCaseBase.html">SimulationCaseBase&lt;dim&gt;</a>&gt; &amp;simulation_case,</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                            <span class="keyword">const</span> std::string                              &amp;<a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#afe17ec33b8df67c10938bf95cca7da9b">operation_name</a>)</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#ac142e6b0433253da77669474eb001648">  106</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#ac142e6b0433253da77669474eb001648">set_boundary_conditions</a>(<span class="keyword">const</span> std::shared_ptr&lt;<a class="code hl_class" href="classMeltPoolDG_1_1SimulationCaseBase.html">SimulationCaseBase&lt;dim, number&gt;</a>&gt; &amp;simulation_case,</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                            <span class="keyword">const</span> std::string                                      &amp;<a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#afe17ec33b8df67c10938bf95cca7da9b">operation_name</a>)</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    {</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      operation_pimpl-&gt;set_boundary_conditions(simulation_case, <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#afe17ec33b8df67c10938bf95cca7da9b">operation_name</a>);</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    }</div>
@@ -284,99 +284,101 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      set_initial_condition(<span class="keyword">const</span> Function&lt;dim&gt; &amp;function) = 0;</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>      set_boundary_conditions(<span class="keyword">const</span> std::shared_ptr&lt;<a class="code hl_class" href="classMeltPoolDG_1_1SimulationCaseBase.html">SimulationCaseBase&lt;dim&gt;</a>&gt; &amp;simulation_case,</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                              <span class="keyword">const</span> std::string                              &amp;operation_name) = 0;</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>      set_body_force(std::unique_ptr&lt;Function&lt;dim&gt;&gt; body_force_in) = 0;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>      <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>      get_solution() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>      <span class="keyword">virtual</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>      get_solution() = 0;</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>      <span class="keyword">virtual</span> <span class="keyword">const</span> dealii::DoFHandler&lt;dim&gt; &amp;</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>      get_dof_handler() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    };</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> OperationType&gt;</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keyword">struct </span>OperationModel <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#afe17ec33b8df67c10938bf95cca7da9b">final</a> : <span class="keyword">public</span> OperationConcept</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    {</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>      <span class="keyword">explicit</span> OperationModel(std::unique_ptr&lt;OperationType&gt; &amp;&amp;operation_in)</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        : operation(std::move(operation_in))</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>      {}</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>      <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>      solve(<span class="keyword">const</span> number current_time, <span class="keyword">const</span> number time_step)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        operation-&gt;solve(current_time, time_step);</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>      }</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>      <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>      <a class="code hl_function" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#ab95c220565e72ccd4dd83c0f1a84994a">distribute_dofs</a>(dealii::DoFHandler&lt;dim&gt; &amp;dof_handler)<span class="keyword"> const override</span></div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        operation-&gt;distribute_dofs(dof_handler);</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>      }</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>      <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>      reinit()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        operation-&gt;reinit();</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>      }</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>      number</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>      compute_time_step_size(<span class="keyword">const</span> <span class="keywordtype">bool</span> do_print = <span class="keyword">false</span>)<span class="keyword"> const override</span></div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>        <span class="keywordflow">return</span> operation-&gt;compute_time_step_size(do_print);</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>      }</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>      <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>      set_initial_condition(<span class="keyword">const</span> Function&lt;dim&gt; &amp;function)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        operation-&gt;set_initial_condition(function);</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>      }</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>      <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>      set_boundary_conditions(<span class="keyword">const</span> std::shared_ptr&lt;SimulationCaseBase&lt;dim&gt;&gt; &amp;simulation_case,</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>                              <span class="keyword">const</span> std::string &amp;operation_name)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        operation-&gt;set_boundary_conditions(simulation_case, operation_name);</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>      }</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>      <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>      set_body_force(std::unique_ptr&lt;Function&lt;dim&gt;&gt; body_force_in)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>        operation-&gt;set_body_force(std::move(body_force_in));</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>      }</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1Utilities_1_1MatrixFree.html#aed2f6423007d1255567f4358ccd5d38c">VectorType</a> &amp;</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>      get_solution()<span class="keyword"> const override</span></div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>        <span class="keywordflow">return</span> operation-&gt;get_solution();</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>      }</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>      <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1Utilities_1_1MatrixFree.html#aed2f6423007d1255567f4358ccd5d38c">VectorType</a> &amp;</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>      get_solution()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        <span class="keywordflow">return</span> operation-&gt;get_solution();</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>      }</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>      <span class="keyword">const</span> dealii::DoFHandler&lt;dim&gt; &amp;</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>      get_dof_handler()<span class="keyword"> const override</span></div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="keyword">      </span>{</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        <span class="keywordflow">return</span> operation-&gt;get_dof_handler();</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>      }</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>      std::unique_ptr&lt;OperationType&gt; operation;</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    };</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    std::unique_ptr&lt;OperationConcept&gt; operation_pimpl;</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>  };</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>      set_boundary_conditions(</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keyword">const</span> std::shared_ptr&lt;<a class="code hl_class" href="classMeltPoolDG_1_1SimulationCaseBase.html">SimulationCaseBase&lt;dim, number&gt;</a>&gt; &amp;simulation_case,</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="keyword">const</span> std::string                                      &amp;operation_name) = 0;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>      set_body_force(std::unique_ptr&lt;Function&lt;dim&gt;&gt; body_force_in) = 0;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>      <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>      get_solution() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>      <span class="keyword">virtual</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>      get_solution() = 0;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>      <span class="keyword">virtual</span> <span class="keyword">const</span> dealii::DoFHandler&lt;dim&gt; &amp;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>      get_dof_handler() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    };</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> OperationType&gt;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keyword">struct </span>OperationModel <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#afe17ec33b8df67c10938bf95cca7da9b">final</a> : <span class="keyword">public</span> OperationConcept</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    {</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>      <span class="keyword">explicit</span> OperationModel(std::unique_ptr&lt;OperationType&gt; &amp;&amp;operation_in)</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        : operation(std::move(operation_in))</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>      {}</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>      solve(<span class="keyword">const</span> number current_time, <span class="keyword">const</span> number time_step)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        operation-&gt;solve(current_time, time_step);</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>      }</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>      <a class="code hl_function" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#ab95c220565e72ccd4dd83c0f1a84994a">distribute_dofs</a>(dealii::DoFHandler&lt;dim&gt; &amp;dof_handler)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>        operation-&gt;distribute_dofs(dof_handler);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>      }</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>      reinit()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        operation-&gt;reinit();</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>      }</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>      number</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>      compute_time_step_size(<span class="keyword">const</span> <span class="keywordtype">bool</span> do_print = <span class="keyword">false</span>)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>        <span class="keywordflow">return</span> operation-&gt;compute_time_step_size(do_print);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>      }</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>      set_initial_condition(<span class="keyword">const</span> Function&lt;dim&gt; &amp;function)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>        operation-&gt;set_initial_condition(function);</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>      }</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>      set_boundary_conditions(</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>        <span class="keyword">const</span> std::shared_ptr&lt;SimulationCaseBase&lt;dim, number&gt;&gt; &amp;simulation_case,</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        <span class="keyword">const</span> std::string                                      &amp;operation_name)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>        operation-&gt;set_boundary_conditions(simulation_case, operation_name);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>      }</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>      set_body_force(std::unique_ptr&lt;Function&lt;dim&gt;&gt; body_force_in)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        operation-&gt;set_body_force(std::move(body_force_in));</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>      }</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1Utilities_1_1MatrixFree.html#aed2f6423007d1255567f4358ccd5d38c">VectorType</a> &amp;</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>      get_solution()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        <span class="keywordflow">return</span> operation-&gt;get_solution();</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>      }</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>      <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1Utilities_1_1MatrixFree.html#aed2f6423007d1255567f4358ccd5d38c">VectorType</a> &amp;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>      get_solution()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>        <span class="keywordflow">return</span> operation-&gt;get_solution();</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>      }</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>      <span class="keyword">const</span> dealii::DoFHandler&lt;dim&gt; &amp;</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>      get_dof_handler()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>        <span class="keywordflow">return</span> operation-&gt;get_dof_handler();</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>      }</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>      std::unique_ptr&lt;OperationType&gt; operation;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    };</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    std::unique_ptr&lt;OperationConcept&gt; operation_pimpl;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>  };</div>
 </div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>} <span class="comment">// namespace MeltPoolDG::Flow</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>} <span class="comment">// namespace MeltPoolDG::Flow</span></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html">MeltPoolDG::Flow::CompressibleFlowOperation</a></div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:24</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_a152a8197c32a57584da9ca55d23032a7"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#a152a8197c32a57584da9ca55d23032a7">MeltPoolDG::Flow::CompressibleFlowOperation::CompressibleFlowOperation</a></div><div class="ttdeci">CompressibleFlowOperation(std::unique_ptr&lt; OperationType &gt; &amp;&amp;operation)</div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:37</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_a17b7552964974ae1b9d7eab64384983b"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#a17b7552964974ae1b9d7eab64384983b">MeltPoolDG::Flow::CompressibleFlowOperation::get_solution</a></div><div class="ttdeci">const VectorType &amp; get_solution() const</div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:132</div></div>
@@ -386,10 +388,10 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_a4cb116323fdd9f08d693a7e52fd41496"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#a4cb116323fdd9f08d693a7e52fd41496">MeltPoolDG::Flow::CompressibleFlowOperation::compute_time_step_size</a></div><div class="ttdeci">number compute_time_step_size(const bool do_print=false) const</div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:81</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_a74cda2e560369eb7064425104a07c1a8"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#a74cda2e560369eb7064425104a07c1a8">MeltPoolDG::Flow::CompressibleFlowOperation::attach_output_vectors</a></div><div class="ttdeci">void attach_output_vectors(GenericDataOut&lt; dim, double &gt; &amp;data_out) const</div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:150</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_a93869a1e21b5d9a4ea9180a2edddd4ed"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#a93869a1e21b5d9a4ea9180a2edddd4ed">MeltPoolDG::Flow::CompressibleFlowOperation::CompressibleFlowOperation</a></div><div class="ttdeci">CompressibleFlowOperation()=default</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_ac142e6b0433253da77669474eb001648"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#ac142e6b0433253da77669474eb001648">MeltPoolDG::Flow::CompressibleFlowOperation::set_boundary_conditions</a></div><div class="ttdeci">void set_boundary_conditions(const std::shared_ptr&lt; SimulationCaseBase&lt; dim, number &gt; &gt; &amp;simulation_case, const std::string &amp;operation_name)</div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:106</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_acc90b8e947919f200302a15543f40d8d"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#acc90b8e947919f200302a15543f40d8d">MeltPoolDG::Flow::CompressibleFlowOperation::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:215</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_ad69792a81a3e80034e72e34e4645bddd"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#ad69792a81a3e80034e72e34e4645bddd">MeltPoolDG::Flow::CompressibleFlowOperation::set_body_force</a></div><div class="ttdeci">void set_body_force(std::unique_ptr&lt; Function&lt; dim &gt; &gt; body_force_in)</div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:120</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_ae1dad1f91a692f2c767afaeded231b7e"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#ae1dad1f91a692f2c767afaeded231b7e">MeltPoolDG::Flow::CompressibleFlowOperation::solve</a></div><div class="ttdeci">void solve(const number current_time, const number time_step)</div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:48</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_ae844a352c8df752904b1585dc4f2d3d2"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#ae844a352c8df752904b1585dc4f2d3d2">MeltPoolDG::Flow::CompressibleFlowOperation::set_boundary_conditions</a></div><div class="ttdeci">void set_boundary_conditions(const std::shared_ptr&lt; SimulationCaseBase&lt; dim &gt; &gt; &amp;simulation_case, const std::string &amp;operation_name)</div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:106</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_af5cd3b6df9987ddc23b54559d2ad1934"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#af5cd3b6df9987ddc23b54559d2ad1934">MeltPoolDG::Flow::CompressibleFlowOperation::set_initial_condition</a></div><div class="ttdeci">void set_initial_condition(const Function&lt; dim &gt; &amp;function)</div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:92</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_af83b1706b72aa920734c2b1e656dad3b"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#af83b1706b72aa920734c2b1e656dad3b">MeltPoolDG::Flow::CompressibleFlowOperation::get_solution</a></div><div class="ttdeci">VectorType &amp; get_solution()</div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:138</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_html_afe17ec33b8df67c10938bf95cca7da9b"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#afe17ec33b8df67c10938bf95cca7da9b">MeltPoolDG::Flow::CompressibleFlowOperation::distribute_dofs</a></div><div class="ttdeci">void distribute_dofs(dealii::DoFHandler&lt; dim &gt; &amp;dof_handler) const</div><div class="ttdef"><b>Definition</b> compressible_flow_operation.hpp:59</div></div>

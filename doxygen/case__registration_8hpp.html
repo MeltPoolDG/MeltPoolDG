@@ -154,16 +154,16 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ad290998d4e96b34dcfdad88963fca320" id="r_ad290998d4e96b34dcfdad88963fca320"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="case__registration_8hpp.html#ad290998d4e96b34dcfdad88963fca320">MELTPOOLDG_REGISTER_CASE</a>(CaseClass,  ConcreteCaseClass,  case_name,  dim)</td></tr>
-<tr class="memdesc:ad290998d4e96b34dcfdad88963fca320"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a simulation case in the <a class="el" href="classSimulationCaseFactory.html" title="Factory class for registering and creating simulation cases.">SimulationCaseFactory</a>.  <br /></td></tr>
-<tr class="separator:ad290998d4e96b34dcfdad88963fca320"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e332c22d4d3ebef6f628d7ada3dcc9d" id="r_a1e332c22d4d3ebef6f628d7ada3dcc9d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="case__registration_8hpp.html#a1e332c22d4d3ebef6f628d7ada3dcc9d">MELTPOOLDG_REGISTER_MULTI_APP_CASE</a>(CaseClass,  ConcreteCaseClass,  case_name,  dim)</td></tr>
-<tr class="memdesc:a1e332c22d4d3ebef6f628d7ada3dcc9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Similar to the above, but allows an additional template parameter in the concrete simulation case that refers to the base simulation case class.  <br /></td></tr>
-<tr class="separator:a1e332c22d4d3ebef6f628d7ada3dcc9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a905480905baf0430a900de91f5deb255" id="r_a905480905baf0430a900de91f5deb255"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="case__registration_8hpp.html#a905480905baf0430a900de91f5deb255">MELTPOOLDG_REGISTER_CASE</a>(CaseClass,  ConcreteCaseClass,  case_name,  dim,  number)</td></tr>
+<tr class="memdesc:a905480905baf0430a900de91f5deb255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a simulation case in the <a class="el" href="classSimulationCaseFactory.html" title="Factory class for registering and creating simulation cases.">SimulationCaseFactory</a>.  <br /></td></tr>
+<tr class="separator:a905480905baf0430a900de91f5deb255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dc9abf7c66309038dc6bf5f88e04e51" id="r_a4dc9abf7c66309038dc6bf5f88e04e51"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="case__registration_8hpp.html#a4dc9abf7c66309038dc6bf5f88e04e51">MELTPOOLDG_REGISTER_MULTI_APP_CASE</a>(CaseClass,  ConcreteCaseClass,  case_name,  dim,  number)</td></tr>
+<tr class="memdesc:a4dc9abf7c66309038dc6bf5f88e04e51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Similar to the above, but allows an additional template parameter in the concrete simulation case that refers to the base simulation case class.  <br /></td></tr>
+<tr class="separator:a4dc9abf7c66309038dc6bf5f88e04e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ad290998d4e96b34dcfdad88963fca320" name="ad290998d4e96b34dcfdad88963fca320"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad290998d4e96b34dcfdad88963fca320">&#9670;&#160;</a></span>MELTPOOLDG_REGISTER_CASE</h2>
+<a id="a905480905baf0430a900de91f5deb255" name="a905480905baf0430a900de91f5deb255"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a905480905baf0430a900de91f5deb255">&#9670;&#160;</a></span>MELTPOOLDG_REGISTER_CASE</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -190,7 +190,13 @@ Macros</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">dim&#160;</td>
+          <td class="paramname">dim, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">number&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -199,10 +205,10 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keyword">static</span> <span class="keywordtype">bool</span> case_name_is_registered_##dim =                                              \</div>
-<div class="line">    <a class="code hl_class" href="classSimulationCaseFactory.html">SimulationCaseFactory&lt;CaseClass&lt;dim&gt;</a>&gt;::register_simulation(                            \</div>
-<div class="line">      case_name, [](<span class="keyword">const</span> std::string parameter_file, <span class="keyword">const</span> MPI_Comm mpi_communicator) {   \</div>
-<div class="line">        <span class="keywordflow">return</span> std::make_unique&lt;ConcreteCaseClass&lt;dim&gt;&gt;(parameter_file, mpi_communicator); \</div>
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keyword">static</span> <span class="keywordtype">bool</span> case_name_is_registered_##dim =                                                      \</div>
+<div class="line">    <a class="code hl_class" href="classSimulationCaseFactory.html">SimulationCaseFactory&lt;CaseClass&lt;dim, number&gt;</a>&gt;::register_simulation(                            \</div>
+<div class="line">      case_name, [](<span class="keyword">const</span> std::string parameter_file, <span class="keyword">const</span> MPI_Comm mpi_communicator) {           \</div>
+<div class="line">        <span class="keywordflow">return</span> std::make_unique&lt;ConcreteCaseClass&lt;dim, number&gt;&gt;(parameter_file, mpi_communicator); \</div>
 <div class="line">      });</div>
 <div class="ttc" id="aclassSimulationCaseFactory_html"><div class="ttname"><a href="classSimulationCaseFactory.html">SimulationCaseFactory</a></div><div class="ttdoc">Factory class for registering and creating simulation cases.</div><div class="ttdef"><b>Definition</b> case_factory.hpp:19</div></div>
 </div><!-- fragment -->
@@ -218,16 +224,17 @@ Macros</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">case_name</td><td>A unique name for the simulation case. </td></tr>
-    <tr><td class="paramname">dim</td><td>The dimensionality of the simulation case.</td></tr>
+    <tr><td class="paramname">dim</td><td>The dimensionality of the simulation case. </td></tr>
+    <tr><td class="paramname">number</td><td>The used floating point number format.</td></tr>
   </table>
   </dd>
 </dl>
-<p>The macro invokes <code><a class="el" href="classSimulationCaseFactory.html" title="Factory class for registering and creating simulation cases.">SimulationCaseFactory</a>&lt;CaseClass&lt;dim&gt;&gt;::register_simulation</code>, registering a lambda function that creates an instance of <code>ConcreteCaseClass&lt;dim&gt;</code> when given a parameter file and an MPI communicator. </p>
+<p>The macro invokes <code><a class="el" href="classSimulationCaseFactory.html" title="Factory class for registering and creating simulation cases.">SimulationCaseFactory</a>&lt;CaseClass&lt;dim, number&gt;&gt;::register_simulation</code>, registering a lambda function that creates an instance of <code>ConcreteCaseClass&lt;dim, number&gt;</code> when given a parameter file and an MPI communicator. </p>
 
 </div>
 </div>
-<a id="a1e332c22d4d3ebef6f628d7ada3dcc9d" name="a1e332c22d4d3ebef6f628d7ada3dcc9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e332c22d4d3ebef6f628d7ada3dcc9d">&#9670;&#160;</a></span>MELTPOOLDG_REGISTER_MULTI_APP_CASE</h2>
+<a id="a4dc9abf7c66309038dc6bf5f88e04e51" name="a4dc9abf7c66309038dc6bf5f88e04e51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dc9abf7c66309038dc6bf5f88e04e51">&#9670;&#160;</a></span>MELTPOOLDG_REGISTER_MULTI_APP_CASE</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -254,7 +261,13 @@ Macros</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">dim&#160;</td>
+          <td class="paramname">dim, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">number&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -263,11 +276,11 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keyword">static</span> <span class="keywordtype">bool</span> case_name_is_registered_##dim =                                              \</div>
-<div class="line">    <a class="code hl_class" href="classSimulationCaseFactory.html">SimulationCaseFactory&lt;CaseClass&lt;dim&gt;</a>&gt;::register_simulation(                            \</div>
-<div class="line">      case_name, [](<span class="keyword">const</span> std::string parameter_file, <span class="keyword">const</span> MPI_Comm mpi_communicator) {   \</div>
-<div class="line">        <span class="keywordflow">return</span> std::make_unique&lt;ConcreteCaseClass&lt;dim, CaseClass&lt;dim&gt;&gt;&gt;(parameter_file,    \</div>
-<div class="line">                                                                        mpi_communicator); \</div>
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keyword">static</span> <span class="keywordtype">bool</span> case_name_is_registered_##dim =                                                    \</div>
+<div class="line">    <a class="code hl_class" href="classSimulationCaseFactory.html">SimulationCaseFactory&lt;CaseClass&lt;dim, number&gt;</a>&gt;::register_simulation(                          \</div>
+<div class="line">      case_name, [](<span class="keyword">const</span> std::string parameter_file, <span class="keyword">const</span> MPI_Comm mpi_communicator) {         \</div>
+<div class="line">        <span class="keywordflow">return</span> std::make_unique&lt;ConcreteCaseClass&lt;dim, number, CaseClass&lt;dim, number&gt;&gt;&gt;(         \</div>
+<div class="line">          parameter_file, mpi_communicator);                                                     \</div>
 <div class="line">      });</div>
 </div><!-- fragment -->
 <p>Similar to the above, but allows an additional template parameter in the concrete simulation case that refers to the base simulation case class. </p>
