@@ -134,261 +134,262 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>     TimeIntegratorSchemes::bdf_5,</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>     TimeIntegratorSchemes::bdf_6}};</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim,</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keyword">typename</span> number,</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            BDFImplicitPDEOperator&lt;number, LinearAlgebra::distributed::Vector&lt;number&gt;&gt; PDEOperator&gt;</div>
-<div class="foldopen" id="foldopen00085" data-start="{" data-end="};">
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html">   85</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1BDFIntegrator.html">BDFIntegrator</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt;number&gt;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  {</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">   88</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="foldopen" id="foldopen00099" data-start="{" data-end="}">
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html#a2619c81189638104599c0645cc8b6b97">   99</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#a2619c81189638104599c0645cc8b6b97">BDFIntegrator</a>(<span class="keyword">const</span> PDEOperator                   &amp;pde_operator,</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                  <span class="keyword">const</span> TimeIntegratorData            &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a3a61c56185e3bd427e451cc51a882fa4">time_integrator_data</a>,</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                  <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;scratch_data_in,</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   dof_idx_in)</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      : <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt;number&gt;(<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a3a61c56185e3bd427e451cc51a882fa4">time_integrator_data</a>)</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      , pde_operator(pde_operator)</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      , nonlinear_solver(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a3a61c56185e3bd427e451cc51a882fa4">time_integrator_data</a>.nlsolver_data)</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      , scratch_data(scratch_data_in)</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      , dof_idx(dof_idx_in)</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    {</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      preconditioner = make_preconditioner&lt;dim, number, PDEOperator, VectorType&gt;(</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a3a61c56185e3bd427e451cc51a882fa4">time_integrator_data</a>.linear_solver_data.preconditioner_type, &amp;pde_operator);</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keyword">template</span> &lt;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">int</span> dim,</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">typename</span> number,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    BDFImplicitPDEOperator&lt;number, dealii::LinearAlgebra::distributed::Vector&lt;number&gt;&gt; PDEOperator&gt;</div>
+<div class="foldopen" id="foldopen00086" data-start="{" data-end="};">
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html">   86</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1BDFIntegrator.html">BDFIntegrator</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt;number&gt;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">   89</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="foldopen" id="foldopen00100" data-start="{" data-end="}">
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html#ae92144b98c6fb7de348a43b67ea4481b">  100</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#ae92144b98c6fb7de348a43b67ea4481b">BDFIntegrator</a>(<span class="keyword">const</span> PDEOperator                   &amp;pde_operator,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                  <span class="keyword">const</span> TimeIntegratorData&lt;number&gt;    &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#ad517b71e8f50664effc9813f513814a7">time_integrator_data</a>,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                  <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;scratch_data_in,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   dof_idx_in)</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      : <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt;number&gt;(<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#ad517b71e8f50664effc9813f513814a7">time_integrator_data</a>)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      , pde_operator(pde_operator)</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      , nonlinear_solver(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#ad517b71e8f50664effc9813f513814a7">time_integrator_data</a>.nlsolver_data)</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      , scratch_data(scratch_data_in)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      , dof_idx(dof_idx_in)</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      preconditioner = make_preconditioner&lt;dim, number, PDEOperator, VectorType&gt;(</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#ad517b71e8f50664effc9813f513814a7">time_integrator_data</a>.linear_solver_data.preconditioner_type, &amp;pde_operator);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    }</div>
 </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
-<div class="foldopen" id="foldopen00114" data-start="{" data-end="}">
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html#a1d00d70ff8483f8246db7a0a81096b75">  114</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#a1d00d70ff8483f8246db7a0a81096b75">required_solution_history_size</a>()<span class="keyword"> const override</span></div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      <span class="keywordflow">switch</span> (this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a3a61c56185e3bd427e451cc51a882fa4">time_integrator_data</a>.integrator_type)</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        {</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>          <span class="keywordflow">case</span> TimeIntegratorSchemes::bdf_1:</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            <span class="keywordflow">return</span> 2;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>          <span class="keywordflow">case</span> TimeIntegratorSchemes::bdf_2:</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            <span class="keywordflow">return</span> 3;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>          <span class="keywordflow">case</span> TimeIntegratorSchemes::bdf_3:</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            <span class="keywordflow">return</span> 4;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>          <span class="keywordflow">case</span> TimeIntegratorSchemes::bdf_4:</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            <span class="keywordflow">return</span> 5;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>          <span class="keywordflow">case</span> TimeIntegratorSchemes::bdf_5:</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            <span class="keywordflow">return</span> 6;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>          <span class="keywordflow">case</span> TimeIntegratorSchemes::bdf_6:</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            <span class="keywordflow">return</span> 7;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>          <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            AssertThrow(<span class="keyword">false</span>, dealii::ExcNotImplemented());</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        }</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="foldopen" id="foldopen00115" data-start="{" data-end="}">
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html#a1d00d70ff8483f8246db7a0a81096b75">  115</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#a1d00d70ff8483f8246db7a0a81096b75">required_solution_history_size</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <span class="keywordflow">switch</span> (this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#ad517b71e8f50664effc9813f513814a7">time_integrator_data</a>.integrator_type)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>          <span class="keywordflow">case</span> TimeIntegratorSchemes::bdf_1:</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="keywordflow">return</span> 2;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>          <span class="keywordflow">case</span> TimeIntegratorSchemes::bdf_2:</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            <span class="keywordflow">return</span> 3;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>          <span class="keywordflow">case</span> TimeIntegratorSchemes::bdf_3:</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            <span class="keywordflow">return</span> 4;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>          <span class="keywordflow">case</span> TimeIntegratorSchemes::bdf_4:</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            <span class="keywordflow">return</span> 5;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>          <span class="keywordflow">case</span> TimeIntegratorSchemes::bdf_5:</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            <span class="keywordflow">return</span> 6;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>          <span class="keywordflow">case</span> TimeIntegratorSchemes::bdf_6:</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            <span class="keywordflow">return</span> 7;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>          <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            AssertThrow(<span class="keyword">false</span>, dealii::ExcNotImplemented());</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
 </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00143" data-start="{" data-end="}">
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html#a57ead138e9057d96fc9ccb5d7f14aa02">  143</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#a57ead138e9057d96fc9ccb5d7f14aa02">reinit</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;vector_template)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>      summed_old_solution.reinit(vector_template, <span class="keyword">true</span>);</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      preconditioner.reinit(scratch_data, dof_idx);</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html#a57ead138e9057d96fc9ccb5d7f14aa02">  144</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#a57ead138e9057d96fc9ccb5d7f14aa02">reinit</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;vector_template)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      summed_old_solution.reinit(vector_template, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      preconditioner.reinit(scratch_data, dof_idx);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
 </div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00154" data-start="{" data-end="}">
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html#a1a1befb73ae9072e78921e015ea08597">  154</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#a1a1befb73ae9072e78921e015ea08597">reinit</a>(const ::TimeIntegration::SolutionHistory&lt;VectorType, number&gt; &amp;solution_history)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#a57ead138e9057d96fc9ccb5d7f14aa02">reinit</a>(solution_history.get_current_solution());</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    }</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00155" data-start="{" data-end="}">
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html#a1a1befb73ae9072e78921e015ea08597">  155</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#a1a1befb73ae9072e78921e015ea08597">reinit</a>(const ::TimeIntegration::SolutionHistory&lt;VectorType, number&gt; &amp;solution_history)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>      <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#a57ead138e9057d96fc9ccb5d7f14aa02">reinit</a>(solution_history.get_current_solution());</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    }</div>
 </div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00172" data-start="{" data-end="}">
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html#ab8d3b9ae7b88e247abb94c32629c7611">  172</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#ab8d3b9ae7b88e247abb94c32629c7611">perform_time_step</a>(</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      <span class="keyword">const</span> number                                                         current_time,</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      <span class="keyword">const</span> number                                                         time_step,</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>      <a class="code hl_class" href="classTimeIntegration_1_1SolutionHistory.html">::TimeIntegration::SolutionHistory&lt;VectorType, number&gt;</a>              &amp;solution_history,</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(number, <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;)&gt; &amp;stage_pre_processing,</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(number, <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;)&gt; &amp;stage_post_processing)<span class="keyword"></span></div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="keyword">      override</span></div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>      <span class="comment">// Perform the initial steps with a bdf scheme of lower order, i.e. 1st step: BDF1, 2nd</span></div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>      <span class="comment">// step BDF2 and so on until the desired BDF scheme is reached</span></div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>      <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> step_count = 0;</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      <span class="keywordflow">if</span> (step_count != <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#a1d00d70ff8483f8246db7a0a81096b75">required_solution_history_size</a>() - 1)</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        {</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>          ++step_count;</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>          set_up_bdf_parameters(step_count);</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        }</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>      Assert(solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a2f8773a6cc993dc5ec6b9bf46a332ea8">size</a>() &gt; step_count,</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>             dealii::ExcMessage(</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>               <span class="stringliteral">&quot;The size of the solution history object does not fit the requirements of the &quot;</span></div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>               <span class="stringliteral">&quot;chosen time integration scheme.&quot;</span>));</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>      DEAL_II_OPENMP_SIMD_PRAGMA</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; summed_old_solution.locally_owned_size(); ++i)</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        {</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>          summed_old_solution.local_element(i) = 0.;</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>          <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> j = step_count; j &gt; 0; --j)</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            {</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>              summed_old_solution.local_element(i) +=</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                bdf_prefactors_old_solutions[j - 1] *</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a754e71571f7ca7c0308f3a1d8b1acce3">get_solution</a>(j).local_element(i);</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>            }</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        }</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>      <span class="comment">// matrix type wrapper for the jacobian</span></div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      std::function&lt;void(<a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;)&gt; jacobian_multiplication =</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <a class="code hl_define" href="preprocessor__directives_8hpp.html#a8a5a36a18c31fde1dba2a41bed4854fb">MPDG_LAMBDA_WRAPPER</a>(pde_operator.apply_jacobian);</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>      <a class="code hl_struct" href="structMatrixTypeObject.html">MatrixTypeObject&lt;VectorType&gt;</a> jacobian(jacobian_multiplication);</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>      nonlinear_solver.<a class="code hl_variable" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a3deb3fb464db8b6738d103eb704f9376">norm_of_solution_vector</a> =</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        [&amp;solution = solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>()]() -&gt; <span class="keywordtype">double</span> {</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <span class="keywordflow">return</span> solution.l2_norm();</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      };</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>      nonlinear_solver.<a class="code hl_variable" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a16ef5d08e8abbafca001c05f71f2f208">distribute_constraints</a> = [&amp;pde_operator =</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                                                   pde_operator](<a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;solution) -&gt; <span class="keywordtype">void</span> {</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (<a class="code hl_concept" href="conceptMeltPoolDG_1_1SolutionRequiresConstraints.html">SolutionRequiresConstraints&lt;PDEOperator, VectorType&gt;</a>)</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>          pde_operator.distribute_constraints(solution);</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      };</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>      nonlinear_solver.<a class="code hl_variable" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a028737eb90dadace4d22caa098c9f4dd">reinit_vector</a> = [&amp;solution = solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>()](</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>                                         <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;vec) -&gt; <span class="keywordtype">void</span> { vec.reinit(solution); };</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      nonlinear_solver.<a class="code hl_variable" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a5b4a7d2d802fe5c9b6941bf6a24173e7">residual</a> =</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        [&amp;current_time, &amp;pde_operator = pde_operator](<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;src, <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;dst) {</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>          pde_operator.compute_residual(current_time, src, dst);</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        };</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>      nonlinear_solver.<a class="code hl_variable" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a3020c5ea50b97bcd0d749d843fa10136">solve_with_jacobian</a> =</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        [&amp;jacobian       = jacobian,</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>         &amp;data           = this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a3a61c56185e3bd427e451cc51a882fa4">time_integrator_data</a>.linear_solver_data,</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>         &amp;preconditioner = preconditioner](<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;rhs, <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;dst) {</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>          <span class="keywordflow">return</span> <a class="code hl_function" href="classMeltPoolDG_1_1LinearSolver.html#ac1e5c5c689254c8d3faec54156506b7e">LinearSolver::solve</a>(jacobian, dst, rhs, data, preconditioner);</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        };</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>      <span class="keyword">static</span> <span class="keywordtype">int</span> count = 0;</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      <span class="keywordflow">if</span> (count % this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#a3a61c56185e3bd427e451cc51a882fa4">time_integrator_data</a>.preconditioner_update_frequency == 0)</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        preconditioner.update();</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>      count++;</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>      <span class="keywordflow">if</span> (stage_pre_processing)</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        stage_pre_processing(current_time,</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                             solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>(),</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                             solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>());</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>      pde_operator.set_stage_constants(current_time + time_step,</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                                       time_step,</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                                       summed_old_solution,</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                                       rhs_prefactor);</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>      nonlinear_solver.<a class="code hl_function" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a515a250606154c87378c6aa394705d20">solve</a>(solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>());</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>      <span class="keywordflow">if</span> (stage_post_processing)</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>        stage_post_processing(current_time + time_step,</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                              solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>(),</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                              solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>());</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    }</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00173" data-start="{" data-end="}">
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1BDFIntegrator.html#ab8d3b9ae7b88e247abb94c32629c7611">  173</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#ab8d3b9ae7b88e247abb94c32629c7611">perform_time_step</a>(</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      <span class="keyword">const</span> number                                                         current_time,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>      <span class="keyword">const</span> number                                                         time_step,</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      <a class="code hl_class" href="classTimeIntegration_1_1SolutionHistory.html">::TimeIntegration::SolutionHistory&lt;VectorType, number&gt;</a>              &amp;solution_history,</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(number, <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;)&gt; &amp;stage_pre_processing,</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(number, <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;)&gt; &amp;stage_post_processing)<span class="keyword"></span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keyword">      override</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>      <span class="comment">// Perform the initial steps with a bdf scheme of lower order, i.e. 1st step: BDF1, 2nd</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>      <span class="comment">// step BDF2 and so on until the desired BDF scheme is reached</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> step_count = 0;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>      <span class="keywordflow">if</span> (step_count != <a class="code hl_function" href="classMeltPoolDG_1_1BDFIntegrator.html#a1d00d70ff8483f8246db7a0a81096b75">required_solution_history_size</a>() - 1)</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        {</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>          ++step_count;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>          set_up_bdf_parameters(step_count);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        }</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>      Assert(solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a2f8773a6cc993dc5ec6b9bf46a332ea8">size</a>() &gt; step_count,</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>             dealii::ExcMessage(</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>               <span class="stringliteral">&quot;The size of the solution history object does not fit the requirements of the &quot;</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>               <span class="stringliteral">&quot;chosen time integration scheme.&quot;</span>));</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>      DEAL_II_OPENMP_SIMD_PRAGMA</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; summed_old_solution.locally_owned_size(); ++i)</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        {</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>          summed_old_solution.local_element(i) = 0.;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>          <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> j = step_count; j &gt; 0; --j)</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>            {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>              summed_old_solution.local_element(i) +=</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                bdf_prefactors_old_solutions[j - 1] *</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>                solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a754e71571f7ca7c0308f3a1d8b1acce3">get_solution</a>(j).local_element(i);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>            }</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        }</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      <span class="comment">// matrix type wrapper for the jacobian</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>      std::function&lt;void(<a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;)&gt; jacobian_multiplication =</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        <a class="code hl_define" href="preprocessor__directives_8hpp.html#a8a5a36a18c31fde1dba2a41bed4854fb">MPDG_LAMBDA_WRAPPER</a>(pde_operator.apply_jacobian);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>      <a class="code hl_struct" href="structMatrixTypeObject.html">MatrixTypeObject&lt;VectorType&gt;</a> jacobian(jacobian_multiplication);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      nonlinear_solver.<a class="code hl_variable" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a949d504db85572ed5c0bc12c293a3cac">norm_of_solution_vector</a> =</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        [&amp;solution = solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>()]() -&gt; number {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <span class="keywordflow">return</span> solution.l2_norm();</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>      };</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>      nonlinear_solver.<a class="code hl_variable" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a8aba928204057a51f8847adc8878c6f1">distribute_constraints</a> = [&amp;pde_operator =</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                                                   pde_operator](<a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;solution) -&gt; <span class="keywordtype">void</span> {</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (<a class="code hl_concept" href="conceptMeltPoolDG_1_1SolutionRequiresConstraints.html">SolutionRequiresConstraints&lt;PDEOperator, VectorType&gt;</a>)</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>          pde_operator.distribute_constraints(solution);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      };</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>      nonlinear_solver.<a class="code hl_variable" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a317a7c7153635bc088d1a0a9f1d57747">reinit_vector</a> = [&amp;solution = solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>()](</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                                         <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;vec) -&gt; <span class="keywordtype">void</span> { vec.reinit(solution); };</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>      nonlinear_solver.<a class="code hl_variable" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a076c9eb09c222f3a1211befb84487e7c">residual</a> =</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        [&amp;current_time, &amp;pde_operator = pde_operator](<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;src, <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;dst) {</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>          pde_operator.compute_residual(current_time, src, dst);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        };</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>      nonlinear_solver.<a class="code hl_variable" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a82f90dc58587bb7cf38a1723ae7b7657">solve_with_jacobian</a> =</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        [&amp;jacobian       = jacobian,</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>         &amp;data           = this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#ad517b71e8f50664effc9813f513814a7">time_integrator_data</a>.linear_solver_data,</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>         &amp;preconditioner = preconditioner](<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;rhs, <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> &amp;dst) {</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>          <span class="keywordflow">return</span> <a class="code hl_function" href="classMeltPoolDG_1_1LinearSolver.html#acea24f43aaef331e3bf3b38c0b6eef3b">LinearSolver::solve</a>(jacobian, dst, rhs, data, preconditioner);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        };</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      <span class="keyword">static</span> <span class="keywordtype">int</span> count = 0;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>      <span class="keywordflow">if</span> (count % this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1TimeIntegratorBase.html#ad517b71e8f50664effc9813f513814a7">time_integrator_data</a>.preconditioner_update_frequency == 0)</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        preconditioner.update();</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>      count++;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>      <span class="keywordflow">if</span> (stage_pre_processing)</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        stage_pre_processing(current_time,</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                             solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>(),</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                             solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>());</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>      pde_operator.set_stage_constants(current_time + time_step,</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                                       time_step,</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                                       summed_old_solution,</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>                                       rhs_prefactor);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>      nonlinear_solver.<a class="code hl_function" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#acc2a18aa96335bc967efaed98f8f4a42">solve</a>(solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>());</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>      <span class="keywordflow">if</span> (stage_post_processing)</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        stage_post_processing(current_time + time_step,</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                              solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>(),</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                              solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>());</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    }</div>
 </div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    set_up_bdf_parameters(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> bdf_scheme)</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    {</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>      bdf_prefactors_old_solutions.clear();</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>      <span class="keywordflow">switch</span> (bdf_scheme)</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        {</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>            <span class="keywordflow">case</span> 1: {</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>              rhs_prefactor = 1.;</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>              bdf_prefactors_old_solutions.reserve(1);</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>              bdf_prefactors_old_solutions.push_back(1.);</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>              <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>            }</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            <span class="keywordflow">case</span> 2: {</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>              rhs_prefactor = 2. / 3.;</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>              bdf_prefactors_old_solutions.reserve(2);</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>              bdf_prefactors_old_solutions.push_back(4. / 3.);</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>              bdf_prefactors_old_solutions.push_back(-1. / 3.);</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>              <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>            }</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>            <span class="keywordflow">case</span> 3: {</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>              rhs_prefactor = 6. / 11.;</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>              bdf_prefactors_old_solutions.reserve(3);</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>              bdf_prefactors_old_solutions.push_back(18. / 11.);</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>              bdf_prefactors_old_solutions.push_back(-9. / 11.);</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>              bdf_prefactors_old_solutions.push_back(2. / 11.);</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>              <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>            }</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>            <span class="keywordflow">case</span> 4: {</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>              rhs_prefactor = 12. / 25.;</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>              bdf_prefactors_old_solutions.reserve(4);</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>              bdf_prefactors_old_solutions.push_back(48. / 25.);</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>              bdf_prefactors_old_solutions.push_back(-36. / 25.);</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>              bdf_prefactors_old_solutions.push_back(16. / 25.);</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>              bdf_prefactors_old_solutions.push_back(-3. / 25.);</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>              <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>            }</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>            <span class="keywordflow">case</span> 5: {</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>              rhs_prefactor = 60. / 137.;</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>              bdf_prefactors_old_solutions.reserve(5);</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>              bdf_prefactors_old_solutions.push_back(300. / 137.);</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>              bdf_prefactors_old_solutions.push_back(-300. / 137.);</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>              bdf_prefactors_old_solutions.push_back(200. / 137.);</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>              bdf_prefactors_old_solutions.push_back(-75. / 137.);</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>              bdf_prefactors_old_solutions.push_back(12. / 137.);</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>              <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>            }</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>            <span class="keywordflow">case</span> 6: {</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>              rhs_prefactor = 60. / 147.;</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>              bdf_prefactors_old_solutions.reserve(6);</div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>              bdf_prefactors_old_solutions.push_back(360. / 147.);</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>              bdf_prefactors_old_solutions.push_back(-450. / 147.);</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>              bdf_prefactors_old_solutions.push_back(400. / 147.);</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>              bdf_prefactors_old_solutions.push_back(-225. / 147.);</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>              bdf_prefactors_old_solutions.push_back(72. / 147.);</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>              bdf_prefactors_old_solutions.push_back(-10. / 147.);</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>              <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>            }</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>          <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>            Assert(<span class="keyword">false</span>, dealii::ExcMessage(<span class="stringliteral">&quot;This code should not be reachable!&quot;</span>));</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        }</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    }</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keyword">const</span> PDEOperator &amp;pde_operator;</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    Preconditioner&lt;dim, VectorType, number&gt; preconditioner;</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    NewtonRaphsonSolver&lt;VectorType&gt; nonlinear_solver;</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    number rhs_prefactor;</div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    std::vector&lt;number&gt; bdf_prefactors_old_solutions;</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> summed_old_solution;</div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <span class="keyword">const</span> ScratchData&lt;dim, dim, number&gt; &amp;scratch_data;</div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dof_idx;</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>  };</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    set_up_bdf_parameters(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> bdf_scheme)</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    {</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>      bdf_prefactors_old_solutions.clear();</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>      <span class="keywordflow">switch</span> (bdf_scheme)</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        {</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>            <span class="keywordflow">case</span> 1: {</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>              rhs_prefactor = 1.;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>              bdf_prefactors_old_solutions.reserve(1);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>              bdf_prefactors_old_solutions.push_back(1.);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>              <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            }</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            <span class="keywordflow">case</span> 2: {</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>              rhs_prefactor = 2. / 3.;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>              bdf_prefactors_old_solutions.reserve(2);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>              bdf_prefactors_old_solutions.push_back(4. / 3.);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>              bdf_prefactors_old_solutions.push_back(-1. / 3.);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>              <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>            }</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>            <span class="keywordflow">case</span> 3: {</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>              rhs_prefactor = 6. / 11.;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>              bdf_prefactors_old_solutions.reserve(3);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>              bdf_prefactors_old_solutions.push_back(18. / 11.);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>              bdf_prefactors_old_solutions.push_back(-9. / 11.);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>              bdf_prefactors_old_solutions.push_back(2. / 11.);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>              <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>            }</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>            <span class="keywordflow">case</span> 4: {</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>              rhs_prefactor = 12. / 25.;</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>              bdf_prefactors_old_solutions.reserve(4);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>              bdf_prefactors_old_solutions.push_back(48. / 25.);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>              bdf_prefactors_old_solutions.push_back(-36. / 25.);</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>              bdf_prefactors_old_solutions.push_back(16. / 25.);</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>              bdf_prefactors_old_solutions.push_back(-3. / 25.);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>              <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>            }</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>            <span class="keywordflow">case</span> 5: {</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>              rhs_prefactor = 60. / 137.;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>              bdf_prefactors_old_solutions.reserve(5);</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>              bdf_prefactors_old_solutions.push_back(300. / 137.);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>              bdf_prefactors_old_solutions.push_back(-300. / 137.);</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>              bdf_prefactors_old_solutions.push_back(200. / 137.);</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>              bdf_prefactors_old_solutions.push_back(-75. / 137.);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>              bdf_prefactors_old_solutions.push_back(12. / 137.);</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>              <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>            }</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>            <span class="keywordflow">case</span> 6: {</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>              rhs_prefactor = 60. / 147.;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>              bdf_prefactors_old_solutions.reserve(6);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>              bdf_prefactors_old_solutions.push_back(360. / 147.);</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>              bdf_prefactors_old_solutions.push_back(-450. / 147.);</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>              bdf_prefactors_old_solutions.push_back(400. / 147.);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>              bdf_prefactors_old_solutions.push_back(-225. / 147.);</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>              bdf_prefactors_old_solutions.push_back(72. / 147.);</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>              bdf_prefactors_old_solutions.push_back(-10. / 147.);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>              <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>            }</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>          <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>            Assert(<span class="keyword">false</span>, dealii::ExcMessage(<span class="stringliteral">&quot;This code should not be reachable!&quot;</span>));</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        }</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    }</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    <span class="keyword">const</span> PDEOperator &amp;pde_operator;</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    Preconditioner&lt;dim, VectorType, number&gt; preconditioner;</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    NewtonRaphsonSolver&lt;number, VectorType&gt; nonlinear_solver;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    number rhs_prefactor;</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    std::vector&lt;number&gt; bdf_prefactors_old_solutions;</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">VectorType</a> summed_old_solution;</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    <span class="keyword">const</span> ScratchData&lt;dim, dim, number&gt; &amp;scratch_data;</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span> </div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dof_idx;</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>  };</div>
 </div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>} <span class="comment">// namespace MeltPoolDG</span></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html">MeltPoolDG::BDFIntegrator</a></div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:86</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html_a1a1befb73ae9072e78921e015ea08597"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html#a1a1befb73ae9072e78921e015ea08597">MeltPoolDG::BDFIntegrator::reinit</a></div><div class="ttdeci">void reinit(const ::TimeIntegration::SolutionHistory&lt; VectorType, number &gt; &amp;solution_history) override</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:154</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html_a1d00d70ff8483f8246db7a0a81096b75"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html#a1d00d70ff8483f8246db7a0a81096b75">MeltPoolDG::BDFIntegrator::required_solution_history_size</a></div><div class="ttdeci">unsigned int required_solution_history_size() const override</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:114</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html_a2619c81189638104599c0645cc8b6b97"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html#a2619c81189638104599c0645cc8b6b97">MeltPoolDG::BDFIntegrator::BDFIntegrator</a></div><div class="ttdeci">BDFIntegrator(const PDEOperator &amp;pde_operator, const TimeIntegratorData &amp;time_integrator_data, const ScratchData&lt; dim, dim, number &gt; &amp;scratch_data_in, const unsigned int dof_idx_in)</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:99</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html_a57ead138e9057d96fc9ccb5d7f14aa02"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html#a57ead138e9057d96fc9ccb5d7f14aa02">MeltPoolDG::BDFIntegrator::reinit</a></div><div class="ttdeci">void reinit(const VectorType &amp;vector_template) override</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:143</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html_ab8d3b9ae7b88e247abb94c32629c7611"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html#ab8d3b9ae7b88e247abb94c32629c7611">MeltPoolDG::BDFIntegrator::perform_time_step</a></div><div class="ttdeci">void perform_time_step(const number current_time, const number time_step, ::TimeIntegration::SolutionHistory&lt; VectorType, number &gt; &amp;solution_history, const std::function&lt; void(number, VectorType &amp;, const VectorType &amp;)&gt; &amp;stage_pre_processing, const std::function&lt; void(number, VectorType &amp;, const VectorType &amp;)&gt; &amp;stage_post_processing) override</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:172</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html_aef0ddec8cbcf127810d369a446d16d24"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">MeltPoolDG::BDFIntegrator::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:88</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1LinearSolver_html_ac1e5c5c689254c8d3faec54156506b7e"><div class="ttname"><a href="classMeltPoolDG_1_1LinearSolver.html#ac1e5c5c689254c8d3faec54156506b7e">MeltPoolDG::LinearSolver::solve</a></div><div class="ttdeci">static int solve(const OperatorType &amp;system_matrix, VectorType &amp;solution, const VectorType &amp;rhs, const LinearSolverData&lt; double &gt; &amp;data, const PreconditionerType &amp;preconditioner=dealii::PreconditionIdentity(), const std::string identifier=&quot;&quot;)</div><div class="ttdef"><b>Definition</b> linear_solver.hpp:28</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html_a028737eb90dadace4d22caa098c9f4dd"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a028737eb90dadace4d22caa098c9f4dd">MeltPoolDG::NewtonRaphsonSolver::reinit_vector</a></div><div class="ttdeci">std::function&lt; void(VectorType &amp;v)&gt; reinit_vector</div><div class="ttdef"><b>Definition</b> newton_raphson_solver.hpp:23</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html_a16ef5d08e8abbafca001c05f71f2f208"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a16ef5d08e8abbafca001c05f71f2f208">MeltPoolDG::NewtonRaphsonSolver::distribute_constraints</a></div><div class="ttdeci">std::function&lt; void(VectorType &amp;v)&gt; distribute_constraints</div><div class="ttdef"><b>Definition</b> newton_raphson_solver.hpp:24</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html_a3020c5ea50b97bcd0d749d843fa10136"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a3020c5ea50b97bcd0d749d843fa10136">MeltPoolDG::NewtonRaphsonSolver::solve_with_jacobian</a></div><div class="ttdeci">std::function&lt; int(const VectorType &amp;rhs, VectorType &amp;dst)&gt; solve_with_jacobian</div><div class="ttdef"><b>Definition</b> newton_raphson_solver.hpp:22</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html_a3deb3fb464db8b6738d103eb704f9376"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a3deb3fb464db8b6738d103eb704f9376">MeltPoolDG::NewtonRaphsonSolver::norm_of_solution_vector</a></div><div class="ttdeci">std::function&lt; double()&gt; norm_of_solution_vector</div><div class="ttdef"><b>Definition</b> newton_raphson_solver.hpp:27</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html_a515a250606154c87378c6aa394705d20"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a515a250606154c87378c6aa394705d20">MeltPoolDG::NewtonRaphsonSolver::solve</a></div><div class="ttdeci">void solve(VectorType &amp;solution)</div><div class="ttdef"><b>Definition</b> newton_raphson_solver.cpp:24</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html_a5b4a7d2d802fe5c9b6941bf6a24173e7"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a5b4a7d2d802fe5c9b6941bf6a24173e7">MeltPoolDG::NewtonRaphsonSolver::residual</a></div><div class="ttdeci">std::function&lt; void(const VectorType &amp;evaluation_point, VectorType &amp;residual)&gt; residual</div><div class="ttdef"><b>Definition</b> newton_raphson_solver.hpp:21</div></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html">MeltPoolDG::BDFIntegrator</a></div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:87</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html_a1a1befb73ae9072e78921e015ea08597"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html#a1a1befb73ae9072e78921e015ea08597">MeltPoolDG::BDFIntegrator::reinit</a></div><div class="ttdeci">void reinit(const ::TimeIntegration::SolutionHistory&lt; VectorType, number &gt; &amp;solution_history) override</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:155</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html_a1d00d70ff8483f8246db7a0a81096b75"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html#a1d00d70ff8483f8246db7a0a81096b75">MeltPoolDG::BDFIntegrator::required_solution_history_size</a></div><div class="ttdeci">unsigned int required_solution_history_size() const override</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:115</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html_a57ead138e9057d96fc9ccb5d7f14aa02"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html#a57ead138e9057d96fc9ccb5d7f14aa02">MeltPoolDG::BDFIntegrator::reinit</a></div><div class="ttdeci">void reinit(const VectorType &amp;vector_template) override</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:144</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html_ab8d3b9ae7b88e247abb94c32629c7611"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html#ab8d3b9ae7b88e247abb94c32629c7611">MeltPoolDG::BDFIntegrator::perform_time_step</a></div><div class="ttdeci">void perform_time_step(const number current_time, const number time_step, ::TimeIntegration::SolutionHistory&lt; VectorType, number &gt; &amp;solution_history, const std::function&lt; void(number, VectorType &amp;, const VectorType &amp;)&gt; &amp;stage_pre_processing, const std::function&lt; void(number, VectorType &amp;, const VectorType &amp;)&gt; &amp;stage_post_processing) override</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:173</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html_ae92144b98c6fb7de348a43b67ea4481b"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html#ae92144b98c6fb7de348a43b67ea4481b">MeltPoolDG::BDFIntegrator::BDFIntegrator</a></div><div class="ttdeci">BDFIntegrator(const PDEOperator &amp;pde_operator, const TimeIntegratorData&lt; number &gt; &amp;time_integrator_data, const ScratchData&lt; dim, dim, number &gt; &amp;scratch_data_in, const unsigned int dof_idx_in)</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:100</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1BDFIntegrator_html_aef0ddec8cbcf127810d369a446d16d24"><div class="ttname"><a href="classMeltPoolDG_1_1BDFIntegrator.html#aef0ddec8cbcf127810d369a446d16d24">MeltPoolDG::BDFIntegrator::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:89</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LinearSolver_html_acea24f43aaef331e3bf3b38c0b6eef3b"><div class="ttname"><a href="classMeltPoolDG_1_1LinearSolver.html#acea24f43aaef331e3bf3b38c0b6eef3b">MeltPoolDG::LinearSolver::solve</a></div><div class="ttdeci">static int solve(const OperatorType &amp;system_matrix, VectorType &amp;solution, const VectorType &amp;rhs, const LinearSolverData&lt; number &gt; &amp;data, const PreconditionerType &amp;preconditioner=dealii::PreconditionIdentity(), const std::string identifier=&quot;&quot;)</div><div class="ttdef"><b>Definition</b> linear_solver.hpp:28</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html_a076c9eb09c222f3a1211befb84487e7c"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a076c9eb09c222f3a1211befb84487e7c">MeltPoolDG::NewtonRaphsonSolver::residual</a></div><div class="ttdeci">std::function&lt; void(const VectorType &amp;evaluation_point, VectorType &amp;residual)&gt; residual</div><div class="ttdef"><b>Definition</b> newton_raphson_solver.hpp:15</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html_a317a7c7153635bc088d1a0a9f1d57747"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a317a7c7153635bc088d1a0a9f1d57747">MeltPoolDG::NewtonRaphsonSolver::reinit_vector</a></div><div class="ttdeci">std::function&lt; void(VectorType &amp;v)&gt; reinit_vector</div><div class="ttdef"><b>Definition</b> newton_raphson_solver.hpp:17</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html_a82f90dc58587bb7cf38a1723ae7b7657"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a82f90dc58587bb7cf38a1723ae7b7657">MeltPoolDG::NewtonRaphsonSolver::solve_with_jacobian</a></div><div class="ttdeci">std::function&lt; int(const VectorType &amp;rhs, VectorType &amp;dst)&gt; solve_with_jacobian</div><div class="ttdef"><b>Definition</b> newton_raphson_solver.hpp:16</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html_a8aba928204057a51f8847adc8878c6f1"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a8aba928204057a51f8847adc8878c6f1">MeltPoolDG::NewtonRaphsonSolver::distribute_constraints</a></div><div class="ttdeci">std::function&lt; void(VectorType &amp;v)&gt; distribute_constraints</div><div class="ttdef"><b>Definition</b> newton_raphson_solver.hpp:18</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html_a949d504db85572ed5c0bc12c293a3cac"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#a949d504db85572ed5c0bc12c293a3cac">MeltPoolDG::NewtonRaphsonSolver::norm_of_solution_vector</a></div><div class="ttdeci">std::function&lt; number()&gt; norm_of_solution_vector</div><div class="ttdef"><b>Definition</b> newton_raphson_solver.hpp:21</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html_acc2a18aa96335bc967efaed98f8f4a42"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html#acc2a18aa96335bc967efaed98f8f4a42">MeltPoolDG::NewtonRaphsonSolver::solve</a></div><div class="ttdeci">void solve(VectorType &amp;solution)</div><div class="ttdef"><b>Definition</b> newton_raphson_solver.cpp:24</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdef"><b>Definition</b> scratch_data.hpp:46</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegratorBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegratorBase.html">MeltPoolDG::TimeIntegratorBase</a></div><div class="ttdef"><b>Definition</b> time_integrator_base.hpp:40</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegratorBase_html_a3a61c56185e3bd427e451cc51a882fa4"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegratorBase.html#a3a61c56185e3bd427e451cc51a882fa4">MeltPoolDG::TimeIntegratorBase::time_integrator_data</a></div><div class="ttdeci">const TimeIntegratorData time_integrator_data</div><div class="ttdef"><b>Definition</b> time_integrator_base.hpp:128</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegratorBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegratorBase.html">MeltPoolDG::TimeIntegratorBase</a></div><div class="ttdef"><b>Definition</b> time_integrator_base.hpp:38</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegratorBase_html_ad517b71e8f50664effc9813f513814a7"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegratorBase.html#ad517b71e8f50664effc9813f513814a7">MeltPoolDG::TimeIntegratorBase::time_integrator_data</a></div><div class="ttdeci">const TimeIntegratorData&lt; number &gt; time_integrator_data</div><div class="ttdef"><b>Definition</b> time_integrator_base.hpp:126</div></div>
 <div class="ttc" id="aclassTimeIntegration_1_1SolutionHistory_html"><div class="ttname"><a href="classTimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory</a></div><div class="ttdef"><b>Definition</b> solution_history.hpp:19</div></div>
 <div class="ttc" id="aclassTimeIntegration_1_1SolutionHistory_html_a1b80410669bcb7a5d56f6dd7a371b3bb"><div class="ttname"><a href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">TimeIntegration::SolutionHistory::get_current_solution</a></div><div class="ttdeci">const VectorType &amp; get_current_solution() const</div><div class="ttdef"><b>Definition</b> solution_history.hpp:102</div></div>
 <div class="ttc" id="aclassTimeIntegration_1_1SolutionHistory_html_a2f8773a6cc993dc5ec6b9bf46a332ea8"><div class="ttname"><a href="classTimeIntegration_1_1SolutionHistory.html#a2f8773a6cc993dc5ec6b9bf46a332ea8">TimeIntegration::SolutionHistory::size</a></div><div class="ttdeci">unsigned int size() const</div><div class="ttdef"><b>Definition</b> solution_history.hpp:138</div></div>

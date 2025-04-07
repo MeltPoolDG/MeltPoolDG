@@ -12,7 +12,7 @@ var searchData=
   ['solid_5fliquid_5fproperties_5ftransition_5ftype_9',['solid_liquid_properties_transition_type',['../structMeltPoolDG_1_1MaterialData.html#aa9b9cda83508b116b2e95cc1f52fe681',1,'MeltPoolDG::MaterialData']]],
   ['solidus_5ftemperature_10',['solidus_temperature',['../structMeltPoolDG_1_1MaterialData.html#abfa906af5f6988316e0eff169e7bc05d',1,'MeltPoolDG::MaterialData']]],
   ['solution_5fhistory_11',['solution_history',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html#a0c5fb8d6d56f39559ef5c01934744d03',1,'MeltPoolDG::Flow::CompressibleFlowScratchData']]],
-  ['solve_5fwith_5fjacobian_12',['solve_with_jacobian',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a3020c5ea50b97bcd0d749d843fa10136',1,'MeltPoolDG::NewtonRaphsonSolver']]],
+  ['solve_5fwith_5fjacobian_12',['solve_with_jacobian',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a82f90dc58587bb7cf38a1723ae7b7657',1,'MeltPoolDG::NewtonRaphsonSolver']]],
   ['specific_5fenthalpy_5freference_5ftemperature_13',['specific_enthalpy_reference_temperature',['../structMeltPoolDG_1_1MaterialData.html#a63c79baca7d018d30f18f5a04db81f9b',1,'MeltPoolDG::MaterialData']]],
   ['specific_5fgas_5fconstant_14',['specific_gas_constant',['../structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html#a408e6adaaee8043a228ffbf001572434',1,'MeltPoolDG::Flow::CompressibleFluidMaterialPhaseData']]],
   ['specific_5fheat_5fcapacity_15',['specific_heat_capacity',['../structMeltPoolDG_1_1MaterialParameterValues.html#a84925850b56df4d88a55cecbaa7ff62a',1,'MeltPoolDG::MaterialParameterValues']]],

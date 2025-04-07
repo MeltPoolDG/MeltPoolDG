@@ -13,7 +13,7 @@ var searchData=
   ['diffusion_5fterm_5fscaling_10',['diffusion_term_scaling',['../structMeltPoolDG_1_1RadiativeTransport_1_1PseudoTimeSteppingData.html#ab2aa96a6c4c75498a4ded8608aa3e544',1,'MeltPoolDG::RadiativeTransport::PseudoTimeSteppingData']]],
   ['dimension_11',['dimension',['../structMeltPoolDG_1_1BaseData.html#a4dc9f48371e0154b05f7825f11ebfac4',1,'MeltPoolDG::BaseData']]],
   ['directory_12',['directory',['../structMeltPoolDG_1_1OutputData.html#a5b1084e0c0228cd7d096d7278704320d',1,'MeltPoolDG::OutputData::directory'],['../structMeltPoolDG_1_1Restart_1_1RestartData.html#a97259cd0faa5b89651fe0440153d50d7',1,'MeltPoolDG::Restart::RestartData::directory']]],
-  ['distribute_5fconstraints_13',['distribute_constraints',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a16ef5d08e8abbafca001c05f71f2f208',1,'MeltPoolDG::NewtonRaphsonSolver']]],
+  ['distribute_5fconstraints_13',['distribute_constraints',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a8aba928204057a51f8847adc8878c6f1',1,'MeltPoolDG::NewtonRaphsonSolver']]],
   ['do_5fadvect_5flevel_5fset_14',['do_advect_level_set',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#a40d571aa375ae9f29e4741173796fa02',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
   ['do_5famr_15',['do_amr',['../structMeltPoolDG_1_1AdaptiveMeshingData.html#a9b05611c593e576aa096a401a12d493b',1,'MeltPoolDG::AdaptiveMeshingData']]],
   ['do_5fauto_5fdetect_5ffrequency_16',['do_auto_detect_frequency',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#aaae534cba4630a9179a41ceb4d37a628',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
