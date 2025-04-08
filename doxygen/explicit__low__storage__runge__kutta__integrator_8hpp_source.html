@@ -242,95 +242,97 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(number, <a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> &amp;, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#ab82d067bc6187112c777cdc0b65859d9">VectorType</a> &amp;)&gt; &amp;stage_post_processing)<span class="keyword"></span></div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="keyword">      override</span></div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>      Assert(solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a2f8773a6cc993dc5ec6b9bf46a332ea8">size</a>() &gt;= <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#aa7c0b14c6ea08c25bab52da0f0464e64">required_solution_history_size</a>(),</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>             dealii::ExcMessage(</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>               <span class="stringliteral">&quot;The size of the solution history object does not fit the requirements of the &quot;</span></div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>               <span class="stringliteral">&quot;chosen time integration scheme.&quot;</span>));</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>      TimerOutput::Scope timer_section(timer, <span class="stringliteral">&quot;Explicit Runge-Kutta time integration&quot;</span>);</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>      rk_register_ri = 0.;</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>      <span class="keywordflow">if</span> (stage_pre_processing)</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        stage_pre_processing(current_time, rk_register_ri, solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>());</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>      pde_operator.apply_operator(</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        current_time,</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        rk_register_ri,</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>(),</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        [&amp;](<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> start_range, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> end_range) {</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>          DEAL_II_OPENMP_SIMD_PRAGMA</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>          for (unsigned int i = start_range; i &lt; end_range; ++i)</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>            {</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>              const number k_i   = rk_register_ri.local_element(i);</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>              const number sol_i = solution_history.get_current_solution().local_element(i);</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>              solution_history.get_current_solution().local_element(i) =</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>                sol_i + bi[0] * time_step * k_i;</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>              rk_register_ri.local_element(i) = sol_i + ai[0] * time_step * k_i;</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>            }</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        });</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      <span class="keywordflow">if</span> (stage_post_processing)</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        stage_post_processing(current_time + ci[1] * time_step, rk_register_ri, rk_register_ri);</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> stage = 1; stage &lt; bi.size(); ++stage)</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        {</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>          rk_register_ki = 0.;</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>          <span class="keywordflow">if</span> (stage_pre_processing)</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>            stage_pre_processing(current_time + ci[stage - 1] * time_step,</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>                                 rk_register_ki,</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                                 rk_register_ri);</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>          pde_operator.apply_operator(</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>            current_time,</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            rk_register_ki,</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            rk_register_ri,</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            [&amp;](<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> start_range, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> end_range) {</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>              <span class="keywordflow">if</span> (stage &lt; bi.size() - 1)</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                {</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                  DEAL_II_OPENMP_SIMD_PRAGMA</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                  for (unsigned int i = start_range; i &lt; end_range; ++i)</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                    {</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                      const number k_i   = rk_register_ki.local_element(i);</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                      const number sol_i = solution_history.get_current_solution().local_element(i);</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                      solution_history.get_current_solution().local_element(i) =</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>                        sol_i + bi[stage] * time_step * k_i;</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                      rk_register_ki.local_element(i) = sol_i + ai[stage] * time_step * k_i;</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                    }</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                }</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>              <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                {</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                  DEAL_II_OPENMP_SIMD_PRAGMA</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = start_range; i &lt; end_range; ++i)</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>                    {</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                      <span class="keyword">const</span> number k_i   = rk_register_ki.local_element(i);</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>                      <span class="keyword">const</span> number sol_i = solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>().local_element(i);</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                      solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>().local_element(i) =</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                        sol_i + bi[stage] * time_step * k_i;</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                    }</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                }</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>            });</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>          <span class="keywordflow">if</span> (stage_post_processing)</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>            stage_post_processing(current_time + ci[stage] * time_step,</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>                                  rk_register_ki,</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                                  rk_register_ki);</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>          rk_register_ri.swap(rk_register_ki);</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        }</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    }</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>      <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacedealii.html">dealii</a>;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>      Assert(solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a2f8773a6cc993dc5ec6b9bf46a332ea8">size</a>() &gt;= <a class="code hl_function" href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#aa7c0b14c6ea08c25bab52da0f0464e64">required_solution_history_size</a>(),</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>             dealii::ExcMessage(</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>               <span class="stringliteral">&quot;The size of the solution history object does not fit the requirements of the &quot;</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>               <span class="stringliteral">&quot;chosen time integration scheme.&quot;</span>));</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>      TimerOutput::Scope timer_section(timer, <span class="stringliteral">&quot;Explicit Runge-Kutta time integration&quot;</span>);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>      rk_register_ri = 0.;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>      <span class="keywordflow">if</span> (stage_pre_processing)</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        stage_pre_processing(current_time, rk_register_ri, solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>());</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      pde_operator.apply_operator(</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        current_time,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        rk_register_ri,</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>(),</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        [&amp;](<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> start_range, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> end_range) {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>          DEAL_II_OPENMP_SIMD_PRAGMA</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>          for (unsigned int i = start_range; i &lt; end_range; ++i)</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>            {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>              const number k_i   = rk_register_ri.local_element(i);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>              const number sol_i = solution_history.get_current_solution().local_element(i);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>              solution_history.get_current_solution().local_element(i) =</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                sol_i + bi[0] * time_step * k_i;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>              rk_register_ri.local_element(i) = sol_i + ai[0] * time_step * k_i;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            }</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        });</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>      <span class="keywordflow">if</span> (stage_post_processing)</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        stage_post_processing(current_time + ci[1] * time_step, rk_register_ri, rk_register_ri);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> stage = 1; stage &lt; bi.size(); ++stage)</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        {</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>          rk_register_ki = 0.;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>          <span class="keywordflow">if</span> (stage_pre_processing)</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>            stage_pre_processing(current_time + ci[stage - 1] * time_step,</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                                 rk_register_ki,</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                                 rk_register_ri);</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>          pde_operator.apply_operator(</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            current_time,</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            rk_register_ki,</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>            rk_register_ri,</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>            [&amp;](<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> start_range, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> end_range) {</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>              <span class="keywordflow">if</span> (stage &lt; bi.size() - 1)</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                {</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                  DEAL_II_OPENMP_SIMD_PRAGMA</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                  for (unsigned int i = start_range; i &lt; end_range; ++i)</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                    {</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                      const number k_i   = rk_register_ki.local_element(i);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>                      const number sol_i = solution_history.get_current_solution().local_element(i);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                      solution_history.get_current_solution().local_element(i) =</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                        sol_i + bi[stage] * time_step * k_i;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                      rk_register_ki.local_element(i) = sol_i + ai[stage] * time_step * k_i;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                    }</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                }</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>              <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                {</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>                  DEAL_II_OPENMP_SIMD_PRAGMA</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = start_range; i &lt; end_range; ++i)</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>                    {</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                      <span class="keyword">const</span> number k_i   = rk_register_ki.local_element(i);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                      <span class="keyword">const</span> number sol_i = solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>().local_element(i);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                      solution_history.<a class="code hl_function" href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">get_current_solution</a>().local_element(i) =</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                        sol_i + bi[stage] * time_step * k_i;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                    }</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                }</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>            });</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>          <span class="keywordflow">if</span> (stage_post_processing)</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            stage_post_processing(current_time + ci[stage] * time_step,</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                                  rk_register_ki,</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                                  rk_register_ki);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>          rk_register_ri.swap(rk_register_ki);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        }</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    }</div>
 </div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    std::vector&lt;number&gt; bi;</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    std::vector&lt;number&gt; ai;</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    std::vector&lt;number&gt; ci;</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_stages;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    std::vector&lt;number&gt; bi;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    std::vector&lt;number&gt; ai;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    std::vector&lt;number&gt; ci;</div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="comment">// register for time integrator</span></div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    dealii::LinearAlgebra::distributed::Vector&lt;number&gt; rk_register_ri;</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    dealii::LinearAlgebra::distributed::Vector&lt;number&gt; rk_register_ki;</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="keyword">const</span> PDEOperator &amp;pde_operator;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_stages;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="comment">// register for time integrator</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    dealii::LinearAlgebra::distributed::Vector&lt;number&gt; rk_register_ri;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    dealii::LinearAlgebra::distributed::Vector&lt;number&gt; rk_register_ki;</div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    dealii::TimerOutput &amp;timer;</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>  };</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keyword">const</span> PDEOperator &amp;pde_operator;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    dealii::TimerOutput &amp;timer;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>  };</div>
 </div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>} <span class="comment">// namespace MeltPoolDG</span></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator</a></div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:40</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_a19e4fcadc835b1baf5736d351823f078"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a19e4fcadc835b1baf5736d351823f078">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::reinit</a></div><div class="ttdeci">void reinit(const VectorType &amp;vector_template) override</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:156</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator_html_a2e58873689de522674492eabdd8998ac"><div class="ttname"><a href="classMeltPoolDG_1_1LowStorageExplicitRungeKuttaIntegrator.html#a2e58873689de522674492eabdd8998ac">MeltPoolDG::LowStorageExplicitRungeKuttaIntegrator::LowStorageExplicitRungeKuttaIntegrator</a></div><div class="ttdeci">LowStorageExplicitRungeKuttaIntegrator(const PDEOperator &amp;pde_operator, const TimeIntegratorData&lt; number &gt; &amp;time_integrator_data, dealii::TimerOutput &amp;timer)</div><div class="ttdef"><b>Definition</b> explicit_low_storage_runge_kutta_integrator.hpp:52</div></div>
@@ -344,6 +346,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aclassTimeIntegration_1_1SolutionHistory_html_a1b80410669bcb7a5d56f6dd7a371b3bb"><div class="ttname"><a href="classTimeIntegration_1_1SolutionHistory.html#a1b80410669bcb7a5d56f6dd7a371b3bb">TimeIntegration::SolutionHistory::get_current_solution</a></div><div class="ttdeci">const VectorType &amp; get_current_solution() const</div><div class="ttdef"><b>Definition</b> solution_history.hpp:102</div></div>
 <div class="ttc" id="aclassTimeIntegration_1_1SolutionHistory_html_a2f8773a6cc993dc5ec6b9bf46a332ea8"><div class="ttname"><a href="classTimeIntegration_1_1SolutionHistory.html#a2f8773a6cc993dc5ec6b9bf46a332ea8">TimeIntegration::SolutionHistory::size</a></div><div class="ttdeci">unsigned int size() const</div><div class="ttdef"><b>Definition</b> solution_history.hpp:138</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> base_data.hpp:9</div></div>
+<div class="ttc" id="anamespacedealii_html"><div class="ttname"><a href="namespacedealii.html">dealii</a></div><div class="ttdef"><b>Definition</b> level_set_tools.hpp:57</div></div>
 <div class="ttc" id="atime__integrator__base_8hpp_html"><div class="ttname"><a href="time__integrator__base_8hpp.html">time_integrator_base.hpp</a></div></div>
 <div class="ttc" id="atime__integrator__data_8hpp_html"><div class="ttname"><a href="time__integrator__data_8hpp.html">time_integrator_data.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

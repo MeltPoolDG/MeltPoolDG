@@ -151,13 +151,13 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1PostProcessingTools_1_1SliceCreator.html#af6c609bf393bf304e918f3a0c8881337">   79</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1PostProcessingTools_1_1SliceCreator.html#af6c609bf393bf304e918f3a0c8881337">process</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_time_step)<span class="keyword"> override</span></div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacedealii.html">dealii</a>;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      AssertThrow(generic_data_out != <span class="keyword">nullptr</span>, ExcMessage(<span class="stringliteral">&quot;GenericDataOut is null.&quot;</span>));</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      AssertThrow(dim &gt; 1, ExcMessage(<span class="stringliteral">&quot;SliceCreator supports only dim&gt;1.&quot;</span>));</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      AssertThrow(generic_data_out != <span class="keyword">nullptr</span>, dealii::ExcMessage(<span class="stringliteral">&quot;GenericDataOut is null.&quot;</span>));</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      AssertThrow(dim &gt; 1, dealii::ExcMessage(<span class="stringliteral">&quot;SliceCreator supports only dim&gt;1.&quot;</span>));</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      <span class="keywordflow">if</span> (dim &gt; 1)</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        {</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>          <span class="comment">// create DataOut of the slice</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>          MappingQ1&lt;dim - 1, dim&gt;            mapping_slice;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>          dealii::MappingQ1&lt;dim - 1, dim&gt;    mapping_slice;</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>          DataOutResample&lt;dim, dim - 1, dim&gt; data_out(tria_slice, mapping_slice);</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>          <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;i : idx_req_vars)</div>

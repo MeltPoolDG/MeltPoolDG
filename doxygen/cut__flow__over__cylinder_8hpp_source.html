@@ -100,18 +100,18 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
 <div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html">   19</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html">FlowField</a> : <span class="keyword">public</span> Function&lt;dim, number&gt;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html">   19</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html">FlowField</a> : <span class="keyword">public</span> dealii::Function&lt;dim, number&gt;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  {</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html#ae866f45718e7f912615a14e067814a97">   22</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html#ae866f45718e7f912615a14e067814a97">FlowField</a>()</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>      : Function&lt;dim, number&gt;(dim + 2)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>      : <a class="code hl_namespace" href="namespacedealii.html">dealii</a>::Function&lt;dim, number&gt;(dim + 2)</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    {}</div>
 </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    number</div>
 <div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html#a32f1e6c0b053ab7065b9de1277a983d9">   27</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html#a32f1e6c0b053ab7065b9de1277a983d9">value</a>(<span class="keyword">const</span> Point&lt;dim, number&gt; &amp;, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> component) <span class="keyword">const</span> <span class="keyword">final</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html#a869231264caf7e3e16bcaf658821c2d3">   27</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html#a869231264caf7e3e16bcaf658821c2d3">value</a>(<span class="keyword">const</span> dealii::Point&lt;dim, number&gt; &amp;, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> component) <span class="keyword">const</span> <span class="keyword">final</span></div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    {</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>      <span class="keywordflow">if</span> (component == 0)</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">return</span> 1.;</div>
@@ -141,119 +141,123 @@ $(document).ready(function() { init_codefold(0); });
 <div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a857fd00cc03cafe536d5c0d2f2522af1">   49</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a857fd00cc03cafe536d5c0d2f2522af1">create_spatial_discretization</a>()<span class="keyword"> override</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a> =</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        std::make_shared&lt;parallel::distributed::Triangulation&lt;dim&gt;&gt;(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      Point&lt;dim, number&gt; lower_left;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 1; d &lt; dim; ++d)</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        lower_left[d] = 0.;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      Point&lt;dim, number&gt; upper_right;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      upper_right[0] = 1.0;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 1; d &lt; dim; ++d)</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        upper_right[d] = 0.4;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      std::vector&lt;unsigned int&gt; subdivisions(dim, 1);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      subdivisions[0] = 10;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 1; d &lt; dim; ++d)</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        subdivisions[d] = 4;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      GridGenerator::subdivided_hyper_rectangle(*this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>,</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                                                subdivisions,</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                                                lower_left,</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                                                upper_right);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      set_fitted_boundary_id(*this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacedealii.html">dealii</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a> =</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        std::make_shared&lt;parallel::distributed::Triangulation&lt;dim&gt;&gt;(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      dealii::Point&lt;dim, number&gt; lower_left;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 1; d &lt; dim; ++d)</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        lower_left[d] = 0.;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      dealii::Point&lt;dim, number&gt; upper_right;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      upper_right[0] = 1.0;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 1; d &lt; dim; ++d)</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        upper_right[d] = 0.4;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      std::vector&lt;unsigned int&gt; subdivisions(dim, 1);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      subdivisions[0] = 10;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 1; d &lt; dim; ++d)</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        subdivisions[d] = 4;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      GridGenerator::subdivided_hyper_rectangle(*this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                                                subdivisions,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                                                lower_left,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                                                upper_right);</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>-&gt;refine_global(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowCase.html#a3353ecc8c2f08cc86b64a0261e601aa0">parameters</a>.base.global_refinements);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      set_fitted_boundary_id(*this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>-&gt;refine_global(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowCase.html#a3353ecc8c2f08cc86b64a0261e601aa0">parameters</a>.base.global_refinements);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
 </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a15a2bd3a56c35bdd4781df016c5cf666">   79</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a15a2bd3a56c35bdd4781df016c5cf666">set_boundary_conditions</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      <span class="keyword">auto</span> inflow_outflow_solution = std::make_shared&lt;FlowField&lt;dim, number&gt;&gt;();</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      <span class="keyword">auto</span> dummy_solution          = std::make_shared&lt;FlowField&lt;dim, number&gt;&gt;();</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a3e203ae9dd10dec8d0581bd5df9810e2">attach_boundary_condition</a>({BoundaryID::inflow, inflow_outflow_solution},</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                                      <span class="stringliteral">&quot;inflow&quot;</span>,</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                                      <span class="stringliteral">&quot;compressible_flow&quot;</span>);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a3e203ae9dd10dec8d0581bd5df9810e2">attach_boundary_condition</a>({BoundaryID::subsonic_outflow_with_fixed_energy,</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                                       inflow_outflow_solution},</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                                      <span class="stringliteral">&quot;outflow_fixed_energy&quot;</span>,</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                                      <span class="stringliteral">&quot;compressible_flow&quot;</span>);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a3e203ae9dd10dec8d0581bd5df9810e2">attach_boundary_condition</a>({BoundaryID::slip_wall, dummy_solution},</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                                      <span class="stringliteral">&quot;slip_wall&quot;</span>,</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                                      <span class="stringliteral">&quot;compressible_flow&quot;</span>);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00081" data-start="{" data-end="}">
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a15a2bd3a56c35bdd4781df016c5cf666">   81</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a15a2bd3a56c35bdd4781df016c5cf666">set_boundary_conditions</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      <span class="keyword">auto</span> inflow_outflow_solution = std::make_shared&lt;FlowField&lt;dim, number&gt;&gt;();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      <span class="keyword">auto</span> dummy_solution          = std::make_shared&lt;FlowField&lt;dim, number&gt;&gt;();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a3e203ae9dd10dec8d0581bd5df9810e2">attach_boundary_condition</a>({BoundaryID::inflow, inflow_outflow_solution},</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                                      <span class="stringliteral">&quot;inflow&quot;</span>,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                                      <span class="stringliteral">&quot;compressible_flow&quot;</span>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a3e203ae9dd10dec8d0581bd5df9810e2">attach_boundary_condition</a>({BoundaryID::subsonic_outflow_with_fixed_energy,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                                       inflow_outflow_solution},</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                                      <span class="stringliteral">&quot;outflow_fixed_energy&quot;</span>,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                                      <span class="stringliteral">&quot;compressible_flow&quot;</span>);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a3e203ae9dd10dec8d0581bd5df9810e2">attach_boundary_condition</a>({BoundaryID::slip_wall, dummy_solution},</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                                      <span class="stringliteral">&quot;slip_wall&quot;</span>,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                                      <span class="stringliteral">&quot;compressible_flow&quot;</span>);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
 </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00096" data-start="{" data-end="}">
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a1eae7f73cd8ca85f4f5d7fe69ce0b733">   96</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a1eae7f73cd8ca85f4f5d7fe69ce0b733">set_field_conditions</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      <span class="keyword">auto</span> initial_condition = std::make_shared&lt;FlowField&lt;dim, number&gt;&gt;();</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#acdd8ca91dd92515f3a8977e40878e7ed">attach_initial_condition</a>(initial_condition, <span class="stringliteral">&quot;compressible_flow&quot;</span>);</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="comment">// set level-set function</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      Point&lt;dim, number&gt; center;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      center[0] = 0.3;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      center[1] = 0.2;</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (dim == 3)</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        center[2] = 0.2;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <span class="keyword">const</span> number radius = 0.1;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <span class="keyword">const</span> <span class="keyword">auto</span> level_set =</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        std::make_shared&lt;Functions::SignedDistance::Sphere&lt;dim&gt;&gt;(center, radius);</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#aedc4def9718923f4c1cacbbb37e5891b">attach_field_function</a>(level_set, <span class="stringliteral">&quot;level_set&quot;</span>, <span class="stringliteral">&quot;compressible_flow&quot;</span>);</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00098" data-start="{" data-end="}">
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a1eae7f73cd8ca85f4f5d7fe69ce0b733">   98</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a1eae7f73cd8ca85f4f5d7fe69ce0b733">set_field_conditions</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacedealii.html">dealii</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keyword">auto</span> initial_condition = std::make_shared&lt;FlowField&lt;dim, number&gt;&gt;();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#acdd8ca91dd92515f3a8977e40878e7ed">attach_initial_condition</a>(initial_condition, <span class="stringliteral">&quot;compressible_flow&quot;</span>);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="comment">// set level-set function</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      dealii::Point&lt;dim, number&gt; center;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      center[0] = 0.3;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      center[1] = 0.2;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (dim == 3)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        center[2] = 0.2;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>      <span class="keyword">const</span> number radius = 0.1;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      <span class="keyword">const</span> <span class="keyword">auto</span> level_set =</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        std::make_shared&lt;dealii::Functions::SignedDistance::Sphere&lt;dim&gt;&gt;(center, radius);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#aedc4def9718923f4c1cacbbb37e5891b">attach_field_function</a>(level_set, <span class="stringliteral">&quot;level_set&quot;</span>, <span class="stringliteral">&quot;compressible_flow&quot;</span>);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
 </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00116" data-start="{" data-end="}">
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a9cbe756c41fcc2db8effcfd95f257d8c">  116</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a9cbe756c41fcc2db8effcfd95f257d8c">do_postprocessing</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut&lt;dim, number&gt;</a> &amp;generic_data_out)<span class="keyword"> const override</span></div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      <a class="code hl_class" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html">FlowField&lt;dim, number&gt;</a> reference_values;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowCase.html#af0a0af125e2aaf06a238416a149aa7a4">print_relative_norm</a>(generic_data_out, reference_values, <span class="stringliteral">&quot;norm&quot;</span>);</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00120" data-start="{" data-end="}">
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a9cbe756c41fcc2db8effcfd95f257d8c">  120</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a9cbe756c41fcc2db8effcfd95f257d8c">do_postprocessing</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut&lt;dim, number&gt;</a> &amp;generic_data_out)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      <a class="code hl_class" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html">FlowField&lt;dim, number&gt;</a> reference_values;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowCase.html#af0a0af125e2aaf06a238416a149aa7a4">print_relative_norm</a>(generic_data_out, reference_values, <span class="stringliteral">&quot;norm&quot;</span>);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    }</div>
 </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keyword">enum</span> BoundaryID</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    {</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>      inflow,</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      subsonic_outflow_with_fixed_energy,</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>      slip_wall</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    };</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    set_fitted_boundary_id(<span class="keyword">const</span> <span class="keyword">auto</span> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;cell : <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>.cell_iterators())</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        if (cell-&gt;at_boundary())</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>          {</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;face : cell-&gt;face_iterators())</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>              {</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                <span class="keyword">const</span> <span class="keyword">auto</span> center = face-&gt;center();</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                <span class="comment">// inflow boundary</span></div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                <span class="keywordflow">if</span> ((std::fabs(center(0)) &lt; 1e-12))</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>                  face-&gt;set_boundary_id(BoundaryID::inflow);</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                <span class="comment">// outflow boundary with fixed energy</span></div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((std::fabs(center(0)) &gt; 1. - 1e-12))</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                  face-&gt;set_boundary_id(BoundaryID::subsonic_outflow_with_fixed_energy);</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                <span class="comment">// slip wall boundary conditions</span></div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((std::fabs(center(1)) &lt; 1e-12) or (std::fabs(center(1)) &gt; 0.4 - 1e-12))</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                  face-&gt;set_boundary_id(BoundaryID::slip_wall);</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (dim == 3 and</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                         ((std::fabs(center(2)) &lt; 1e-12) or (std::fabs(center(2)) &gt; 0.4 - 1e-12)))</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                  face-&gt;set_boundary_id(BoundaryID::slip_wall);</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>              }</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>          }</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    }</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  };</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keyword">enum</span> BoundaryID</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      inflow,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      subsonic_outflow_with_fixed_energy,</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>      slip_wall</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    };</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    set_fitted_boundary_id(<span class="keyword">const</span> <span class="keyword">auto</span> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;cell : <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>.cell_iterators())</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        if (cell-&gt;at_boundary())</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>          {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;face : cell-&gt;face_iterators())</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>              {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                <span class="keyword">const</span> <span class="keyword">auto</span> center = face-&gt;center();</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                <span class="comment">// inflow boundary</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                <span class="keywordflow">if</span> ((std::fabs(center(0)) &lt; 1e-12))</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                  face-&gt;set_boundary_id(BoundaryID::inflow);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                <span class="comment">// outflow boundary with fixed energy</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((std::fabs(center(0)) &gt; 1. - 1e-12))</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                  face-&gt;set_boundary_id(BoundaryID::subsonic_outflow_with_fixed_energy);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                <span class="comment">// slip wall boundary conditions</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((std::fabs(center(1)) &lt; 1e-12) or (std::fabs(center(1)) &gt; 0.4 - 1e-12))</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                  face-&gt;set_boundary_id(BoundaryID::slip_wall);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (dim == 3 and</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                         ((std::fabs(center(2)) &lt; 1e-12) or (std::fabs(center(2)) &gt; 0.4 - 1e-12)))</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                  face-&gt;set_boundary_id(BoundaryID::slip_wall);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>              }</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>          }</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  };</div>
 </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>} <span class="comment">// namespace MeltPoolDG::Simulation::CompressibleFlow</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>} <span class="comment">// namespace MeltPoolDG::Simulation::CompressibleFlow</span></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowCase_html"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowCase.html">MeltPoolDG::Flow::CompressibleFlowCase</a></div><div class="ttdef"><b>Definition</b> compressible_flow_case.hpp:73</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowCase_html_a3353ecc8c2f08cc86b64a0261e601aa0"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowCase.html#a3353ecc8c2f08cc86b64a0261e601aa0">MeltPoolDG::Flow::CompressibleFlowCase::parameters</a></div><div class="ttdeci">CompressibleFlowCaseParameters&lt; number &gt; parameters</div><div class="ttdef"><b>Definition</b> compressible_flow_case.hpp:75</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowCase_html_a74f139fade5dc83d62eb854343b0b2eb"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowCase.html#a74f139fade5dc83d62eb854343b0b2eb">MeltPoolDG::Flow::CompressibleFlowCase::CompressibleFlowCase</a></div><div class="ttdeci">CompressibleFlowCase(const std::string &amp;parameter_file_in, MPI_Comm mpi_communicator_in)</div><div class="ttdef"><b>Definition</b> compressible_flow_case.hpp:77</div></div>
@@ -266,15 +270,16 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_aedc4def9718923f4c1cacbbb37e5891b"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#aedc4def9718923f4c1cacbbb37e5891b">MeltPoolDG::SimulationCaseBase::attach_field_function</a></div><div class="ttdeci">void attach_field_function(std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; function, const std::string &amp;type, const std::string &amp;operation_name)</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:314</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_af1529da8d97a1e9946f3765b05d367f7"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">MeltPoolDG::SimulationCaseBase::mpi_communicator</a></div><div class="ttdeci">const MPI_Comm mpi_communicator</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:55</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField_html"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html">MeltPoolDG::Simulation::CompressibleFlow::FlowField</a></div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:20</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField_html_a32f1e6c0b053ab7065b9de1277a983d9"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html#a32f1e6c0b053ab7065b9de1277a983d9">MeltPoolDG::Simulation::CompressibleFlow::FlowField::value</a></div><div class="ttdeci">number value(const Point&lt; dim, number &gt; &amp;, const unsigned int component) const final</div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:27</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField_html_a869231264caf7e3e16bcaf658821c2d3"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html#a869231264caf7e3e16bcaf658821c2d3">MeltPoolDG::Simulation::CompressibleFlow::FlowField::value</a></div><div class="ttdeci">number value(const dealii::Point&lt; dim, number &gt; &amp;, const unsigned int component) const final</div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:27</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField_html_ae866f45718e7f912615a14e067814a97"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html#ae866f45718e7f912615a14e067814a97">MeltPoolDG::Simulation::CompressibleFlow::FlowField::FlowField</a></div><div class="ttdeci">FlowField()</div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:22</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder_html"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html">MeltPoolDG::Simulation::CompressibleFlow::SimulationCutFlowOverCylinder</a></div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:42</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder_html_a151f929a4073c359dee72a54e0e4007e"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a151f929a4073c359dee72a54e0e4007e">MeltPoolDG::Simulation::CompressibleFlow::SimulationCutFlowOverCylinder::SimulationCutFlowOverCylinder</a></div><div class="ttdeci">SimulationCutFlowOverCylinder(std::string parameter_file, const MPI_Comm mpi_communicator)</div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:44</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder_html_a15a2bd3a56c35bdd4781df016c5cf666"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a15a2bd3a56c35bdd4781df016c5cf666">MeltPoolDG::Simulation::CompressibleFlow::SimulationCutFlowOverCylinder::set_boundary_conditions</a></div><div class="ttdeci">void set_boundary_conditions() override</div><div class="ttdoc">Pure virtual function to set the boundary conditions.</div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:79</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder_html_a1eae7f73cd8ca85f4f5d7fe69ce0b733"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a1eae7f73cd8ca85f4f5d7fe69ce0b733">MeltPoolDG::Simulation::CompressibleFlow::SimulationCutFlowOverCylinder::set_field_conditions</a></div><div class="ttdeci">void set_field_conditions() override</div><div class="ttdoc">Pure virtual function to set the field conditions.</div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:96</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder_html_a15a2bd3a56c35bdd4781df016c5cf666"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a15a2bd3a56c35bdd4781df016c5cf666">MeltPoolDG::Simulation::CompressibleFlow::SimulationCutFlowOverCylinder::set_boundary_conditions</a></div><div class="ttdeci">void set_boundary_conditions() override</div><div class="ttdoc">Pure virtual function to set the boundary conditions.</div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:81</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder_html_a1eae7f73cd8ca85f4f5d7fe69ce0b733"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a1eae7f73cd8ca85f4f5d7fe69ce0b733">MeltPoolDG::Simulation::CompressibleFlow::SimulationCutFlowOverCylinder::set_field_conditions</a></div><div class="ttdeci">void set_field_conditions() override</div><div class="ttdoc">Pure virtual function to set the field conditions.</div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:98</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder_html_a857fd00cc03cafe536d5c0d2f2522af1"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a857fd00cc03cafe536d5c0d2f2522af1">MeltPoolDG::Simulation::CompressibleFlow::SimulationCutFlowOverCylinder::create_spatial_discretization</a></div><div class="ttdeci">void create_spatial_discretization() override</div><div class="ttdoc">Pure virtual function to create the spatial discretization.</div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:49</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder_html_a9cbe756c41fcc2db8effcfd95f257d8c"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a9cbe756c41fcc2db8effcfd95f257d8c">MeltPoolDG::Simulation::CompressibleFlow::SimulationCutFlowOverCylinder::do_postprocessing</a></div><div class="ttdeci">void do_postprocessing(const GenericDataOut&lt; dim, number &gt; &amp;generic_data_out) const override</div><div class="ttdoc">Perform specific postprocessing (can be overridden by derived classes).</div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:116</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder_html_a9cbe756c41fcc2db8effcfd95f257d8c"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html#a9cbe756c41fcc2db8effcfd95f257d8c">MeltPoolDG::Simulation::CompressibleFlow::SimulationCutFlowOverCylinder::do_postprocessing</a></div><div class="ttdeci">void do_postprocessing(const GenericDataOut&lt; dim, number &gt; &amp;generic_data_out) const override</div><div class="ttdoc">Perform specific postprocessing (can be overridden by derived classes).</div><div class="ttdef"><b>Definition</b> cut_flow_over_cylinder.hpp:120</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Simulation_1_1CompressibleFlow_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Simulation_1_1CompressibleFlow.html">MeltPoolDG::Simulation::CompressibleFlow</a></div><div class="ttdef"><b>Definition</b> channel_particle_flow.cpp:6</div></div>
+<div class="ttc" id="anamespacedealii_html"><div class="ttname"><a href="namespacedealii.html">dealii</a></div><div class="ttdef"><b>Definition</b> level_set_tools.hpp:57</div></div>
 <div class="ttc" id="autilities_2utility__functions_8hpp_html"><div class="ttname"><a href="utilities_2utility__functions_8hpp.html">utility_functions.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

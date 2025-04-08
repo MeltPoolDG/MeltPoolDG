@@ -138,11 +138,11 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        {</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>          normal_vals.reinit(cell_idx);</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>          normal_vals.read_dof_values_plain(normal_vector);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>          normal_vals.evaluate(EvaluationFlags::values);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>          normal_vals.evaluate(dealii::EvaluationFlags::values);</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>          ls_vals.reinit(cell_idx);</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>          ls_vals.read_dof_values_plain(heaviside);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>          ls_vals.evaluate(EvaluationFlags::values);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>          ls_vals.evaluate(dealii::EvaluationFlags::values);</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        }</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      normal = MeltPoolDG::VectorTools::normalize&lt;dim&gt;(normal_vals.get_value(quad_idx), 1e-10);</div>
@@ -156,98 +156,100 @@ $(document).ready(function() { init_codefold(0); });
 <div class="foldopen" id="foldopen00100" data-start="{" data-end="}">
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a32df7c6f3b6f37d86745152fd3fcb763">  100</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a32df7c6f3b6f37d86745152fd3fcb763">get_tau</a>() final</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    {</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keyword">const</span> <span class="keyword">auto</span> mask = compare_and_apply_mask&lt;SIMDComparison::less_than&gt;(</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        hs, 1.0, compare_and_apply_mask&lt;SIMDComparison::greater_than&gt;(hs, 0, 1.0, 0.0), 0);</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="keywordflow">return</span> 2. * viscosity *</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>             (0.5 * (grad_u + transpose(grad_u)) - mask * div_u * outer_product(normal, normal));</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keyword">const</span> <span class="keyword">auto</span> mask = dealii::compare_and_apply_mask&lt;dealii::SIMDComparison::less_than&gt;(</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        hs,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        1.0,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        dealii::compare_and_apply_mask&lt;dealii::SIMDComparison::greater_than&gt;(hs, 0, 1.0, 0.0),</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        0);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <span class="keywordflow">return</span> 2. * viscosity *</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>             (0.5 * (grad_u + transpose(grad_u)) - mask * div_u * outer_product(normal, normal));</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    }</div>
 </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    dealii::Tensor&lt;2, dim, dealii::VectorizedArray&lt;number&gt;&gt;</div>
-<div class="foldopen" id="foldopen00130" data-start="{" data-end="}">
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a66baececab4812244b7a836982d8d525">  130</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a66baececab4812244b7a836982d8d525">get_vmult_d_tau_d_grad_vel</a>() final</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    {</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      <span class="comment">// Since the velocity DoFs occur linear in the expression for tau, the vmult of the derivative</span></div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      <span class="comment">// is the same operation, except with a different meaning of grad_u, i.e. shape functions</span></div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>      <span class="comment">// gradient times correction values for the velocity DoFs from the linear solver.</span></div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a32df7c6f3b6f37d86745152fd3fcb763">get_tau</a>();</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      <span class="comment">// @note alternative, in case we want to convert this function to a real material tangent and</span></div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      <span class="comment">// leave the multiplication with the velocity gradient to the external code.</span></div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>      <span class="comment">//</span></div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>      <span class="comment">// const auto identity  = Tensor&lt;4,dim,VectorizedArray&lt;number&gt;&gt;(identity_tensor&lt;dim,</span></div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>      <span class="comment">// VectorizedArray&lt;number&gt;&gt;()); const auto identity2 =</span></div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>      <span class="comment">// Tensor&lt;2,dim,VectorizedArray&lt;number&gt;&gt;(unit_symmetric_tensor&lt;dim,</span></div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>      <span class="comment">// VectorizedArray&lt;number&gt;&gt;());</span></div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>      <span class="comment">// const auto temp = 2. * viscosity * (identity - outer_product(identity2,</span></div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      <span class="comment">// outer_product(normal, normal))); return double_contract&lt;0,0,1,1&gt;(temp, grad_u);</span></div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    dealii::Tensor&lt;2, dim, dealii::VectorizedArray&lt;number&gt;&gt;</div>
+<div class="foldopen" id="foldopen00133" data-start="{" data-end="}">
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a66baececab4812244b7a836982d8d525">  133</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a66baececab4812244b7a836982d8d525">get_vmult_d_tau_d_grad_vel</a>() final</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>      <span class="comment">// Since the velocity DoFs occur linear in the expression for tau, the vmult of the derivative</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>      <span class="comment">// is the same operation, except with a different meaning of grad_u, i.e. shape functions</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      <span class="comment">// gradient times correction values for the velocity DoFs from the linear solver.</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a32df7c6f3b6f37d86745152fd3fcb763">get_tau</a>();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>      <span class="comment">// @note alternative, in case we want to convert this function to a real material tangent and</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>      <span class="comment">// leave the multiplication with the velocity gradient to the external code.</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>      <span class="comment">//</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>      <span class="comment">// const auto identity  = Tensor&lt;4,dim,VectorizedArray&lt;number&gt;&gt;(identity_tensor&lt;dim,</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>      <span class="comment">// VectorizedArray&lt;number&gt;&gt;()); const auto identity2 =</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>      <span class="comment">// Tensor&lt;2,dim,VectorizedArray&lt;number&gt;&gt;(unit_symmetric_tensor&lt;dim,</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      <span class="comment">// VectorizedArray&lt;number&gt;&gt;());</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      <span class="comment">// const auto temp = 2. * viscosity * (identity - outer_product(identity2,</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <span class="comment">// outer_product(normal, normal))); return double_contract&lt;0,0,1,1&gt;(temp, grad_u);</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    }</div>
 </div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00153" data-start="{" data-end="}">
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a978a98f2247c51c6397ab23f317ac5af">  153</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a978a98f2247c51c6397ab23f317ac5af">update_ghost_values</a>() final</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    {</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>      normal_update_ghosts = !normal_vector.has_ghost_elements();</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      <span class="keywordflow">if</span> (normal_update_ghosts)</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        normal_vector.update_ghost_values();</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      ls_update_ghosts = !heaviside.has_ghost_elements();</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      <span class="keywordflow">if</span> (ls_update_ghosts)</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        heaviside.update_ghost_values();</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    }</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00156" data-start="{" data-end="}">
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a978a98f2247c51c6397ab23f317ac5af">  156</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a978a98f2247c51c6397ab23f317ac5af">update_ghost_values</a>() final</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>      normal_update_ghosts = !normal_vector.has_ghost_elements();</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      <span class="keywordflow">if</span> (normal_update_ghosts)</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        normal_vector.update_ghost_values();</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      ls_update_ghosts = !heaviside.has_ghost_elements();</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>      <span class="keywordflow">if</span> (ls_update_ghosts)</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        heaviside.update_ghost_values();</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    }</div>
 </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00168" data-start="{" data-end="}">
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a599340341f80916f26d387e11f76a365">  168</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a599340341f80916f26d387e11f76a365">zero_out_ghost_values</a>() final</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    {</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>      <span class="keywordflow">if</span> (normal_update_ghosts)</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        normal_vector.zero_out_ghost_values();</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      <span class="keywordflow">if</span> (ls_update_ghosts)</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        heaviside.zero_out_ghost_values();</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    }</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00171" data-start="{" data-end="}">
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a599340341f80916f26d387e11f76a365">  171</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a599340341f80916f26d387e11f76a365">zero_out_ghost_values</a>() final</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    {</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      <span class="keywordflow">if</span> (normal_update_ghosts)</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        normal_vector.zero_out_ghost_values();</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      <span class="keywordflow">if</span> (ls_update_ghosts)</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        heaviside.zero_out_ghost_values();</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    }</div>
 </div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;scratch_data;</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keyword">const</span> std::function&lt;const dealii::VectorizedArray&lt;number&gt; &amp;(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell,</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>                                                                <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> q)&gt;</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>                                       get_viscosity;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keyword">const</span> BlockVectorType             &amp;normal_vector;</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a>                  &amp;heaviside;</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                 normal_dof_idx;</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                 ls_hanging_nodes_dof_idx;</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                 velocity_quad_idx;</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <a class="code hl_typedef" href="fe__integrator_8hpp.html#a6466516f9f659a3994400630a9e99ca0">FECellIntegrator&lt;dim, dim, number&gt;</a> normal_vals;</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <a class="code hl_typedef" href="fe__integrator_8hpp.html#a6466516f9f659a3994400630a9e99ca0">FECellIntegrator&lt;dim, 1, number&gt;</a>   ls_vals;</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="comment">// temporary quadrature point values</span></div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    dealii::Tensor&lt;2, dim, dealii::VectorizedArray&lt;number&gt;&gt; grad_u;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    dealii::VectorizedArray&lt;number&gt;                         div_u;</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    dealii::VectorizedArray&lt;number&gt;                         viscosity;</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; normal;</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    dealii::VectorizedArray&lt;number&gt;                         hs;</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                            cell;</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keyword">mutable</span> <span class="keywordtype">bool</span> ls_update_ghosts     = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keyword">mutable</span> <span class="keywordtype">bool</span> normal_update_ghosts = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  };</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;scratch_data;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keyword">const</span> std::function&lt;const dealii::VectorizedArray&lt;number&gt; &amp;(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell,</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>                                                                <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> q)&gt;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                                               get_viscosity;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">const</span> BlockVectorType                     &amp;normal_vector;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a>                          &amp;heaviside;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                         normal_dof_idx;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                         ls_hanging_nodes_dof_idx;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                         velocity_quad_idx;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    dealii::FECellIntegrator&lt;dim, dim, number&gt; normal_vals;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    dealii::FECellIntegrator&lt;dim, 1, number&gt;   ls_vals;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="comment">// temporary quadrature point values</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    dealii::Tensor&lt;2, dim, dealii::VectorizedArray&lt;number&gt;&gt; grad_u;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    dealii::VectorizedArray&lt;number&gt;                         div_u;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    dealii::VectorizedArray&lt;number&gt;                         viscosity;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; normal;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    dealii::VectorizedArray&lt;number&gt;                         hs;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                            cell;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keyword">mutable</span> <span class="keywordtype">bool</span> ls_update_ghosts     = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keyword">mutable</span> <span class="keywordtype">bool</span> normal_update_ghosts = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  };</div>
 </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>} <span class="comment">// namespace MeltPoolDG::Evaporation</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>} <span class="comment">// namespace MeltPoolDG::Evaporation</span></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_html"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial</a></div><div class="ttdef"><b>Definition</b> incompressible_newtonian_evaporation_material.hpp:30</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_html_a32df7c6f3b6f37d86745152fd3fcb763"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a32df7c6f3b6f37d86745152fd3fcb763">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial::get_tau</a></div><div class="ttdeci">dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt; get_tau() final</div><div class="ttdef"><b>Definition</b> incompressible_newtonian_evaporation_material.hpp:100</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_html_a33037e79d5f7821b3f576d3dc9d2044b"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a33037e79d5f7821b3f576d3dc9d2044b">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial::IncompressibleNewtonianFluidEvaporationMaterial</a></div><div class="ttdeci">IncompressibleNewtonianFluidEvaporationMaterial(const ScratchData&lt; dim, dim, number &gt; &amp;scratch_data, const std::function&lt; const dealii::VectorizedArray&lt; number &gt; &amp;(const unsigned int cell, const unsigned int q)&gt; get_viscosity, const BlockVectorType &amp;normal_vector, const VectorType &amp;heaviside, const unsigned int normal_dof_idx, const unsigned int ls_hanging_nodes_dof_idx, const unsigned int velocity_quad_idx)</div><div class="ttdef"><b>Definition</b> incompressible_newtonian_evaporation_material.hpp:35</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_html_a599340341f80916f26d387e11f76a365"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a599340341f80916f26d387e11f76a365">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial::zero_out_ghost_values</a></div><div class="ttdeci">void zero_out_ghost_values() final</div><div class="ttdef"><b>Definition</b> incompressible_newtonian_evaporation_material.hpp:168</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_html_a66baececab4812244b7a836982d8d525"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a66baececab4812244b7a836982d8d525">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial::get_vmult_d_tau_d_grad_vel</a></div><div class="ttdeci">dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt; get_vmult_d_tau_d_grad_vel() final</div><div class="ttdef"><b>Definition</b> incompressible_newtonian_evaporation_material.hpp:130</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_html_a978a98f2247c51c6397ab23f317ac5af"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a978a98f2247c51c6397ab23f317ac5af">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial::update_ghost_values</a></div><div class="ttdeci">void update_ghost_values() final</div><div class="ttdef"><b>Definition</b> incompressible_newtonian_evaporation_material.hpp:153</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_html_a599340341f80916f26d387e11f76a365"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a599340341f80916f26d387e11f76a365">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial::zero_out_ghost_values</a></div><div class="ttdeci">void zero_out_ghost_values() final</div><div class="ttdef"><b>Definition</b> incompressible_newtonian_evaporation_material.hpp:171</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_html_a66baececab4812244b7a836982d8d525"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a66baececab4812244b7a836982d8d525">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial::get_vmult_d_tau_d_grad_vel</a></div><div class="ttdeci">dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt; get_vmult_d_tau_d_grad_vel() final</div><div class="ttdef"><b>Definition</b> incompressible_newtonian_evaporation_material.hpp:133</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_html_a978a98f2247c51c6397ab23f317ac5af"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a978a98f2247c51c6397ab23f317ac5af">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial::update_ghost_values</a></div><div class="ttdeci">void update_ghost_values() final</div><div class="ttdef"><b>Definition</b> incompressible_newtonian_evaporation_material.hpp:156</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_html_ac5036b59cea691f361a45274f82bded7"><div class="ttname"><a href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#ac5036b59cea691f361a45274f82bded7">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial::reinit</a></div><div class="ttdeci">void reinit(const dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;velocity_gradient, const unsigned int cell_idx, const unsigned int quad_idx) final</div><div class="ttdef"><b>Definition</b> incompressible_newtonian_evaporation_material.hpp:61</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html">MeltPoolDG::Flow::IncompressibleMaterialBase</a></div><div class="ttdef"><b>Definition</b> incompressible_flow_material_base.hpp:31</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdef"><b>Definition</b> scratch_data.hpp:46</div></div>
-<div class="ttc" id="afe__integrator_8hpp_html_a6466516f9f659a3994400630a9e99ca0"><div class="ttname"><a href="fe__integrator_8hpp.html#a6466516f9f659a3994400630a9e99ca0">FECellIntegrator</a></div><div class="ttdeci">dealii::FEEvaluation&lt; dim, -1, 0, n_components, number, VectorizedArrayType &gt; FECellIntegrator</div><div class="ttdef"><b>Definition</b> fe_integrator.hpp:14</div></div>
 <div class="ttc" id="aincompressible__flow__material__base_8hpp_html"><div class="ttname"><a href="incompressible__flow__material__base_8hpp.html">incompressible_flow_material_base.hpp</a></div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Evaporation_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Evaporation.html">MeltPoolDG::Evaporation</a></div><div class="ttdef"><b>Definition</b> evaporation_data.hpp:15</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_html_a6b137e1980c6c6e24b2a3d032112a7dc"><div class="ttname"><a href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">MeltPoolDG::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; double &gt; VectorType</div><div class="ttdef"><b>Definition</b> utility_functions.hpp:138</div></div>

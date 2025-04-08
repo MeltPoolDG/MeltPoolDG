@@ -103,18 +103,18 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  {</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">using </span><a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html">CaseType</a>        = <a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html">LevelSetCase&lt;dim, number&gt;</a>;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">using </span>VectorType      = LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">using </span>BlockVectorType = LinearAlgebra::distributed::BlockVector&lt;number&gt;;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">using </span>VectorType      = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">using </span>BlockVectorType = dealii::LinearAlgebra::distributed::BlockVector&lt;number&gt;;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">const</span> std::unique_ptr&lt;CaseType&gt; simulation_case;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    DoFHandler&lt;dim&gt; dof_handler;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    DoFHandler&lt;dim&gt; dof_handler_velocity;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    dealii::DoFHandler&lt;dim&gt; dof_handler;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    dealii::DoFHandler&lt;dim&gt; dof_handler_velocity;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    AffineConstraints&lt;number&gt; constraints_dirichlet;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    AffineConstraints&lt;number&gt; hanging_node_constraints;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    AffineConstraints&lt;number&gt; hanging_node_constraints_velocity;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    AffineConstraints&lt;number&gt; hanging_node_constraints_with_zero_dirichlet;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    dealii::AffineConstraints&lt;number&gt; constraints_dirichlet;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    dealii::AffineConstraints&lt;number&gt; hanging_node_constraints;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    dealii::AffineConstraints&lt;number&gt; hanging_node_constraints_velocity;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    dealii::AffineConstraints&lt;number&gt; hanging_node_constraints_with_zero_dirichlet;</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>        ls_dof_idx;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>        ls_quad_idx;</div>
@@ -144,7 +144,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    setup_dof_system(<span class="keyword">const</span> <span class="keywordtype">bool</span> do_reinit = <span class="keyword">true</span>);</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    compute_advection_velocity(Function&lt;dim&gt; &amp;advec_func);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    compute_advection_velocity(dealii::Function&lt;dim&gt; &amp;advec_func);</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span></div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    output_results(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> time_step, <span class="keyword">const</span> number current_time);</div>
@@ -167,7 +167,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1LevelSetCase_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html">MeltPoolDG::LevelSet::LevelSetCase</a></div><div class="ttdef"><b>Definition</b> level_set_case.hpp:70</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1LevelSetProblem_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1LevelSetProblem.html">MeltPoolDG::LevelSet::LevelSetProblem</a></div><div class="ttdef"><b>Definition</b> level_set_problem.hpp:19</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1LevelSetProblem_html_a224768f6892395b1d40c1c075ac31c03"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1LevelSetProblem.html#a224768f6892395b1d40c1c075ac31c03">MeltPoolDG::LevelSet::LevelSetProblem::LevelSetProblem</a></div><div class="ttdeci">LevelSetProblem(std::unique_ptr&lt; CaseType &gt; simulation_case)</div><div class="ttdef"><b>Definition</b> level_set_problem.hpp:72</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1LevelSetProblem_html_afdaad45697b72de10037f277c5391614"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1LevelSetProblem.html#afdaad45697b72de10037f277c5391614">MeltPoolDG::LevelSet::LevelSetProblem::run</a></div><div class="ttdeci">void run()</div><div class="ttdef"><b>Definition</b> level_set_problem.cpp:35</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1LevelSetProblem_html_afdaad45697b72de10037f277c5391614"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1LevelSetProblem.html#afdaad45697b72de10037f277c5391614">MeltPoolDG::LevelSet::LevelSetProblem::run</a></div><div class="ttdeci">void run()</div><div class="ttdef"><b>Definition</b> level_set_problem.cpp:37</div></div>
 <div class="ttc" id="aevaporation__operation_8hpp_html"><div class="ttname"><a href="evaporation__operation_8hpp.html">evaporation_operation.hpp</a></div></div>
 <div class="ttc" id="alevel__set__DG__operation_8hpp_html"><div class="ttname"><a href="level__set__DG__operation_8hpp.html">level_set_DG_operation.hpp</a></div></div>
 <div class="ttc" id="alevel__set__case_8hpp_html"><div class="ttname"><a href="level__set__case_8hpp.html">level_set_case.hpp</a></div></div>
