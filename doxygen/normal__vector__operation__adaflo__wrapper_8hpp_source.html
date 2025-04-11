@@ -135,7 +135,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    dealii::LinearAlgebra::distributed::BlockVector&lt;number&gt; &amp;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    get_solution_normal_vector() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    LevelSetOKZSolverComputeNormal&lt;dim&gt; &amp;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    adaflo::LevelSetOKZSolverComputeNormal&lt;dim&gt; &amp;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    get_adaflo_obj();</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span></div>
@@ -162,12 +162,12 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    BlockVectorType normal_vector_field;</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    BlockVectorType rhs;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    LevelSetOKZSolverComputeNormalParameter normal_vec_adaflo_params;</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    std::shared_ptr&lt;LevelSetOKZSolverComputeNormal&lt;dim&gt;&gt; normal_vec_operation;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    adaflo::LevelSetOKZSolverComputeNormalParameter normal_vec_adaflo_params;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    std::shared_ptr&lt;adaflo::LevelSetOKZSolverComputeNormal&lt;dim&gt;&gt; normal_vec_operation;</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    DiagonalPreconditioner&lt;number&gt;                         preconditioner;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    std::shared_ptr&lt;BlockMatrixExtension&gt;                  projection_matrix;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    std::shared_ptr&lt;BlockILUExtension&gt;                     ilu_projection_matrix;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    adaflo::DiagonalPreconditioner&lt;number&gt;                 preconditioner;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    std::shared_ptr&lt;adaflo::BlockMatrixExtension&gt;          projection_matrix;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    std::shared_ptr&lt;adaflo::BlockILUExtension&gt;             ilu_projection_matrix;</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    dealii::AlignedVector&lt;dealii::VectorizedArray&lt;number&gt;&gt; cell_diameters;</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    number                                                 cell_diameter_min;</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    number                                                 cell_diameter_max;</div>
