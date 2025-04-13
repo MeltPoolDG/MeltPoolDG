@@ -94,7 +94,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="comment">// Currently supported equations of state to model compressible or (nearly) incompressible fluids</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  <a class="code hl_define" href="better__enum_8hpp.html#a47df33c8d3d71e48df5272f4df0ac4d9">BETTER_ENUM</a>(EquationOfState, <span class="keywordtype">char</span>, ideal_gas, stiffened_gas, noble_abel_stiffened_gas)</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number = <span class="keywordtype">double</span>&gt;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number&gt;</div>
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1EOSData.html">   15</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1EOSData.html">EOSData</a></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  {</div>
@@ -157,7 +157,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  };</div>
 </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number = <span class="keywordtype">double</span>&gt;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number&gt;</div>
 <div class="foldopen" id="foldopen00074" data-start="{" data-end="};">
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html">   74</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html">CompressibleFluidMaterialPhaseData</a></div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  {</div>
@@ -214,7 +214,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                          <a class="code hl_variable" href="structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html#ae93b9edc817c84e5409eea5ab79febf2">thermal_conductivity</a>,</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                          <span class="stringliteral">&quot;Thermal conductivity.&quot;</span>,</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                          dealii::Patterns::Double(0., std::numeric_limits&lt;number&gt;::max()));</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <a class="code hl_variable" href="structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html#acb580898914dfddd3d85d7621861e658">eos_data</a>.<a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSData.html#aa6c6c7653740249011067b806cf82a0c">add_parameters</a>(prm);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <a class="code hl_variable" href="structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html#acb580898914dfddd3d85d7621861e658">eos_data</a>.add_parameters(prm);</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      }</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>      prm.leave_subsection();</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    };</div>
