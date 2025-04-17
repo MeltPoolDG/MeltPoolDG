@@ -29,7 +29,7 @@ var searchData=
   ['flowdata_26',['FlowData',['../structMeltPoolDG_1_1Flow_1_1FlowData.html',1,'MeltPoolDG::Flow']]],
   ['flowfield_27',['flowfield',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html#ae866f45718e7f912615a14e067814a97',1,'MeltPoolDG::Simulation::CompressibleFlow::FlowField::FlowField()'],['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1FlowField.html',1,'MeltPoolDG::Simulation::CompressibleFlow::FlowField&lt; dim, number &gt;']]],
   ['formulation_28',['formulation',['../structMeltPoolDG_1_1Flow_1_1DarcyDampingData.html#adecef337faa3179bf0c695913e00e68b',1,'MeltPoolDG::Flow::DarcyDampingData']]],
-  ['fraction_5fof_5fmelting_5fpoint_5frefined_5fin_5fsolid_29',['fraction_of_melting_point_refined_in_solid',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#af4ca93e819d92240f208f446ebb61b14',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
+  ['fraction_5fof_5fmelting_5fpoint_5frefined_5fin_5fsolid_29',['fraction_of_melting_point_refined_in_solid',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolApplication.html#a302cd7c082d8600b474f7502530e33bf',1,'MeltPoolDG::MeltPool::MeltPoolApplication']]],
   ['from_5fenum_30',['from_enum',['../structbetter__enums_1_1map.html#afd371738df1b327d042a1bfe6938d92d',1,'better_enums::map']]],
   ['function_31',['function',['../structbetter__enums_1_1map.html#a225f81223779091e6761c74c766d7db1',1,'better_enums::map']]],
   ['functions_2ehpp_32',['functions.hpp',['../functions_8hpp.html',1,'']]]

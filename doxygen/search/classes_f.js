@@ -14,11 +14,9 @@ var searchData=
   ['preconditioner_3c_20dim_2c_20blockvectortype_2c_20number_20_3e_11',['Preconditioner&lt; dim, BlockVectorType, number &gt;',['../classMeltPoolDG_1_1Preconditioner.html',1,'MeltPoolDG']]],
   ['predictor_12',['Predictor',['../classMeltPoolDG_1_1Predictor.html',1,'MeltPoolDG']]],
   ['prescribedvelocityfield_13',['PrescribedVelocityField',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusion_1_1PrescribedVelocityField.html',1,'MeltPoolDG::Simulation::AdvectionDiffusion']]],
-  ['problembase_14',['ProblemBase',['../classMeltPoolDG_1_1ProblemBase.html',1,'MeltPoolDG']]],
-  ['problemselector_15',['ProblemSelector',['../classMeltPoolDG_1_1ProblemSelector.html',1,'MeltPoolDG']]],
-  ['profilingdata_16',['ProfilingData',['../structMeltPoolDG_1_1Profiling_1_1ProfilingData.html',1,'MeltPoolDG::Profiling']]],
-  ['profilingmonitor_17',['ProfilingMonitor',['../classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html',1,'MeltPoolDG::Profiling']]],
-  ['pseudorteoperation_18',['PseudoRTEOperation',['../classMeltPoolDG_1_1RadiativeTransport_1_1PseudoRTEOperation.html',1,'MeltPoolDG::RadiativeTransport']]],
-  ['pseudorteoperator_19',['PseudoRTEOperator',['../classMeltPoolDG_1_1RadiativeTransport_1_1PseudoRTEOperator.html',1,'MeltPoolDG::RadiativeTransport']]],
-  ['pseudotimesteppingdata_20',['PseudoTimeSteppingData',['../structMeltPoolDG_1_1RadiativeTransport_1_1PseudoTimeSteppingData.html',1,'MeltPoolDG::RadiativeTransport']]]
+  ['profilingdata_14',['ProfilingData',['../structMeltPoolDG_1_1Profiling_1_1ProfilingData.html',1,'MeltPoolDG::Profiling']]],
+  ['profilingmonitor_15',['ProfilingMonitor',['../classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html',1,'MeltPoolDG::Profiling']]],
+  ['pseudorteoperation_16',['PseudoRTEOperation',['../classMeltPoolDG_1_1RadiativeTransport_1_1PseudoRTEOperation.html',1,'MeltPoolDG::RadiativeTransport']]],
+  ['pseudorteoperator_17',['PseudoRTEOperator',['../classMeltPoolDG_1_1RadiativeTransport_1_1PseudoRTEOperator.html',1,'MeltPoolDG::RadiativeTransport']]],
+  ['pseudotimesteppingdata_18',['PseudoTimeSteppingData',['../structMeltPoolDG_1_1RadiativeTransport_1_1PseudoTimeSteppingData.html',1,'MeltPoolDG::RadiativeTransport']]]
 ];

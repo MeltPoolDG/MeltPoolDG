@@ -112,8 +112,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad6ae9a2d893476b5c7dc3d9154b64e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e5e92681e5a56966fb410f78141124f" id="r_a2e5e92681e5a56966fb410f78141124f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorImplicitExplicit.html#a2e5e92681e5a56966fb410f78141124f">reinit</a> () override</td></tr>
 <tr class="separator:a2e5e92681e5a56966fb410f78141124f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2caa055c09a1323f40f93fd96414f15" id="r_aa2caa055c09a1323f40f93fd96414f15"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorImplicitExplicit.html#aa2caa055c09a1323f40f93fd96414f15">make_problem_specific_time_integrator</a> (const TimeIntegratorData&lt; number &gt; &amp;time_integrator_data) override</td></tr>
-<tr class="separator:aa2caa055c09a1323f40f93fd96414f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9690fcdf0f8dac9c87815a9b68beee0b" id="r_a9690fcdf0f8dac9c87815a9b68beee0b"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorImplicitExplicit.html#a9690fcdf0f8dac9c87815a9b68beee0b">make_application_specific_time_integrator</a> (const TimeIntegratorData&lt; number &gt; &amp;time_integrator_data) override</td></tr>
+<tr class="separator:a9690fcdf0f8dac9c87815a9b68beee0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb0f30c7bec1019b872e8b02702ccb0e" id="r_abb0f30c7bec1019b872e8b02702ccb0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorImplicitExplicit.html#abb0f30c7bec1019b872e8b02702ccb0e">local_cell_jacobian_kernel</a> (dealii::FECellIntegrator&lt; dim, dim+2, number &gt; &amp;delta_phi, const dealii::FECellIntegrator&lt; dim, dim+2, number &gt; &amp;phi, unsigned int q_index) const</td></tr>
 <tr class="separator:abb0f30c7bec1019b872e8b02702ccb0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2fd4ce3655a451e12605c8e29d86efa" id="r_ad2fd4ce3655a451e12605c8e29d86efa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorImplicitExplicit.html#ad2fd4ce3655a451e12605c8e29d86efa">local_face_jacobian_kernel</a> (dealii::FEFaceIntegrator&lt; dim, dim+2, number &gt; &amp;delta_phi_m, dealii::FEFaceIntegrator&lt; dim, dim+2, number &gt; &amp;delta_phi_p, const dealii::FEFaceIntegrator&lt; dim, dim+2, number &gt; &amp;phi_m, const dealii::FEFaceIntegrator&lt; dim, dim+2, number &gt; &amp;phi_p, unsigned q_index) const</td></tr>
@@ -471,35 +471,8 @@ template&lt;int dim, typename number , bool is_viscous&gt; </div>
 
 </div>
 </div>
-<a id="a14e0d4fdd8620746298c421e8eea8559" name="a14e0d4fdd8620746298c421e8eea8559"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14e0d4fdd8620746298c421e8eea8559">&#9670;&#160;</a></span>make_initial_guess()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number , bool is_viscous&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorImplicitExplicit.html">MeltPoolDG::Flow::DGCompressibleFlowOperatorImplicitExplicit</a>&lt; dim, number, is_viscous &gt;::make_initial_guess </td>
-          <td>(</td>
-          <td class="paramtype">VectorType &amp;&#160;</td>
-          <td class="paramname"><em>solution</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Perform an initial guess for the solution of at the next time step. The guessed solution is thereby given by the intermediate explicit solution computed during the explicit step of the imex scheme.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">solution</td><td>Vector in which the solution guess is stored. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aa2caa055c09a1323f40f93fd96414f15" name="aa2caa055c09a1323f40f93fd96414f15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2caa055c09a1323f40f93fd96414f15">&#9670;&#160;</a></span>make_problem_specific_time_integrator()</h2>
+<a id="a9690fcdf0f8dac9c87815a9b68beee0b" name="a9690fcdf0f8dac9c87815a9b68beee0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9690fcdf0f8dac9c87815a9b68beee0b">&#9670;&#160;</a></span>make_application_specific_time_integrator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -510,7 +483,7 @@ template&lt;int dim, typename number , bool is_viscous&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt; <a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; &gt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorImplicitExplicit.html">MeltPoolDG::Flow::DGCompressibleFlowOperatorImplicitExplicit</a>&lt; dim, number, is_viscous &gt;::make_problem_specific_time_integrator </td>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; &gt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorImplicitExplicit.html">MeltPoolDG::Flow::DGCompressibleFlowOperatorImplicitExplicit</a>&lt; dim, number, is_viscous &gt;::make_application_specific_time_integrator </td>
           <td>(</td>
           <td class="paramtype">const TimeIntegratorData&lt; number &gt; &amp;&#160;</td>
           <td class="paramname"><em>time_integrator_data</em></td><td>)</td>
@@ -538,7 +511,34 @@ template&lt;int dim, typename number , bool is_viscous&gt; </div>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorBase.html#a36ed5e24ab9073197a063fa5d62526fe">MeltPoolDG::Flow::DGCompressibleFlowOperatorBase&lt; number &gt;</a>.</p>
+<p>Implements <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorBase.html#ac9d11123c2d4369d67cf852043c8e8b5">MeltPoolDG::Flow::DGCompressibleFlowOperatorBase&lt; number &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a14e0d4fdd8620746298c421e8eea8559" name="a14e0d4fdd8620746298c421e8eea8559"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14e0d4fdd8620746298c421e8eea8559">&#9670;&#160;</a></span>make_initial_guess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorImplicitExplicit.html">MeltPoolDG::Flow::DGCompressibleFlowOperatorImplicitExplicit</a>&lt; dim, number, is_viscous &gt;::make_initial_guess </td>
+          <td>(</td>
+          <td class="paramtype">VectorType &amp;&#160;</td>
+          <td class="paramname"><em>solution</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Perform an initial guess for the solution of at the next time step. The guessed solution is thereby given by the intermediate explicit solution computed during the explicit step of the imex scheme.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">solution</td><td>Vector in which the solution guess is stored. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

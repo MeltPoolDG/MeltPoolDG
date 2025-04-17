@@ -116,7 +116,7 @@ var searchData=
   ['stefans_5fproblem_2ecpp_113',['stefans_problem.cpp',['../stefans__problem_8cpp.html',1,'']]],
   ['stefans_5fproblem_2ehpp_114',['stefans_problem.hpp',['../stefans__problem_8hpp.html',1,'']]],
   ['sticking_5fconstant_115',['sticking_constant',['../structMeltPoolDG_1_1Evaporation_1_1RecoilPressureData.html#a3f752c61178e5919b4f46982b37c1163',1,'MeltPoolDG::Evaporation::RecoilPressureData']]],
-  ['strategy_116',['strategy',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolProblem.html#ac729f9bd6286951742d4e3de25a9f40c',1,'MeltPoolDG::MeltPool::MeltPoolProblem']]],
+  ['strategy_116',['strategy',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolApplication.html#a6b2cd968b10951ef19f0f7501dd35fda',1,'MeltPoolDG::MeltPool::MeltPoolApplication']]],
   ['substrate_5flevel_117',['substrate_level',['../structMeltPoolDG_1_1MeltPool_1_1PowderBedData.html#a6a62c0734d90cfee748942eccfe8d9b2',1,'MeltPoolDG::MeltPool::PowderBedData']]],
   ['subtraction_118',['Subtraction',['../namespaceMeltPoolDG.html#a1c0454d202cd39775350331374b4c5acae4e8f7c3ccff1109a3c047a6e3fe9966',1,'MeltPoolDG']]],
   ['surface_5ftension_119',['surface_tension',['../structMeltPoolDG_1_1Flow_1_1FlowData.html#abe0dd50d66518aeaccbb2e7db1320ca0',1,'MeltPoolDG::Flow::FlowData']]],
