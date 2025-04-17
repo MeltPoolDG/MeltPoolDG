@@ -79,21 +79,32 @@ $(function() {
   <div class="headertitle"><div class="title">amr.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;deal.II/distributed/solution_transfer.h&gt;</code><br />
-<code>#include &lt;deal.II/grid/grid_refinement.h&gt;</code><br />
-<code>#include &lt;deal.II/numerics/solution_transfer.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;deal.II/dofs/dof_handler.h&gt;</code><br />
+<code>#include &lt;deal.II/grid/tria.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="amr__data_8hpp_source.html">meltpooldg/utilities/amr_data.hpp</a>&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for amr.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="amr_8hpp__incl.png" border="0" usemap="#ainclude_2meltpooldg_2utilities_2amr_8hpp" alt=""/></div>
 <map name="ainclude_2meltpooldg_2utilities_2amr_8hpp" id="ainclude_2meltpooldg_2utilities_2amr_8hpp">
-<area shape="rect" title=" " alt="" coords="208,5,355,45"/>
-<area shape="rect" title=" " alt="" coords="5,93,152,133"/>
-<area shape="poly" title=" " alt="" coords="238,48,136,91,134,86,236,43"/>
-<area shape="rect" title=" " alt="" coords="176,101,387,126"/>
-<area shape="poly" title=" " alt="" coords="284,46,284,87,279,87,279,46"/>
-<area shape="rect" title=" " alt="" coords="411,93,594,133"/>
-<area shape="poly" title=" " alt="" coords="331,43,443,86,441,91,329,48"/>
+<area shape="rect" title=" " alt="" coords="443,5,589,45"/>
+<area shape="rect" title=" " alt="" coords="5,101,192,126"/>
+<area shape="poly" title=" " alt="" coords="443,44,168,101,167,95,442,39"/>
+<area shape="rect" title=" " alt="" coords="217,101,346,126"/>
+<area shape="poly" title=" " alt="" coords="465,48,326,99,324,94,464,43"/>
+<area shape="rect" href="amr__data_8hpp.html" title=" " alt="" coords="371,93,520,133"/>
+<area shape="poly" title=" " alt="" coords="502,47,472,85,467,81,498,44"/>
+<area shape="rect" title=" " alt="" coords="545,101,631,126"/>
+<area shape="poly" title=" " alt="" coords="534,44,571,88,567,91,530,47"/>
+<area shape="rect" title=" " alt="" coords="655,101,715,126"/>
+<area shape="poly" title=" " alt="" coords="554,43,652,92,649,97,552,48"/>
+<area shape="rect" title=" " alt="" coords="739,101,802,126"/>
+<area shape="poly" title=" " alt="" coords="583,43,729,91,734,93,732,98,727,96,581,48"/>
+<area shape="rect" title=" " alt="" coords="361,181,530,221"/>
+<area shape="poly" title=" " alt="" coords="448,134,448,167,443,167,443,134"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -101,19 +112,21 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="amr_8hpp__dep__incl.png" border="0" usemap="#ainclude_2meltpooldg_2utilities_2amr_8hppdep" alt=""/></div>
 <map name="ainclude_2meltpooldg_2utilities_2amr_8hppdep" id="ainclude_2meltpooldg_2utilities_2amr_8hppdep">
-<area shape="rect" title=" " alt="" coords="543,5,689,45"/>
+<area shape="rect" title=" " alt="" coords="659,5,805,45"/>
 <area shape="rect" href="advection__diffusion__problem_8cpp.html" title=" " alt="" coords="5,93,184,148"/>
-<area shape="poly" title=" " alt="" coords="530,41,374,64,197,96,185,99,184,93,195,91,373,59,529,35"/>
+<area shape="poly" title=" " alt="" coords="645,37,439,59,318,76,196,96,185,98,184,93,196,91,317,70,439,54,644,31"/>
 <area shape="rect" href="heat__transfer__problem_8cpp.html" title=" " alt="" coords="209,93,378,148"/>
-<area shape="poly" title=" " alt="" coords="538,52,379,98,377,92,537,47"/>
+<area shape="poly" title=" " alt="" coords="645,44,390,96,379,99,377,93,389,91,644,39"/>
 <area shape="rect" href="level__set__problem_8cpp.html" title=" " alt="" coords="402,101,601,141"/>
-<area shape="poly" title=" " alt="" coords="584,56,526,103,523,99,581,52"/>
+<area shape="poly" title=" " alt="" coords="674,53,549,103,547,98,672,48"/>
 <area shape="rect" href="radiative__transport__problem_8cpp.html" title=" " alt="" coords="625,93,839,148"/>
-<area shape="poly" title=" " alt="" coords="652,52,701,91,698,95,649,56"/>
+<area shape="poly" title=" " alt="" coords="735,59,735,93,729,93,729,59"/>
 <area shape="rect" href="reinitialization__problem_8cpp.html" title=" " alt="" coords="864,101,1072,141"/>
-<area shape="poly" title=" " alt="" coords="701,46,898,98,896,103,700,51"/>
+<area shape="poly" title=" " alt="" coords="793,48,921,98,919,103,791,53"/>
 <area shape="rect" href="melt__pool__problem_8cpp.html" title=" " alt="" coords="1096,101,1264,141"/>
-<area shape="poly" title=" " alt="" coords="703,33,880,56,1085,91,1116,98,1115,103,1083,96,879,61,703,38"/>
+<area shape="poly" title=" " alt="" coords="819,39,945,62,1085,91,1114,98,1113,103,1083,96,944,67,818,44"/>
+<area shape="rect" href="amr_8cpp.html" title=" " alt="" coords="1289,108,1463,133"/>
+<area shape="poly" title=" " alt="" coords="819,31,1028,53,1153,70,1277,91,1337,105,1336,110,1275,96,1152,75,1028,58,819,36"/>
 <area shape="rect" href="melt__pool__problem__2_8cpp.html" title=" " alt="" coords="1000,196,1168,236"/>
 <area shape="poly" title=" " alt="" coords="1153,152,1105,198,1102,194,1149,148"/>
 <area shape="rect" href="melt__pool__problem__3_8cpp.html" title=" " alt="" coords="1192,196,1360,236"/>
@@ -128,18 +141,20 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMeltPoolDG" id="r_namespaceMeltPoolDG"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html">MeltPoolDG</a></td></tr>
 <tr class="memdesc:namespaceMeltPoolDG"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for a general preconditioner. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceMeltPoolDG_1_1AMR" id="r_namespaceMeltPoolDG_1_1AMR"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html">MeltPoolDG::AMR</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac8d6d35ab3163c4381445402aab148fb" id="r_ac8d6d35ab3163c4381445402aab148fb"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
-<tr class="memitem:ac8d6d35ab3163c4381445402aab148fb"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ac8d6d35ab3163c4381445402aab148fb">MeltPoolDG::now</a> (const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; number &gt; &amp;amr, const int n_time_step)</td></tr>
-<tr class="separator:ac8d6d35ab3163c4381445402aab148fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac636e6c7b81c71cd11a0f966025d6701" id="r_ac636e6c7b81c71cd11a0f966025d6701"><td class="memTemplParams" colspan="2">template&lt;int dim, typename <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> , typename number &gt; </td></tr>
-<tr class="memitem:ac636e6c7b81c71cd11a0f966025d6701"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ac636e6c7b81c71cd11a0f966025d6701">MeltPoolDG::refine_grid</a> (const std::function&lt; bool(dealii::Triangulation&lt; dim &gt; &amp;)&gt; &amp;mark_cells_for_refinement, const std::function&lt; void(std::vector&lt; std::pair&lt; const dealii::DoFHandler&lt; dim &gt; *, std::function&lt; void(std::vector&lt; <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> * &gt; &amp;)&gt; &gt; &gt; &amp;data)&gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;post, const std::function&lt; void()&gt; &amp;setup_dof_system, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; number &gt; &amp;amr, dealii::Triangulation&lt; dim &gt; &amp;tria, const int n_time_step)</td></tr>
-<tr class="separator:ac636e6c7b81c71cd11a0f966025d6701"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a640cb57f50a0fe260e9df799a4d9548f" id="r_a640cb57f50a0fe260e9df799a4d9548f"><td class="memTemplParams" colspan="2">template&lt;int dim, typename <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> , typename number &gt; </td></tr>
-<tr class="memitem:a640cb57f50a0fe260e9df799a4d9548f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a640cb57f50a0fe260e9df799a4d9548f">MeltPoolDG::refine_grid</a> (const std::function&lt; bool(dealii::Triangulation&lt; dim &gt; &amp;)&gt; &amp;mark_cells_for_refinement, const std::function&lt; void(std::vector&lt; <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> * &gt; &amp;)&gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;post, const std::function&lt; void()&gt; &amp;setup_dof_system, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; number &gt; &amp;amr, dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const int n_time_step)</td></tr>
-<tr class="separator:a640cb57f50a0fe260e9df799a4d9548f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56bfaf15fe564eb5a4d8076de21b25c1" id="r_a56bfaf15fe564eb5a4d8076de21b25c1"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
+<tr class="memitem:a56bfaf15fe564eb5a4d8076de21b25c1"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a56bfaf15fe564eb5a4d8076de21b25c1">MeltPoolDG::AMR::now</a> (const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; number &gt; &amp;amr, const int n_time_step)</td></tr>
+<tr class="separator:a56bfaf15fe564eb5a4d8076de21b25c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8499c2ac4cad1ec83ae96920d12f028" id="r_ab8499c2ac4cad1ec83ae96920d12f028"><td class="memTemplParams" colspan="2">template&lt;int dim, typename <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> , typename number  = VectorType::value_type&gt; </td></tr>
+<tr class="memitem:ab8499c2ac4cad1ec83ae96920d12f028"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#ab8499c2ac4cad1ec83ae96920d12f028">MeltPoolDG::AMR::refine_grid</a> (const std::function&lt; bool(dealii::Triangulation&lt; dim &gt; &amp;)&gt; &amp;mark_cells_for_refinement, const std::function&lt; void(std::vector&lt; std::pair&lt; const dealii::DoFHandler&lt; dim &gt; *, std::function&lt; void(std::vector&lt; <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> * &gt; &amp;)&gt; &gt; &gt; &amp;)&gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;post, const std::function&lt; void()&gt; &amp;setup_dof_system, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; number &gt; &amp;amr, dealii::Triangulation&lt; dim &gt; &amp;tria, const int n_time_step)</td></tr>
+<tr class="separator:ab8499c2ac4cad1ec83ae96920d12f028"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ce41d9dd597a091bab4b1ce21415af6" id="r_a4ce41d9dd597a091bab4b1ce21415af6"><td class="memTemplParams" colspan="2">template&lt;int dim, typename <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> , typename number &gt; </td></tr>
+<tr class="memitem:a4ce41d9dd597a091bab4b1ce21415af6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a4ce41d9dd597a091bab4b1ce21415af6">MeltPoolDG::AMR::refine_grid</a> (const std::function&lt; bool(dealii::Triangulation&lt; dim &gt; &amp;)&gt; &amp;mark_cells_for_refinement, const std::function&lt; void(std::vector&lt; <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> * &gt; &amp;)&gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;post, const std::function&lt; void()&gt; &amp;setup_dof_system, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; number &gt; &amp;amr, dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const int n_time_step)</td></tr>
+<tr class="separator:a4ce41d9dd597a091bab4b1ce21415af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

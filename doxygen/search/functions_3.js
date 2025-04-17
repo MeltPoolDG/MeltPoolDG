@@ -41,7 +41,7 @@ var searchData=
   ['compressibleflowscratchdata_38',['CompressibleFlowScratchData',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html#a8462ea656eae7d9038c7d793cdf8efe3',1,'MeltPoolDG::Flow::CompressibleFlowScratchData']]],
   ['compressibleflowviscouskernels_39',['CompressibleFlowViscousKernels',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowViscousKernels.html#a6fc78fd0d7ef83814b3eb0641429cd6c',1,'MeltPoolDG::Flow::CompressibleFlowViscousKernels']]],
   ['compressiblemultiphasecase_40',['CompressibleMultiphaseCase',['../classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseCase.html#a0c8187d8d1785a9870eb075a5d19fe14',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseCase']]],
-  ['compressiblemultiphaseoperation_41',['CompressibleMultiphaseOperation',['../classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a1c70a9e07ce419561befc2fe7510186b',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseOperation']]],
+  ['compressiblemultiphaseoperation_41',['CompressibleMultiphaseOperation',['../classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a812ec0c93b42503d1e1ea6ce819492f0',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseOperation']]],
   ['compressiblemultiphaseoperator_42',['CompressibleMultiphaseOperator',['../classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a1f122ce7f697e1cc1626053a9c274767',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseOperator']]],
   ['compressiblemultiphaseproblem_43',['CompressibleMultiphaseProblem',['../classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseProblem.html#ae9f3752ff876e080665c9b84ae32c97c',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseProblem']]],
   ['compute_5fcell_5fsize_5fdependent_5ffilter_5fparameter_44',['compute_cell_size_dependent_filter_parameter',['../namespaceMeltPoolDG_1_1LevelSet.html#ab930f14a56e7fb515f4e040c957d7a68',1,'MeltPoolDG::LevelSet']]],
@@ -128,6 +128,6 @@ var searchData=
   ['curvaturedgoperation_125',['CurvatureDGOperation',['../classMeltPoolDG_1_1LevelSet_1_1CurvatureDGOperation.html#a98dc6900267b8cd8a7e068b72bcd39e2',1,'MeltPoolDG::LevelSet::CurvatureDGOperation']]],
   ['curvatureoperation_126',['CurvatureOperation',['../classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a5cadb96610564030d2ebc436543c74ed',1,'MeltPoolDG::LevelSet::CurvatureOperation']]],
   ['curvatureoperator_127',['CurvatureOperator',['../classMeltPoolDG_1_1LevelSet_1_1CurvatureOperator.html#a34ff1e6f1ecd259d8acda08c95790a22',1,'MeltPoolDG::LevelSet::CurvatureOperator']]],
-  ['cutdgcompressibleflowoperation_128',['CutDGCompressibleFlowOperation',['../classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperation.html#a2bad8491fa82ba2149481ace03a5f74f',1,'MeltPoolDG::Flow::CutDGCompressibleFlowOperation']]],
+  ['cutdgcompressibleflowoperation_128',['CutDGCompressibleFlowOperation',['../classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperation.html#a46092385b2eeea79405f86ab167d2a0f',1,'MeltPoolDG::Flow::CutDGCompressibleFlowOperation']]],
   ['cutdgcompressibleflowoperator_129',['CutDGCompressibleFlowOperator',['../classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a8148404212f99adec3473d0f9932482c',1,'MeltPoolDG::Flow::CutDGCompressibleFlowOperator']]]
 ];

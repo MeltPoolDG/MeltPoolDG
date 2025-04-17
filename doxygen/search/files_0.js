@@ -24,7 +24,8 @@ var searchData=
   ['advection_5fdiffusion_5foperator_2ehpp_21',['advection_diffusion_operator.hpp',['../advection__diffusion__operator_8hpp.html',1,'']]],
   ['advection_5fdiffusion_5fproblem_2ecpp_22',['advection_diffusion_problem.cpp',['../advection__diffusion__problem_8cpp.html',1,'']]],
   ['advection_5fdiffusion_5fproblem_2ehpp_23',['advection_diffusion_problem.hpp',['../advection__diffusion__problem_8hpp.html',1,'']]],
-  ['amr_2ehpp_24',['amr.hpp',['../amr_8hpp.html',1,'']]],
-  ['amr_5fdata_2ecpp_25',['amr_data.cpp',['../amr__data_8cpp.html',1,'']]],
-  ['amr_5fdata_2ehpp_26',['amr_data.hpp',['../amr__data_8hpp.html',1,'']]]
+  ['amr_2ecpp_24',['amr.cpp',['../amr_8cpp.html',1,'']]],
+  ['amr_2ehpp_25',['amr.hpp',['../amr_8hpp.html',1,'']]],
+  ['amr_5fdata_2ecpp_26',['amr_data.cpp',['../amr__data_8cpp.html',1,'']]],
+  ['amr_5fdata_2ehpp_27',['amr_data.hpp',['../amr__data_8hpp.html',1,'']]]
 ];
