@@ -12,7 +12,7 @@ var searchData=
   ['enum_2ehpp_9',['enum.hpp',['../enum_8hpp.html',1,'']]],
   ['eos_5fdata_10',['eos_data',['../structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html#acb580898914dfddd3d85d7621861e658',1,'MeltPoolDG::Flow::CompressibleFluidMaterialPhaseData']]],
   ['eosdata_11',['EOSData',['../structMeltPoolDG_1_1Flow_1_1EOSData.html',1,'MeltPoolDG::Flow']]],
-  ['evaluate_5fat_5finterface_12',['evaluate_at_interface',['../namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#acf2569149fd7b9786b1232eacb9a59a7',1,'MeltPoolDG::LevelSet::Tools']]],
+  ['evaluate_5fat_5finterface_12',['evaluate_at_interface',['../namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#af2d47e465efb5b6e1083ab0a73a5525c',1,'MeltPoolDG::LevelSet::Tools']]],
   ['evaluate_5ffunction_13',['evaluate_function',['../namespaceMeltPoolDG_1_1Heat_1_1internal.html#a0ea064c4c26c79d4b38008a7f7e3ee77',1,'MeltPoolDG::Heat::internal']]],
   ['evaluate_5ffunction_5fat_5fvectorized_5fpoints_14',['evaluate_function_at_vectorized_points',['../namespaceMeltPoolDG_1_1VectorTools.html#acb90d79a70e546d90c696e8708e1a850',1,'MeltPoolDG::VectorTools::evaluate_function_at_vectorized_points(const dealii::Function&lt; dim &gt; &amp;function, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;p_vectorized, const unsigned int component)'],['../namespaceMeltPoolDG_1_1VectorTools.html#a697acb1c88364e30ce4ba8d85a5096cb',1,'MeltPoolDG::VectorTools::evaluate_function_at_vectorized_points(const dealii::Function&lt; dim &gt; &amp;func, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;points)']]],
   ['evaluate_5fintersected_5fdomain_15',['evaluate_intersected_domain',['../namespaceMeltPoolDG_1_1CutUtil.html#abfbfc2ab68eade78b8ee8129572a7d86',1,'MeltPoolDG::CutUtil']]],
@@ -63,5 +63,6 @@ var searchData=
   ['exceptions_2ehpp_60',['exceptions.hpp',['../exceptions_8hpp.html',1,'']]],
   ['explicit_5flow_5fstorage_5frunge_5fkutta_5fintegrator_2ehpp_61',['explicit_low_storage_runge_kutta_integrator.hpp',['../explicit__low__storage__runge__kutta__integrator_8hpp.html',1,'']]],
   ['explicit_5ftime_5fintegrator_5ffactory_62',['explicit_time_integrator_factory',['../namespaceMeltPoolDG.html#aea77a06f09c2a2dfc8e7e5ec951e2549',1,'MeltPoolDG']]],
-  ['extinction_5fcoefficient_63',['extinction_coefficient',['../structMeltPoolDG_1_1Heat_1_1LaserData_1_1GusarovData.html#a76c3f1173225610bc5a3c940c28f258d',1,'MeltPoolDG::Heat::LaserData::GusarovData']]]
+  ['extend_5finterface_5fvalues_63',['extend_interface_values',['../classMeltPoolDG_1_1LevelSet_1_1Tools_1_1NearestPoint.html#a3d413134f8fc3df6e367aae9bc45e320',1,'MeltPoolDG::LevelSet::Tools::NearestPoint']]],
+  ['extinction_5fcoefficient_64',['extinction_coefficient',['../structMeltPoolDG_1_1Heat_1_1LaserData_1_1GusarovData.html#a76c3f1173225610bc5a3c940c28f258d',1,'MeltPoolDG::Heat::LaserData::GusarovData']]]
 ];

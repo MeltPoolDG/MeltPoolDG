@@ -83,6 +83,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1Tools_1_1NearestPoint.html">NearestPoint</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute nearest points to the isocontour of a level set function.  <a href="classMeltPoolDG_1_1LevelSet_1_1Tools_1_1NearestPoint.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -102,12 +103,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a6556ca6bfbaba7e2cafa33b3a47aaab5" id="r_a6556ca6bfbaba7e2cafa33b3a47aaab5"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
 <tr class="memitem:a6556ca6bfbaba7e2cafa33b3a47aaab5"><td class="memTemplItemLeft" align="right" valign="top">dealii::LinearAlgebra::distributed::Vector&lt; number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#a6556ca6bfbaba7e2cafa33b3a47aaab5">merge_two_indicator_fields</a> (const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;indicator_1, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;indicator_2, <a class="el" href="namespaceMeltPoolDG.html#a1c0454d202cd39775350331374b4c5ac">BooleanType</a> type=<a class="el" href="namespaceMeltPoolDG.html#a1c0454d202cd39775350331374b4c5aca491cfa716bba5401dbec18e3fd293e42">BooleanType::Union</a>, const number indicator_value_interior=1.0, const number indicator_value_exterior=-1.0)</td></tr>
 <tr class="separator:a6556ca6bfbaba7e2cafa33b3a47aaab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf2569149fd7b9786b1232eacb9a59a7" id="r_acf2569149fd7b9786b1232eacb9a59a7"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
-<tr class="memitem:acf2569149fd7b9786b1232eacb9a59a7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#acf2569149fd7b9786b1232eacb9a59a7">evaluate_at_interface</a> (const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const dealii::Mapping&lt; dim &gt; &amp;mapping, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;level_set_vector, const std::function&lt; void(const typename dealii::DoFHandler&lt; dim &gt;::active_cell_iterator &amp;, const std::vector&lt; dealii::Point&lt; dim &gt; &gt; &amp;, const std::vector&lt; dealii::Point&lt; dim &gt; &gt; &amp;, const std::vector&lt; number &gt; &amp;)&gt; &amp;evaluate_at_interface_points, const number contour_value=0.0, const unsigned int n_subdivisions=1, const bool use_mca=true)</td></tr>
-<tr class="separator:acf2569149fd7b9786b1232eacb9a59a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53422387c4145d718675c64d833c1b20" id="r_a53422387c4145d718675c64d833c1b20"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
-<tr class="memitem:a53422387c4145d718675c64d833c1b20"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::tuple&lt; const typename dealii::Triangulation&lt; dim, dim &gt;::cell_iterator, std::vector&lt; dealii::Point&lt; dim &gt; &gt;, std::vector&lt; number &gt; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#a53422387c4145d718675c64d833c1b20">generate_surface_mesh_info</a> (const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const dealii::Mapping&lt; dim &gt; &amp;mapping, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;level_set_as_heaviside, const number contour_value=0.0, const unsigned int n_subdivisions=1, const bool use_mca=true)</td></tr>
-<tr class="separator:a53422387c4145d718675c64d833c1b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59cae9df3a9718402d470aaefd68aa57" id="r_a59cae9df3a9718402d470aaefd68aa57"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
+<tr class="memitem:a59cae9df3a9718402d470aaefd68aa57"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#a59cae9df3a9718402d470aaefd68aa57">collect_interface_cells_and_intersection_points</a> (std::vector&lt; std::pair&lt; std::pair&lt; unsigned int, unsigned int &gt;, std::vector&lt; dealii::Point&lt; dim &gt; &gt; &gt; &gt; &amp;surface_cells_and_unit_points, std::vector&lt; dealii::Point&lt; dim &gt; &gt; &amp;surface_points, const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const dealii::Mapping&lt; dim &gt; &amp;mapping, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;level_set_vector, const number contour_value=0.0, const unsigned int n_subdivisions=1, const number tolerance=1e-10)</td></tr>
+<tr class="memdesc:a59cae9df3a9718402d470aaefd68aa57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies volume cells intersected by a level set and extracts the corresponding quadrature points at the intersection (in both real and reference coordinates).  <br /></td></tr>
+<tr class="separator:a59cae9df3a9718402d470aaefd68aa57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2d47e465efb5b6e1083ab0a73a5525c" id="r_af2d47e465efb5b6e1083ab0a73a5525c"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
+<tr class="memitem:af2d47e465efb5b6e1083ab0a73a5525c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#af2d47e465efb5b6e1083ab0a73a5525c">evaluate_at_interface</a> (const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const dealii::Mapping&lt; dim &gt; &amp;mapping, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;level_set_vector, const std::function&lt; void(const typename dealii::DoFHandler&lt; dim &gt;::active_cell_iterator &amp;, const std::vector&lt; dealii::Point&lt; dim &gt; &gt; &amp;, const std::vector&lt; dealii::Point&lt; dim &gt; &gt; &amp;, const std::vector&lt; number &gt; &amp;)&gt; &amp;evaluate_at_interface_points, const number contour_value=0.0, const unsigned int n_subdivisions=1, const number tolerance=1e-10, const bool use_mca=true)</td></tr>
+<tr class="memdesc:af2d47e465efb5b6e1083ab0a73a5525c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates user-defined quantities at an implicitly defined interface.  <br /></td></tr>
+<tr class="separator:af2d47e465efb5b6e1083ab0a73a5525c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6d0f6db2eb97d325cfae618f1489d74" id="r_ae6d0f6db2eb97d325cfae618f1489d74"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
+<tr class="memitem:ae6d0f6db2eb97d325cfae618f1489d74"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::tuple&lt; const typename dealii::Triangulation&lt; dim, dim &gt;::cell_iterator, std::vector&lt; dealii::Point&lt; dim &gt; &gt;, std::vector&lt; number &gt; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#ae6d0f6db2eb97d325cfae618f1489d74">generate_surface_mesh_info</a> (const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const dealii::Mapping&lt; dim &gt; &amp;mapping, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;level_set, const number contour_value=0.0, const unsigned int n_subdivisions=1, const number tolerance=1e-10, const bool use_mca=true)</td></tr>
+<tr class="memdesc:ae6d0f6db2eb97d325cfae618f1489d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates surface mesh data corresponding to an implicit interface.  <br /></td></tr>
+<tr class="separator:ae6d0f6db2eb97d325cfae618f1489d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbd8de90f5516754adc711e6892d2949" id="r_afbd8de90f5516754adc711e6892d2949"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
 <tr class="memitem:afbd8de90f5516754adc711e6892d2949"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#afbd8de90f5516754adc711e6892d2949">generate_points_along_normal</a> (std::vector&lt; dealii::Point&lt; dim &gt; &gt; &amp;global_points_normal_to_interface, std::vector&lt; unsigned int &gt; &amp;global_points_normal_to_interface_pointer, const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler_ls, const dealii::FESystem&lt; dim &gt; &amp;fe_normal, const dealii::Mapping&lt; dim &gt; &amp;mapping, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;level_set_vector, const dealii::LinearAlgebra::distributed::BlockVector&lt; number &gt; &amp;normal_vector, const number max_distance_per_side, const unsigned int n_inc_per_side, const bool bidirectional=true, const number contour_value=0.0, const unsigned int n_subdivisions_MCA=1)</td></tr>
 <tr class="separator:afbd8de90f5516754adc711e6892d2949"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,8 +123,90 @@ Functions</h2></td></tr>
 <tr class="separator:aab34dcc62065bd7997d2b0c7afb50cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="acf2569149fd7b9786b1232eacb9a59a7" name="acf2569149fd7b9786b1232eacb9a59a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf2569149fd7b9786b1232eacb9a59a7">&#9670;&#160;</a></span>evaluate_at_interface()</h2>
+<a id="a59cae9df3a9718402d470aaefd68aa57" name="a59cae9df3a9718402d470aaefd68aa57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59cae9df3a9718402d470aaefd68aa57">&#9670;&#160;</a></span>collect_interface_cells_and_intersection_points()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void MeltPoolDG::LevelSet::Tools::collect_interface_cells_and_intersection_points </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; std::pair&lt; unsigned int, unsigned int &gt;, std::vector&lt; dealii::Point&lt; dim &gt; &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>surface_cells_and_unit_points</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; dealii::Point&lt; dim &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>surface_points</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::DoFHandler&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dof_handler</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Mapping&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mapping</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>level_set_vector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>contour_value</em> = <code>0.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>n_subdivisions</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>tolerance</em> = <code>1e-10</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Identifies volume cells intersected by a level set and extracts the corresponding quadrature points at the intersection (in both real and reference coordinates). </p>
+<p>This function applies a marching cube algorithm to detect where a level set function intersects the computational mesh. For each locally-owned cell that is cut by the level set interface (i.e., where the level set function crosses a given contour value), the function computes the intersection points and maps them to unit (reference) cell coordinates.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">surface_cells_and_unit_points</td><td>A list of locally-owned cells that are intersected by the level set surface, each paired with its corresponding unit (reference) quadrature points.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">surface_points</td><td>A list of all real-space intersection points on the level set surface, collected from all intersected volume cells.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dof_handler</td><td>The DoFHandler associated with the finite element field representing the level set.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mapping</td><td>The Mapping used to transform between real and unit cell coordinates.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">level_set_vector</td><td>The distributed vector storing the level set function values over the mesh.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">contour_value</td><td>The isocontour value that defines the level set interface (default: 0.0).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n_subdivisions</td><td>The number of subdivisions per cell edge for the marching cubes algorithm (used to refine intersection detection; default: 1).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tolerance</td><td>A small numerical tolerance used to determine zero-crossings in the marching cubes interface detection (default: 1e-10). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af2d47e465efb5b6e1083ab0a73a5525c" name="af2d47e465efb5b6e1083ab0a73a5525c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2d47e465efb5b6e1083ab0a73a5525c">&#9670;&#160;</a></span>evaluate_at_interface()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,6 +252,12 @@ template&lt;int dim, typename number &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>tolerance</em> = <code>1e-10</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const bool&#160;</td>
           <td class="paramname"><em>use_mca</em> = <code>true</code>&#160;</td>
         </tr>
@@ -173,7 +268,33 @@ template&lt;int dim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This utility function enables the evaluation of variables at interfaces defined implicitly by a <code>level_set_vector</code> at a certain <code>contour_value</code>. The marching cube algorithm is used to determine <code>points</code> (unit points at the reference cell) and corresponding integration <code>weights</code> at the interface. The lambda function <code>evaluate_at_interface_points</code> is called for every active cell and can be used to e.g. fill a DoF vector. </p>
+
+<p>Evaluates user-defined quantities at an implicitly defined interface. </p>
+<p>This utility function enables the evaluation of quantities at interfaces defined implicitly by a scalar field (level set function), represented by the <code>level_set_vector</code>. The interface is identified as the contour where the level set function equals the specified <code>contour_value</code>.</p>
+<p>The interface is reconstructed on each active cell using the Marching Cubes algorithm (or an optional alternative method if <code>use_mca</code> is false). The algorithm identifies quadrature points within the reference cell and computes corresponding surface integration weights (JxW values) for numerical integration.</p>
+<p>For each active cell in the provided DoFHandler cut by the interface, the user-supplied lambda function <code>evaluate_at_interface_points</code> is called.</p>
+<p>This interface evaluation can be used to implement a variety of tasks, such as integrating quantities over the interface, interpolating field values, or assembling contributions into global data structures like DoF vectors.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">dim</td><td>The spatial dimension. </td></tr>
+    <tr><td class="paramname">number</td><td>The numeric type used for computations (e.g., float, double).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dof_handler</td><td>The DoFHandler associated with the finite element space defining the level set function. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mapping</td><td>A Mapping object describing the transformation from reference to real space. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">level_set_vector</td><td>A vector representing the level set function, defined at the DoF locations. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">evaluate_at_interface_points</td><td>A user-defined callback function that is called for each active cell containing interface segments. The callback signature must be: <code> void(const active_cell_iterator &amp;cell, const std::vector&lt;Point&lt;dim&gt;&gt; &amp;points_real, const std::vector&lt;Point&lt;dim&gt;&gt; &amp;points_reference, const std::vector&lt;number&gt; &amp;JxW) </code> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">contour_value</td><td>The level set value at which the interface is extracted (default is 0.0). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n_subdivisions</td><td>The number of subdivisions per cell used to increase the resolution of the marching cubes grid (default is 1, i.e., no subdivision). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tolerance</td><td>A small tolerance used for numerical comparisons when identifying interface segments (default is 1e-10). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">use_mca</td><td>A flag indicating whether to use the Marching Cubes Algorithm (MCA) for interface reconstruction (default is true). If false, the NonMatching infrastructure of deal.II is used.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The accuracy of the interface location depends on the resolution of the level set function and the number of subdivisions. For better accuracy, consider refining the mesh or increasing <code>n_subdivisions</code>. </dd></dl>
 
 </div>
 </div>
@@ -268,8 +389,8 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
-<a id="a53422387c4145d718675c64d833c1b20" name="a53422387c4145d718675c64d833c1b20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53422387c4145d718675c64d833c1b20">&#9670;&#160;</a></span>generate_surface_mesh_info()</h2>
+<a id="ae6d0f6db2eb97d325cfae618f1489d74" name="ae6d0f6db2eb97d325cfae618f1489d74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6d0f6db2eb97d325cfae618f1489d74">&#9670;&#160;</a></span>generate_surface_mesh_info()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -292,7 +413,7 @@ template&lt;int dim, typename number &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;&#160;</td>
-          <td class="paramname"><em>level_set_as_heaviside</em>, </td>
+          <td class="paramname"><em>level_set</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -309,6 +430,12 @@ template&lt;int dim, typename number &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>tolerance</em> = <code>1e-10</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const bool&#160;</td>
           <td class="paramname"><em>use_mca</em> = <code>true</code>&#160;</td>
         </tr>
@@ -319,6 +446,40 @@ template&lt;int dim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Generates surface mesh data corresponding to an implicit interface. </p>
+<p>This function constructs a surface mesh representation of an interface implicitly defined by a scalar field (level set function), given in the form of a <code>level_set_as_heaviside</code> vector. The interface corresponds to the isosurface where the level set equals the specified <code>contour_value</code>.</p>
+<p>Internally, this function uses the Marching Cubes algorithm (or an optional alternative method) to identify interface segments on each active cell. The resulting surface mesh information is returned as a list of tuples, where each tuple contains:</p><ul>
+<li>the cell iterator of the active cell containing a portion of the interface,</li>
+<li>the unit (reference space) quadrature points on the interface within that cell,</li>
+<li>and the corresponding (surface) integration weights for those points.</li>
+</ul>
+<p>This mesh information can be used for interface visualization or integration over implicitly defined surfaces.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">dim</td><td>The spatial dimension of the problem. </td></tr>
+    <tr><td class="paramname">number</td><td>The numeric type used in the computation (e.g., float, double).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dof_handler</td><td>The DoFHandler associated with the finite element space describing the level set field. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mapping</td><td>A Mapping object used to transform between reference and real space. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">level_set_as_heaviside</td><td>A vector representing the level set field. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">contour_value</td><td>The value at which to extract the interface (default is 0.0). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n_subdivisions</td><td>The number of subdivisions per cell for resolving the interface (default is 1). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tolerance</td><td>Numerical tolerance for comparing level set values (default is 1e-10). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">use_mca</td><td>If true, the Marching Cubes Algorithm is used for interface reconstruction (default is true).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of tuples, each containing:<ul>
+<li>a cell iterator to an active dim-cell containing dim-1 interface geometry,</li>
+<li>a list of quadrature points (in unit coordinates) lying on the interface,</li>
+<li>and the associated integration weights (JxW values). </li>
+</ul>
+</dd></dl>
 
 </div>
 </div>
