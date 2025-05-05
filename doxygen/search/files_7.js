@@ -14,6 +14,7 @@ var searchData=
   ['heat_5ftransfer_5fapplication_2ecpp_11',['heat_transfer_application.cpp',['../heat__transfer__application_8cpp.html',1,'']]],
   ['heat_5ftransfer_5fapplication_2ehpp_12',['heat_transfer_application.hpp',['../heat__transfer__application_8hpp.html',1,'']]],
   ['heat_5ftransfer_5fcase_2ehpp_13',['heat_transfer_case.hpp',['../heat__transfer__case_8hpp.html',1,'']]],
-  ['helmholtz_5fdg_5foperator_2ecpp_14',['helmholtz_DG_operator.cpp',['../helmholtz__DG__operator_8cpp.html',1,'']]],
-  ['helmholtz_5fdg_5foperator_2ehpp_15',['helmholtz_DG_operator.hpp',['../helmholtz__DG__operator_8hpp.html',1,'']]]
+  ['heat_5ftransfer_5fcase_5fparameter_2ecc_14',['heat_transfer_case_parameter.cc',['../heat__transfer__case__parameter_8cc.html',1,'']]],
+  ['helmholtz_5fdg_5foperator_2ecpp_15',['helmholtz_DG_operator.cpp',['../helmholtz__DG__operator_8cpp.html',1,'']]],
+  ['helmholtz_5fdg_5foperator_2ehpp_16',['helmholtz_DG_operator.hpp',['../helmholtz__DG__operator_8hpp.html',1,'']]]
 ];
