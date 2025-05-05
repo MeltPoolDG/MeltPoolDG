@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['iterator_0',['iterator',['../structbetter__enums_1_1__iterable.html#aedd0f1a24a5b98d96eb9a689ceb09133',1,'better_enums::_iterable']]]
+  ['dofhandlerandvectordatatype_0',['DoFHandlerAndVectorDataType',['../namespaceMeltPoolDG_1_1AMR.html#af639294e2778037a1a035aef09f9d594',1,'MeltPoolDG::AMR']]]
 ];
