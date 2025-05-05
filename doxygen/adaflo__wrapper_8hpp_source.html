@@ -99,13 +99,13 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#  include &lt;deal.II/lac/generic_linear_algebra.h&gt;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#  include &lt;deal.II/lac/la_parallel_vector.h&gt;</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#  include &lt;<a class="code" href="parameters_8hpp.html">meltpooldg/core/parameters.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#  include &lt;<a class="code" href="scratch__data_8hpp.html">meltpooldg/core/scratch_data.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#  include &lt;<a class="code" href="simulation__base_8hpp.html">meltpooldg/core/simulation_base.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#  include &lt;<a class="code" href="flow__base_8hpp.html">meltpooldg/flow/flow_base.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#  include &lt;<a class="code" href="generic__data__out_8hpp.html">meltpooldg/post_processing/generic_data_out.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#  include &lt;<a class="code" href="material_8hpp.html">meltpooldg/utilities/material.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#  include &lt;<a class="code" href="time__iterator_8hpp.html">meltpooldg/utilities/time_iterator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#  include &lt;<a class="code" href="material_8hpp.html">meltpooldg/core/material.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#  include &lt;<a class="code" href="parameters_8hpp.html">meltpooldg/core/parameters.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#  include &lt;<a class="code" href="scratch__data_8hpp.html">meltpooldg/core/scratch_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#  include &lt;<a class="code" href="simulation__base_8hpp.html">meltpooldg/core/simulation_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#  include &lt;<a class="code" href="flow__base_8hpp.html">meltpooldg/flow/flow_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#  include &lt;<a class="code" href="generic__data__out_8hpp.html">meltpooldg/post_processing/generic_data_out.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#  include &lt;<a class="code" href="time__iterator_8hpp.html">meltpooldg/time_integration/time_iterator.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#  include &lt;adaflo/navier_stokes.h&gt;</span></div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#  include &lt;adaflo/parameters.h&gt;</span></div>
@@ -124,10 +124,10 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespaceMeltPoolDG_1_1Utilities_1_1MatrixFree.html#aed2f6423007d1255567f4358ccd5d38c">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    AdafloWrapper(ScratchData&lt;dim, dim, number&gt;             &amp;scratch_data,</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                  std::shared_ptr&lt;MeltPoolCase&lt;dim, number&gt;&gt; base_in,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                  <span class="keyword">const</span> TimeIterator&lt;number&gt;                &amp;time_iterator,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                  <span class="keyword">const</span> <span class="keywordtype">bool</span>                                 do_evaporative_mass_flux);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    AdafloWrapper(ScratchData&lt;dim, dim, number&gt;               &amp;scratch_data,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                  std::shared_ptr&lt;MeltPoolCase&lt;dim, number&gt;&gt;   base_in,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                  <span class="keyword">const</span> TimeIntegration::TimeIterator&lt;number&gt; &amp;time_iterator,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                  <span class="keyword">const</span> <span class="keywordtype">bool</span>                                   do_evaporative_mass_flux);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">void</span></div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    set_initial_condition(<span class="keyword">const</span> dealii::Function&lt;dim&gt; &amp;initial_field_function_velocity) <span class="keyword">override</span>;</div>
@@ -291,7 +291,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> do_evaporative_mass_flux;</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keyword">const</span> TimeIterator&lt;number&gt; &amp;time_iterator;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keyword">const</span> TimeIntegration::TimeIterator&lt;number&gt; &amp;time_iterator;</div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dof_index_u;</div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dof_index_p;</div>

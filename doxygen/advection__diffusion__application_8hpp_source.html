@@ -90,8 +90,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="scratch__data_8hpp.html">meltpooldg/core/scratch_data.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="advection__diffusion__operation__base_8hpp.html">meltpooldg/level_set/advection_diffusion_operation_base.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="postprocessor_8hpp.html">meltpooldg/post_processing/postprocessor.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="profiling__monitor_8hpp.html">meltpooldg/utilities/profiling_monitor.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="time__iterator_8hpp.html">meltpooldg/utilities/time_iterator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="time__iterator_8hpp.html">meltpooldg/time_integration/time_iterator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="profiling__monitor_8hpp.html">meltpooldg/utilities/profiling_monitor.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="advection__diffusion__case_8hpp.html">advection_diffusion_case.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
@@ -126,8 +126,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    dealii::DoFHandler&lt;dim&gt;                        dof_handler_velocity;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    dealii::AffineConstraints&lt;number&gt;              hanging_node_constraints_velocity;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::shared_ptr&lt;ScratchData&lt;dim, dim, number&gt;&gt; scratch_data;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a>                                     advection_velocity;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    std::unique_ptr&lt;TimeIterator&lt;number&gt;&gt;          time_iterator;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    VectorType                                     advection_velocity;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    std::unique_ptr&lt;TimeIntegration::TimeIterator&lt;number&gt;&gt;        time_iterator;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    std::unique_ptr&lt;AdvectionDiffusionOperationBase&lt;dim, number&gt;&gt; advec_diff_operation;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    std::unique_ptr&lt;Profiling::ProfilingMonitor&lt;number&gt;&gt;          profiling_monitor;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
@@ -166,7 +166,6 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionApplication_html_aeda6b347afa4a75dc3a26269ed0099eb"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionApplication.html#aeda6b347afa4a75dc3a26269ed0099eb">MeltPoolDG::LevelSet::AdvectionDiffusionApplication::AdvectionDiffusionApplication</a></div><div class="ttdeci">AdvectionDiffusionApplication(std::unique_ptr&lt; CaseType &gt; simulation_case)</div><div class="ttdef"><b>Definition</b> advection_diffusion_application.hpp:26</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionCase_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionCase.html">MeltPoolDG::LevelSet::AdvectionDiffusionCase</a></div><div class="ttdef"><b>Definition</b> advection_diffusion_case.hpp:47</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1LevelSet_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div><div class="ttdef"><b>Definition</b> advection_DG_operation.hpp:21</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_html_a6b137e1980c6c6e24b2a3d032112a7dc"><div class="ttname"><a href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">MeltPoolDG::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; double &gt; VectorType</div><div class="ttdef"><b>Definition</b> utility_functions.hpp:138</div></div>
 <div class="ttc" id="apostprocessor_8hpp_html"><div class="ttname"><a href="postprocessor_8hpp.html">postprocessor.hpp</a></div></div>
 <div class="ttc" id="aprofiling__monitor_8hpp_html"><div class="ttname"><a href="profiling__monitor_8hpp.html">profiling_monitor.hpp</a></div></div>
 <div class="ttc" id="ascratch__data_8hpp_html"><div class="ttname"><a href="scratch__data_8hpp.html">scratch_data.hpp</a></div></div>

@@ -116,7 +116,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#aa99a7ece9a196a93738c15d0ffa967f4">   34</a></span>    <a class="code hl_struct" href="structMeltPoolDG_1_1FiniteElementData.html">FiniteElementData</a> <a class="code hl_variable" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#aa99a7ece9a196a93738c15d0ffa967f4">fe</a>;</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">// time integration data</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#ac3939a3380bd1746220f95b5209d7cb8">   37</a></span>    TimeIntegratorData&lt;number&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#ac3939a3380bd1746220f95b5209d7cb8">time_integrator</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a63724065adb7a75b13d8b1c0d74dfa4d">   37</a></span>    TimeIntegration::TimeIntegratorData&lt;number&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a63724065adb7a75b13d8b1c0d74dfa4d">time_integrator</a>;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData_1_1Material.html">   39</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData_1_1Material.html">Material</a></div>
@@ -269,70 +269,74 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      <span class="comment">// set default time integration scheme for cut</span></div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>      <span class="keywordflow">if</span> (domain_representation_type == <span class="stringliteral">&quot;cut&quot;</span>)</div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        {</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>          <span class="keywordflow">if</span> (time_integrator.integrator_type == TimeIntegratorSchemes::not_initialized)</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            time_integrator.integrator_type = TimeIntegratorSchemes::explicit_euler;</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>          AssertThrow(</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>            time_integrator.integrator_type == TimeIntegratorSchemes::explicit_euler,</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            dealii::ExcMessage(</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>              <span class="stringliteral">&quot;The cut compressible flow solver only supports explicit Euler time integration.&quot;</span>));</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        }</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>      <span class="comment">// Synchronize verbosity with base verbosity if not set explicitly.</span></div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>      <span class="keywordflow">if</span> (verbosity_level &lt; 0)</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        verbosity_level = base_verbosity_level;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>      <span class="comment">// Set thermal conductivity, if not explicitly set by the user.</span></div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>      <span class="comment">// For physical consistency, set thermal conductivity based on the user-defined dynamic</span></div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>      <span class="comment">// viscosity, gamma and specific gas constant. The Prandtl number is currently set</span></div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>      <span class="comment">// constant to Pr=0.71 for the gas phase (air) and to Pr=0.01 for the liquid phase (metal).</span></div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>      <span class="keywordflow">if</span> (material.gas.thermal_conductivity == std::numeric_limits&lt;number&gt;::max())</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        material.gas.thermal_conductivity = material.gas.dynamic_viscosity * material.gas.gamma *</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                                            material.gas.specific_gas_constant /</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>                                            (material.gas.gamma - 1.) * 1. / 0.71;</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>      <span class="keywordflow">if</span> (cut.two_phase and</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>          material.liquid.thermal_conductivity == std::numeric_limits&lt;number&gt;::max())</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        material.liquid.thermal_conductivity =</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>          material.liquid.dynamic_viscosity * material.liquid.gamma *</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>          material.liquid.specific_gas_constant / (material.liquid.gamma - 1.) * 1. / 0.01;</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      <span class="comment">// Ensure that parameters are set for advanced equations of state</span></div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>      <span class="keywordflow">if</span> (material.gas.eos_data.type == EquationOfState::stiffened_gas)</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        AssertThrow(material.liquid.eos_data.p_inf != std::numeric_limits&lt;number&gt;::max(),</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>                    dealii::ExcMessage(</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                      <span class="stringliteral">&quot;The parameter p_inf is required for the stiffened gas EOS.&quot;</span>));</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (material.gas.eos_data.type == EquationOfState::noble_abel_stiffened_gas)</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        AssertThrow(material.liquid.eos_data.p_inf != std::numeric_limits&lt;number&gt;::max() and</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                      material.liquid.eos_data.b != std::numeric_limits&lt;number&gt;::max() and</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>                      material.liquid.eos_data.q != std::numeric_limits&lt;number&gt;::min(),</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>                    dealii::ExcMessage(</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                      <span class="stringliteral">&quot;The parameters p_inf, b and q are required for the Noble-Abel stiffened&quot;</span></div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                      <span class="stringliteral">&quot; gas EOS.&quot;</span>));</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      <span class="keywordflow">if</span> (cut.two_phase)</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        {</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>          <span class="keywordflow">if</span> (material.liquid.eos_data.type == EquationOfState::stiffened_gas)</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>            AssertThrow(material.liquid.eos_data.p_inf != std::numeric_limits&lt;number&gt;::max(),</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                        dealii::ExcMessage(</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>                          <span class="stringliteral">&quot;The parameter p_inf is required for the stiffened gas EOS.&quot;</span>));</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>          <span class="keywordflow">else</span> <span class="keywordflow">if</span> (material.liquid.eos_data.type == EquationOfState::noble_abel_stiffened_gas)</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>            AssertThrow((material.liquid.eos_data.p_inf != std::numeric_limits&lt;number&gt;::max()) and</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>                          (material.liquid.eos_data.b != std::numeric_limits&lt;number&gt;::max()) and</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                          (material.liquid.eos_data.q != std::numeric_limits&lt;number&gt;::min()),</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                        dealii::ExcMessage(</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                          <span class="stringliteral">&quot;The parameters p_inf, b and q are required for the Noble-Abel stiffened&quot;</span></div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                          <span class="stringliteral">&quot; gas EOS.&quot;</span>));</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        }</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>      <span class="comment">// Advanced EOS are currently only allowed for explicit time integration.</span></div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>      <span class="keywordflow">if</span> (material.gas.eos_data.type != EquationOfState::ideal_gas)</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        AssertThrow(</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>          !<a class="code hl_function" href="namespaceMeltPoolDG.html#a9b0c5047783ff62e1d315230d33700ee">MeltPoolDG::time_integrator_scheme_is_explicit</a>(time_integrator.integrator_type),</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>          dealii::ExcMessage(<span class="stringliteral">&quot;Only the ideal gas EOS is allowed for implicit time integration.&quot;</span>));</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    }</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>          <span class="keywordflow">if</span> (time_integrator.integrator_type ==</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>              TimeIntegration::TimeIntegratorSchemes::not_initialized)</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            time_integrator.integrator_type =</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>              TimeIntegration::TimeIntegratorSchemes::explicit_euler;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>          AssertThrow(</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            time_integrator.integrator_type ==</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>              TimeIntegration::TimeIntegratorSchemes::explicit_euler,</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            dealii::ExcMessage(</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>              <span class="stringliteral">&quot;The cut compressible flow solver only supports explicit Euler time integration.&quot;</span>));</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        }</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>      <span class="comment">// Synchronize verbosity with base verbosity if not set explicitly.</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>      <span class="keywordflow">if</span> (verbosity_level &lt; 0)</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        verbosity_level = base_verbosity_level;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>      <span class="comment">// Set thermal conductivity, if not explicitly set by the user.</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>      <span class="comment">// For physical consistency, set thermal conductivity based on the user-defined dynamic</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>      <span class="comment">// viscosity, gamma and specific gas constant. The Prandtl number is currently set</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>      <span class="comment">// constant to Pr=0.71 for the gas phase (air) and to Pr=0.01 for the liquid phase (metal).</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>      <span class="keywordflow">if</span> (material.gas.thermal_conductivity == std::numeric_limits&lt;number&gt;::max())</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        material.gas.thermal_conductivity = material.gas.dynamic_viscosity * material.gas.gamma *</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                                            material.gas.specific_gas_constant /</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>                                            (material.gas.gamma - 1.) * 1. / 0.71;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>      <span class="keywordflow">if</span> (cut.two_phase and</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>          material.liquid.thermal_conductivity == std::numeric_limits&lt;number&gt;::max())</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        material.liquid.thermal_conductivity =</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>          material.liquid.dynamic_viscosity * material.liquid.gamma *</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>          material.liquid.specific_gas_constant / (material.liquid.gamma - 1.) * 1. / 0.01;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>      <span class="comment">// Ensure that parameters are set for advanced equations of state</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>      <span class="keywordflow">if</span> (material.gas.eos_data.type == EquationOfState::stiffened_gas)</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        AssertThrow(material.liquid.eos_data.p_inf != std::numeric_limits&lt;number&gt;::max(),</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                    dealii::ExcMessage(</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                      <span class="stringliteral">&quot;The parameter p_inf is required for the stiffened gas EOS.&quot;</span>));</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (material.gas.eos_data.type == EquationOfState::noble_abel_stiffened_gas)</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        AssertThrow(material.liquid.eos_data.p_inf != std::numeric_limits&lt;number&gt;::max() and</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                      material.liquid.eos_data.b != std::numeric_limits&lt;number&gt;::max() and</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                      material.liquid.eos_data.q != std::numeric_limits&lt;number&gt;::min(),</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                    dealii::ExcMessage(</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>                      <span class="stringliteral">&quot;The parameters p_inf, b and q are required for the Noble-Abel stiffened&quot;</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>                      <span class="stringliteral">&quot; gas EOS.&quot;</span>));</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>      <span class="keywordflow">if</span> (cut.two_phase)</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        {</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>          <span class="keywordflow">if</span> (material.liquid.eos_data.type == EquationOfState::stiffened_gas)</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>            AssertThrow(material.liquid.eos_data.p_inf != std::numeric_limits&lt;number&gt;::max(),</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>                        dealii::ExcMessage(</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>                          <span class="stringliteral">&quot;The parameter p_inf is required for the stiffened gas EOS.&quot;</span>));</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>          <span class="keywordflow">else</span> <span class="keywordflow">if</span> (material.liquid.eos_data.type == EquationOfState::noble_abel_stiffened_gas)</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>            AssertThrow((material.liquid.eos_data.p_inf != std::numeric_limits&lt;number&gt;::max()) and</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                          (material.liquid.eos_data.b != std::numeric_limits&lt;number&gt;::max()) and</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                          (material.liquid.eos_data.q != std::numeric_limits&lt;number&gt;::min()),</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                        dealii::ExcMessage(</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>                          <span class="stringliteral">&quot;The parameters p_inf, b and q are required for the Noble-Abel stiffened&quot;</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>                          <span class="stringliteral">&quot; gas EOS.&quot;</span>));</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        }</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      <span class="comment">// Advanced EOS are currently only allowed for explicit time integration.</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>      <span class="keywordflow">if</span> (material.gas.eos_data.type != EquationOfState::ideal_gas)</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        AssertThrow(!<a class="code hl_function" href="namespaceMeltPoolDG_1_1TimeIntegration.html#a83ea6483cc2e0ebad83f9aaf2d28af01">MeltPoolDG::TimeIntegration::time_integrator_scheme_is_explicit</a>(</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                      time_integrator.integrator_type),</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                    dealii::ExcMessage(</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>                      <span class="stringliteral">&quot;Only the ideal gas EOS is allowed for implicit time integration.&quot;</span>));</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    }</div>
 </div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>  };</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  };</div>
 </div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>} <span class="comment">// namespace MeltPoolDG::Flow</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>} <span class="comment">// namespace MeltPoolDG::Flow</span></div>
 <div class="ttc" id="abetter__enum_8hpp_html_a47df33c8d3d71e48df5272f4df0ac4d9"><div class="ttname"><a href="better__enum_8hpp.html#a47df33c8d3d71e48df5272f4df0ac4d9">BETTER_ENUM</a></div><div class="ttdeci">#define BETTER_ENUM(Enum, Underlying,...)</div><div class="ttdef"><b>Definition</b> better_enum.hpp:1228</div></div>
 <div class="ttc" id="acompressible__flow__material__data_8hpp_html"><div class="ttname"><a href="compressible__flow__material__data_8hpp.html">compressible_flow_material_data.hpp</a></div></div>
 <div class="ttc" id="acompressible__multiphase__data_8hpp_html"><div class="ttname"><a href="compressible__multiphase__data_8hpp.html">compressible_multiphase_data.hpp</a></div></div>
@@ -342,7 +346,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_a7384328bcefa3a36a5d4ef1a39716ac7"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#a7384328bcefa3a36a5d4ef1a39716ac7">MeltPoolDG::Flow::complete_fd</a></div><div class="ttdeci">complete_fd</div><div class="ttdef"><b>Definition</b> compressible_flow_data.hpp:26</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_a987e1894f74606a45ac6a3597f6c0ef6"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#a987e1894f74606a45ac6a3597f6c0ef6">MeltPoolDG::Flow::lambda_fd</a></div><div class="ttdeci">lambda_fd</div><div class="ttdef"><b>Definition</b> compressible_flow_data.hpp:26</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_adee25264298af56cbdc620981322b660"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#adee25264298af56cbdc620981322b660">MeltPoolDG::Flow::analytic</a></div><div class="ttdeci">analytic</div><div class="ttdef"><b>Definition</b> compressible_flow_data.hpp:26</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_html_a9b0c5047783ff62e1d315230d33700ee"><div class="ttname"><a href="namespaceMeltPoolDG.html#a9b0c5047783ff62e1d315230d33700ee">MeltPoolDG::time_integrator_scheme_is_explicit</a></div><div class="ttdeci">bool time_integrator_scheme_is_explicit(const TimeIntegratorSchemes scheme)</div><div class="ttdef"><b>Definition</b> time_integrator_util.hpp:24</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1TimeIntegration_html_a83ea6483cc2e0ebad83f9aaf2d28af01"><div class="ttname"><a href="namespaceMeltPoolDG_1_1TimeIntegration.html#a83ea6483cc2e0ebad83f9aaf2d28af01">MeltPoolDG::TimeIntegration::time_integrator_scheme_is_explicit</a></div><div class="ttdeci">bool time_integrator_scheme_is_explicit(const TimeIntegratorSchemes scheme)</div><div class="ttdef"><b>Definition</b> time_integrator_util.hpp:24</div></div>
 <div class="ttc" id="anumbers_8hpp_html"><div class="ttname"><a href="numbers_8hpp.html">numbers.hpp</a></div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1CutStabilizationData_html"><div class="ttname"><a href="structMeltPoolDG_1_1CutStabilizationData.html">MeltPoolDG::CutStabilizationData</a></div><div class="ttdef"><b>Definition</b> cut_data.hpp:36</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1FiniteElementData_html"><div class="ttname"><a href="structMeltPoolDG_1_1FiniteElementData.html">MeltPoolDG::FiniteElementData</a></div><div class="ttdef"><b>Definition</b> finite_element_data.hpp:12</div></div>
@@ -358,9 +362,9 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowData_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html">MeltPoolDG::Flow::CompressibleFlowData</a></div><div class="ttdef"><b>Definition</b> compressible_flow_data.hpp:32</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowData_html_a12a5ef5d886ca3002cda7e8bf358345f"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a12a5ef5d886ca3002cda7e8bf358345f">MeltPoolDG::Flow::CompressibleFlowData::post</a></div><div class="ttdeci">void post(const FiniteElementData &amp;base_fe_data, const unsigned int base_verbosity_level)</div><div class="ttdef"><b>Definition</b> compressible_flow_data.hpp:168</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowData_html_a1730a2b0ce2b52cda104a2d5db69cb1f"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a1730a2b0ce2b52cda104a2d5db69cb1f">MeltPoolDG::Flow::CompressibleFlowData::add_parameters</a></div><div class="ttdeci">void add_parameters(dealii::ParameterHandler &amp;prm)</div><div class="ttdef"><b>Definition</b> compressible_flow_data.hpp:103</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowData_html_a63724065adb7a75b13d8b1c0d74dfa4d"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a63724065adb7a75b13d8b1c0d74dfa4d">MeltPoolDG::Flow::CompressibleFlowData::time_integrator</a></div><div class="ttdeci">TimeIntegration::TimeIntegratorData&lt; number &gt; time_integrator</div><div class="ttdef"><b>Definition</b> compressible_flow_data.hpp:37</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowData_html_a89ea0148cfacc02768494ec7f855004c"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a89ea0148cfacc02768494ec7f855004c">MeltPoolDG::Flow::CompressibleFlowData::interface_jump_conditions</a></div><div class="ttdeci">MeltPoolDG::Multiphase::CompressibleMultiphaseData&lt; number &gt; interface_jump_conditions</div><div class="ttdef"><b>Definition</b> compressible_flow_data.hpp:85</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowData_html_aa99a7ece9a196a93738c15d0ffa967f4"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#aa99a7ece9a196a93738c15d0ffa967f4">MeltPoolDG::Flow::CompressibleFlowData::fe</a></div><div class="ttdeci">FiniteElementData fe</div><div class="ttdef"><b>Definition</b> compressible_flow_data.hpp:34</div></div>
-<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowData_html_ac3939a3380bd1746220f95b5209d7cb8"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#ac3939a3380bd1746220f95b5209d7cb8">MeltPoolDG::Flow::CompressibleFlowData::time_integrator</a></div><div class="ttdeci">TimeIntegratorData&lt; number &gt; time_integrator</div><div class="ttdef"><b>Definition</b> compressible_flow_data.hpp:37</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html">MeltPoolDG::Flow::CompressibleFluidMaterialPhaseData</a></div><div class="ttdef"><b>Definition</b> compressible_flow_material_data.hpp:75</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData_html"><div class="ttname"><a href="structMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData.html">MeltPoolDG::Multiphase::CompressibleMultiphaseData</a></div><div class="ttdef"><b>Definition</b> compressible_multiphase_data.hpp:18</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData_html_a3ebe27e9b0516ad3180689932de90c94"><div class="ttname"><a href="structMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData.html#a3ebe27e9b0516ad3180689932de90c94">MeltPoolDG::Multiphase::CompressibleMultiphaseData::add_parameters</a></div><div class="ttdeci">void add_parameters(dealii::ParameterHandler &amp;prm)</div><div class="ttdef"><b>Definition</b> compressible_multiphase_data.hpp:55</div></div>

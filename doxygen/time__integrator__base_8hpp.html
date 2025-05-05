@@ -81,57 +81,61 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;deal.II/lac/la_parallel_vector.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="solution__history_8hpp_source.html">meltpooldg/time_integration/solution_history.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="time__integrator__data_8hpp_source.html">meltpooldg/time_integration/time_integrator_data.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="solution__history_8hpp_source.html">meltpooldg/utilities/solution_history.hpp</a>&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for time_integrator_base.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="time__integrator__base_8hpp__incl.png" border="0" usemap="#ainclude_2meltpooldg_2time__integration_2time__integrator__base_8hpp" alt=""/></div>
 <map name="ainclude_2meltpooldg_2time__integration_2time__integrator__base_8hpp" id="ainclude_2meltpooldg_2time__integration_2time__integrator__base_8hpp">
-<area shape="rect" title=" " alt="" coords="665,5,833,60"/>
-<area shape="rect" title=" " alt="" coords="339,108,497,148"/>
-<area shape="poly" title=" " alt="" coords="665,60,499,107,497,102,664,55"/>
-<area shape="rect" href="time__integrator__data_8hpp.html" title=" " alt="" coords="521,108,729,148"/>
-<area shape="poly" title=" " alt="" coords="715,62,662,102,659,98,712,58"/>
-<area shape="rect" href="solution__history_8hpp.html" title=" " alt="" coords="796,108,952,148"/>
-<area shape="poly" title=" " alt="" coords="785,58,839,97,836,102,782,62"/>
-<area shape="rect" title=" " alt="" coords="967,203,1053,229"/>
-<area shape="poly" title=" " alt="" coords="834,43,903,66,937,83,967,106,982,125,994,147,1008,189,1003,191,989,149,978,128,963,110,934,88,901,71,832,49"/>
-<area shape="rect" title=" " alt="" coords="5,372,175,412"/>
-<area shape="poly" title=" " alt="" coords="552,151,479,172,403,198,311,237,225,286,169,326,122,365,119,361,166,322,222,282,309,232,401,194,477,167,550,146"/>
-<area shape="rect" href="linear__solver__data_8hpp.html" title=" " alt="" coords="485,196,679,236"/>
-<area shape="poly" title=" " alt="" coords="618,149,600,185,595,182,613,147"/>
-<area shape="rect" href="enum_8hpp.html" title=" " alt="" coords="470,284,619,324"/>
-<area shape="poly" title=" " alt="" coords="539,150,503,169,487,182,475,197,469,217,476,237,490,256,508,274,504,278,486,260,471,239,464,217,470,195,484,178,500,165,536,146"/>
-<area shape="rect" href="better__enum_8hpp.html" title=" " alt="" coords="679,372,829,412"/>
-<area shape="poly" title=" " alt="" coords="650,146,672,168,692,195,714,237,730,281,751,358,746,359,725,282,709,239,688,197,668,172,646,150"/>
-<area shape="rect" title=" " alt="" coords="853,379,911,405"/>
-<area shape="poly" title=" " alt="" coords="657,146,689,168,721,194,766,239,807,287,868,366,864,370,803,290,762,243,718,198,686,172,654,150"/>
-<area shape="rect" href="nonlinear__solver__data_8hpp.html" title=" " alt="" coords="236,284,435,324"/>
-<area shape="poly" title=" " alt="" coords="568,151,516,171,463,198,410,237,365,276,362,272,407,233,461,194,514,166,566,146"/>
-<area shape="poly" title=" " alt="" coords="576,237,561,272,556,270,571,235"/>
-<area shape="poly" title=" " alt="" coords="470,322,446,327,189,374,188,369,446,321,469,317"/>
-<area shape="rect" title=" " alt="" coords="199,379,365,405"/>
-<area shape="poly" title=" " alt="" coords="488,327,331,378,329,373,486,322"/>
-<area shape="poly" title=" " alt="" coords="592,322,696,364,694,369,590,327"/>
-<area shape="rect" title=" " alt="" coords="389,372,556,412"/>
-<area shape="poly" title=" " alt="" coords="531,326,499,363,495,360,527,323"/>
-<area shape="rect" title=" " alt="" coords="581,379,655,405"/>
-<area shape="poly" title=" " alt="" coords="563,323,601,367,597,370,559,326"/>
-<area shape="poly" title=" " alt="" coords="620,315,726,337,841,369,847,372,845,377,840,375,724,342,619,320"/>
-<area shape="rect" title=" " alt="" coords="580,460,651,485"/>
-<area shape="poly" title=" " alt="" coords="722,414,649,455,647,451,719,410"/>
-<area shape="rect" title=" " alt="" coords="675,460,742,485"/>
-<area shape="poly" title=" " alt="" coords="745,414,725,449,720,447,741,411"/>
-<area shape="rect" title=" " alt="" coords="766,460,830,485"/>
-<area shape="poly" title=" " alt="" coords="767,411,787,447,782,449,762,414"/>
-<area shape="rect" title=" " alt="" coords="855,460,941,485"/>
-<area shape="poly" title=" " alt="" coords="790,410,866,451,864,456,787,414"/>
-<area shape="poly" title=" " alt="" coords="282,327,157,370,156,365,281,322"/>
-<area shape="rect" title=" " alt="" coords="805,196,943,236"/>
-<area shape="poly" title=" " alt="" coords="877,148,877,182,871,182,871,148"/>
-<area shape="poly" title=" " alt="" coords="905,146,982,194,979,198,902,150"/>
+<area shape="rect" title=" " alt="" coords="187,5,355,60"/>
+<area shape="rect" title=" " alt="" coords="5,108,163,148"/>
+<area shape="poly" title=" " alt="" coords="219,62,135,104,133,99,217,58"/>
+<area shape="rect" href="solution__history_8hpp.html" title=" " alt="" coords="237,108,445,148"/>
+<area shape="poly" title=" " alt="" coords="293,59,321,96,317,99,289,62"/>
+<area shape="rect" title=" " alt="" coords="61,203,147,229"/>
+<area shape="poly" title=" " alt="" coords="252,62,177,150,129,196,125,192,173,146,248,58"/>
+<area shape="rect" href="time__integrator__data_8hpp.html" title=" " alt="" coords="677,108,885,148"/>
+<area shape="poly" title=" " alt="" coords="355,47,665,103,664,108,355,52"/>
+<area shape="rect" title=" " alt="" coords="172,203,356,229"/>
+<area shape="poly" title=" " alt="" coords="326,150,286,195,282,191,322,146"/>
+<area shape="poly" title=" " alt="" coords="290,151,149,201,147,196,288,146"/>
+<area shape="rect" title=" " alt="" coords="380,203,457,229"/>
+<area shape="poly" title=" " alt="" coords="360,146,401,191,397,195,357,150"/>
+<area shape="rect" title=" " alt="" coords="482,203,545,229"/>
+<area shape="poly" title=" " alt="" coords="380,146,479,195,477,200,378,150"/>
+<area shape="rect" title=" " alt="" coords="421,372,590,412"/>
+<area shape="poly" title=" " alt="" coords="761,150,610,286,534,364,530,360,606,282,757,146"/>
+<area shape="rect" href="linear__solver__data_8hpp.html" title=" " alt="" coords="819,196,1013,236"/>
+<area shape="poly" title=" " alt="" coords="813,146,876,186,873,191,810,151"/>
+<area shape="rect" href="enum_8hpp.html" title=" " alt="" coords="841,284,991,324"/>
+<area shape="poly" title=" " alt="" coords="784,148,791,190,798,213,810,234,832,257,859,275,856,280,829,261,806,238,794,215,786,191,779,148"/>
+<area shape="rect" href="better__enum_8hpp.html" title=" " alt="" coords="1095,372,1244,412"/>
+<area shape="poly" title=" " alt="" coords="886,140,958,160,994,175,1027,194,1071,231,1107,276,1136,320,1157,358,1152,361,1132,323,1103,279,1067,235,1024,198,991,179,956,165,885,145"/>
+<area shape="rect" title=" " alt="" coords="1268,379,1327,405"/>
+<area shape="poly" title=" " alt="" coords="886,139,975,160,1021,175,1065,194,1132,234,1193,282,1243,329,1280,367,1276,371,1240,333,1189,286,1129,239,1063,198,1019,180,974,165,885,145"/>
+<area shape="rect" href="nonlinear__solver__data_8hpp.html" title=" " alt="" coords="619,284,818,324"/>
+<area shape="poly" title=" " alt="" coords="777,149,733,272,728,270,772,147"/>
+<area shape="poly" title=" " alt="" coords="919,236,919,270,913,270,913,236"/>
+<area shape="poly" title=" " alt="" coords="842,324,831,327,604,373,603,368,830,321,841,319"/>
+<area shape="rect" title=" " alt="" coords="614,379,781,405"/>
+<area shape="poly" title=" " alt="" coords="869,327,740,377,738,372,867,322"/>
+<area shape="poly" title=" " alt="" coords="972,322,1102,365,1100,370,971,327"/>
+<area shape="rect" title=" " alt="" coords="805,372,971,412"/>
+<area shape="poly" title=" " alt="" coords="912,325,901,360,896,358,907,323"/>
+<area shape="rect" title=" " alt="" coords="996,379,1071,405"/>
+<area shape="poly" title=" " alt="" coords="944,322,1008,369,1005,373,940,326"/>
+<area shape="poly" title=" " alt="" coords="991,312,1117,334,1187,350,1257,369,1263,371,1261,377,1255,375,1186,355,1116,339,990,318"/>
+<area shape="rect" title=" " alt="" coords="995,460,1066,485"/>
+<area shape="poly" title=" " alt="" coords="1137,414,1064,455,1062,451,1135,410"/>
+<area shape="rect" title=" " alt="" coords="1091,460,1157,485"/>
+<area shape="poly" title=" " alt="" coords="1161,414,1140,449,1135,447,1156,411"/>
+<area shape="rect" title=" " alt="" coords="1181,460,1245,485"/>
+<area shape="poly" title=" " alt="" coords="1182,411,1202,447,1198,449,1178,414"/>
+<area shape="rect" title=" " alt="" coords="1270,460,1357,485"/>
+<area shape="poly" title=" " alt="" coords="1205,410,1281,451,1279,456,1203,414"/>
+<area shape="poly" title=" " alt="" coords="673,327,566,369,564,364,671,322"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -293,7 +297,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1TimeIntegratorBase.html">MeltPoolDG::TimeIntegratorBase&lt; number &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1TimeIntegratorBase.html">MeltPoolDG::TimeIntegration::TimeIntegratorBase&lt; number &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -301,10 +305,13 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMeltPoolDG" id="r_namespaceMeltPoolDG"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html">MeltPoolDG</a></td></tr>
 <tr class="memdesc:namespaceMeltPoolDG"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for a general preconditioner. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceMeltPoolDG_1_1TimeIntegration" id="r_namespaceMeltPoolDG_1_1TimeIntegration"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1TimeIntegration.html">MeltPoolDG::TimeIntegration</a></td></tr>
+<tr class="memdesc:namespaceMeltPoolDG_1_1TimeIntegration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class providing different low storage explicit Runge-Kutta schemes. The schemes implemented in this class are presented in. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptMeltPoolDG_1_1ExplicitPDEOperator.html">MeltPoolDG::ExplicitPDEOperator</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptMeltPoolDG_1_1TimeIntegration_1_1ExplicitPDEOperator.html">MeltPoolDG::TimeIntegration::ExplicitPDEOperator</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

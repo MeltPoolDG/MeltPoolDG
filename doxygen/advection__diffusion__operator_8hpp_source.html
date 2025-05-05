@@ -187,30 +187,29 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    tangent_local_cell_operation(dealii::FECellIntegrator&lt;dim, 1, number&gt;   &amp;advected_field,</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                                 dealii::FECellIntegrator&lt;dim, dim, number&gt; &amp;velocity_vals,</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                                 <span class="keyword">const</span> <span class="keywordtype">bool</span>                                  do_reinit_cells) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    tangent_local_cell_operation(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator&lt;dim, 1, number&gt;</a>   &amp;advected_field,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                                 <a class="code hl_typedef" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator&lt;dim, dim, number&gt;</a> &amp;velocity_vals,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                                 <span class="keyword">const</span> <span class="keywordtype">bool</span>                          do_reinit_cells) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    compute_stabilization_parameter(</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      <span class="keyword">const</span> dealii::FECellIntegrator&lt;dim, dim, number&gt; &amp;velocity_vals) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a>                           &amp;scratch_data;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">const</span> VectorType                                              &amp;advection_velocity;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keyword">const</span> AdvectionDiffusionData&lt;number&gt;                          &amp;data;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                             velocity_dof_idx;</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                             advec_diff_quad_idx;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    number                                                         theta;</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">mutable</span> dealii::AlignedVector&lt;dealii::VectorizedArray&lt;number&gt;&gt; stab_param;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keyword">mutable</span> <span class="keywordtype">bool</span>                                                   do_update_stab_param = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keyword">mutable</span> <span class="keywordtype">bool</span> do_pre_post = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    std::vector&lt;unsigned int&gt;   inflow_outflow_bc_local_indices;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">mutable</span> std::vector&lt;number&gt; inflow_outflow_constraints_values_temp;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  };</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    compute_stabilization_parameter(<span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator&lt;dim, dim, number&gt;</a> &amp;velocity_vals) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a>                           &amp;scratch_data;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">const</span> VectorType                                              &amp;advection_velocity;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">const</span> AdvectionDiffusionData&lt;number&gt;                          &amp;data;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                             velocity_dof_idx;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                             advec_diff_quad_idx;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    number                                                         theta;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keyword">mutable</span> dealii::AlignedVector&lt;dealii::VectorizedArray&lt;number&gt;&gt; stab_param;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">mutable</span> <span class="keywordtype">bool</span>                                                   do_update_stab_param = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keyword">mutable</span> <span class="keywordtype">bool</span> do_pre_post = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    std::vector&lt;unsigned int&gt;   inflow_outflow_bc_local_indices;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">mutable</span> std::vector&lt;number&gt; inflow_outflow_constraints_values_temp;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  };</div>
 </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>} <span class="comment">// namespace MeltPoolDG::LevelSet</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>} <span class="comment">// namespace MeltPoolDG::LevelSet</span></div>
 <div class="ttc" id="aadvection__diffusion__data_8hpp_html"><div class="ttname"><a href="advection__diffusion__data_8hpp.html">advection_diffusion_data.hpp</a></div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperator_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperator.html">MeltPoolDG::LevelSet::AdvectionDiffusionOperator</a></div><div class="ttdef"><b>Definition</b> advection_diffusion_operator.hpp:32</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperator_html_a156d824bda45f0d0ff71bf3e6c67f521"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperator.html#a156d824bda45f0d0ff71bf3e6c67f521">MeltPoolDG::LevelSet::AdvectionDiffusionOperator::do_pre_vmult</a></div><div class="ttdeci">void do_pre_vmult(VectorType &amp;dst, const VectorType &amp;src_in) const</div><div class="ttdef"><b>Definition</b> advection_diffusion_operator.cpp:475</div></div>
@@ -232,6 +231,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdef"><b>Definition</b> scratch_data.hpp:46</div></div>
 <div class="ttc" id="afe__integrator_8hpp_html"><div class="ttname"><a href="fe__integrator_8hpp.html">fe_integrator.hpp</a></div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1LevelSet_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div><div class="ttdef"><b>Definition</b> advection_DG_operation.hpp:21</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_aeab3a15b4bcb11af3fd3e496734f9a8c"><div class="ttname"><a href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">MeltPoolDG::FECellIntegrator</a></div><div class="ttdeci">dealii::FEEvaluation&lt; dim, -1, 0, n_components, number, VectorizedArrayType &gt; FECellIntegrator</div><div class="ttdef"><b>Definition</b> fe_integrator.hpp:14</div></div>
 <div class="ttc" id="aoperator__base_8hpp_html"><div class="ttname"><a href="operator__base_8hpp.html">operator_base.hpp</a></div></div>
 <div class="ttc" id="ascratch__data_8hpp_html"><div class="ttname"><a href="scratch__data_8hpp.html">scratch_data.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

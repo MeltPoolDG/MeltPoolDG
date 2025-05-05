@@ -8,5 +8,5 @@ var searchData=
   ['_7eoperatormatrixbased_5',['~OperatorMatrixBased',['../classMeltPoolDG_1_1OperatorMatrixBased.html#a861030d4780239e9ef24beb1cb835e85',1,'MeltPoolDG::OperatorMatrixBased']]],
   ['_7eoperatormatrixfree_6',['~OperatorMatrixFree',['../classMeltPoolDG_1_1OperatorMatrixFree.html#afdb66fd1fd3ee6265dfac1ae1454c3a4',1,'MeltPoolDG::OperatorMatrixFree']]],
   ['_7escopedname_7',['~ScopedName',['../classMeltPoolDG_1_1ScopedName.html#a1d2b4713cd556da52241d4621677fcec',1,'MeltPoolDG::ScopedName']]],
-  ['_7etimeintegratorbase_8',['~TimeIntegratorBase',['../classMeltPoolDG_1_1TimeIntegratorBase.html#a957b3fa1949f005dbb1df071ec02d64a',1,'MeltPoolDG::TimeIntegratorBase']]]
+  ['_7etimeintegratorbase_8',['~TimeIntegratorBase',['../classMeltPoolDG_1_1TimeIntegration_1_1TimeIntegratorBase.html#a7a006902665781720b7561093e8cd153',1,'MeltPoolDG::TimeIntegration::TimeIntegratorBase']]]
 ];

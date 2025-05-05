@@ -104,8 +104,8 @@ Collaboration diagram for MeltPoolDG::Evaporation::IncompressibleNewtonianFluidE
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a33037e79d5f7821b3f576d3dc9d2044b" id="r_a33037e79d5f7821b3f576d3dc9d2044b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a33037e79d5f7821b3f576d3dc9d2044b">IncompressibleNewtonianFluidEvaporationMaterial</a> (const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;scratch_data, const std::function&lt; const dealii::VectorizedArray&lt; number &gt; &amp;(const unsigned int cell, const unsigned int q)&gt; get_viscosity, const BlockVectorType &amp;normal_vector, const <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;heaviside, const unsigned int normal_dof_idx, const unsigned int ls_hanging_nodes_dof_idx, const unsigned int velocity_quad_idx)</td></tr>
-<tr class="separator:a33037e79d5f7821b3f576d3dc9d2044b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7da49c4e1fa656fb9f1bd5b21527a0b4" id="r_a7da49c4e1fa656fb9f1bd5b21527a0b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a7da49c4e1fa656fb9f1bd5b21527a0b4">IncompressibleNewtonianFluidEvaporationMaterial</a> (const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;scratch_data, const std::function&lt; const dealii::VectorizedArray&lt; number &gt; &amp;(const unsigned int cell, const unsigned int q)&gt; get_viscosity, const BlockVectorType &amp;normal_vector, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;heaviside, const unsigned int normal_dof_idx, const unsigned int ls_hanging_nodes_dof_idx, const unsigned int velocity_quad_idx)</td></tr>
+<tr class="separator:a7da49c4e1fa656fb9f1bd5b21527a0b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5036b59cea691f361a45274f82bded7" id="r_ac5036b59cea691f361a45274f82bded7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#ac5036b59cea691f361a45274f82bded7">reinit</a> (const dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;velocity_gradient, const unsigned int cell_idx, const unsigned int quad_idx) final</td></tr>
 <tr class="separator:ac5036b59cea691f361a45274f82bded7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32df7c6f3b6f37d86745152fd3fcb763" id="r_a32df7c6f3b6f37d86745152fd3fcb763"><td class="memItemLeft" align="right" valign="top">dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a32df7c6f3b6f37d86745152fd3fcb763">get_tau</a> () final</td></tr>
@@ -126,8 +126,8 @@ class MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial&l
 <p>D = 0.5 * (∇u + (∇u)^T),</p>
 <p>the interfacial unit normal vector n and the dyadic product ⊗ . </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a33037e79d5f7821b3f576d3dc9d2044b" name="a33037e79d5f7821b3f576d3dc9d2044b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33037e79d5f7821b3f576d3dc9d2044b">&#9670;&#160;</a></span>IncompressibleNewtonianFluidEvaporationMaterial()</h2>
+<a id="a7da49c4e1fa656fb9f1bd5b21527a0b4" name="a7da49c4e1fa656fb9f1bd5b21527a0b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7da49c4e1fa656fb9f1bd5b21527a0b4">&#9670;&#160;</a></span>IncompressibleNewtonianFluidEvaporationMaterial()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -158,7 +158,7 @@ template&lt;int dim, typename number &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;&#160;</td>
           <td class="paramname"><em>heaviside</em>, </td>
         </tr>
         <tr>
@@ -226,6 +226,16 @@ template&lt;int dim, typename number &gt; </div>
 <p>the interfacial unit normal vector n and the dyadic product ⊗ . </p>
 
 <p>Implements <a class="el" href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#a9b915ff460283807023b416453cbdb0b">MeltPoolDG::Flow::IncompressibleMaterialBase&lt; dim, number &gt;</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_a32df7c6f3b6f37d86745152fd3fcb763_cgraph.png" border="0" usemap="#aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_a32df7c6f3b6f37d86745152fd3fcb763_cgraph" alt=""/></div>
+<map name="aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_a32df7c6f3b6f37d86745152fd3fcb763_cgraph" id="aclassMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial_a32df7c6f3b6f37d86745152fd3fcb763_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,236,60"/>
+<area shape="rect" href="namespaceMeltPoolDG.html#ad9f064f7b91aa471f3bddc7cc1a7280d" title=" " alt="" coords="284,20,455,45"/>
+<area shape="poly" title=" " alt="" coords="236,30,270,30,270,35,236,35"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -268,6 +278,8 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,236,75"/>
 <area shape="rect" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a32df7c6f3b6f37d86745152fd3fcb763" title=" " alt="" coords="284,13,515,67"/>
 <area shape="poly" title=" " alt="" coords="236,37,270,37,270,43,236,43"/>
+<area shape="rect" href="namespaceMeltPoolDG.html#ad9f064f7b91aa471f3bddc7cc1a7280d" title=" " alt="" coords="563,27,733,53"/>
+<area shape="poly" title=" " alt="" coords="515,37,549,37,549,43,515,43"/>
 </map>
 </div>
 

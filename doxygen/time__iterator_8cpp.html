@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MeltPoolDG: source/utilities/time_iterator.cpp File Reference</title>
+<title>MeltPoolDG: source/time_integration/time_iterator.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_6a3f4a93de6832ab3fcb23711763be58.html">utilities</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_6b0af11853c28e39739bc23365cb1d1f.html">time_integration</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -78,38 +78,55 @@ $(function() {
   <div class="headertitle"><div class="title">time_iterator.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="journal_8hpp_source.html">meltpooldg/utilities/journal.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="time__iterator_8hpp_source.html">meltpooldg/utilities/time_iterator.hpp</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="time__iterator_8hpp_source.html">meltpooldg/time_integration/time_iterator.hpp</a>&gt;</code><br />
+<code>#include &lt;deal.II/base/exceptions.h&gt;</code><br />
+<code>#include &lt;deal.II/base/point.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="journal_8hpp_source.html">meltpooldg/utilities/journal.hpp</a>&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for time_iterator.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="time__iterator_8cpp__incl.png" border="0" usemap="#asource_2utilities_2time__iterator_8cpp" alt=""/></div>
-<map name="asource_2utilities_2time__iterator_8cpp" id="asource_2utilities_2time__iterator_8cpp">
-<area shape="rect" title=" " alt="" coords="281,5,433,45"/>
-<area shape="rect" href="journal_8hpp.html" title=" " alt="" coords="195,93,345,133"/>
-<area shape="poly" title=" " alt="" coords="339,48,301,85,297,82,336,44"/>
-<area shape="rect" href="time__iterator_8hpp.html" title=" " alt="" coords="398,93,547,133"/>
-<area shape="poly" title=" " alt="" coords="384,43,438,83,434,87,381,48"/>
-<area shape="rect" href="conditional__ostream_8hpp.html" title=" " alt="" coords="117,181,303,221"/>
-<area shape="poly" title=" " alt="" coords="259,135,233,172,229,169,255,132"/>
-<area shape="rect" title=" " alt="" coords="5,189,92,214"/>
-<area shape="poly" title=" " alt="" coords="222,136,92,186,90,181,220,131"/>
-<area shape="rect" title=" " alt="" coords="327,189,402,214"/>
-<area shape="poly" title=" " alt="" coords="293,132,343,177,340,181,289,136"/>
-<area shape="rect" title=" " alt="" coords="123,269,297,309"/>
-<area shape="poly" title=" " alt="" coords="213,222,213,255,207,255,207,222"/>
-<area shape="poly" title=" " alt="" coords="416,136,281,180,279,175,414,131"/>
-<area shape="poly" title=" " alt="" coords="450,136,392,182,389,178,447,132"/>
-<area shape="rect" title=" " alt="" coords="426,181,581,221"/>
-<area shape="poly" title=" " alt="" coords="482,133,494,167,489,169,477,135"/>
-<area shape="rect" href="time__stepping__data_8hpp.html" title=" " alt="" coords="605,181,788,221"/>
-<area shape="poly" title=" " alt="" coords="523,131,636,174,634,179,521,136"/>
-<area shape="rect" title=" " alt="" coords="813,189,893,214"/>
-<area shape="poly" title=" " alt="" coords="548,124,668,147,801,179,811,182,810,187,800,184,667,152,547,129"/>
-<area shape="rect" title=" " alt="" coords="681,269,851,309"/>
-<area shape="poly" title=" " alt="" coords="714,220,744,257,740,260,710,223"/>
-<area shape="rect" title=" " alt="" coords="598,277,657,302"/>
-<area shape="poly" title=" " alt="" coords="683,223,647,267,643,264,679,220"/>
+<div class="center"><img src="time__iterator_8cpp__incl.png" border="0" usemap="#asource_2time__integration_2time__iterator_8cpp" alt=""/></div>
+<map name="asource_2time__integration_2time__iterator_8cpp" id="asource_2time__integration_2time__iterator_8cpp">
+<area shape="rect" title=" " alt="" coords="793,5,970,45"/>
+<area shape="rect" href="time__iterator_8hpp.html" title=" " alt="" coords="84,93,292,133"/>
+<area shape="poly" title=" " alt="" coords="793,38,576,62,306,96,306,90,575,57,792,33"/>
+<area shape="rect" title=" " alt="" coords="316,101,500,126"/>
+<area shape="poly" title=" " alt="" coords="793,45,485,101,484,96,792,40"/>
+<area shape="rect" title=" " alt="" coords="524,101,671,126"/>
+<area shape="poly" title=" " alt="" coords="820,48,649,99,647,94,818,43"/>
+<area shape="rect" href="journal_8hpp.html" title=" " alt="" coords="695,93,844,133"/>
+<area shape="poly" title=" " alt="" coords="858,48,807,87,804,83,855,43"/>
+<area shape="rect" title=" " alt="" coords="841,189,916,214"/>
+<area shape="poly" title=" " alt="" coords="884,46,882,175,876,175,878,46"/>
+<area shape="rect" title=" " alt="" coords="919,101,1004,126"/>
+<area shape="poly" title=" " alt="" coords="901,44,943,88,939,92,897,47"/>
+<area shape="rect" title=" " alt="" coords="1028,101,1108,126"/>
+<area shape="poly" title=" " alt="" coords="923,43,1032,92,1030,97,921,48"/>
+<area shape="rect" title=" " alt="" coords="1132,101,1191,126"/>
+<area shape="poly" title=" " alt="" coords="960,43,1039,64,1121,91,1126,93,1124,98,1119,96,1037,69,959,48"/>
+<area shape="rect" title=" " alt="" coords="1215,101,1289,126"/>
+<area shape="poly" title=" " alt="" coords="971,39,1082,61,1203,91,1212,94,1211,99,1202,96,1081,66,970,44"/>
+<area shape="rect" title=" " alt="" coords="5,181,160,221"/>
+<area shape="poly" title=" " alt="" coords="166,136,118,175,115,171,163,132"/>
+<area shape="rect" href="time__stepping__data_8hpp.html" title=" " alt="" coords="184,181,392,221"/>
+<area shape="poly" title=" " alt="" coords="212,132,257,170,254,174,208,136"/>
+<area shape="rect" href="conditional__ostream_8hpp.html" title=" " alt="" coords="480,181,667,221"/>
+<area shape="poly" title=" " alt="" coords="273,131,476,176,475,181,272,136"/>
+<area shape="rect" title=" " alt="" coords="139,269,309,309"/>
+<area shape="poly" title=" " alt="" coords="276,223,249,260,244,256,272,220"/>
+<area shape="rect" title=" " alt="" coords="333,277,392,302"/>
+<area shape="poly" title=" " alt="" coords="307,220,346,264,342,268,303,223"/>
+<area shape="rect" title=" " alt="" coords="487,269,660,309"/>
+<area shape="poly" title=" " alt="" coords="576,222,576,255,571,255,571,222"/>
+<area shape="poly" title=" " alt="" coords="727,136,630,178,628,173,725,131"/>
+<area shape="rect" title=" " alt="" coords="726,189,813,214"/>
+<area shape="poly" title=" " alt="" coords="772,134,772,175,767,175,767,134"/>
+<area shape="poly" title=" " alt="" coords="795,132,854,178,851,182,792,136"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -117,6 +134,9 @@ Include dependency graph for time_iterator.cpp:</div>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMeltPoolDG" id="r_namespaceMeltPoolDG"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html">MeltPoolDG</a></td></tr>
 <tr class="memdesc:namespaceMeltPoolDG"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for a general preconditioner. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceMeltPoolDG_1_1TimeIntegration" id="r_namespaceMeltPoolDG_1_1TimeIntegration"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1TimeIntegration.html">MeltPoolDG::TimeIntegration</a></td></tr>
+<tr class="memdesc:namespaceMeltPoolDG_1_1TimeIntegration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class providing different low storage explicit Runge-Kutta schemes. The schemes implemented in this class are presented in. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

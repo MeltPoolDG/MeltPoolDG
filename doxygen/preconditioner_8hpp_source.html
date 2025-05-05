@@ -95,7 +95,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> PreconditionerType, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dim, <span class="keyword">typename</span> VectorType, <span class="keyword">typename</span> number&gt;</div>
 <div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="conceptMeltPoolDG_1_1PreconditionerTypeConcept.html">   19</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="conceptMeltPoolDG_1_1PreconditionerTypeConcept.html">PreconditionerTypeConcept</a> =</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">requires</span>(PreconditionerType preconditioner, <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;vec, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;const_vec) {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">requires</span>(PreconditionerType preconditioner, VectorType &amp;vec, <span class="keyword">const</span> VectorType &amp;const_vec) {</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>      preconditioner.update(std::declval&lt;std::any&gt;());</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      preconditioner.vmult(vec, const_vec);</div>
@@ -122,7 +122,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span></div>
 <div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#ae939209f00a0b55f4ea58ae19ba839ea">   64</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#ae939209f00a0b55f4ea58ae19ba839ea">vmult</a>(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;src)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Preconditioner.html#ae939209f00a0b55f4ea58ae19ba839ea">   64</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Preconditioner.html#ae939209f00a0b55f4ea58ae19ba839ea">vmult</a>(VectorType &amp;dst, <span class="keyword">const</span> VectorType &amp;src)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      preconditioner_pimpl-&gt;vmult(dst, src);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
@@ -180,7 +180,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      <span class="keyword">virtual</span> ~PreconditionerConcept() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      vmult(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;src) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      vmult(VectorType &amp;dst, <span class="keyword">const</span> VectorType &amp;src) <span class="keyword">const</span> = 0;</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>      update(<span class="keyword">const</span> std::any &amp;external_setup) = 0;</div>
@@ -198,7 +198,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>      {}</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>      <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      vmult(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;src)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      vmult(VectorType &amp;dst, <span class="keyword">const</span> VectorType &amp;src)<span class="keyword"> const override</span></div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="keyword">      </span>{</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        preconditioner.vmult(dst, src);</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>      }</div>
@@ -242,7 +242,6 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdef"><b>Definition</b> scratch_data.hpp:46</div></div>
 <div class="ttc" id="aconceptMeltPoolDG_1_1PreconditionerTypeConcept_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1PreconditionerTypeConcept.html">MeltPoolDG::PreconditionerTypeConcept</a></div><div class="ttdef"><b>Definition</b> preconditioner.hpp:19</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> application_base.hpp:9</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_html_a6b137e1980c6c6e24b2a3d032112a7dc"><div class="ttname"><a href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">MeltPoolDG::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; double &gt; VectorType</div><div class="ttdef"><b>Definition</b> utility_functions.hpp:138</div></div>
 <div class="ttc" id="ascratch__data_8hpp_html"><div class="ttname"><a href="scratch__data_8hpp.html">scratch_data.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

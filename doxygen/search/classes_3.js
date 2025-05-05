@@ -1,7 +1,7 @@
 var searchData=
 [
   ['cellmonitor_0',['CellMonitor',['../classMeltPoolDG_1_1CellMonitor.html',1,'MeltPoolDG']]],
-  ['changedsignfunction_1',['ChangedSignFunction',['../classdealii_1_1Functions_1_1ChangedSignFunction.html',1,'dealii::Functions']]],
+  ['changedsignfunction_1',['ChangedSignFunction',['../classMeltPoolDG_1_1Functions_1_1ChangedSignFunction.html',1,'MeltPoolDG::Functions']]],
   ['characteristicnumbers_2',['CharacteristicNumbers',['../classMeltPoolDG_1_1Flow_1_1CharacteristicNumbers.html',1,'MeltPoolDG::Flow']]],
   ['coefficients_3',['Coefficients',['../structMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData_1_1Penalty_1_1Coefficients.html',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseData::Penalty']]],
   ['compressibleflowapplication_4',['CompressibleFlowApplication',['../classMeltPoolDG_1_1Flow_1_1CompressibleFlowApplication.html',1,'MeltPoolDG::Flow']]],

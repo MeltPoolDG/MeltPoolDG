@@ -98,8 +98,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;deal.II/numerics/vector_tools.h&gt;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="simulation__base_8hpp.html">meltpooldg/core/simulation_base.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="level__set__tools_8hpp.html">meltpooldg/level_set/level_set_tools.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="utilities_2utility__functions_8hpp.html">meltpooldg/utilities/utility_functions.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="characteristic__functions_8hpp.html">meltpooldg/utilities/characteristic_functions.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="create__triangulation__with__marching__cube__algorithm_8hpp.html">meltpooldg/utilities/create_triangulation_with_marching_cube_algorithm.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="vector__tools_8hpp.html">meltpooldg/utilities/vector_tools.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
@@ -276,128 +276,128 @@ $(document).ready(function() { init_codefold(0); });
 <div class="foldopen" id="foldopen00160" data-start="{" data-end="}">
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a8fbed01cbd7107159ca8aa2631879f8c">  160</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a8fbed01cbd7107159ca8aa2631879f8c">create_spatial_discretization</a>()<span class="keyword"> override</span></div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacedealii.html">dealii</a>;</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>      <span class="keywordflow">if</span> (dim == 1 || this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.fe.type == FiniteElementType::FE_SimplexP)</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        {</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>          AssertDimension(Utilities::MPI::n_mpi_processes(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>), 1);</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>          this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a> = std::make_shared&lt;Triangulation&lt;dim&gt;&gt;();</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        }</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        {</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>          this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a> =</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>            std::make_shared&lt;parallel::distributed::Triangulation&lt;dim&gt;&gt;(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>);</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        }</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      <span class="keywordflow">if</span> (this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.fe.type == FiniteElementType::FE_SimplexP)</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        {</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>          GridGenerator::subdivided_hyper_cube_with_simplices(</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>            *this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>,</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>            Utilities::pow(2, this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.global_refinements),</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>            left_domain,</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>            right_domain);</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        }</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>      <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        {</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>          GridGenerator::hyper_cube(*this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>, left_domain, right_domain);</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>          this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>-&gt;refine_global(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.global_refinements);</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        }</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    }</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      <span class="keywordflow">if</span> (dim == 1 || this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.fe.type == FiniteElementType::FE_SimplexP)</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        {</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>          AssertDimension(dealii::Utilities::MPI::n_mpi_processes(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>), 1);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>          this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a> = std::make_shared&lt;dealii::Triangulation&lt;dim&gt;&gt;();</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        }</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        {</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>          this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a> = std::make_shared&lt;dealii::parallel::distributed::Triangulation&lt;dim&gt;&gt;(</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>            this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        }</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      <span class="keywordflow">if</span> (this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.fe.type == FiniteElementType::FE_SimplexP)</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        {</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>          dealii::GridGenerator::subdivided_hyper_cube_with_simplices(</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>            *this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>,</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>            dealii::Utilities::pow(2, this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.global_refinements),</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>            left_domain,</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>            right_domain);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        }</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        {</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>          dealii::GridGenerator::hyper_cube(*this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>, left_domain, right_domain);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>          this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>-&gt;refine_global(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.global_refinements);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        }</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    }</div>
 </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00190" data-start="{" data-end="}">
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a0f0acfdf6c50af5f9fc0f7f86716cb30">  190</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a0f0acfdf6c50af5f9fc0f7f86716cb30">set_boundary_conditions</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>      <span class="comment">// none</span></div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    }</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00189" data-start="{" data-end="}">
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a0f0acfdf6c50af5f9fc0f7f86716cb30">  189</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a0f0acfdf6c50af5f9fc0f7f86716cb30">set_boundary_conditions</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      <span class="comment">// none</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    }</div>
 </div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00196" data-start="{" data-end="}">
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#aad6ea6dec703e3a5d275bdefcc175b98">  196</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#aad6ea6dec703e3a5d275bdefcc175b98">set_field_conditions</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#acdd8ca91dd92515f3a8977e40878e7ed">attach_initial_condition</a>(std::make_shared&lt;<a class="code hl_class" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1InitializePhi.html">InitializePhi&lt;dim, number&gt;</a>&gt;(),</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                                     <span class="stringliteral">&quot;signed_distance&quot;</span>);</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#aedc4def9718923f4c1cacbbb37e5891b">attach_field_function</a>(std::make_shared&lt;<a class="code hl_class" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1AdvectionField.html">AdvectionField&lt;dim, number&gt;</a>&gt;(),</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                                  <span class="stringliteral">&quot;prescribed_velocity&quot;</span>,</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                                  <span class="stringliteral">&quot;level_set&quot;</span>);</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    }</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00195" data-start="{" data-end="}">
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#aad6ea6dec703e3a5d275bdefcc175b98">  195</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#aad6ea6dec703e3a5d275bdefcc175b98">set_field_conditions</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#acdd8ca91dd92515f3a8977e40878e7ed">attach_initial_condition</a>(std::make_shared&lt;<a class="code hl_class" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1InitializePhi.html">InitializePhi&lt;dim, number&gt;</a>&gt;(),</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                                     <span class="stringliteral">&quot;signed_distance&quot;</span>);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>      this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#aedc4def9718923f4c1cacbbb37e5891b">attach_field_function</a>(std::make_shared&lt;<a class="code hl_class" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1AdvectionField.html">AdvectionField&lt;dim, number&gt;</a>&gt;(),</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>                                  <span class="stringliteral">&quot;prescribed_velocity&quot;</span>,</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                                  <span class="stringliteral">&quot;level_set&quot;</span>);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    }</div>
 </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00206" data-start="{" data-end="}">
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a5ec00f9d7574e104d8ae391db2d21377">  206</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a5ec00f9d7574e104d8ae391db2d21377">do_postprocessing</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut&lt;dim, number&gt;</a> &amp;generic_data_out) <span class="keyword">const</span> <span class="keyword">final</span></div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    {</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>      <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacedealii.html">dealii</a>;</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>      <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (dim == 2)</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        {</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>          dealii::ConditionalOStream pcout(</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>            std::cout, Utilities::MPI::this_mpi_process(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>) == 0);</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>          <span class="comment">// compute area</span></div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>          <span class="keyword">const</span> <span class="keyword">auto</span> n_q_points = this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.fe.degree + 3;</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>          FE_Q&lt;dim&gt;  fe(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.fe.degree);</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>          QGauss&lt;dim&gt;   quadrature(n_q_points);</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>          FEValues&lt;dim&gt; fe_values(fe,</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>                                  quadrature,</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>                                  update_values | update_JxW_values | update_quadrature_points);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00205" data-start="{" data-end="}">
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a5ec00f9d7574e104d8ae391db2d21377">  205</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a5ec00f9d7574e104d8ae391db2d21377">do_postprocessing</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut&lt;dim, number&gt;</a> &amp;generic_data_out) <span class="keyword">const</span> <span class="keyword">final</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (dim == 2)</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        {</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>          dealii::ConditionalOStream pcout(</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>            std::cout, dealii::Utilities::MPI::this_mpi_process(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>) == 0);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>          <span class="comment">// compute area</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>          <span class="keyword">const</span> <span class="keyword">auto</span>        n_q_points = this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.fe.degree + 3;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>          dealii::FE_Q&lt;dim&gt; fe(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.fe.degree);</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>          dealii::QGauss&lt;dim&gt;   quadrature(n_q_points);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>          dealii::FEValues&lt;dim&gt; fe_values(fe,</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                                          quadrature,</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                                          dealii::update_values | dealii::update_JxW_values |</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                                            dealii::update_quadrature_points);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>          std::vector&lt;number&gt; phi_at_q(dealii::QGauss&lt;dim&gt;(n_q_points).size());</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>          std::vector&lt;number&gt; phi_at_q(QGauss&lt;dim&gt;(n_q_points).size());</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>          std::vector&lt;number&gt; volume_fraction;</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>          number              area_droplet = 0;</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>          number              area_bulk    = 0;</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>          <span class="keyword">const</span> number        threshhold   = 0.0;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>          std::vector&lt;number&gt; volume_fraction;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>          number              area_droplet = 0;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>          number              area_bulk    = 0;</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>          <span class="keyword">const</span> number        threshhold   = 0.0;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>          generic_data_out.get_vector(<span class="stringliteral">&quot;level_set&quot;</span>).update_ghost_values();</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>          generic_data_out.get_vector(<span class="stringliteral">&quot;level_set&quot;</span>).update_ghost_values();</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>          <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;cell :</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>               generic_data_out.get_dof_handler(<span class="stringliteral">&quot;level_set&quot;</span>).active_cell_iterators())</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            <span class="keywordflow">if</span> (cell-&gt;is_locally_owned())</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>              {</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                fe_values.reinit(cell);</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                fe_values.get_function_values(generic_data_out.get_vector(<span class="stringliteral">&quot;level_set&quot;</span>),</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                                              phi_at_q); <span class="comment">// compute values of old solution</span></div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> q_index : fe_values.quadrature_point_indices())</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                  {</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                    <span class="keywordflow">if</span> (phi_at_q[q_index] &gt;= threshhold)</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>                      area_droplet += fe_values.JxW(q_index);</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                      area_bulk += fe_values.JxW(q_index);</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                  }</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>              }</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>          generic_data_out.get_vector(<span class="stringliteral">&quot;level_set&quot;</span>).zero_out_ghost_values();</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>          area_droplet = Utilities::MPI::sum(area_droplet, this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>);</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>          area_bulk    = Utilities::MPI::sum(area_bulk, this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>);</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>          pcout &lt;&lt; <span class="stringliteral">&quot;area (phi&gt;0) &quot;</span> &lt;&lt; area_droplet &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>          pcout &lt;&lt; <span class="stringliteral">&quot;area (phi&lt;0) &quot;</span> &lt;&lt; area_bulk &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>          <span class="comment">// compute circularity</span></div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>          <span class="comment">// 1) compute the surface of the droplet</span></div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>          Triangulation&lt;std::max(1, dim - 1), dim&gt; tria_droplet_surface;</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>          GridGenerator::create_triangulation_with_marching_cube_algorithm&lt;dim&gt;(</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>            tria_droplet_surface,</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            MappingQ&lt;dim&gt;(3),</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>            generic_data_out.get_dof_handler(<span class="stringliteral">&quot;level_set&quot;</span>),</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>            generic_data_out.get_vector(<span class="stringliteral">&quot;level_set&quot;</span>),</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            0. <span class="comment">/*iso level*/</span>,</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>            1 <span class="comment">/*n subdivisions of surface mesh*/</span>);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>          <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;cell :</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>               generic_data_out.get_dof_handler(<span class="stringliteral">&quot;level_set&quot;</span>).active_cell_iterators())</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            <span class="keywordflow">if</span> (cell-&gt;is_locally_owned())</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>              {</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>                fe_values.reinit(cell);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>                fe_values.get_function_values(generic_data_out.get_vector(<span class="stringliteral">&quot;level_set&quot;</span>),</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                                              phi_at_q); <span class="comment">// compute values of old solution</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> q_index : fe_values.quadrature_point_indices())</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                  {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                    <span class="keywordflow">if</span> (phi_at_q[q_index] &gt;= threshhold)</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                      area_droplet += fe_values.JxW(q_index);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>                      area_bulk += fe_values.JxW(q_index);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                  }</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>              }</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>          generic_data_out.get_vector(<span class="stringliteral">&quot;level_set&quot;</span>).zero_out_ghost_values();</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>          area_droplet = dealii::Utilities::MPI::sum(area_droplet, this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>          area_bulk    = dealii::Utilities::MPI::sum(area_bulk, this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>          pcout &lt;&lt; <span class="stringliteral">&quot;area (phi&gt;0) &quot;</span> &lt;&lt; area_droplet &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>          pcout &lt;&lt; <span class="stringliteral">&quot;area (phi&lt;0) &quot;</span> &lt;&lt; area_bulk &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>          <span class="comment">// compute circularity</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>          <span class="comment">// 1) compute the surface of the droplet</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>          dealii::Triangulation&lt;std::max(1, dim - 1), dim&gt; tria_droplet_surface;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>          GridGenerator::create_triangulation_with_marching_cube_algorithm&lt;dim&gt;(</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>            tria_droplet_surface,</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>            dealii::MappingQ&lt;dim&gt;(3),</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>            generic_data_out.get_dof_handler(<span class="stringliteral">&quot;level_set&quot;</span>),</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            generic_data_out.get_vector(<span class="stringliteral">&quot;level_set&quot;</span>),</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>            0. <span class="comment">/*iso level*/</span>,</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>            1 <span class="comment">/*n subdivisions of surface mesh*/</span>);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>          number area_droplet_boundary = 0;</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>          number area_droplet_boundary = 0;</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>          <span class="comment">// check if partitioned domains contain surface elements in case of parallel execution</span></div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>          <span class="keywordflow">if</span> (tria_droplet_surface.n_cells() &gt; 0)</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>            area_droplet_boundary =</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>              GridTools::volume&lt;std::max(1, dim - 1), dim&gt;(tria_droplet_surface);</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>          area_droplet_boundary = Utilities::MPI::sum(area_droplet_boundary, MPI_COMM_WORLD);</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>          AssertThrow(area_droplet_boundary &gt;= 1e-16, ExcMessage(<span class="stringliteral">&quot;Area of droplet is zero.&quot;</span>));</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>          <span class="comment">// check if partitioned domains contain surface elements in case of parallel execution</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>          <span class="keywordflow">if</span> (tria_droplet_surface.n_cells() &gt; 0)</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>            area_droplet_boundary =</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>              dealii::GridTools::volume&lt;std::max(1, dim - 1), dim&gt;(tria_droplet_surface);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>          area_droplet_boundary =</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            dealii::Utilities::MPI::sum(area_droplet_boundary, MPI_COMM_WORLD);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>          AssertThrow(area_droplet_boundary &gt;= 1e-16,</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>                      dealii::ExcMessage(<span class="stringliteral">&quot;Area of droplet is zero.&quot;</span>));</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>          <span class="comment">// 2) compute circularity</span></div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>          number circularity =</div>
@@ -408,7 +408,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>          table.add_value(<span class="stringliteral">&quot;circularity&quot;</span>, circularity);</div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>          table.add_value(<span class="stringliteral">&quot;area_droplet&quot;</span>, area_droplet);</div>
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>          <span class="keywordflow">if</span> (Utilities::MPI::this_mpi_process(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>) == 0)</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>          <span class="keywordflow">if</span> (dealii::Utilities::MPI::this_mpi_process(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>) == 0)</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>            {</div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>              <span class="keyword">namespace </span>fs = std::filesystem;</div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>              std::ofstream output(fs::path(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.output.directory) /</div>
@@ -432,11 +432,11 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>              <span class="keyword">const</span> number eps =</div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>                this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.ls.reinit.compute_interface_thickness_parameter_epsilon(</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>                  GridTools::minimal_cell_diameter(*this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>) /</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>                  dealii::GridTools::minimal_cell_diameter(*this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>) /</div>
 <div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>                  this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.ls.get_n_subdivisions() / std::sqrt(dim));</div>
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>              <span class="comment">// compute L2Norm of level_set</span></div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>              Vector&lt;float&gt; difference_per_cell(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>-&gt;n_active_cells());</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>              dealii::Vector&lt;float&gt; difference_per_cell(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">triangulation</a>-&gt;n_active_cells());</div>
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>              dealii::VectorTools::integrate_difference(generic_data_out.get_mapping(),</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>                                                        generic_data_out.get_dof_handler(</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>                                                          <span class="stringliteral">&quot;level_set&quot;</span>),</div>
@@ -468,92 +468,94 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
 <div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>              <span class="comment">// compute relative L2 norm in a finite interval around the interface</span></div>
 <div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>              <a class="code hl_class" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SignedDistanceExact.html">SignedDistanceExact&lt;dim, number&gt;</a> sd_circle(eps);</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>              FEValues&lt;dim&gt;                    fe(generic_data_out.get_mapping(),</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>                               generic_data_out.get_dof_handler(<span class="stringliteral">&quot;level_set&quot;</span>).get_fe(),</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>                               quadrature,</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>                               update_values | update_JxW_values | update_quadrature_points);</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>              <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>  n_q_points = fe.get_quadrature().size();</div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>              std::vector&lt;number&gt; phi_at_q(n_q_points);</div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>              number norm_interface_region       = 0;</div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>              number norm_interface_region_exact = 0;</div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>              number norm_interface_kreiss       = 0;</div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>              <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;cell :</div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>                   generic_data_out.get_dof_handler(<span class="stringliteral">&quot;level_set&quot;</span>).active_cell_iterators())</div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>                {</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>                  <span class="keywordflow">if</span> (cell-&gt;is_locally_owned())</div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>                    {</div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>                      fe.reinit(cell);</div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>                      fe.get_function_values(generic_data_out.get_vector(<span class="stringliteral">&quot;distance&quot;</span>), phi_at_q);</div>
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>                      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;q : fe.quadrature_point_indices())</div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>                        {</div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>                          norm_interface_kreiss +=</div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>                            Utilities::fixed_power&lt;2&gt;(</div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>                              <a class="code hl_function" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#aba5388657cac84bee12153cacd979c2c">UtilityFunctions::heaviside</a>(phi_at_q[q]) -</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>                              <a class="code hl_function" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#aba5388657cac84bee12153cacd979c2c">UtilityFunctions::heaviside</a>(</div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>                                sd_circle.<a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SignedDistanceExact.html#a757242aaa053c5c4dffd3a2132b0df65">value</a>(fe.quadrature_point(q), 0))) *</div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>                            fe.JxW(q);</div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>                          <span class="keywordflow">if</span> (std::abs(phi_at_q[q]) &lt; 0.02)</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>                            {</div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>                              norm_interface_region +=</div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>                                Utilities::fixed_power&lt;2&gt;(</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>                                  sd_circle.<a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SignedDistanceExact.html#a757242aaa053c5c4dffd3a2132b0df65">value</a>(fe.quadrature_point(q), 0) - phi_at_q[q]) *</div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>                                fe.JxW(q);</div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>                              norm_interface_region_exact +=</div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>                                Utilities::fixed_power&lt;2&gt;(</div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>                                  sd_circle.<a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SignedDistanceExact.html#a757242aaa053c5c4dffd3a2132b0df65">value</a>(fe.quadrature_point(q), 0)) *</div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>                                fe.JxW(q);</div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>                            }</div>
-<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>                        }</div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>                    }</div>
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>                }</div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
-<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>              norm_interface_region_exact =</div>
-<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>                std::sqrt(Utilities::MPI::sum(norm_interface_region_exact, MPI_COMM_WORLD));</div>
-<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>              norm_interface_region =</div>
-<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>                std::sqrt(Utilities::MPI::sum(norm_interface_region, MPI_COMM_WORLD));</div>
-<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>              norm_interface_kreiss =</div>
-<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>                std::sqrt(Utilities::MPI::sum(norm_interface_kreiss, MPI_COMM_WORLD));</div>
-<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
-<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>              generic_data_out.get_vector(<span class="stringliteral">&quot;level_set&quot;</span>).zero_out_ghost_values();</div>
-<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>              generic_data_out.get_vector(<span class="stringliteral">&quot;distance&quot;</span>).zero_out_ghost_values();</div>
-<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span> </div>
-<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>              <span class="keywordflow">if</span> (Utilities::MPI::this_mpi_process(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>) == 0)</div>
-<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>                output</div>
-<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>                  &lt;&lt; <span class="stringliteral">&quot;n_dofs L2_norm(phi-phiExact) L2_norm(signed_distance-exact) relL2_normGamma(signed_distance-exact) L2_normGamma(sd_exact) L2(Kreiss)&quot;</span></div>
-<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>                  &lt;&lt; std::endl</div>
-<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>                  &lt;&lt; generic_data_out.get_dof_handler(<span class="stringliteral">&quot;level_set&quot;</span>).n_dofs() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; norm &lt;&lt; <span class="stringliteral">&quot; &quot;</span></div>
-<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>                  &lt;&lt; norm_sd &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; norm_interface_region / norm_interface_region_exact &lt;&lt; <span class="stringliteral">&quot; &quot;</span></div>
-<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>                  &lt;&lt; norm_interface_region_exact &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; norm_interface_kreiss;</div>
-<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>            }</div>
-<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>        }</div>
-<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>    }</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>              dealii::FEValues&lt;dim&gt;            fe(generic_data_out.get_mapping(),</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>                                       generic_data_out.get_dof_handler(<span class="stringliteral">&quot;level_set&quot;</span>).get_fe(),</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>                                       quadrature,</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>                                       dealii::update_values | dealii::update_JxW_values |</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>                                         dealii::update_quadrature_points);</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>              <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>  n_q_points = fe.get_quadrature().size();</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>              std::vector&lt;number&gt; phi_at_q(n_q_points);</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>              number norm_interface_region       = 0;</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>              number norm_interface_region_exact = 0;</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>              number norm_interface_kreiss       = 0;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span> </div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>              <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;cell :</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>                   generic_data_out.get_dof_handler(<span class="stringliteral">&quot;level_set&quot;</span>).active_cell_iterators())</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>                {</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>                  <span class="keywordflow">if</span> (cell-&gt;is_locally_owned())</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>                    {</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>                      fe.reinit(cell);</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>                      fe.get_function_values(generic_data_out.get_vector(<span class="stringliteral">&quot;distance&quot;</span>), phi_at_q);</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>                      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;q : fe.quadrature_point_indices())</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>                        {</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>                          norm_interface_kreiss +=</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>                            dealii::Utilities::fixed_power&lt;2&gt;(</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>                              <a class="code hl_function" href="namespaceMeltPoolDG_1_1CharacteristicFunctions.html#a4552f0bda84dd03c1f2606101069c799">CharacteristicFunctions::heaviside</a>(phi_at_q[q]) -</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>                              <a class="code hl_function" href="namespaceMeltPoolDG_1_1CharacteristicFunctions.html#a4552f0bda84dd03c1f2606101069c799">CharacteristicFunctions::heaviside</a>(</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>                                sd_circle.<a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SignedDistanceExact.html#a757242aaa053c5c4dffd3a2132b0df65">value</a>(fe.quadrature_point(q), 0))) *</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>                            fe.JxW(q);</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>                          <span class="keywordflow">if</span> (std::abs(phi_at_q[q]) &lt; 0.02)</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>                            {</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>                              norm_interface_region +=</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>                                dealii::Utilities::fixed_power&lt;2&gt;(</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>                                  sd_circle.<a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SignedDistanceExact.html#a757242aaa053c5c4dffd3a2132b0df65">value</a>(fe.quadrature_point(q), 0) - phi_at_q[q]) *</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>                                fe.JxW(q);</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>                              norm_interface_region_exact +=</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>                                dealii::Utilities::fixed_power&lt;2&gt;(</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>                                  sd_circle.<a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SignedDistanceExact.html#a757242aaa053c5c4dffd3a2132b0df65">value</a>(fe.quadrature_point(q), 0)) *</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>                                fe.JxW(q);</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>                            }</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>                        }</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>                    }</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>                }</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span> </div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>              norm_interface_region_exact =</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>                std::sqrt(dealii::Utilities::MPI::sum(norm_interface_region_exact, MPI_COMM_WORLD));</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>              norm_interface_region =</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>                std::sqrt(dealii::Utilities::MPI::sum(norm_interface_region, MPI_COMM_WORLD));</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>              norm_interface_kreiss =</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>                std::sqrt(dealii::Utilities::MPI::sum(norm_interface_kreiss, MPI_COMM_WORLD));</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>              generic_data_out.get_vector(<span class="stringliteral">&quot;level_set&quot;</span>).zero_out_ghost_values();</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>              generic_data_out.get_vector(<span class="stringliteral">&quot;distance&quot;</span>).zero_out_ghost_values();</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>              <span class="keywordflow">if</span> (dealii::Utilities::MPI::this_mpi_process(this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#af1529da8d97a1e9946f3765b05d367f7">mpi_communicator</a>) == 0)</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>                output</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>                  &lt;&lt; <span class="stringliteral">&quot;n_dofs L2_norm(phi-phiExact) L2_norm(signed_distance-exact) relL2_normGamma(signed_distance-exact) L2_normGamma(sd_exact) L2(Kreiss)&quot;</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>                  &lt;&lt; std::endl</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>                  &lt;&lt; generic_data_out.get_dof_handler(<span class="stringliteral">&quot;level_set&quot;</span>).n_dofs() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; norm &lt;&lt; <span class="stringliteral">&quot; &quot;</span></div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>                  &lt;&lt; norm_sd &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; norm_interface_region / norm_interface_region_exact &lt;&lt; <span class="stringliteral">&quot; &quot;</span></div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>                  &lt;&lt; norm_interface_region_exact &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; norm_interface_kreiss;</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>            }</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>        }</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    }</div>
 </div>
-<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span> </div>
-<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    <span class="keywordtype">bool</span></div>
-<div class="foldopen" id="foldopen00413" data-start="{" data-end="}">
-<div class="line"><a id="l00413" name="l00413"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#af9712da23a9597264faa7b22b84433ab">  413</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#af9712da23a9597264faa7b22b84433ab">add_simulation_specific_parameters</a>(dealii::ParameterHandler &amp;prm)<span class="keyword"> override</span></div>
-<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>      prm.enter_subsection(<span class="stringliteral">&quot;simulation specific&quot;</span>);</div>
-<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>      {</div>
-<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>        prm.add_parameter(<span class="stringliteral">&quot;T&quot;</span>, Tf, <span class="stringliteral">&quot;Period of vortex flow.&quot;</span>);</div>
-<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>      }</div>
-<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>      prm.leave_subsection();</div>
-<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span> </div>
-<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>      <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.do_print_parameters;</div>
-<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>    }</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span> </div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>    <span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00414" data-start="{" data-end="}">
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#af9712da23a9597264faa7b22b84433ab">  414</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#af9712da23a9597264faa7b22b84433ab">add_simulation_specific_parameters</a>(dealii::ParameterHandler &amp;prm)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>      prm.enter_subsection(<span class="stringliteral">&quot;simulation specific&quot;</span>);</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>      {</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>        prm.add_parameter(<span class="stringliteral">&quot;T&quot;</span>, Tf, <span class="stringliteral">&quot;Period of vortex flow.&quot;</span>);</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>      }</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>      prm.leave_subsection();</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span> </div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>      <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a26a71047839be35dcd04d964bcf5bea5">parameters</a>.base.do_print_parameters;</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>    }</div>
 </div>
-<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
-<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>    number                       left_domain  = 0.0;</div>
-<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>    number                       right_domain = 1.0;</div>
-<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    <span class="keyword">mutable</span> dealii::TableHandler table;</div>
-<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>  };</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span> </div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>    number                       left_domain  = 0.0;</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    number                       right_domain = 1.0;</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>    <span class="keyword">mutable</span> dealii::TableHandler table;</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>  };</div>
 </div>
-<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>} <span class="comment">// namespace MeltPoolDG::Simulation::VortexBubble</span></div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>} <span class="comment">// namespace MeltPoolDG::Simulation::VortexBubble</span></div>
+<div class="ttc" id="acharacteristic__functions_8hpp_html"><div class="ttname"><a href="characteristic__functions_8hpp.html">characteristic_functions.hpp</a></div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1GenericDataOut_html"><div class="ttname"><a href="classMeltPoolDG_1_1GenericDataOut.html">MeltPoolDG::GenericDataOut</a></div><div class="ttdef"><b>Definition</b> generic_data_out.hpp:13</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1LevelSetCase_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html">MeltPoolDG::LevelSet::LevelSetCase</a></div><div class="ttdef"><b>Definition</b> level_set_case.hpp:70</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1LevelSetCase_html_a0e286e76cb807b7125b4c28076411223"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1LevelSetCase.html#a0e286e76cb807b7125b4c28076411223">MeltPoolDG::LevelSet::LevelSetCase::LevelSetCase</a></div><div class="ttdeci">LevelSetCase(const std::string &amp;parameter_file_in, MPI_Comm mpi_communicator_in)</div><div class="ttdef"><b>Definition</b> level_set_case.hpp:74</div></div>
@@ -579,18 +581,17 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SignedDistanceExact_html_a757242aaa053c5c4dffd3a2132b0df65"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SignedDistanceExact.html#a757242aaa053c5c4dffd3a2132b0df65">MeltPoolDG::Simulation::VortexBubble::SignedDistanceExact::value</a></div><div class="ttdeci">number value(const dealii::Point&lt; dim, number &gt; &amp;p, const unsigned int) const override</div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:86</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SignedDistanceExact_html_afdd0d031173c0f5878aed350e54eb603"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SignedDistanceExact.html#afdd0d031173c0f5878aed350e54eb603">MeltPoolDG::Simulation::VortexBubble::SignedDistanceExact::SignedDistanceExact</a></div><div class="ttdeci">SignedDistanceExact(const number eps)</div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:81</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble_html"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html">MeltPoolDG::Simulation::VortexBubble::SimulationVortexBubble</a></div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:153</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble_html_a0f0acfdf6c50af5f9fc0f7f86716cb30"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a0f0acfdf6c50af5f9fc0f7f86716cb30">MeltPoolDG::Simulation::VortexBubble::SimulationVortexBubble::set_boundary_conditions</a></div><div class="ttdeci">void set_boundary_conditions() override</div><div class="ttdoc">Pure virtual function to set the boundary conditions.</div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:190</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble_html_a0f0acfdf6c50af5f9fc0f7f86716cb30"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a0f0acfdf6c50af5f9fc0f7f86716cb30">MeltPoolDG::Simulation::VortexBubble::SimulationVortexBubble::set_boundary_conditions</a></div><div class="ttdeci">void set_boundary_conditions() override</div><div class="ttdoc">Pure virtual function to set the boundary conditions.</div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:189</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble_html_a12eb38f67653addadccfe7f0ef8978b4"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a12eb38f67653addadccfe7f0ef8978b4">MeltPoolDG::Simulation::VortexBubble::SimulationVortexBubble::SimulationVortexBubble</a></div><div class="ttdeci">SimulationVortexBubble(std::string parameter_file, const MPI_Comm mpi_communicator)</div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:155</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble_html_a5ec00f9d7574e104d8ae391db2d21377"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a5ec00f9d7574e104d8ae391db2d21377">MeltPoolDG::Simulation::VortexBubble::SimulationVortexBubble::do_postprocessing</a></div><div class="ttdeci">void do_postprocessing(const GenericDataOut&lt; dim, number &gt; &amp;generic_data_out) const final</div><div class="ttdoc">Perform specific postprocessing (can be overridden by derived classes).</div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:206</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble_html_a5ec00f9d7574e104d8ae391db2d21377"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a5ec00f9d7574e104d8ae391db2d21377">MeltPoolDG::Simulation::VortexBubble::SimulationVortexBubble::do_postprocessing</a></div><div class="ttdeci">void do_postprocessing(const GenericDataOut&lt; dim, number &gt; &amp;generic_data_out) const final</div><div class="ttdoc">Perform specific postprocessing (can be overridden by derived classes).</div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:205</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble_html_a8fbed01cbd7107159ca8aa2631879f8c"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#a8fbed01cbd7107159ca8aa2631879f8c">MeltPoolDG::Simulation::VortexBubble::SimulationVortexBubble::create_spatial_discretization</a></div><div class="ttdeci">void create_spatial_discretization() override</div><div class="ttdoc">Pure virtual function to create the spatial discretization.</div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:160</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble_html_aad6ea6dec703e3a5d275bdefcc175b98"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#aad6ea6dec703e3a5d275bdefcc175b98">MeltPoolDG::Simulation::VortexBubble::SimulationVortexBubble::set_field_conditions</a></div><div class="ttdeci">void set_field_conditions() override</div><div class="ttdoc">Pure virtual function to set the field conditions.</div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:196</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble_html_af9712da23a9597264faa7b22b84433ab"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#af9712da23a9597264faa7b22b84433ab">MeltPoolDG::Simulation::VortexBubble::SimulationVortexBubble::add_simulation_specific_parameters</a></div><div class="ttdeci">bool add_simulation_specific_parameters(dealii::ParameterHandler &amp;prm) override</div><div class="ttdoc">Add simulation-specific parameters (can be overridden).</div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:413</div></div>
-<div class="ttc" id="alevel__set__tools_8hpp_html"><div class="ttname"><a href="level__set__tools_8hpp.html">level_set_tools.hpp</a></div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble_html_aad6ea6dec703e3a5d275bdefcc175b98"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#aad6ea6dec703e3a5d275bdefcc175b98">MeltPoolDG::Simulation::VortexBubble::SimulationVortexBubble::set_field_conditions</a></div><div class="ttdeci">void set_field_conditions() override</div><div class="ttdoc">Pure virtual function to set the field conditions.</div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:195</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble_html_af9712da23a9597264faa7b22b84433ab"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1SimulationVortexBubble.html#af9712da23a9597264faa7b22b84433ab">MeltPoolDG::Simulation::VortexBubble::SimulationVortexBubble::add_simulation_specific_parameters</a></div><div class="ttdeci">bool add_simulation_specific_parameters(dealii::ParameterHandler &amp;prm) override</div><div class="ttdoc">Add simulation-specific parameters (can be overridden).</div><div class="ttdef"><b>Definition</b> vortex_bubble.hpp:414</div></div>
+<div class="ttc" id="acreate__triangulation__with__marching__cube__algorithm_8hpp_html"><div class="ttname"><a href="create__triangulation__with__marching__cube__algorithm_8hpp.html">create_triangulation_with_marching_cube_algorithm.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CharacteristicFunctions_html_a4552f0bda84dd03c1f2606101069c799"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CharacteristicFunctions.html#a4552f0bda84dd03c1f2606101069c799">MeltPoolDG::CharacteristicFunctions::heaviside</a></div><div class="ttdeci">number heaviside(const number in, const number limit=0.0)</div><div class="ttdef"><b>Definition</b> characteristic_functions.hpp:37</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Simulation_1_1VortexBubble_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Simulation_1_1VortexBubble.html">MeltPoolDG::Simulation::VortexBubble</a></div><div class="ttdef"><b>Definition</b> vortex_bubble.cpp:6</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1UtilityFunctions_html_aba5388657cac84bee12153cacd979c2c"><div class="ttname"><a href="namespaceMeltPoolDG_1_1UtilityFunctions.html#aba5388657cac84bee12153cacd979c2c">MeltPoolDG::UtilityFunctions::heaviside</a></div><div class="ttdeci">number heaviside(const number in, const number limit=0.0)</div><div class="ttdef"><b>Definition</b> utility_functions.hpp:192</div></div>
-<div class="ttc" id="anamespacedealii_html"><div class="ttname"><a href="namespacedealii.html">dealii</a></div><div class="ttdef"><b>Definition</b> level_set_tools.hpp:59</div></div>
+<div class="ttc" id="anamespacedealii_html"><div class="ttname"><a href="namespacedealii.html">dealii</a></div><div class="ttdef"><b>Definition</b> dealii_tensor.hpp:9</div></div>
 <div class="ttc" id="asimulation__base_8hpp_html"><div class="ttname"><a href="simulation__base_8hpp.html">simulation_base.hpp</a></div></div>
-<div class="ttc" id="autilities_2utility__functions_8hpp_html"><div class="ttname"><a href="utilities_2utility__functions_8hpp.html">utility_functions.hpp</a></div></div>
 <div class="ttc" id="avector__tools_8hpp_html"><div class="ttname"><a href="vector__tools_8hpp.html">vector_tools.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

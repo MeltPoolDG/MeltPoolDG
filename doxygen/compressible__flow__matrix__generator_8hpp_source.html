@@ -139,11 +139,11 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                        dof_idx,</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                        quad_idx)</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  {</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    dealii::FECellIntegrator&lt;dim, n_components, number&gt; phi(matrix_free, dof_idx, quad_idx);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <a class="code hl_typedef" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator&lt;dim, n_components, number&gt;</a> phi(matrix_free, dof_idx, quad_idx);</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="comment">// ## Cell ## //</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    std::function&lt;void(dealii::FECellIntegrator&lt;dim, n_components, number&gt; &amp;)&gt; cell_operation =</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      [&amp;](dealii::FECellIntegrator&lt;dim, n_components, number&gt; &amp;delta_phi) -&gt; <span class="keywordtype">void</span> {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    std::function&lt;void(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator&lt;dim, n_components, number&gt;</a> &amp;)&gt; cell_operation =</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      [&amp;](<a class="code hl_typedef" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator&lt;dim, n_components, number&gt;</a> &amp;delta_phi) -&gt; <span class="keywordtype">void</span> {</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      phi.reinit(delta_phi.get_cell_or_face_batch_id());</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>      phi.gather_evaluate(current_solution,</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                          dealii::EvaluationFlags::values | dealii::EvaluationFlags::gradients);</div>
@@ -158,94 +158,93 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    };</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">// ## Face ##//</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    dealii::FEFaceIntegrator&lt;dim, n_components, number&gt; phi_m(matrix_free,</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                                                              <span class="keyword">true</span> <span class="comment">/*is_interior_face*/</span>,</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                                                              dof_idx,</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                                                              quad_idx);</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    dealii::FEFaceIntegrator&lt;dim, n_components, number&gt; phi_p(matrix_free,</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                                                              <span class="keyword">false</span> <span class="comment">/*is_interior_face*/</span>,</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                                                              dof_idx,</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                                                              quad_idx);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    std::function&lt;void(dealii::FEFaceIntegrator&lt;dim, n_components, number&gt; &amp;,</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                       dealii::FEFaceIntegrator&lt;dim, n_components, number&gt; &amp;)&gt;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      face_operation =</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        [&amp;](dealii::FEFaceIntegrator&lt;dim, n_components, number&gt; &amp;delta_phi_m,</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            dealii::FEFaceIntegrator&lt;dim, n_components, number&gt; &amp;delta_phi_p) -&gt; <span class="keywordtype">void</span> {</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      phi_m.reinit(delta_phi_m.get_cell_or_face_batch_id());</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      phi_p.reinit(delta_phi_p.get_cell_or_face_batch_id());</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>      phi_m.gather_evaluate(current_solution,</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                            dealii::EvaluationFlags::values | dealii::EvaluationFlags::gradients);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      phi_p.gather_evaluate(current_solution,</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                            dealii::EvaluationFlags::values | dealii::EvaluationFlags::gradients);</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      delta_phi_p.evaluate(dealii::EvaluationFlags::values | dealii::EvaluationFlags::gradients);</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>      delta_phi_m.evaluate(dealii::EvaluationFlags::values | dealii::EvaluationFlags::gradients);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator&lt;dim, n_components, number&gt;</a> phi_m(matrix_free,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                                                      <span class="keyword">true</span> <span class="comment">/*is_interior_face*/</span>,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                                                      dof_idx,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                                                      quad_idx);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator&lt;dim, n_components, number&gt;</a> phi_p(matrix_free,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                                                      <span class="keyword">false</span> <span class="comment">/*is_interior_face*/</span>,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                                                      dof_idx,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                                                      quad_idx);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    std::function&lt;void(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator&lt;dim, n_components, number&gt;</a> &amp;,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                       <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator&lt;dim, n_components, number&gt;</a> &amp;)&gt;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      face_operation = [&amp;](<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator&lt;dim, n_components, number&gt;</a> &amp;delta_phi_m,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                           <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator&lt;dim, n_components, number&gt;</a> &amp;delta_phi_p) -&gt; <span class="keywordtype">void</span> {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>      phi_m.reinit(delta_phi_m.get_cell_or_face_batch_id());</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      phi_p.reinit(delta_phi_p.get_cell_or_face_batch_id());</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      phi_m.gather_evaluate(current_solution,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                            dealii::EvaluationFlags::values | dealii::EvaluationFlags::gradients);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      phi_p.gather_evaluate(current_solution,</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                            dealii::EvaluationFlags::values | dealii::EvaluationFlags::gradients);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>      delta_phi_p.evaluate(dealii::EvaluationFlags::values | dealii::EvaluationFlags::gradients);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      delta_phi_m.evaluate(dealii::EvaluationFlags::values | dealii::EvaluationFlags::gradients);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> q_index : delta_phi_m.quadrature_point_indices())</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        {</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>          implicit_operator.local_face_jacobian_kernel(</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            delta_phi_m, delta_phi_p, phi_m, phi_p, q_index);</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        }</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      delta_phi_m.integrate(dealii::EvaluationFlags::values);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>      delta_phi_p.integrate(dealii::EvaluationFlags::values);</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    };</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="comment">// ## Boundary face ##//</span></div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    dealii::FEFaceIntegrator&lt;dim, n_components, number&gt; phi_boundary(matrix_free,</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                                                                     <span class="keyword">true</span> <span class="comment">/*is_interior_face*/</span>,</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                                                                     dof_idx,</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                                                                     quad_idx);</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    std::function&lt;void(dealii::FEFaceIntegrator&lt;dim, n_components, number&gt; &amp;)&gt; boundary_operation =</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      [&amp;](dealii::FEFaceIntegrator&lt;dim, n_components, number&gt; &amp;delta_phi_boundary) -&gt; <span class="keywordtype">void</span> {</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      phi_boundary.reinit(delta_phi_boundary.get_cell_or_face_batch_id());</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      phi_boundary.gather_evaluate(current_solution,</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                                   dealii::EvaluationFlags::values |</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                                     dealii::EvaluationFlags::gradients);</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>      delta_phi_boundary.evaluate(dealii::EvaluationFlags::values |</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                                  dealii::EvaluationFlags::gradients);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> q_index : delta_phi_m.quadrature_point_indices())</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        {</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>          implicit_operator.local_face_jacobian_kernel(</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>            delta_phi_m, delta_phi_p, phi_m, phi_p, q_index);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      delta_phi_m.integrate(dealii::EvaluationFlags::values);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      delta_phi_p.integrate(dealii::EvaluationFlags::values);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    };</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="comment">// ## Boundary face ##//</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator&lt;dim, n_components, number&gt;</a>                        phi_boundary(matrix_free,</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                                                             <span class="keyword">true</span> <span class="comment">/*is_interior_face*/</span>,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                                                             dof_idx,</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                                                             quad_idx);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    std::function&lt;void(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator&lt;dim, n_components, number&gt;</a> &amp;)&gt; boundary_operation =</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      [&amp;](<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator&lt;dim, n_components, number&gt;</a> &amp;delta_phi_boundary) -&gt; <span class="keywordtype">void</span> {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      phi_boundary.reinit(delta_phi_boundary.get_cell_or_face_batch_id());</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      phi_boundary.gather_evaluate(current_solution,</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                                   dealii::EvaluationFlags::values |</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                                     dealii::EvaluationFlags::gradients);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>      delta_phi_boundary.evaluate(dealii::EvaluationFlags::values |</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                                  dealii::EvaluationFlags::gradients);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> q_index : delta_phi_boundary.quadrature_point_indices())</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        {</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>          implicit_operator.local_boundary_face_jacobian_kernel(delta_phi_boundary,</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                                                                phi_boundary,</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                                                                q_index);</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        }</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>      delta_phi_boundary.integrate(dealii::EvaluationFlags::values);</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    };</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordflow">switch</span> (type)</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>      {</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceMeltPoolDG_1_1Flow.html#a9d1bd5b9abe67319707a89e57d8872a1a6a6cd6aafac4ce6611c5de4f43cd06bb">MatrixRepresentationType::DiagonalMatrix</a>: {</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>            dealii::MatrixFreeTools::compute_diagonal(</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>              matrix_free,</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>              *std::get&lt;dealii::LinearAlgebra::distributed::Vector&lt;number&gt; *&gt;(dst),</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>              cell_operation,</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>              face_operation,</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>              boundary_operation,</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>              dof_idx,</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>              quad_idx);</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>          }</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceMeltPoolDG_1_1Flow.html#a9d1bd5b9abe67319707a89e57d8872a1ac5318c557cfefeeac7a3f182fba02be3">MatrixRepresentationType::SystemMatrix</a>: {</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>            dealii::MatrixFreeTools::compute_matrix(</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>              matrix_free,</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>              dealii::AffineConstraints&lt;number&gt;(),</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>              *std::get&lt;dealii::TrilinosWrappers::SparseMatrix *&gt;(dst),</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>              cell_operation,</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>              face_operation,</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>              boundary_operation,</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>              dof_idx,</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>              quad_idx);</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>          }</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>          DEAL_II_ASSERT_UNREACHABLE();</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>      }</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>  }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> q_index : delta_phi_boundary.quadrature_point_indices())</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>          implicit_operator.local_boundary_face_jacobian_kernel(delta_phi_boundary,</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                                                                phi_boundary,</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                                                                q_index);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        }</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      delta_phi_boundary.integrate(dealii::EvaluationFlags::values);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    };</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordflow">switch</span> (type)</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>      {</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceMeltPoolDG_1_1Flow.html#a9d1bd5b9abe67319707a89e57d8872a1a6a6cd6aafac4ce6611c5de4f43cd06bb">MatrixRepresentationType::DiagonalMatrix</a>: {</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>            dealii::MatrixFreeTools::compute_diagonal(</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>              matrix_free,</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>              *std::get&lt;dealii::LinearAlgebra::distributed::Vector&lt;number&gt; *&gt;(dst),</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>              cell_operation,</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>              face_operation,</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>              boundary_operation,</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>              dof_idx,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>              quad_idx);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>          }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceMeltPoolDG_1_1Flow.html#a9d1bd5b9abe67319707a89e57d8872a1ac5318c557cfefeeac7a3f182fba02be3">MatrixRepresentationType::SystemMatrix</a>: {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>            dealii::MatrixFreeTools::compute_matrix(</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>              matrix_free,</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>              dealii::AffineConstraints&lt;number&gt;(),</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>              *std::get&lt;dealii::TrilinosWrappers::SparseMatrix *&gt;(dst),</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>              cell_operation,</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>              face_operation,</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>              boundary_operation,</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>              dof_idx,</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>              quad_idx);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>          }</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>          DEAL_II_ASSERT_UNREACHABLE();</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>      }</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>  }</div>
 </div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>} <span class="comment">// namespace MeltPoolDG::Flow</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>} <span class="comment">// namespace MeltPoolDG::Flow</span></div>
 <div class="ttc" id="aconceptMeltPoolDG_1_1Flow_1_1HasJacobianQuadraturePointKernels_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1Flow_1_1HasJacobianQuadraturePointKernels.html">MeltPoolDG::Flow::HasJacobianQuadraturePointKernels</a></div><div class="ttdef"><b>Definition</b> compressible_flow_matrix_generator.hpp:32</div></div>
 <div class="ttc" id="afe__integrator_8hpp_html"><div class="ttname"><a href="fe__integrator_8hpp.html">fe_integrator.hpp</a></div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html">MeltPoolDG::Flow</a></div><div class="ttdoc">Helper class taking care of all boundary condition related computations for the compressible flow sol...</div><div class="ttdef"><b>Definition</b> adaflo_wrapper_parameters.hpp:10</div></div>
@@ -253,6 +252,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_a9d1bd5b9abe67319707a89e57d8872a1"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#a9d1bd5b9abe67319707a89e57d8872a1">MeltPoolDG::Flow::MatrixRepresentationType</a></div><div class="ttdeci">MatrixRepresentationType</div><div class="ttdef"><b>Definition</b> compressible_flow_matrix_generator.hpp:22</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_a9d1bd5b9abe67319707a89e57d8872a1a6a6cd6aafac4ce6611c5de4f43cd06bb"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#a9d1bd5b9abe67319707a89e57d8872a1a6a6cd6aafac4ce6611c5de4f43cd06bb">MeltPoolDG::Flow::DiagonalMatrix</a></div><div class="ttdeci">@ DiagonalMatrix</div><div class="ttdef"><b>Definition</b> compressible_flow_matrix_generator.hpp:23</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_a9d1bd5b9abe67319707a89e57d8872a1ac5318c557cfefeeac7a3f182fba02be3"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#a9d1bd5b9abe67319707a89e57d8872a1ac5318c557cfefeeac7a3f182fba02be3">MeltPoolDG::Flow::SystemMatrix</a></div><div class="ttdeci">@ SystemMatrix</div><div class="ttdef"><b>Definition</b> compressible_flow_matrix_generator.hpp:24</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_a3856136741da9c4cff969def99045d0e"><div class="ttname"><a href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">MeltPoolDG::FEFaceIntegrator</a></div><div class="ttdeci">dealii::FEFaceEvaluation&lt; dim, -1, 0, n_components, number, VectorizedArrayType &gt; FEFaceIntegrator</div><div class="ttdef"><b>Definition</b> fe_integrator.hpp:22</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_aeab3a15b4bcb11af3fd3e496734f9a8c"><div class="ttname"><a href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">MeltPoolDG::FECellIntegrator</a></div><div class="ttdeci">dealii::FEEvaluation&lt; dim, -1, 0, n_components, number, VectorizedArrayType &gt; FECellIntegrator</div><div class="ttdef"><b>Definition</b> fe_integrator.hpp:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

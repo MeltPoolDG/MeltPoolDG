@@ -91,14 +91,14 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;deal.II/lac/la_parallel_block_vector.h&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;deal.II/lac/la_parallel_vector.h&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="scratch__data_8hpp.html">meltpooldg/core/scratch_data.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="heat__operation__base_8hpp.html">meltpooldg/heat/heat_operation_base.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="laser__operation_8hpp.html">meltpooldg/heat/laser_operation.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="generic__data__out_8hpp.html">meltpooldg/post_processing/generic_data_out.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="postprocessor_8hpp.html">meltpooldg/post_processing/postprocessor.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="utilities_2amr_8hpp.html">meltpooldg/utilities/amr.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="material_8hpp.html">meltpooldg/utilities/material.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="time__iterator_8hpp.html">meltpooldg/utilities/time_iterator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="material_8hpp.html">meltpooldg/core/material.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="scratch__data_8hpp.html">meltpooldg/core/scratch_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="heat__operation__base_8hpp.html">meltpooldg/heat/heat_operation_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="laser__operation_8hpp.html">meltpooldg/heat/laser_operation.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="generic__data__out_8hpp.html">meltpooldg/post_processing/generic_data_out.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="postprocessor_8hpp.html">meltpooldg/post_processing/postprocessor.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="time__iterator_8hpp.html">meltpooldg/time_integration/time_iterator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="utilities_2amr_8hpp.html">meltpooldg/utilities/amr.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
@@ -123,10 +123,10 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    VectorType level_set_as_heaviside;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    VectorType level_set;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::shared_ptr&lt;TimeIterator&lt;number&gt;&gt; time_iterator;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    dealii::DoFHandler&lt;dim&gt;               dof_handler;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    dealii::DoFHandler&lt;dim&gt;               dof_handler_velocity;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    dealii::DoFHandler&lt;dim&gt;               dof_handler_level_set;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::shared_ptr&lt;TimeIntegration::TimeIterator&lt;number&gt;&gt; time_iterator;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    dealii::DoFHandler&lt;dim&gt;                                dof_handler;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    dealii::DoFHandler&lt;dim&gt;                                dof_handler_velocity;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    dealii::DoFHandler&lt;dim&gt;                                dof_handler_level_set;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    dealii::AffineConstraints&lt;number&gt; heat_dirichlet_constraints;</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    dealii::AffineConstraints&lt;number&gt; heat_hanging_nodes_constraints;</div>
@@ -181,7 +181,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    setup_dof_system();</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    compute_field_vector(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a>            &amp;vector,</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    compute_field_vector(VectorType            &amp;vector,</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                         <span class="keywordtype">unsigned</span>               dof_idx,</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                         dealii::Function&lt;dim&gt; &amp;field_function);</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
@@ -216,7 +216,6 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="anamespaceMeltPoolDG_1_1AMR_html_a46a753fc4400ffb7196224c996c838e6"><div class="ttname"><a href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">MeltPoolDG::AMR::MarkCellsForRefinementType</a></div><div class="ttdeci">std::function&lt; bool(dealii::Triangulation&lt; dim &gt; &amp;)&gt; MarkCellsForRefinementType</div><div class="ttdef"><b>Definition</b> amr.hpp:17</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1AMR_html_a84197de0e2b83e3ae1ffbcd03dde8c37"><div class="ttname"><a href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">MeltPoolDG::AMR::AttachDoFHandlerAndVectorsType</a></div><div class="ttdeci">std::function&lt; void(DoFHandlerAndVectorDataType&lt; dim, VectorType &gt; &amp;)&gt; AttachDoFHandlerAndVectorsType</div><div class="ttdef"><b>Definition</b> amr.hpp:25</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Heat_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Heat.html">MeltPoolDG::Heat</a></div><div class="ttdef"><b>Definition</b> heat_cut_operation.hpp:38</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_html_a6b137e1980c6c6e24b2a3d032112a7dc"><div class="ttname"><a href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">MeltPoolDG::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; double &gt; VectorType</div><div class="ttdef"><b>Definition</b> utility_functions.hpp:138</div></div>
 <div class="ttc" id="apostprocessor_8hpp_html"><div class="ttname"><a href="postprocessor_8hpp.html">postprocessor.hpp</a></div></div>
 <div class="ttc" id="ascratch__data_8hpp_html"><div class="ttname"><a href="scratch__data_8hpp.html">scratch_data.hpp</a></div></div>
 <div class="ttc" id="atime__iterator_8hpp_html"><div class="ttname"><a href="time__iterator_8hpp.html">time_iterator.hpp</a></div></div>

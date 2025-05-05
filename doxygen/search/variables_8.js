@@ -11,5 +11,5 @@ var searchData=
   ['interface_5fvelocity_5fsharp_5fheavy_8',['interface_velocity_sharp_heavy',['../namespaceMeltPoolDG_1_1Evaporation.html#ad73d963f187a5b4626fa7cc8af61840d',1,'MeltPoolDG::Evaporation']]],
   ['interior_5fpenalty_5fparameter_9',['interior_penalty_parameter',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html#a515a36a9bc5348f00c2ddc3e2817221b',1,'MeltPoolDG::Flow::CompressibleFlowScratchData']]],
   ['interior_5fpenalty_5fparameter_5finterface_10',['interior_penalty_parameter_interface',['../structMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData_1_1HLLP0.html#a28a0b5296b65390290be61306814eab9',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseData::HLLP0']]],
-  ['invalid_5fdouble_11',['invalid_double',['../namespacedealii_1_1numbers.html#a1e6c175f464974b686f3dd520ff74446',1,'dealii::numbers']]]
+  ['invalid_5fdouble_11',['invalid_double',['../namespaceMeltPoolDG_1_1numbers.html#af7a6ff02e31d3a6fcc22fb9d6b962c3d',1,'MeltPoolDG::numbers']]]
 ];

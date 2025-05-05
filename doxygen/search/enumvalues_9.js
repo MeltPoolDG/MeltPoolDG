@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['union_0',['Union',['../namespaceMeltPoolDG.html#a1c0454d202cd39775350331374b4c5aca491cfa716bba5401dbec18e3fd293e42',1,'MeltPoolDG']]]
+  ['union_0',['Union',['../namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#ae6484ce096ed3147846d4f663cd3bea6ae136a04758bd8f32f262ee4c619e8887',1,'MeltPoolDG::LevelSet::Tools']]]
 ];

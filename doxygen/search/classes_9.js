@@ -1,7 +1,7 @@
 var searchData=
 [
   ['identitypreconditioner_0',['IdentityPreconditioner',['../classMeltPoolDG_1_1IdentityPreconditioner.html',1,'MeltPoolDG']]],
-  ['implicitexplicitintegrator_1',['ImplicitExplicitIntegrator',['../classMeltPoolDG_1_1ImplicitExplicitIntegrator.html',1,'MeltPoolDG']]],
+  ['implicitexplicitintegrator_1',['ImplicitExplicitIntegrator',['../classMeltPoolDG_1_1TimeIntegration_1_1ImplicitExplicitIntegrator.html',1,'MeltPoolDG::TimeIntegration']]],
   ['incompressiblematerialbase_2',['IncompressibleMaterialBase',['../classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html',1,'MeltPoolDG::Flow']]],
   ['incompressiblenewtonianfluidevaporationmaterial_3',['IncompressibleNewtonianFluidEvaporationMaterial',['../classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html',1,'MeltPoolDG::Evaporation']]],
   ['inflowflowfield_4',['InflowFlowField',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1InflowFlowField.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],

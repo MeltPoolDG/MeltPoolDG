@@ -75,39 +75,22 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">utility_functions.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;deal.II/base/config.h&gt;</code><br />
 <code>#include &lt;deal.II/base/exceptions.h&gt;</code><br />
-<code>#include &lt;deal.II/base/numbers.h&gt;</code><br />
 <code>#include &lt;deal.II/base/point.h&gt;</code><br />
 <code>#include &lt;deal.II/base/vectorization.h&gt;</code><br />
-<code>#include &lt;deal.II/distributed/fully_distributed_tria.h&gt;</code><br />
-<code>#include &lt;deal.II/distributed/shared_tria.h&gt;</code><br />
-<code>#include &lt;deal.II/distributed/tria.h&gt;</code><br />
-<code>#include &lt;deal.II/dofs/dof_handler.h&gt;</code><br />
-<code>#include &lt;deal.II/fe/fe_q.h&gt;</code><br />
-<code>#include &lt;deal.II/fe/fe_q_dg0.h&gt;</code><br />
-<code>#include &lt;deal.II/fe/fe_q_iso_q1.h&gt;</code><br />
 <code>#include &lt;deal.II/fe/mapping.h&gt;</code><br />
 <code>#include &lt;deal.II/grid/grid_tools_geometry.h&gt;</code><br />
 <code>#include &lt;deal.II/grid/tria.h&gt;</code><br />
-<code>#include &lt;deal.II/lac/block_vector_base.h&gt;</code><br />
-<code>#include &lt;deal.II/lac/full_matrix.h&gt;</code><br />
-<code>#include &lt;deal.II/lac/la_parallel_block_vector.h&gt;</code><br />
-<code>#include &lt;deal.II/lac/la_parallel_vector.h&gt;</code><br />
-<code>#include &lt;deal.II/matrix_free/evaluation_flags.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="fe__integrator_8hpp_source.html">meltpooldg/utilities/fe_integrator.hpp</a>&gt;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;ios&gt;</code><br />
 <code>#include &lt;sstream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
-<code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;unordered_set&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -115,68 +98,35 @@ Include dependency graph for utility_functions.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="utilities_2utility__functions_8hpp__incl.png" border="0" usemap="#ainclude_2meltpooldg_2utilities_2utility__functions_8hpp" alt=""/></div>
 <map name="ainclude_2meltpooldg_2utilities_2utility__functions_8hpp" id="ainclude_2meltpooldg_2utilities_2utility__functions_8hpp">
-<area shape="rect" title=" " alt="" coords="2393,5,2605,45"/>
-<area shape="rect" title=" " alt="" coords="1627,189,1779,214"/>
-<area shape="poly" title=" " alt="" coords="2392,30,1829,36,1043,48,338,68,110,81,44,88,16,96,10,104,8,113,10,122,16,131,39,141,86,150,240,165,455,177,706,185,1227,195,1613,197,1613,203,1227,200,706,191,455,182,240,171,85,155,37,146,13,135,5,125,3,113,5,102,13,91,43,83,109,76,338,63,1043,43,1829,31,2392,25"/>
-<area shape="rect" title=" " alt="" coords="27,101,211,126"/>
-<area shape="poly" title=" " alt="" coords="2392,30,1949,36,1322,48,688,68,423,81,223,96,187,101,186,96,222,91,423,75,688,62,1322,43,1949,31,2392,25"/>
-<area shape="rect" title=" " alt="" coords="235,101,405,126"/>
-<area shape="poly" title=" " alt="" coords="2392,31,1983,37,1413,49,838,68,599,81,418,96,385,101,384,96,417,91,598,76,838,63,1413,43,1983,31,2392,25"/>
-<area shape="rect" title=" " alt="" coords="429,101,576,126"/>
-<area shape="poly" title=" " alt="" coords="2392,31,2013,36,1492,48,970,68,753,81,588,96,561,100,560,95,588,91,752,75,970,62,1492,43,2013,31,2392,25"/>
-<area shape="rect" title=" " alt="" coords="601,101,799,126"/>
-<area shape="poly" title=" " alt="" coords="2392,29,2116,31,1725,40,1273,60,1040,76,812,96,773,101,773,96,812,91,1040,70,1272,54,1725,34,2116,25,2392,24"/>
-<area shape="rect" title=" " alt="" coords="824,93,997,133"/>
-<area shape="poly" title=" " alt="" coords="2393,29,2148,31,1808,40,1414,60,1212,76,1011,96,1011,91,1211,70,1414,55,1808,35,2148,26,2393,24"/>
-<area shape="rect" title=" " alt="" coords="1021,93,1157,133"/>
-<area shape="poly" title=" " alt="" coords="2392,28,2172,29,1870,38,1525,58,1347,75,1171,96,1171,91,1346,69,1524,53,1870,33,2172,24,2392,23"/>
-<area shape="rect" title=" " alt="" coords="1181,93,1317,133"/>
-<area shape="poly" title=" " alt="" coords="2392,29,2197,32,1935,42,1636,62,1483,77,1331,96,1331,91,1482,72,1636,57,1934,37,2196,27,2392,24"/>
-<area shape="rect" title=" " alt="" coords="1341,101,1528,126"/>
-<area shape="poly" title=" " alt="" coords="2393,33,2016,53,1779,71,1540,96,1506,101,1505,96,1540,91,1778,66,2015,48,2392,28"/>
-<area shape="rect" title=" " alt="" coords="1552,101,1675,126"/>
-<area shape="poly" title=" " alt="" coords="2392,32,2252,39,2075,51,1881,69,1687,96,1667,100,1665,95,1686,91,1880,64,2075,45,2251,34,2392,27"/>
-<area shape="rect" title=" " alt="" coords="1699,101,1853,126"/>
-<area shape="poly" title=" " alt="" coords="2393,37,2151,60,1866,96,1840,101,1839,95,1865,91,2150,54,2392,32"/>
-<area shape="rect" title=" " alt="" coords="1878,101,2050,126"/>
-<area shape="poly" title=" " alt="" coords="2393,44,2063,96,2036,101,2035,96,2062,91,2392,39"/>
-<area shape="rect" title=" " alt="" coords="2075,101,2227,126"/>
-<area shape="poly" title=" " alt="" coords="2423,48,2211,100,2209,95,2422,43"/>
-<area shape="rect" title=" " alt="" coords="2251,93,2410,133"/>
-<area shape="poly" title=" " alt="" coords="2463,48,2381,90,2378,85,2461,43"/>
-<area shape="rect" title=" " alt="" coords="2434,101,2563,126"/>
-<area shape="poly" title=" " alt="" coords="2501,46,2501,87,2496,87,2496,46"/>
-<area shape="rect" title=" " alt="" coords="2587,93,2759,133"/>
-<area shape="poly" title=" " alt="" coords="2538,43,2624,85,2622,90,2536,48"/>
-<area shape="rect" title=" " alt="" coords="2783,101,2955,126"/>
-<area shape="poly" title=" " alt="" coords="2581,43,2807,95,2806,100,2579,48"/>
-<area shape="rect" title=" " alt="" coords="2980,93,3137,133"/>
-<area shape="poly" title=" " alt="" coords="2605,37,2775,61,2967,91,2967,91,2967,96,2966,96,2775,66,2604,43"/>
-<area shape="rect" title=" " alt="" coords="3161,93,3319,133"/>
-<area shape="poly" title=" " alt="" coords="2605,32,2849,53,3148,91,3147,96,2849,59,2605,37"/>
-<area shape="rect" title=" " alt="" coords="3343,93,3489,133"/>
-<area shape="poly" title=" " alt="" coords="2605,28,2925,47,3125,65,3330,91,3329,96,3125,71,2925,52,2605,33"/>
-<area shape="rect" href="fe__integrator_8hpp.html" title=" " alt="" coords="3513,93,3663,133"/>
-<area shape="poly" title=" " alt="" coords="2605,26,2774,32,2995,43,3245,62,3500,91,3499,96,3244,67,2995,48,2774,37,2605,31"/>
-<area shape="rect" title=" " alt="" coords="3687,101,3772,126"/>
-<area shape="poly" title=" " alt="" coords="2605,26,2849,33,3157,46,3457,65,3581,77,3675,91,3688,94,3687,99,3674,96,3580,82,3457,70,3157,51,2849,39,2605,32"/>
-<area shape="rect" title=" " alt="" coords="3797,101,3859,126"/>
-<area shape="poly" title=" " alt="" coords="2605,25,2870,29,3211,39,3543,59,3680,73,3785,91,3793,93,3792,98,3783,96,3680,78,3543,64,3210,45,2870,34,2605,30"/>
-<area shape="rect" title=" " alt="" coords="3883,101,3925,126"/>
-<area shape="poly" title=" " alt="" coords="2605,26,2913,34,3307,48,3666,67,3796,78,3873,91,3876,92,3875,97,3871,96,3795,83,3666,72,3306,53,2913,40,2605,32"/>
-<area shape="rect" title=" " alt="" coords="3949,101,4024,126"/>
-<area shape="poly" title=" " alt="" coords="2605,25,2899,28,3284,39,3662,58,3819,73,3938,91,3949,94,3947,99,3937,96,3818,78,3662,64,3284,44,2899,34,2605,30"/>
-<area shape="rect" title=" " alt="" coords="4048,101,4107,126"/>
-<area shape="poly" title=" " alt="" coords="2605,23,2917,24,3331,32,3543,41,3740,53,3909,69,4037,91,4044,93,4042,98,4035,96,3908,74,3740,58,3543,46,3331,38,2917,30,2605,29"/>
-<area shape="rect" title=" " alt="" coords="4131,101,4223,126"/>
-<area shape="poly" title=" " alt="" coords="2605,25,2932,29,3369,39,3803,59,3983,73,4119,91,4134,94,4133,99,4118,96,3982,78,3802,64,3369,45,2932,34,2605,30"/>
-<area shape="rect" title=" " alt="" coords="4248,101,4363,126"/>
-<area shape="poly" title=" " alt="" coords="2605,25,2953,30,3424,41,3894,61,4089,74,4236,91,4256,95,4255,100,4236,96,4088,79,3893,66,3424,46,2953,35,2605,30"/>
-<area shape="rect" title=" " alt="" coords="4387,101,4450,126"/>
-<area shape="poly" title=" " alt="" coords="2605,26,3014,33,3565,46,4078,65,4265,77,4375,91,4384,93,4383,98,4374,96,4264,82,4078,70,3565,51,3014,38,2605,31"/>
-<area shape="poly" title=" " alt="" coords="3513,134,3502,136,3345,151,3137,163,2639,183,2146,195,1793,201,1793,196,2146,190,2639,177,3137,158,3344,145,3501,131,3513,129"/>
-<area shape="rect" title=" " alt="" coords="3517,181,3659,221"/>
-<area shape="poly" title=" " alt="" coords="3591,134,3591,167,3585,167,3585,134"/>
+<area shape="rect" title=" " alt="" coords="1167,5,1379,45"/>
+<area shape="rect" title=" " alt="" coords="5,101,157,126"/>
+<area shape="poly" title=" " alt="" coords="1167,31,979,35,731,46,451,65,170,96,142,101,141,95,169,91,451,60,730,41,979,30,1167,25"/>
+<area shape="rect" title=" " alt="" coords="181,101,365,126"/>
+<area shape="poly" title=" " alt="" coords="1167,34,816,54,597,72,378,96,344,101,343,96,377,91,597,67,816,49,1167,28"/>
+<area shape="rect" title=" " alt="" coords="389,101,536,126"/>
+<area shape="poly" title=" " alt="" coords="1167,35,887,56,717,73,548,96,524,100,523,95,548,91,717,68,886,51,1167,30"/>
+<area shape="rect" title=" " alt="" coords="561,101,759,126"/>
+<area shape="poly" title=" " alt="" coords="1167,42,772,96,740,101,739,96,772,91,1167,37"/>
+<area shape="rect" title=" " alt="" coords="784,101,936,126"/>
+<area shape="poly" title=" " alt="" coords="1182,48,949,96,928,100,926,95,947,91,1181,43"/>
+<area shape="rect" title=" " alt="" coords="961,93,1119,133"/>
+<area shape="poly" title=" " alt="" coords="1223,48,1105,91,1103,86,1221,43"/>
+<area shape="rect" title=" " alt="" coords="1143,101,1273,126"/>
+<area shape="poly" title=" " alt="" coords="1261,47,1227,91,1223,88,1257,44"/>
+<area shape="rect" title=" " alt="" coords="1297,101,1383,126"/>
+<area shape="poly" title=" " alt="" coords="1290,44,1324,88,1320,91,1286,47"/>
+<area shape="rect" title=" " alt="" coords="1407,101,1470,126"/>
+<area shape="poly" title=" " alt="" coords="1311,43,1406,92,1404,97,1308,48"/>
+<area shape="rect" title=" " alt="" coords="1494,101,1535,126"/>
+<area shape="poly" title=" " alt="" coords="1346,43,1414,64,1484,91,1486,92,1484,97,1482,96,1412,69,1345,48"/>
+<area shape="rect" title=" " alt="" coords="1560,101,1635,126"/>
+<area shape="poly" title=" " alt="" coords="1363,43,1453,64,1549,91,1557,93,1555,98,1547,96,1452,69,1362,48"/>
+<area shape="rect" title=" " alt="" coords="1659,101,1717,126"/>
+<area shape="poly" title=" " alt="" coords="1380,36,1509,57,1579,72,1647,91,1653,93,1652,98,1646,96,1578,77,1508,62,1379,41"/>
+<area shape="rect" title=" " alt="" coords="1741,101,1856,126"/>
+<area shape="poly" title=" " alt="" coords="1380,36,1545,58,1730,91,1747,95,1746,100,1729,96,1544,64,1379,41"/>
+<area shape="rect" title=" " alt="" coords="1881,101,1943,126"/>
+<area shape="poly" title=" " alt="" coords="1380,27,1484,33,1607,44,1739,63,1869,91,1877,93,1875,98,1867,96,1738,68,1606,49,1483,38,1380,32"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -184,122 +134,116 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="utilities_2utility__functions_8hpp__dep__incl.png" border="0" usemap="#ainclude_2meltpooldg_2utilities_2utility__functions_8hppdep" alt=""/></div>
 <map name="ainclude_2meltpooldg_2utilities_2utility__functions_8hppdep" id="ainclude_2meltpooldg_2utilities_2utility__functions_8hppdep">
-<area shape="rect" title=" " alt="" coords="3353,5,3565,45"/>
-<area shape="rect" href="advection__diffusion_8hpp.html" title=" " alt="" coords="5,93,176,148"/>
-<area shape="poly" title=" " alt="" coords="3339,30,2658,36,1675,48,736,67,392,80,188,96,177,98,176,93,188,91,391,75,736,62,1675,42,2658,30,3339,25"/>
-<area shape="rect" href="advection__diffusion__DG_8hpp.html" title=" " alt="" coords="200,93,371,148"/>
-<area shape="poly" title=" " alt="" coords="3339,30,2695,36,1773,49,895,69,573,81,383,96,372,98,371,93,382,91,573,76,895,63,1773,44,2695,31,3339,25"/>
-<area shape="rect" href="cut__flow__over__cylinder_8hpp.html" title=" " alt="" coords="395,93,613,148"/>
-<area shape="poly" title=" " alt="" coords="3339,29,2793,31,2008,39,1597,47,1211,59,877,75,626,96,614,98,613,92,625,91,877,70,1210,53,1597,42,2008,33,2793,25,3339,24"/>
-<area shape="rect" href="cut__moving__cylinder_8hpp.html" title=" " alt="" coords="637,101,899,141"/>
-<area shape="poly" title=" " alt="" coords="3339,30,2842,35,2140,45,1431,65,1135,79,911,96,859,103,858,98,910,91,1135,74,1431,60,2140,40,2842,29,3339,25"/>
-<area shape="rect" href="cut__unfitted__inflow_8hpp.html" title=" " alt="" coords="923,93,1141,148"/>
-<area shape="poly" title=" " alt="" coords="3339,30,2885,34,2253,44,1618,64,1354,78,1154,96,1142,98,1141,92,1153,91,1353,73,1618,59,2253,39,2885,29,3339,25"/>
-<area shape="rect" href="applications_2mp-heat-transfer_2cases_2melt__front__propagation_8cpp.html" title=" " alt="" coords="1166,93,1338,148"/>
-<area shape="poly" title=" " alt="" coords="3339,30,2919,32,2344,42,2047,50,1770,62,1531,77,1350,96,1339,98,1338,93,1349,91,1530,71,1769,56,2047,45,2344,36,2919,27,3339,24"/>
-<area shape="rect" href="unidirectional__heat__transfer_8cpp.html" title=" " alt="" coords="1362,93,1574,148"/>
-<area shape="poly" title=" " alt="" coords="3339,31,2962,37,2456,49,1953,68,1744,81,1586,96,1574,98,1574,92,1585,91,1744,76,1953,63,2456,43,2962,31,3339,25"/>
-<area shape="rect" href="rotating__bubble_8hpp.html" title=" " alt="" coords="1598,101,1821,141"/>
-<area shape="poly" title=" " alt="" coords="3339,32,2574,53,2146,72,1969,83,1834,96,1789,103,1789,98,1833,91,1968,78,2146,66,2574,47,3339,26"/>
-<area shape="rect" href="stefans__problem_8hpp.html" title=" " alt="" coords="1845,101,2075,141"/>
-<area shape="poly" title=" " alt="" coords="3339,29,3108,33,2799,42,2448,62,2269,77,2094,96,2047,103,2046,98,2093,91,2268,72,2447,57,2798,37,3108,27,3339,24"/>
-<area shape="rect" href="vortex__bubble_8hpp.html" title=" " alt="" coords="1553,211,1767,251"/>
-<area shape="poly" title=" " alt="" coords="3339,30,3047,35,2687,46,2515,55,2364,66,2249,79,2209,87,2183,96,2167,107,2158,122,2149,137,2132,150,2083,172,2039,184,1999,189,1960,190,1879,188,1833,190,1779,199,1721,213,1720,208,1778,193,1832,185,1879,183,1960,185,1998,184,2038,179,2081,167,2129,146,2145,133,2154,119,2163,104,2180,91,2207,82,2248,74,2364,61,2514,50,2687,41,3047,30,3339,25"/>
-<area shape="rect" href="vortex__bubble__DG_8hpp.html" title=" " alt="" coords="1791,203,1977,258"/>
-<area shape="poly" title=" " alt="" coords="3339,31,3058,36,2714,48,2406,67,2296,80,2233,96,2217,107,2208,121,2199,136,2183,150,2132,174,2089,182,2045,187,1990,199,1966,206,1964,201,1989,193,2044,182,2088,177,2130,168,2180,146,2195,133,2204,118,2214,104,2231,91,2295,75,2406,62,2714,42,3058,31,3339,25"/>
-<area shape="rect" href="zalesak__disk_8hpp.html" title=" " alt="" coords="2931,101,3135,141"/>
-<area shape="poly" title=" " alt="" coords="3358,51,3149,96,3116,103,3115,98,3147,91,3357,46"/>
-<area shape="rect" href="radiative__transport_8templates_8hpp.html" title=" " alt="" coords="3160,93,3349,148"/>
-<area shape="poly" title=" " alt="" coords="3406,53,3313,96,3311,91,3404,49"/>
-<area shape="rect" href="radiative__transport__application_8cpp.html" title=" " alt="" coords="2890,203,3105,258"/>
-<area shape="poly" title=" " alt="" coords="3339,31,3151,36,2940,46,2843,55,2760,66,2699,79,2679,87,2667,95,2659,108,2656,120,2659,133,2667,146,2689,168,2710,181,2732,187,2756,188,2808,187,2838,188,2871,193,2900,201,2899,206,2870,199,2838,193,2808,192,2756,194,2731,192,2708,186,2686,172,2663,150,2654,135,2651,120,2654,106,2663,91,2677,82,2698,74,2759,61,2842,50,2940,41,3151,30,3339,25"/>
-<area shape="rect" href="reinit__circle_8hpp.html" title=" " alt="" coords="3373,101,3544,141"/>
-<area shape="poly" title=" " alt="" coords="3461,59,3461,101,3456,101,3456,59"/>
-<area shape="rect" href="reinit__circle__DG_8hpp.html" title=" " alt="" coords="3569,101,3767,141"/>
-<area shape="poly" title=" " alt="" coords="3515,48,3627,98,3625,103,3512,53"/>
-<area shape="rect" href="compressible__flow__convective__kernels_8hpp.html" title=" " alt="" coords="3791,93,3974,148"/>
-<area shape="poly" title=" " alt="" coords="3567,45,3779,91,3791,94,3790,99,3778,96,3566,51"/>
-<area shape="rect" href="compressible__multiphase__interface__kernels_8hpp.html" title=" " alt="" coords="3740,196,3999,265"/>
-<area shape="poly" title=" " alt="" coords="3579,31,3701,40,3827,53,3932,70,3967,80,3987,91,3996,106,3998,120,3988,149,3967,177,3941,198,3938,194,3964,173,3983,147,3993,119,3991,107,3983,95,3965,85,3931,75,3827,58,3700,45,3578,36"/>
-<area shape="rect" href="curvature__DG__operation_8hpp.html" title=" " alt="" coords="4023,203,4174,258"/>
-<area shape="poly" title=" " alt="" coords="3579,27,3695,33,3820,45,3933,63,3977,76,4011,91,4039,115,4062,145,4092,202,4087,205,4058,147,4036,119,4008,96,3976,81,3932,68,3820,50,3695,38,3578,32"/>
-<area shape="rect" href="helmholtz__DG__operator_8hpp.html" title=" " alt="" coords="4100,93,4255,148"/>
-<area shape="poly" title=" " alt="" coords="3579,31,3813,52,3948,69,4082,91,4100,95,4099,100,4081,96,3947,74,3812,57,3578,37"/>
-<area shape="rect" href="normal__vector__DG__operation_8hpp.html" title=" " alt="" coords="4198,203,4381,258"/>
-<area shape="poly" title=" " alt="" coords="3579,26,3769,32,3984,43,4169,62,4232,75,4254,83,4268,91,4286,117,4295,146,4298,177,4296,203,4291,203,4292,177,4290,147,4282,119,4265,95,4252,88,4231,80,4168,67,3984,48,3769,37,3579,31"/>
-<area shape="rect" href="level__set__tools_8hpp.html" title=" " alt="" coords="2302,93,2450,148"/>
-<area shape="poly" title=" " alt="" coords="3339,30,3168,33,2950,44,2710,63,2588,78,2470,96,2451,100,2450,95,2469,91,2588,73,2710,58,2950,38,3168,28,3339,24"/>
-<area shape="rect" href="material_8templates_8hpp.html" title=" " alt="" coords="2001,211,2233,251"/>
-<area shape="poly" title=" " alt="" coords="3339,31,3071,38,2745,51,2454,69,2351,82,2290,96,2272,107,2261,119,2250,134,2234,150,2148,213,2145,208,2230,146,2246,130,2257,116,2269,103,2288,91,2350,76,2454,64,2745,45,3070,33,3339,26"/>
-<area shape="rect" href="heat__diffuse__operator_8cpp.html" title=" " alt="" coords="2026,313,2209,353"/>
-<area shape="poly" title=" " alt="" coords="3339,30,3036,33,2660,43,2479,52,2321,63,2201,78,2159,86,2132,96,2118,107,2111,122,2103,137,2088,150,2065,160,2036,165,1968,170,1804,163,1722,159,1646,161,1585,173,1561,184,1543,198,1532,214,1529,231,1532,247,1543,263,1566,275,1609,286,1738,304,1889,317,2026,325,2025,331,1889,323,1737,310,1608,292,1564,280,1540,267,1527,249,1523,231,1527,212,1539,194,1558,179,1583,168,1646,156,1722,154,1805,157,1968,164,2035,160,2063,154,2085,146,2099,134,2106,119,2114,104,2129,91,2158,81,2200,72,2321,58,2479,46,2659,38,3036,28,3339,24"/>
-<area shape="rect" href="melt__pool__application_8cpp.html" title=" " alt="" coords="2503,313,2671,353"/>
-<area shape="poly" title=" " alt="" coords="3339,30,3147,35,2931,46,2831,54,2747,65,2684,79,2663,87,2651,95,2628,126,2626,134,2628,140,2645,146,2675,148,2714,150,2756,155,2795,168,2813,179,2827,194,2838,213,2842,231,2838,249,2827,267,2803,285,2765,300,2672,322,2670,317,2763,295,2801,280,2823,264,2833,247,2837,231,2833,215,2823,198,2809,183,2793,173,2755,160,2714,155,2675,154,2643,152,2624,143,2621,135,2624,123,2647,91,2661,82,2683,74,2746,60,2831,49,2931,41,3147,30,3339,25"/>
-<area shape="rect" href="evaporation__mass__flux__operator__thickness__integration_8cpp.html" title=" " alt="" coords="2359,203,2617,258"/>
-<area shape="poly" title=" " alt="" coords="3339,32,3128,38,2884,50,2672,69,2598,81,2556,96,2532,118,2515,147,2503,177,2495,204,2490,202,2498,175,2510,145,2528,115,2553,91,2596,76,2671,63,2884,44,3128,33,3339,26"/>
-<area shape="rect" href="evaporation__source__terms__continuous_8cpp.html" title=" " alt="" coords="2642,203,2814,258"/>
-<area shape="poly" title=" " alt="" coords="3339,29,3129,33,2888,43,2776,51,2680,63,2610,77,2586,86,2573,95,2564,107,2562,119,2566,132,2573,146,2586,160,2607,174,2663,201,2661,206,2605,178,2582,164,2569,150,2561,134,2557,120,2559,105,2569,91,2584,81,2608,72,2679,57,2775,46,2887,37,3129,27,3339,24"/>
-<area shape="rect" href="normal__vector__operation_8hpp.html" title=" " alt="" coords="4405,203,4587,258"/>
-<area shape="poly" title=" " alt="" coords="3579,27,3842,35,4155,49,4423,67,4510,78,4537,84,4551,91,4560,105,4563,119,4558,150,4542,179,4523,205,4519,202,4538,176,4553,148,4558,119,4555,107,4548,95,4535,89,4509,83,4422,72,4155,54,3842,40,3578,32"/>
-<area shape="rect" href="normal__vector__operation_8cpp.html" title=" " alt="" coords="4471,313,4649,353"/>
-<area shape="poly" title=" " alt="" coords="3578,23,3838,25,4151,33,4298,42,4426,54,4522,70,4555,80,4576,91,4596,110,4609,129,4617,149,4620,170,4616,214,4603,266,4592,292,4578,314,4573,311,4587,290,4597,264,4610,214,4615,170,4612,151,4604,132,4592,114,4573,95,4553,85,4521,75,4425,59,4298,47,4150,39,3838,30,3578,29"/>
-<area shape="rect" href="predictor_8hpp.html" title=" " alt="" coords="4329,101,4537,141"/>
-<area shape="poly" title=" " alt="" coords="3579,28,3909,48,4110,66,4311,91,4353,98,4352,103,4310,96,4110,71,3909,54,3578,34"/>
-<area shape="rect" href="include_2meltpooldg_2melt__pool_2powder__bed_8hpp.html" title=" " alt="" coords="4663,101,4865,141"/>
-<area shape="poly" title=" " alt="" coords="3579,25,3782,28,4047,39,4345,59,4496,73,4644,91,4687,98,4686,103,4644,96,4496,78,4344,64,4047,44,3781,34,3579,30"/>
-<area shape="rect" href="constraints_8hpp.html" title=" " alt="" coords="2677,101,2856,141"/>
-<area shape="poly" title=" " alt="" coords="3339,39,3123,61,2998,77,2875,96,2840,103,2838,98,2874,91,2998,71,3122,55,3339,33"/>
-<area shape="rect" href="advection__diffusion__operation_8cpp.html" title=" " alt="" coords="3181,211,3377,251"/>
-<area shape="poly" title=" " alt="" coords="3339,36,3214,45,3083,58,2975,75,2939,85,2920,95,2912,108,2910,120,2912,133,2921,146,2944,170,2968,183,2992,189,3017,190,3075,187,3107,188,3143,193,3205,208,3203,213,3142,199,3107,193,3075,193,3017,196,2991,195,2966,188,2941,174,2917,150,2907,135,2904,120,2907,106,2917,91,2937,80,2974,70,3082,53,3213,40,3339,31"/>
-<area shape="rect" href="parameters_8cpp.html" title=" " alt="" coords="4889,108,5092,133"/>
-<area shape="poly" title=" " alt="" coords="3579,27,4245,49,4611,67,4762,78,4878,91,4950,105,4948,111,4877,96,4762,84,4610,73,4245,54,3578,32"/>
-<area shape="rect" href="surface__tension__operation_8cpp.html" title=" " alt="" coords="5116,101,5289,141"/>
-<area shape="poly" title=" " alt="" coords="3579,25,3914,31,4354,43,4788,62,4968,75,5104,91,5140,98,5139,103,5104,96,4967,81,4787,68,4354,49,3914,37,3579,31"/>
-<area shape="rect" href="laser__data_8cpp.html" title=" " alt="" coords="5313,108,5511,133"/>
-<area shape="poly" title=" " alt="" coords="3579,25,3950,31,4447,43,4941,62,5146,75,5302,91,5372,105,5371,111,5301,96,5146,80,4941,67,4447,48,3950,36,3579,31"/>
-<area shape="rect" href="laser__heat__source__projection__based_8cpp.html" title=" " alt="" coords="5535,101,5753,141"/>
-<area shape="poly" title=" " alt="" coords="3578,25,3990,30,4551,42,5112,61,5346,75,5523,91,5567,98,5566,103,5522,96,5345,80,5112,67,4551,47,3990,36,3578,30"/>
-<area shape="rect" href="laser__operation_8cpp.html" title=" " alt="" coords="5777,108,6007,133"/>
-<area shape="poly" title=" " alt="" coords="3579,25,4033,29,4665,40,5300,60,5565,74,5766,91,5846,105,5846,111,5765,96,5565,79,5300,65,4665,45,4033,35,3579,30"/>
-<area shape="rect" href="advection__DG__operation_8cpp.html" title=" " alt="" coords="6031,101,6227,141"/>
-<area shape="poly" title=" " alt="" coords="3579,24,4078,25,4784,34,5152,42,5497,54,5795,70,6020,91,6061,98,6060,103,6020,96,5795,75,5497,59,5152,47,4784,39,4078,31,3579,29"/>
-<area shape="rect" href="curvature__operator_8cpp.html" title=" " alt="" coords="6252,101,6447,141"/>
-<area shape="poly" title=" " alt="" coords="3578,24,4115,24,4885,31,5289,39,5667,51,5994,68,6240,91,6281,98,6280,103,6240,96,5993,73,5667,57,5288,44,4885,36,4115,29,3578,29"/>
-<area shape="rect" href="nearest__point_8cpp.html" title=" " alt="" coords="6471,101,6652,141"/>
-<area shape="poly" title=" " alt="" coords="3578,25,4208,32,5106,45,5961,65,6274,77,6459,91,6497,98,6496,103,6458,96,6273,82,5960,70,5106,50,4208,37,3578,30"/>
-<area shape="rect" href="olsson__operator_8cpp.html" title=" " alt="" coords="6677,101,6851,141"/>
-<area shape="poly" title=" " alt="" coords="3579,25,4247,31,5210,43,6128,63,6465,76,6664,91,6701,98,6700,103,6664,96,6465,81,6128,68,5210,49,4247,36,3579,30"/>
-<area shape="rect" href="reinitialization__DG__operator_8cpp.html" title=" " alt="" coords="6876,101,7103,141"/>
-<area shape="poly" title=" " alt="" coords="3578,25,5309,46,6290,65,6651,77,6864,91,6911,98,6910,103,6864,96,6651,83,6290,71,5309,51,3578,30"/>
-<area shape="rect" href="evaporation__operation_8cpp.html" title=" " alt="" coords="7127,101,7327,141"/>
-<area shape="poly" title=" " alt="" coords="3579,25,4330,30,5435,42,6495,62,6885,75,7115,91,7156,98,7156,103,7114,96,6884,81,6495,68,5435,48,4330,36,3579,30"/>
-<area shape="rect" href="recoil__pressure__operation_8cpp.html" title=" " alt="" coords="7351,101,7572,141"/>
-<area shape="poly" title=" " alt="" coords="3578,25,4371,30,5546,43,6677,63,7093,76,7339,91,7384,98,7383,103,7338,96,7093,81,6677,68,5545,48,4371,36,3578,30"/>
-<area shape="rect" href="advection__diffusion_8cpp.html" title=" " alt="" coords="5,203,176,258"/>
-<area shape="poly" title=" " alt="" coords="93,162,93,203,88,203,88,162"/>
-<area shape="rect" href="advection__diffusion__DG_8cpp.html" title=" " alt="" coords="200,203,371,258"/>
-<area shape="poly" title=" " alt="" coords="288,162,288,203,283,203,283,162"/>
-<area shape="rect" href="cut__flow__over__cylinder_8cpp.html" title=" " alt="" coords="395,203,613,258"/>
-<area shape="poly" title=" " alt="" coords="507,162,507,203,501,203,501,162"/>
-<area shape="rect" href="cut__moving__cylinder_8cpp.html" title=" " alt="" coords="638,211,898,251"/>
-<area shape="poly" title=" " alt="" coords="771,154,771,210,765,210,765,154"/>
-<area shape="poly" title=" " alt="" coords="3880,162,3876,196,3871,195,3875,162"/>
-<area shape="poly" title=" " alt="" coords="4152,161,4120,205,4116,202,4148,158"/>
-<area shape="poly" title=" " alt="" coords="4217,156,4264,201,4260,205,4213,160"/>
-<area shape="poly" title=" " alt="" coords="2288,137,2182,151,2068,163,1979,170,1891,179,1779,199,1721,213,1719,208,1778,193,1891,174,1979,165,2068,157,2181,145,2288,131"/>
-<area shape="poly" title=" " alt="" coords="2289,141,1990,199,1964,206,1962,201,1989,193,2288,136"/>
-<area shape="poly" title=" " alt="" coords="2301,156,2164,213,2162,208,2299,151"/>
-<area shape="poly" title=" " alt="" coords="2350,161,2305,214,2247,267,2206,294,2164,315,2162,311,2203,290,2244,263,2301,210,2346,157"/>
-<area shape="poly" title=" " alt="" coords="2355,161,2345,186,2338,213,2338,240,2349,264,2372,281,2410,295,2503,317,2502,322,2408,300,2369,285,2345,267,2333,241,2333,213,2340,185,2351,159"/>
-<area shape="poly" title=" " alt="" coords="2415,156,2462,201,2459,205,2412,160"/>
-<area shape="poly" title=" " alt="" coords="2465,144,2630,193,2652,201,2651,206,2629,199,2463,149"/>
-<area shape="poly" title=" " alt="" coords="2120,265,2120,313,2115,313,2115,265"/>
-<area shape="poly" title=" " alt="" coords="2219,251,2503,311,2502,317,2218,256"/>
-<area shape="poly" title=" " alt="" coords="4522,268,4550,311,4545,314,4518,271"/>
-<area shape="poly" title=" " alt="" coords="4454,151,4483,202,4478,205,4449,154"/>
-<area shape="poly" title=" " alt="" coords="2820,144,2942,201,2940,206,2818,149"/>
-<area shape="poly" title=" " alt="" coords="2856,141,2875,145,2913,151,2948,151,3009,146,3038,147,3065,154,3092,168,3118,194,3130,213,3134,231,3130,249,3118,267,3095,280,3055,290,2936,308,2797,321,2671,330,2671,325,2796,316,2936,303,3054,285,3093,275,3114,263,3125,247,3128,231,3125,215,3114,198,3088,173,3063,159,3037,152,3009,152,2948,156,2913,156,2874,151,2855,146"/>
-<area shape="poly" title=" " alt="" coords="2855,141,2875,145,2956,160,3019,168,3082,178,3162,193,3218,208,3217,213,3161,199,3081,183,3018,174,2955,165,2874,151,2854,146"/>
+<area shape="rect" title=" " alt="" coords="3439,5,3651,45"/>
+<area shape="rect" href="cut__flow__over__cylinder_8hpp.html" title=" " alt="" coords="5,101,224,155"/>
+<area shape="poly" title=" " alt="" coords="3426,30,2738,35,1742,47,791,67,442,80,319,88,236,96,199,103,198,98,236,91,318,82,442,75,791,61,1742,41,2738,30,3425,25"/>
+<area shape="rect" href="cut__moving__cylinder_8hpp.html" title=" " alt="" coords="248,108,509,148"/>
+<area shape="poly" title=" " alt="" coords="3426,29,2849,29,2013,37,1573,45,1159,57,803,74,534,96,452,111,451,105,533,91,802,68,1159,51,1573,39,2012,31,2849,24,3426,24"/>
+<area shape="rect" href="cut__unfitted__inflow_8hpp.html" title=" " alt="" coords="545,101,764,155"/>
+<area shape="poly" title=" " alt="" coords="3426,31,2912,37,2182,50,1442,69,1133,82,899,96,765,112,764,106,898,91,1133,76,1442,64,2182,45,2912,32,3426,25"/>
+<area shape="rect" href="rotating__bubble_8hpp.html" title=" " alt="" coords="911,108,1134,148"/>
+<area shape="poly" title=" " alt="" coords="3426,30,3072,33,2557,44,1955,63,1644,78,1340,96,1134,116,1134,110,1340,91,1644,72,1954,58,2556,38,3072,28,3426,24"/>
+<area shape="rect" href="vortex__bubble__DG_8hpp.html" title=" " alt="" coords="1353,101,1538,155"/>
+<area shape="poly" title=" " alt="" coords="3425,32,2531,53,2021,72,1808,84,1647,96,1539,111,1538,106,1646,91,1808,78,2020,67,2531,48,3425,26"/>
+<area shape="rect" href="zalesak__disk_8hpp.html" title=" " alt="" coords="1659,108,1863,148"/>
+<area shape="poly" title=" " alt="" coords="3425,32,2662,53,2236,72,2059,83,1924,96,1840,111,1839,105,1924,91,2058,78,2235,67,2662,48,3425,26"/>
+<area shape="rect" href="radiative__transport__application_8cpp.html" title=" " alt="" coords="2718,211,2933,265"/>
+<area shape="poly" title=" " alt="" coords="3425,30,3292,35,3145,45,3012,65,2960,79,2921,96,2892,120,2868,151,2850,183,2837,211,2832,209,2845,180,2863,148,2888,116,2919,91,2958,74,3011,60,3144,40,3291,29,3425,25"/>
+<area shape="rect" href="reinit__circle__DG_8hpp.html" title=" " alt="" coords="1937,108,2135,148"/>
+<area shape="poly" title=" " alt="" coords="3426,32,2780,54,2428,72,2282,83,2171,96,2101,111,2100,105,2170,91,2282,78,2427,67,2780,48,3425,27"/>
+<area shape="rect" href="material_8templates_8hpp.html" title=" " alt="" coords="2183,108,2393,148"/>
+<area shape="poly" title=" " alt="" coords="3426,36,3053,60,2591,96,2394,117,2393,111,2590,91,3052,55,3425,31"/>
+<area shape="rect" href="melt__pool__application_8cpp.html" title=" " alt="" coords="2525,218,2693,258"/>
+<area shape="poly" title=" " alt="" coords="3426,30,3211,34,2964,45,2849,53,2750,64,2676,78,2652,87,2636,95,2625,108,2617,123,2608,156,2607,190,2609,218,2604,218,2601,190,2603,155,2612,121,2621,105,2633,91,2649,82,2675,73,2749,59,2848,48,2964,39,3211,29,3425,25"/>
+<area shape="rect" href="compressible__multiphase__interface__kernels_8hpp.html" title=" " alt="" coords="2951,93,3209,163"/>
+<area shape="poly" title=" " alt="" coords="3442,51,3229,96,3210,100,3209,95,3227,91,3441,46"/>
+<area shape="rect" href="curvature__DG__operation_8hpp.html" title=" " alt="" coords="3391,211,3542,265"/>
+<area shape="poly" title=" " alt="" coords="3426,44,3333,64,3297,78,3274,95,3264,112,3261,128,3264,144,3274,161,3288,170,3316,183,3392,210,3390,215,3314,188,3285,175,3270,164,3259,145,3256,128,3259,110,3270,92,3294,74,3331,59,3425,39"/>
+<area shape="rect" href="helmholtz__DG__operator_8hpp.html" title=" " alt="" coords="3284,101,3439,155"/>
+<area shape="poly" title=" " alt="" coords="3500,54,3411,103,3408,98,3497,50"/>
+<area shape="rect" href="normal__vector__DG__operation_8hpp.html" title=" " alt="" coords="3789,211,3971,265"/>
+<area shape="poly" title=" " alt="" coords="3523,58,3508,83,3496,110,3493,137,3496,150,3503,161,3523,175,3553,186,3631,197,3713,202,3776,208,3789,211,3788,216,3776,213,3713,207,3631,202,3552,191,3521,180,3499,164,3491,152,3488,138,3491,109,3503,80,3519,55"/>
+<area shape="rect" href="normal__vector__operation_8hpp.html" title=" " alt="" coords="3741,101,3923,155"/>
+<area shape="poly" title=" " alt="" coords="3613,47,3758,98,3756,103,3611,52"/>
+<area shape="rect" href="normal__vector__operation_8cpp.html" title=" " alt="" coords="3996,218,4175,258"/>
+<area shape="poly" title=" " alt="" coords="3665,35,3821,56,3889,72,3937,91,3956,107,3966,124,3974,142,3989,161,4023,191,4057,216,4054,220,4020,195,3985,164,3970,145,3961,127,3952,111,3935,96,3888,77,3820,61,3665,40"/>
+<area shape="rect" href="include_2meltpooldg_2melt__pool_2powder__bed_8hpp.html" title=" " alt="" coords="3513,108,3716,148"/>
+<area shape="poly" title=" " alt="" coords="3568,55,3604,106,3599,109,3564,58"/>
+<area shape="rect" href="constraints_8hpp.html" title=" " alt="" coords="2647,108,2825,148"/>
+<area shape="poly" title=" " alt="" coords="3426,33,3304,40,3158,52,3001,70,2845,96,2790,110,2789,105,2843,91,3000,65,3157,47,3304,35,3425,28"/>
+<area shape="rect" href="advection__diffusion__operation_8cpp.html" title=" " alt="" coords="2957,218,3153,258"/>
+<area shape="poly" title=" " alt="" coords="3426,34,3284,42,3132,55,3005,72,2963,83,2940,95,2930,111,2928,126,2932,143,2941,161,2953,179,2969,193,3005,216,3002,220,2966,197,2949,182,2936,164,2927,145,2923,127,2925,109,2937,91,2961,78,3004,67,3131,49,3283,37,3426,29"/>
+<area shape="rect" href="parameters_8cpp.html" title=" " alt="" coords="3999,115,4201,141"/>
+<area shape="poly" title=" " alt="" coords="3665,38,3816,60,3981,91,4064,113,4063,118,3979,96,3815,66,3664,44"/>
+<area shape="rect" href="surface__tension__operation_8cpp.html" title=" " alt="" coords="4225,108,4399,148"/>
+<area shape="poly" title=" " alt="" coords="3665,28,3781,34,3919,46,4067,65,4214,91,4265,105,4263,111,4213,96,4067,70,3919,52,3781,40,3665,33"/>
+<area shape="rect" href="laser__data_8cpp.html" title=" " alt="" coords="4423,115,4620,141"/>
+<area shape="poly" title=" " alt="" coords="3665,25,3816,30,4003,41,4207,60,4411,91,4491,113,4489,118,4410,96,4207,65,4002,46,3816,35,3665,30"/>
+<area shape="rect" href="laser__heat__source__projection__based_8cpp.html" title=" " alt="" coords="4645,108,4862,148"/>
+<area shape="poly" title=" " alt="" coords="3665,23,3852,26,4094,36,4363,56,4499,71,4632,91,4695,105,4694,111,4632,96,4498,77,4362,61,4093,41,3852,31,3665,29"/>
+<area shape="rect" href="laser__operation_8cpp.html" title=" " alt="" coords="4886,115,5117,141"/>
+<area shape="poly" title=" " alt="" coords="3665,27,4289,48,4628,67,4768,78,4875,91,4966,113,4965,118,4874,96,4768,83,4628,72,4289,53,3665,32"/>
+<area shape="rect" href="advection__DG__operation_8cpp.html" title=" " alt="" coords="5141,108,5337,148"/>
+<area shape="poly" title=" " alt="" coords="3665,25,3989,30,4411,41,4827,61,4999,74,5130,91,5188,105,5186,111,5129,96,4998,80,4827,66,4411,47,3989,35,3665,30"/>
+<area shape="rect" href="curvature__operator_8cpp.html" title=" " alt="" coords="5361,108,5556,148"/>
+<area shape="poly" title=" " alt="" coords="3666,24,4030,28,4516,38,4998,58,5198,72,5350,91,5408,105,5406,111,5349,96,5198,78,4998,63,4516,43,4030,33,3665,30"/>
+<area shape="rect" href="nearest__point_8cpp.html" title=" " alt="" coords="5580,108,5761,148"/>
+<area shape="poly" title=" " alt="" coords="3666,24,4070,25,4620,33,4904,41,5168,53,5396,69,5569,91,5623,105,5622,110,5567,96,5396,75,5168,58,4903,46,4620,38,4070,30,3666,29"/>
+<area shape="rect" href="olsson__operator_8cpp.html" title=" " alt="" coords="5786,108,5961,148"/>
+<area shape="poly" title=" " alt="" coords="3665,26,4148,33,4804,46,5417,66,5641,78,5774,91,5827,105,5826,110,5773,96,5641,83,5417,71,4804,52,4148,38,3665,31"/>
+<area shape="rect" href="reinitialization__DG__operator_8cpp.html" title=" " alt="" coords="5985,108,6212,148"/>
+<area shape="poly" title=" " alt="" coords="3665,24,4141,25,4808,32,5156,40,5481,52,5762,69,5974,91,6040,105,6039,110,5973,96,5761,74,5481,58,5156,46,4808,38,4141,30,3665,29"/>
+<area shape="rect" href="evaporation__mass__flux__operator__interface__value_8cpp.html" title=" " alt="" coords="6236,101,6455,155"/>
+<area shape="poly" title=" " alt="" coords="3665,25,4235,32,5032,46,5785,65,6061,77,6224,91,6261,98,6260,103,6224,96,6061,83,5785,71,5032,51,4235,38,3665,31"/>
+<area shape="rect" href="evaporation__mass__flux__operator__thickness__integration_8cpp.html" title=" " alt="" coords="6479,101,6737,155"/>
+<area shape="poly" title=" " alt="" coords="3665,23,4226,23,5037,30,5462,38,5862,50,6207,67,6467,91,6510,98,6509,103,6466,96,6206,73,5862,55,5462,43,5037,35,4226,28,3665,29"/>
+<area shape="rect" href="evaporation__operation_8cpp.html" title=" " alt="" coords="6761,108,6961,148"/>
+<area shape="poly" title=" " alt="" coords="3665,25,4334,29,5296,41,6214,60,6551,74,6670,82,6750,91,6810,105,6808,111,6749,96,6670,87,6550,79,6214,66,5296,46,4334,35,3665,30"/>
+<area shape="rect" href="cut__flow__over__cylinder_8cpp.html" title=" " alt="" coords="5,211,224,265"/>
+<area shape="poly" title=" " alt="" coords="117,170,117,210,112,210,112,170"/>
+<area shape="rect" href="cut__moving__cylinder_8cpp.html" title=" " alt="" coords="249,218,509,258"/>
+<area shape="poly" title=" " alt="" coords="381,162,381,218,376,218,376,162"/>
+<area shape="rect" href="cut__unfitted__inflow_8cpp.html" title=" " alt="" coords="533,211,752,265"/>
+<area shape="poly" title=" " alt="" coords="653,170,648,211,643,210,648,169"/>
+<area shape="rect" href="rotating__bubble_8cpp.html" title=" " alt="" coords="776,218,997,258"/>
+<area shape="poly" title=" " alt="" coords="990,158,912,220,909,216,987,154"/>
+<area shape="rect" href="vortex__bubble__DG_8cpp.html" title=" " alt="" coords="1022,211,1207,265"/>
+<area shape="poly" title=" " alt="" coords="1353,162,1196,213,1194,208,1351,157"/>
+<area shape="rect" href="zalesak__disk_8cpp.html" title=" " alt="" coords="1232,218,1435,258"/>
+<area shape="poly" title=" " alt="" coords="1674,154,1409,221,1407,215,1673,149"/>
+<area shape="rect" href="reinit__circle__DG_8cpp.html" title=" " alt="" coords="1459,218,1656,258"/>
+<area shape="poly" title=" " alt="" coords="1937,154,1669,213,1637,221,1636,215,1667,208,1936,148"/>
+<area shape="rect" href="darcy__damping__operation_8cpp.html" title=" " alt="" coords="1680,218,1880,258"/>
+<area shape="poly" title=" " alt="" coords="2199,154,2147,165,1893,213,1859,221,1858,215,1891,208,2146,160,2197,149"/>
+<area shape="rect" href="heat__cut__operator_8cpp.html" title=" " alt="" coords="1905,218,2063,258"/>
+<area shape="poly" title=" " alt="" coords="2223,155,2038,220,2036,215,2221,150"/>
+<area shape="rect" href="heat__diffuse__operator_8cpp.html" title=" " alt="" coords="2087,218,2270,258"/>
+<area shape="poly" title=" " alt="" coords="2261,159,2200,220,2196,216,2258,156"/>
+<area shape="poly" title=" " alt="" coords="2358,150,2554,215,2552,220,2356,155"/>
+<area shape="rect" href="source_2phase__change_2melt__front__propagation_8cpp.html" title=" " alt="" coords="2294,218,2501,258"/>
+<area shape="poly" title=" " alt="" coords="2318,156,2380,216,2376,220,2315,159"/>
+<area shape="rect" href="compressible__multiphase__operator_8cpp.html" title=" " alt="" coords="3177,218,3367,258"/>
+<area shape="poly" title=" " alt="" coords="3153,167,3239,215,3237,220,3150,172"/>
+<area shape="rect" href="level__set__DG__operation_8hpp.html" title=" " alt="" coords="3599,416,3747,471"/>
+<area shape="poly" title=" " alt="" coords="3392,275,3370,293,3353,315,3343,342,3345,354,3353,366,3368,379,3391,391,3455,410,3529,424,3600,433,3599,438,3528,429,3454,415,3389,396,3365,384,3349,370,3340,355,3338,341,3348,312,3366,289,3388,271"/>
+<area shape="rect" href="reinitialization__DG__operation_8hpp.html" title=" " alt="" coords="3582,313,3765,368"/>
+<area shape="poly" title=" " alt="" coords="3534,269,3621,311,3618,316,3531,274"/>
+<area shape="rect" href="curvature__DG__operation_8cpp.html" title=" " alt="" coords="3363,321,3557,361"/>
+<area shape="poly" title=" " alt="" coords="3467,279,3464,320,3459,320,3461,279"/>
+<area shape="poly" title=" " alt="" coords="3676,382,3676,416,3671,416,3671,382"/>
+<area shape="poly" title=" " alt="" coords="3399,164,3443,209,3439,212,3395,168"/>
+<area shape="poly" title=" " alt="" coords="3445,157,3458,160,3546,178,3616,186,3687,194,3776,208,3789,211,3788,216,3776,213,3686,199,3616,192,3546,183,3457,165,3444,162"/>
+<area shape="rect" href="helmholtz__DG__operator_8cpp.html" title=" " alt="" coords="3567,218,3764,258"/>
+<area shape="poly" title=" " alt="" coords="3449,157,3613,215,3611,220,3447,162"/>
+<area shape="poly" title=" " alt="" coords="3957,271,3979,289,3997,312,4007,341,4005,355,3997,370,3980,384,3956,396,3892,415,3818,429,3748,438,3747,433,3817,424,3891,410,3954,391,3977,379,3993,366,4000,354,4002,342,3992,315,3976,293,3954,275"/>
+<area shape="poly" title=" " alt="" coords="3815,274,3728,316,3726,311,3813,269"/>
+<area shape="rect" href="normal__vector__DG__operation_8cpp.html" title=" " alt="" coords="3789,321,3982,361"/>
+<area shape="poly" title=" " alt="" coords="3885,279,3887,320,3882,320,3879,279"/>
+<area shape="poly" title=" " alt="" coords="3908,158,4042,215,4040,220,3906,163"/>
+<area shape="poly" title=" " alt="" coords="2762,157,2806,209,2802,212,2758,160"/>
+<area shape="poly" title=" " alt="" coords="2705,159,2633,220,2630,216,2702,155"/>
+<area shape="poly" title=" " alt="" coords="2665,155,2458,220,2456,215,2663,150"/>
+<area shape="poly" title=" " alt="" coords="2805,150,3000,215,2998,220,2803,155"/>
 </map>
 </div>
 </div>
@@ -307,84 +251,20 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:namespacedealii" id="r_namespacedealii"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedealii.html">dealii</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacedealii_1_1internal" id="r_namespacedealii_1_1internal"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedealii_1_1internal.html">dealii::internal</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceMeltPoolDG" id="r_namespaceMeltPoolDG"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html">MeltPoolDG</a></td></tr>
 <tr class="memdesc:namespaceMeltPoolDG"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for a general preconditioner. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1UtilityFunctions" id="r_namespaceMeltPoolDG_1_1UtilityFunctions"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html">MeltPoolDG::UtilityFunctions</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespaceMeltPoolDG_1_1UtilityFunctions_1_1CharacteristicFunctions" id="r_namespaceMeltPoolDG_1_1UtilityFunctions_1_1CharacteristicFunctions"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions_1_1CharacteristicFunctions.html">MeltPoolDG::UtilityFunctions::CharacteristicFunctions</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a6b137e1980c6c6e24b2a3d032112a7dc" id="r_a6b137e1980c6c6e24b2a3d032112a7dc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">MeltPoolDG::VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt; double &gt;</td></tr>
-<tr class="separator:a6b137e1980c6c6e24b2a3d032112a7dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a262774a6f79077dd256870ebf0f608da" id="r_a262774a6f79077dd256870ebf0f608da"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedealii.html#a262774a6f79077dd256870ebf0f608da">dealii::TriangulationType</a> { <a class="el" href="namespacedealii.html#a262774a6f79077dd256870ebf0f608daae1ae718a738346e52601ecc61038fe8f">dealii::shared</a>
-, <a class="el" href="namespacedealii.html#a262774a6f79077dd256870ebf0f608daa7eedc0d7ed1b394cec80a307f6ba564f">dealii::parallel_distributed</a>
-, <a class="el" href="namespacedealii.html#a262774a6f79077dd256870ebf0f608daa49d91607bc1a066974cce06edc067a59">dealii::parallel_fullydistributed</a>
-, <a class="el" href="namespacedealii.html#a262774a6f79077dd256870ebf0f608daaf86996a00162f0de97697d83eed22b01">dealii::serial</a>
- }</td></tr>
-<tr class="separator:a262774a6f79077dd256870ebf0f608da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c0454d202cd39775350331374b4c5ac" id="r_a1c0454d202cd39775350331374b4c5ac"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a1c0454d202cd39775350331374b4c5ac">MeltPoolDG::BooleanType</a> { <a class="el" href="namespaceMeltPoolDG.html#a1c0454d202cd39775350331374b4c5aca491cfa716bba5401dbec18e3fd293e42">MeltPoolDG::Union</a>
-, <a class="el" href="namespaceMeltPoolDG.html#a1c0454d202cd39775350331374b4c5acaee2c277c1232c982636bacb6acac1926">MeltPoolDG::Intersection</a>
-, <a class="el" href="namespaceMeltPoolDG.html#a1c0454d202cd39775350331374b4c5acae4e8f7c3ccff1109a3c047a6e3fe9966">MeltPoolDG::Subtraction</a>
- }</td></tr>
-<tr class="separator:a1c0454d202cd39775350331374b4c5ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4659d02994db30edf10b398b59a38ddb" id="r_a4659d02994db30edf10b398b59a38ddb"><td class="memTemplParams" colspan="2">template&lt;int dim, int spacedim = dim&gt; </td></tr>
-<tr class="memitem:a4659d02994db30edf10b398b59a38ddb"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacedealii.html#a262774a6f79077dd256870ebf0f608da">TriangulationType</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedealii.html#a4659d02994db30edf10b398b59a38ddb">dealii::get_triangulation_type</a> (const Triangulation&lt; dim, spacedim &gt; &amp;tria)</td></tr>
-<tr class="separator:a4659d02994db30edf10b398b59a38ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdefc1220a62c47c1f410d237180ebfa" id="r_abdefc1220a62c47c1f410d237180ebfa"><td class="memTemplParams" colspan="2">template&lt;typename VectorType , std::enable_if_t&lt;!IsBlockVector&lt; VectorType &gt;::value, VectorType &gt; *  = nullptr&gt; </td></tr>
-<tr class="memitem:abdefc1220a62c47c1f410d237180ebfa"><td class="memTemplItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedealii_1_1internal.html#abdefc1220a62c47c1f410d237180ebfa">dealii::internal::n_blocks</a> (const VectorType &amp;)</td></tr>
-<tr class="separator:abdefc1220a62c47c1f410d237180ebfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa44c4a501454ae26b4907ca296979203" id="r_aa44c4a501454ae26b4907ca296979203"><td class="memTemplParams" colspan="2">template&lt;typename VectorType , std::enable_if_t&lt;!IsBlockVector&lt; VectorType &gt;::value, VectorType &gt; *  = nullptr&gt; </td></tr>
-<tr class="memitem:aa44c4a501454ae26b4907ca296979203"><td class="memTemplItemLeft" align="right" valign="top">VectorType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedealii_1_1internal.html#aa44c4a501454ae26b4907ca296979203">dealii::internal::block</a> (VectorType &amp;vector, const unsigned int b)</td></tr>
-<tr class="separator:aa44c4a501454ae26b4907ca296979203"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec5b5776b5776f94c80a4a117b41f811" id="r_aec5b5776b5776f94c80a4a117b41f811"><td class="memTemplParams" colspan="2">template&lt;typename VectorType , std::enable_if_t&lt; IsBlockVector&lt; VectorType &gt;::value, VectorType &gt; *  = nullptr&gt; </td></tr>
-<tr class="memitem:aec5b5776b5776f94c80a4a117b41f811"><td class="memTemplItemLeft" align="right" valign="top">VectorType::BlockType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedealii_1_1internal.html#aec5b5776b5776f94c80a4a117b41f811">dealii::internal::block</a> (VectorType &amp;vector, const unsigned int b)</td></tr>
-<tr class="separator:aec5b5776b5776f94c80a4a117b41f811"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a579d7d11220094afd0df51dadd1e72c9" id="r_a579d7d11220094afd0df51dadd1e72c9"><td class="memTemplParams" colspan="2">template&lt;typename VectorType , std::enable_if_t&lt;!IsBlockVector&lt; VectorType &gt;::value, VectorType &gt; *  = nullptr&gt; </td></tr>
-<tr class="memitem:a579d7d11220094afd0df51dadd1e72c9"><td class="memTemplItemLeft" align="right" valign="top">const VectorType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedealii_1_1internal.html#a579d7d11220094afd0df51dadd1e72c9">dealii::internal::block</a> (const VectorType &amp;vector, const unsigned int b)</td></tr>
-<tr class="separator:a579d7d11220094afd0df51dadd1e72c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf23fc781cb14257ccc593976a2d8164" id="r_adf23fc781cb14257ccc593976a2d8164"><td class="memTemplParams" colspan="2">template&lt;typename VectorType , std::enable_if_t&lt; IsBlockVector&lt; VectorType &gt;::value, VectorType &gt; *  = nullptr&gt; </td></tr>
-<tr class="memitem:adf23fc781cb14257ccc593976a2d8164"><td class="memTemplItemLeft" align="right" valign="top">const VectorType::BlockType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedealii_1_1internal.html#adf23fc781cb14257ccc593976a2d8164">dealii::internal::block</a> (const VectorType &amp;vector, const unsigned int b)</td></tr>
-<tr class="separator:adf23fc781cb14257ccc593976a2d8164"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0fadc670b12330495bc398509cc14dc" id="r_ab0fadc670b12330495bc398509cc14dc"><td class="memTemplParams" colspan="2">template&lt;typename number1 , typename number2 &gt; </td></tr>
 <tr class="memitem:ab0fadc670b12330495bc398509cc14dc"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#ab0fadc670b12330495bc398509cc14dc">MeltPoolDG::UtilityFunctions::remove_duplicates</a> (std::vector&lt; number1 &gt; &amp;a, std::vector&lt; number2 &gt; &amp;b)</td></tr>
 <tr class="separator:ab0fadc670b12330495bc398509cc14dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a362c032e8ee1459383b1dc2603334bd8" id="r_a362c032e8ee1459383b1dc2603334bd8"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a362c032e8ee1459383b1dc2603334bd8"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a362c032e8ee1459383b1dc2603334bd8">MeltPoolDG::UtilityFunctions::to_string_with_precision</a> (const T a_value, const int n=6)</td></tr>
 <tr class="separator:a362c032e8ee1459383b1dc2603334bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba5388657cac84bee12153cacd979c2c" id="r_aba5388657cac84bee12153cacd979c2c"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
-<tr class="memitem:aba5388657cac84bee12153cacd979c2c"><td class="memTemplItemLeft" align="right" valign="top">number&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#aba5388657cac84bee12153cacd979c2c">MeltPoolDG::UtilityFunctions::heaviside</a> (const number in, const number limit=0.0)</td></tr>
-<tr class="separator:aba5388657cac84bee12153cacd979c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e832ec71d2b32a269f08a7d8734b5ae" id="r_a0e832ec71d2b32a269f08a7d8734b5ae"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
-<tr class="memitem:a0e832ec71d2b32a269f08a7d8734b5ae"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a0e832ec71d2b32a269f08a7d8734b5ae">MeltPoolDG::UtilityFunctions::heaviside</a> (const std::vector&lt; number &gt; in, const number limit=0.0)</td></tr>
-<tr class="separator:a0e832ec71d2b32a269f08a7d8734b5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff8abbe4d1b6be1069206692a56e0063" id="r_aff8abbe4d1b6be1069206692a56e0063"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
-<tr class="memitem:aff8abbe4d1b6be1069206692a56e0063"><td class="memTemplItemLeft" align="right" valign="top">dealii::VectorizedArray&lt; number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#aff8abbe4d1b6be1069206692a56e0063">MeltPoolDG::UtilityFunctions::heaviside</a> (const dealii::VectorizedArray&lt; number &gt; &amp;in, const number limit=0.0)</td></tr>
-<tr class="separator:aff8abbe4d1b6be1069206692a56e0063"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af27a15c13236a5c70cd61b8830a47b2a" id="r_af27a15c13236a5c70cd61b8830a47b2a"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
-<tr class="memitem:af27a15c13236a5c70cd61b8830a47b2a"><td class="memTemplItemLeft" align="right" valign="top">number&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions_1_1CharacteristicFunctions.html#af27a15c13236a5c70cd61b8830a47b2a">MeltPoolDG::UtilityFunctions::CharacteristicFunctions::tanh_characteristic_function</a> (const number &amp;distance, const number &amp;eps)</td></tr>
-<tr class="separator:af27a15c13236a5c70cd61b8830a47b2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc591fc40f2898d0a7066300ff460e1f" id="r_acc591fc40f2898d0a7066300ff460e1f"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
-<tr class="memitem:acc591fc40f2898d0a7066300ff460e1f"><td class="memTemplItemLeft" align="right" valign="top">number&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions_1_1CharacteristicFunctions.html#acc591fc40f2898d0a7066300ff460e1f">MeltPoolDG::UtilityFunctions::CharacteristicFunctions::heaviside</a> (const number &amp;distance, const number &amp;eps)</td></tr>
-<tr class="separator:acc591fc40f2898d0a7066300ff460e1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa80bea0bf0e51961e09404e5c53483c6" id="r_aa80bea0bf0e51961e09404e5c53483c6"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
-<tr class="memitem:aa80bea0bf0e51961e09404e5c53483c6"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions_1_1CharacteristicFunctions.html#aa80bea0bf0e51961e09404e5c53483c6">MeltPoolDG::UtilityFunctions::CharacteristicFunctions::sgn</a> (const number &amp;x)</td></tr>
-<tr class="separator:aa80bea0bf0e51961e09404e5c53483c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83f1b0842b3f6103873e95fcc2a051f6" id="r_a83f1b0842b3f6103873e95fcc2a051f6"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
-<tr class="memitem:a83f1b0842b3f6103873e95fcc2a051f6"><td class="memTemplItemLeft" align="right" valign="top">number&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions_1_1CharacteristicFunctions.html#a83f1b0842b3f6103873e95fcc2a051f6">MeltPoolDG::UtilityFunctions::CharacteristicFunctions::normalize</a> (const number &amp;x, const number &amp;x_min, const number &amp;x_max)</td></tr>
-<tr class="separator:a83f1b0842b3f6103873e95fcc2a051f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb4295e78aae388df687d6081b309ddb" id="r_abb4295e78aae388df687d6081b309ddb"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
 <tr class="memitem:abb4295e78aae388df687d6081b309ddb"><td class="memTemplItemLeft" align="right" valign="top">dealii::VectorizedArray&lt; number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#abb4295e78aae388df687d6081b309ddb">MeltPoolDG::UtilityFunctions::limit_to_bounds</a> (const dealii::VectorizedArray&lt; number &gt; &amp;in, const number lower_limit, const number upper_limit)</td></tr>
 <tr class="separator:abb4295e78aae388df687d6081b309ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -397,60 +277,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a8adba1880a236050040d30d40c661a6e" id="r_a8adba1880a236050040d30d40c661a6e"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
 <tr class="memitem:a8adba1880a236050040d30d40c661a6e"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a8adba1880a236050040d30d40c661a6e">MeltPoolDG::UtilityFunctions::get_exponent_power_ten</a> (const number x)</td></tr>
 <tr class="separator:a8adba1880a236050040d30d40c661a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a469a18927b7dad38928870ffc0beb78b" id="r_a469a18927b7dad38928870ffc0beb78b"><td class="memTemplParams" colspan="2">template&lt;int dim, typename vector , typename number &gt; </td></tr>
-<tr class="memitem:a469a18927b7dad38928870ffc0beb78b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a469a18927b7dad38928870ffc0beb78b">MeltPoolDG::UtilityFunctions::generate_points_along_vector</a> (std::vector&lt; dealii::Point&lt; dim &gt; &gt; &amp;points_normal_to_interface, const dealii::Point&lt; dim &gt; &amp;starting_point, const vector &amp;unit_vec, const number max_distance_per_side, const unsigned int n_inc_per_side, const bool bidirectional=true)</td></tr>
-<tr class="separator:a469a18927b7dad38928870ffc0beb78b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9912384f58c919ca11575ca21ca1bb8e" id="r_a9912384f58c919ca11575ca21ca1bb8e"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
 <tr class="memitem:a9912384f58c919ca11575ca21ca1bb8e"><td class="memTemplItemLeft" align="right" valign="top">number&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a9912384f58c919ca11575ca21ca1bb8e">MeltPoolDG::UtilityFunctions::integrate_over_line</a> (const std::vector&lt; number &gt; &amp;vals, const std::vector&lt; dealii::Point&lt; dim &gt; &gt; &amp;points)</td></tr>
 <tr class="separator:a9912384f58c919ca11575ca21ca1bb8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9035cb57c43ca1963520c1b624b4a6c4" id="r_a9035cb57c43ca1963520c1b624b4a6c4"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
 <tr class="memitem:a9035cb57c43ca1963520c1b624b4a6c4"><td class="memTemplItemLeft" align="right" valign="top">number&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a9035cb57c43ca1963520c1b624b4a6c4">MeltPoolDG::UtilityFunctions::compute_numerical_zero_of_norm</a> (const dealii::Triangulation&lt; dim &gt; &amp;triangulation, const dealii::Mapping&lt; dim &gt; &amp;mapping)</td></tr>
 <tr class="separator:a9035cb57c43ca1963520c1b624b4a6c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5997bf86e90d1b6e2bd0bee72f5aa79f" id="r_a5997bf86e90d1b6e2bd0bee72f5aa79f"><td class="memTemplParams" colspan="2">template&lt;typename <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> , typename number &gt; </td></tr>
-<tr class="memitem:a5997bf86e90d1b6e2bd0bee72f5aa79f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a5997bf86e90d1b6e2bd0bee72f5aa79f">MeltPoolDG::UtilityFunctions::compute_linear_predictor</a> (const <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;old_vec, const <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;old_old_vec, <a class="el" href="namespaceMeltPoolDG.html#a6b137e1980c6c6e24b2a3d032112a7dc">VectorType</a> &amp;predictor, const number current_time_increment, const number old_time_increment)</td></tr>
-<tr class="separator:a5997bf86e90d1b6e2bd0bee72f5aa79f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa52b87a5a5ec969d406b6134d935e558" id="r_aa52b87a5a5ec969d406b6134d935e558"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
-<tr class="memitem:aa52b87a5a5ec969d406b6134d935e558"><td class="memTemplItemLeft" align="right" valign="top">dealii::FullMatrix&lt; number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#aa52b87a5a5ec969d406b6134d935e558">MeltPoolDG::UtilityFunctions::create_dof_interpolation_matrix</a> (const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler_1, const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler_2, const bool do_sort_lexicographically)</td></tr>
-<tr class="separator:aa52b87a5a5ec969d406b6134d935e558"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeae860a4770b80ec3273dbe15ccc0340" id="r_aeae860a4770b80ec3273dbe15ccc0340"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
-<tr class="memitem:aeae860a4770b80ec3273dbe15ccc0340"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#aeae860a4770b80ec3273dbe15ccc0340">MeltPoolDG::UtilityFunctions::compute_gradient_at_interpolated_dof_values</a> (dealii::FECellIntegrator&lt; dim, 1, number &gt; &amp;values, dealii::FECellIntegrator&lt; dim, 1, number &gt; &amp;interpolated_values, const dealii::FullMatrix&lt; number &gt; &amp;interpolation_matrix)</td></tr>
-<tr class="separator:aeae860a4770b80ec3273dbe15ccc0340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a004ba1cb4c59eff82f2c38806e242f6e" id="r_a004ba1cb4c59eff82f2c38806e242f6e"><td class="memTemplParams" colspan="2">template&lt;int dim, typename ForwardIterator &gt; </td></tr>
 <tr class="memitem:a004ba1cb4c59eff82f2c38806e242f6e"><td class="memTemplItemLeft" align="right" valign="top">dealii::Point&lt; dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a004ba1cb4c59eff82f2c38806e242f6e">MeltPoolDG::UtilityFunctions::to_point</a> (const ForwardIterator begin, const ForwardIterator end)</td></tr>
 <tr class="separator:a004ba1cb4c59eff82f2c38806e242f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45c4dac81ac975a5918755f66c2902c3" id="r_a45c4dac81ac975a5918755f66c2902c3"><td class="memTemplParams" colspan="2">template&lt;int T1_dim, int T2_dim, typename number &gt; </td></tr>
-<tr class="memitem:a45c4dac81ac975a5918755f66c2902c3"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, T1_dim, dealii::Tensor&lt; 1, T2_dim, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a45c4dac81ac975a5918755f66c2902c3">MeltPoolDG::UtilityFunctions::dyadic_product</a> (const number *a_start, const number *b_start)</td></tr>
-<tr class="separator:a45c4dac81ac975a5918755f66c2902c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e4bfbf8d2998d7a00b040b3e02dc8af" id="r_a2e4bfbf8d2998d7a00b040b3e02dc8af"><td class="memTemplParams" colspan="2">template&lt;int T1_dim, int T2_dim, typename number &gt; </td></tr>
-<tr class="memitem:a2e4bfbf8d2998d7a00b040b3e02dc8af"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, T1_dim, dealii::Tensor&lt; 1, T2_dim, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a2e4bfbf8d2998d7a00b040b3e02dc8af">MeltPoolDG::UtilityFunctions::dyadic_product</a> (const dealii::Tensor&lt; 1, T1_dim, number &gt; &amp;a, const dealii::Tensor&lt; 1, T2_dim, number &gt; &amp;b)</td></tr>
-<tr class="separator:a2e4bfbf8d2998d7a00b040b3e02dc8af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae24a84ab5aa184ddb141170952280fbd" id="r_ae24a84ab5aa184ddb141170952280fbd"><td class="memTemplParams" colspan="2">template&lt;int T1_dim, int T2_dim, typename number &gt; </td></tr>
-<tr class="memitem:ae24a84ab5aa184ddb141170952280fbd"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, T2_dim, dealii::Tensor&lt; 1, T1_dim, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#ae24a84ab5aa184ddb141170952280fbd">MeltPoolDG::UtilityFunctions::transpose</a> (const dealii::Tensor&lt; 1, T1_dim, dealii::Tensor&lt; 1, T2_dim, number &gt; &gt; &amp;in)</td></tr>
-<tr class="separator:ae24a84ab5aa184ddb141170952280fbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65eef8ee81fb531bbb98512f0ffc9011" id="r_a65eef8ee81fb531bbb98512f0ffc9011"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
-<tr class="memitem:a65eef8ee81fb531bbb98512f0ffc9011"><td class="memTemplItemLeft" align="right" valign="top">number&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a65eef8ee81fb531bbb98512f0ffc9011">MeltPoolDG::UtilityFunctions::trace</a> (const dealii::Tensor&lt; 1, dim, dealii::Tensor&lt; 1, dim, number &gt; &gt; &amp;in)</td></tr>
-<tr class="separator:a65eef8ee81fb531bbb98512f0ffc9011"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad970f3f8544a67688b08bd49ae29a088" id="r_ad970f3f8544a67688b08bd49ae29a088"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
-<tr class="memitem:ad970f3f8544a67688b08bd49ae29a088"><td class="memTemplItemLeft" align="right" valign="top">number&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#ad970f3f8544a67688b08bd49ae29a088">MeltPoolDG::UtilityFunctions::trace</a> (const dealii::Tensor&lt; 2, dim, number &gt; &amp;in)</td></tr>
-<tr class="separator:ad970f3f8544a67688b08bd49ae29a088"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af708fbcc70ee9917a269ac9b2a21dbdc" id="r_af708fbcc70ee9917a269ac9b2a21dbdc"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
-<tr class="memitem:af708fbcc70ee9917a269ac9b2a21dbdc"><td class="memTemplItemLeft" align="right" valign="top">dealii::SymmetricTensor&lt; 2, dim, number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#af708fbcc70ee9917a269ac9b2a21dbdc">MeltPoolDG::UtilityFunctions::identity</a> ()</td></tr>
-<tr class="separator:af708fbcc70ee9917a269ac9b2a21dbdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea65a60886cb1af36b94b18e84582f27" id="r_aea65a60886cb1af36b94b18e84582f27"><td class="memTemplParams" colspan="2">template&lt;int n_rows, int n_columns, typename number &gt; </td></tr>
-<tr class="memitem:aea65a60886cb1af36b94b18e84582f27"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, n_rows, number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#aea65a60886cb1af36b94b18e84582f27">MeltPoolDG::UtilityFunctions::matrix_vector_product</a> (const dealii::Tensor&lt; 1, n_rows, dealii::Tensor&lt; 1, n_columns, number &gt; &gt; &amp;matrix, const dealii::Tensor&lt; 1, n_columns, number &gt; &amp;vector)</td></tr>
-<tr class="separator:aea65a60886cb1af36b94b18e84582f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0da853b6eeeb5a114c08255d3889ef4e" id="r_a0da853b6eeeb5a114c08255d3889ef4e"><td class="memTemplParams" colspan="2">template&lt;int a, int b, int c, typename number &gt; </td></tr>
-<tr class="memitem:a0da853b6eeeb5a114c08255d3889ef4e"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, a, dealii::Tensor&lt; 1, c, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a0da853b6eeeb5a114c08255d3889ef4e">MeltPoolDG::UtilityFunctions::matrix_matrix_product</a> (const dealii::Tensor&lt; 1, a, dealii::Tensor&lt; 1, b, number &gt; &gt; &amp;matrix1, const dealii::Tensor&lt; 1, b, dealii::Tensor&lt; 1, c, number &gt; &gt; &amp;matrix2)</td></tr>
-<tr class="separator:a0da853b6eeeb5a114c08255d3889ef4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2edda794ac71b1a54cbad3675f047126" id="r_a2edda794ac71b1a54cbad3675f047126"><td class="memTemplParams" colspan="2">template&lt;typename TypeWeight , typename TypeTerm &gt; </td></tr>
 <tr class="memitem:a2edda794ac71b1a54cbad3675f047126"><td class="memTemplItemLeft" align="right" valign="top">TypeTerm&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a2edda794ac71b1a54cbad3675f047126">MeltPoolDG::UtilityFunctions::calculate_arithmetic_phase_weighted_average</a> (const TypeWeight &amp;weight_a, const TypeTerm &amp;term_a, const TypeWeight &amp;weight_b, const TypeTerm &amp;term_b)</td></tr>
 <tr class="separator:a2edda794ac71b1a54cbad3675f047126"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ccc8595c97ca5beec80cdbabd02307e" id="r_a6ccc8595c97ca5beec80cdbabd02307e"><td class="memTemplParams" colspan="2">template&lt;int dim_1, int dim_2, typename number &gt; </td></tr>
-<tr class="memitem:a6ccc8595c97ca5beec80cdbabd02307e"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim_1, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a6ccc8595c97ca5beec80cdbabd02307e">MeltPoolDG::UtilityFunctions::contract_tensor_with_vector</a> (const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &amp;tensor, const dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &amp;vector)</td></tr>
-<tr class="separator:a6ccc8595c97ca5beec80cdbabd02307e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a7167ae04b644aebcc20fdcabe96f81" id="r_a7a7167ae04b644aebcc20fdcabe96f81"><td class="memTemplParams" colspan="2">template&lt;int dim_1, int dim_2, typename number &gt; </td></tr>
-<tr class="memitem:a7a7167ae04b644aebcc20fdcabe96f81"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim_1, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a7a7167ae04b644aebcc20fdcabe96f81">MeltPoolDG::UtilityFunctions::contract_average_tensor_with_vector</a> (const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &amp;tensor_1, const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &amp;tensor_2, const dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &amp;vector)</td></tr>
-<tr class="separator:a7a7167ae04b644aebcc20fdcabe96f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
