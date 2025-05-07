@@ -92,8 +92,8 @@ Collaboration diagram for MeltPoolDG::Evaporation::RecoilPressureOperation&lt; d
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a04d6b9fa3cc0f2a2077f1c2700fc390f" id="r_a04d6b9fa3cc0f2a2077f1c2700fc390f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Evaporation_1_1RecoilPressureOperation.html#a04d6b9fa3cc0f2a2077f1c2700fc390f">RecoilPressureOperation</a> (const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;scratch_data_in, const <a class="el" href="structMeltPoolDG_1_1Parameters.html">Parameters</a>&lt; number &gt; &amp;data_in, const unsigned int flow_vel_dof_idx_in, const unsigned int flow_vel_quad_idx_in, const unsigned int flow_pressure_dof_idx_in, const unsigned int ls_dof_idx_in, const unsigned int heat_dof_idx_in)</td></tr>
-<tr class="separator:a04d6b9fa3cc0f2a2077f1c2700fc390f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ddfa0383dbd1fc7d4a5cd66f8c008f2" id="r_a3ddfa0383dbd1fc7d4a5cd66f8c008f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Evaporation_1_1RecoilPressureOperation.html#a3ddfa0383dbd1fc7d4a5cd66f8c008f2">RecoilPressureOperation</a> (const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;scratch_data_in, const <a class="el" href="structMeltPoolDG_1_1Evaporation_1_1RecoilPressureData.html">RecoilPressureData</a>&lt; number &gt; &amp;recoil, const <a class="el" href="structMeltPoolDG_1_1MaterialData.html">MaterialData</a>&lt; number &gt; &amp;material, const unsigned int flow_vel_dof_idx_in, const unsigned int flow_vel_quad_idx_in, const unsigned int flow_pressure_dof_idx_in, const unsigned int ls_dof_idx_in, const unsigned int heat_dof_idx_in)</td></tr>
+<tr class="separator:a3ddfa0383dbd1fc7d4a5cd66f8c008f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a693c1b037273393332d1e0642353f11b" id="r_a693c1b037273393332d1e0642353f11b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Evaporation_1_1RecoilPressureOperation.html#a693c1b037273393332d1e0642353f11b">compute_recoil_pressure_force</a> (VectorType &amp;force_rhs, const VectorType &amp;level_set_as_heaviside, const VectorType &amp;temperature, const VectorType &amp;evaporative_mass_flux, const unsigned int evapor_dof_idx, bool zero_out=true) const</td></tr>
 <tr class="separator:a693c1b037273393332d1e0642353f11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -101,8 +101,8 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number&gt;<br />
 class MeltPoolDG::Evaporation::RecoilPressureOperation&lt; dim, number &gt;</div><p>The force contribution of the recoil pressure due to evaporation is computed. The model of S.I. Anisimov and V.A. Khokhlov (1995) is considered. The consideration of any other model is however possible. First, the temperature is updated and second, the recoil pressure is computed. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a04d6b9fa3cc0f2a2077f1c2700fc390f" name="a04d6b9fa3cc0f2a2077f1c2700fc390f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04d6b9fa3cc0f2a2077f1c2700fc390f">&#9670;&#160;</a></span>RecoilPressureOperation()</h2>
+<a id="a3ddfa0383dbd1fc7d4a5cd66f8c008f2" name="a3ddfa0383dbd1fc7d4a5cd66f8c008f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ddfa0383dbd1fc7d4a5cd66f8c008f2">&#9670;&#160;</a></span>RecoilPressureOperation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -118,8 +118,14 @@ template&lt;int dim, typename number &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Parameters.html">Parameters</a>&lt; number &gt; &amp;&#160;</td>
-          <td class="paramname"><em>data_in</em>, </td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Evaporation_1_1RecoilPressureData.html">RecoilPressureData</a>&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>recoil</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1MaterialData.html">MaterialData</a>&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>material</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -161,8 +167,8 @@ template&lt;int dim, typename number &gt; </div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classMeltPoolDG_1_1Evaporation_1_1RecoilPressureOperation_a04d6b9fa3cc0f2a2077f1c2700fc390f_cgraph.png" border="0" usemap="#aclassMeltPoolDG_1_1Evaporation_1_1RecoilPressureOperation_a04d6b9fa3cc0f2a2077f1c2700fc390f_cgraph" alt=""/></div>
-<map name="aclassMeltPoolDG_1_1Evaporation_1_1RecoilPressureOperation_a04d6b9fa3cc0f2a2077f1c2700fc390f_cgraph" id="aclassMeltPoolDG_1_1Evaporation_1_1RecoilPressureOperation_a04d6b9fa3cc0f2a2077f1c2700fc390f_cgraph">
+<div class="center"><img src="classMeltPoolDG_1_1Evaporation_1_1RecoilPressureOperation_a3ddfa0383dbd1fc7d4a5cd66f8c008f2_cgraph.png" border="0" usemap="#aclassMeltPoolDG_1_1Evaporation_1_1RecoilPressureOperation_a3ddfa0383dbd1fc7d4a5cd66f8c008f2_cgraph" alt=""/></div>
+<map name="aclassMeltPoolDG_1_1Evaporation_1_1RecoilPressureOperation_a3ddfa0383dbd1fc7d4a5cd66f8c008f2_cgraph" id="aclassMeltPoolDG_1_1Evaporation_1_1RecoilPressureOperation_a3ddfa0383dbd1fc7d4a5cd66f8c008f2_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,196,60"/>
 <area shape="rect" href="classMeltPoolDG_1_1ScratchData.html#a6604d4ae0327a44dc7320660afa22e41" title=" " alt="" coords="244,13,431,53"/>
 <area shape="poly" title=" " alt="" coords="196,30,231,30,231,35,196,35"/>

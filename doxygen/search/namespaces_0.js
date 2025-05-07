@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['better_5fenums_0',['better_enums',['../namespacebetter__enums.html',1,'']]]
+  ['averaged_5fnusselt_0',['averaged_nusselt',['../namespaceaveraged__nusselt.html',1,'']]]
 ];

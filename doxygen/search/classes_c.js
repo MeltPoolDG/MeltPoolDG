@@ -11,9 +11,10 @@ var searchData=
   ['materialparametervalues_3c_20dealii_3a_3avectorizedarray_3c_20number_20_3e_2c_20number_20_3e_8',['MaterialParameterValues&lt; dealii::VectorizedArray&lt; number &gt;, number &gt;',['../structMeltPoolDG_1_1MaterialParameterValues.html',1,'MeltPoolDG']]],
   ['materialparametervalues_3c_20number_2c_20number_20_3e_9',['MaterialParameterValues&lt; number, number &gt;',['../structMeltPoolDG_1_1MaterialParameterValues.html',1,'MeltPoolDG']]],
   ['matrixtypeobject_10',['MatrixTypeObject',['../structMeltPoolDG_1_1MatrixTypeObject.html',1,'MeltPoolDG']]],
-  ['meltfrontpropagation_11',['MeltFrontPropagation',['../classMeltPoolDG_1_1MeltPool_1_1MeltFrontPropagation.html',1,'MeltPoolDG::MeltPool']]],
-  ['meltpoolapplication_12',['MeltPoolApplication',['../classMeltPoolDG_1_1MeltPool_1_1MeltPoolApplication.html',1,'MeltPoolDG::MeltPool']]],
-  ['meltpoolcase_13',['MeltPoolCase',['../classMeltPoolDG_1_1MeltPoolCase.html',1,'MeltPoolDG']]],
-  ['meltpooldata_14',['MeltPoolData',['../structMeltPoolDG_1_1MeltPoolData.html',1,'MeltPoolDG']]],
-  ['movinglevelset_15',['MovingLevelSet',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1MovingLevelSet.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]]
+  ['meltfrontpropagation_11',['MeltFrontPropagation',['../classMeltPoolDG_1_1MeltFrontPropagation.html',1,'MeltPoolDG']]],
+  ['meltfrontpropagationdata_12',['MeltFrontPropagationData',['../structMeltFrontPropagationData.html',1,'']]],
+  ['meltpoolapplication_13',['MeltPoolApplication',['../classMeltPoolDG_1_1MeltPoolApplication.html',1,'MeltPoolDG']]],
+  ['meltpoolcase_14',['MeltPoolCase',['../classMeltPoolDG_1_1MeltPoolCase.html',1,'MeltPoolDG']]],
+  ['meltpoolcaseparameters_15',['MeltPoolCaseParameters',['../structMeltPoolDG_1_1MeltPoolCaseParameters.html',1,'MeltPoolDG']]],
+  ['movinglevelset_16',['MovingLevelSet',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1MovingLevelSet.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]]
 ];
