@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dofhandlerandvectordatatype_0',['DoFHandlerAndVectorDataType',['../namespaceMeltPoolDG_1_1AMR.html#af639294e2778037a1a035aef09f9d594',1,'MeltPoolDG::AMR']]]
+  ['dofhandlerandvectordatatype_0',['DoFHandlerAndVectorDataType',['../namespaceMeltPoolDG.html#a20b2355d2df655164d45bbdda6437ef7',1,'MeltPoolDG']]]
 ];

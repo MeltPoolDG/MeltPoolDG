@@ -29,5 +29,6 @@ var searchData=
   ['amr_2ehpp_26',['amr.hpp',['../utilities_2amr_8hpp.html',1,'(Global Namespace)'],['../cut_2amr_8hpp.html',1,'(Global Namespace)']]],
   ['amr_5fdata_2ecpp_27',['amr_data.cpp',['../amr__data_8cpp.html',1,'']]],
   ['amr_5fdata_2ehpp_28',['amr_data.hpp',['../amr__data_8hpp.html',1,'']]],
-  ['averaged_5fnusselt_2epy_29',['averaged_nusselt.py',['../averaged__nusselt_8py.html',1,'']]]
+  ['attach_5fvectors_2ehpp_29',['attach_vectors.hpp',['../attach__vectors_8hpp.html',1,'']]],
+  ['averaged_5fnusselt_2epy_30',['averaged_nusselt.py',['../averaged__nusselt_8py.html',1,'']]]
 ];

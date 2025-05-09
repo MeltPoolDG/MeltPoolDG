@@ -94,146 +94,145 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;deal.II/non_matching/mesh_classifier.h&gt;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="utilities_2amr_8hpp.html">meltpooldg/utilities/amr.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="attach__vectors_8hpp.html">meltpooldg/utilities/attach_vectors.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1CutUtil.html">MeltPoolDG::CutUtil</a></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> Number&gt;</div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html">   24</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html">SolutionTransferOperator</a></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">   27</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;Number&gt;;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_class" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html">SolutionTransferOperator</a>(<span class="keyword">const</span> Number gamma_degree_0,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                             <span class="keyword">const</span> Number gamma_degree_1,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                             <span class="keyword">const</span> Number gamma_degree_2,</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                             <span class="keyword">const</span> <span class="keywordtype">bool</span>   is_two_phase,</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                             <span class="keyword">const</span> <span class="keywordtype">int</span>    verbosity = 0);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a16c061f90e439a38d3569197537148b1">reinit</a>(dealii::DoFHandler&lt;dim&gt;                                    &amp;cut_dof_handler,</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>           dealii::Triangulation&lt;dim&gt;                                 &amp;tria,</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>           <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a>                                           &amp;cut_solution,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>           <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt;             &amp;mesh_classifier_old,</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>           <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt;             &amp;mesh_classifier,</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>           <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(<a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;)&gt;                    &amp;reinit_cut_vector,</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>           <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>()&gt;                                &amp;setup_dof_system,</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>           <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">AMR::AttachDoFHandlerAndVectorsType&lt;dim, VectorType&gt;</a> &amp;attach_vectors = {});</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a16c061f90e439a38d3569197537148b1">reinit</a>(dealii::DoFHandler&lt;dim&gt;                                    &amp;cut_dof_handler,</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>           dealii::Triangulation&lt;dim&gt;                                 &amp;tria,</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>           <span class="keyword">const</span> std::vector&lt;const VectorType *&gt;                      &amp;cut_solutions,</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>           <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt;             &amp;mesh_classifier_old,</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>           <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt;             &amp;mesh_classifier,</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>           <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(<a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;)&gt;                    &amp;reinit_cut_vector,</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>           <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>()&gt;                                &amp;setup_dof_system,</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>           <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">AMR::AttachDoFHandlerAndVectorsType&lt;dim, VectorType&gt;</a> &amp;attach_vectors = {});</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">const</span> std::vector&lt;VectorType&gt; &amp;</div>
-<div class="foldopen" id="foldopen00066" data-start="{" data-end="}">
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a2fc0cc64fa53c11a076f1d553ad33db5">   66</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a2fc0cc64fa53c11a076f1d553ad33db5">get_updated_solutions</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      <span class="keywordflow">return</span> new_solutions;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1CutUtil.html">MeltPoolDG::CutUtil</a></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> Number&gt;</div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html">   23</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html">SolutionTransferOperator</a></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">   26</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;Number&gt;;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_class" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html">SolutionTransferOperator</a>(<span class="keyword">const</span> Number gamma_degree_0,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                             <span class="keyword">const</span> Number gamma_degree_1,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                             <span class="keyword">const</span> Number gamma_degree_2,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                             <span class="keyword">const</span> <span class="keywordtype">bool</span>   is_two_phase,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                             <span class="keyword">const</span> <span class="keywordtype">int</span>    verbosity = 0);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a5ad738cecbe824f3a329fc4216c2fd9b">reinit</a>(dealii::DoFHandler&lt;dim&gt;                               &amp;cut_dof_handler,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>           dealii::Triangulation&lt;dim&gt;                            &amp;tria,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>           <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a>                                      &amp;cut_solution,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>           <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt;        &amp;mesh_classifier_old,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>           <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt;        &amp;mesh_classifier,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>           <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(<a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;)&gt;               &amp;reinit_cut_vector,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>           <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>()&gt;                           &amp;setup_dof_system,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>           <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType&lt;dim, VectorType&gt;</a> &amp;attach_vectors = {});</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a5ad738cecbe824f3a329fc4216c2fd9b">reinit</a>(dealii::DoFHandler&lt;dim&gt;                               &amp;cut_dof_handler,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>           dealii::Triangulation&lt;dim&gt;                            &amp;tria,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>           <span class="keyword">const</span> std::vector&lt;const VectorType *&gt;                 &amp;cut_solutions,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>           <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt;        &amp;mesh_classifier_old,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>           <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt;        &amp;mesh_classifier,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>           <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(<a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;)&gt;               &amp;reinit_cut_vector,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>           <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>()&gt;                           &amp;setup_dof_system,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>           <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType&lt;dim, VectorType&gt;</a> &amp;attach_vectors = {});</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">const</span> std::vector&lt;VectorType&gt; &amp;</div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="}">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a2fc0cc64fa53c11a076f1d553ad33db5">   67</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a2fc0cc64fa53c11a076f1d553ad33db5">get_updated_solutions</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      <span class="keywordflow">return</span> new_solutions;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
 </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    std::vector&lt;VectorType&gt; &amp;</div>
-<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad3eb927ec0139373e57cf0883b4e0995">   72</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad3eb927ec0139373e57cf0883b4e0995">get_updated_solutions</a>()</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      <span class="keywordflow">return</span> new_solutions;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    std::vector&lt;VectorType&gt; &amp;</div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="}">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad3eb927ec0139373e57cf0883b4e0995">   73</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad3eb927ec0139373e57cf0883b4e0995">get_updated_solutions</a>()</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      <span class="keywordflow">return</span> new_solutions;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
 </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;</div>
-<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a16c3695d23e9c11bcacf011eeb57456b">   78</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a16c3695d23e9c11bcacf011eeb57456b">get_updated_solution</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      Assert(</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        new_solutions.size() == 1,</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        dealii::ExcMessage(</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>          <span class="stringliteral">&quot;This function assumes that only one cut solution vector was attached, which is not the case.&quot;</span>));</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      <span class="keywordflow">return</span> new_solutions[0];</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;</div>
+<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a16c3695d23e9c11bcacf011eeb57456b">   79</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a16c3695d23e9c11bcacf011eeb57456b">get_updated_solution</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      Assert(</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        new_solutions.size() == 1,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        dealii::ExcMessage(</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>          <span class="stringliteral">&quot;This function assumes that only one cut solution vector was attached, which is not the case.&quot;</span>));</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      <span class="keywordflow">return</span> new_solutions[0];</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
 </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;</div>
-<div class="foldopen" id="foldopen00088" data-start="{" data-end="}">
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a43e110aa5434b26e9db5f47aed8f28c9">   88</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a43e110aa5434b26e9db5f47aed8f28c9">get_updated_solution</a>()</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    {</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      Assert(</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        new_solutions.size() == 1,</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        dealii::ExcMessage(</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>          <span class="stringliteral">&quot;This function assumes that only one cut solution vector was attached, which is not the case.&quot;</span>));</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      <span class="keywordflow">return</span> new_solutions[0];</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;</div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a43e110aa5434b26e9db5f47aed8f28c9">   89</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a43e110aa5434b26e9db5f47aed8f28c9">get_updated_solution</a>()</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      Assert(</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        new_solutions.size() == 1,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        dealii::ExcMessage(</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>          <span class="stringliteral">&quot;This function assumes that only one cut solution vector was attached, which is not the case.&quot;</span>));</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      <span class="keywordflow">return</span> new_solutions[0];</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
 </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    transfer_solution_constant_dofs(</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      dealii::DoFHandler&lt;dim&gt;                                    &amp;cut_dof_handler,</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      dealii::Triangulation&lt;dim&gt;                                 &amp;tria,</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="keyword">const</span> std::vector&lt;const VectorType *&gt;                      &amp;cut_solutions,</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt;             &amp;mesh_classifier_old,</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt;             &amp;mesh_classifier,</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(<a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;)&gt;                    &amp;reinit_cut_vector,</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>()&gt;                                &amp;setup_dof_system,</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">AMR::AttachDoFHandlerAndVectorsType&lt;dim, VectorType&gt;</a> &amp;attach_vectors = {});</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a></div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    mark_dofs_for_gp_extrapolation(</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <span class="keyword">const</span> dealii::DoFHandler&lt;dim&gt;                  &amp;cut_dof_handler,</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt; &amp;mesh_classifier,</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt; &amp;mesh_classifier_old) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    dealii::AffineConstraints&lt;Number&gt;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    create_constraints_gp_extrapolation(<span class="keyword">const</span> dealii::DoFHandler&lt;dim&gt; &amp;cut_dof_handler,</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                                        <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;flags_dofs_gp_extrapolation) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    extrapolate_solution_new_dofs(</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      <span class="keyword">const</span> dealii::DoFHandler&lt;dim&gt;                  &amp;cut_dof_handler,</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>      <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt; &amp;mesh_classifier,</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>      <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt; &amp;mesh_classifier_old,</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(<a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;)&gt;        &amp;reinit_vector);</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    std::vector&lt;VectorType&gt; new_solutions;</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> fe_degree;</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="comment">// components of the solution in one phase</span></div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="comment">// (for scalar-valued solutions: 1, for vector-valued solutions: &gt;1)</span></div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_components_per_phase;</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordtype">bool</span>         is_dg;</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keyword">const</span> Number gamma_degree_0;</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keyword">const</span> Number gamma_degree_1;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keyword">const</span> Number gamma_degree_2;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span>   is_two_phase;</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="comment">// verbosity level for output (0: nothing(=default), 1: something, 2: some more details)</span></div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> verbosity;</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    dealii::ConditionalOStream pcout;</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  };</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    transfer_solution_constant_dofs(</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      dealii::DoFHandler&lt;dim&gt;                               &amp;cut_dof_handler,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      dealii::Triangulation&lt;dim&gt;                            &amp;tria,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      <span class="keyword">const</span> std::vector&lt;const VectorType *&gt;                 &amp;cut_solutions,</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt;        &amp;mesh_classifier_old,</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt;        &amp;mesh_classifier,</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(<a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;)&gt;               &amp;reinit_cut_vector,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>()&gt;                           &amp;setup_dof_system,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType&lt;dim, VectorType&gt;</a> &amp;attach_vectors = {});</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    mark_dofs_for_gp_extrapolation(</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      <span class="keyword">const</span> dealii::DoFHandler&lt;dim&gt;                  &amp;cut_dof_handler,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt; &amp;mesh_classifier,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt; &amp;mesh_classifier_old) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    dealii::AffineConstraints&lt;Number&gt;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    create_constraints_gp_extrapolation(<span class="keyword">const</span> dealii::DoFHandler&lt;dim&gt; &amp;cut_dof_handler,</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                                        <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;flags_dofs_gp_extrapolation) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    extrapolate_solution_new_dofs(</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>      <span class="keyword">const</span> dealii::DoFHandler&lt;dim&gt;                  &amp;cut_dof_handler,</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>      <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt; &amp;mesh_classifier,</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>      <span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt; &amp;mesh_classifier_old,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(<a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">VectorType</a> &amp;)&gt;        &amp;reinit_vector);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    std::vector&lt;VectorType&gt; new_solutions;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> fe_degree;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="comment">// components of the solution in one phase</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="comment">// (for scalar-valued solutions: 1, for vector-valued solutions: &gt;1)</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_components_per_phase;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordtype">bool</span>         is_dg;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keyword">const</span> Number gamma_degree_0;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keyword">const</span> Number gamma_degree_1;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keyword">const</span> Number gamma_degree_2;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span>   is_two_phase;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="comment">// verbosity level for output (0: nothing(=default), 1: something, 2: some more details)</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> verbosity;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    dealii::ConditionalOStream pcout;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  };</div>
 </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>} <span class="comment">// namespace MeltPoolDG::CutUtil</span></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html">MeltPoolDG::CutUtil::SolutionTransferOperator</a></div><div class="ttdef"><b>Definition</b> solution_transfer.hpp:25</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html_a16c061f90e439a38d3569197537148b1"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a16c061f90e439a38d3569197537148b1">MeltPoolDG::CutUtil::SolutionTransferOperator::reinit</a></div><div class="ttdeci">void reinit(dealii::DoFHandler&lt; dim &gt; &amp;cut_dof_handler, dealii::Triangulation&lt; dim &gt; &amp;tria, const VectorType &amp;cut_solution, const dealii::NonMatching::MeshClassifier&lt; dim &gt; &amp;mesh_classifier_old, const dealii::NonMatching::MeshClassifier&lt; dim &gt; &amp;mesh_classifier, const std::function&lt; void(VectorType &amp;)&gt; &amp;reinit_cut_vector, const std::function&lt; void()&gt; &amp;setup_dof_system, const AMR::AttachDoFHandlerAndVectorsType&lt; dim, VectorType &gt; &amp;attach_vectors={})</div><div class="ttdef"><b>Definition</b> solution_transfer.cpp:178</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html_a16c3695d23e9c11bcacf011eeb57456b"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a16c3695d23e9c11bcacf011eeb57456b">MeltPoolDG::CutUtil::SolutionTransferOperator::get_updated_solution</a></div><div class="ttdeci">const VectorType &amp; get_updated_solution() const</div><div class="ttdef"><b>Definition</b> solution_transfer.hpp:78</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html_a2fc0cc64fa53c11a076f1d553ad33db5"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a2fc0cc64fa53c11a076f1d553ad33db5">MeltPoolDG::CutUtil::SolutionTransferOperator::get_updated_solutions</a></div><div class="ttdeci">const std::vector&lt; VectorType &gt; &amp; get_updated_solutions() const</div><div class="ttdef"><b>Definition</b> solution_transfer.hpp:66</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html_a43e110aa5434b26e9db5f47aed8f28c9"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a43e110aa5434b26e9db5f47aed8f28c9">MeltPoolDG::CutUtil::SolutionTransferOperator::get_updated_solution</a></div><div class="ttdeci">VectorType &amp; get_updated_solution()</div><div class="ttdef"><b>Definition</b> solution_transfer.hpp:88</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html_ad32a898695c2c46b1dac8fb4efbe8672"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">MeltPoolDG::CutUtil::SolutionTransferOperator::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; Number &gt; VectorType</div><div class="ttdef"><b>Definition</b> solution_transfer.hpp:27</div></div>
-<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html_ad3eb927ec0139373e57cf0883b4e0995"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad3eb927ec0139373e57cf0883b4e0995">MeltPoolDG::CutUtil::SolutionTransferOperator::get_updated_solutions</a></div><div class="ttdeci">std::vector&lt; VectorType &gt; &amp; get_updated_solutions()</div><div class="ttdef"><b>Definition</b> solution_transfer.hpp:72</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1AMR_html_a84197de0e2b83e3ae1ffbcd03dde8c37"><div class="ttname"><a href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">MeltPoolDG::AMR::AttachDoFHandlerAndVectorsType</a></div><div class="ttdeci">std::function&lt; void(DoFHandlerAndVectorDataType&lt; dim, VectorType &gt; &amp;)&gt; AttachDoFHandlerAndVectorsType</div><div class="ttdef"><b>Definition</b> amr.hpp:25</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1CutUtil_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CutUtil.html">MeltPoolDG::CutUtil</a></div><div class="ttdef"><b>Definition</b> amr.hpp:14</div></div>
-<div class="ttc" id="autilities_2amr_8hpp_html"><div class="ttname"><a href="utilities_2amr_8hpp.html">amr.hpp</a></div></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>} <span class="comment">// namespace MeltPoolDG::CutUtil</span></div>
+<div class="ttc" id="aattach__vectors_8hpp_html"><div class="ttname"><a href="attach__vectors_8hpp.html">attach_vectors.hpp</a></div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html">MeltPoolDG::CutUtil::SolutionTransferOperator</a></div><div class="ttdef"><b>Definition</b> solution_transfer.hpp:24</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html_a16c3695d23e9c11bcacf011eeb57456b"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a16c3695d23e9c11bcacf011eeb57456b">MeltPoolDG::CutUtil::SolutionTransferOperator::get_updated_solution</a></div><div class="ttdeci">const VectorType &amp; get_updated_solution() const</div><div class="ttdef"><b>Definition</b> solution_transfer.hpp:79</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html_a2fc0cc64fa53c11a076f1d553ad33db5"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a2fc0cc64fa53c11a076f1d553ad33db5">MeltPoolDG::CutUtil::SolutionTransferOperator::get_updated_solutions</a></div><div class="ttdeci">const std::vector&lt; VectorType &gt; &amp; get_updated_solutions() const</div><div class="ttdef"><b>Definition</b> solution_transfer.hpp:67</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html_a43e110aa5434b26e9db5f47aed8f28c9"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a43e110aa5434b26e9db5f47aed8f28c9">MeltPoolDG::CutUtil::SolutionTransferOperator::get_updated_solution</a></div><div class="ttdeci">VectorType &amp; get_updated_solution()</div><div class="ttdef"><b>Definition</b> solution_transfer.hpp:89</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html_a5ad738cecbe824f3a329fc4216c2fd9b"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#a5ad738cecbe824f3a329fc4216c2fd9b">MeltPoolDG::CutUtil::SolutionTransferOperator::reinit</a></div><div class="ttdeci">void reinit(dealii::DoFHandler&lt; dim &gt; &amp;cut_dof_handler, dealii::Triangulation&lt; dim &gt; &amp;tria, const VectorType &amp;cut_solution, const dealii::NonMatching::MeshClassifier&lt; dim &gt; &amp;mesh_classifier_old, const dealii::NonMatching::MeshClassifier&lt; dim &gt; &amp;mesh_classifier, const std::function&lt; void(VectorType &amp;)&gt; &amp;reinit_cut_vector, const std::function&lt; void()&gt; &amp;setup_dof_system, const AttachDoFHandlerAndVectorsType&lt; dim, VectorType &gt; &amp;attach_vectors={})</div><div class="ttdef"><b>Definition</b> solution_transfer.cpp:178</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html_ad32a898695c2c46b1dac8fb4efbe8672"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad32a898695c2c46b1dac8fb4efbe8672">MeltPoolDG::CutUtil::SolutionTransferOperator::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; Number &gt; VectorType</div><div class="ttdef"><b>Definition</b> solution_transfer.hpp:26</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator_html_ad3eb927ec0139373e57cf0883b4e0995"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#ad3eb927ec0139373e57cf0883b4e0995">MeltPoolDG::CutUtil::SolutionTransferOperator::get_updated_solutions</a></div><div class="ttdeci">std::vector&lt; VectorType &gt; &amp; get_updated_solutions()</div><div class="ttdef"><b>Definition</b> solution_transfer.hpp:73</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CutUtil_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CutUtil.html">MeltPoolDG::CutUtil</a></div><div class="ttdef"><b>Definition</b> amr.hpp:15</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_adcdaa030a4cfc1fc8e1f9457fa441b05"><div class="ttname"><a href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">MeltPoolDG::AttachDoFHandlerAndVectorsType</a></div><div class="ttdeci">std::function&lt; void(DoFHandlerAndVectorDataType&lt; dim, VectorType &gt; &amp;)&gt; AttachDoFHandlerAndVectorsType</div><div class="ttdef"><b>Definition</b> attach_vectors.hpp:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

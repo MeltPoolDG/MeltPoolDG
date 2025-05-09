@@ -91,12 +91,6 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a46a753fc4400ffb7196224c996c838e6" id="r_a46a753fc4400ffb7196224c996c838e6"><td class="memTemplParams" colspan="2">template&lt;int dim&gt; </td></tr>
 <tr class="memitem:a46a753fc4400ffb7196224c996c838e6"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">MarkCellsForRefinementType</a> = std::function&lt; bool(dealii::Triangulation&lt; dim &gt; &amp;)&gt;</td></tr>
 <tr class="separator:a46a753fc4400ffb7196224c996c838e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af639294e2778037a1a035aef09f9d594" id="r_af639294e2778037a1a035aef09f9d594"><td class="memTemplParams" colspan="2">template&lt;int dim, typename VectorType &gt; </td></tr>
-<tr class="memitem:af639294e2778037a1a035aef09f9d594"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#af639294e2778037a1a035aef09f9d594">DoFHandlerAndVectorDataType</a> = std::vector&lt; std::pair&lt; const dealii::DoFHandler&lt; dim &gt; *, std::function&lt; void(std::vector&lt; VectorType * &gt; &amp;)&gt; &gt; &gt;</td></tr>
-<tr class="separator:af639294e2778037a1a035aef09f9d594"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84197de0e2b83e3ae1ffbcd03dde8c37" id="r_a84197de0e2b83e3ae1ffbcd03dde8c37"><td class="memTemplParams" colspan="2">template&lt;int dim, typename VectorType &gt; </td></tr>
-<tr class="memitem:a84197de0e2b83e3ae1ffbcd03dde8c37"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">AttachDoFHandlerAndVectorsType</a> = std::function&lt; void(<a class="el" href="namespaceMeltPoolDG_1_1AMR.html#af639294e2778037a1a035aef09f9d594">DoFHandlerAndVectorDataType</a>&lt; dim, VectorType &gt; &amp;)&gt;</td></tr>
-<tr class="separator:a84197de0e2b83e3ae1ffbcd03dde8c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -104,7 +98,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a56bfaf15fe564eb5a4d8076de21b25c1"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a56bfaf15fe564eb5a4d8076de21b25c1">now</a> (const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; number &gt; &amp;amr, const int n_time_step)</td></tr>
 <tr class="separator:a56bfaf15fe564eb5a4d8076de21b25c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb77cd3b3f17e28a6dd9aaa47d1be278" id="r_aeb77cd3b3f17e28a6dd9aaa47d1be278"><td class="memTemplParams" colspan="2">template&lt;int dim, typename VectorType , typename number  = typename VectorType::value_type&gt; </td></tr>
-<tr class="memitem:aeb77cd3b3f17e28a6dd9aaa47d1be278"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#aeb77cd3b3f17e28a6dd9aaa47d1be278">refine_grid</a> (const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">MarkCellsForRefinementType</a>&lt; dim &gt; &amp;mark_cells_for_refinement, const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">AttachDoFHandlerAndVectorsType</a>&lt; dim, VectorType &gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;post, const std::function&lt; void()&gt; &amp;setup_dof_system, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; number &gt; &amp;amr, dealii::Triangulation&lt; dim &gt; &amp;tria, const int n_time_step)</td></tr>
+<tr class="memitem:aeb77cd3b3f17e28a6dd9aaa47d1be278"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#aeb77cd3b3f17e28a6dd9aaa47d1be278">refine_grid</a> (const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">MarkCellsForRefinementType</a>&lt; dim &gt; &amp;mark_cells_for_refinement, const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; dim, VectorType &gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;post, const std::function&lt; void()&gt; &amp;setup_dof_system, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; number &gt; &amp;amr, dealii::Triangulation&lt; dim &gt; &amp;tria, const int n_time_step)</td></tr>
 <tr class="separator:aeb77cd3b3f17e28a6dd9aaa47d1be278"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ce41d9dd597a091bab4b1ce21415af6" id="r_a4ce41d9dd597a091bab4b1ce21415af6"><td class="memTemplParams" colspan="2">template&lt;int dim, typename VectorType , typename number &gt; </td></tr>
 <tr class="memitem:a4ce41d9dd597a091bab4b1ce21415af6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a4ce41d9dd597a091bab4b1ce21415af6">refine_grid</a> (const std::function&lt; bool(dealii::Triangulation&lt; dim &gt; &amp;)&gt; &amp;mark_cells_for_refinement, const std::function&lt; void(std::vector&lt; VectorType * &gt; &amp;)&gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;post, const std::function&lt; void()&gt; &amp;setup_dof_system, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; number &gt; &amp;amr, dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const int n_time_step)</td></tr>
@@ -112,11 +106,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a475d4ec94a5742e33a9da1f97a0e081a" id="r_a475d4ec94a5742e33a9da1f97a0e081a"><td class="memTemplParams" colspan="2">template&lt;int dim, typename VectorType , typename number &gt; </td></tr>
 <tr class="memitem:a475d4ec94a5742e33a9da1f97a0e081a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a475d4ec94a5742e33a9da1f97a0e081a">refine_grid</a> (const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">MarkCellsForRefinementType</a>&lt; dim &gt; &amp;mark_cells_for_refinement, const std::function&lt; void(std::vector&lt; VectorType * &gt; &amp;)&gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;post, const std::function&lt; void()&gt; &amp;setup_dof_system, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; number &gt; &amp;amr, dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const int n_time_step)</td></tr>
 <tr class="separator:a475d4ec94a5742e33a9da1f97a0e081a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60135b48f468030f487f703d657171df" id="r_a60135b48f468030f487f703d657171df"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a60135b48f468030f487f703d657171df">refine_grid</a> (const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">MarkCellsForRefinementType</a>&lt; 1 &gt; &amp;, const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">AttachDoFHandlerAndVectorsType</a>&lt; 1, dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &gt; &amp;, const std::function&lt; void()&gt; &amp;, const std::function&lt; void()&gt; &amp;, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; double &gt; &amp;, dealii::Triangulation&lt; 1 &gt; &amp;, const int)</td></tr>
+<tr class="memitem:a60135b48f468030f487f703d657171df" id="r_a60135b48f468030f487f703d657171df"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a60135b48f468030f487f703d657171df">refine_grid</a> (const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">MarkCellsForRefinementType</a>&lt; 1 &gt; &amp;, const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; 1, dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &gt; &amp;, const std::function&lt; void()&gt; &amp;, const std::function&lt; void()&gt; &amp;, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; double &gt; &amp;, dealii::Triangulation&lt; 1 &gt; &amp;, const int)</td></tr>
 <tr class="separator:a60135b48f468030f487f703d657171df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f91e7609b0d8629f1fbb0444d52fd5c" id="r_a7f91e7609b0d8629f1fbb0444d52fd5c"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a7f91e7609b0d8629f1fbb0444d52fd5c">refine_grid</a> (const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">MarkCellsForRefinementType</a>&lt; 2 &gt; &amp;, const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">AttachDoFHandlerAndVectorsType</a>&lt; 2, dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &gt; &amp;, const std::function&lt; void()&gt; &amp;, const std::function&lt; void()&gt; &amp;, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; double &gt; &amp;, dealii::Triangulation&lt; 2 &gt; &amp;, const int)</td></tr>
+<tr class="memitem:a7f91e7609b0d8629f1fbb0444d52fd5c" id="r_a7f91e7609b0d8629f1fbb0444d52fd5c"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a7f91e7609b0d8629f1fbb0444d52fd5c">refine_grid</a> (const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">MarkCellsForRefinementType</a>&lt; 2 &gt; &amp;, const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; 2, dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &gt; &amp;, const std::function&lt; void()&gt; &amp;, const std::function&lt; void()&gt; &amp;, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; double &gt; &amp;, dealii::Triangulation&lt; 2 &gt; &amp;, const int)</td></tr>
 <tr class="separator:a7f91e7609b0d8629f1fbb0444d52fd5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af326a7ec1f57a1cac20eaa894738f53b" id="r_af326a7ec1f57a1cac20eaa894738f53b"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#af326a7ec1f57a1cac20eaa894738f53b">refine_grid</a> (const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">MarkCellsForRefinementType</a>&lt; 3 &gt; &amp;, const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">AttachDoFHandlerAndVectorsType</a>&lt; 3, dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &gt; &amp;, const std::function&lt; void()&gt; &amp;, const std::function&lt; void()&gt; &amp;, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; double &gt; &amp;, dealii::Triangulation&lt; 3 &gt; &amp;, const int)</td></tr>
+<tr class="memitem:af326a7ec1f57a1cac20eaa894738f53b" id="r_af326a7ec1f57a1cac20eaa894738f53b"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#af326a7ec1f57a1cac20eaa894738f53b">refine_grid</a> (const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">MarkCellsForRefinementType</a>&lt; 3 &gt; &amp;, const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; 3, dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &gt; &amp;, const std::function&lt; void()&gt; &amp;, const std::function&lt; void()&gt; &amp;, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; double &gt; &amp;, dealii::Triangulation&lt; 3 &gt; &amp;, const int)</td></tr>
 <tr class="separator:af326a7ec1f57a1cac20eaa894738f53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a5e91e95d07a4a34d0a541771200a7e" id="r_a9a5e91e95d07a4a34d0a541771200a7e"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a9a5e91e95d07a4a34d0a541771200a7e">refine_grid</a> (const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">MarkCellsForRefinementType</a>&lt; 1 &gt; &amp;, const std::function&lt; void(std::vector&lt; dealii::LinearAlgebra::distributed::Vector&lt; double &gt; * &gt; &amp;)&gt; &amp;, const std::function&lt; void()&gt; &amp;, const std::function&lt; void()&gt; &amp;, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; double &gt; &amp;, dealii::DoFHandler&lt; 1 &gt; &amp;, const int)</td></tr>
 <tr class="separator:a9a5e91e95d07a4a34d0a541771200a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,38 +120,6 @@ Functions</h2></td></tr>
 <tr class="separator:a8ca70a01371c65bc95a2b0c0563b08ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="a84197de0e2b83e3ae1ffbcd03dde8c37" name="a84197de0e2b83e3ae1ffbcd03dde8c37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84197de0e2b83e3ae1ffbcd03dde8c37">&#9670;&#160;</a></span>AttachDoFHandlerAndVectorsType</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename VectorType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">MeltPoolDG::AMR::AttachDoFHandlerAndVectorsType</a> = typedef std::function&lt;void(<a class="el" href="namespaceMeltPoolDG_1_1AMR.html#af639294e2778037a1a035aef09f9d594">DoFHandlerAndVectorDataType</a>&lt;dim, VectorType&gt; &amp;)&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af639294e2778037a1a035aef09f9d594" name="af639294e2778037a1a035aef09f9d594"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af639294e2778037a1a035aef09f9d594">&#9670;&#160;</a></span>DoFHandlerAndVectorDataType</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename VectorType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#af639294e2778037a1a035aef09f9d594">MeltPoolDG::AMR::DoFHandlerAndVectorDataType</a> = typedef std::vector&lt; std::pair&lt;const dealii::DoFHandler&lt;dim&gt; *, std::function&lt;void(std::vector&lt;VectorType *&gt; &amp;)&gt; &gt;&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a46a753fc4400ffb7196224c996c838e6" name="a46a753fc4400ffb7196224c996c838e6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a46a753fc4400ffb7196224c996c838e6">&#9670;&#160;</a></span>MarkCellsForRefinementType</h2>
 
@@ -171,6 +133,7 @@ template&lt;int dim&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Type alias definition for the lambda function that determines how the mesh is to be refined. If this function determines that the mesh does not change, it return false, true otherwise. </p>
 
 </div>
 </div>
@@ -210,6 +173,14 @@ template&lt;typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>determine whether the current</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n_time_step</td><td>is chosen to execute <a class="el" href="namespaceMeltPoolDG_1_1AMR.html">AMR</a></td></tr>
+    <tr><td class="paramname">amr</td><td><a class="el" href="namespaceMeltPoolDG_1_1AMR.html">AMR</a> parameters </td></tr>
+    <tr><td class="paramname">n_time_step</td><td>current time step number </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -228,7 +199,7 @@ template&lt;typename number &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">AttachDoFHandlerAndVectorsType</a>&lt; 1, dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; 1, dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &gt; &amp;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
@@ -344,7 +315,7 @@ template&lt;typename number &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">AttachDoFHandlerAndVectorsType</a>&lt; 2, dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; 2, dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &gt; &amp;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
@@ -460,7 +431,7 @@ template&lt;typename number &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">AttachDoFHandlerAndVectorsType</a>&lt; 3, dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; 3, dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &gt; &amp;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
@@ -578,7 +549,7 @@ template&lt;int dim, typename VectorType , typename number  = typename VectorTyp
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a84197de0e2b83e3ae1ffbcd03dde8c37">AttachDoFHandlerAndVectorsType</a>&lt; dim, VectorType &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; dim, VectorType &gt; &amp;&#160;</td>
           <td class="paramname"><em>attach_vectors</em>, </td>
         </tr>
         <tr>
@@ -618,7 +589,24 @@ template&lt;int dim, typename VectorType , typename number  = typename VectorTyp
         </tr>
       </table>
 </div><div class="memdoc">
-<p>TODO document what needs to be done in each of the lambdas </p>
+<p>Refine the mesh in</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tria</td><td>if the</td></tr>
+    <tr><td class="paramname">n_time_step</td><td>is chosen to be refined by <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a56bfaf15fe564eb5a4d8076de21b25c1">now()</a>.</td></tr>
+    <tr><td class="paramname">mark_cells_for_refinement</td><td>lambda function of type MarkCellsForRefinementType, see its documentation for info </td></tr>
+    <tr><td class="paramname">attach_vectors</td><td>lambda function of type AttachDoFHandlerAndVectorsType, that attaches all DoFHandlers and their respective DoFVectors that ought to be transferred to the new mesh </td></tr>
+    <tr><td class="paramname">post</td><td>this lambda function is run after <a class="el" href="namespaceMeltPoolDG_1_1AMR.html">AMR</a> was executed </td></tr>
+    <tr><td class="paramname">setup_dof_system</td><td>setup the dof system, this includes:<ul>
+<li>distribute DoFs on the new mesh</li>
+<li>create pratitioning for the new mesh</li>
+<li>setup constraints on the new mesh</li>
+<li>reinit the MatrixFree object for the new DoFs (<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">ScratchData::build()</a>)</li>
+<li>initialize all DoF vectors for the new DoF </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
