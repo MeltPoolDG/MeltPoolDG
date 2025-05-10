@@ -8,7 +8,7 @@ var searchData=
   ['absorptivity_5ftype_5',['absorptivity_type',['../structMeltPoolDG_1_1RadiativeTransport_1_1RadiativeTransportData.html#a830636d57ab4ef9d77b1deb35327b142',1,'MeltPoolDG::RadiativeTransport::RadiativeTransportData']]],
   ['action_6',['action',['../namespaceaveraged__nusselt.html#a3f4405bc91fcff1dfee1f14a17f16d63',1,'averaged_nusselt']]],
   ['activation_5ftemperature_7',['activation_temperature',['../structMeltPoolDG_1_1Evaporation_1_1RecoilPressureData.html#a255b6ac5384bdbed41f04a6ea245ef9e',1,'MeltPoolDG::Evaporation::RecoilPressureData']]],
-  ['adaflo_5fparams_8',['adaflo_params',['../structMeltPoolDG_1_1MeltPoolCaseParameters.html#a68895cf5ae8fa907830a93b83afa9e63',1,'MeltPoolDG::MeltPoolCaseParameters']]],
+  ['adaflo_5fparams_8',['adaflo_params',['../structMeltPoolDG_1_1MeltPoolCaseParameters.html#add284c3b10bbe9737732010c6a9b6868',1,'MeltPoolDG::MeltPoolCaseParameters']]],
   ['advec_5fdiff_9',['advec_diff',['../structMeltPoolDG_1_1LevelSet_1_1LevelSetData.html#aedb25aa454b4b84cafb0da60c7249f42',1,'MeltPoolDG::LevelSet::LevelSetData::advec_diff'],['../structMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionCaseParameters.html#a0bcce301c919d8a367f263ae5ddedf76',1,'MeltPoolDG::LevelSet::AdvectionDiffusionCaseParameters::advec_diff']]],
   ['advec_5fdiff_5fdata_10',['advec_diff_data',['../classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html#a00917d7808211c60a681a2e20e07aaa4',1,'MeltPoolDG::LevelSet::AdvectionDiffusionOperationBase']]],
   ['advection_5fterm_5fscaling_11',['advection_term_scaling',['../structMeltPoolDG_1_1RadiativeTransport_1_1PseudoTimeSteppingData.html#a2676b269f92e6f016101222f5006d308',1,'MeltPoolDG::RadiativeTransport::PseudoTimeSteppingData']]],

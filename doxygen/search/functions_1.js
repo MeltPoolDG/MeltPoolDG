@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['adaflowrapperparameters_0',['AdafloWrapperParameters',['../structMeltPoolDG_1_1Flow_1_1AdafloWrapperParameters.html#aba59a255c2445b3bfb5e4e3246f6e275',1,'MeltPoolDG::Flow::AdafloWrapperParameters']]],
-  ['add_5fand_5fparse_5fparameters_1',['add_and_parse_parameters',['../namespaceMeltPoolDG.html#a6a258d472a26c8bcc439c58827679a47',1,'MeltPoolDG']]],
+  ['adaflowrapperparameters_0',['AdafloWrapperParameters',['../structMeltPoolDG_1_1Flow_1_1AdafloWrapperParameters.html#a123e7915aafb58c9c2f5c18db4c44154',1,'MeltPoolDG::Flow::AdafloWrapperParameters']]],
+  ['add_5fand_5fparse_5fparameters_1',['add_and_parse_parameters',['../namespaceMeltPoolDG.html#a913a152dc505f1693903d32588a76181',1,'MeltPoolDG']]],
   ['add_5fdata_5fvector_2',['add_data_vector',['../classMeltPoolDG_1_1GenericDataOut.html#a5e45c6f8525cc11ca255e3205cee5972',1,'MeltPoolDG::GenericDataOut::add_data_vector(const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const VectorType &amp;data, const std::vector&lt; std::string &gt; &amp;names, const std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt; &amp;data_component_interpretation=std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt;(), const bool force_output=false)'],['../classMeltPoolDG_1_1GenericDataOut.html#a3c8d298090c7536c669be9d06cdfe5a0',1,'MeltPoolDG::GenericDataOut::add_data_vector(const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const VectorType &amp;data, const std::string &amp;name, const bool force_output=false)']]],
   ['add_5finfo_3',['add_info',['../classMeltPoolDG_1_1CellMonitor.html#a1c12e6ec19df95e441a4ec4f7fcac0e6',1,'MeltPoolDG::CellMonitor']]],
   ['add_5flinear_5fiterations_4',['add_linear_iterations',['../classMeltPoolDG_1_1IterationMonitor.html#a74230edf5364e2cab6720e99e534d803',1,'MeltPoolDG::IterationMonitor']]],
