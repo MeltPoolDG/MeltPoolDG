@@ -56,24 +56,32 @@ class AnotherClass;
 class MyClass {
 // 5) Public section
 public:
-    // 6) Constructors & Destructor
-    MyClass();
-    explicit MyClass(const std::string& name);
-    ~MyClass();
-
-    // 7) Public Methods
-    void doSomething() const;
-    std::string getName() const;
-
-// 8) Private or Protected section
-private:
-    // 9) Using directives
+    // 6) Using directives
     using VectorType = std::vector<double>;
 
-    // 10) Private members and functions
+    // 7) Public data members
+    // (only if absolutely necessary; private members + getter functions are preferred)
+    int id;
+    std::string label;
+
+    // 8) Constructors
+    MyClass() = default;
+    // keyword explicit prevents implicit conversion like: MyClass obj = "example";
+    explicit MyClass(const std::string& name);
+
+    // 9) Public Methods
+    void doSomething();
+    // mark const if class members are not intended to be modified
+    std::string getName() const;
+
+// 10) Private or Protected section
+private:
+
+    // 11) Private members 
     std::string name;
     std::vector<int> data;
 
+    // ... and functions
     void helperFunction();
 };
 

@@ -144,24 +144,32 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span>
 <span class="c1">// 5) Public section</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">    </span><span class="c1">// 6) Constructors &amp; Destructor</span>
-<span class="w">    </span><span class="n">MyClass</span><span class="p">();</span>
-<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">MyClass</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
-<span class="w">    </span><span class="o">~</span><span class="n">MyClass</span><span class="p">();</span>
-
-<span class="w">    </span><span class="c1">// 7) Public Methods</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">doSomething</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getName</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-
-<span class="c1">// 8) Private or Protected section</span>
-<span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="c1">// 9) Using directives</span>
+<span class="w">    </span><span class="c1">// 6) Using directives</span>
 <span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">VectorType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1">// 10) Private members and functions</span>
+<span class="w">    </span><span class="c1">// 7) Public data members</span>
+<span class="w">    </span><span class="c1">// (only if absolutely necessary; private members + getter functions are preferred)</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">label</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 8) Constructors</span>
+<span class="w">    </span><span class="n">MyClass</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// keyword explicit prevents implicit conversion like: MyClass obj = &quot;example&quot;;</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">MyClass</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 9) Public Methods</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">doSomething</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// mark const if class members are not intended to be modified</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getName</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+
+<span class="c1">// 10) Private or Protected section</span>
+<span class="k">private</span><span class="o">:</span>
+
+<span class="w">    </span><span class="c1">// 11) Private members </span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
 
+<span class="w">    </span><span class="c1">// ... and functions</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">helperFunction</span><span class="p">();</span>
 <span class="p">};</span>
 
