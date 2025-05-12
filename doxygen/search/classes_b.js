@@ -15,7 +15,8 @@ var searchData=
   ['levelsetheaviside_12',['LevelSetHeaviside',['../classMeltPoolDG_1_1Simulation_1_1RadiativeTransport_1_1LevelSetHeaviside.html',1,'MeltPoolDG::Simulation::RadiativeTransport']]],
   ['levelsetoperation_13',['LevelSetOperation',['../classMeltPoolDG_1_1LevelSet_1_1LevelSetOperation.html',1,'MeltPoolDG::LevelSet']]],
   ['levelsetoperationbase_14',['LevelSetOperationBase',['../classMeltPoolDG_1_1LevelSet_1_1LevelSetOperationBase.html',1,'MeltPoolDG::LevelSet']]],
-  ['linearsolver_15',['LinearSolver',['../classMeltPoolDG_1_1LinearSolver.html',1,'MeltPoolDG']]],
-  ['lineartemp_16',['LinearTemp',['../classMeltPoolDG_1_1Simulation_1_1UnidirectionalHeatTransfer_1_1LinearTemp.html',1,'MeltPoolDG::Simulation::UnidirectionalHeatTransfer']]],
-  ['lowstorageexplicitrungekuttaintegrator_17',['LowStorageExplicitRungeKuttaIntegrator',['../classMeltPoolDG_1_1TimeIntegration_1_1LowStorageExplicitRungeKuttaIntegrator.html',1,'MeltPoolDG::TimeIntegration']]]
+  ['lineariterationstatistics_15',['LinearIterationStatistics',['../structMeltPoolDG_1_1IterationMonitor_1_1LinearIterationStatistics.html',1,'MeltPoolDG::IterationMonitor']]],
+  ['linearsolver_16',['LinearSolver',['../classMeltPoolDG_1_1LinearSolver.html',1,'MeltPoolDG']]],
+  ['lineartemp_17',['LinearTemp',['../classMeltPoolDG_1_1Simulation_1_1UnidirectionalHeatTransfer_1_1LinearTemp.html',1,'MeltPoolDG::Simulation::UnidirectionalHeatTransfer']]],
+  ['lowstorageexplicitrungekuttaintegrator_18',['LowStorageExplicitRungeKuttaIntegrator',['../classMeltPoolDG_1_1TimeIntegration_1_1LowStorageExplicitRungeKuttaIntegrator.html',1,'MeltPoolDG::TimeIntegration']]]
 ];

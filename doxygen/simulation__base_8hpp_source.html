@@ -137,7 +137,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SimulationCaseBase.html#a85dce91cfa0f6b88cbabb38975af121f">   70</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a85dce91cfa0f6b88cbabb38975af121f">create</a>()</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      parse_simulation_specific_parameters();</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a59315617e21f7d0ec5c4268adfdbac2b">parse_simulation_specific_parameters</a>();</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#aae87817419d960e93a7e86fbea03ffad">create_spatial_discretization</a>();</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      AssertThrow(</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        this-&gt;triangulation,</div>
@@ -159,17 +159,17 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                           <span class="keyword">const</span> std::string &amp;operation_name,</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                           <span class="keyword">const</span> <span class="keywordtype">bool</span>         is_optional = <span class="keyword">true</span>)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      AssertThrow(is_optional || boundary_conditions_map.contains(operation_name),</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      AssertThrow(is_optional || <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>.contains(operation_name),</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                  dealii::ExcMessage(</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                    <span class="stringliteral">&quot;BC for &quot;</span> + operation_name +</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                    <span class="stringliteral">&quot; not found. &quot;</span></div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                    <span class="stringliteral">&quot;Did you forget to register the operation via &quot;</span></div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                    <span class="stringliteral">&quot;attach_boundary_condition({id, function} ,operation_name, function)?&quot;</span>));</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <span class="keywordflow">if</span> (!boundary_conditions_map.contains(operation_name))</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>.contains(operation_name))</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">return</span> std::map&lt;dealii::types::boundary_id, std::shared_ptr&lt;dealii::Function&lt;dim&gt;&gt;&gt;();</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>      <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordflow">return</span> boundary_conditions_map.at(operation_name)-&gt;get_bc_of_type(type, is_optional);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>.at(operation_name)-&gt;get_bc_of_type(type, is_optional);</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    }</div>
 </div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
@@ -178,17 +178,17 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SimulationCaseBase.html#a8a8ca48c4a67b0c4862e270e42334f04">  125</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a8a8ca48c4a67b0c4862e270e42334f04">get_boundary_condition_manager</a>(<span class="keyword">const</span> std::string &amp;operation_name,</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                                   <span class="keyword">const</span> <span class="keywordtype">bool</span>         is_optional = <span class="keyword">true</span>)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>      AssertThrow(is_optional || boundary_conditions_map.contains(operation_name),</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>      AssertThrow(is_optional || <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>.contains(operation_name),</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                  dealii::ExcMessage(</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                    <span class="stringliteral">&quot;BC for &quot;</span> + operation_name +</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                    <span class="stringliteral">&quot; not found. &quot;</span></div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                    <span class="stringliteral">&quot;Did you forget to register the operation via &quot;</span></div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                    <span class="stringliteral">&quot;attach_boundary_condition({id, function} ,operation_name, function)?&quot;</span>));</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>      <span class="keywordflow">if</span> (!boundary_conditions_map.contains(operation_name))</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>      <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>.contains(operation_name))</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordflow">return</span> std::make_shared&lt;BoundaryConditionManager&lt;dim, number&gt;&gt;();</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        <span class="keywordflow">return</span> boundary_conditions_map.at(operation_name);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>.at(operation_name);</div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    }</div>
 </div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
@@ -197,14 +197,14 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SimulationCaseBase.html#a447136f32fb1b470dc92ad30cb6bd43e">  151</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a447136f32fb1b470dc92ad30cb6bd43e">get_boundary_condition_type</a>(dealii::types::boundary_id boundary_id,</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                                <span class="keyword">const</span> std::string         &amp;operation_name)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>      AssertThrow(!boundary_conditions_map[operation_name].empty(),</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>      AssertThrow(!<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>[operation_name].empty(),</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                  dealii::ExcMessage(</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                    <span class="stringliteral">&quot;BC for &quot;</span> + operation_name +</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                    <span class="stringliteral">&quot; not found. &quot;</span></div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                    <span class="stringliteral">&quot;Did you forget to register the operation via &quot;</span></div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                    <span class="stringliteral">&quot;attach_boundary_condition({id, function} ,operation_name, function)?&quot;</span>));</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      <span class="keywordflow">return</span> boundary_conditions_map.at(operation_name)-&gt;get_type(boundary_id);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>.at(operation_name)-&gt;get_type(boundary_id);</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    }</div>
 </div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
@@ -212,7 +212,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="foldopen" id="foldopen00172" data-start="{" data-end="}">
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SimulationCaseBase.html#a977b62b3c6779b505a56feb51a2a1506">  172</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a977b62b3c6779b505a56feb51a2a1506">set_time_boundary_conditions</a>(<span class="keyword">const</span> number time)</div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    {</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;[operation, bc] : boundary_conditions_map)</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;[operation, bc] : <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>)</div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        bc-&gt;set_time(time);</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    }</div>
 </div>
@@ -223,7 +223,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                       <span class="keyword">const</span> std::string &amp;operation_name,</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                       <span class="keyword">const</span> <span class="keywordtype">bool</span>         is_optional = <span class="keyword">false</span>)</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    {</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>      <span class="keyword">auto</span> field_conditions = field_functions[operation_name];</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>      <span class="keyword">auto</span> field_conditions = <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a760906211ab6ce7c41c3739786c4b8b1">field_functions</a>[operation_name];</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>      AssertThrow(is_optional || (!field_conditions.empty() &amp;&amp; field_conditions[type]),</div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                  ExcFieldNotAttached(type, operation_name));</div>
@@ -245,7 +245,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="foldopen" id="foldopen00227" data-start="{" data-end="}">
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SimulationCaseBase.html#a414ec8b89ed5b5726eeef17cbbe39347">  227</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a414ec8b89ed5b5726eeef17cbbe39347">get_periodic_bc</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>      <span class="keywordflow">return</span> periodic_boundary_conditions;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a17b6f9e98a7da71b869d7c53a6a98343">periodic_boundary_conditions</a>;</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    }</div>
 </div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
@@ -284,7 +284,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>                          <span class="keyword">const</span> std::string                     &amp;type,</div>
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>                          <span class="keyword">const</span> std::string                     &amp;operation_name)</div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    {</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>      field_functions[operation_name][type] = function;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a760906211ab6ce7c41c3739786c4b8b1">field_functions</a>[operation_name][type] = function;</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    }</div>
 </div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
@@ -306,11 +306,11 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>      <span class="keyword">const</span> std::string &amp;operation_name)</div>
 <div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    {</div>
 <div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>      <span class="comment">// create boundary conditions object for a given operation_name if it has not yet been created</span></div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>      <span class="keywordflow">if</span> (!boundary_conditions_map[operation_name])</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        boundary_conditions_map[operation_name] =</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>      <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>[operation_name])</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>[operation_name] =</div>
 <div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>          std::make_shared&lt;BoundaryConditionManager&lt;dim, number&gt;&gt;();</div>
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>      boundary_conditions_map[operation_name]-&gt;attach_boundary_condition(id_and_function, type);</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>[operation_name]-&gt;attach_boundary_condition(id_and_function, type);</div>
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    }</div>
 </div>
 <div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
@@ -334,7 +334,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>                  dealii::ExcMessage(<span class="stringliteral">&quot;You try to pass periodic faces but the triangulation &quot;</span></div>
 <div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>                                     <span class="stringliteral">&quot;is still empty.&quot;</span>));</div>
 <div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> </div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>      periodic_boundary_conditions.attach_boundary_condition(id_in, id_out, direction);</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a17b6f9e98a7da71b869d7c53a6a98343">periodic_boundary_conditions</a>.attach_boundary_condition(id_in, id_out, direction);</div>
 <div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span> </div>
 <div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>      <span class="comment">// distribute periodic bc to the triangulation</span></div>
 <div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>      std::vector&lt;</div>
@@ -349,20 +349,21 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
 <div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>  <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    <span class="comment">// Manager for periodic boundary conditions</span></div>
-<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    <a class="code hl_struct" href="structMeltPoolDG_1_1PeriodicBoundaryConditions.html">PeriodicBoundaryConditions&lt;dim&gt;</a> periodic_boundary_conditions;</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SimulationCaseBase.html#a17b6f9e98a7da71b869d7c53a6a98343">  404</a></span>    <a class="code hl_struct" href="structMeltPoolDG_1_1PeriodicBoundaryConditions.html">PeriodicBoundaryConditions&lt;dim&gt;</a> <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a17b6f9e98a7da71b869d7c53a6a98343">periodic_boundary_conditions</a>;</div>
 <div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
 <div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    <span class="comment">// nested dictionary for storing field functions as</span></div>
 <div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>    <span class="comment">// field_functions[&lt;operation_name&gt;][&lt;type&gt;] = &lt;function&gt;.</span></div>
 <div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    <span class="comment">// The &lt;operation_name&gt; and &lt;type&gt; are specified in the respective applications.</span></div>
 <div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    std::map&lt;std::string, std::map&lt;std::string, std::shared_ptr&lt;dealii::Function&lt;dim&gt;&gt;&gt;&gt;</div>
-<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>      field_functions;</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SimulationCaseBase.html#a760906211ab6ce7c41c3739786c4b8b1">  410</a></span>      <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a760906211ab6ce7c41c3739786c4b8b1">field_functions</a>;</div>
 <div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span> </div>
 <div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    <span class="comment">// This map organizes boundary conditions hierarchically based on operation names.</span></div>
 <div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>    std::map&lt;std::string, std::shared_ptr&lt;BoundaryConditionManager&lt;dim, number&gt;&gt;&gt;</div>
-<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>      boundary_conditions_map;</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">  414</a></span>      <a class="code hl_variable" href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">boundary_conditions_map</a>;</div>
 <div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span> </div>
 <div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>    <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>    parse_simulation_specific_parameters()</div>
+<div class="foldopen" id="foldopen00420" data-start="{" data-end="}">
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SimulationCaseBase.html#a59315617e21f7d0ec5c4268adfdbac2b">  420</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1SimulationCaseBase.html#a59315617e21f7d0ec5c4268adfdbac2b">parse_simulation_specific_parameters</a>()</div>
 <div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>    {</div>
 <div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>      <span class="keywordtype">bool</span> enable_print = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>      <a class="code hl_function" href="namespaceMeltPoolDG.html#a913a152dc505f1693903d32588a76181">add_and_parse_parameters</a>(</div>
@@ -374,6 +375,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>        <span class="keyword">false</span> <span class="comment">/* print details */</span>,</div>
 <div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>        <span class="keyword">true</span> <span class="comment">/* skip undefined parameters */</span>);</div>
 <div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>    }</div>
+</div>
 <div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>  };</div>
 </div>
 <div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
@@ -532,6 +534,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="acase__factory_8hpp_html"><div class="ttname"><a href="case__factory_8hpp.html">case_factory.hpp</a></div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1GenericDataOut_html"><div class="ttname"><a href="classMeltPoolDG_1_1GenericDataOut.html">MeltPoolDG::GenericDataOut</a></div><div class="ttdef"><b>Definition</b> generic_data_out.hpp:13</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html">MeltPoolDG::SimulationCaseBase</a></div><div class="ttdoc">Base class for managing a simulation case in a parallel computing environment.</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:44</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a0f45926be0e884b4e1da436de8fc43d0"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a0f45926be0e884b4e1da436de8fc43d0">MeltPoolDG::SimulationCaseBase::boundary_conditions_map</a></div><div class="ttdeci">std::map&lt; std::string, std::shared_ptr&lt; BoundaryConditionManager&lt; dim, number &gt; &gt; &gt; boundary_conditions_map</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:414</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a17b6f9e98a7da71b869d7c53a6a98343"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a17b6f9e98a7da71b869d7c53a6a98343">MeltPoolDG::SimulationCaseBase::periodic_boundary_conditions</a></div><div class="ttdeci">PeriodicBoundaryConditions&lt; dim &gt; periodic_boundary_conditions</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:404</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a24666ed034684d29ba6b468ca9ea80d6"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a24666ed034684d29ba6b468ca9ea80d6">MeltPoolDG::SimulationCaseBase::get_initial_condition</a></div><div class="ttdeci">std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; get_initial_condition(const std::string &amp;operation_name, const bool is_optional=false)</div><div class="ttdoc">Retrieve the initial condition for a given operation.</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:216</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a31fa5dea9882359a67228181bdd885d9"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a31fa5dea9882359a67228181bdd885d9">MeltPoolDG::SimulationCaseBase::add_simulation_specific_parameters</a></div><div class="ttdeci">virtual bool add_simulation_specific_parameters(dealii::ParameterHandler &amp;)</div><div class="ttdoc">Add simulation-specific parameters (can be overridden).</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:283</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a377911625665457a36c62b82b9fee095"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a377911625665457a36c62b82b9fee095">MeltPoolDG::SimulationCaseBase::SimulationCaseBase</a></div><div class="ttdeci">SimulationCaseBase(const std::string &amp;parameter_file_in, MPI_Comm mpi_communicator_in)</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:56</div></div>
@@ -540,7 +544,9 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a414ec8b89ed5b5726eeef17cbbe39347"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a414ec8b89ed5b5726eeef17cbbe39347">MeltPoolDG::SimulationCaseBase::get_periodic_bc</a></div><div class="ttdeci">const PeriodicBoundaryConditions&lt; dim &gt; &amp; get_periodic_bc() const</div><div class="ttdoc">Get the periodic boundary condition manager.</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:227</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a447136f32fb1b470dc92ad30cb6bd43e"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a447136f32fb1b470dc92ad30cb6bd43e">MeltPoolDG::SimulationCaseBase::get_boundary_condition_type</a></div><div class="ttdeci">std::string get_boundary_condition_type(dealii::types::boundary_id boundary_id, const std::string &amp;operation_name) const</div><div class="ttdoc">Retrieve the type of a boundary condition for a specific boundary ID and operation.</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:151</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a476287d51a6c38432eba4eab3371303f"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a476287d51a6c38432eba4eab3371303f">MeltPoolDG::SimulationCaseBase::triangulation</a></div><div class="ttdeci">std::shared_ptr&lt; dealii::Triangulation&lt; dim, spacedim &gt; &gt; triangulation</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:47</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a59315617e21f7d0ec5c4268adfdbac2b"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a59315617e21f7d0ec5c4268adfdbac2b">MeltPoolDG::SimulationCaseBase::parse_simulation_specific_parameters</a></div><div class="ttdeci">void parse_simulation_specific_parameters()</div><div class="ttdoc">Parses simulation-specific parameters.</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:420</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a626736036a07361557cd403648af3175"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a626736036a07361557cd403648af3175">MeltPoolDG::SimulationCaseBase::parameter_file</a></div><div class="ttdeci">const std::string parameter_file</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:50</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a760906211ab6ce7c41c3739786c4b8b1"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a760906211ab6ce7c41c3739786c4b8b1">MeltPoolDG::SimulationCaseBase::field_functions</a></div><div class="ttdeci">std::map&lt; std::string, std::map&lt; std::string, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; &gt; field_functions</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:410</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a7860dbc12f533ac1b451d29f99a6b495"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a7860dbc12f533ac1b451d29f99a6b495">MeltPoolDG::SimulationCaseBase::do_postprocessing</a></div><div class="ttdeci">virtual void do_postprocessing(const GenericDataOut&lt; dim, number &gt; &amp;generic_data_out) const</div><div class="ttdoc">Perform specific postprocessing (can be overridden by derived classes).</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:240</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a85dce91cfa0f6b88cbabb38975af121f"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a85dce91cfa0f6b88cbabb38975af121f">MeltPoolDG::SimulationCaseBase::create</a></div><div class="ttdeci">void create()</div><div class="ttdoc">Main setup function to initialize the simulation.</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:70</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1SimulationCaseBase_html_a8a8ca48c4a67b0c4862e270e42334f04"><div class="ttname"><a href="classMeltPoolDG_1_1SimulationCaseBase.html#a8a8ca48c4a67b0c4862e270e42334f04">MeltPoolDG::SimulationCaseBase::get_boundary_condition_manager</a></div><div class="ttdeci">std::shared_ptr&lt; BoundaryConditionManager&lt; dim, number &gt; &gt; get_boundary_condition_manager(const std::string &amp;operation_name, const bool is_optional=true) const</div><div class="ttdoc">Retrieve the boundary condition object for a specific operation.</div><div class="ttdef"><b>Definition</b> simulation_base.hpp:125</div></div>

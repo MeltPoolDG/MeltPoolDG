@@ -9,9 +9,11 @@ var searchData=
   ['_5fhas_5finitializer_6',['_has_initializer',['../namespacebetter__enums.html#a9f325b8d097599d0529c1fde530adfab',1,'better_enums']]],
   ['_5finitialize_5fat_5fprogram_5fstart_7',['_initialize_at_program_start',['../structbetter__enums_1_1__initialize__at__program__start.html#a7f631b2c0e200f97737f2a1e7b4254cb',1,'better_enums::_initialize_at_program_start']]],
   ['_5fiterable_8',['_iterable',['../structbetter__enums_1_1__iterable.html#a0c44e8035fbb66814732fb2f8fe2cbdc',1,'better_enums::_iterable']]],
-  ['_5fnames_5fmatch_9',['_names_match',['../namespacebetter__enums.html#a55572a154e665d346ff54a7f3fae97be',1,'better_enums']]],
-  ['_5fnames_5fmatch_5fnocase_10',['_names_match_nocase',['../namespacebetter__enums.html#a05f9c94b194edf158078e65d00834d3d',1,'better_enums']]],
-  ['_5fselect_11',['_select',['../namespacebetter__enums.html#a9d3f1ff4fa870174a2e7456f6f297214',1,'better_enums']]],
-  ['_5fto_5flower_5fascii_12',['_to_lower_ascii',['../namespacebetter__enums.html#a281e8269fa7da68d68c937ad9205f5b1',1,'better_enums']]],
-  ['_5ftrim_5fnames_13',['_trim_names',['../namespacebetter__enums.html#a8687d1e2909ae8f3a63eff46d5623347',1,'better_enums']]]
+  ['_5fmap_5findex_9',['_map_index',['../namespacebetter__enums.html#af159e41110a7aa2bd380d76d407ebf76',1,'better_enums']]],
+  ['_5fnames_5fmatch_10',['_names_match',['../namespacebetter__enums.html#a55572a154e665d346ff54a7f3fae97be',1,'better_enums']]],
+  ['_5fnames_5fmatch_5fnocase_11',['_names_match_nocase',['../namespacebetter__enums.html#a05f9c94b194edf158078e65d00834d3d',1,'better_enums']]],
+  ['_5for_5fzero_12',['_or_zero',['../namespacebetter__enums.html#a7e9c530cb968a0b599ae9ed6d4124c2b',1,'better_enums']]],
+  ['_5fselect_13',['_select',['../namespacebetter__enums.html#a9d3f1ff4fa870174a2e7456f6f297214',1,'better_enums']]],
+  ['_5fto_5flower_5fascii_14',['_to_lower_ascii',['../namespacebetter__enums.html#a281e8269fa7da68d68c937ad9205f5b1',1,'better_enums']]],
+  ['_5ftrim_5fnames_15',['_trim_names',['../namespacebetter__enums.html#a8687d1e2909ae8f3a63eff46d5623347',1,'better_enums']]]
 ];

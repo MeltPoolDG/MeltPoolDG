@@ -72,6 +72,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classSimulationCaseFactory-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">SimulationCaseFactory&lt; CaseType &gt; Class Template Reference</div></div>
 </div><!--header-->
@@ -104,6 +105,12 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:afa6734437a0539b0f259e0a7a0c8b457" id="r_afa6734437a0539b0f259e0a7a0c8b457"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; CaseType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulationCaseFactory.html#afa6734437a0539b0f259e0a7a0c8b457">create_simulation</a> (const std::string name, const std::string parameter_file, const MPI_Comm mpi_communicator)</td></tr>
 <tr class="memdesc:afa6734437a0539b0f259e0a7a0c8b457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an instance of a registered simulation case.  <br /></td></tr>
 <tr class="separator:afa6734437a0539b0f259e0a7a0c8b457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a8b707c6feaa60d74d447db67962b0eff" id="r_a8b707c6feaa60d74d447db67962b0eff"><td class="memItemLeft" align="right" valign="top">static std::map&lt; std::string, <a class="el" href="classSimulationCaseFactory.html#a57c99e39b2420ad0ef686bcb6221422d">SimulationCreator</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulationCaseFactory.html#a8b707c6feaa60d74d447db67962b0eff">creators</a></td></tr>
+<tr class="memdesc:a8b707c6feaa60d74d447db67962b0eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores registered simulation case creators.  <br /></td></tr>
+<tr class="separator:a8b707c6feaa60d74d447db67962b0eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename CaseType&gt;<br />
@@ -250,6 +257,34 @@ template&lt;typename CaseType &gt; </div>
   </dd>
 </dl>
 <p>This function ensures that each simulation case is registered only once. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a8b707c6feaa60d74d447db67962b0eff" name="a8b707c6feaa60d74d447db67962b0eff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b707c6feaa60d74d447db67962b0eff">&#9670;&#160;</a></span>creators</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename CaseType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, <a class="el" href="classSimulationCaseFactory.html#a57c99e39b2420ad0ef686bcb6221422d">SimulationCreator</a>&gt; <a class="el" href="classSimulationCaseFactory.html">SimulationCaseFactory</a>&lt; CaseType &gt;::creators</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stores registered simulation case creators. </p>
+<p>A static map that associates simulation case names with their corresponding creator functions. </p>
 
 </div>
 </div>

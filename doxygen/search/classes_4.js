@@ -20,5 +20,6 @@ var searchData=
   ['dirichletcondition_17',['dirichletcondition',['../classMeltPoolDG_1_1Simulation_1_1FlowPastCylinder_1_1DirichletCondition.html',1,'MeltPoolDG::Simulation::FlowPastCylinder::DirichletCondition&lt; dim &gt;'],['../classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1DirichletCondition.html',1,'MeltPoolDG::Simulation::VortexBubble::DirichletCondition&lt; dim, number &gt;'],['../classMeltPoolDG_1_1Simulation_1_1VortexBubbleDG_1_1DirichletCondition.html',1,'MeltPoolDG::Simulation::VortexBubbleDG::DirichletCondition&lt; dim, number &gt;']]],
   ['dirichletconditions_18',['DirichletConditions',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusionDG_1_1DirichletConditions.html',1,'MeltPoolDG::Simulation::AdvectionDiffusionDG']]],
   ['divergencecalculator_19',['DivergenceCalculator',['../classMeltPoolDG_1_1PostProcessingTools_1_1DivergenceCalculator.html',1,'MeltPoolDG::PostProcessingTools']]],
-  ['dofmonitor_20',['DoFMonitor',['../classMeltPoolDG_1_1DoFMonitor.html',1,'MeltPoolDG']]]
+  ['dofmonitor_20',['DoFMonitor',['../classMeltPoolDG_1_1DoFMonitor.html',1,'MeltPoolDG']]],
+  ['dofstatistics_21',['DoFStatistics',['../structMeltPoolDG_1_1DoFMonitor_1_1DoFStatistics.html',1,'MeltPoolDG::DoFMonitor']]]
 ];

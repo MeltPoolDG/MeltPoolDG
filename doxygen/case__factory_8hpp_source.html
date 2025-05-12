@@ -101,9 +101,9 @@ $(document).ready(function() { init_codefold(0); });
 <div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classSimulationCaseFactory.html#a6bbfe821115337d8012d173ea35f4680">   41</a></span>  <a class="code hl_function" href="classSimulationCaseFactory.html#a6bbfe821115337d8012d173ea35f4680">register_simulation</a>(<span class="keyword">const</span> std::string name, <a class="code hl_typedef" href="classSimulationCaseFactory.html#a57c99e39b2420ad0ef686bcb6221422d">SimulationCreator</a> creator)</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    AssertThrow(not creators.contains(name),</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    AssertThrow(not <a class="code hl_variable" href="classSimulationCaseFactory.html#a8b707c6feaa60d74d447db67962b0eff">creators</a>.contains(name),</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                dealii::ExcMessage(<span class="stringliteral">&quot;Requested simulation case already registered: &quot;</span> + name));</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    creators[name] = creator;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_variable" href="classSimulationCaseFactory.html#a8b707c6feaa60d74d447db67962b0eff">creators</a>[name] = creator;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
 </div>
@@ -114,8 +114,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                    <span class="keyword">const</span> std::string parameter_file,</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                    <span class="keyword">const</span> MPI_Comm    mpi_communicator)</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">auto</span> it = creators.find(name);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    AssertThrow(it != creators.end(),</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">auto</span> it = <a class="code hl_variable" href="classSimulationCaseFactory.html#a8b707c6feaa60d74d447db67962b0eff">creators</a>.find(name);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    AssertThrow(it != <a class="code hl_variable" href="classSimulationCaseFactory.html#a8b707c6feaa60d74d447db67962b0eff">creators</a>.end(),</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                dealii::ExcMessage(</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                  <span class="stringliteral">&quot;Requested simulation case not registered: &quot;</span> + name +</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                  <span class="stringliteral">&quot; Did you forget to create a *.cpp file for your simulation case, &quot;</span> +</div>
@@ -125,12 +125,13 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keyword">static</span> <span class="keyword">inline</span> std::map&lt;std::string, SimulationCreator&gt; creators;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classSimulationCaseFactory.html#a8b707c6feaa60d74d447db67962b0eff">   82</a></span>  <span class="keyword">static</span> <span class="keyword">inline</span> std::map&lt;std::string, SimulationCreator&gt; <a class="code hl_variable" href="classSimulationCaseFactory.html#a8b707c6feaa60d74d447db67962b0eff">creators</a>;</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>};</div>
 </div>
 <div class="ttc" id="aclassSimulationCaseFactory_html"><div class="ttname"><a href="classSimulationCaseFactory.html">SimulationCaseFactory</a></div><div class="ttdoc">Factory class for registering and creating simulation cases.</div><div class="ttdef"><b>Definition</b> case_factory.hpp:19</div></div>
 <div class="ttc" id="aclassSimulationCaseFactory_html_a57c99e39b2420ad0ef686bcb6221422d"><div class="ttname"><a href="classSimulationCaseFactory.html#a57c99e39b2420ad0ef686bcb6221422d">SimulationCaseFactory::SimulationCreator</a></div><div class="ttdeci">std::function&lt; std::unique_ptr&lt; CaseType &gt;(const std::string, const MPI_Comm)&gt; SimulationCreator</div><div class="ttdoc">Type definition for a function that creates a simulation case.</div><div class="ttdef"><b>Definition</b> case_factory.hpp:28</div></div>
 <div class="ttc" id="aclassSimulationCaseFactory_html_a6bbfe821115337d8012d173ea35f4680"><div class="ttname"><a href="classSimulationCaseFactory.html#a6bbfe821115337d8012d173ea35f4680">SimulationCaseFactory::register_simulation</a></div><div class="ttdeci">static bool register_simulation(const std::string name, SimulationCreator creator)</div><div class="ttdoc">Registers a simulation case with a unique name.</div><div class="ttdef"><b>Definition</b> case_factory.hpp:41</div></div>
+<div class="ttc" id="aclassSimulationCaseFactory_html_a8b707c6feaa60d74d447db67962b0eff"><div class="ttname"><a href="classSimulationCaseFactory.html#a8b707c6feaa60d74d447db67962b0eff">SimulationCaseFactory::creators</a></div><div class="ttdeci">static std::map&lt; std::string, SimulationCreator &gt; creators</div><div class="ttdoc">Stores registered simulation case creators.</div><div class="ttdef"><b>Definition</b> case_factory.hpp:82</div></div>
 <div class="ttc" id="aclassSimulationCaseFactory_html_afa6734437a0539b0f259e0a7a0c8b457"><div class="ttname"><a href="classSimulationCaseFactory.html#afa6734437a0539b0f259e0a7a0c8b457">SimulationCaseFactory::create_simulation</a></div><div class="ttdeci">static std::unique_ptr&lt; CaseType &gt; create_simulation(const std::string name, const std::string parameter_file, const MPI_Comm mpi_communicator)</div><div class="ttdoc">Creates an instance of a registered simulation case.</div><div class="ttdef"><b>Definition</b> case_factory.hpp:62</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
