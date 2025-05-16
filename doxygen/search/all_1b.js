@@ -7,7 +7,8 @@ var searchData=
   ['_7eoperatorbase_4',['~OperatorBase',['../classMeltPoolDG_1_1OperatorBase.html#addd95ab4b7f3cefb06679f967a7b68cd',1,'MeltPoolDG::OperatorBase']]],
   ['_7eoperatormatrixbased_5',['~OperatorMatrixBased',['../classMeltPoolDG_1_1OperatorMatrixBased.html#a861030d4780239e9ef24beb1cb835e85',1,'MeltPoolDG::OperatorMatrixBased']]],
   ['_7eoperatormatrixfree_6',['~OperatorMatrixFree',['../classMeltPoolDG_1_1OperatorMatrixFree.html#afdb66fd1fd3ee6265dfac1ae1454c3a4',1,'MeltPoolDG::OperatorMatrixFree']]],
-  ['_7epreconditionerconcept_7',['~PreconditionerConcept',['../structMeltPoolDG_1_1Preconditioner_1_1PreconditionerConcept.html#a47837ff2836d2f89576de1867090f743',1,'MeltPoolDG::Preconditioner::PreconditionerConcept']]],
-  ['_7escopedname_8',['~ScopedName',['../classMeltPoolDG_1_1ScopedName.html#a1d2b4713cd556da52241d4621677fcec',1,'MeltPoolDG::ScopedName']]],
-  ['_7etimeintegratorbase_9',['~TimeIntegratorBase',['../classMeltPoolDG_1_1TimeIntegration_1_1TimeIntegratorBase.html#a7a006902665781720b7561093e8cd153',1,'MeltPoolDG::TimeIntegration::TimeIntegratorBase']]]
+  ['_7epostprocessorbase_7',['~PostProcessorBase',['../classMeltPoolDG_1_1PostProcessingTools_1_1PostProcessorBase.html#abcaa10b02bed0d29bb1de2fcc51df700',1,'MeltPoolDG::PostProcessingTools::PostProcessorBase']]],
+  ['_7epreconditionerconcept_8',['~PreconditionerConcept',['../structMeltPoolDG_1_1Preconditioner_1_1PreconditionerConcept.html#a47837ff2836d2f89576de1867090f743',1,'MeltPoolDG::Preconditioner::PreconditionerConcept']]],
+  ['_7escopedname_9',['~ScopedName',['../classMeltPoolDG_1_1ScopedName.html#a1d2b4713cd556da52241d4621677fcec',1,'MeltPoolDG::ScopedName']]],
+  ['_7etimeintegratorbase_10',['~TimeIntegratorBase',['../classMeltPoolDG_1_1TimeIntegration_1_1TimeIntegratorBase.html#a7a006902665781720b7561093e8cd153',1,'MeltPoolDG::TimeIntegration::TimeIntegratorBase']]]
 ];

@@ -119,7 +119,7 @@ var searchData=
   ['slice_2ehpp_116',['slice.hpp',['../slice_8hpp.html',1,'']]],
   ['slice_5fdata_117',['slice_data',['../classMeltPoolDG_1_1Simulation_1_1RecoilPressure_1_1SimulationRecoilPressure.html#a2e17f0241ed92d0ff3f25eb64e3a66d7',1,'MeltPoolDG::Simulation::RecoilPressure::SimulationRecoilPressure']]],
   ['slice_5flocation_118',['slice_location',['../structMeltPoolDG_1_1MeltPool_1_1PowderBedData.html#a55c85d00d6097ae97e223e04960223c1',1,'MeltPoolDG::MeltPool::PowderBedData']]],
-  ['slicecreator_119',['slicecreator',['../classMeltPoolDG_1_1PostProcessingTools_1_1SliceCreator.html',1,'MeltPoolDG::PostProcessingTools::SliceCreator&lt; dim, number &gt;'],['../classMeltPoolDG_1_1PostProcessingTools_1_1SliceCreator.html#a9f3c77c5ba2ce549c74a1d07b34ebf24',1,'MeltPoolDG::PostProcessingTools::SliceCreator::SliceCreator()']]],
+  ['slicecreator_119',['slicecreator',['../classMeltPoolDG_1_1PostProcessingTools_1_1SliceCreator.html',1,'MeltPoolDG::PostProcessingTools::SliceCreator&lt; dim, number &gt;'],['../classMeltPoolDG_1_1PostProcessingTools_1_1SliceCreator.html#a2cbe7b4ac55dff1dde5c6b20860ca2e0',1,'MeltPoolDG::PostProcessingTools::SliceCreator::SliceCreator()']]],
   ['slicedata_120',['SliceData',['../structMeltPoolDG_1_1Simulation_1_1RecoilPressure_1_1SimulationRecoilPressure_1_1SliceData.html',1,'MeltPoolDG::Simulation::RecoilPressure::SimulationRecoilPressure']]],
   ['slightly_20modified_121',['@note semantics slightly modified',['../namespaceMeltPoolDG_1_1DoFTools.html#autotoc_md1',1,'']]],
   ['slip_5fboundary_122',['slip_boundary',['../classMeltPoolDG_1_1Simulation_1_1RecoilPressure_1_1SimulationRecoilPressure.html#a6ef19811051232b02cf0f973190f2fbe',1,'MeltPoolDG::Simulation::RecoilPressure::SimulationRecoilPressure']]],
