@@ -9,7 +9,7 @@ var searchData=
   ['simulationadvecdg_6',['SimulationAdvecDG',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusionDG_1_1SimulationAdvecDG.html',1,'MeltPoolDG::Simulation::AdvectionDiffusionDG']]],
   ['simulationcasebase_7',['SimulationCaseBase',['../classMeltPoolDG_1_1SimulationCaseBase.html',1,'MeltPoolDG']]],
   ['simulationcasefactory_8',['SimulationCaseFactory',['../classSimulationCaseFactory.html',1,'']]],
-  ['simulationchannelparticleflow_9',['SimulationChannelParticleFlow',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationChannelParticleFlow.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
+  ['simulationchannelparticleflow_9',['simulationchannelparticleflow',['../classMeltPoolDG_1_1Simulation_1_1CfdDem_1_1SimulationChannelParticleFlow.html',1,'MeltPoolDG::Simulation::CfdDem::SimulationChannelParticleFlow&lt; dim, number &gt;'],['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationChannelParticleFlow.html',1,'MeltPoolDG::Simulation::CompressibleFlow::SimulationChannelParticleFlow&lt; dim, number &gt;']]],
   ['simulationcutflowovercylinder_10',['SimulationCutFlowOverCylinder',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutFlowOverCylinder.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
   ['simulationcutmovingcylinder_11',['SimulationCutMovingCylinder',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutMovingCylinder.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
   ['simulationcutunfittedinflow_12',['SimulationCutUnfittedInflow',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationCutUnfittedInflow.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
@@ -49,7 +49,8 @@ var searchData=
   ['solutionhistory_3c_20blockvectortype_20_3e_46',['SolutionHistory&lt; BlockVectorType &gt;',['../classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html',1,'MeltPoolDG::TimeIntegration']]],
   ['solutiontransferoperator_47',['SolutionTransferOperator',['../classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html',1,'MeltPoolDG::CutUtil']]],
   ['solutiontransferoperator_3c_20dim_2c_20number_20_3e_48',['SolutionTransferOperator&lt; dim, number &gt;',['../classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html',1,'MeltPoolDG::CutUtil']]],
-  ['state_49',['state',['../structMeltPoolDG_1_1Heat_1_1GaussProjectionIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GaussProjectionIntensityProfile&lt; dim, number &gt;::State'],['../structMeltPoolDG_1_1Heat_1_1GaussVolumetricIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GaussVolumetricIntensityProfile&lt; dim, number &gt;::State'],['../structMeltPoolDG_1_1Heat_1_1GusarovIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GusarovIntensityProfile&lt; dim, number &gt;::State']]],
-  ['steadyinflowfield_50',['SteadyInflowField',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SteadyInflowField.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
-  ['surfacetensionoperation_51',['SurfaceTensionOperation',['../classMeltPoolDG_1_1Flow_1_1SurfaceTensionOperation.html',1,'MeltPoolDG::Flow']]]
+  ['sphericalparticle_49',['SphericalParticle',['../classMeltPoolDG_1_1SphericalParticle.html',1,'MeltPoolDG']]],
+  ['state_50',['state',['../structMeltPoolDG_1_1Heat_1_1GaussProjectionIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GaussProjectionIntensityProfile&lt; dim, number &gt;::State'],['../structMeltPoolDG_1_1Heat_1_1GaussVolumetricIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GaussVolumetricIntensityProfile&lt; dim, number &gt;::State'],['../structMeltPoolDG_1_1Heat_1_1GusarovIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GusarovIntensityProfile&lt; dim, number &gt;::State']]],
+  ['steadyinflowfield_51',['SteadyInflowField',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SteadyInflowField.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
+  ['surfacetensionoperation_52',['SurfaceTensionOperation',['../classMeltPoolDG_1_1Flow_1_1SurfaceTensionOperation.html',1,'MeltPoolDG::Flow']]]
 ];

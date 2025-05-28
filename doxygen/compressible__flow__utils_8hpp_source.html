@@ -194,152 +194,169 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  };</div>
 </div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment">  /********************************************************************************************</span></div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment">   * Inlined function definitions</span></div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">   * *************************************************************************************+****/</span></div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt;</div>
-<div class="foldopen" id="foldopen00168" data-start="{" data-end="}">
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1Flow.html#a953eb4a3a471d8da41ece611481c0f2b">  168</a></span>    <a class="code hl_function" href="namespaceMeltPoolDG_1_1Flow.html#a953eb4a3a471d8da41ece611481c0f2b">calculate_velocity</a>(</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a> &amp;conserved_variables)</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  {</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; inverse_density =</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>      dealii::VectorizedArray&lt;number&gt;(1.) / conserved_variables[0];</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; velocity;</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; dim; ++d)</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      velocity[d] = conserved_variables[1 + d] * inverse_density;</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordflow">return</span> velocity;</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  }</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00173" data-start="{" data-end="};">
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html">  173</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html">ExternalFluidForcesRightHandSideContribution</a></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  {</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html#ac2d52aca1b79460c0c21eedd9990fb11">  175</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html#ac2d52aca1b79460c0c21eedd9990fb11">~ExternalFluidForcesRightHandSideContribution</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html#a16396406336ec5f23139beb077148292">  185</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html#a16396406336ec5f23139beb077148292">cell_operation</a>(<span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt; &amp;matrix_free,</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>                   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                           cell_batch_id,</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>                   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_lanes = dealii::VectorizedArray&lt;number&gt;::size) = 0;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keyword">virtual</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html#aa52b579205c1218e430e8b3c82c254e3">  200</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html#aa52b579205c1218e430e8b3c82c254e3">quad_operation</a>(<span class="keyword">const</span> dealii::Point&lt;dim, dealii::VectorizedArray&lt;number&gt;&gt;        &amp;q_point,</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                   <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a> &amp;w_q) = 0;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>  };</div>
 </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    dealii::Tensor&lt;2, dim, dealii::VectorizedArray&lt;number&gt;&gt;</div>
-<div class="foldopen" id="foldopen00184" data-start="{" data-end="}">
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1Flow.html#abfe501b4176536ec3cbd029ce5c296af">  184</a></span>    <a class="code hl_function" href="namespaceMeltPoolDG_1_1Flow.html#abfe501b4176536ec3cbd029ce5c296af">calculate_grad_velocity</a>(</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a> &amp;conserved_variables,</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType&lt;dim, number&gt;</a></div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        &amp;grad_conserved_variables)</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  {</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; inverse_density =</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>      dealii::VectorizedArray&lt;number&gt;(1.) / conserved_variables[0];</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keyword">const</span> dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; velocity =</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>      calculate_velocity&lt;dim, number&gt;(conserved_variables);</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; grad_rho;</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; dim; ++d)</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>      grad_rho[d] = grad_conserved_variables[0][d];</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    dealii::Tensor&lt;2, dim, dealii::VectorizedArray&lt;number&gt;&gt; grad_rho_velocity;</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; dim; ++d)</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> e = 0; e &lt; dim; ++e)</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        grad_rho_velocity[d][e] = grad_conserved_variables[1 + d][e];</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    dealii::Tensor&lt;2, dim, dealii::VectorizedArray&lt;number&gt;&gt; grad_velocity;</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; dim; ++d)</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> e = 0; e &lt; dim; ++e)</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        grad_velocity[d][e] =</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>          inverse_density * (grad_rho_velocity[d][e] - velocity[d] * grad_rho[e]);</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordflow">return</span> grad_velocity;</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  }</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="comment">  /********************************************************************************************</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="comment">   * Inlined function definitions</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="comment">   * *************************************************************************************+****/</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>  <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt;</div>
+<div class="foldopen" id="foldopen00210" data-start="{" data-end="}">
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1Flow.html#a953eb4a3a471d8da41ece611481c0f2b">  210</a></span>    <a class="code hl_function" href="namespaceMeltPoolDG_1_1Flow.html#a953eb4a3a471d8da41ece611481c0f2b">calculate_velocity</a>(</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a> &amp;conserved_variables)</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  {</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; inverse_density =</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      dealii::VectorizedArray&lt;number&gt;(1.) / conserved_variables[0];</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; velocity;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; dim; ++d)</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>      velocity[d] = conserved_variables[1 + d] * inverse_density;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordflow">return</span> velocity;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>  }</div>
 </div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> Number&gt;</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>  <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00214" data-start="{" data-end="}">
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1Flow.html#a2f8adb978e865134cc701d545b9c915e">  214</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1Flow.html#a2f8adb978e865134cc701d545b9c915e">calculate_penalty_parameter</a>(</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    dealii::AlignedVector&lt;dealii::VectorizedArray&lt;Number&gt;&gt; &amp;array_penalty_parameter,</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keyword">const</span> dealii::MatrixFree&lt;dim, Number&gt;                  &amp;matrix_free,</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keyword">const</span> std::string                                      &amp;domain_representation_type,</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                      dof_index,</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keyword">const</span> Number                                            scaling_factor)</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>  {</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_cells = matrix_free.n_cell_batches() + matrix_free.n_ghost_cell_batches();</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    array_penalty_parameter.resize(n_cells);</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    dealii::Mapping&lt;dim&gt; <span class="keyword">const</span>       &amp;mapping = *matrix_free.get_mapping_info().mapping;</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    dealii::FiniteElement&lt;dim&gt; <span class="keyword">const</span> &amp;fe      = matrix_free.get_dof_handler(dof_index).get_fe();</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keyword">const</span>                degree  = fe.degree;</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="comment">// use penalty factor for hypercube elements according to K. Hillewaert, Development of the</span></div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="comment">// discontinuous Galerkin method for high-resolution, large scale CFD and acoustics in</span></div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="comment">// industrial geometries, PhD thesis, Univ. de Louvain, 2013.</span></div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keyword">const</span> Number fac = scaling_factor * (degree + 1.0) * (degree + 1.0);</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keyword">auto</span> <span class="keyword">const</span> reference_cells =</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>      matrix_free.get_dof_handler(dof_index).get_triangulation().get_reference_cells();</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    AssertThrow(reference_cells.size() == 1, dealii::ExcMessage(<span class="stringliteral">&quot;No mixed meshes allowed.&quot;</span>));</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keyword">auto</span> <span class="keyword">const</span> quadrature = reference_cells[0].template get_gauss_type_quadrature&lt;dim&gt;(degree + 1);</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    dealii::FEValues&lt;dim&gt; fe_values(mapping, fe, quadrature, dealii::update_JxW_values);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>  <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    dealii::Tensor&lt;2, dim, dealii::VectorizedArray&lt;number&gt;&gt;</div>
+<div class="foldopen" id="foldopen00226" data-start="{" data-end="}">
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1Flow.html#abfe501b4176536ec3cbd029ce5c296af">  226</a></span>    <a class="code hl_function" href="namespaceMeltPoolDG_1_1Flow.html#abfe501b4176536ec3cbd029ce5c296af">calculate_grad_velocity</a>(</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a> &amp;conserved_variables,</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType&lt;dim, number&gt;</a></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        &amp;grad_conserved_variables)</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>  {</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; inverse_density =</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>      dealii::VectorizedArray&lt;number&gt;(1.) / conserved_variables[0];</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keyword">const</span> dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; velocity =</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>      calculate_velocity&lt;dim, number&gt;(conserved_variables);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; grad_rho;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; dim; ++d)</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      grad_rho[d] = grad_conserved_variables[0][d];</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keyword">auto</span> <span class="keyword">const</span> face_quadrature =</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>      reference_cells[0].face_reference_cell(0).template get_gauss_type_quadrature&lt;dim - 1&gt;(degree +</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                                                                                            1);</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    dealii::FEFaceValues&lt;dim&gt; fe_face_values(mapping,</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                                             fe,</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                                             face_quadrature,</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                                             dealii::update_JxW_values);</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordflow">if</span> (domain_representation_type == <span class="stringliteral">&quot;fitted&quot;</span>)</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>      {</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_cells; ++i)</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>          {</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>            <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> v = 0; v &lt; matrix_free.n_active_entries_per_cell_batch(i); ++v)</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>              {</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                <span class="keyword">typename</span> dealii::DoFHandler&lt;dim&gt;::cell_iterator cell =</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                  matrix_free.get_cell_iterator(i, v, dof_index);</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                fe_values.reinit(cell);</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                <span class="comment">// calculate cell volume</span></div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                Number volume = 0;</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>                <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> q = 0; q &lt; quadrature.size(); ++q)</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>                  {</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                    volume += fe_values.JxW(q);</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                  }</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                <span class="comment">// calculate surface area</span></div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                Number surface_area = 0;</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>                <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keyword">const</span> f : cell-&gt;face_indices())</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>                  {</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                    fe_face_values.reinit(cell, f);</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>                    Number <span class="keyword">const</span> factor =</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>                      (cell-&gt;at_boundary(f) and not(cell-&gt;has_periodic_neighbor(f))) ? 1. : 0.5;</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>                    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> q = 0; q &lt; face_quadrature.size(); ++q)</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                      {</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>                        surface_area += fe_face_values.JxW(q) * factor;</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                      }</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                  }</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                array_penalty_parameter[i][v] = surface_area / volume * fac;</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>              }</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>          }</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>      }</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (domain_representation_type == <span class="stringliteral">&quot;cut&quot;</span>)</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>      {</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_cells; ++i)</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>          {</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>            <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> v = 0; v &lt; matrix_free.n_active_entries_per_cell_batch(i); ++v)</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>              {</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>                <span class="keyword">typename</span> dealii::DoFHandler&lt;dim&gt;::cell_iterator cell =</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>                  matrix_free.get_cell_iterator(i, v, dof_index);</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>                <span class="comment">// simplified computation for hypercube elements</span></div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>                array_penalty_parameter[i][v] = fac / cell-&gt;minimum_vertex_distance();</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>              }</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>          }</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>      }</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>      AssertThrow(<span class="keyword">false</span>,</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>                  dealii::ExcMessage(<span class="stringliteral">&quot;The domain representation type &#39;&quot;</span> +</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>                                     domain_representation_type + <span class="stringliteral">&quot;&#39; is not supported.&quot;</span>));</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>  }</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    dealii::Tensor&lt;2, dim, dealii::VectorizedArray&lt;number&gt;&gt; grad_rho_velocity;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; dim; ++d)</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> e = 0; e &lt; dim; ++e)</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        grad_rho_velocity[d][e] = grad_conserved_variables[1 + d][e];</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    dealii::Tensor&lt;2, dim, dealii::VectorizedArray&lt;number&gt;&gt; grad_velocity;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; dim; ++d)</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> e = 0; e &lt; dim; ++e)</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        grad_velocity[d][e] =</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>          inverse_density * (grad_rho_velocity[d][e] - velocity[d] * grad_rho[e]);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keywordflow">return</span> grad_velocity;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  }</div>
 </div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>} <span class="comment">// namespace MeltPoolDG::Flow</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> Number&gt;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>  <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00256" data-start="{" data-end="}">
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1Flow.html#a2f8adb978e865134cc701d545b9c915e">  256</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1Flow.html#a2f8adb978e865134cc701d545b9c915e">calculate_penalty_parameter</a>(</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    dealii::AlignedVector&lt;dealii::VectorizedArray&lt;Number&gt;&gt; &amp;array_penalty_parameter,</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keyword">const</span> dealii::MatrixFree&lt;dim, Number&gt;                  &amp;matrix_free,</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keyword">const</span> std::string                                      &amp;domain_representation_type,</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                      dof_index,</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keyword">const</span> Number                                            scaling_factor)</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  {</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_cells = matrix_free.n_cell_batches() + matrix_free.n_ghost_cell_batches();</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    array_penalty_parameter.resize(n_cells);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    dealii::Mapping&lt;dim&gt; <span class="keyword">const</span>       &amp;mapping = *matrix_free.get_mapping_info().mapping;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    dealii::FiniteElement&lt;dim&gt; <span class="keyword">const</span> &amp;fe      = matrix_free.get_dof_handler(dof_index).get_fe();</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keyword">const</span>                degree  = fe.degree;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="comment">// use penalty factor for hypercube elements according to K. Hillewaert, Development of the</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="comment">// discontinuous Galerkin method for high-resolution, large scale CFD and acoustics in</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="comment">// industrial geometries, PhD thesis, Univ. de Louvain, 2013.</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keyword">const</span> Number fac = scaling_factor * (degree + 1.0) * (degree + 1.0);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keyword">auto</span> <span class="keyword">const</span> reference_cells =</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>      matrix_free.get_dof_handler(dof_index).get_triangulation().get_reference_cells();</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    AssertThrow(reference_cells.size() == 1, dealii::ExcMessage(<span class="stringliteral">&quot;No mixed meshes allowed.&quot;</span>));</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="keyword">auto</span> <span class="keyword">const</span> quadrature = reference_cells[0].template get_gauss_type_quadrature&lt;dim&gt;(degree + 1);</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    dealii::FEValues&lt;dim&gt; fe_values(mapping, fe, quadrature, dealii::update_JxW_values);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="keyword">auto</span> <span class="keyword">const</span> face_quadrature =</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>      reference_cells[0].face_reference_cell(0).template get_gauss_type_quadrature&lt;dim - 1&gt;(degree +</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                                                                                            1);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    dealii::FEFaceValues&lt;dim&gt; fe_face_values(mapping,</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>                                             fe,</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                                             face_quadrature,</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>                                             dealii::update_JxW_values);</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keywordflow">if</span> (domain_representation_type == <span class="stringliteral">&quot;fitted&quot;</span>)</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>      {</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_cells; ++i)</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>          {</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>            <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> v = 0; v &lt; matrix_free.n_active_entries_per_cell_batch(i); ++v)</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>              {</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>                <span class="keyword">typename</span> dealii::DoFHandler&lt;dim&gt;::cell_iterator cell =</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>                  matrix_free.get_cell_iterator(i, v, dof_index);</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>                fe_values.reinit(cell);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>                <span class="comment">// calculate cell volume</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>                Number volume = 0;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>                <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> q = 0; q &lt; quadrature.size(); ++q)</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>                  {</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>                    volume += fe_values.JxW(q);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>                  }</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>                <span class="comment">// calculate surface area</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>                Number surface_area = 0;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>                <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keyword">const</span> f : cell-&gt;face_indices())</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>                  {</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>                    fe_face_values.reinit(cell, f);</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>                    Number <span class="keyword">const</span> factor =</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>                      (cell-&gt;at_boundary(f) and not(cell-&gt;has_periodic_neighbor(f))) ? 1. : 0.5;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>                    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> q = 0; q &lt; face_quadrature.size(); ++q)</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>                      {</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>                        surface_area += fe_face_values.JxW(q) * factor;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>                      }</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>                  }</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>                array_penalty_parameter[i][v] = surface_area / volume * fac;</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>              }</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>          }</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>      }</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (domain_representation_type == <span class="stringliteral">&quot;cut&quot;</span>)</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>      {</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_cells; ++i)</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>          {</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>            <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> v = 0; v &lt; matrix_free.n_active_entries_per_cell_batch(i); ++v)</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>              {</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>                <span class="keyword">typename</span> dealii::DoFHandler&lt;dim&gt;::cell_iterator cell =</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>                  matrix_free.get_cell_iterator(i, v, dof_index);</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>                <span class="comment">// simplified computation for hypercube elements</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>                array_penalty_parameter[i][v] = fac / cell-&gt;minimum_vertex_distance();</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>              }</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>          }</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>      }</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>      AssertThrow(<span class="keyword">false</span>,</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>                  dealii::ExcMessage(<span class="stringliteral">&quot;The domain representation type &#39;&quot;</span> +</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>                                     domain_representation_type + <span class="stringliteral">&quot;&#39; is not supported.&quot;</span>));</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>  }</div>
+</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>} <span class="comment">// namespace MeltPoolDG::Flow</span></div>
 <div class="ttc" id="abetter__enum_8hpp_html_a47df33c8d3d71e48df5272f4df0ac4d9"><div class="ttname"><a href="better__enum_8hpp.html#a47df33c8d3d71e48df5272f4df0ac4d9">BETTER_ENUM</a></div><div class="ttdeci">#define BETTER_ENUM(Enum, Underlying,...)</div><div class="ttdef"><b>Definition</b> better_enum.hpp:1228</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1CompressibleFlowBoundaryConditions_html"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowBoundaryConditions.html">MeltPoolDG::Flow::CompressibleFlowBoundaryConditions</a></div><div class="ttdef"><b>Definition</b> compressible_flow_boundary_conditions.hpp:38</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdef"><b>Definition</b> scratch_data.hpp:46</div></div>
@@ -349,9 +366,9 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="acompressible__flow__boundary__conditions_8hpp_html"><div class="ttname"><a href="compressible__flow__boundary__conditions_8hpp.html">compressible_flow_boundary_conditions.hpp</a></div></div>
 <div class="ttc" id="acompressible__flow__data_8hpp_html"><div class="ttname"><a href="compressible__flow__data_8hpp.html">compressible_flow_data.hpp</a></div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html">MeltPoolDG::Flow</a></div><div class="ttdoc">Helper class taking care of all boundary condition related computations for the compressible flow sol...</div><div class="ttdef"><b>Definition</b> adaflo_wrapper_parameters.hpp:14</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_a2f8adb978e865134cc701d545b9c915e"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#a2f8adb978e865134cc701d545b9c915e">MeltPoolDG::Flow::calculate_penalty_parameter</a></div><div class="ttdeci">void calculate_penalty_parameter(dealii::AlignedVector&lt; dealii::VectorizedArray&lt; Number &gt; &gt; &amp;array_penalty_parameter, const dealii::MatrixFree&lt; dim, Number &gt; &amp;matrix_free, const std::string &amp;domain_representation_type, const unsigned int dof_index=0, const Number scaling_factor=1.0)</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:214</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_a953eb4a3a471d8da41ece611481c0f2b"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#a953eb4a3a471d8da41ece611481c0f2b">MeltPoolDG::Flow::calculate_velocity</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; calculate_velocity(const CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; &amp;conserved_variables)</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:168</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_abfe501b4176536ec3cbd029ce5c296af"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#abfe501b4176536ec3cbd029ce5c296af">MeltPoolDG::Flow::calculate_grad_velocity</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt; calculate_grad_velocity(const CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; &amp;conserved_variables, const CompressibleFlowTypes::ConservedVariablesGradType&lt; dim, number &gt; &amp;grad_conserved_variables)</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:184</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_a2f8adb978e865134cc701d545b9c915e"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#a2f8adb978e865134cc701d545b9c915e">MeltPoolDG::Flow::calculate_penalty_parameter</a></div><div class="ttdeci">void calculate_penalty_parameter(dealii::AlignedVector&lt; dealii::VectorizedArray&lt; Number &gt; &gt; &amp;array_penalty_parameter, const dealii::MatrixFree&lt; dim, Number &gt; &amp;matrix_free, const std::string &amp;domain_representation_type, const unsigned int dof_index=0, const Number scaling_factor=1.0)</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:256</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_a953eb4a3a471d8da41ece611481c0f2b"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#a953eb4a3a471d8da41ece611481c0f2b">MeltPoolDG::Flow::calculate_velocity</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; calculate_velocity(const CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; &amp;conserved_variables)</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:210</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_abfe501b4176536ec3cbd029ce5c296af"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#abfe501b4176536ec3cbd029ce5c296af">MeltPoolDG::Flow::calculate_grad_velocity</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt; calculate_grad_velocity(const CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; &amp;conserved_variables, const CompressibleFlowTypes::ConservedVariablesGradType&lt; dim, number &gt; &amp;grad_conserved_variables)</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:226</div></div>
 <div class="ttc" id="ascratch__data_8hpp_html"><div class="ttname"><a href="scratch__data_8hpp.html">scratch_data.hpp</a></div></div>
 <div class="ttc" id="asolution__history_8hpp_html"><div class="ttname"><a href="solution__history_8hpp.html">solution_history.hpp</a></div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowData_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html">MeltPoolDG::Flow::CompressibleFlowData</a></div><div class="ttdef"><b>Definition</b> compressible_flow_data.hpp:32</div></div>
@@ -370,6 +387,10 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html">MeltPoolDG::Flow::CompressibleFlowTypes</a></div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:25</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes_html_a0e2157d27bf6c7480302f4e8e9693d8e"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">MeltPoolDG::Flow::CompressibleFlowTypes::ConservedVariablesGradType</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim+2, dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &gt; ConservedVariablesGradType</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:37</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes_html_a475c167d568ca252c2feec2fd01cff24"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">MeltPoolDG::Flow::CompressibleFlowTypes::ConservedVariablesType</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim+2, dealii::VectorizedArray&lt; number &gt; &gt; ConservedVariablesType</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:30</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html">MeltPoolDG::Flow::ExternalFluidForcesRightHandSideContribution</a></div><div class="ttdoc">An abstract interface for defining external forces acting on the fluid that must be evaluated and inc...</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:174</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution_html_a16396406336ec5f23139beb077148292"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html#a16396406336ec5f23139beb077148292">MeltPoolDG::Flow::ExternalFluidForcesRightHandSideContribution::cell_operation</a></div><div class="ttdeci">virtual void cell_operation(const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, unsigned int cell_batch_id, unsigned int n_lanes=dealii::VectorizedArray&lt; number &gt;::size)=0</div><div class="ttdoc">Function called once per cell batch during the cell loop.</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution_html_aa52b579205c1218e430e8b3c82c254e3"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html#aa52b579205c1218e430e8b3c82c254e3">MeltPoolDG::Flow::ExternalFluidForcesRightHandSideContribution::quad_operation</a></div><div class="ttdeci">virtual CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; quad_operation(const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, const CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; &amp;w_q)=0</div><div class="ttdoc">Function called once per batch of quadrature points to compute the external force contribution at eac...</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution_html_ac2d52aca1b79460c0c21eedd9990fb11"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html#ac2d52aca1b79460c0c21eedd9990fb11">MeltPoolDG::Flow::ExternalFluidForcesRightHandSideContribution::~ExternalFluidForcesRightHandSideContribution</a></div><div class="ttdeci">virtual ~ExternalFluidForcesRightHandSideContribution()=default</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

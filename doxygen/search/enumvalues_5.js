@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['mixed_5fface_5fgas_5fintersected_0',['mixed_face_gas_intersected',['../namespaceMeltPoolDG_1_1CutUtil.html#a16425c0dc0a08f4ff5ad9083704a94d2a343c1ca28b836a4e2229f67d1e9a063a',1,'MeltPoolDG::CutUtil']]],
-  ['mixed_5fface_5fintersected_5fgas_1',['mixed_face_intersected_gas',['../namespaceMeltPoolDG_1_1CutUtil.html#a16425c0dc0a08f4ff5ad9083704a94d2a4f00f92bc845ed2e3148c3a7db3f26d6',1,'MeltPoolDG::CutUtil']]],
-  ['mixed_5fface_5fintersected_5fliquid_2',['mixed_face_intersected_liquid',['../namespaceMeltPoolDG_1_1CutUtil.html#a16425c0dc0a08f4ff5ad9083704a94d2a8b292fc70a11db1d7ec52ed9ee3dd83e',1,'MeltPoolDG::CutUtil']]],
-  ['mixed_5fface_5fliquid_5fintersected_3',['mixed_face_liquid_intersected',['../namespaceMeltPoolDG_1_1CutUtil.html#a16425c0dc0a08f4ff5ad9083704a94d2a49034a835d894df0c0f3d37e5a0b1adf',1,'MeltPoolDG::CutUtil']]]
+  ['level_5fset_0',['level_set',['../classMeltPoolDG_1_1Material.html#adb7665872e6dfe060776b5e1afcc7b79abbc7c587d1d94f024b881ba06e00ee3d',1,'MeltPoolDG::Material']]],
+  ['liquid_1',['liquid',['../namespaceMeltPoolDG_1_1CutUtil.html#a27034c61403f17637b919d517870ea9da3fea8c0e62dcf169c55f17237be54945',1,'MeltPoolDG::CutUtil::liquid'],['../namespaceMeltPoolDG.html#ac22db4db3a43285e5fa5cb1a3a012a6eaf80b6383d767feb24333c7d460bed98c',1,'MeltPoolDG::liquid']]],
+  ['liquid_5fsolid_2',['liquid_solid',['../namespaceMeltPoolDG.html#ac22db4db3a43285e5fa5cb1a3a012a6ea76a492cd6e26a7a2bd0af19695270b49',1,'MeltPoolDG']]]
 ];

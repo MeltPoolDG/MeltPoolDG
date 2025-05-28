@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['triangulationtype_0',['TriangulationType',['../namespaceMeltPoolDG.html#aac77cbe47f11bb47479887acb1345548',1,'MeltPoolDG']]]
+  ['properties_0',['Properties',['../classMeltPoolDG_1_1SphericalParticle.html#a0cd12c69968102f83f52c9f115c1c5f7',1,'MeltPoolDG::SphericalParticle']]]
 ];

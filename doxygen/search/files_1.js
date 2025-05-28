@@ -6,5 +6,7 @@ var searchData=
   ['better_5fenum_2ehpp_3',['better_enum.hpp',['../better__enum_8hpp.html',1,'']]],
   ['boundary_5fconditions_2ecpp_4',['boundary_conditions.cpp',['../boundary__conditions_8cpp.html',1,'']]],
   ['boundary_5fconditions_2ehpp_5',['boundary_conditions.hpp',['../boundary__conditions_8hpp.html',1,'']]],
-  ['boundary_5fids_5fcolorized_2ehpp_6',['boundary_ids_colorized.hpp',['../boundary__ids__colorized_8hpp.html',1,'']]]
+  ['boundary_5fids_5fcolorized_2ehpp_6',['boundary_ids_colorized.hpp',['../boundary__ids__colorized_8hpp.html',1,'']]],
+  ['brinkman_5fpenalization_5fdata_2ehpp_7',['brinkman_penalization_data.hpp',['../brinkman__penalization__data_8hpp.html',1,'']]],
+  ['brinkman_5fpenalization_5ffluid_5fforce_2ehpp_8',['brinkman_penalization_fluid_force.hpp',['../brinkman__penalization__fluid__force_8hpp.html',1,'']]]
 ];
