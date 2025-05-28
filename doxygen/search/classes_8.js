@@ -14,6 +14,7 @@ var searchData=
   ['heattransfercase_11',['HeatTransferCase',['../classMeltPoolDG_1_1Heat_1_1HeatTransferCase.html',1,'MeltPoolDG::Heat']]],
   ['heattransfercaseparameters_12',['HeatTransferCaseParameters',['../structMeltPoolDG_1_1Heat_1_1HeatTransferCaseParameters.html',1,'MeltPoolDG::Heat']]],
   ['helmholtzdgoperator_13',['HelmholtzDGOperator',['../classMeltPoolDG_1_1LevelSet_1_1HelmholtzDGOperator.html',1,'MeltPoolDG::LevelSet']]],
-  ['hllp0_14',['HLLP0',['../structMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData_1_1HLLP0.html',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseData']]],
-  ['horizontallevelset_15',['HorizontalLevelSet',['../classMeltPoolDG_1_1Simulation_1_1UnidirectionalHeatTransfer_1_1HorizontalLevelSet.html',1,'MeltPoolDG::Simulation::UnidirectionalHeatTransfer']]]
+  ['hllp0_5fpenalty_14',['HLLP0_penalty',['../structMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData_1_1HLLP0__penalty.html',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseData']]],
+  ['hllp0_5fsipg_15',['HLLP0_SIPG',['../structMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData_1_1HLLP0__SIPG.html',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseData']]],
+  ['horizontallevelset_16',['HorizontalLevelSet',['../classMeltPoolDG_1_1Simulation_1_1UnidirectionalHeatTransfer_1_1HorizontalLevelSet.html',1,'MeltPoolDG::Simulation::UnidirectionalHeatTransfer']]]
 ];
