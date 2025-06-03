@@ -1,8 +1,8 @@
 var searchData=
 [
   ['has_5fdependency_0',['has_dependency',['../classMeltPoolDG_1_1Material.html#aeda2dcbef1ccce4da92d11cb7f51444c',1,'MeltPoolDG::Material']]],
-  ['heatcutoperation_1',['HeatCutOperation',['../classMeltPoolDG_1_1Heat_1_1HeatCutOperation.html#a5752b5ad887374ac724fd5375ad4490b',1,'MeltPoolDG::Heat::HeatCutOperation']]],
-  ['heatcutoperator_2',['HeatCutOperator',['../classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#a3781ea88b6db6f9d97b2314aeba6c6e8',1,'MeltPoolDG::Heat::HeatCutOperator']]],
+  ['heatcutoperation_1',['HeatCutOperation',['../classMeltPoolDG_1_1Heat_1_1HeatCutOperation.html#a4ca334cd67b616f428367fa58acd6d37',1,'MeltPoolDG::Heat::HeatCutOperation']]],
+  ['heatcutoperator_2',['HeatCutOperator',['../classMeltPoolDG_1_1Heat_1_1HeatCutOperator.html#abddb1059c76987190d9e85b1adac7950',1,'MeltPoolDG::Heat::HeatCutOperator']]],
   ['heatdata_3',['HeatData',['../structMeltPoolDG_1_1Heat_1_1HeatData.html#a31b2ea54fcb08e1c9fdf2564188bd162',1,'MeltPoolDG::Heat::HeatData']]],
   ['heatdiffusemultiphaseoperator_4',['HeatDiffuseMultiPhaseOperator',['../classMeltPoolDG_1_1Heat_1_1HeatDiffuseMultiPhaseOperator.html#a4319041039bb3e4e49d2f2d704789b9b',1,'MeltPoolDG::Heat::HeatDiffuseMultiPhaseOperator']]],
   ['heatdiffuseoperation_5',['HeatDiffuseOperation',['../classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#abd7408ede259e5e8ffc7f757d7242899',1,'MeltPoolDG::Heat::HeatDiffuseOperation']]],
