@@ -53,5 +53,6 @@ var searchData=
   ['sphericalparticle_50',['SphericalParticle',['../classMeltPoolDG_1_1SphericalParticle.html',1,'MeltPoolDG']]],
   ['state_51',['state',['../structMeltPoolDG_1_1Heat_1_1GaussProjectionIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GaussProjectionIntensityProfile&lt; dim, number &gt;::State'],['../structMeltPoolDG_1_1Heat_1_1GaussVolumetricIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GaussVolumetricIntensityProfile&lt; dim, number &gt;::State'],['../structMeltPoolDG_1_1Heat_1_1GusarovIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GusarovIntensityProfile&lt; dim, number &gt;::State']]],
   ['steadyinflowfield_52',['SteadyInflowField',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SteadyInflowField.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
-  ['surfacetensionoperation_53',['SurfaceTensionOperation',['../classMeltPoolDG_1_1Flow_1_1SurfaceTensionOperation.html',1,'MeltPoolDG::Flow']]]
+  ['stiffenedgas_53',['StiffenedGas',['../classMeltPoolDG_1_1Flow_1_1EOS_1_1StiffenedGas.html',1,'MeltPoolDG::Flow::EOS']]],
+  ['surfacetensionoperation_54',['SurfaceTensionOperation',['../classMeltPoolDG_1_1Flow_1_1SurfaceTensionOperation.html',1,'MeltPoolDG::Flow']]]
 ];

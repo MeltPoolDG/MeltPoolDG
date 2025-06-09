@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['unfitted_5fflow_5fboundary_5fcondition_0',['unfitted_flow_boundary_condition',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData_1_1Cut.html#a62a4e6eccfdbf84374847eb4d43034c5',1,'MeltPoolDG::Flow::CompressibleFlowData::Cut']]],
+  ['unfitted_5fflow_5fboundary_5fcondition_0',['unfitted_flow_boundary_condition',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowCutData.html#aba4ffa446d39abff622caefa50b03f71',1,'MeltPoolDG::Flow::CompressibleFlowCutData']]],
   ['unfitted_5finflow_1',['unfitted_inflow',['../classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#ae345c10d25f87f68df54c0449d4aefc5',1,'MeltPoolDG::Flow::CutDGCompressibleFlowOperator']]],
   ['unfitted_5fobject_5fvelocity_2',['unfitted_object_velocity',['../classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a88eac8288dad7740f44ab1b66ae75a86',1,'MeltPoolDG::Flow::CutDGCompressibleFlowOperator']]],
   ['uniform_3',['uniform',['../namespaceMeltPoolDG_1_1Heat.html#a4ec674a4bdd7fd21b5a4f6d38d995da2',1,'MeltPoolDG::Heat']]],

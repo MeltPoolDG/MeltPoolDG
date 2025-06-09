@@ -2,7 +2,7 @@ var searchData=
 [
   ['parametersbase_0',['ParametersBase',['../structMeltPoolDG_1_1ParametersBase.html',1,'MeltPoolDG']]],
   ['paraviewdata_1',['ParaviewData',['../structMeltPoolDG_1_1ParaviewData.html',1,'MeltPoolDG']]],
-  ['penalty_2',['Penalty',['../structMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseData_1_1Penalty.html',1,'MeltPoolDG::Multiphase::CompressibleMultiphaseData']]],
+  ['penalty_2',['Penalty',['../structMeltPoolDG_1_1Multiphase_1_1CompressibleFlowPhaseCouplingData_1_1Penalty.html',1,'MeltPoolDG::Multiphase::CompressibleFlowPhaseCouplingData']]],
   ['periodicboundaryconditions_3',['PeriodicBoundaryConditions',['../structMeltPoolDG_1_1PeriodicBoundaryConditions.html',1,'MeltPoolDG']]],
   ['phiexact_4',['phiexact',['../classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1PhiExact.html',1,'MeltPoolDG::Simulation::VortexBubble::PhiExact&lt; dim, number &gt;'],['../classMeltPoolDG_1_1Simulation_1_1VortexBubbleDG_1_1PhiExact.html',1,'MeltPoolDG::Simulation::VortexBubbleDG::PhiExact&lt; dim, number &gt;']]],
   ['postprocessor_5',['Postprocessor',['../classMeltPoolDG_1_1Postprocessor.html',1,'MeltPoolDG']]],

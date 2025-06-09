@@ -5,7 +5,7 @@ var searchData=
   ['map_5fcompare_3c_20const_20char_20_2a_20_3e_2',['map_compare&lt; const char * &gt;',['../structbetter__enums_1_1map__compare_3_01const_01char_01_5_01_4.html',1,'better_enums']]],
   ['map_5fcompare_3c_20const_20wchar_5ft_20_2a_20_3e_3',['map_compare&lt; const wchar_t * &gt;',['../structbetter__enums_1_1map__compare_3_01const_01wchar__t_01_5_01_4.html',1,'better_enums']]],
   ['marchingcubedata_4',['MarchingCubeData',['../structMeltPoolDG_1_1LevelSet_1_1MarchingCubeData.html',1,'MeltPoolDG::LevelSet']]],
-  ['material_5',['material',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData_1_1Material.html',1,'MeltPoolDG::Flow::CompressibleFlowData&lt; number &gt;::Material'],['../classMeltPoolDG_1_1Material.html',1,'MeltPoolDG::Material&lt; number &gt;']]],
+  ['material_5',['Material',['../classMeltPoolDG_1_1Material.html',1,'MeltPoolDG']]],
   ['materialdata_6',['MaterialData',['../structMeltPoolDG_1_1MaterialData.html',1,'MeltPoolDG']]],
   ['materialparametervalues_7',['MaterialParameterValues',['../structMeltPoolDG_1_1MaterialParameterValues.html',1,'MeltPoolDG']]],
   ['materialparametervalues_3c_20dealii_3a_3avectorizedarray_3c_20number_20_3e_2c_20number_20_3e_8',['MaterialParameterValues&lt; dealii::VectorizedArray&lt; number &gt;, number &gt;',['../structMeltPoolDG_1_1MaterialParameterValues.html',1,'MeltPoolDG']]],
