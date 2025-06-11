@@ -91,7 +91,7 @@ Collaboration diagram for MeltPoolDG::SphericalParticle&lt; dim, number &gt;:</d
 <div class="dyncontent">
 <div class="center"><img src="classMeltPoolDG_1_1SphericalParticle__coll__graph.png" border="0" usemap="#aMeltPoolDG_1_1SphericalParticle_3_01dim_00_01number_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aMeltPoolDG_1_1SphericalParticle_3_01dim_00_01number_01_4_coll__map" id="aMeltPoolDG_1_1SphericalParticle_3_01dim_00_01number_01_4_coll__map">
-<area shape="rect" title="Class representing a finite&#45;sized spherical particle, intended for use with the obstacle field class." alt="" coords="5,5,212,305"/>
+<area shape="rect" title="Class representing a finite&#45;sized spherical particle, intended for use with the obstacle field class." alt="" coords="5,5,251,320"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -117,6 +117,9 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a0666a4b2d5d029885ae3eb0cecc27c8b" id="r_a0666a4b2d5d029885ae3eb0cecc27c8b"><td class="memItemLeft" align="right" valign="top">static std::pair&lt; std::vector&lt; std::string &gt;, std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a0666a4b2d5d029885ae3eb0cecc27c8b">get_property_names_and_component_interpretation</a> ()</td></tr>
+<tr class="memdesc:a0666a4b2d5d029885ae3eb0cecc27c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the names and component interpretations of particle properties for output.  <br /></td></tr>
+<tr class="separator:a0666a4b2d5d029885ae3eb0cecc27c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca48d7c3f947608c97de199a272d5e39" id="r_aca48d7c3f947608c97de199a272d5e39"><td class="memItemLeft" align="right" valign="top">static std::pair&lt; std::vector&lt; number &gt;, dealii::Point&lt; dim, number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#aca48d7c3f947608c97de199a272d5e39">read_state_input</a> (const std::string &amp;input_data)</td></tr>
 <tr class="memdesc:aca48d7c3f947608c97de199a272d5e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses particle properties and location from a single CSV-formatted line. This function reads a single line of CSV-formatted text containing data for one particle. It extracts the particle's properties and its location, and returns them as a pair.  <br /></td></tr>
 <tr class="separator:aca48d7c3f947608c97de199a272d5e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -571,6 +574,44 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
+<a id="a0666a4b2d5d029885ae3eb0cecc27c8b" name="a0666a4b2d5d029885ae3eb0cecc27c8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0666a4b2d5d029885ae3eb0cecc27c8b">&#9670;&#160;</a></span>get_property_names_and_component_interpretation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::pair&lt; std::vector&lt; std::string &gt;, std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt; &gt; <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html">MeltPoolDG::SphericalParticle</a>&lt; dim, number &gt;::get_property_names_and_component_interpretation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Provides the names and component interpretations of particle properties for output. </p>
+<p>This function returns a pair consisting of:</p><ul>
+<li>A list of property names corresponding to physical attributes associated with particles.</li>
+<li>A list of <code>DataComponentInterpretation</code> values indicating whether each property should be interpreted as part of a vector field or as a scalar.</li>
+</ul>
+<dl class="section return"><dt>Returns</dt><dd>A pair of vectors:<ul>
+<li><code>std::vector&lt;std::string&gt;</code>: property names (with <code>dim</code> copies for vector fields),</li>
+<li><code>std::vector&lt;DataComponentInterpretation&gt;</code>: corresponding component interpretations. </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
 <a id="ad640b0a5cece85e97c63eae3b31dec96" name="ad640b0a5cece85e97c63eae3b31dec96"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad640b0a5cece85e97c63eae3b31dec96">&#9670;&#160;</a></span>get_velocity() <span class="overload">[1/4]</span></h2>
 
@@ -1019,7 +1060,7 @@ template&lt;int dim, typename number &gt; </div>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">      2 * <a class="code hl_variable" href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">size_angular_velocity</a> + 2 * dim + dim + 5</div>
-<div class="ttc" id="aclassMeltPoolDG_1_1SphericalParticle_html_aadd3ce37070b3fca88e5e99dd61bd4dc"><div class="ttname"><a href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">MeltPoolDG::SphericalParticle::size_angular_velocity</a></div><div class="ttdeci">static constexpr unsigned int size_angular_velocity</div><div class="ttdef"><b>Definition</b> particle.hpp:33</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SphericalParticle_html_aadd3ce37070b3fca88e5e99dd61bd4dc"><div class="ttname"><a href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">MeltPoolDG::SphericalParticle::size_angular_velocity</a></div><div class="ttdeci">static constexpr unsigned int size_angular_velocity</div><div class="ttdef"><b>Definition</b> particle.hpp:37</div></div>
 </div><!-- fragment -->
 </div>
 </div>
