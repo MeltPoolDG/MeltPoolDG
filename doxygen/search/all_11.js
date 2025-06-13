@@ -2,7 +2,7 @@ var searchData=
 [
   ['obstacle_5fdata_0',['obstacle_data',['../structMeltPoolDG_1_1CfdDemCaseParameters.html#ac9466b010d5b6746a6c507ff714170a6',1,'MeltPoolDG::CfdDemCaseParameters']]],
   ['obstacle_5fdata_2ehpp_1',['obstacle_data.hpp',['../obstacle__data_8hpp.html',1,'']]],
-  ['obstacle_5fdata_5fstructure_2',['obstacle_data_structure',['../structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel.html#a82b233d2297edd7c9f1d6022bdc1f754',1,'MeltPoolDG::ObstacleDataStructure::ObstacleDataStructureModel::obstacle_data_structure'],['../classMeltPoolDG_1_1ObstacleField.html#a638381197fbe8d7df13cd642fd08e8d7',1,'MeltPoolDG::ObstacleField::obstacle_data_structure']]],
+  ['obstacle_5fdata_5fstructure_2',['obstacle_data_structure',['../structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel.html#a82b233d2297edd7c9f1d6022bdc1f754',1,'MeltPoolDG::ObstacleDataStructure::ObstacleDataStructureModel::obstacle_data_structure'],['../classMeltPoolDG_1_1ObstacleField.html#ab6b738eac9baeff080e9e579d22bda16',1,'MeltPoolDG::ObstacleField::obstacle_data_structure']]],
   ['obstacle_5fdata_5fstructure_2ecpp_3',['obstacle_data_structure.cpp',['../obstacle__data__structure_8cpp.html',1,'']]],
   ['obstacle_5fdata_5fstructure_2ehpp_4',['obstacle_data_structure.hpp',['../obstacle__data__structure_8hpp.html',1,'']]],
   ['obstacle_5fdata_5fstructure_5fpimpl_5',['obstacle_data_structure_pimpl',['../structMeltPoolDG_1_1ObstacleDataStructure.html#aca7193893d12b365e71cf87775d6e79c',1,'MeltPoolDG::ObstacleDataStructure']]],

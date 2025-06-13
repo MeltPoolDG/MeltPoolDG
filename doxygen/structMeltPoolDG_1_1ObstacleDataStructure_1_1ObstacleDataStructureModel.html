@@ -110,10 +110,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad3d89bb2a53a6c8683f2b53bcb55745a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39b93c448fee6ceeec3fae528086433c" id="r_a39b93c448fee6ceeec3fae528086433c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel.html#a39b93c448fee6ceeec3fae528086433c">reinit</a> () override</td></tr>
 <tr class="separator:a39b93c448fee6ceeec3fae528086433c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47c168f3f75e0716caa7ad73e558ec0b" id="r_a47c168f3f75e0716caa7ad73e558ec0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel.html#a47c168f3f75e0716caa7ad73e558ec0b">get_obstacles_in_cell</a> (dealii::Particles::PropertyPool&lt; dim &gt; &amp;dst, const dealii::CellAccessor&lt; dim &gt; &amp;cell) const override</td></tr>
-<tr class="separator:a47c168f3f75e0716caa7ad73e558ec0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79130d3260206178d6b3ceb9dd065afb" id="r_a79130d3260206178d6b3ceb9dd065afb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel.html#a79130d3260206178d6b3ceb9dd065afb">get_obstacles_in_cell_batch</a> (dealii::Particles::PropertyPool&lt; dim &gt; &amp;dst, const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, const unsigned int cell_batch_id, const unsigned int n_lanes=dealii::VectorizedArray&lt; number &gt;::size) const override</td></tr>
-<tr class="separator:a79130d3260206178d6b3ceb9dd065afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a237c0f01b7b6aaae84ba795dcf44acc1" id="r_a237c0f01b7b6aaae84ba795dcf44acc1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel.html#a237c0f01b7b6aaae84ba795dcf44acc1">get_obstacles_in_cell</a> (dealii::Particles::PropertyPool&lt; dim &gt; &amp;dst, const dealii::CellAccessor&lt; dim &gt; &amp;cell) const override</td></tr>
+<tr class="separator:a237c0f01b7b6aaae84ba795dcf44acc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbc8092681376c1e0cd037c1f68df728" id="r_afbc8092681376c1e0cd037c1f68df728"><td class="memItemLeft" align="right" valign="top">std::vector&lt; typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel.html#afbc8092681376c1e0cd037c1f68df728">get_obstacles_in_cell_batch</a> (dealii::Particles::PropertyPool&lt; dim &gt; &amp;dst, const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, const unsigned int cell_batch_id, const unsigned int n_lanes=dealii::VectorizedArray&lt; number &gt;::size) const override</td></tr>
+<tr class="separator:afbc8092681376c1e0cd037c1f68df728"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureConcept"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureConcept')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureConcept.html">MeltPoolDG::ObstacleDataStructure&lt; dim, number &gt;::ObstacleDataStructureConcept</a></td></tr>
 <tr class="memitem:a28760bb10282c64e1437b0cf33cd64cd inherit pub_methods_structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureConcept" id="r_a28760bb10282c64e1437b0cf33cd64cd"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureConcept.html#a28760bb10282c64e1437b0cf33cd64cd">~ObstacleDataStructureConcept</a> ()=default</td></tr>
 <tr class="separator:a28760bb10282c64e1437b0cf33cd64cd inherit pub_methods_structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureConcept"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,12 +155,19 @@ template&lt;typename ObstacleDataStructureType &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Constructor. Stores the given obstacle data structure internally.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">obstacle_data_structure</td><td>Data structure of the obstacles. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a47c168f3f75e0716caa7ad73e558ec0b" name="a47c168f3f75e0716caa7ad73e558ec0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47c168f3f75e0716caa7ad73e558ec0b">&#9670;&#160;</a></span>get_obstacles_in_cell()</h2>
+<a id="a237c0f01b7b6aaae84ba795dcf44acc1" name="a237c0f01b7b6aaae84ba795dcf44acc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a237c0f01b7b6aaae84ba795dcf44acc1">&#9670;&#160;</a></span>get_obstacles_in_cell()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -173,7 +180,7 @@ template&lt;typename ObstacleDataStructureType &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure.html">MeltPoolDG::ObstacleDataStructure</a>&lt; dim, number &gt;<a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel.html#ad3d89bb2a53a6c8683f2b53bcb55745a">::ObstacleDataStructureModel</a>&lt; ObstacleDataStructureType &gt;::get_obstacles_in_cell </td>
+          <td class="memname">std::vector&lt; typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle &gt; <a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure.html">MeltPoolDG::ObstacleDataStructure</a>&lt; dim, number &gt;<a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel.html#ad3d89bb2a53a6c8683f2b53bcb55745a">::ObstacleDataStructureModel</a>&lt; ObstacleDataStructureType &gt;::get_obstacles_in_cell </td>
           <td>(</td>
           <td class="paramtype">dealii::Particles::PropertyPool&lt; dim &gt; &amp;&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
@@ -196,13 +203,23 @@ template&lt;typename ObstacleDataStructureType &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Part of the type erasure interface. Refer to the public interface documentation for more details. </p>
 
-<p>Implements <a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureConcept.html#a03a4040a3599d4f0befd61ccbb15b312">MeltPoolDG::ObstacleDataStructure&lt; dim, number &gt;::ObstacleDataStructureConcept</a>.</p>
+<p>Implements <a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureConcept.html#aeae3ea9989cd0f339c53f056416301d5">MeltPoolDG::ObstacleDataStructure&lt; dim, number &gt;::ObstacleDataStructureConcept</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel_a237c0f01b7b6aaae84ba795dcf44acc1_cgraph.png" border="0" usemap="#astructMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel_a237c0f01b7b6aaae84ba795dcf44acc1_cgraph" alt=""/></div>
+<map name="astructMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel_a237c0f01b7b6aaae84ba795dcf44acc1_cgraph" id="astructMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel_a237c0f01b7b6aaae84ba795dcf44acc1_cgraph">
+<area shape="rect" title=" " alt="" coords="5,29,241,84"/>
+<area shape="poly" title=" " alt="" coords="78,29,78,19,86,10,101,5,123,3,150,6,165,14,162,18,148,11,123,8,102,10,89,15,83,21,83,29"/>
+</map>
+</div>
 
 </div>
 </div>
-<a id="a79130d3260206178d6b3ceb9dd065afb" name="a79130d3260206178d6b3ceb9dd065afb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79130d3260206178d6b3ceb9dd065afb">&#9670;&#160;</a></span>get_obstacles_in_cell_batch()</h2>
+<a id="afbc8092681376c1e0cd037c1f68df728" name="afbc8092681376c1e0cd037c1f68df728"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbc8092681376c1e0cd037c1f68df728">&#9670;&#160;</a></span>get_obstacles_in_cell_batch()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -215,7 +232,7 @@ template&lt;typename ObstacleDataStructureType &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure.html">MeltPoolDG::ObstacleDataStructure</a>&lt; dim, number &gt;<a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel.html#ad3d89bb2a53a6c8683f2b53bcb55745a">::ObstacleDataStructureModel</a>&lt; ObstacleDataStructureType &gt;::get_obstacles_in_cell_batch </td>
+          <td class="memname">std::vector&lt; typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle &gt; <a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure.html">MeltPoolDG::ObstacleDataStructure</a>&lt; dim, number &gt;<a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel.html#ad3d89bb2a53a6c8683f2b53bcb55745a">::ObstacleDataStructureModel</a>&lt; ObstacleDataStructureType &gt;::get_obstacles_in_cell_batch </td>
           <td>(</td>
           <td class="paramtype">dealii::Particles::PropertyPool&lt; dim &gt; &amp;&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
@@ -250,8 +267,18 @@ template&lt;typename ObstacleDataStructureType &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Part of the type erasure interface. Refer to the public interface documentation for more details. </p>
 
-<p>Implements <a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureConcept.html#a1d4daa6f723c199e994a317a06042d45">MeltPoolDG::ObstacleDataStructure&lt; dim, number &gt;::ObstacleDataStructureConcept</a>.</p>
+<p>Implements <a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureConcept.html#a4a18245c18d42852430127832a668ee1">MeltPoolDG::ObstacleDataStructure&lt; dim, number &gt;::ObstacleDataStructureConcept</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel_afbc8092681376c1e0cd037c1f68df728_cgraph.png" border="0" usemap="#astructMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel_afbc8092681376c1e0cd037c1f68df728_cgraph" alt=""/></div>
+<map name="astructMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel_afbc8092681376c1e0cd037c1f68df728_cgraph" id="astructMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureModel_afbc8092681376c1e0cd037c1f68df728_cgraph">
+<area shape="rect" title=" " alt="" coords="5,29,257,84"/>
+<area shape="poly" title=" " alt="" coords="83,29,83,19,92,10,108,5,131,3,160,6,176,14,173,18,158,11,131,8,109,10,94,15,88,21,88,29"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -281,6 +308,7 @@ template&lt;typename ObstacleDataStructureType &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Part of the type erasure interface. Refer to the public interface documentation for more details. </p>
 
 <p>Implements <a class="el" href="structMeltPoolDG_1_1ObstacleDataStructure_1_1ObstacleDataStructureConcept.html#abe4d749e45ffe2120a1f467338953bc4">MeltPoolDG::ObstacleDataStructure&lt; dim, number &gt;::ObstacleDataStructureConcept</a>.</p>
 <div class="dynheader">
