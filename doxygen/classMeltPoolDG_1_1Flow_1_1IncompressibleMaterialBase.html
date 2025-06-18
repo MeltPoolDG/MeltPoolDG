@@ -80,13 +80,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Base class for the shear stress computation of an incompressible fluid material.  
+ <a href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="incompressible__flow__material__base_8hpp_source.html">incompressible_flow_material_base.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for MeltPoolDG::Flow::IncompressibleMaterialBase&lt; dim, number &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase__inherit__graph.png" border="0" usemap="#aMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase_3_01dim_00_01number_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="aMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase_3_01dim_00_01number_01_4_inherit__map" id="aMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase_3_01dim_00_01number_01_4_inherit__map">
-<area shape="rect" title=" " alt="" coords="17,5,253,180"/>
+<area shape="rect" title="Base class for the shear stress computation of an incompressible fluid material." alt="" coords="17,5,253,180"/>
 <area shape="rect" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html" title=" " alt="" coords="5,228,264,652"/>
 <area shape="poly" title=" " alt="" coords="137,194,137,228,132,228,132,194"/>
 </map>
@@ -96,26 +99,31 @@ Collaboration diagram for MeltPoolDG::Flow::IncompressibleMaterialBase&lt; dim, 
 <div class="dyncontent">
 <div class="center"><img src="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase__coll__graph.png" border="0" usemap="#aMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase_3_01dim_00_01number_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase_3_01dim_00_01number_01_4_coll__map" id="aMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase_3_01dim_00_01number_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,241,180"/>
+<area shape="rect" title="Base class for the shear stress computation of an incompressible fluid material." alt="" coords="5,5,241,180"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af6e1dd9c46c9b9da5c71b724235cd59a" id="r_af6e1dd9c46c9b9da5c71b724235cd59a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#af6e1dd9c46c9b9da5c71b724235cd59a">reinit</a> (const dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;velocity_gradient, const unsigned int cell_idx, const unsigned int quad_idx)=0</td></tr>
+<tr class="memdesc:af6e1dd9c46c9b9da5c71b724235cd59a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinit function to be used to compute quadrature point variables.  <br /></td></tr>
 <tr class="separator:af6e1dd9c46c9b9da5c71b724235cd59a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b915ff460283807023b416453cbdb0b" id="r_a9b915ff460283807023b416453cbdb0b"><td class="memItemLeft" align="right" valign="top">virtual dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#a9b915ff460283807023b416453cbdb0b">get_tau</a> ()=0</td></tr>
+<tr class="memdesc:a9b915ff460283807023b416453cbdb0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the deviatoric stress τ for the given velocity gradient ∇u, set by <a class="el" href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#af6e1dd9c46c9b9da5c71b724235cd59a" title="Reinit function to be used to compute quadrature point variables.">reinit()</a>.  <br /></td></tr>
 <tr class="separator:a9b915ff460283807023b416453cbdb0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7559c79301a7b02d304ef27c1977f7c" id="r_aa7559c79301a7b02d304ef27c1977f7c"><td class="memItemLeft" align="right" valign="top">virtual dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#aa7559c79301a7b02d304ef27c1977f7c">get_vmult_d_tau_d_grad_vel</a> ()=0</td></tr>
+<tr class="memdesc:aa7559c79301a7b02d304ef27c1977f7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the material tangent of the deviatoric stress and perform a vmult with the gradient of the nodal DoF values δu, set by <a class="el" href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#af6e1dd9c46c9b9da5c71b724235cd59a" title="Reinit function to be used to compute quadrature point variables.">reinit()</a>,.  <br /></td></tr>
 <tr class="separator:aa7559c79301a7b02d304ef27c1977f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac14fc0088445fefa3d745f11f2f670ee" id="r_ac14fc0088445fefa3d745f11f2f670ee"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#ac14fc0088445fefa3d745f11f2f670ee">update_ghost_values</a> ()</td></tr>
+<tr class="memdesc:ac14fc0088445fefa3d745f11f2f670ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update ghost values of the vectors, to be used to compute the deviatoric stress.  <br /></td></tr>
 <tr class="separator:ac14fc0088445fefa3d745f11f2f670ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa780288017566317fb0f43e6e2e9cf0f" id="r_aa780288017566317fb0f43e6e2e9cf0f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#aa780288017566317fb0f43e6e2e9cf0f">zero_out_ghost_values</a> ()</td></tr>
+<tr class="memdesc:aa780288017566317fb0f43e6e2e9cf0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero out ghost values of the vectors, to be used to compute the deviatoric stress.  <br /></td></tr>
 <tr class="separator:aa780288017566317fb0f43e6e2e9cf0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number&gt;<br />
-class MeltPoolDG::Flow::IncompressibleMaterialBase&lt; dim, number &gt;</div><p>Base class for the shear stress computation of an incompressible fluid material</p>
+class MeltPoolDG::Flow::IncompressibleMaterialBase&lt; dim, number &gt;</div><p>Base class for the shear stress computation of an incompressible fluid material. </p>
 <p>It is assumed that the stress computation has the form</p>
 <p>σ = -p * I + τ</p>
 <p>with the Cauchy stress tensor σ, the pressure p, the second-order Identity tensor I and the deviatoric stress tensor τ.</p>
@@ -146,7 +154,9 @@ template&lt;int dim, typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Return the deviatoric stress τ for the given velocity gradient ∇u, set by <a class="el" href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#af6e1dd9c46c9b9da5c71b724235cd59a">reinit()</a>. τ(∇u) </p>
+
+<p>Compute the deviatoric stress τ for the given velocity gradient ∇u, set by <a class="el" href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#af6e1dd9c46c9b9da5c71b724235cd59a" title="Reinit function to be used to compute quadrature point variables.">reinit()</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>Deviatoric stress tensor τ(∇u). </dd></dl>
 
 <p>Implemented in <a class="el" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a32df7c6f3b6f37d86745152fd3fcb763">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial&lt; dim, number &gt;</a>.</p>
 
@@ -176,9 +186,11 @@ template&lt;int dim, typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Return the material tangent of the deviatoric stress and perform a vmult with the gradient of the nodal DoF values δu, set by <a class="el" href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#af6e1dd9c46c9b9da5c71b724235cd59a">reinit()</a>,</p>
+
+<p>Compute the material tangent of the deviatoric stress and perform a vmult with the gradient of the nodal DoF values δu, set by <a class="el" href="classMeltPoolDG_1_1Flow_1_1IncompressibleMaterialBase.html#af6e1dd9c46c9b9da5c71b724235cd59a" title="Reinit function to be used to compute quadrature point variables.">reinit()</a>,. </p>
 <p>∂ τ ---&mdash; * ∇N * δu ∂ ∇u |________| material tangent</p>
-<p>with the shape functions N. </p>
+<p>with the shape functions N.</p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classMeltPoolDG_1_1Material.html">Material</a> tangent of the deviatoric stress tensor multiplied with the gradient of the nodal DoF values δu. </dd></dl>
 
 <p>Implemented in <a class="el" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a66baececab4812244b7a836982d8d525">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial&lt; dim, number &gt;</a>.</p>
 
@@ -225,7 +237,16 @@ template&lt;int dim, typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Reinit function to be used to compute quadrature point variables. The gradient of the velocity vector <code>velocity_gradient</code>, the current cell index <code>cell_idx</code> and the current quadrature point index <code>quad_idx</code> are known. </p>
+
+<p>Reinit function to be used to compute quadrature point variables. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">velocity_gradient</td><td>Gradient of the velocity vector. </td></tr>
+    <tr><td class="paramname">cell_idx</td><td>Current cell index. </td></tr>
+    <tr><td class="paramname">quad_idx</td><td>Current quadrature point index. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#ac5036b59cea691f361a45274f82bded7">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial&lt; dim, number &gt;</a>.</p>
 
@@ -255,7 +276,9 @@ template&lt;int dim, typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Update ghost values of the vectors, to be used to compute the deviatoric stress. Default: do nothing </p>
+
+<p>Update ghost values of the vectors, to be used to compute the deviatoric stress. </p>
+<p>Default: do nothing </p>
 
 <p>Reimplemented in <a class="el" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a978a98f2247c51c6397ab23f317ac5af">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial&lt; dim, number &gt;</a>.</p>
 
@@ -285,7 +308,9 @@ template&lt;int dim, typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Zero out ghost values of the vectors, to be used to compute the deviatoric stress. Default: do nothing </p>
+
+<p>Zero out ghost values of the vectors, to be used to compute the deviatoric stress. </p>
+<p>Default: do nothing </p>
 
 <p>Reimplemented in <a class="el" href="classMeltPoolDG_1_1Evaporation_1_1IncompressibleNewtonianFluidEvaporationMaterial.html#a599340341f80916f26d387e11f76a365">MeltPoolDG::Evaporation::IncompressibleNewtonianFluidEvaporationMaterial&lt; dim, number &gt;</a>.</p>
 

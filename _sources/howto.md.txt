@@ -89,8 +89,17 @@ private:
 ```
 
 ### Documentation and comments
-- Use `//` for inline comments within the code.
-- Follow the Doxygen format for documentation of functions, classes, variables in header files.
+- Use `//` for inline comments within the code. 
+
+Follow the Doxygen format when documenting functions, classes, and variables in header files:
+- Use the `/** ... */` style for documenting functions and classes.
+- Use `@brief` for a short summary at the beginning of the description, followed by a more detailed explanation if needed.
+- Use `@p` to refer to parameters within descriptive text.
+- Document all function parameters with `@param`, return values with `@return`, and any thrown exceptions with `@throws`.
+- Use `@note` to highlight special conditions or important information.
+- If needed, you can highlight text (e.g., `**bold**`, `_italic_`) to enhance readability.
+- Use `///` for documenting individual class member variables.
+- Write clear and concise comments that explain what the code does.
 
 ## How to add new parameters
 

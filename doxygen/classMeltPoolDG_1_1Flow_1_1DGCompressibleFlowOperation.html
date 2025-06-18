@@ -74,8 +74,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-types">Private Types</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation-members.html">List of all members</a>  </div>
@@ -83,68 +83,91 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Operation that performs a full time step for the compressible Navier-Stokes.  
+ <a href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="dg__compressible__flow__operation_8hpp_source.html">dg_compressible_flow_operation.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for MeltPoolDG::Flow::DGCompressibleFlowOperation&lt; dim, number &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation__coll__graph.png" border="0" usemap="#aMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_3_01dim_00_01number_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_3_01dim_00_01number_01_4_coll__map" id="aMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_3_01dim_00_01number_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,252,435"/>
+<area shape="rect" title="Operation that performs a full time step for the compressible Navier&#45;Stokes." alt="" coords="5,5,252,435"/>
 </map>
 </div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a4ce90d5647fa061badcf1ae58e059c6e" id="r_a4ce90d5647fa061badcf1ae58e059c6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a4ce90d5647fa061badcf1ae58e059c6e">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt; number &gt;</td></tr>
+<tr class="separator:a4ce90d5647fa061badcf1ae58e059c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:acf40d96f2cc87462b6d0470f3ce2eb62" id="r_acf40d96f2cc87462b6d0470f3ce2eb62"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#acf40d96f2cc87462b6d0470f3ce2eb62">DGCompressibleFlowOperation</a> (<a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a> <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">dim</a>, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">dim</a>, number &gt; &amp;scratch_data, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a> <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html">CompressibleFlowData</a>&lt; number &gt; &amp;flow_data, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a> <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html">CompressibleFluidMaterialPhaseData</a>&lt; number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">material_data_in</a>, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">unsigned</a> int <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">flow_dof_idx</a>=0, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">unsigned</a> int flow_quad_idx=0, std::unique_ptr&lt; <a class="el" href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html">ExternalFluidForcesRightHandSideContribution</a>&lt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">dim</a>, number &gt; &gt; &amp;&amp;external_forces=<a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">nullptr</a>)</td></tr>
+<tr class="memdesc:acf40d96f2cc87462b6d0470f3ce2eb62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
 <tr class="separator:acf40d96f2cc87462b6d0470f3ce2eb62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a817cf6b2913c8b8c52d8659c4a85f5ee" id="r_a817cf6b2913c8b8c52d8659c4a85f5ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a817cf6b2913c8b8c52d8659c4a85f5ee">reinit</a> ()</td></tr>
+<tr class="memdesc:a817cf6b2913c8b8c52d8659c4a85f5ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up the required internal data structures.  <br /></td></tr>
 <tr class="separator:a817cf6b2913c8b8c52d8659c4a85f5ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0abc19361924534f20828ca25dc587ca" id="r_a0abc19361924534f20828ca25dc587ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a0abc19361924534f20828ca25dc587ca">solve</a> (<a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a> number current_time, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a> number <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">time_step</a>)</td></tr>
+<tr class="memdesc:a0abc19361924534f20828ca25dc587ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solves the compressible Navier-Stokes equations for a single time step.  <br /></td></tr>
 <tr class="separator:a0abc19361924534f20828ca25dc587ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa395685b697958e42394e86cfc400276" id="r_aa395685b697958e42394e86cfc400276"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">distribute_dofs</a> (dealii::DoFHandler&lt; dim &gt; &amp;dof_handler) const</td></tr>
+<tr class="memdesc:aa395685b697958e42394e86cfc400276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distribute the degrees of freedom to the passed dof handler object.  <br /></td></tr>
 <tr class="separator:aa395685b697958e42394e86cfc400276"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f5e31197ec3c7b52df3c2c35a54dbc8" id="r_a2f5e31197ec3c7b52df3c2c35a54dbc8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a2f5e31197ec3c7b52df3c2c35a54dbc8">set_boundary_conditions</a> (<a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a> std::shared_ptr&lt; <a class="el" href="classMeltPoolDG_1_1SimulationCaseBase.html">SimulationCaseBase</a>&lt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">dim</a>, number &gt; &gt; &amp;simulation_case, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a> std::string &amp;<a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">operation_name</a>)</td></tr>
+<tr class="memdesc:a2f5e31197ec3c7b52df3c2c35a54dbc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the boundary conditions.  <br /></td></tr>
 <tr class="separator:a2f5e31197ec3c7b52df3c2c35a54dbc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad643161de013a7bc4a8c8de8e9c3d246" id="r_ad643161de013a7bc4a8c8de8e9c3d246"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#ad643161de013a7bc4a8c8de8e9c3d246">set_body_force</a> (std::unique_ptr&lt; dealii::Function&lt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">dim</a> &gt; &gt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">body_force_in</a>)</td></tr>
+<tr class="memdesc:ad643161de013a7bc4a8c8de8e9c3d246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a body force, e.g. gravity, specified by the passed function.  <br /></td></tr>
 <tr class="separator:ad643161de013a7bc4a8c8de8e9c3d246"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f4f13ff450335f1f5d9d165706d08c1" id="r_a1f4f13ff450335f1f5d9d165706d08c1"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a1f4f13ff450335f1f5d9d165706d08c1">compute_time_step_size</a> (bool <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">do_print</a>=<a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">false</a>) <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a></td></tr>
+<tr class="memdesc:a1f4f13ff450335f1f5d9d165706d08c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the maximum time step size.  <br /></td></tr>
 <tr class="separator:a1f4f13ff450335f1f5d9d165706d08c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a903cd722c721547c5034ef05fa4d98cf" id="r_a903cd722c721547c5034ef05fa4d98cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a903cd722c721547c5034ef05fa4d98cf">set_initial_condition</a> (<a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a> dealii::Function&lt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">dim</a> &gt; &amp;function)</td></tr>
+<tr class="memdesc:a903cd722c721547c5034ef05fa4d98cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the solution vector to the passed initial flow field state.  <br /></td></tr>
 <tr class="separator:a903cd722c721547c5034ef05fa4d98cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6d842f65cd45b14c5398c5838f203c4" id="r_ae6d842f65cd45b14c5398c5838f203c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#ae6d842f65cd45b14c5398c5838f203c4">attach_output_vectors</a> (<a class="el" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut</a>&lt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">dim</a>, number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">data_out</a>) <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a></td></tr>
+<tr class="memdesc:ae6d842f65cd45b14c5398c5838f203c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attach the solution to the passed data out object.  <br /></td></tr>
 <tr class="separator:ae6d842f65cd45b14c5398c5838f203c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66c2d20d949e6f68415cb1a02e88739a" id="r_a66c2d20d949e6f68415cb1a02e88739a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a> <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a4ce90d5647fa061badcf1ae58e059c6e">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a66c2d20d949e6f68415cb1a02e88739a">get_solution</a> () <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a></td></tr>
-<tr class="memdesc:a66c2d20d949e6f68415cb1a02e88739a"><td class="mdescLeft">&#160;</td><td class="mdescRight">inlined functions  <br /></td></tr>
+<tr class="memdesc:a66c2d20d949e6f68415cb1a02e88739a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant getter function for the current solution vector.  <br /></td></tr>
 <tr class="separator:a66c2d20d949e6f68415cb1a02e88739a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae444a941239669ddf5d2822c2becae1e" id="r_ae444a941239669ddf5d2822c2becae1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a4ce90d5647fa061badcf1ae58e059c6e">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#ae444a941239669ddf5d2822c2becae1e">get_solution</a> ()</td></tr>
+<tr class="memdesc:ae444a941239669ddf5d2822c2becae1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter function for the current solution vector.  <br /></td></tr>
 <tr class="separator:ae444a941239669ddf5d2822c2becae1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d30d52716d31b15ffdeda2c2024cde8" id="r_a2d30d52716d31b15ffdeda2c2024cde8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a> dealii::DoFHandler&lt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">dim</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a2d30d52716d31b15ffdeda2c2024cde8">get_dof_handler</a> () <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a></td></tr>
+<tr class="memdesc:a2d30d52716d31b15ffdeda2c2024cde8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant getter function for the DoFHandler.  <br /></td></tr>
 <tr class="separator:a2d30d52716d31b15ffdeda2c2024cde8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
-Private Types</h2></td></tr>
-<tr class="memitem:a4ce90d5647fa061badcf1ae58e059c6e" id="r_a4ce90d5647fa061badcf1ae58e059c6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a4ce90d5647fa061badcf1ae58e059c6e">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt; number &gt;</td></tr>
-<tr class="separator:a4ce90d5647fa061badcf1ae58e059c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a5f834714b7385b3a1e3b410cd9f6fa0d" id="r_a5f834714b7385b3a1e3b410cd9f6fa0d"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a5f834714b7385b3a1e3b410cd9f6fa0d">compute_convective_time_step_limit</a> () <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a></td></tr>
+<tr class="memdesc:a5f834714b7385b3a1e3b410cd9f6fa0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the convective time step limit for the current mesh and flow field.  <br /></td></tr>
 <tr class="separator:a5f834714b7385b3a1e3b410cd9f6fa0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6271a9f4c3b71f78ddd5d16381ffa266" id="r_a6271a9f4c3b71f78ddd5d16381ffa266"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a6271a9f4c3b71f78ddd5d16381ffa266">compute_minimum_density</a> () <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">const</a></td></tr>
+<tr class="memdesc:a6271a9f4c3b71f78ddd5d16381ffa266"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the minimum density currently occurring in the flow field.  <br /></td></tr>
 <tr class="separator:a6271a9f4c3b71f78ddd5d16381ffa266"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30e90c067807873c9d10513435a33a54" id="r_a30e90c067807873c9d10513435a33a54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a30e90c067807873c9d10513435a33a54">setup_operator_and_time_integrator</a> (std::unique_ptr&lt; <a class="el" href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html">ExternalFluidForcesRightHandSideContribution</a>&lt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">dim</a>, number &gt; &gt; &amp;&amp;external_forces)</td></tr>
+<tr class="memdesc:a30e90c067807873c9d10513435a33a54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up the operator to suit the specified time integration scheme.  <br /></td></tr>
 <tr class="separator:a30e90c067807873c9d10513435a33a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ad64942a09677b9e3ab138b5960ee32de" id="r_ad64942a09677b9e3ab138b5960ee32de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html">CompressibleFlowScratchData</a>&lt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">dim</a>, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#ad64942a09677b9e3ab138b5960ee32de">flow_scratch_data</a></td></tr>
+<tr class="memdesc:ad64942a09677b9e3ab138b5960ee32de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scratch data for compressible flows.  <br /></td></tr>
 <tr class="separator:ad64942a09677b9e3ab138b5960ee32de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab15a9bc5d67f8e09a34c94fc831bae0b" id="r_ab15a9bc5d67f8e09a34c94fc831bae0b"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperatorBase.html">DGCompressibleFlowOperatorBase</a>&lt; number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#ab15a9bc5d67f8e09a34c94fc831bae0b">comp_flow_operator</a></td></tr>
+<tr class="memdesc:ab15a9bc5d67f8e09a34c94fc831bae0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compressible flow operator object.  <br /></td></tr>
 <tr class="separator:ab15a9bc5d67f8e09a34c94fc831bae0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abccaa710215d486cfb45c74b760f8f05" id="r_abccaa710215d486cfb45c74b760f8f05"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1TimeIntegratorBase.html">TimeIntegration::TimeIntegratorBase</a>&lt; number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#abccaa710215d486cfb45c74b760f8f05">time_integrator</a></td></tr>
+<tr class="memdesc:abccaa710215d486cfb45c74b760f8f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time integrator.  <br /></td></tr>
 <tr class="separator:abccaa710215d486cfb45c74b760f8f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">typename</a> number&gt;<br />
+class MeltPoolDG::Flow::DGCompressibleFlowOperation&lt; dim, number &gt;</div><p>Operation that performs a full time step for the compressible Navier-Stokes. </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a4ce90d5647fa061badcf1ae58e059c6e" name="a4ce90d5647fa061badcf1ae58e059c6e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4ce90d5647fa061badcf1ae58e059c6e">&#9670;&#160;</a></span>VectorType</h2>
 
@@ -152,19 +175,11 @@ Private Attributes</h2></td></tr>
 <div class="memproto">
 <div class="memtemplate">
 template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">typename</a> number &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">using</a> <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html">MeltPoolDG::Flow::DGCompressibleFlowOperation</a>&lt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">dim</a>, number &gt;::VectorType =  dealii::LinearAlgebra::distributed::Vector&lt;number&gt;</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -177,6 +192,9 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
 <div class="memproto">
 <div class="memtemplate">
 template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">typename</a> number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html">MeltPoolDG::Flow::DGCompressibleFlowOperation</a>&lt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#aa395685b697958e42394e86cfc400276">dim</a>, number &gt;::DGCompressibleFlowOperation </td>
@@ -220,8 +238,15 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Constructor.</p>
+
+<p>Constructor. </p>
+<p>Initializes all internal data structures required to simulate compressible Navier-Stokes flows.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scratch_data</td><td>Reference to the used <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a> object. </td></tr>
@@ -238,8 +263,8 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_acf40d96f2cc87462b6d0470f3ce2eb62_cgraph.png" border="0" usemap="#aclassMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_acf40d96f2cc87462b6d0470f3ce2eb62_cgraph" alt=""/></div>
 <map name="aclassMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_acf40d96f2cc87462b6d0470f3ce2eb62_cgraph" id="aclassMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_acf40d96f2cc87462b6d0470f3ce2eb62_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,335,53"/>
-<area shape="rect" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a30e90c067807873c9d10513435a33a54" title=" " alt="" coords="383,5,637,60"/>
+<area shape="rect" title="Constructor." alt="" coords="5,13,335,53"/>
+<area shape="rect" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a30e90c067807873c9d10513435a33a54" title="Set up the operator to suit the specified time integration scheme." alt="" coords="383,5,637,60"/>
 <area shape="poly" title=" " alt="" coords="335,30,369,30,369,35,335,35"/>
 </map>
 </div>
@@ -264,7 +289,9 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Attach the solution to the passed data out object. The solution which are added are the density, the momentum and the energy density.</p>
+
+<p>Attach the solution to the passed data out object. </p>
+<p>The solution which are added are the density, the momentum and the energy density.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data_out</td><td>Object to which the solution vector is attached. </td></tr>
@@ -276,7 +303,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_ae6d842f65cd45b14c5398c5838f203c4_cgraph.png" border="0" usemap="#aclassMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_ae6d842f65cd45b14c5398c5838f203c4_cgraph" alt=""/></div>
 <map name="aclassMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_ae6d842f65cd45b14c5398c5838f203c4_cgraph" id="aclassMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_ae6d842f65cd45b14c5398c5838f203c4_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,276,45"/>
+<area shape="rect" title="Attach the solution to the passed data out object." alt="" coords="5,5,276,45"/>
 <area shape="rect" href="classMeltPoolDG_1_1GenericDataOut.html#a5e45c6f8525cc11ca255e3205cee5972" title="Add a distributed vector with multiple components and custom interpretations." alt="" coords="324,5,535,45"/>
 <area shape="poly" title=" " alt="" coords="276,23,310,23,310,28,276,28"/>
 </map>
@@ -308,13 +335,15 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Compute the convective time step limit for the current mesh and flow field. </p>
+<dl class="section return"><dt>Returns</dt><dd>Maximum convective time step size. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_a5f834714b7385b3a1e3b410cd9f6fa0d_cgraph.png" border="0" usemap="#aclassMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_a5f834714b7385b3a1e3b410cd9f6fa0d_cgraph" alt=""/></div>
 <map name="aclassMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_a5f834714b7385b3a1e3b410cd9f6fa0d_cgraph" id="aclassMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_a5f834714b7385b3a1e3b410cd9f6fa0d_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,265,60"/>
+<area shape="rect" title="Compute the convective time step limit for the current mesh and flow field." alt="" coords="5,5,265,60"/>
 <area shape="rect" href="namespaceMeltPoolDG.html#ad9f064f7b91aa471f3bddc7cc1a7280d" title=" " alt="" coords="313,20,484,45"/>
 <area shape="poly" title=" " alt="" coords="265,30,300,30,300,35,265,35"/>
 </map>
@@ -346,7 +375,9 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Compute the minimum density currently occurring in the flow field. </p>
+<dl class="section return"><dt>Returns</dt><dd>Minimum density. </dd></dl>
 
 </div>
 </div>
@@ -367,13 +398,16 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compute the maximum time step size arising from the convective and viscous time step limits and optionally print it to the console.</p>
+
+<p>Compute the maximum time step size. </p>
+<p>The maximum time step size arises from the convective and viscous time step limits. Optionally, it is printed to the console.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">do_print</td><td>If true, the time step limit is printed to the console. </td></tr>
+    <tr><td class="paramname">do_print</td><td>If true, the time step limit is printed to the console.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The computed maximum time step size. </dd></dl>
 
 </div>
 </div>
@@ -394,10 +428,11 @@ template&lt;int dim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Distribute the degrees of freedom to the passed dof handler object.</p>
+
+<p>Distribute the degrees of freedom to the passed dof handler object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dof_handler</td><td>Dof handler object ussed for the compressible flow solver. </td></tr>
+    <tr><td class="paramname">dof_handler</td><td>Dof handler object used for the compressible flow solver. </td></tr>
   </table>
   </dd>
 </dl>
@@ -406,7 +441,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_aa395685b697958e42394e86cfc400276_cgraph.png" border="0" usemap="#aclassMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_aa395685b697958e42394e86cfc400276_cgraph" alt=""/></div>
 <map name="aclassMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_aa395685b697958e42394e86cfc400276_cgraph" id="aclassMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation_aa395685b697958e42394e86cfc400276_cgraph">
-<area shape="rect" title=" " alt="" coords="5,29,260,69"/>
+<area shape="rect" title="Distribute the degrees of freedom to the passed dof handler object." alt="" coords="5,29,260,69"/>
 <area shape="rect" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#ab95c220565e72ccd4dd83c0f1a84994a" title=" " alt="" coords="308,29,505,69"/>
 <area shape="poly" title=" " alt="" coords="260,47,294,47,294,52,260,52"/>
 <area shape="poly" title=" " alt="" coords="356,30,353,20,361,10,379,5,407,3,438,5,455,13,453,18,437,11,407,8,380,10,364,15,358,21,361,28"/>
@@ -432,6 +467,8 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
       </table>
 </div><div class="memdoc">
 
+<p>Constant getter function for the DoFHandler. </p>
+
 </div>
 </div>
 <a id="ae444a941239669ddf5d2822c2becae1e" name="ae444a941239669ddf5d2822c2becae1e"></a>
@@ -450,6 +487,8 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Getter function for the current solution vector. </p>
 
 </div>
 </div>
@@ -470,8 +509,8 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
       </table>
 </div><div class="memdoc">
 
+<p>Constant getter function for the current solution vector. </p>
 <p>inlined functions </p>
-<p>Getter functions. </p>
 
 </div>
 </div>
@@ -491,7 +530,9 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set up the required internal data structures. After a call to this function the <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a0abc19361924534f20828ca25dc587ca">solve()</a> function of the class can be utilized. </p>
+
+<p>Set up the required internal data structures. </p>
+<p>After a call to this function the <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressibleFlowOperation.html#a0abc19361924534f20828ca25dc587ca" title="Solves the compressible Navier-Stokes equations for a single time step.">solve()</a> function of the class can be utilized. </p>
 
 </div>
 </div>
@@ -512,7 +553,8 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set a body force, e.g. gravity, specified by the passed function.</p>
+
+<p>Set a body force, e.g. gravity, specified by the passed function. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">body_force_in</td><td>Function specifying the body force.</td></tr>
@@ -550,7 +592,8 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the boundary conditions.</p>
+
+<p>Set the boundary conditions. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">simulation_case</td><td>dealii::Pointer to the considered simulation case class. </td></tr>
@@ -558,7 +601,7 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>The function simply passes the parameters to the set_boundary_conditions function in the <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowBoundaryConditions.html">CompressibleFlowBoundaryConditions</a> class. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The function simply passes the parameters to the set_boundary_conditions function in the <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowBoundaryConditions.html" title="Helper class taking care of all boundary condition related computations for the compressible flow sol...">CompressibleFlowBoundaryConditions</a> class. </dd></dl>
 
 </div>
 </div>
@@ -579,7 +622,8 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the solution vector to the passed initial flow field state.</p>
+
+<p>Set the solution vector to the passed initial flow field state. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">function</td><td>Initial condition of the flow field. </td></tr>
@@ -614,7 +658,8 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set up the operator to suit the specified time integration scheme.</p>
+
+<p>Set up the operator to suit the specified time integration scheme. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">external_forces</td><td>Pointer to a struct implementing external forces acting on the fluid. </td></tr>
@@ -651,7 +696,8 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Solves the compressible Navier-Stokes equations for a single time step.</p>
+
+<p>Solves the compressible Navier-Stokes equations for a single time step. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">current_time</td><td>Current time at t^n. </td></tr>
@@ -685,6 +731,8 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
 </table>
 </div><div class="memdoc">
 
+<p>Compressible flow operator object. </p>
+
 </div>
 </div>
 <a id="ad64942a09677b9e3ab138b5960ee32de" name="ad64942a09677b9e3ab138b5960ee32de"></a>
@@ -709,6 +757,8 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
 </table>
 </div><div class="memdoc">
 
+<p>Scratch data for compressible flows. </p>
+
 </div>
 </div>
 <a id="abccaa710215d486cfb45c74b760f8f05" name="abccaa710215d486cfb45c74b760f8f05"></a>
@@ -732,6 +782,8 @@ template&lt;int dim, <a class="el" href="classMeltPoolDG_1_1Flow_1_1DGCompressib
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Time integrator. </p>
 
 </div>
 </div>

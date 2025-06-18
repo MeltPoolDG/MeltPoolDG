@@ -83,13 +83,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>This class computes the Darcy damping force (or Darcy source term).  
+ <a href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="darcy__damping__operation_8hpp_source.html">darcy_damping_operation.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for MeltPoolDG::Flow::DarcyDampingOperation&lt; dim, number &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation__coll__graph.png" border="0" usemap="#aMeltPoolDG_1_1Flow_1_1DarcyDampingOperation_3_01dim_00_01number_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aMeltPoolDG_1_1Flow_1_1DarcyDampingOperation_3_01dim_00_01number_01_4_coll__map" id="aMeltPoolDG_1_1Flow_1_1DarcyDampingOperation_3_01dim_00_01number_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="5,608,240,997"/>
+<area shape="rect" title="This class computes the Darcy damping force (or Darcy source term)." alt="" coords="5,608,240,997"/>
 <area shape="rect" href="classMeltPoolDG_1_1ScratchData.html" title=" " alt="" coords="22,5,223,545"/>
 <area shape="poly" title=" " alt="" coords="125,546,125,592,120,592,120,546"/>
 </map>
@@ -107,23 +110,31 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad042fecd2ebb62db83f46f445850b497"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
 <tr class="separator:ad042fecd2ebb62db83f46f445850b497"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc7e637c4386b8fff92c344952d7a36f" id="r_afc7e637c4386b8fff92c344952d7a36f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#afc7e637c4386b8fff92c344952d7a36f">reinit</a> ()</td></tr>
+<tr class="memdesc:afc7e637c4386b8fff92c344952d7a36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinitialize data structures.  <br /></td></tr>
 <tr class="separator:afc7e637c4386b8fff92c344952d7a36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad614c4ad25300a5289741a2d268c27f1" id="r_ad614c4ad25300a5289741a2d268c27f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#ad614c4ad25300a5289741a2d268c27f1">set_darcy_damping_at_q</a> (const <a class="el" href="classMeltPoolDG_1_1Material.html">Material</a>&lt; number &gt; &amp;material, const <a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a8d22f1f9aab6325675050f895a4d6406">VectorType</a> &amp;ls_as_heaviside, const <a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a8d22f1f9aab6325675050f895a4d6406">VectorType</a> &amp;temperature, const unsigned int ls_hanging_nodes_dof_idx, const unsigned int temp_dof_idx)</td></tr>
+<tr class="memdesc:ad614c4ad25300a5289741a2d268c27f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loop over all cells and quadrature points (defined via <code>flow_quad_idx</code>), compute the Darcy damping coefficient and store it.  <br /></td></tr>
 <tr class="separator:ad614c4ad25300a5289741a2d268c27f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af564a25ab414af03ba22a1c43a40c7e1" id="r_af564a25ab414af03ba22a1c43a40c7e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#af564a25ab414af03ba22a1c43a40c7e1">assemble_rhs</a> (<a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a8d22f1f9aab6325675050f895a4d6406">VectorType</a> &amp;force_rhs, const <a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a8d22f1f9aab6325675050f895a4d6406">VectorType</a> &amp;velocity_vec, const bool zero_out=true)</td></tr>
+<tr class="memdesc:af564a25ab414af03ba22a1c43a40c7e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assemble the Darcy damping force contribution into the right-hand side (RHS) vector <code>force_rhs</code>.  <br /></td></tr>
 <tr class="separator:af564a25ab414af03ba22a1c43a40c7e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a547230e6e4232cafd46d41fe537f0143" id="r_a547230e6e4232cafd46d41fe537f0143"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a547230e6e4232cafd46d41fe537f0143">attach_output_vectors</a> (<a class="el" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut</a>&lt; dim, number &gt; &amp;data_out) const</td></tr>
+<tr class="memdesc:a547230e6e4232cafd46d41fe537f0143"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attach the element-wise damping coefficient to the output data.  <br /></td></tr>
 <tr class="separator:a547230e6e4232cafd46d41fe537f0143"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33a973663b7dd20c51e37d4c3d3e4429" id="r_a33a973663b7dd20c51e37d4c3d3e4429"><td class="memItemLeft" align="right" valign="top">dealii::VectorizedArray&lt; number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a33a973663b7dd20c51e37d4c3d3e4429">get_damping</a> (const unsigned int cell, const unsigned int q)</td></tr>
+<tr class="memdesc:a33a973663b7dd20c51e37d4c3d3e4429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter function for the damping coefficients cell-wise at each quadrature point (modifiable version).  <br /></td></tr>
 <tr class="separator:a33a973663b7dd20c51e37d4c3d3e4429"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe41a9c31e2918663fd1d0eca34a54a4" id="r_abe41a9c31e2918663fd1d0eca34a54a4"><td class="memItemLeft" align="right" valign="top">const dealii::VectorizedArray&lt; number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#abe41a9c31e2918663fd1d0eca34a54a4">get_damping</a> (const unsigned int cell, const unsigned int q) const</td></tr>
+<tr class="memdesc:abe41a9c31e2918663fd1d0eca34a54a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter function for the damping coefficients cell-wise at each quadrature point (const version).  <br /></td></tr>
 <tr class="separator:abe41a9c31e2918663fd1d0eca34a54a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a4fcf5ed379f298faefc3790cab4dac9d" id="r_a4fcf5ed379f298faefc3790cab4dac9d"><td class="memItemLeft" align="right" valign="top">dealii::VectorizedArray&lt; number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a4fcf5ed379f298faefc3790cab4dac9d">compute_darcy_damping_coefficient</a> (const dealii::VectorizedArray&lt; number &gt; &amp;solid_fraction) const</td></tr>
+<tr class="memdesc:a4fcf5ed379f298faefc3790cab4dac9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Darcy damping coefficient based on a given <code>solid_fraction</code>.  <br /></td></tr>
 <tr class="separator:a4fcf5ed379f298faefc3790cab4dac9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20d6466bc7255ed645728a682e2fa5dd" id="r_a20d6466bc7255ed645728a682e2fa5dd"><td class="memItemLeft" align="right" valign="top">dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a20d6466bc7255ed645728a682e2fa5dd">get_damping_at_q</a> ()</td></tr>
+<tr class="memdesc:a20d6466bc7255ed645728a682e2fa5dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter function for the vector of damping coefficients, holding the values at each cell and at each quadrature point.  <br /></td></tr>
 <tr class="separator:a20d6466bc7255ed645728a682e2fa5dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -155,7 +166,8 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number&gt;<br />
-class MeltPoolDG::Flow::DarcyDampingOperation&lt; dim, number &gt;</div><p>This class computes the Darcy damping force (or Darcy source term). </p><pre class="fragment">    /              \
+class MeltPoolDG::Flow::DarcyDampingOperation&lt; dim, number &gt;</div><p>This class computes the Darcy damping force (or Darcy source term). </p>
+<pre class="fragment">    /              \
 </pre><p> f_d = | N_a, K N_b u | \ / Ω</p>
 <p>with the isotropic permeability of the mushy zone K given by the Kozeny-Carman equation: </p><pre class="fragment">            fs²
 </pre><p> K = - C -------------&mdash; ( 1- fs )³ + b</p>
@@ -196,6 +208,9 @@ template&lt;int dim, typename number &gt; </div>
 <div class="memproto">
 <div class="memtemplate">
 template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html">MeltPoolDG::Flow::DarcyDampingOperation</a>&lt; dim, number &gt;::DarcyDampingOperation </td>
@@ -227,6 +242,11 @@ template&lt;int dim, typename number &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Constructor. </p>
@@ -276,7 +296,8 @@ template&lt;int dim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Assemble the Darcy damping force contribution into the right-hand side (RHS) vector <code>force_rhs</code>.</p>
+
+<p>Assemble the Darcy damping force contribution into the right-hand side (RHS) vector <code>force_rhs</code>. </p>
 <p>This function computes and adds (or sets, if <code>zero_out</code> is true) the contribution of the Darcy damping force, based on the provided velocity vector <code>velocity_vec</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -286,7 +307,7 @@ template&lt;int dim, typename number &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>The damping coefficient must be precomputed at all quadrature points of each cell and made accessible via get_damping(cell, q) or <a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a20d6466bc7255ed645728a682e2fa5dd">get_damping_at_q()</a>. This setup must be completed <em>before</em> calling this function. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The damping coefficient must be precomputed at all quadrature points of each cell and made accessible via get_damping(cell, q) or <a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a20d6466bc7255ed645728a682e2fa5dd" title="Getter function for the vector of damping coefficients, holding the values at each cell and at each q...">get_damping_at_q()</a>. This setup must be completed <em>before</em> calling this function. </dd></dl>
 
 </div>
 </div>
@@ -307,7 +328,8 @@ template&lt;int dim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Attach the element-wise damping coefficient to the output output data.</p>
+
+<p>Attach the element-wise damping coefficient to the output data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data_out</td><td>Container handling output requests. </td></tr>
@@ -319,7 +341,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation_a547230e6e4232cafd46d41fe537f0143_cgraph.png" border="0" usemap="#aclassMeltPoolDG_1_1Flow_1_1DarcyDampingOperation_a547230e6e4232cafd46d41fe537f0143_cgraph" alt=""/></div>
 <map name="aclassMeltPoolDG_1_1Flow_1_1DarcyDampingOperation_a547230e6e4232cafd46d41fe537f0143_cgraph" id="aclassMeltPoolDG_1_1Flow_1_1DarcyDampingOperation_a547230e6e4232cafd46d41fe537f0143_cgraph">
-<area shape="rect" title=" " alt="" coords="5,30,248,85"/>
+<area shape="rect" title="Attach the element&#45;wise damping coefficient to the output data." alt="" coords="5,30,248,85"/>
 <area shape="rect" href="classMeltPoolDG_1_1GenericDataOut.html#a42f78f2941c3ec31e48f225fb2ae292f" title="Add an element&#45;wise vector." alt="" coords="296,5,532,45"/>
 <area shape="poly" title=" " alt="" coords="248,41,282,37,283,43,249,46"/>
 <area shape="rect" href="classMeltPoolDG_1_1GenericDataOut.html#ac9a5e366210498eb7ae83b3743607cff" title="Determine if a variable has been requested for output." alt="" coords="309,69,519,109"/>
@@ -354,13 +376,15 @@ template&lt;int dim, typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Compute the Darcy damping coefficient based on a given</p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Compute the Darcy damping coefficient based on a given <code>solid_fraction</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">solid_fraction.</td><td></td></tr>
-    <tr><td class="paramname">solid_fraction</td><td>Volume fraction of solid phase between 0 and 1. </td></tr>
+    <tr><td class="paramname">solid_fraction</td><td>Volume fraction of solid phase between 0 and 1.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Darcy damping coefficient. </dd></dl>
 
 </div>
 </div>
@@ -391,14 +415,16 @@ template&lt;int dim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Getter functions for the damping coefficients cellwise at each quadrature point (modifiable version).</p>
+
+<p>Getter function for the damping coefficients cell-wise at each quadrature point (modifiable version). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cell</td><td>Finite element. </td></tr>
-    <tr><td class="paramname">q</td><td>Quadrature Point. </td></tr>
+    <tr><td class="paramname">cell</td><td>Cell index. </td></tr>
+    <tr><td class="paramname">q</td><td>Quadrature point index.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Cell-wise damping coefficients at quadrature point <code>q</code>. </dd></dl>
 
 </div>
 </div>
@@ -429,14 +455,16 @@ template&lt;int dim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Getter functions for the damping coefficients cellwise at each quadrature point (const version).</p>
+
+<p>Getter function for the damping coefficients cell-wise at each quadrature point (const version). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cell</td><td>Finite element. </td></tr>
-    <tr><td class="paramname">q</td><td>Quadrature Point. </td></tr>
+    <tr><td class="paramname">cell</td><td>Cell index. </td></tr>
+    <tr><td class="paramname">q</td><td>Quadrature point index.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Cell-wise damping coefficients at quadrature point <code>q</code>. </dd></dl>
 
 </div>
 </div>
@@ -464,7 +492,9 @@ template&lt;int dim, typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Getter function for the vector of damping coefficients, holding the values at each cell and at each quadrature point. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of damping coefficients. </dd></dl>
 
 </div>
 </div>
@@ -484,7 +514,9 @@ template&lt;int dim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Reinitialize data structures. This function needs to be called after e.g. the mesh has changed. </p>
+
+<p>Reinitialize data structures. </p>
+<p>This function needs to be called after e.g. the mesh has changed. </p>
 
 </div>
 </div>
@@ -533,7 +565,8 @@ template&lt;int dim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Loop over all cells and quadrature points (defined via <code>flow_quad_idx</code>), compute the Darcy damping coefficient and store it.</p>
+
+<p>Loop over all cells and quadrature points (defined via <code>flow_quad_idx</code>), compute the Darcy damping coefficient and store it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">material</td><td><a class="el" href="classMeltPoolDG_1_1Material.html">Material</a> object holding the phase parameters. </td></tr>
@@ -549,7 +582,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation_ad614c4ad25300a5289741a2d268c27f1_cgraph.png" border="0" usemap="#aclassMeltPoolDG_1_1Flow_1_1DarcyDampingOperation_ad614c4ad25300a5289741a2d268c27f1_cgraph" alt=""/></div>
 <map name="aclassMeltPoolDG_1_1Flow_1_1DarcyDampingOperation_ad614c4ad25300a5289741a2d268c27f1_cgraph" id="aclassMeltPoolDG_1_1Flow_1_1DarcyDampingOperation_ad614c4ad25300a5289741a2d268c27f1_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,261,45"/>
+<area shape="rect" title="Loop over all cells and quadrature points (defined via flow_quad_idx), compute the Darcy damping coef..." alt="" coords="5,5,261,45"/>
 <area shape="rect" href="classMeltPoolDG_1_1Material.html#aeda2dcbef1ccce4da92d11cb7f51444c" title=" " alt="" coords="309,5,471,45"/>
 <area shape="poly" title=" " alt="" coords="262,23,295,23,295,28,262,28"/>
 </map>
