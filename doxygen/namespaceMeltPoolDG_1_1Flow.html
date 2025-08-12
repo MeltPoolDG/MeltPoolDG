@@ -249,6 +249,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a2f8adb978e865134cc701d545b9c915e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a2f8adb978e865134cc701d545b9c915e">calculate_penalty_parameter</a> (dealii::AlignedVector&lt; dealii::VectorizedArray&lt; Number &gt; &gt; &amp;array_penalty_parameter, const dealii::MatrixFree&lt; dim, Number &gt; &amp;matrix_free, const std::string &amp;domain_representation_type, const unsigned int dof_index=0, const Number scaling_factor=1.0)</td></tr>
 <tr class="memdesc:a2f8adb978e865134cc701d545b9c915e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function computes the local values of the internal penalty parameter used in the viscous numerical flux.  <br /></td></tr>
 <tr class="separator:a2f8adb978e865134cc701d545b9c915e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d81f3b1cae21fc223128f81488bc2e1" id="r_a0d81f3b1cae21fc223128f81488bc2e1"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
+<tr class="memitem:a0d81f3b1cae21fc223128f81488bc2e1"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a0d81f3b1cae21fc223128f81488bc2e1">update_primitive_variables_solution</a> (dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;solution_primitive_variables, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;solution, const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;scratch_data, const unsigned int dof_idx, const unsigned int quad_idx, const <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowMaterial.html">CompressibleFlowMaterial</a>&lt; dim, number &gt; *material_liquid, const <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowMaterial.html">CompressibleFlowMaterial</a>&lt; dim, number &gt; *material_gas=nullptr)</td></tr>
+<tr class="memdesc:a0d81f3b1cae21fc223128f81488bc2e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the primitive variable solution according to the current solution vector.  <br /></td></tr>
+<tr class="separator:a0d81f3b1cae21fc223128f81488bc2e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20798f3399837d5c6df1b47d078136d0" id="r_a20798f3399837d5c6df1b47d078136d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a20798f3399837d5c6df1b47d078136d0">BETTER_ENUM</a> (RegularizedSurfaceTensionTemperatureEvaluationType, <a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a0cf67a82f4673be3eda96c72944a232f">char</a>, local_value, interface_value) template&lt; typename number &gt; struct SurfaceTensionData</td></tr>
 <tr class="memdesc:a20798f3399837d5c6df1b47d078136d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of parameters related to surface tension effects.  <br /></td></tr>
 <tr class="separator:a20798f3399837d5c6df1b47d078136d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1191,6 +1195,92 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="171,109,209,109,209,114,171,114"/>
 <area shape="rect" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowViscousKernels.html#a015a2eb44a250d3cbd020e51d0e51307" title="Calculate the visocus flux, where jump(u) instead of grad(u) is used resulting in the F_v(u,..." alt="" coords="219,163,461,217"/>
 <area shape="poly" title=" " alt="" coords="154,129,240,156,238,161,152,134"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0d81f3b1cae21fc223128f81488bc2e1" name="a0d81f3b1cae21fc223128f81488bc2e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d81f3b1cae21fc223128f81488bc2e1">&#9670;&#160;</a></span>update_primitive_variables_solution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void MeltPoolDG::Flow::update_primitive_variables_solution </td>
+          <td>(</td>
+          <td class="paramtype">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>solution_primitive_variables</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>solution</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>dof_idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>quad_idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowMaterial.html">CompressibleFlowMaterial</a>&lt; dim, number &gt; *&#160;</td>
+          <td class="paramname"><em>material_liquid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowMaterial.html">CompressibleFlowMaterial</a>&lt; dim, number &gt; *&#160;</td>
+          <td class="paramname"><em>material_gas</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the primitive variable solution according to the current solution vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">solution_primitive_variables</td><td>Vector where the solution in primitive variables is stored. </td></tr>
+    <tr><td class="paramname">solution</td><td>Current solution vector in conservative variable formulation. </td></tr>
+    <tr><td class="paramname">dof_idx</td><td>Index of the relevant dof handler in the matrix-free object. </td></tr>
+    <tr><td class="paramname">quad_idx</td><td>Relevant quadrature index of the flow solver. </td></tr>
+    <tr><td class="paramname">material_liquid</td><td>Pointer to the material object for liquid phase. </td></tr>
+    <tr><td class="paramname">material_gas</td><td>Pointer to the material object for the gas phase.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The second material object is only required for the two-phase case. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceMeltPoolDG_1_1Flow_a0d81f3b1cae21fc223128f81488bc2e1_cgraph.png" border="0" usemap="#anamespaceMeltPoolDG_1_1Flow_a0d81f3b1cae21fc223128f81488bc2e1_cgraph" alt=""/></div>
+<map name="anamespaceMeltPoolDG_1_1Flow_a0d81f3b1cae21fc223128f81488bc2e1_cgraph" id="anamespaceMeltPoolDG_1_1Flow_a0d81f3b1cae21fc223128f81488bc2e1_cgraph">
+<area shape="rect" title="Update the primitive variable solution according to the current solution vector." alt="" coords="5,37,220,77"/>
+<area shape="rect" href="classMeltPoolDG_1_1ScratchData.html#ad230ba285d675be31ede2f975ef4fe15" title=" " alt="" coords="268,5,455,45"/>
+<area shape="poly" title=" " alt="" coords="220,41,254,36,255,42,220,46"/>
+<area shape="rect" href="classMeltPoolDG_1_1ScratchData.html#a45ce2ea7f460f495d3947f46eb636953" title=" " alt="" coords="268,69,455,109"/>
+<area shape="poly" title=" " alt="" coords="220,68,255,73,254,78,220,74"/>
 </map>
 </div>
 
