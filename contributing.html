@@ -50,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">⬇️ Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="howto.html">💻 How to Work With MeltPoolDG</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">✋ How to Contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#forking-the-repository">Forking the repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#making-changes-and-pushing-to-the-repository">Making Changes and Pushing to the Repository</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#get-the-latest-master-branch">Get the Latest <code class="docutils literal notranslate"><span class="pre">master</span></code> Branch</a></li>
@@ -57,6 +58,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-work-with-cmake-presets">How to Work with CMake Presets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#list-available-presets">List Available Presets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-with-a-preset">Configure with a Preset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tip-setting-up-your-own-presets">Tip: Setting up your own presets</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#code-formatting">Code Formatting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-use-clang-tidy-to-check-your-code">How to use <code class="docutils literal notranslate"><span class="pre">clang-tidy</span></code> to check your code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-pre-commit-hooks">Installing Pre-commit Hooks</a></li>
@@ -99,6 +106,19 @@
              
   <section id="how-to-contribute">
 <h1>✋ How to Contribute<a class="headerlink" href="#how-to-contribute" title="Link to this heading"></a></h1>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#forking-the-repository"><span class="std std-ref">Forking the repository</span></a></p></li>
+<li><p><a class="reference internal" href="#making-changes-and-pushing-to-the-repository"><span class="std std-ref">Making Changes and Pushing to the Repository</span></a></p></li>
+<li><p><a class="reference internal" href="#testing"><span class="std std-ref">Testing</span></a></p></li>
+<li><p><a class="reference internal" href="#how-to-work-with-cmake-presets"><span class="std std-ref">How to Work with CMake Presets</span></a></p></li>
+<li><p><a class="reference internal" href="#code-formatting"><span class="std std-ref">Code Formatting</span></a></p></li>
+<li><p><a class="reference internal" href="#how-to-use-clang-tidy-to-check-your-code"><span class="std std-ref">How to use clang-tidy to check your code</span></a></p></li>
+<li><p><a class="reference internal" href="#installing-pre-commit-hooks"><span class="std std-ref">Installing Pre-commit Hooks</span></a></p></li>
+<li><p><a class="reference internal" href="#useful-git-commands"><span class="std std-ref">Useful GIT commands</span></a></p></li>
+</ul>
+</section>
 <section id="forking-the-repository">
 <h2>Forking the repository<a class="headerlink" href="#forking-the-repository" title="Link to this heading"></a></h2>
 <p>Before making any changes, you need to fork the repository to your own GitHub account. You can do this by clicking the Fork button at the top right corner of the repository page on GitHub. Once forked, clone your forked repository to your local machine:</p>
@@ -186,6 +206,41 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
 </div>
 </section>
 <hr class="docutils" />
+<section id="how-to-work-with-cmake-presets">
+<h2>How to Work with CMake Presets<a class="headerlink" href="#how-to-work-with-cmake-presets" title="Link to this heading"></a></h2>
+<hr class="docutils" />
+<p>CMake presets simplify project configuration by standardizing how builds are set up across different environments and developers.</p>
+<section id="list-available-presets">
+<h3>List Available Presets<a class="headerlink" href="#list-available-presets" title="Link to this heading"></a></h3>
+<p>To view all available configure/build/test presets defined in CMakePresets.json and CMakeUserPresets.json:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>--list-presets<span class="w"> </span>-S<span class="w"> </span>&lt;path-to-mpdg-source&gt;
+</pre></div>
+</div>
+<p>This shows you a list of named presets like user-release, user-debug, etc., along with descriptions and associated build directories.</p>
+</section>
+<section id="configure-with-a-preset">
+<h3>Configure with a Preset<a class="headerlink" href="#configure-with-a-preset" title="Link to this heading"></a></h3>
+<p>To configure your project using a specific preset (e.g. user-release), run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>--preset<span class="w"> </span>user-release<span class="w"> </span>-S<span class="w"> </span>&lt;path-to-mpdg-source&gt;
+</pre></div>
+</div>
+<p>This:</p>
+<ul class="simple">
+<li><p>Uses the settings defined in the user-release preset</p></li>
+<li><p>Sets the build directory automatically (as defined in the preset)</p></li>
+<li><p>Applies the correct compiler, flags, and paths</p></li>
+</ul>
+<p>Replace ‘<path-to-mpdg-source>’ with the path to your source directory if you’re not inside the build folder.</p>
+</section>
+<section id="tip-setting-up-your-own-presets">
+<h3>Tip: Setting up your own presets<a class="headerlink" href="#tip-setting-up-your-own-presets" title="Link to this heading"></a></h3>
+<p>If you haven’t yet set up your user-specific library paths, copy the provided template and adjust it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>CMakeUserPresets.json.template<span class="w"> </span>CMakeUserPresets.json
+<span class="c1"># then edit CMakeUserPresets.json to match your local environment</span>
+</pre></div>
+</div>
+</section>
+</section>
 <section id="code-formatting">
 <h2>Code Formatting<a class="headerlink" href="#code-formatting" title="Link to this heading"></a></h2>
 <p>Ensure that <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> and <code class="docutils literal notranslate"><span class="pre">autopep8</span></code> are installed. We use the <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> version provided by <strong>deal.II (v16)</strong>, which can be installed via the following script:</p>

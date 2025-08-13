@@ -1,5 +1,17 @@
 # ✋ How to Contribute
 
+## Table of Contents
+
+- [Forking the repository](#forking-the-repository)
+- [Making Changes and Pushing to the Repository](#making-changes-and-pushing-to-the-repository)
+- [Testing](#testing)
+- [How to Work with CMake Presets](#how-to-work-with-cmake-presets)
+- [Code Formatting](#code-formatting)
+- [How to use `clang-tidy` to check your code](#how-to-use-clang-tidy-to-check-your-code)
+- [Installing Pre-commit Hooks](#installing-pre-commit-hooks)
+- [Useful GIT commands](#useful-git-commands)
+
+
 ## Forking the repository
 
 Before making any changes, you need to fork the repository to your own GitHub account. You can do this by clicking the Fork button at the top right corner of the repository page on GitHub. Once forked, clone your forked repository to your local machine:
@@ -81,7 +93,45 @@ To run specific tests based on application names (e.g. `mp-advec-diff`) or regul
 ctest -R mp-advec-diff
 ```
 
+
 ---
+
+## How to Work with CMake Presets
+
+---
+
+CMake presets simplify project configuration by standardizing how builds are set up across different environments and developers.
+
+### List Available Presets
+To view all available configure/build/test presets defined in CMakePresets.json and CMakeUserPresets.json:
+
+```bash
+cmake --list-presets -S <path-to-mpdg-source>
+```
+
+This shows you a list of named presets like user-release, user-debug, etc., along with descriptions and associated build directories.
+
+### Configure with a Preset
+To configure your project using a specific preset (e.g. user-release), run:
+
+```bash
+cmake --preset user-release -S <path-to-mpdg-source>
+```
+
+This:
+- Uses the settings defined in the user-release preset
+- Sets the build directory automatically (as defined in the preset)
+- Applies the correct compiler, flags, and paths
+
+Replace '<path-to-mpdg-source>' with the path to your source directory if you're not inside the build folder.
+
+### Tip: Setting up your own presets
+If you haven’t yet set up your user-specific library paths, copy the provided template and adjust it:
+
+```bash
+cp CMakeUserPresets.json.template CMakeUserPresets.json
+# then edit CMakeUserPresets.json to match your local environment
+```
 
 ## Code Formatting
 
@@ -181,4 +231,3 @@ To squash multiple commits into a single commit:
 ---
 
 Happy coding! 🎉
-
