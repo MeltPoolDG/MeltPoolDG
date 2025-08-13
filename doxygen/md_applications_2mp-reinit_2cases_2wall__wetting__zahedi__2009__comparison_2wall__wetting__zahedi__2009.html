@@ -122,7 +122,7 @@ Problem Description</h1>
 <p>$$\phi(x) = -\tanh\left(\frac{d(x)}{2\varepsilon} \right)$$</p>
 <p>where</p><ul>
 <li>$d(x) = x_\text{interface} - x$ is the signed distance from the interface</li>
-<li>$\varepsilon = f_\varepsilon h$ is the interface thickness parameter with $f_\varepsilon$ a user-inputted constant factor and $h$ the cell-size. For all cases, $h$ is fixed to $0.005$ unless mentioned otherwise.</li>
+<li>$\varepsilon = f_\varepsilon h$ is the interface thickness parameter with $f_\varepsilon$ a user-inputted constant factor and $h$ the cell-size. For all cases, $h$ is fixed to $0.005$.</li>
 </ul>
 <p>We set the interface to be a vertical line at $x=0 \,(\Rightarrow x_\text{interface} = 0)$.</p>
 <p>The reinitialization equation takes the following form:</p>
@@ -137,17 +137,25 @@ Problem Description</h1>
 <p>As defined in [^1], the time-step is given by $\Delta \tau = \frac{h^2}{2(\varepsilon_\text{n} + \varepsilon_\text{t})}$</p>
 <p>To ensure continuity of the solution, $\vec{n}$ is filtered and computed by solving the following linear equation:</p>
 <p>$$ \vec{n} - \nabla \cdot (\eta_\text{n} h^2 \nabla \vec{n}) = \frac{\nabla \phi}{\lVert \nabla \phi\rVert} $$</p>
-<p>where $\eta_\text{n} = (f_\gamma f_\varepsilon)^2$ is the filtering factor with $f_\gamma$ the factor used in [^1] to do parametric sweep on the regularization parameter $(\gamma = f_\gamma \varepsilon_\text{n})$ they define.</p>
+<p>where $\eta_\text{n} = (f_\gamma f_\varepsilon)^2$ is the filtering factor with $f_\gamma$ the factor used in [^1] to do a parametric sweep on the regularization parameter $(\gamma = f_\gamma \varepsilon_\text{n})$ they define.</p>
 <p>In order to impose a given contact angle at the bottom wall, an interface normal vector Dirichlet boundary condition is imposed at the wall.</p>
-<p>As we are interested in the bottom wall, for a given static contact angle $(\alpha_s)$, at bottom wall, we have:</p>
-<p>$n_x|_{y=0} = \sin(\alpha_s)$</p>
-<p>$n_y|_{y=0} = \cos(\alpha_s)$</p>
+<p>As we are interested in the bottom wall, for a given static contact angle $(\alpha_\text{s})$ we have:</p>
+<p>$n_x|_{y=0} = \sin(\alpha_\text{s})$</p>
+<p>$n_y|_{y=0} = \cos(\alpha_\text{s})$</p>
+<p>Both applications use second order accurate spatial schemes:</p><ul>
+<li>Zahedi <em>et al.</em> [^1] uses a conservative 2nd order finite difference scheme, and;</li>
+<li><a class="el" href="namespaceMeltPoolDG.html" title="Interface for a general preconditioner.">MeltPoolDG</a> uses continuous, linear piecewise ($Q_1$) finite elements.</li>
+</ul>
+<p>Furthermore, the applications have different temporal schemes:</p><ul>
+<li>Zahedi <em>et al.</em> [^1] uses a 2nd order Runge-Kutta scheme, and;</li>
+<li><a class="el" href="namespaceMeltPoolDG.html" title="Interface for a general preconditioner.">MeltPoolDG</a> uses a 1st order semi-implicit BDF scheme.</li>
+</ul>
 <h1><a class="anchor" id="autotoc_md11"></a>
 Studied cases</h1>
 <p>Two different studies are conducted here to compare the implementation with the one of Zahedi <em>et al.</em> (2009) [^1]. The studies go as follows:</p>
 <ol type="1">
 <li><p class="startli">**Study 1: The influence of $\eta_\text{n}$ on the contact angle.**</p>
-<p class="startli">While fixing $\alpha_s = 45^\circ$, $\varepsilon_\text{n} = 8h$ and $\varepsilon_\text{t} = 6\varepsilon_\text{n}$ a parametric sweep is conducted on $\eta_\text{n}$ with $f_\gamma \in 1.0, 2.5, 5.0, 10.0 </p>
+<p class="startli">While fixing $\alpha_\text{s} = 45^\circ$, $\varepsilon_\text{n} = 8h$ and $\varepsilon_\text{t} = 6\varepsilon_\text{n}$, a parametric sweep is conducted on $\eta_\text{n}$ with $f_\gamma \in 1.0, 2.5, 5.0, 10.0 </p>
 </li>
 </ol>
 </div></div><!-- contents -->
