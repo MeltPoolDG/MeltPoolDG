@@ -340,9 +340,9 @@ Functions</h2></td></tr>
 <tr class="separator:a85483b2f18b09ddda1f619d269c108a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3a8515076e612924f9229e88677083b" id="r_af3a8515076e612924f9229e88677083b"><td class="memItemLeft" align="right" valign="top">GMRES&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#af3a8515076e612924f9229e88677083b">BETTER_ENUM</a> (LinearSolverMonitorType, <a class="el" href="namespaceMeltPoolDG.html#aab9575e612e8c720bbb25e0a6bd86044">char</a>, none, reduced, all) template&lt; typename number</td></tr>
 <tr class="separator:af3a8515076e612924f9229e88677083b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad9dfa0717a7b5ee8e5f1bf97ef32859" id="r_aad9dfa0717a7b5ee8e5f1bf97ef32859"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename OperatorType , typename VectorType &gt; </td></tr>
-<tr class="memitem:aad9dfa0717a7b5ee8e5f1bf97ef32859"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Preconditioner.html">Preconditioner</a>&lt; dim, VectorType, number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#aad9dfa0717a7b5ee8e5f1bf97ef32859">make_preconditioner</a> (const PreconditionerType &amp;preconditioner_type, const OperatorType *operator_in, const bool do_matrix_free=true)</td></tr>
-<tr class="separator:aad9dfa0717a7b5ee8e5f1bf97ef32859"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0459a53bafc3a1ff06e060641fd309c5" id="r_a0459a53bafc3a1ff06e060641fd309c5"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename OperatorType , typename VectorType &gt; </td></tr>
+<tr class="memitem:a0459a53bafc3a1ff06e060641fd309c5"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Preconditioner.html">Preconditioner</a>&lt; dim, VectorType, number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a0459a53bafc3a1ff06e060641fd309c5">make_preconditioner</a> (const PreconditionerType &amp;preconditioner_type, const OperatorType *operator_in, const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;scratch_data, const unsigned dof_idx, const bool do_matrix_free=true)</td></tr>
+<tr class="separator:a0459a53bafc3a1ff06e060641fd309c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b02dbd4ff59761974adf1b8b064984b" id="r_a1b02dbd4ff59761974adf1b8b064984b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a1b02dbd4ff59761974adf1b8b064984b">BETTER_ENUM</a> (PredictorType, <a class="el" href="namespaceMeltPoolDG.html#aab9575e612e8c720bbb25e0a6bd86044">char</a>, none, zero, linear_extrapolation, least_squares_projection) struct PredictorData</td></tr>
 <tr class="separator:a1b02dbd4ff59761974adf1b8b064984b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d9b15cc93f78a3ee16cac4fc0b28f17" id="r_a7d9b15cc93f78a3ee16cac4fc0b28f17"><td class="memTemplParams" colspan="2">template&lt;typename VectorType , typename number &gt; </td></tr>
@@ -1617,8 +1617,8 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
-<a id="aad9dfa0717a7b5ee8e5f1bf97ef32859" name="aad9dfa0717a7b5ee8e5f1bf97ef32859"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad9dfa0717a7b5ee8e5f1bf97ef32859">&#9670;&#160;</a></span>make_preconditioner()</h2>
+<a id="a0459a53bafc3a1ff06e060641fd309c5" name="a0459a53bafc3a1ff06e060641fd309c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0459a53bafc3a1ff06e060641fd309c5">&#9670;&#160;</a></span>make_preconditioner()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1640,6 +1640,18 @@ template&lt;int dim, typename number , typename OperatorType , typename VectorTy
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned&#160;</td>
+          <td class="paramname"><em>dof_idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const bool&#160;</td>
           <td class="paramname"><em>do_matrix_free</em> = <code>true</code>&#160;</td>
         </tr>
@@ -1655,6 +1667,8 @@ template&lt;int dim, typename number , typename OperatorType , typename VectorTy
   <table class="params">
     <tr><td class="paramname">preconditioner_type</td><td>Type of the desired preconditioner. </td></tr>
     <tr><td class="paramname">operator_in</td><td>Operator that supports the required functions for the computations inside the preconditioner (see specific preconditioner classes for additional information). </td></tr>
+    <tr><td class="paramname">scratch_data</td><td>Scratch data object to get relevant dof information for the preconditioner. </td></tr>
+    <tr><td class="paramname">dof_idx</td><td>Relevant dof index in the scratch data object. </td></tr>
     <tr><td class="paramname">do_matrix_free</td><td>A flag indicating if the operator shall be used in a matrix-free or matrix-based way.</td></tr>
   </table>
   </dd>
