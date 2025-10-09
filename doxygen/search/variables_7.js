@@ -33,7 +33,7 @@ var searchData=
   ['grad_5fz_5fl_30',['grad_z_l',['../classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a56ff9538f5871ff04cf6a338fd4afa29',1,'MeltPoolDG::LevelSet::ReinitilizationDGOperator']]],
   ['grad_5fz_5fr_31',['grad_z_r',['../classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a641a71755c507cfca69edeacbb313119',1,'MeltPoolDG::LevelSet::ReinitilizationDGOperator']]],
   ['gradient_5ferror_5fevaluation_5fdistance_5fcell_5fproportion_32',['gradient_error_evaluation_distance_cell_proportion',['../structMeltPoolDG_1_1LevelSet_1_1LevelSetData_1_1ReinitilizationDGSpecificData.html#a4cc203144394f99e1111df2c8bfa5867',1,'MeltPoolDG::LevelSet::LevelSetData::ReinitilizationDGSpecificData']]],
-  ['gravitational_5fconstant_33',['gravitational_constant',['../structObstacleGravitationalForce.html#a2753121ef3c99cdd6e1edfa88caa3329',1,'ObstacleGravitationalForce']]],
+  ['gravitational_5fconstant_33',['gravitational_constant',['../structMeltPoolDG_1_1ObstacleGravitationalForce.html#aa6487f8af82a3952c885d5953da4b0c9',1,'MeltPoolDG::ObstacleGravitationalForce']]],
   ['gravity_34',['gravity',['../structMeltPoolDG_1_1Flow_1_1FlowData.html#aadbf2a7ce327715759cd8e1556ed125a',1,'MeltPoolDG::Flow::FlowData']]],
   ['gravity_5fconstant_35',['gravity_constant',['../structMeltPoolDG_1_1Flow_1_1CompressibleFlowData.html#a344b754763335556ac5b940f22d5e41b',1,'MeltPoolDG::Flow::CompressibleFlowData']]],
   ['gusarov_36',['gusarov',['../structMeltPoolDG_1_1Heat_1_1LaserData.html#a3793d08f60b4a021e32eff4cea99eb6d',1,'MeltPoolDG::Heat::LaserData']]]

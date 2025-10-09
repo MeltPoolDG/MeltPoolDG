@@ -83,18 +83,113 @@ $(function() {
 <div class="textblock"><code>#include &lt;deal.II/base/aligned_vector.h&gt;</code><br />
 <code>#include &lt;deal.II/base/tensor.h&gt;</code><br />
 <code>#include &lt;deal.II/base/vectorization.h&gt;</code><br />
+<code>#include &lt;deal.II/lac/la_parallel_vector.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="scratch__data_8hpp_source.html">meltpooldg/core/scratch_data.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="better__enum_8hpp_source.html">meltpooldg/utilities/better_enum.hpp</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for compressible_flow_utils.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="compressible__flow__utils_8hpp__incl.png" border="0" usemap="#ainclude_2meltpooldg_2flow_2compressible__flow__utils_8hpp" alt=""/></div>
 <map name="ainclude_2meltpooldg_2flow_2compressible__flow__utils_8hpp" id="ainclude_2meltpooldg_2flow_2compressible__flow__utils_8hpp">
-<area shape="rect" title=" " alt="" coords="167,5,345,60"/>
+<area shape="rect" title=" " alt="" coords="323,5,501,60"/>
 <area shape="rect" title=" " alt="" coords="5,108,155,148"/>
-<area shape="poly" title=" " alt="" coords="208,62,129,104,126,99,205,58"/>
+<area shape="poly" title=" " alt="" coords="323,62,161,107,160,102,322,56"/>
 <area shape="rect" title=" " alt="" coords="179,115,333,141"/>
-<area shape="poly" title=" " alt="" coords="259,60,259,101,253,101,253,60"/>
-<area shape="rect" title=" " alt="" coords="357,115,555,141"/>
-<area shape="poly" title=" " alt="" coords="313,58,420,107,418,112,311,62"/>
+<area shape="poly" title=" " alt="" coords="369,62,288,111,286,106,367,58"/>
+<area shape="rect" title=" " alt="" coords="1005,379,1203,405"/>
+<area shape="poly" title=" " alt="" coords="402,61,388,99,378,145,379,193,386,215,398,234,414,250,437,266,495,293,569,316,654,335,832,364,991,380,990,385,832,369,653,340,568,321,494,298,434,270,411,255,394,238,381,217,374,194,373,145,383,98,397,59"/>
+<area shape="rect" title=" " alt="" coords="408,196,565,236"/>
+<area shape="poly" title=" " alt="" coords="425,59,476,182,471,184,420,61"/>
+<area shape="rect" href="scratch__data_8hpp.html" title=" " alt="" coords="1697,108,1876,148"/>
+<area shape="poly" title=" " alt="" coords="502,37,1684,117,1683,122,501,43"/>
+<area shape="rect" href="better__enum_8hpp.html" title=" " alt="" coords="3096,372,3245,412"/>
+<area shape="poly" title=" " alt="" coords="502,33,1113,48,2007,78,2450,100,2831,127,2985,141,3107,158,3191,175,3218,184,3234,194,3241,214,3243,248,3240,288,3230,325,3219,345,3205,363,3201,360,3215,342,3226,323,3235,287,3238,248,3236,215,3230,198,3216,189,3190,180,3106,163,2985,147,2831,132,2450,106,2007,84,1113,53,502,38"/>
+<area shape="poly" title=" " alt="" coords="1697,133,1624,139,1540,150,1452,169,1368,198,1353,208,1343,218,1333,229,1317,238,1281,247,1233,251,1121,251,1065,252,1014,257,972,268,957,276,945,286,937,300,937,313,945,325,958,336,998,357,1044,373,1042,378,996,362,955,341,941,328,932,314,931,298,941,282,954,271,970,263,1013,252,1065,247,1121,246,1233,246,1280,242,1315,234,1330,225,1339,214,1350,203,1366,194,1450,164,1539,145,1623,133,1697,128"/>
+<area shape="poly" title=" " alt="" coords="1697,132,1498,136,1223,146,906,166,742,180,580,199,579,193,741,175,905,160,1223,141,1498,131,1697,127"/>
+<area shape="rect" title=" " alt="" coords="2198,196,2335,236"/>
+<area shape="poly" title=" " alt="" coords="1877,141,2179,193,2184,194,2183,200,2178,199,1876,146"/>
+<area shape="rect" title=" " alt="" coords="2360,203,2499,229"/>
+<area shape="poly" title=" " alt="" coords="1877,134,2092,157,2347,193,2370,198,2369,203,2346,199,2091,162,1876,140"/>
+<area shape="rect" title=" " alt="" coords="2625,196,2805,236"/>
+<area shape="poly" title=" " alt="" coords="1877,131,2199,153,2402,171,2606,193,2611,194,2610,199,2605,199,2401,176,2198,158,1876,137"/>
+<area shape="rect" title=" " alt="" coords="2829,203,3009,229"/>
+<area shape="poly" title=" " alt="" coords="1876,129,2284,147,2550,166,2818,193,2851,198,2850,204,2817,199,2549,171,2284,152,1876,134"/>
+<area shape="rect" title=" " alt="" coords="589,203,773,229"/>
+<area shape="poly" title=" " alt="" coords="1697,135,1301,153,1045,172,786,199,752,204,751,198,785,193,1044,167,1301,148,1697,129"/>
+<area shape="rect" title=" " alt="" coords="797,203,944,229"/>
+<area shape="poly" title=" " alt="" coords="1697,136,1373,156,1169,174,963,199,935,203,934,198,962,193,1168,169,1373,150,1697,130"/>
+<area shape="rect" title=" " alt="" coords="2832,291,3019,317"/>
+<area shape="poly" title=" " alt="" coords="1876,128,2040,134,2238,145,2425,164,2502,177,2560,194,2576,203,2587,213,2598,224,2613,234,2708,257,2852,286,2851,291,2707,262,2611,238,2595,228,2584,217,2573,207,2558,198,2501,183,2425,169,2237,150,2040,139,1876,134"/>
+<area shape="rect" title=" " alt="" coords="1019,203,1127,229"/>
+<area shape="poly" title=" " alt="" coords="1697,136,1446,156,1293,174,1141,199,1123,202,1122,197,1139,193,1292,169,1445,151,1697,131"/>
+<area shape="rect" title=" " alt="" coords="1152,203,1304,229"/>
+<area shape="poly" title=" " alt="" coords="1697,143,1524,167,1323,199,1297,203,1296,198,1322,193,1523,162,1697,138"/>
+<area shape="rect" title=" " alt="" coords="955,291,1085,317"/>
+<area shape="poly" title=" " alt="" coords="1697,133,1514,138,1296,148,1194,157,1107,168,1042,182,1021,189,1009,198,999,216,998,236,1003,258,1010,278,1005,280,997,260,993,237,994,214,1005,194,1019,185,1041,176,1106,162,1194,151,1296,143,1513,132,1697,128"/>
+<area shape="rect" title=" " alt="" coords="1379,196,1506,236"/>
+<area shape="poly" title=" " alt="" coords="1712,151,1520,198,1519,193,1711,145"/>
+<area shape="rect" title=" " alt="" coords="1531,196,1688,236"/>
+<area shape="poly" title=" " alt="" coords="1749,150,1662,192,1659,188,1747,146"/>
+<area shape="rect" title=" " alt="" coords="1109,284,1251,324"/>
+<area shape="poly" title=" " alt="" coords="1780,150,1750,195,1728,219,1701,238,1662,253,1611,263,1489,274,1366,279,1271,287,1265,288,1264,282,1270,281,1366,274,1489,269,1610,258,1661,248,1699,234,1724,215,1745,192,1775,147"/>
+<area shape="rect" href="util_8hpp.html" title=" " alt="" coords="1763,203,1936,229"/>
+<area shape="poly" title=" " alt="" coords="1803,147,1835,190,1831,194,1798,150"/>
+<area shape="rect" title=" " alt="" coords="2643,291,2720,317"/>
+<area shape="poly" title=" " alt="" coords="1876,132,1936,139,2002,151,2070,169,2136,194,2152,204,2162,215,2172,225,2186,234,2250,255,2306,266,2356,270,2404,269,2505,265,2564,269,2631,281,2642,284,2640,289,2630,287,2563,275,2505,271,2404,274,2356,275,2305,272,2249,260,2184,238,2168,229,2158,218,2148,208,2133,198,2069,174,2001,156,1935,145,1876,137"/>
+<area shape="rect" title=" " alt="" coords="2745,291,2807,317"/>
+<area shape="poly" title=" " alt="" coords="1877,129,2030,136,2214,148,2387,167,2458,179,2512,194,2529,203,2542,213,2553,223,2569,234,2613,251,2649,260,2686,268,2733,281,2739,284,2737,289,2731,287,2685,273,2648,265,2612,256,2567,238,2550,228,2538,217,2527,207,2510,198,2457,184,2387,172,2213,153,2030,141,1876,135"/>
+<area shape="rect" href="conditional__ostream_8hpp.html" title=" " alt="" coords="3033,196,3220,236"/>
+<area shape="poly" title=" " alt="" coords="1876,128,2079,132,2360,143,2686,163,3020,193,3019,199,2685,168,2360,149,2078,138,1876,133"/>
+<area shape="rect" title=" " alt="" coords="1961,203,2047,229"/>
+<area shape="poly" title=" " alt="" coords="1835,146,1963,196,1961,201,1833,151"/>
+<area shape="rect" title=" " alt="" coords="2072,203,2123,229"/>
+<area shape="poly" title=" " alt="" coords="1877,144,1966,165,2060,193,2064,195,2062,200,2058,199,1965,170,1876,149"/>
+<area shape="poly" title=" " alt="" coords="1788,231,1742,239,1676,246,1620,247,1524,246,1478,247,1430,253,1377,265,1316,286,1300,295,1290,305,1264,326,1207,355,1152,377,1150,372,1204,350,1261,322,1286,301,1297,291,1314,282,1375,260,1429,248,1477,242,1523,241,1620,242,1676,240,1741,233,1787,226"/>
+<area shape="poly" title=" " alt="" coords="1903,226,1948,233,2081,247,2193,254,2384,258,2575,262,2688,268,2820,281,2856,286,2855,292,2820,287,2687,274,2575,267,2384,264,2192,260,2080,252,1948,239,1902,231"/>
+<area shape="poly" title=" " alt="" coords="1764,231,1700,239,1530,252,1397,257,1265,265,1096,287,1075,291,1074,286,1096,281,1265,260,1397,252,1530,246,1700,233,1763,226"/>
+<area shape="poly" title=" " alt="" coords="1790,231,1744,239,1611,254,1507,262,1404,270,1271,287,1265,288,1264,282,1270,281,1403,264,1507,256,1611,249,1744,233,1789,226"/>
+<area shape="rect" title=" " alt="" coords="1411,284,1546,324"/>
+<area shape="poly" title=" " alt="" coords="1799,231,1560,286,1559,281,1798,226"/>
+<area shape="rect" title=" " alt="" coords="1570,284,1715,324"/>
+<area shape="poly" title=" " alt="" coords="1822,231,1702,281,1700,276,1820,226"/>
+<area shape="rect" title=" " alt="" coords="1739,284,1906,324"/>
+<area shape="poly" title=" " alt="" coords="1848,230,1835,272,1830,270,1843,228"/>
+<area shape="rect" title=" " alt="" coords="1930,284,2089,324"/>
+<area shape="poly" title=" " alt="" coords="1872,226,1963,275,1961,280,1870,231"/>
+<area shape="rect" title=" " alt="" coords="2113,284,2271,324"/>
+<area shape="poly" title=" " alt="" coords="1896,226,2105,278,2103,283,1895,231"/>
+<area shape="rect" href="enum_8hpp.html" title=" " alt="" coords="2469,284,2619,324"/>
+<area shape="poly" title=" " alt="" coords="1905,226,1948,233,2089,249,2200,256,2313,264,2456,281,2455,287,2312,269,2200,262,2089,255,1948,239,1904,231"/>
+<area shape="rect" href="fe__integrator_8hpp.html" title=" " alt="" coords="2296,284,2445,324"/>
+<area shape="poly" title=" " alt="" coords="1908,226,1948,233,2116,257,2283,281,2284,281,2283,287,2282,287,2115,262,1948,239,1907,231"/>
+<area shape="poly" title=" " alt="" coords="1904,226,1948,233,2052,244,2140,248,2291,248,2364,248,2441,252,2529,263,2631,281,2642,284,2641,289,2630,287,2528,268,2441,258,2363,254,2291,253,2140,254,2052,249,1948,239,1903,231"/>
+<area shape="rect" title=" " alt="" coords="1327,291,1387,317"/>
+<area shape="poly" title=" " alt="" coords="1788,231,1744,239,1647,250,1570,256,1494,264,1399,287,1393,289,1391,284,1398,281,1493,259,1570,250,1646,245,1744,233,1787,226"/>
+<area shape="poly" title=" " alt="" coords="1903,226,1948,233,2067,245,2169,248,2342,244,2426,242,2515,246,2615,258,2733,281,2741,284,2740,289,2731,287,2615,263,2515,251,2426,248,2343,249,2169,253,2067,250,1948,239,1902,231"/>
+<area shape="rect" title=" " alt="" coords="2163,372,2333,412"/>
+<area shape="poly" title=" " alt="" coords="2480,327,2327,371,2325,366,2478,321"/>
+<area shape="rect" title=" " alt="" coords="2357,379,2523,405"/>
+<area shape="poly" title=" " alt="" coords="2523,326,2467,372,2463,368,2519,322"/>
+<area shape="poly" title=" " alt="" coords="2620,319,2631,321,2876,356,3083,380,3082,385,2875,362,2630,327,2619,325"/>
+<area shape="rect" title=" " alt="" coords="2547,372,2714,412"/>
+<area shape="poly" title=" " alt="" coords="2565,322,2604,360,2600,364,2561,326"/>
+<area shape="rect" title=" " alt="" coords="2739,379,2813,405"/>
+<area shape="poly" title=" " alt="" coords="2596,321,2726,369,2733,372,2731,377,2724,375,2594,327"/>
+<area shape="rect" title=" " alt="" coords="2837,379,2896,405"/>
+<area shape="poly" title=" " alt="" coords="2620,320,2826,369,2832,372,2830,377,2825,375,2618,325"/>
+<area shape="rect" title=" " alt="" coords="2997,460,3067,485"/>
+<area shape="poly" title=" " alt="" coords="3139,414,3066,455,3063,451,3136,410"/>
+<area shape="rect" title=" " alt="" coords="3092,460,3159,485"/>
+<area shape="poly" title=" " alt="" coords="3162,414,3141,449,3137,447,3157,411"/>
+<area shape="rect" title=" " alt="" coords="3183,460,3247,485"/>
+<area shape="poly" title=" " alt="" coords="3184,411,3204,447,3199,449,3179,414"/>
+<area shape="rect" title=" " alt="" coords="3271,460,3358,485"/>
+<area shape="poly" title=" " alt="" coords="3206,410,3283,451,3280,456,3204,414"/>
+<area shape="poly" title=" " alt="" coords="2296,325,2283,327,2134,344,1982,359,1683,378,1418,389,1217,393,1217,387,1418,383,1683,373,1981,353,2134,339,2282,321,2296,319"/>
+<area shape="rect" title=" " alt="" coords="1997,372,2139,412"/>
+<area shape="poly" title=" " alt="" coords="2305,327,2148,371,2147,366,2304,321"/>
+<area shape="rect" title=" " alt="" coords="3043,284,3216,324"/>
+<area shape="poly" title=" " alt="" coords="3130,236,3131,270,3126,270,3125,236"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -102,115 +197,134 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="compressible__flow__utils_8hpp__dep__incl.png" border="0" usemap="#ainclude_2meltpooldg_2flow_2compressible__flow__utils_8hppdep" alt=""/></div>
 <map name="ainclude_2meltpooldg_2flow_2compressible__flow__utils_8hppdep" id="ainclude_2meltpooldg_2flow_2compressible__flow__utils_8hppdep">
-<area shape="rect" title=" " alt="" coords="863,5,1041,60"/>
-<area shape="rect" href="compressible__flow__convective__kernels_8hpp.html" title=" " alt="" coords="795,533,978,588"/>
-<area shape="poly" title=" " alt="" coords="887,69,840,100,795,140,776,163,761,188,751,215,748,244,748,357,748,424,755,452,773,484,798,510,828,531,825,535,794,514,768,487,750,454,743,425,743,357,743,244,746,214,756,186,771,160,791,136,836,95,884,64"/>
-<area shape="rect" href="compressible__multiphase__operator_8cpp.html" title=" " alt="" coords="53,761,243,801"/>
-<area shape="poly" title=" " alt="" coords="849,38,614,49,475,62,337,80,210,107,155,124,106,143,66,164,36,188,17,215,11,244,11,562,10,637,17,668,36,704,49,721,66,735,103,758,100,763,63,740,46,724,31,707,12,670,5,638,5,562,5,244,12,213,32,184,63,160,104,138,153,119,209,102,336,75,475,56,614,44,849,33"/>
-<area shape="rect" href="cutdg__compressible__flow__operator_8cpp.html" title=" " alt="" coords="591,761,822,801"/>
-<area shape="poly" title=" " alt="" coords="849,54,768,78,728,95,690,116,657,141,631,170,614,204,608,244,608,459,611,504,618,549,644,636,673,709,699,759,694,762,669,711,638,637,613,551,605,505,603,459,603,244,609,203,627,167,654,137,687,111,726,90,767,73,848,49"/>
-<area shape="rect" href="compressible__multiphase__interface__kernels_8hpp.html" title=" " alt="" coords="45,643,269,698"/>
-<area shape="poly" title=" " alt="" coords="849,37,765,43,670,56,571,77,476,111,412,135,358,157,337,171,322,189,312,213,308,244,308,459,305,489,296,517,267,569,230,612,194,645,190,641,226,609,263,566,291,515,300,488,303,459,303,244,306,211,317,186,334,167,356,152,410,130,474,105,569,72,669,50,765,38,848,32"/>
-<area shape="rect" href="compressible__multiphase__operator_8hpp.html" title=" " alt="" coords="293,643,517,698"/>
-<area shape="poly" title=" " alt="" coords="849,36,726,48,661,61,598,80,542,107,518,123,498,142,481,164,468,187,460,214,457,244,457,459,453,512,443,563,418,644,413,642,438,561,448,511,452,459,452,244,455,213,463,185,476,161,494,139,515,119,540,102,596,75,660,56,726,43,849,31"/>
-<area shape="rect" href="compressible__multiphase__operation_8hpp.html" title=" " alt="" coords="319,753,543,808"/>
-<area shape="poly" title=" " alt="" coords="850,39,795,46,738,59,682,80,631,110,596,139,574,167,561,200,557,244,557,562,557,638,550,670,532,707,509,734,481,755,478,751,505,730,527,704,545,668,552,637,552,562,552,244,556,199,569,164,593,135,628,106,679,75,736,54,794,41,849,34"/>
-<area shape="rect" href="cutdg__compressible__flow__operator_8hpp.html" title=" " alt="" coords="947,643,1133,698"/>
-<area shape="poly" title=" " alt="" coords="851,64,809,83,771,110,738,141,715,169,702,201,697,244,697,357,700,429,711,485,722,510,738,534,785,586,959,641,957,646,783,590,734,538,718,512,706,487,695,429,692,357,692,244,696,199,710,166,734,137,768,106,806,79,849,59"/>
-<area shape="rect" href="cutdg__compressible__flow__operation_8hpp.html" title=" " alt="" coords="2079,753,2265,808"/>
-<area shape="poly" title=" " alt="" coords="1055,34,1278,47,1409,61,1540,81,1659,107,1711,124,1757,142,1795,164,1824,187,1843,214,1849,244,1849,562,1851,588,1856,610,1864,628,1875,644,1906,672,1948,703,1970,715,2002,728,2079,752,2077,758,2000,733,1968,720,1945,708,1903,676,1871,647,1860,631,1851,611,1846,589,1844,562,1844,244,1838,216,1820,191,1792,168,1755,147,1710,129,1658,112,1539,86,1409,66,1278,53,1055,39"/>
-<area shape="rect" href="dg__compressible__flow__operator__explicit_8hpp.html" title=" " alt="" coords="1158,643,1359,698"/>
-<area shape="poly" title=" " alt="" coords="1055,43,1207,67,1274,85,1320,106,1357,135,1382,164,1397,198,1401,244,1401,459,1398,488,1390,516,1363,568,1327,612,1293,645,1289,641,1323,608,1358,565,1385,514,1393,487,1396,459,1396,244,1392,200,1378,166,1353,138,1317,110,1272,90,1206,73,1055,48"/>
-<area shape="rect" href="dg__compressible__flow__operator__implicit_8hpp.html" title=" " alt="" coords="1384,643,1587,698"/>
-<area shape="poly" title=" " alt="" coords="1055,32,1127,39,1208,51,1290,73,1368,106,1420,132,1463,157,1480,172,1492,191,1500,215,1503,244,1503,459,1498,561,1491,643,1486,643,1493,561,1497,459,1497,244,1495,216,1487,194,1475,176,1460,161,1418,136,1366,110,1288,78,1207,57,1127,44,1055,38"/>
-<area shape="rect" href="dg__compressible__flow__operator__implicit__explicit_8hpp.html" title=" " alt="" coords="1611,636,1786,705"/>
-<area shape="poly" title=" " alt="" coords="1055,33,1139,39,1236,52,1337,73,1434,105,1503,129,1562,150,1585,165,1604,184,1616,210,1620,244,1620,459,1626,509,1641,556,1660,600,1679,635,1674,637,1655,602,1636,558,1621,510,1615,459,1615,244,1611,211,1600,187,1582,169,1559,155,1501,134,1432,111,1336,78,1235,57,1139,44,1055,38"/>
-<area shape="rect" href="compressible__flow__eos__utils__base_8hpp.html" title=" " alt="" coords="1128,108,1307,163"/>
-<area shape="poly" title=" " alt="" coords="1035,62,1149,105,1147,110,1033,67"/>
-<area shape="rect" href="compressible__flow__scratch__data_8hpp.html" title=" " alt="" coords="783,431,961,485"/>
-<area shape="poly" title=" " alt="" coords="947,74,880,431,874,430,942,73"/>
-<area shape="rect" href="dg__compressible__flow__operation_8hpp.html" title=" " alt="" coords="2321,643,2487,698"/>
-<area shape="poly" title=" " alt="" coords="1055,36,1399,56,1615,72,1836,94,2042,122,2213,155,2279,174,2330,195,2363,218,2372,231,2375,244,2375,459,2377,510,2384,561,2400,642,2395,644,2378,562,2372,511,2369,459,2369,244,2367,233,2359,222,2327,200,2278,179,2211,160,2041,127,1836,100,1615,78,1398,61,1055,41"/>
-<area shape="rect" href="compressible__flow__viscous__kernels_8hpp.html" title=" " alt="" coords="1100,533,1279,588"/>
-<area shape="poly" title=" " alt="" coords="956,73,964,155,983,262,998,319,1019,377,1045,433,1077,484,1102,510,1133,531,1130,535,1099,514,1073,487,1040,435,1014,379,993,321,978,263,958,155,951,74"/>
-<area shape="rect" href="brinkman__penalization__fluid__force_8hpp.html" title=" " alt="" coords="2601,211,2812,280"/>
-<area shape="poly" title=" " alt="" coords="1055,32,1348,36,1735,47,1932,57,2115,69,2272,85,2391,105,2462,126,2531,153,2648,208,2645,213,2529,158,2460,131,2390,111,2272,91,2115,75,1931,62,1734,53,1348,41,1055,37"/>
-<area shape="rect" href="compressible__flow__explicit__utils_8hpp.html" title=" " alt="" coords="744,643,923,698"/>
-<area shape="poly" title=" " alt="" coords="870,602,849,644,844,642,865,600"/>
-<area shape="poly" title=" " alt="" coords="782,573,551,597,416,616,282,639,249,646,248,641,281,633,415,610,551,592,781,568"/>
-<area shape="poly" title=" " alt="" coords="782,588,518,647,517,642,781,583"/>
-<area shape="poly" title=" " alt="" coords="937,594,1004,641,1001,645,934,598"/>
-<area shape="poly" title=" " alt="" coords="992,589,1146,633,1171,641,1169,646,1145,639,991,594"/>
-<area shape="poly" title=" " alt="" coords="992,574,1201,604,1372,633,1402,641,1401,646,1371,639,1200,609,991,579"/>
-<area shape="poly" title=" " alt="" coords="992,574,1088,585,1232,597,1345,601,1457,610,1599,633,1612,636,1611,642,1598,639,1456,615,1344,607,1232,602,1088,591,991,579"/>
-<area shape="poly" title=" " alt="" coords="731,690,307,756,244,766,243,761,306,751,730,685"/>
-<area shape="poly" title=" " alt="" coords="793,710,731,763,727,758,790,705"/>
-<area shape="rect" href="dg__compressible__flow__operator__explicit_8cpp.html" title=" " alt="" coords="847,761,1057,801"/>
-<area shape="poly" title=" " alt="" coords="875,706,933,759,929,762,871,710"/>
-<area shape="rect" href="dg__compressible__flow__operator__implicit_8cpp.html" title=" " alt="" coords="1132,761,1343,801"/>
-<area shape="poly" title=" " alt="" coords="924,699,935,703,1154,758,1153,763,934,708,923,705"/>
-<area shape="poly" title=" " alt="" coords="156,712,152,760,147,760,151,712"/>
-<area shape="poly" title=" " alt="" coords="331,706,194,763,192,758,328,701"/>
-<area shape="poly" title=" " alt="" coords="417,711,427,752,422,754,412,712"/>
-<area shape="rect" href="compressible__multiphase__operation_8cpp.html" title=" " alt="" coords="257,863,455,903"/>
-<area shape="poly" title=" " alt="" coords="349,708,326,729,309,754,305,768,304,783,311,812,325,839,341,862,337,865,321,842,306,814,299,783,299,767,304,752,322,726,345,704"/>
-<area shape="poly" title=" " alt="" coords="557,766,566,772,569,781,562,793,544,800,542,795,558,789,564,780,562,775,554,770"/>
-<area shape="rect" href="compressible__multiphase__application_8cpp.html" title=" " alt="" coords="1071,856,1289,911"/>
-<area shape="poly" title=" " alt="" coords="557,802,580,805,844,841,1071,867,1070,873,844,846,580,811,556,807"/>
-<area shape="poly" title=" " alt="" coords="405,821,372,864,368,861,401,818"/>
-<area shape="poly" title=" " alt="" coords="947,705,766,763,764,758,945,700"/>
-<area shape="poly" title=" " alt="" coords="1129,699,1147,703,1286,723,1404,732,1508,734,1606,731,1704,728,1809,728,1928,734,2067,751,2079,753,2078,758,2066,756,1927,740,1809,733,1704,734,1606,737,1508,739,1403,738,1285,728,1146,708,1128,704"/>
-<area shape="rect" href="cutdg__compressible__flow__operation_8cpp.html" title=" " alt="" coords="1442,863,1673,903"/>
-<area shape="poly" title=" " alt="" coords="1055,710,1080,761,1099,786,1121,806,1165,820,1246,836,1442,865,1441,870,1245,841,1164,825,1119,810,1095,789,1076,764,1050,712"/>
-<area shape="rect" href="compressible__flow__application_8cpp.html" title=" " alt="" coords="2185,863,2471,903"/>
-<area shape="poly" title=" " alt="" coords="2225,813,2300,861,2297,865,2223,818"/>
-<area shape="poly" title=" " alt="" coords="2066,811,1854,847,1673,871,1672,866,1853,841,2065,806"/>
-<area shape="poly" title=" " alt="" coords="1172,705,1007,763,1005,758,1170,700"/>
-<area shape="rect" href="dg__compressible__flow__operation_8cpp.html" title=" " alt="" coords="1367,761,1577,801"/>
-<area shape="poly" title=" " alt="" coords="1324,702,1436,758,1433,763,1322,707"/>
-<area shape="poly" title=" " alt="" coords="1413,706,1282,763,1280,758,1411,701"/>
-<area shape="poly" title=" " alt="" coords="1483,712,1477,761,1472,760,1478,711"/>
-<area shape="poly" title=" " alt="" coords="1617,714,1513,763,1511,758,1615,709"/>
-<area shape="rect" href="dg__compressible__flow__operator__implicit__explicit_8cpp.html" title=" " alt="" coords="1601,753,1812,808"/>
-<area shape="poly" title=" " alt="" coords="1705,719,1707,753,1702,753,1699,719"/>
-<area shape="rect" href="compressible__flow__material_8hpp.html" title=" " alt="" coords="1075,218,1253,273"/>
-<area shape="poly" title=" " alt="" coords="1200,177,1179,219,1175,217,1196,174"/>
-<area shape="rect" href="compressible__flow__boundary__conditions_8cpp.html" title=" " alt="" coords="1086,438,1311,478"/>
-<area shape="poly" title=" " alt="" coords="1249,173,1268,210,1283,258,1291,297,1289,337,1274,384,1254,415,1228,440,1224,436,1250,412,1270,382,1284,336,1286,298,1278,259,1263,212,1244,175"/>
-<area shape="poly" title=" " alt="" coords="1265,170,1282,188,1296,209,1333,284,1346,317,1355,349,1359,381,1356,414,1345,449,1326,487,1301,515,1270,536,1267,531,1298,511,1322,484,1340,447,1351,413,1354,381,1350,350,1341,319,1328,286,1291,212,1278,192,1261,174"/>
-<area shape="rect" href="compressible__flow__boundary__conditions_8hpp.html" title=" " alt="" coords="1068,328,1260,383"/>
-<area shape="poly" title=" " alt="" coords="1167,287,1167,328,1161,328,1161,287"/>
-<area shape="poly" title=" " alt="" coords="1118,283,910,433,907,428,1115,279"/>
-<area shape="poly" title=" " alt="" coords="1123,394,1055,442,1016,467,974,488,921,504,877,509,835,515,811,523,785,536,755,556,733,576,701,619,669,663,647,685,617,708,569,735,518,756,516,751,566,730,614,703,643,681,665,659,696,616,729,573,752,552,783,531,809,518,834,510,877,504,920,499,972,483,1013,462,1053,438,1120,390"/>
-<area shape="rect" href="compressible__flow__operation_8hpp.html" title=" " alt="" coords="2012,533,2191,588"/>
-<area shape="poly" title=" " alt="" coords="1274,378,2012,537,2011,543,1273,383"/>
-<area shape="poly" title=" " alt="" coords="1076,390,949,433,947,428,1074,385"/>
-<area shape="poly" title=" " alt="" coords="1180,395,1194,437,1189,438,1175,397"/>
-<area shape="poly" title=" " alt="" coords="2197,591,2230,610,2259,634,2281,661,2298,691,2319,756,2329,817,2331,863,2326,863,2323,818,2314,757,2293,693,2276,664,2255,638,2227,615,2194,596"/>
-<area shape="rect" href="cfd__dem__application_8hpp.html" title=" " alt="" coords="2511,651,2734,691"/>
-<area shape="poly" title=" " alt="" coords="2204,576,2345,601,2501,633,2558,648,2557,653,2499,639,2344,607,2203,581"/>
-<area shape="rect" href="compressible__flow__application_8hpp.html" title=" " alt="" coords="1958,651,2245,691"/>
-<area shape="poly" title=" " alt="" coords="2104,602,2104,650,2099,650,2099,602"/>
-<area shape="rect" href="compressible__multiphase__application_8hpp.html" title=" " alt="" coords="1836,753,2055,808"/>
-<area shape="poly" title=" " alt="" coords="2001,593,1972,612,1949,637,1937,666,1934,696,1936,727,1940,753,1935,754,1930,727,1928,696,1932,664,1944,635,1968,608,1998,589"/>
-<area shape="rect" href="cfd__dem__application_8cpp.html" title=" " alt="" coords="2511,761,2734,801"/>
-<area shape="poly" title=" " alt="" coords="2625,704,2625,760,2620,760,2620,704"/>
-<area shape="poly" title=" " alt="" coords="2185,693,2235,717,2258,733,2279,752,2299,779,2313,809,2328,862,2322,864,2308,811,2294,781,2275,755,2255,737,2232,721,2183,698"/>
-<area shape="poly" title=" " alt="" coords="1822,811,1568,843,1290,873,1289,868,1567,838,1822,806"/>
-<area shape="poly" title=" " alt="" coords="880,499,885,533,880,534,875,499"/>
-<area shape="poly" title=" " alt="" coords="771,490,728,510,690,535,667,557,652,577,632,619,612,662,597,684,575,707,538,734,499,756,496,751,535,730,572,703,593,681,608,659,627,617,647,575,663,553,686,531,726,505,769,486"/>
-<area shape="poly" title=" " alt="" coords="975,472,1075,483,1185,488,1323,488,1643,485,1807,487,1961,493,2096,507,2154,517,2203,531,2255,553,2303,582,2378,641,2374,645,2300,587,2253,558,2202,536,2153,523,2096,512,1961,498,1807,492,1643,491,1323,493,1185,493,1074,488,975,477"/>
-<area shape="poly" title=" " alt="" coords="2336,706,2230,756,2227,751,2334,701"/>
-<area shape="poly" title=" " alt="" coords="2401,712,2390,759,2374,809,2344,864,2339,861,2370,807,2385,758,2395,711"/>
-<area shape="poly" title=" " alt="" coords="2308,699,2258,708,2156,721,2070,728,1923,732,1777,737,1691,743,1590,756,1549,763,1548,758,1589,751,1690,738,1776,731,1923,727,2070,723,2156,716,2257,703,2307,694"/>
-<area shape="poly" title=" " alt="" coords="2471,702,2586,758,2583,763,2469,707"/>
-<area shape="poly" title=" " alt="" coords="1087,594,935,639,913,646,911,641,934,633,1086,588"/>
-<area shape="poly" title=" " alt="" coords="1087,579,518,657,517,651,1086,573"/>
-<area shape="poly" title=" " alt="" coords="1143,599,1078,645,1075,641,1140,594"/>
-<area shape="poly" title=" " alt="" coords="1216,599,1244,642,1239,645,1212,601"/>
-<area shape="poly" title=" " alt="" coords="1275,590,1414,641,1413,646,1273,595"/>
-<area shape="poly" title=" " alt="" coords="1293,574,1439,598,1599,633,1612,637,1610,642,1598,639,1438,604,1292,579"/>
-<area shape="poly" title=" " alt="" coords="2732,292,2759,368,2769,412,2773,457,2773,562,2775,638,2768,670,2749,707,2734,725,2715,740,2676,763,2673,758,2712,736,2730,721,2744,704,2763,669,2770,638,2768,562,2768,457,2764,413,2754,369,2727,293"/>
+<area shape="rect" title=" " alt="" coords="1155,5,1334,60"/>
+<area shape="rect" href="compressible__flow__convective__kernels_8hpp.html" title=" " alt="" coords="794,548,977,603"/>
+<area shape="poly" title=" " alt="" coords="1142,55,1008,85,936,105,866,128,804,153,753,182,720,212,711,228,708,244,708,364,707,436,714,466,733,498,762,526,797,546,794,550,759,530,729,502,709,468,702,437,703,364,703,244,706,226,716,209,750,177,801,148,864,123,934,100,1007,80,1141,50"/>
+<area shape="rect" href="compressible__multiphase__operator_8cpp.html" title=" " alt="" coords="26,775,217,815"/>
+<area shape="poly" title=" " alt="" coords="1141,41,946,50,709,64,482,85,389,97,318,111,263,121,208,126,108,136,68,147,37,166,26,180,17,197,12,218,10,244,10,577,10,651,17,682,35,719,60,750,91,773,87,777,57,753,30,721,12,684,5,652,4,577,4,244,6,218,12,195,21,177,33,162,66,142,107,131,207,121,262,116,317,105,388,92,482,79,709,59,946,44,1141,35"/>
+<area shape="rect" href="cutdg__compressible__flow__operator_8cpp.html" title=" " alt="" coords="565,775,796,815"/>
+<area shape="poly" title=" " alt="" coords="1141,39,1020,46,885,58,764,79,716,93,682,110,646,138,623,166,611,200,607,244,607,577,614,634,631,690,652,738,671,774,667,776,647,740,626,692,609,636,602,577,602,244,606,198,619,163,643,134,679,106,714,88,763,74,885,53,1020,40,1141,34"/>
+<area shape="rect" href="compressible__multiphase__interface__kernels_8hpp.html" title=" " alt="" coords="44,658,268,713"/>
+<area shape="poly" title=" " alt="" coords="1141,37,896,46,750,57,604,76,469,102,410,119,359,138,317,160,285,185,265,213,258,244,258,474,250,528,230,579,205,624,181,659,176,656,200,621,225,577,245,527,252,474,252,244,260,211,281,182,314,156,357,133,409,114,468,97,603,70,749,52,896,41,1141,32"/>
+<area shape="rect" href="compressible__multiphase__operator_8hpp.html" title=" " alt="" coords="292,658,516,713"/>
+<area shape="poly" title=" " alt="" coords="1141,36,988,40,811,50,725,60,648,73,583,89,536,110,499,137,474,165,461,199,456,244,456,474,452,526,442,577,417,659,412,657,437,576,447,525,451,474,451,244,456,198,470,162,496,133,534,106,581,84,647,68,724,55,810,45,988,34,1141,31"/>
+<area shape="rect" href="compressible__multiphase__operation_8hpp.html" title=" " alt="" coords="292,768,516,823"/>
+<area shape="poly" title=" " alt="" coords="1141,37,1004,41,851,52,777,62,711,74,657,90,618,110,586,138,567,167,559,201,556,244,556,577,558,653,550,685,531,722,504,749,473,770,470,765,501,745,526,718,545,683,552,652,551,577,551,244,553,200,562,165,582,135,615,106,655,85,710,69,776,57,850,47,1004,36,1141,32"/>
+<area shape="rect" href="cutdg__compressible__flow__operator_8hpp.html" title=" " alt="" coords="946,658,1132,713"/>
+<area shape="poly" title=" " alt="" coords="1142,45,939,69,844,88,807,99,779,110,730,136,691,162,677,177,667,195,660,217,658,244,658,474,660,500,668,521,679,537,695,551,735,574,784,600,958,655,956,660,782,605,733,579,692,555,676,541,663,523,655,502,652,474,652,244,655,216,662,193,673,174,688,158,727,132,777,106,805,94,843,83,938,64,1141,40"/>
+<area shape="rect" href="cutdg__compressible__flow__operation_8hpp.html" title=" " alt="" coords="2052,768,2239,823"/>
+<area shape="poly" title=" " alt="" coords="1348,31,1425,37,1511,50,1601,72,1644,87,1686,106,1740,131,1784,156,1802,172,1815,191,1823,214,1826,244,1826,577,1822,655,1828,686,1850,718,2053,768,2052,773,1847,722,1823,688,1817,655,1820,577,1820,244,1818,216,1810,193,1798,175,1781,160,1737,136,1683,110,1642,92,1599,77,1510,55,1424,42,1347,37"/>
+<area shape="rect" href="dg__compressible__flow__operator__explicit_8hpp.html" title=" " alt="" coords="1157,658,1358,713"/>
+<area shape="poly" title=" " alt="" coords="1281,69,1308,103,1334,145,1354,193,1362,244,1362,474,1360,501,1354,529,1333,580,1307,624,1282,659,1278,656,1303,621,1329,577,1348,527,1354,501,1356,474,1356,244,1349,195,1329,148,1304,106,1277,72"/>
+<area shape="rect" href="dg__compressible__flow__operator__implicit_8hpp.html" title=" " alt="" coords="1383,658,1586,713"/>
+<area shape="poly" title=" " alt="" coords="1298,67,1336,99,1373,141,1401,189,1410,216,1412,244,1412,474,1417,539,1438,602,1452,630,1468,656,1463,659,1447,633,1433,604,1412,540,1407,474,1407,244,1404,217,1396,191,1369,144,1333,103,1294,71"/>
+<area shape="rect" href="dg__compressible__flow__operator__implicit__explicit_8hpp.html" title=" " alt="" coords="1610,651,1785,720"/>
+<area shape="poly" title=" " alt="" coords="1348,33,1465,47,1527,60,1587,80,1640,107,1683,143,1699,164,1711,188,1719,215,1722,244,1722,474,1716,571,1706,651,1701,650,1711,570,1716,474,1716,244,1714,216,1706,190,1695,167,1679,147,1637,112,1585,85,1526,66,1464,52,1348,38"/>
+<area shape="rect" href="compressible__flow__eos__utils__base_8hpp.html" title=" " alt="" coords="1063,108,1242,163"/>
+<area shape="poly" title=" " alt="" coords="1213,72,1178,110,1175,106,1209,69"/>
+<area shape="rect" href="compressible__flow__scratch__data_8hpp.html" title=" " alt="" coords="743,445,922,500"/>
+<area shape="poly" title=" " alt="" coords="1143,62,1096,82,1053,110,1012,149,975,194,943,241,914,289,870,379,844,446,839,444,866,377,910,287,938,238,971,191,1008,146,1049,106,1093,77,1141,57"/>
+<area shape="rect" href="dg__compressible__flow__operation_8hpp.html" title=" " alt="" coords="2064,658,2230,713"/>
+<area shape="poly" title=" " alt="" coords="1348,37,1474,47,1617,61,1749,81,1802,92,1843,105,1907,129,1961,152,1983,166,1999,186,2010,211,2014,244,2014,474,2017,502,2024,529,2051,579,2084,623,2117,656,2114,660,2080,626,2046,582,2019,531,2011,503,2008,474,2008,244,2005,213,1995,189,1979,170,1959,156,1905,134,1841,111,1801,98,1748,86,1617,66,1474,52,1347,43"/>
+<area shape="rect" href="compressible__flow__viscous__kernels_8hpp.html" title=" " alt="" coords="1072,548,1251,603"/>
+<area shape="poly" title=" " alt="" coords="1266,72,1296,150,1307,197,1311,244,1311,364,1312,436,1305,467,1287,502,1260,529,1229,550,1226,546,1257,525,1282,498,1300,465,1307,436,1306,364,1306,244,1302,197,1291,151,1261,74"/>
+<area shape="rect" href="dg__compressible__flow__operator__base_8hpp.html" title=" " alt="" coords="1447,548,1631,603"/>
+<area shape="poly" title=" " alt="" coords="1348,58,1391,78,1430,106,1463,137,1485,166,1498,200,1502,244,1502,364,1505,415,1513,466,1533,547,1528,548,1508,467,1500,416,1496,364,1496,244,1493,201,1480,169,1459,141,1427,110,1388,83,1346,63"/>
+<area shape="rect" href="brinkman__penalization__util_8hpp.html" title=" " alt="" coords="2981,108,3212,163"/>
+<area shape="poly" title=" " alt="" coords="1348,37,2981,125,2980,130,1348,42"/>
+<area shape="rect" href="brinkman__penalization__obstacle__to__fluid_8cpp.html" title=" " alt="" coords="3323,328,3494,397"/>
+<area shape="poly" title=" " alt="" coords="1348,32,1776,39,2361,52,2908,74,3108,88,3178,96,3225,105,3287,121,3337,135,3359,146,3379,161,3399,182,3417,209,3429,239,3431,270,3429,301,3423,328,3417,327,3423,300,3426,270,3423,240,3413,212,3395,185,3376,165,3356,151,3335,140,3286,126,3224,111,3177,102,3107,94,2908,79,2361,57,1776,44,1348,38"/>
+<area shape="rect" href="compressible__flow__explicit__utils_8hpp.html" title=" " alt="" coords="743,658,922,713"/>
+<area shape="poly" title=" " alt="" coords="869,617,848,659,843,657,864,614"/>
+<area shape="poly" title=" " alt="" coords="781,588,551,612,415,630,281,653,248,661,247,655,280,648,415,625,550,606,780,582"/>
+<area shape="poly" title=" " alt="" coords="781,603,517,662,516,656,780,597"/>
+<area shape="poly" title=" " alt="" coords="936,608,1003,655,1000,660,933,613"/>
+<area shape="poly" title=" " alt="" coords="991,604,1145,648,1170,655,1169,660,1144,653,990,609"/>
+<area shape="poly" title=" " alt="" coords="991,590,1372,648,1401,655,1400,661,1371,653,991,595"/>
+<area shape="poly" title=" " alt="" coords="991,591,1061,600,1212,613,1331,616,1449,624,1518,633,1598,648,1611,651,1610,656,1597,653,1517,638,1448,629,1330,622,1212,618,1060,605,990,596"/>
+<area shape="poly" title=" " alt="" coords="730,704,281,771,218,781,217,775,280,765,729,699"/>
+<area shape="poly" title=" " alt="" coords="786,723,709,777,706,773,783,718"/>
+<area shape="rect" href="dg__compressible__flow__operator__explicit_8cpp.html" title=" " alt="" coords="820,775,1031,815"/>
+<area shape="poly" title=" " alt="" coords="867,722,911,773,907,777,863,725"/>
+<area shape="rect" href="dg__compressible__flow__operator__implicit_8cpp.html" title=" " alt="" coords="1055,775,1266,815"/>
+<area shape="poly" title=" " alt="" coords="925,714,935,717,1104,773,1102,778,933,723,924,719"/>
+<area shape="poly" title=" " alt="" coords="146,727,131,776,125,774,141,725"/>
+<area shape="poly" title=" " alt="" coords="324,720,172,778,170,773,322,715"/>
+<area shape="poly" title=" " alt="" coords="407,727,407,768,402,768,402,727"/>
+<area shape="rect" href="compressible__multiphase__operation_8cpp.html" title=" " alt="" coords="230,878,429,918"/>
+<area shape="poly" title=" " alt="" coords="330,722,303,743,283,769,278,783,277,797,284,826,298,853,315,876,310,879,293,856,279,828,271,797,273,782,278,767,299,739,326,718"/>
+<area shape="poly" title=" " alt="" coords="531,780,540,786,543,796,536,808,517,814,516,809,532,804,538,795,535,790,528,785"/>
+<area shape="rect" href="compressible__multiphase__application_8cpp.html" title=" " alt="" coords="872,871,1091,925"/>
+<area shape="poly" title=" " alt="" coords="531,816,554,820,873,875,872,880,553,825,530,821"/>
+<area shape="poly" title=" " alt="" coords="379,835,346,879,342,876,375,832"/>
+<area shape="poly" title=" " alt="" coords="945,719,935,723,747,778,745,773,933,717,944,714"/>
+<area shape="poly" title=" " alt="" coords="1128,714,1146,717,1281,737,1396,746,1497,748,1592,746,1688,743,1790,743,1905,749,2041,765,2053,767,2052,773,2040,771,1905,755,1790,748,1688,748,1592,751,1497,753,1395,752,1280,743,1145,723,1127,719"/>
+<area shape="rect" href="cutdg__compressible__flow__operation_8cpp.html" title=" " alt="" coords="1772,878,2002,918"/>
+<area shape="poly" title=" " alt="" coords="1136,714,1225,744,1279,766,1295,780,1305,795,1314,808,1330,820,1364,834,1410,846,1526,865,1654,879,1772,888,1771,893,1653,884,1525,870,1409,851,1362,839,1327,825,1310,812,1300,798,1291,784,1276,770,1223,749,1134,719"/>
+<area shape="rect" href="compressible__flow__application_8cpp.html" title=" " alt="" coords="2355,878,2640,918"/>
+<area shape="poly" title=" " alt="" coords="2251,824,2432,875,2431,880,2250,829"/>
+<area shape="poly" title=" " alt="" coords="2067,830,1937,880,1935,875,2065,825"/>
+<area shape="poly" title=" " alt="" coords="1165,719,985,778,983,773,1163,714"/>
+<area shape="rect" href="dg__compressible__flow__operation_8cpp.html" title=" " alt="" coords="1340,775,1551,815"/>
+<area shape="poly" title=" " alt="" coords="1317,717,1414,773,1411,777,1314,722"/>
+<area shape="poly" title=" " alt="" coords="1394,720,1218,778,1216,773,1392,715"/>
+<area shape="poly" title=" " alt="" coords="1473,727,1455,776,1450,774,1468,725"/>
+<area shape="poly" title=" " alt="" coords="1608,728,1491,778,1489,773,1606,723"/>
+<area shape="rect" href="dg__compressible__flow__operator__implicit__explicit_8cpp.html" title=" " alt="" coords="1575,768,1786,823"/>
+<area shape="poly" title=" " alt="" coords="1693,734,1687,768,1682,767,1688,733"/>
+<area shape="rect" href="compressible__flow__material_8hpp.html" title=" " alt="" coords="1035,218,1214,273"/>
+<area shape="poly" title=" " alt="" coords="1145,177,1134,218,1129,217,1140,176"/>
+<area shape="rect" href="compressible__flow__boundary__conditions_8cpp.html" title=" " alt="" coords="1046,453,1272,493"/>
+<area shape="poly" title=" " alt="" coords="1200,170,1216,189,1228,210,1238,241,1239,268,1235,328,1240,363,1240,379,1235,398,1214,430,1188,454,1185,451,1210,427,1230,396,1235,378,1235,364,1230,328,1234,268,1233,242,1223,212,1211,192,1196,174"/>
+<area shape="poly" title=" " alt="" coords="1069,172,1044,190,1025,212,1012,237,1005,258,1003,299,1011,343,1019,397,1020,451,1024,474,1037,498,1063,525,1095,546,1092,550,1060,529,1033,502,1019,475,1015,452,1014,398,1006,344,998,300,1000,258,1008,235,1021,209,1041,186,1065,167"/>
+<area shape="rect" href="compressible__flow__boundary__conditions_8hpp.html" title=" " alt="" coords="1028,335,1220,390"/>
+<area shape="poly" title=" " alt="" coords="1127,286,1127,335,1122,335,1122,286"/>
+<area shape="poly" title=" " alt="" coords="1080,283,1018,330,867,447,864,443,1015,326,1077,279"/>
+<area shape="poly" title=" " alt="" coords="1085,401,1017,453,935,502,893,518,858,524,824,531,785,550,749,584,708,636,667,687,630,722,575,751,518,772,516,767,573,746,627,718,663,683,704,632,745,581,782,546,822,526,857,519,891,513,933,498,1014,448,1082,397"/>
+<area shape="rect" href="compressible__flow__operation_8hpp.html" title=" " alt="" coords="1860,658,2039,713"/>
+<area shape="poly" title=" " alt="" coords="1218,392,1415,460,1644,546,1780,603,1895,655,1893,660,1778,608,1642,550,1413,465,1216,397"/>
+<area shape="poly" title=" " alt="" coords="1042,397,904,448,902,443,1040,392"/>
+<area shape="poly" title=" " alt="" coords="1140,403,1155,451,1150,453,1135,404"/>
+<area shape="poly" title=" " alt="" coords="2037,714,2053,717,2103,723,2169,723,2321,718,2397,719,2467,726,2525,740,2547,752,2565,766,2574,780,2576,796,2566,826,2545,856,2522,880,2518,876,2541,852,2562,824,2571,795,2569,782,2561,770,2545,756,2523,745,2466,731,2397,725,2321,724,2169,728,2103,728,2052,723,2036,719"/>
+<area shape="rect" href="cfd__dem__application_8hpp.html" title=" " alt="" coords="2676,775,2898,815"/>
+<area shape="poly" title=" " alt="" coords="2037,714,2053,717,2136,732,2207,742,2329,749,2451,753,2607,765,2676,774,2675,779,2607,771,2451,758,2328,754,2207,747,2135,738,2052,723,2036,719"/>
+<area shape="rect" href="compressible__flow__application_8hpp.html" title=" " alt="" coords="2264,775,2550,815"/>
+<area shape="poly" title=" " alt="" coords="2040,714,2053,717,2183,748,2303,773,2302,778,2182,754,2052,723,2039,719"/>
+<area shape="rect" href="compressible__multiphase__application_8hpp.html" title=" " alt="" coords="1810,768,2028,823"/>
+<area shape="poly" title=" " alt="" coords="1941,727,1929,769,1924,767,1936,726"/>
+<area shape="rect" href="cfd__dem__application_8cpp.html" title=" " alt="" coords="2849,878,3072,918"/>
+<area shape="poly" title=" " alt="" coords="2833,820,2929,876,2927,880,2830,825"/>
+<area shape="poly" title=" " alt="" coords="2435,824,2483,876,2479,880,2431,827"/>
+<area shape="poly" title=" " alt="" coords="1796,825,1598,851,1404,871,1091,894,1091,888,1404,865,1598,846,1796,820"/>
+<area shape="poly" title=" " alt="" coords="855,511,874,547,870,549,851,513"/>
+<area shape="poly" title=" " alt="" coords="787,511,740,550,693,598,660,640,626,679,574,722,529,749,482,770,479,765,526,744,571,718,622,676,656,636,689,595,736,546,784,507"/>
+<area shape="poly" title=" " alt="" coords="936,486,1035,497,1206,510,1340,515,1473,523,1644,545,1760,567,1850,588,2052,648,2075,655,2073,660,2050,653,1848,593,1759,572,1643,551,1473,529,1340,521,1206,516,1035,503,935,491"/>
+<area shape="poly" title=" " alt="" coords="2149,727,2149,768,2143,768,2144,727"/>
+<area shape="poly" title=" " alt="" coords="2245,687,2346,694,2455,708,2505,718,2549,731,2585,747,2609,766,2618,780,2620,795,2610,824,2597,842,2581,857,2546,880,2543,876,2578,853,2593,838,2605,821,2615,794,2613,782,2605,770,2582,752,2547,736,2504,724,2454,713,2346,700,2244,692"/>
+<area shape="poly" title=" " alt="" coords="2066,719,2052,723,1978,737,1916,745,1808,751,1700,755,1564,771,1525,778,1524,773,1563,765,1700,750,1808,746,1915,740,1977,731,2051,717,2065,714"/>
+<area shape="poly" title=" " alt="" coords="2245,698,2658,765,2697,773,2696,778,2657,771,2244,704"/>
+<area shape="poly" title=" " alt="" coords="2244,689,2423,699,2631,716,2813,738,2876,751,2913,766,2935,791,2950,821,2958,852,2962,877,2957,878,2953,853,2945,823,2931,794,2910,770,2875,756,2812,743,2631,721,2423,705,2244,694"/>
+<area shape="poly" title=" " alt="" coords="1069,610,935,653,912,660,911,655,933,648,1067,604"/>
+<area shape="poly" title=" " alt="" coords="1059,595,990,605,517,671,516,666,989,600,1058,590"/>
+<area shape="poly" title=" " alt="" coords="1123,614,1071,660,1067,656,1119,610"/>
+<area shape="poly" title=" " alt="" coords="1197,612,1236,656,1232,660,1193,615"/>
+<area shape="poly" title=" " alt="" coords="1254,604,1407,655,1405,660,1252,610"/>
+<area shape="poly" title=" " alt="" coords="1265,587,1423,612,1598,648,1611,651,1610,657,1597,653,1422,617,1264,592"/>
+<area shape="poly" title=" " alt="" coords="1459,610,1327,660,1325,655,1457,605"/>
+<area shape="poly" title=" " alt="" coords="1522,616,1500,659,1495,657,1517,614"/>
+<area shape="poly" title=" " alt="" coords="1591,608,1649,648,1646,653,1588,613"/>
+<area shape="poly" title=" " alt="" coords="1645,599,1650,600,1763,615,1851,621,1940,628,2052,648,2079,655,2077,661,2051,653,1939,633,1851,626,1762,620,1649,605,1644,604"/>
+<area shape="rect" href="brinkman__penalization__fluid__to__obstacle_8hpp.html" title=" " alt="" coords="2848,211,3059,280"/>
+<area shape="poly" title=" " alt="" coords="3052,173,3000,212,2997,208,3049,169"/>
+<area shape="rect" href="brinkman__penalization__fluid__to__obstacle_8cpp.html" title=" " alt="" coords="3023,328,3188,397"/>
+<area shape="poly" title=" " alt="" coords="3101,176,3107,328,3102,328,3095,177"/>
+<area shape="rect" href="brinkman__penalization__obstacle__to__fluid_8hpp.html" title=" " alt="" coords="3134,211,3371,280"/>
+<area shape="poly" title=" " alt="" coords="3147,168,3205,208,3202,212,3144,173"/>
+<area shape="poly" title=" " alt="" coords="3226,153,3321,176,3360,191,3385,209,3403,236,3412,268,3416,299,3415,328,3410,327,3410,299,3407,269,3398,239,3381,213,3357,196,3320,182,3225,159"/>
+<area shape="poly" title=" " alt="" coords="2967,293,2981,376,2988,471,2988,687,2980,795,2967,878,2962,877,2975,795,2983,687,2983,471,2976,376,2962,294"/>
+<area shape="poly" title=" " alt="" coords="3011,286,3063,325,3060,330,3008,291"/>
+<area shape="poly" title=" " alt="" coords="3252,294,3246,471,3246,687,3240,725,3224,759,3200,788,3170,814,3136,836,3100,854,3032,880,3030,876,3098,849,3133,831,3167,810,3196,785,3219,756,3235,723,3240,686,3240,471,3247,294"/>
+<area shape="poly" title=" " alt="" coords="3310,286,3364,325,3361,330,3307,290"/>
 </map>
 </div>
 </div>
@@ -221,8 +335,10 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html">MeltPoolDG::Flow::CompressibleFlowTypes</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct providing type aliases that might be useful in the compressible flow implementations.  <a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html">MeltPoolDG::Flow::ExternalFluidForcesRightHandSideContribution&lt; dim, number &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An abstract interface for defining external forces acting on the fluid that must be evaluated and incorporated during the cell loop of an explicit time integration scheme.  <a href="structMeltPoolDG_1_1Flow_1_1ExternalFluidForcesRightHandSideContribution.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1AdditionalCellAndQuadOperation.html">MeltPoolDG::Flow::AdditionalCellAndQuadOperation&lt; dim, number &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An abstract interface for defining external forces acting on the fluid that must be evaluated and incorporated during the cell loop of an explicit time integration scheme.  <a href="structMeltPoolDG_1_1Flow_1_1AdditionalCellAndQuadOperation.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1AdditionalCellAndQuadOperationJacobian.html">MeltPoolDG::Flow::AdditionalCellAndQuadOperationJacobian&lt; dim, number &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>

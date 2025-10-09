@@ -74,11 +74,13 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle"><div class="title">obstacle_forces.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;deal.II/base/tensor.h&gt;</code><br />
+<code>#include &lt;deal.II/particles/particle_accessor.h&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -86,13 +88,15 @@ Include dependency graph for obstacle_forces.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="obstacle__forces_8hpp__incl.png" border="0" usemap="#ainclude_2meltpooldg_2particles_2obstacle__forces_8hpp" alt=""/></div>
 <map name="ainclude_2meltpooldg_2particles_2obstacle__forces_8hpp" id="ainclude_2meltpooldg_2particles_2obstacle__forces_8hpp">
-<area shape="rect" title=" " alt="" coords="149,5,295,60"/>
-<area shape="rect" title=" " alt="" coords="5,108,159,133"/>
-<area shape="poly" title=" " alt="" coords="181,62,114,103,111,98,178,58"/>
-<area shape="rect" title=" " alt="" coords="183,108,261,133"/>
-<area shape="poly" title=" " alt="" coords="225,60,225,94,219,94,219,60"/>
-<area shape="rect" title=" " alt="" coords="285,108,345,133"/>
-<area shape="poly" title=" " alt="" coords="252,58,294,96,291,100,249,62"/>
+<area shape="rect" title=" " alt="" coords="271,5,418,60"/>
+<area shape="rect" title=" " alt="" coords="5,115,159,141"/>
+<area shape="poly" title=" " alt="" coords="272,62,128,113,126,108,270,57"/>
+<area shape="rect" title=" " alt="" coords="183,108,357,148"/>
+<area shape="poly" title=" " alt="" coords="326,62,296,99,292,96,321,59"/>
+<area shape="rect" title=" " alt="" coords="382,115,459,141"/>
+<area shape="poly" title=" " alt="" coords="368,59,404,103,400,106,364,62"/>
+<area shape="rect" title=" " alt="" coords="484,115,544,141"/>
+<area shape="poly" title=" " alt="" coords="394,58,483,106,480,111,391,62"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -100,19 +104,34 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="obstacle__forces_8hpp__dep__incl.png" border="0" usemap="#ainclude_2meltpooldg_2particles_2obstacle__forces_8hppdep" alt=""/></div>
 <map name="ainclude_2meltpooldg_2particles_2obstacle__forces_8hppdep" id="ainclude_2meltpooldg_2particles_2obstacle__forces_8hppdep">
-<area shape="rect" title=" " alt="" coords="188,5,334,60"/>
-<area shape="rect" href="obstacle__field_8hpp.html" title=" " alt="" coords="188,108,334,163"/>
-<area shape="poly" title=" " alt="" coords="264,74,264,108,258,108,258,74"/>
-<area shape="rect" href="cfd__dem__application_8cpp.html" title=" " alt="" coords="30,328,252,368"/>
-<area shape="poly" title=" " alt="" coords="174,141,132,148,90,161,52,182,20,212,11,229,8,245,12,261,21,279,32,294,46,306,79,326,77,330,43,311,28,297,16,281,7,262,3,245,6,227,16,209,48,178,88,156,131,143,173,136"/>
-<area shape="rect" href="cfd__dem__application_8hpp.html" title=" " alt="" coords="30,225,252,265"/>
-<area shape="poly" title=" " alt="" coords="223,174,164,227,160,223,220,170"/>
-<area shape="rect" href="brinkman__penalization__fluid__force_8hpp.html" title=" " alt="" coords="276,211,486,280"/>
-<area shape="poly" title=" " alt="" coords="303,170,345,208,342,212,299,174"/>
-<area shape="rect" href="obstacle__field_8cpp.html" title=" " alt="" coords="510,225,694,265"/>
-<area shape="poly" title=" " alt="" coords="349,161,499,208,545,223,543,228,497,213,347,166"/>
-<area shape="poly" title=" " alt="" coords="144,279,144,328,138,328,138,279"/>
-<area shape="poly" title=" " alt="" coords="289,288,187,330,185,326,287,283"/>
+<area shape="rect" title=" " alt="" coords="622,5,769,60"/>
+<area shape="rect" href="obstacle__field_8hpp.html" title=" " alt="" coords="444,108,590,163"/>
+<area shape="poly" title=" " alt="" coords="639,69,565,110,563,105,636,64"/>
+<area shape="rect" href="brinkman__penalization__fluid__to__obstacle_8cpp.html" title=" " alt="" coords="805,431,970,500"/>
+<area shape="poly" title=" " alt="" coords="755,65,792,92,830,125,865,165,892,210,902,238,908,268,912,329,907,385,899,431,894,430,902,385,906,329,903,269,897,240,887,212,861,168,826,129,789,96,752,70"/>
+<area shape="rect" href="cfd__dem__application_8cpp.html" title=" " alt="" coords="158,445,380,485"/>
+<area shape="poly" title=" " alt="" coords="430,140,329,151,272,163,214,179,158,202,105,231,59,269,21,315,11,332,8,348,11,364,21,381,48,409,82,430,120,445,158,454,157,459,118,450,80,435,45,413,16,384,6,366,3,348,6,331,16,312,55,265,102,227,155,197,212,174,271,158,328,146,430,135"/>
+<area shape="rect" href="cfd__dem__application_8hpp.html" title=" " alt="" coords="31,328,254,368"/>
+<area shape="poly" title=" " alt="" coords="432,169,383,189,334,213,240,274,167,330,164,325,237,270,332,208,381,184,430,164"/>
+<area shape="rect" href="brinkman__penalization__fluid__to__obstacle_8hpp.html" title=" " alt="" coords="538,313,749,383"/>
+<area shape="poly" title=" " alt="" coords="542,173,626,312,621,315,538,176"/>
+<area shape="rect" href="brinkman__penalization__obstacle__to__fluid_8hpp.html" title=" " alt="" coords="277,313,514,383"/>
+<area shape="poly" title=" " alt="" coords="432,156,386,178,366,193,350,212,342,236,345,262,356,288,370,311,366,314,351,290,340,263,337,236,345,209,362,189,383,173,430,151"/>
+<area shape="rect" href="brinkman__penalization__obstacle__to__fluid_8cpp.html" title=" " alt="" coords="610,431,781,500"/>
+<area shape="poly" title=" " alt="" coords="605,140,679,149,756,163,823,182,847,195,865,209,880,239,882,270,872,301,854,331,831,360,803,388,747,433,744,429,800,384,827,357,850,328,868,299,877,269,875,240,860,212,845,199,821,187,755,168,679,154,604,146"/>
+<area shape="rect" href="brinkman__penalization__util_8hpp.html" title=" " alt="" coords="619,211,850,265"/>
+<area shape="poly" title=" " alt="" coords="587,166,679,208,677,213,585,171"/>
+<area shape="rect" href="obstacle__field_8cpp.html" title=" " alt="" coords="360,218,544,258"/>
+<area shape="poly" title=" " alt="" coords="495,176,467,219,462,216,490,173"/>
+<area shape="poly" title=" " alt="" coords="175,375,250,443,246,447,172,379"/>
+<area shape="poly" title=" " alt="" coords="526,388,331,448,330,443,525,383"/>
+<area shape="poly" title=" " alt="" coords="728,386,818,428,815,433,726,391"/>
+<area shape="poly" title=" " alt="" coords="350,394,292,447,288,443,347,390"/>
+<area shape="poly" title=" " alt="" coords="497,385,611,429,609,434,495,390"/>
+<area shape="poly" title=" " alt="" coords="705,278,674,315,670,311,701,275"/>
+<area shape="poly" title=" " alt="" coords="762,275,867,429,863,432,758,278"/>
+<area shape="poly" title=" " alt="" coords="640,272,502,316,500,311,638,267"/>
+<area shape="poly" title=" " alt="" coords="755,278,768,328,769,356,764,384,751,409,733,432,729,429,746,407,759,382,764,356,763,329,750,279"/>
 </map>
 </div>
 </div>
@@ -120,15 +139,21 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structObstacleForce.html">ObstacleForce&lt; dim, number, ObstacleType &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface class for forces acting on obstacles using type erasure.  <a href="structObstacleForce.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleForce.html">MeltPoolDG::ObstacleForce&lt; dim, number, ObstacleType &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface class for forces acting on obstacles using type erasure.  <a href="structMeltPoolDG_1_1ObstacleForce.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structObstacleForce_1_1ObstacleForceConcept.html">ObstacleForce&lt; dim, number, ObstacleType &gt;::ObstacleForceConcept</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleForce_1_1ObstacleForceConcept.html">MeltPoolDG::ObstacleForce&lt; dim, number, ObstacleType &gt;::ObstacleForceConcept</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structObstacleForce_1_1ObstacleForceModel.html">ObstacleForce&lt; dim, number, ObstacleType &gt;::ObstacleForceModel&lt; ObstacleForceType &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleForce_1_1ObstacleForceModel.html">MeltPoolDG::ObstacleForce&lt; dim, number, ObstacleType &gt;::ObstacleForceModel&lt; ObstacleForceType &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structObstacleGravitationalForce.html">ObstacleGravitationalForce&lt; dim, number, ObstacleType &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the gravitational force acting on an obstacle.  <a href="structObstacleGravitationalForce.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleGravitationalForce.html">MeltPoolDG::ObstacleGravitationalForce&lt; dim, number, ObstacleType &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the gravitational force acting on an obstacle.  <a href="structMeltPoolDG_1_1ObstacleGravitationalForce.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceMeltPoolDG" id="r_namespaceMeltPoolDG"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html">MeltPoolDG</a></td></tr>
+<tr class="memdesc:namespaceMeltPoolDG"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for a general preconditioner. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
