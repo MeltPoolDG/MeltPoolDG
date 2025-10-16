@@ -85,35 +85,40 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/parameter_handler.h&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="foldopen" id="foldopen00005" data-start="{" data-end="};">
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="structObstacleData.html">    5</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structObstacleData.html">ObstacleData</a></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="structObstacleData.html#a5b13febee64373b0dde91193357713a1">    8</a></span>  <span class="keywordtype">bool</span> <a class="code hl_variable" href="structObstacleData.html#a5b13febee64373b0dde91193357713a1">stationary_obstacles</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="structObstacleData.html#a7b3cbf4cea2962521ae8cc34a2acb5d4">   11</a></span>  std::string <a class="code hl_variable" href="structObstacleData.html#a7b3cbf4cea2962521ae8cc34a2acb5d4">obstacle_state_input_file</a>;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG.html">MeltPoolDG</a></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ObstacleData.html">    8</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1ObstacleData.html">ObstacleData</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ObstacleData.html#a6ecc22ad6778740e716e42499b4c2d8e">   11</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structMeltPoolDG_1_1ObstacleData.html#a6ecc22ad6778740e716e42499b4c2d8e">stationary_obstacles</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structObstacleData.html#a9f34392259c7787b673afbdbf6169adb">   14</a></span>  <a class="code hl_function" href="structObstacleData.html#a9f34392259c7787b673afbdbf6169adb">add_parameters</a>(dealii::ParameterHandler &amp;prm)</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    prm.enter_subsection(<span class="stringliteral">&quot;obstacles&quot;</span>);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>      prm.add_parameter(<span class="stringliteral">&quot;stationary&quot;</span>,</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                        <a class="code hl_variable" href="structObstacleData.html#a5b13febee64373b0dde91193357713a1">stationary_obstacles</a>,</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>                        <span class="stringliteral">&quot;Set to true if obstacles shall be stationary.&quot;</span>);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>      prm.add_parameter(<span class="stringliteral">&quot;obstacle state input file&quot;</span>,</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                        <a class="code hl_variable" href="structObstacleData.html#a7b3cbf4cea2962521ae8cc34a2acb5d4">obstacle_state_input_file</a>,</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                        <span class="stringliteral">&quot;File in which the obstacle initial state data is stored.&quot;</span>);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    }</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    prm.leave_subsection();</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  }</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ObstacleData.html#af01df3e9b3d20d89b121ef4094227475">   14</a></span>    std::string <a class="code hl_variable" href="structMeltPoolDG_1_1ObstacleData.html#af01df3e9b3d20d89b121ef4094227475">obstacle_state_input_file</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ObstacleData.html#a7c7b7d6a9ee61a2aa8f63eafc861fdc5">   17</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1ObstacleData.html#a7c7b7d6a9ee61a2aa8f63eafc861fdc5">add_parameters</a>(dealii::ParameterHandler &amp;prm)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>      prm.enter_subsection(<span class="stringliteral">&quot;obstacles&quot;</span>);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>      {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        prm.add_parameter(<span class="stringliteral">&quot;stationary&quot;</span>,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                          <a class="code hl_variable" href="structMeltPoolDG_1_1ObstacleData.html#a6ecc22ad6778740e716e42499b4c2d8e">stationary_obstacles</a>,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                          <span class="stringliteral">&quot;Set to true if obstacles shall be stationary.&quot;</span>);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        prm.add_parameter(<span class="stringliteral">&quot;obstacle state input file&quot;</span>,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                          <a class="code hl_variable" href="structMeltPoolDG_1_1ObstacleData.html#af01df3e9b3d20d89b121ef4094227475">obstacle_state_input_file</a>,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                          <span class="stringliteral">&quot;File in which the obstacle initial state data is stored.&quot;</span>);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>      prm.leave_subsection();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    }</div>
 </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  };</div>
 </div>
-<div class="ttc" id="astructObstacleData_html"><div class="ttname"><a href="structObstacleData.html">ObstacleData</a></div><div class="ttdef"><b>Definition</b> obstacle_data.hpp:6</div></div>
-<div class="ttc" id="astructObstacleData_html_a5b13febee64373b0dde91193357713a1"><div class="ttname"><a href="structObstacleData.html#a5b13febee64373b0dde91193357713a1">ObstacleData::stationary_obstacles</a></div><div class="ttdeci">bool stationary_obstacles</div><div class="ttdoc">If true, obstacles are fixed and do not move during the simulation.</div><div class="ttdef"><b>Definition</b> obstacle_data.hpp:8</div></div>
-<div class="ttc" id="astructObstacleData_html_a7b3cbf4cea2962521ae8cc34a2acb5d4"><div class="ttname"><a href="structObstacleData.html#a7b3cbf4cea2962521ae8cc34a2acb5d4">ObstacleData::obstacle_state_input_file</a></div><div class="ttdeci">std::string obstacle_state_input_file</div><div class="ttdoc">Path to the input file containing the initial obstacle state.</div><div class="ttdef"><b>Definition</b> obstacle_data.hpp:11</div></div>
-<div class="ttc" id="astructObstacleData_html_a9f34392259c7787b673afbdbf6169adb"><div class="ttname"><a href="structObstacleData.html#a9f34392259c7787b673afbdbf6169adb">ObstacleData::add_parameters</a></div><div class="ttdeci">void add_parameters(dealii::ParameterHandler &amp;prm)</div><div class="ttdef"><b>Definition</b> obstacle_data.hpp:14</div></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> base_data.hpp:9</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ObstacleData_html"><div class="ttname"><a href="structMeltPoolDG_1_1ObstacleData.html">MeltPoolDG::ObstacleData</a></div><div class="ttdef"><b>Definition</b> obstacle_data.hpp:9</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ObstacleData_html_a6ecc22ad6778740e716e42499b4c2d8e"><div class="ttname"><a href="structMeltPoolDG_1_1ObstacleData.html#a6ecc22ad6778740e716e42499b4c2d8e">MeltPoolDG::ObstacleData::stationary_obstacles</a></div><div class="ttdeci">bool stationary_obstacles</div><div class="ttdoc">If true, obstacles are fixed and do not move during the simulation.</div><div class="ttdef"><b>Definition</b> obstacle_data.hpp:11</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ObstacleData_html_a7c7b7d6a9ee61a2aa8f63eafc861fdc5"><div class="ttname"><a href="structMeltPoolDG_1_1ObstacleData.html#a7c7b7d6a9ee61a2aa8f63eafc861fdc5">MeltPoolDG::ObstacleData::add_parameters</a></div><div class="ttdeci">void add_parameters(dealii::ParameterHandler &amp;prm)</div><div class="ttdef"><b>Definition</b> obstacle_data.hpp:17</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ObstacleData_html_af01df3e9b3d20d89b121ef4094227475"><div class="ttname"><a href="structMeltPoolDG_1_1ObstacleData.html#af01df3e9b3d20d89b121ef4094227475">MeltPoolDG::ObstacleData::obstacle_state_input_file</a></div><div class="ttdeci">std::string obstacle_state_input_file</div><div class="ttdoc">Path to the input file containing the initial obstacle state.</div><div class="ttdef"><b>Definition</b> obstacle_data.hpp:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

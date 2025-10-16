@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['n_5fblocks_0',['n_blocks',['../namespaceMeltPoolDG_1_1internal.html#af493ddaee50cc3791d52763c9c00a420',1,'MeltPoolDG::internal']]],
+  ['n_5fblocks_0',['n_blocks',['../classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a9f09d7f4262e615cd9881a3e087e30ea',1,'MeltPoolDG::ParticleHandlerBlockVectorView::n_blocks()'],['../namespaceMeltPoolDG_1_1internal.html#af493ddaee50cc3791d52763c9c00a420',1,'MeltPoolDG::internal::n_blocks()']]],
   ['nearestpoint_1',['NearestPoint',['../classMeltPoolDG_1_1LevelSet_1_1Tools_1_1NearestPoint.html#ae5c85f03e05753dfd24f37787bf7f0dd',1,'MeltPoolDG::LevelSet::Tools::NearestPoint']]],
   ['newtonraphsonsolver_2',['NewtonRaphsonSolver',['../classMeltPoolDG_1_1NewtonRaphsonSolver.html#a059aa3a9f537de735d714410ed7b8da8',1,'MeltPoolDG::NewtonRaphsonSolver']]],
   ['nobleabelstiffenedgas_3',['NobleAbelStiffenedGas',['../classMeltPoolDG_1_1Flow_1_1EOS_1_1NobleAbelStiffenedGas.html#abb01db45a820b33722ed45b0b080b386',1,'MeltPoolDG::Flow::EOS::NobleAbelStiffenedGas']]],

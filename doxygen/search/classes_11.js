@@ -49,11 +49,13 @@ var searchData=
   ['slicedata_46',['SliceData',['../structMeltPoolDG_1_1Simulation_1_1RecoilPressure_1_1SimulationRecoilPressure_1_1SliceData.html',1,'MeltPoolDG::Simulation::RecoilPressure::SimulationRecoilPressure']]],
   ['solutionhistory_47',['SolutionHistory',['../classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html',1,'MeltPoolDG::TimeIntegration']]],
   ['solutionhistory_3c_20blockvectortype_20_3e_48',['SolutionHistory&lt; BlockVectorType &gt;',['../classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html',1,'MeltPoolDG::TimeIntegration']]],
-  ['solutiontransferoperator_49',['SolutionTransferOperator',['../classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html',1,'MeltPoolDG::CutUtil']]],
-  ['solutiontransferoperator_3c_20dim_2c_20number_20_3e_50',['SolutionTransferOperator&lt; dim, number &gt;',['../classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html',1,'MeltPoolDG::CutUtil']]],
-  ['sphericalparticle_51',['SphericalParticle',['../classMeltPoolDG_1_1SphericalParticle.html',1,'MeltPoolDG']]],
-  ['state_52',['state',['../structMeltPoolDG_1_1Heat_1_1GaussProjectionIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GaussProjectionIntensityProfile&lt; dim, number &gt;::State'],['../structMeltPoolDG_1_1Heat_1_1GaussVolumetricIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GaussVolumetricIntensityProfile&lt; dim, number &gt;::State'],['../structMeltPoolDG_1_1Heat_1_1GusarovIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GusarovIntensityProfile&lt; dim, number &gt;::State']]],
-  ['steadyinflowfield_53',['SteadyInflowField',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SteadyInflowField.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
-  ['stiffenedgas_54',['StiffenedGas',['../classMeltPoolDG_1_1Flow_1_1EOS_1_1StiffenedGas.html',1,'MeltPoolDG::Flow::EOS']]],
-  ['surfacetensionoperation_55',['SurfaceTensionOperation',['../classMeltPoolDG_1_1Flow_1_1SurfaceTensionOperation.html',1,'MeltPoolDG::Flow']]]
+  ['solutionhistory_3c_20meltpooldg_3a_3aparticlehandlerblockvectorview_3c_20dim_2c_20number_20_3e_20_3e_49',['SolutionHistory&lt; MeltPoolDG::ParticleHandlerBlockVectorView&lt; dim, number &gt; &gt;',['../classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html',1,'MeltPoolDG::TimeIntegration']]],
+  ['solutiontransferoperator_50',['SolutionTransferOperator',['../classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html',1,'MeltPoolDG::CutUtil']]],
+  ['solutiontransferoperator_3c_20dim_2c_20number_20_3e_51',['SolutionTransferOperator&lt; dim, number &gt;',['../classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html',1,'MeltPoolDG::CutUtil']]],
+  ['sphericalparticle_52',['SphericalParticle',['../classMeltPoolDG_1_1SphericalParticle.html',1,'MeltPoolDG']]],
+  ['ssedindicator_53',['SSEDIndicator',['../classMeltPoolDG_1_1AMR_1_1SSEDIndicator.html',1,'MeltPoolDG::AMR']]],
+  ['state_54',['state',['../structMeltPoolDG_1_1Heat_1_1GaussProjectionIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GaussProjectionIntensityProfile&lt; dim, number &gt;::State'],['../structMeltPoolDG_1_1Heat_1_1GaussVolumetricIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GaussVolumetricIntensityProfile&lt; dim, number &gt;::State'],['../structMeltPoolDG_1_1Heat_1_1GusarovIntensityProfile_1_1State.html',1,'MeltPoolDG::Heat::GusarovIntensityProfile&lt; dim, number &gt;::State']]],
+  ['steadyinflowfield_55',['SteadyInflowField',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SteadyInflowField.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]],
+  ['stiffenedgas_56',['StiffenedGas',['../classMeltPoolDG_1_1Flow_1_1EOS_1_1StiffenedGas.html',1,'MeltPoolDG::Flow::EOS']]],
+  ['surfacetensionoperation_57',['SurfaceTensionOperation',['../classMeltPoolDG_1_1Flow_1_1SurfaceTensionOperation.html',1,'MeltPoolDG::Flow']]]
 ];

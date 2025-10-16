@@ -2,11 +2,13 @@ var searchData=
 [
   ['basedata_0',['BaseData',['../structMeltPoolDG_1_1BaseData.html',1,'MeltPoolDG']]],
   ['bdfintegrator_1',['BDFIntegrator',['../classMeltPoolDG_1_1TimeIntegration_1_1BDFIntegrator.html',1,'MeltPoolDG::TimeIntegration']]],
-  ['bottomboundarynormalpercomponent_2',['BottomBoundaryNormalPerComponent',['../classMeltPoolDG_1_1Simulation_1_1WallWetting_1_1BottomBoundaryNormalPerComponent.html',1,'MeltPoolDG::Simulation::WallWetting']]],
-  ['boundaryconditionmanager_3',['BoundaryConditionManager',['../classMeltPoolDG_1_1BoundaryConditionManager.html',1,'MeltPoolDG']]],
-  ['brinkmanobstacleforce_4',['BrinkmanObstacleForce',['../structMeltPoolDG_1_1BrinkmanObstacleForce.html',1,'MeltPoolDG']]],
-  ['brinkmanpenalizationcellscratchdata_5',['BrinkmanPenalizationCellScratchData',['../structMeltPoolDG_1_1BrinkmanPenalizationCellScratchData.html',1,'MeltPoolDG']]],
-  ['brinkmanpenalizationdata_6',['BrinkmanPenalizationData',['../structBrinkmanPenalizationData.html',1,'']]],
-  ['brinkmanpenalizationjacobiancontribution_7',['BrinkmanPenalizationJacobianContribution',['../structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html',1,'MeltPoolDG']]],
-  ['brinkmanpenalizationresidualcontribution_8',['BrinkmanPenalizationResidualContribution',['../structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html',1,'MeltPoolDG']]]
+  ['binaryopindicatorcomposite_2',['BinaryOpIndicatorComposite',['../classMeltPoolDG_1_1AMR_1_1BinaryOpIndicatorComposite.html',1,'MeltPoolDG::AMR']]],
+  ['binaryopindicatorcomposite_3c_20dim_2c_20number_2c_20std_3a_3aplus_20_3e_3',['BinaryOpIndicatorComposite&lt; dim, number, std::plus &gt;',['../classMeltPoolDG_1_1AMR_1_1BinaryOpIndicatorComposite.html',1,'MeltPoolDG::AMR']]],
+  ['bottomboundarynormalpercomponent_4',['BottomBoundaryNormalPerComponent',['../classMeltPoolDG_1_1Simulation_1_1WallWetting_1_1BottomBoundaryNormalPerComponent.html',1,'MeltPoolDG::Simulation::WallWetting']]],
+  ['boundaryconditionmanager_5',['BoundaryConditionManager',['../classMeltPoolDG_1_1BoundaryConditionManager.html',1,'MeltPoolDG']]],
+  ['brinkmanobstacleforce_6',['BrinkmanObstacleForce',['../structMeltPoolDG_1_1BrinkmanObstacleForce.html',1,'MeltPoolDG']]],
+  ['brinkmanpenalizationcellscratchdata_7',['BrinkmanPenalizationCellScratchData',['../structMeltPoolDG_1_1BrinkmanPenalizationCellScratchData.html',1,'MeltPoolDG']]],
+  ['brinkmanpenalizationdata_8',['BrinkmanPenalizationData',['../structBrinkmanPenalizationData.html',1,'']]],
+  ['brinkmanpenalizationjacobiancontribution_9',['BrinkmanPenalizationJacobianContribution',['../structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html',1,'MeltPoolDG']]],
+  ['brinkmanpenalizationresidualcontribution_10',['BrinkmanPenalizationResidualContribution',['../structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html',1,'MeltPoolDG']]]
 ];

@@ -428,7 +428,7 @@ template&lt;unsigned int dim, typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Apply the explicit and store the result in <code>dst</code>. The solution at <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t^n $" src="form_31.png"/></picture> is given by the vector <code>src</code>. </p>
+<p>Apply the explicit and store the result in <code>dst</code>. The solution at <picture><source srcset="form_39_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t^n $" src="form_39.png"/></picture> is given by the vector <code>src</code>. </p>
 
 </div>
 </div>
@@ -853,9 +853,9 @@ template&lt;unsigned int dim, typename number &gt; </div>
 
 <p>Apply the Jacobian of the residual operator to a given vector. </p>
 <p>This function computes the action of the Jacobian, associated with the residual  </p><p class="formulaDsp">
-<picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
   R = \frac{y^{n+1} - \tilde{y}}{\Delta t} - G(y^{n+1}),
-\]" src="form_22.png"/></picture>
+\]" src="form_30.png"/></picture>
 </p>
 <p> on the input vector <code>src</code> and stores the result in <code>dst</code>.</p>
 <p><b>Function Signature:</b> </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> f(number time,</div>
@@ -864,8 +864,8 @@ template&lt;unsigned int dim, typename number &gt; </div>
 <div class="line">       <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1TimeIntegration_1_1ImplicitExplicitIntegrator.html#abec390d1738498e6d6118474505732d6">VectorType</a> &amp;src);</div>
 <div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegration_1_1ImplicitExplicitIntegrator_html_abec390d1738498e6d6118474505732d6"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegration_1_1ImplicitExplicitIntegrator.html#abec390d1738498e6d6118474505732d6">MeltPoolDG::TimeIntegration::ImplicitExplicitIntegrator::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> implicit_explicit_integrator.hpp:24</div></div>
 </div><!-- fragment --><p><b>Parameters:</b></p><ul>
-<li><code>time</code> : Current simulation time <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$t^n$" src="form_11.png"/></picture>.</li>
-<li><code>time_step</code> : Current time step size <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\Delta t$" src="form_12.png"/></picture>.</li>
+<li><code>time</code> : Current simulation time <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$t^n$" src="form_20.png"/></picture>.</li>
+<li><code>time_step</code> : Current time step size <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\Delta t$" src="form_15.png"/></picture>.</li>
 <li><code>dst</code> : Destination vector to store the Jacobian–vector product.</li>
 <li><code>src</code> : Input vector to which the Jacobian is applied.</li>
 </ul>
@@ -897,27 +897,27 @@ template&lt;unsigned int dim, typename number &gt; </div>
 
 <p>Compute the negative residual for the implicit step of the time integrator. </p>
 <p>Assuming that the explicit part of the update  </p><p class="formulaDsp">
-<picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
    \tilde{y} = y^{n} + \Delta t F(y^{n})
- \]" src="form_19.png"/></picture>
+ \]" src="form_27.png"/></picture>
 </p>
 <p> has already been computed and is provided as <code>explicit_step_solution</code>, this function evaluates the residual of the implicit equation  </p><p class="formulaDsp">
-<picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
    R = \frac{y^{n+1} - \tilde{y}}{\Delta t} - G(y^{n+1}),
- \]" src="form_20.png"/></picture>
+ \]" src="form_28.png"/></picture>
 </p>
-<p> and returns its negative, i.e., <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ -R $" src="form_10.png"/></picture>. The negative residual is required directly by the internal nonlinear solver.</p>
+<p> and returns its negative, i.e., <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ -R $" src="form_19.png"/></picture>. The negative residual is required directly by the internal nonlinear solver.</p>
 <p><b>Function Signature:</b> </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> f(number time,</div>
 <div class="line">       number time_step,</div>
 <div class="line">       <a class="code hl_typedef" href="classMeltPoolDG_1_1TimeIntegration_1_1ImplicitExplicitIntegrator.html#abec390d1738498e6d6118474505732d6">VectorType</a> &amp;dst,</div>
 <div class="line">       <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1TimeIntegration_1_1ImplicitExplicitIntegrator.html#abec390d1738498e6d6118474505732d6">VectorType</a> &amp;src,</div>
 <div class="line">       <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1TimeIntegration_1_1ImplicitExplicitIntegrator.html#abec390d1738498e6d6118474505732d6">VectorType</a> &amp;explicit_step_solution);</div>
 </div><!-- fragment --><p><b>Parameters:</b></p><ul>
-<li><code>time</code> : Current simulation time <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$t^n$" src="form_11.png"/></picture>.</li>
-<li><code>time_step</code> : Current time step size <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\Delta t$" src="form_12.png"/></picture>.</li>
+<li><code>time</code> : Current simulation time <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$t^n$" src="form_20.png"/></picture>.</li>
+<li><code>time_step</code> : Current time step size <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\Delta t$" src="form_15.png"/></picture>.</li>
 <li><code>dst</code> : Destination vector to store the negative residual.</li>
-<li><code>src</code> : Current solution vector, i.e., <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y^{n+1} $" src="form_13.png"/></picture>.</li>
-<li><code>explicit_step_solution</code> : Result <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\tilde{y}$" src="form_21.png"/></picture> from the explicit step. This vector may be modified safely, as it will be overwritten during the next integration step.</li>
+<li><code>src</code> : Current solution vector, i.e., <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y^{n+1} $" src="form_21.png"/></picture>.</li>
+<li><code>explicit_step_solution</code> : Result <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\tilde{y}$" src="form_29.png"/></picture> from the explicit step. This vector may be modified safely, as it will be overwritten during the next integration step.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>This function is only used if the internal nonlinear solver of the class is used. </dd></dl>
 
@@ -946,31 +946,31 @@ template&lt;unsigned int dim, typename number &gt; </div>
 </div><div class="memdoc">
 <p>Solve the implicit step of the implicit–explicit scheme.</p>
 <p>For an ODE of the form  </p><p class="formulaDsp">
-<picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
   \dot{y} = F(y) + G(y),
-\]" src="form_23.png"/></picture>
+\]" src="form_31.png"/></picture>
 </p>
-<p> where <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$F$" src="form_24.png"/></picture> is treated explicitly and <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$G$" src="form_25.png"/></picture> implicitly, this function advances the solution by one time step.</p>
+<p> where <picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$F$" src="form_32.png"/></picture> is treated explicitly and <picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$G$" src="form_33.png"/></picture> implicitly, this function advances the solution by one time step.</p>
 <p>Having already computed the explicit part  </p><p class="formulaDsp">
-<picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
   \tilde{y} = y^{n} + \Delta t F(y^{n}),
-\]" src="form_26.png"/></picture>
+\]" src="form_34.png"/></picture>
 </p>
 <p> the function solves the implicit equation  </p><p class="formulaDsp">
-<picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_35_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
   y^{n+1} = \tilde{y} + \Delta t G(y^{n+1}),
-\]" src="form_27.png"/></picture>
+\]" src="form_35.png"/></picture>
 </p>
-<p> to obtain the new solution <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y^{n+1}$" src="form_28.png"/></picture>.</p>
+<p> to obtain the new solution <picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y^{n+1}$" src="form_36.png"/></picture>.</p>
 <p><b>Function Signature:</b> </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> f(number time,</div>
 <div class="line">       number time_step,</div>
 <div class="line">       <a class="code hl_typedef" href="classMeltPoolDG_1_1TimeIntegration_1_1ImplicitExplicitIntegrator.html#abec390d1738498e6d6118474505732d6">VectorType</a> &amp;explicit_step_solution,</div>
 <div class="line">       <a class="code hl_typedef" href="classMeltPoolDG_1_1TimeIntegration_1_1ImplicitExplicitIntegrator.html#abec390d1738498e6d6118474505732d6">VectorType</a> &amp;solution);</div>
 </div><!-- fragment --><p><b>Parameters:</b></p><ul>
-<li><code>time</code> : Current simulation time at <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$t^{n+1}$" src="form_29.png"/></picture>.</li>
-<li><code>time_step</code> : Current step size <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\Delta t$" src="form_12.png"/></picture>.</li>
-<li><code>explicit_step_solution</code> : Result <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\tilde{y}$" src="form_21.png"/></picture> from the explicit step. May be safely modified since it will be overwritten in the next step.</li>
-<li><code>solution</code> : Solution vector <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y^{n+1}$" src="form_28.png"/></picture> at the new time step. On input, contains the previous solution <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y^n$" src="form_18.png"/></picture>; on output, the updated solution <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y^{n+1}$" src="form_28.png"/></picture>. </li>
+<li><code>time</code> : Current simulation time at <picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$t^{n+1}$" src="form_37.png"/></picture>.</li>
+<li><code>time_step</code> : Current step size <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\Delta t$" src="form_15.png"/></picture>.</li>
+<li><code>explicit_step_solution</code> : Result <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\tilde{y}$" src="form_29.png"/></picture> from the explicit step. May be safely modified since it will be overwritten in the next step.</li>
+<li><code>solution</code> : Solution vector <picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y^{n+1}$" src="form_36.png"/></picture> at the new time step. On input, contains the previous solution <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y^n$" src="form_26.png"/></picture>; on output, the updated solution <picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y^{n+1}$" src="form_36.png"/></picture>. </li>
 </ul>
 
 </div>
@@ -1028,11 +1028,11 @@ template&lt;unsigned int dim, typename number &gt; </div>
 </table>
 </div><div class="memdoc">
 <p>Explicit right-hand side function for the ODE system  </p><p class="formulaDsp">
-<picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_38_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
   y' = F(y) + G(y),
-\]" src="form_30.png"/></picture>
+\]" src="form_38.png"/></picture>
 </p>
-<p> where <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$F$" src="form_24.png"/></picture> is treated explicitly and <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$G$" src="form_25.png"/></picture> implicitly. This function computes the explicit part <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$F(y)$" src="form_17.png"/></picture>.</p>
+<p> where <picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$F$" src="form_32.png"/></picture> is treated explicitly and <picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$G$" src="form_33.png"/></picture> implicitly. This function computes the explicit part <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$F(y)$" src="form_25.png"/></picture>.</p>
 <p><b>Function Signature:</b> </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> f(number time,</div>
 <div class="line">       number time_step,</div>
 <div class="line">       <a class="code hl_typedef" href="classMeltPoolDG_1_1TimeIntegration_1_1ImplicitExplicitIntegrator.html#abec390d1738498e6d6118474505732d6">VectorType</a> &amp;dst,</div>
@@ -1040,10 +1040,10 @@ template&lt;unsigned int dim, typename number &gt; </div>
 <div class="line">       <span class="keyword">const</span> <span class="keywordtype">bool</span> zero_dst_vec,</div>
 <div class="line">       std::function&lt;<span class="keywordtype">void</span>(<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>)&gt; post);</div>
 </div><!-- fragment --><p><b>Parameters:</b></p><ul>
-<li><code>time</code> : Current simulation time at <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$t^n$" src="form_11.png"/></picture>.</li>
-<li><code>time_step</code> : Current step size <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\Delta t$" src="form_12.png"/></picture>.</li>
+<li><code>time</code> : Current simulation time at <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$t^n$" src="form_20.png"/></picture>.</li>
+<li><code>time_step</code> : Current step size <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\Delta t$" src="form_15.png"/></picture>.</li>
 <li><code>dst</code> : Destination vector for the explicit RHS contribution.</li>
-<li><code>src</code> : Source solution vector <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y^n$" src="form_18.png"/></picture>.</li>
+<li><code>src</code> : Source solution vector <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y^n$" src="form_26.png"/></picture>.</li>
 <li><code>zero_dst_vec</code> : If <code>true</code>, zero out <code>dst</code> before adding contributions. This allows efficient accumulation while computing values.</li>
 <li><code>post</code> : Post-processing function applied after computing the RHS. Receives a range of global indices <code>[begin, end)</code> to process, ensuring all indices are handled. Designed for efficient integration with deal.II’s matrix-free framework. </li>
 </ul>

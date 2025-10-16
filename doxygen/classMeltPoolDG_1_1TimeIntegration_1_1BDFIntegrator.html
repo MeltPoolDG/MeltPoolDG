@@ -694,9 +694,9 @@ template&lt;int dim, typename number &gt; </div>
 
 <p>Apply the Jacobian of the residual operator to a given vector. </p>
 <p>This function computes the action of the Jacobian, associated with the residual  </p><p class="formulaDsp">
-<picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
  R = \frac{y^{n+1} - y^{n}}{\Delta t} - F(y^{n+1}),
-\]" src="form_15.png"/></picture>
+\]" src="form_23.png"/></picture>
 </p>
 <p> on the input vector <code>src</code> and stores the result in <code>dst</code>.</p>
 <p><b>Function Signature:</b> </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> f(number time,</div>
@@ -705,8 +705,8 @@ template&lt;int dim, typename number &gt; </div>
 <div class="line">       <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1TimeIntegration_1_1BDFIntegrator.html#af79599df0d856523cbbe0fb35d2ec653">VectorType</a> &amp;src);</div>
 <div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegration_1_1BDFIntegrator_html_af79599df0d856523cbbe0fb35d2ec653"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegration_1_1BDFIntegrator.html#af79599df0d856523cbbe0fb35d2ec653">MeltPoolDG::TimeIntegration::BDFIntegrator::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> bdf_time_integration.hpp:32</div></div>
 </div><!-- fragment --><p><b>Parameters:</b></p><ul>
-<li><code>time</code> : Current simulation time <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$t^n$" src="form_11.png"/></picture>.</li>
-<li><code>time_step</code> : Current time step size <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\Delta t$" src="form_12.png"/></picture> (modified by the BDF prefactor).</li>
+<li><code>time</code> : Current simulation time <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$t^n$" src="form_20.png"/></picture>.</li>
+<li><code>time_step</code> : Current time step size <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\Delta t$" src="form_15.png"/></picture> (modified by the BDF prefactor).</li>
 <li><code>dst</code> : Destination vector to store the Jacobian–vector product.</li>
 <li><code>src</code> : Input vector to which the Jacobian is applied. </li>
 </ul>
@@ -737,22 +737,22 @@ template&lt;int dim, typename number &gt; </div>
 
 <p>Compute the negative residual for the implicit step of the time integrator. </p>
 <p>This function evaluates the residual given by  </p><p class="formulaDsp">
-<picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
    R = \frac{y^{n+1} - y^{n}}{\Delta t} - F(y^{n+1}),
- \]" src="form_9.png"/></picture>
+ \]" src="form_18.png"/></picture>
 </p>
-<p> and returns its negative, i.e., <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ -R $" src="form_10.png"/></picture>. The negative residual is required directly by the internal nonlinear solver.</p>
+<p> and returns its negative, i.e., <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ -R $" src="form_19.png"/></picture>. The negative residual is required directly by the internal nonlinear solver.</p>
 <p><b>Function Signature:</b> </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> f(number time,</div>
 <div class="line">       number time_step,</div>
 <div class="line">       <a class="code hl_typedef" href="classMeltPoolDG_1_1TimeIntegration_1_1BDFIntegrator.html#af79599df0d856523cbbe0fb35d2ec653">VectorType</a> &amp;dst,</div>
 <div class="line">       <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1TimeIntegration_1_1BDFIntegrator.html#af79599df0d856523cbbe0fb35d2ec653">VectorType</a> &amp;src,</div>
 <div class="line">       <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1TimeIntegration_1_1BDFIntegrator.html#af79599df0d856523cbbe0fb35d2ec653">VectorType</a> &amp;old_solution);</div>
 </div><!-- fragment --><p><b>Parameters:</b></p><ul>
-<li><code>time</code> : Current simulation time <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$t^n$" src="form_11.png"/></picture>.</li>
-<li><code>time_step</code> : Current time step size <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\Delta t$" src="form_12.png"/></picture> (modified by the BDF prefactor).</li>
+<li><code>time</code> : Current simulation time <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$t^n$" src="form_20.png"/></picture>.</li>
+<li><code>time_step</code> : Current time step size <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\Delta t$" src="form_15.png"/></picture> (modified by the BDF prefactor).</li>
 <li><code>dst</code> : Destination vector to store the negative residual.</li>
-<li><code>src</code> : Current solution vector, i.e., <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y^{n+1} $" src="form_13.png"/></picture>.</li>
-<li><code>old_solution</code> : Previous time step resut, i.e., <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y^n $" src="form_14.png"/></picture> in the above formula. in fact this is a modification of the previous solution including all previous solutions scaled by their weights for the corresponding BDF scheme. </li>
+<li><code>src</code> : Current solution vector, i.e., <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y^{n+1} $" src="form_21.png"/></picture>.</li>
+<li><code>old_solution</code> : Previous time step resut, i.e., <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y^n $" src="form_22.png"/></picture> in the above formula. in fact this is a modification of the previous solution including all previous solutions scaled by their weights for the corresponding BDF scheme. </li>
 </ul>
 
 </div>

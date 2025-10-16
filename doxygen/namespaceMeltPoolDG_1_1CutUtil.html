@@ -125,7 +125,7 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a558fa2f0961c1bf2768838f31be07d99" id="r_a558fa2f0961c1bf2768838f31be07d99"><td class="memTemplParams" colspan="2">template&lt;int dim, typename VectorType , typename number  = typename VectorType::value_type&gt; </td></tr>
 <tr class="memitem:a558fa2f0961c1bf2768838f31be07d99"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a558fa2f0961c1bf2768838f31be07d99">refine_grid</a> (const <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a46a753fc4400ffb7196224c996c838e6">AMR::MarkCellsForRefinementType</a>&lt; dim &gt; &amp;mark_cells_for_refinement, const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; dim, VectorType &gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;post, const std::function&lt; void()&gt; &amp;distribute_level_set_dofs, const dealii::DoFHandler&lt; dim &gt; &amp;level_set_dof_handler, VectorType &amp;level_set_dof_vector, const std::function&lt; void()&gt; &amp;setup_dof_system, const <a class="el" href="structMeltPoolDG_1_1AdaptiveMeshingData.html">AdaptiveMeshingData</a>&lt; number &gt; &amp;amr, dealii::Triangulation&lt; dim &gt; &amp;tria, const int n_time_step)</td></tr>
-<tr class="memdesc:a558fa2f0961c1bf2768838f31be07d99"><td class="mdescLeft">&#160;</td><td class="mdescRight">same as <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#aeb77cd3b3f17e28a6dd9aaa47d1be278">AMR::refine_grid()</a>, but adapted for cases where one or more DoFHandler objects are used in CutFEM operations.  <br /></td></tr>
+<tr class="memdesc:a558fa2f0961c1bf2768838f31be07d99"><td class="mdescLeft">&#160;</td><td class="mdescRight">same as <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a6c830744790f9327db4fe09e4d0b68b3">AMR::refine_grid()</a>, but adapted for cases where one or more DoFHandler objects are used in CutFEM operations.  <br /></td></tr>
 <tr class="separator:a558fa2f0961c1bf2768838f31be07d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa42de3003714f571c7496849c0b59208" id="r_aa42de3003714f571c7496849c0b59208"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
 <tr class="memitem:aa42de3003714f571c7496849c0b59208"><td class="memTemplItemLeft" align="right" valign="top">number&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#aa42de3003714f571c7496849c0b59208">compute_cut_norm</a> (const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;solution, const dealii::MatrixFree&lt; dim, number, dealii::VectorizedArray&lt; number &gt; &gt; &amp;matrix_free, const std::vector&lt; std::shared_ptr&lt; dealii::NonMatching::MappingInfo&lt; dim, dim, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &gt; &amp;mapping_info_cells, const bool is_two_phase, const dealii::FE_Q&lt; dim &gt; &amp;reference_element, const unsigned int dof_idx, const unsigned int quad_idx, const <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#ad1bc179e224aa4b8a4142f518a442f34">NormType</a> norm_type=NormType::L2_norm)</td></tr>
@@ -1757,7 +1757,7 @@ template&lt;int dim, typename VectorType , typename number  = typename VectorTyp
       </table>
 </div><div class="memdoc">
 
-<p>same as <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#aeb77cd3b3f17e28a6dd9aaa47d1be278">AMR::refine_grid()</a>, but adapted for cases where one or more DoFHandler objects are used in CutFEM operations. </p>
+<p>same as <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a6c830744790f9327db4fe09e4d0b68b3">AMR::refine_grid()</a>, but adapted for cases where one or more DoFHandler objects are used in CutFEM operations. </p>
 <p>Similarly to <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#aefc63a94c21fd0c4e3c8d3567cb9a00a" title="Same as Restart::deserialize_internal(), but adapted for cases where one or more DoFHandler objects a...">CutUtil::deserialize_internal()</a>, the level set must be transferred first, so the CutFEM operation can classify the mesh to distribute its DoFs before transferring its solution.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1767,7 +1767,7 @@ template&lt;int dim, typename VectorType , typename number  = typename VectorTyp
   </table>
   </dd>
 </dl>
-<p>same as in <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#aeb77cd3b3f17e28a6dd9aaa47d1be278">AMR::refine_grid()</a>: </p><dl class="params"><dt>Parameters</dt><dd>
+<p>same as in <a class="el" href="namespaceMeltPoolDG_1_1AMR.html#a6c830744790f9327db4fe09e4d0b68b3">AMR::refine_grid()</a>: </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mark_cells_for_refinement</td><td>Lambda function of type MarkCellsForRefinementType, see its documentation for info. </td></tr>
     <tr><td class="paramname">attach_vectors</td><td>Lambda function of type AttachDoFHandlerAndVectorsType, that attaches all DoFHandlers and their respective DoFVectors that ought to be transferred to the new mesh. </td></tr>
