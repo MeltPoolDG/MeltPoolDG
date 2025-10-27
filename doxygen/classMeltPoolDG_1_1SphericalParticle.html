@@ -75,6 +75,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classMeltPoolDG_1_1SphericalParticle-members.html">List of all members</a>  </div>
@@ -91,7 +92,7 @@ Collaboration diagram for MeltPoolDG::SphericalParticle&lt; dim, number &gt;:</d
 <div class="dyncontent">
 <div class="center"><img src="classMeltPoolDG_1_1SphericalParticle__coll__graph.png" border="0" usemap="#aMeltPoolDG_1_1SphericalParticle_3_01dim_00_01number_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aMeltPoolDG_1_1SphericalParticle_3_01dim_00_01number_01_4_coll__map" id="aMeltPoolDG_1_1SphericalParticle_3_01dim_00_01number_01_4_coll__map">
-<area shape="rect" title="Class representing a finite&#45;sized spherical particle, intended for use with the obstacle field class." alt="" coords="5,5,251,320"/>
+<area shape="rect" title="Class representing a finite&#45;sized spherical particle, intended for use with the obstacle field class." alt="" coords="5,5,251,389"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -117,6 +118,15 @@ Public Types</h2></td></tr>
 <tr class="memdesc:a0cd12c69968102f83f52c9f115c1c5f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum to define the index of each property in the particle's property vector.  <a href="classMeltPoolDG_1_1SphericalParticle.html#a0cd12c69968102f83f52c9f115c1c5f7">More...</a><br /></td></tr>
 <tr class="separator:a0cd12c69968102f83f52c9f115c1c5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a4101cfb91d6baaafb3fc7633c0bf2da3" id="r_a4101cfb91d6baaafb3fc7633c0bf2da3"><td class="memTemplParams" colspan="2">template&lt;typename VectorizedArrayType &gt; </td></tr>
+<tr class="memitem:a4101cfb91d6baaafb3fc7633c0bf2da3"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a4101cfb91d6baaafb3fc7633c0bf2da3">vector_to_center_of_gravity</a> (const dealii::Point&lt; dim, VectorizedArrayType &gt; &amp;loc, dealii::Particles::PropertyPool&lt; dim &gt; &amp;property_pool, const typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle handle) -&gt; dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt;</td></tr>
+<tr class="separator:a4101cfb91d6baaafb3fc7633c0bf2da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41047a442243f6331df603b34128b4ac" id="r_a41047a442243f6331df603b34128b4ac"><td class="memTemplParams" colspan="2">template&lt;typename VectorizedArrayType &gt; </td></tr>
+<tr class="memitem:a41047a442243f6331df603b34128b4ac"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a41047a442243f6331df603b34128b4ac">vector_to_surface</a> (const dealii::Point&lt; dim, VectorizedArrayType &gt; &amp;loc, const dealii::Particles::ParticleAccessor&lt; dim &gt; &amp;particle) -&gt; dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt;</td></tr>
+<tr class="separator:a41047a442243f6331df603b34128b4ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a0666a4b2d5d029885ae3eb0cecc27c8b" id="r_a0666a4b2d5d029885ae3eb0cecc27c8b"><td class="memItemLeft" align="right" valign="top">static std::pair&lt; std::vector&lt; std::string &gt;, std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a0666a4b2d5d029885ae3eb0cecc27c8b">get_property_names_and_component_interpretation</a> ()</td></tr>
@@ -125,15 +135,27 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aca48d7c3f947608c97de199a272d5e39" id="r_aca48d7c3f947608c97de199a272d5e39"><td class="memItemLeft" align="right" valign="top">static std::pair&lt; std::vector&lt; number &gt;, dealii::Point&lt; dim, number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#aca48d7c3f947608c97de199a272d5e39">read_state_input</a> (const std::string &amp;input_data)</td></tr>
 <tr class="memdesc:aca48d7c3f947608c97de199a272d5e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses particle properties and location from a single CSV-formatted line. This function reads a single line of CSV-formatted text containing data for one particle. It extracts the particle's properties and its location, and returns them as a pair.  <br /></td></tr>
 <tr class="separator:aca48d7c3f947608c97de199a272d5e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62a118a6385325109adbb2dc2d9ae38f" id="r_a62a118a6385325109adbb2dc2d9ae38f"><td class="memTemplParams" colspan="2">template&lt;typename VectorizedArrayType &gt; </td></tr>
+<tr class="memitem:a62a118a6385325109adbb2dc2d9ae38f"><td class="memTemplItemLeft" align="right" valign="top">static dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a62a118a6385325109adbb2dc2d9ae38f">vector_to_center_of_gravity</a> (const dealii::Point&lt; dim, VectorizedArrayType &gt; &amp;loc, dealii::Particles::PropertyPool&lt; dim &gt; &amp;property_pool, const typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle handle)</td></tr>
+<tr class="separator:a62a118a6385325109adbb2dc2d9ae38f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac45721d20be3d2a543aa5c8c3509278a" id="r_ac45721d20be3d2a543aa5c8c3509278a"><td class="memTemplParams" colspan="2">template&lt;typename VectorizedArrayType &gt; </td></tr>
+<tr class="memitem:ac45721d20be3d2a543aa5c8c3509278a"><td class="memTemplItemLeft" align="right" valign="top">static dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#ac45721d20be3d2a543aa5c8c3509278a">vector_to_surface</a> (const dealii::Point&lt; dim, VectorizedArrayType &gt; &amp;loc, const dealii::Particles::ParticleAccessor&lt; dim &gt; &amp;particle)</td></tr>
+<tr class="separator:ac45721d20be3d2a543aa5c8c3509278a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4eeea473244308b78ccee4ac2354d85c" id="r_a4eeea473244308b78ccee4ac2354d85c"><td class="memItemLeft" align="right" valign="top">static dealii::Tensor&lt; 1, <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">size_angular_velocity</a>, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a4eeea473244308b78ccee4ac2354d85c">get_torque</a> (const dealii::Particles::ParticleAccessor&lt; dim &gt; &amp;particle)</td></tr>
 <tr class="memdesc:a4eeea473244308b78ccee4ac2354d85c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the torque vector acting on the given particle.  <br /></td></tr>
 <tr class="separator:a4eeea473244308b78ccee4ac2354d85c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53692458416a2cb1f711807c73d44d4b" id="r_a53692458416a2cb1f711807c73d44d4b"><td class="memItemLeft" align="right" valign="top">static dealii::Tensor&lt; 1, <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">size_angular_velocity</a>, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a53692458416a2cb1f711807c73d44d4b">get_torque</a> (dealii::Particles::PropertyPool&lt; dim &gt; &amp;property_pool, typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle handle)</td></tr>
+<tr class="separator:a53692458416a2cb1f711807c73d44d4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c1f37ed8b8cca349ee7fe6c97b7654b" id="r_a8c1f37ed8b8cca349ee7fe6c97b7654b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a8c1f37ed8b8cca349ee7fe6c97b7654b">set_torque</a> (const dealii::Tensor&lt; 1, <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">size_angular_velocity</a>, number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a0cd12c69968102f83f52c9f115c1c5f7a19980099549c18fe8db380df4fc6b010">torque</a>, dealii::Particles::ParticleAccessor&lt; dim &gt; &amp;particle)</td></tr>
 <tr class="memdesc:a8c1f37ed8b8cca349ee7fe6c97b7654b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns the specified torque vector to the particle by writing its components into the particle's property array.  <br /></td></tr>
 <tr class="separator:a8c1f37ed8b8cca349ee7fe6c97b7654b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00c3025ef3ed20c3cfee88114a552e85" id="r_a00c3025ef3ed20c3cfee88114a552e85"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a00c3025ef3ed20c3cfee88114a552e85">set_torque</a> (const dealii::Tensor&lt; 1, <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">size_angular_velocity</a>, number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a0cd12c69968102f83f52c9f115c1c5f7a19980099549c18fe8db380df4fc6b010">torque</a>, dealii::Particles::PropertyPool&lt; dim &gt; &amp;property_pool, typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle handle)</td></tr>
+<tr class="separator:a00c3025ef3ed20c3cfee88114a552e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e43d4e57b0c61637dcf98f304b947ed" id="r_a6e43d4e57b0c61637dcf98f304b947ed"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a6e43d4e57b0c61637dcf98f304b947ed">accumulate_torque</a> (const dealii::Tensor&lt; 1, <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">size_angular_velocity</a>, number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a0cd12c69968102f83f52c9f115c1c5f7a19980099549c18fe8db380df4fc6b010">torque</a>, dealii::Particles::ParticleAccessor&lt; dim &gt; &amp;particle)</td></tr>
 <tr class="memdesc:a6e43d4e57b0c61637dcf98f304b947ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accumulates the specified torque vector to the particle by adding its components into the particle's property array.  <br /></td></tr>
 <tr class="separator:a6e43d4e57b0c61637dcf98f304b947ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5223b842b6afc95e557a1f8af6d8a27f" id="r_a5223b842b6afc95e557a1f8af6d8a27f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a5223b842b6afc95e557a1f8af6d8a27f">accumulate_torque</a> (const dealii::Tensor&lt; 1, <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">size_angular_velocity</a>, number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a0cd12c69968102f83f52c9f115c1c5f7a19980099549c18fe8db380df4fc6b010">torque</a>, dealii::Particles::PropertyPool&lt; dim &gt; &amp;property_pool, typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle handle)</td></tr>
+<tr class="separator:a5223b842b6afc95e557a1f8af6d8a27f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a702622c01a133f26ccce45e576efb368" id="r_a702622c01a133f26ccce45e576efb368"><td class="memItemLeft" align="right" valign="top">static dealii::Tensor&lt; 1, dim, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a702622c01a133f26ccce45e576efb368">get_force</a> (const dealii::Particles::ParticleAccessor&lt; dim &gt; &amp;particle)</td></tr>
 <tr class="memdesc:a702622c01a133f26ccce45e576efb368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the force vector acting on the given particle.  <br /></td></tr>
 <tr class="separator:a702622c01a133f26ccce45e576efb368"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -337,7 +359,7 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <a id="a6e43d4e57b0c61637dcf98f304b947ed" name="a6e43d4e57b0c61637dcf98f304b947ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e43d4e57b0c61637dcf98f304b947ed">&#9670;&#160;</a></span>accumulate_torque()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e43d4e57b0c61637dcf98f304b947ed">&#9670;&#160;</a></span>accumulate_torque() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -380,6 +402,51 @@ template&lt;int dim, typename number &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a5223b842b6afc95e557a1f8af6d8a27f" name="a5223b842b6afc95e557a1f8af6d8a27f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5223b842b6afc95e557a1f8af6d8a27f">&#9670;&#160;</a></span>accumulate_torque() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html">MeltPoolDG::SphericalParticle</a>&lt; dim, number &gt;::accumulate_torque </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">size_angular_velocity</a>, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>torque</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dealii::Particles::PropertyPool&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>property_pool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle&#160;</td>
+          <td class="paramname"><em>handle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>As above but operates on a property pool with a specified handle to identify where to add the torque to. </p>
 
 </div>
 </div>
@@ -819,7 +886,7 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <a id="a4eeea473244308b78ccee4ac2354d85c" name="a4eeea473244308b78ccee4ac2354d85c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4eeea473244308b78ccee4ac2354d85c">&#9670;&#160;</a></span>get_torque()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eeea473244308b78ccee4ac2354d85c">&#9670;&#160;</a></span>get_torque() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -852,6 +919,45 @@ template&lt;int dim, typename number &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A dealii::Tensor representing the torque vector acting on the particle. </dd></dl>
+
+</div>
+</div>
+<a id="a53692458416a2cb1f711807c73d44d4b" name="a53692458416a2cb1f711807c73d44d4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53692458416a2cb1f711807c73d44d4b">&#9670;&#160;</a></span>get_torque() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html">MeltPoolDG::SphericalParticle</a>&lt; dim, number &gt;::get_torque </td>
+          <td>(</td>
+          <td class="paramtype">dealii::Particles::PropertyPool&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>property_pool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle&#160;</td>
+          <td class="paramname"><em>handle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>As above but operates on a property pool with a specified handle to identify where to get torque from. </p>
 
 </div>
 </div>
@@ -1419,7 +1525,7 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <a id="a8c1f37ed8b8cca349ee7fe6c97b7654b" name="a8c1f37ed8b8cca349ee7fe6c97b7654b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c1f37ed8b8cca349ee7fe6c97b7654b">&#9670;&#160;</a></span>set_torque()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c1f37ed8b8cca349ee7fe6c97b7654b">&#9670;&#160;</a></span>set_torque() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1462,6 +1568,227 @@ template&lt;int dim, typename number &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a00c3025ef3ed20c3cfee88114a552e85" name="a00c3025ef3ed20c3cfee88114a552e85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00c3025ef3ed20c3cfee88114a552e85">&#9670;&#160;</a></span>set_torque() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html">MeltPoolDG::SphericalParticle</a>&lt; dim, number &gt;::set_torque </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">size_angular_velocity</a>, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>torque</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dealii::Particles::PropertyPool&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>property_pool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle&#160;</td>
+          <td class="paramname"><em>handle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>As above but operates on a property pool with a specified handle to identify where to set the corresponding torque. </p>
+
+</div>
+</div>
+<a id="a62a118a6385325109adbb2dc2d9ae38f" name="a62a118a6385325109adbb2dc2d9ae38f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62a118a6385325109adbb2dc2d9ae38f">&#9670;&#160;</a></span>vector_to_center_of_gravity() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename VectorizedArrayType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html">MeltPoolDG::SphericalParticle</a>&lt; dim, number &gt;::vector_to_center_of_gravity </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Point&lt; dim, VectorizedArrayType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>loc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dealii::Particles::PropertyPool&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>property_pool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle&#160;</td>
+          <td class="paramname"><em>handle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function returns a vector from the given point, towards the particle's center of gravity, i.e., the center of the particle.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loc</td><td>Starting point of the vector. </td></tr>
+    <tr><td class="paramname">property_pool</td><td>The property pool containing the particle data. </td></tr>
+    <tr><td class="paramname">handle</td><td>The handle identifying the specific particle within the property pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4101cfb91d6baaafb3fc7633c0bf2da3" name="a4101cfb91d6baaafb3fc7633c0bf2da3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4101cfb91d6baaafb3fc7633c0bf2da3">&#9670;&#160;</a></span>vector_to_center_of_gravity() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename VectorizedArrayType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html">MeltPoolDG::SphericalParticle</a>&lt; dim, number &gt;::vector_to_center_of_gravity </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Point&lt; dim, VectorizedArrayType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>loc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dealii::Particles::PropertyPool&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>property_pool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle&#160;</td>
+          <td class="paramname"><em>handle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; dealii::Tensor&lt;1, dim, VectorizedArrayType&gt;
+</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac45721d20be3d2a543aa5c8c3509278a" name="ac45721d20be3d2a543aa5c8c3509278a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac45721d20be3d2a543aa5c8c3509278a">&#9670;&#160;</a></span>vector_to_surface() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename VectorizedArrayType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html">MeltPoolDG::SphericalParticle</a>&lt; dim, number &gt;::vector_to_surface </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Point&lt; dim, VectorizedArrayType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>loc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Particles::ParticleAccessor&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>particle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function returns a vector from the given point, towards the nearest point on the particles surface.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loc</td><td>Starting point of the vector. </td></tr>
+    <tr><td class="paramname">property_pool</td><td>The property pool containing the particle data. </td></tr>
+    <tr><td class="paramname">handle</td><td>The handle identifying the specific particle within the property pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a41047a442243f6331df603b34128b4ac" name="a41047a442243f6331df603b34128b4ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41047a442243f6331df603b34128b4ac">&#9670;&#160;</a></span>vector_to_surface() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename VectorizedArrayType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html">MeltPoolDG::SphericalParticle</a>&lt; dim, number &gt;::vector_to_surface </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Point&lt; dim, VectorizedArrayType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>loc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Particles::ParticleAccessor&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>particle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; dealii::Tensor&lt;1, dim, VectorizedArrayType&gt;
+</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
