@@ -16,5 +16,6 @@ var searchData=
   ['advectiondiffusionoperator_13',['AdvectionDiffusionOperator',['../classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperator.html',1,'MeltPoolDG::LevelSet']]],
   ['advectionfield_14',['advectionfield',['../classMeltPoolDG_1_1Simulation_1_1AdvectionDiffusionDG_1_1AdvectionField.html',1,'MeltPoolDG::Simulation::AdvectionDiffusionDG::AdvectionField&lt; dim, number &gt;'],['../classMeltPoolDG_1_1Simulation_1_1RotatingBubble_1_1AdvectionField.html',1,'MeltPoolDG::Simulation::RotatingBubble::AdvectionField&lt; dim, number &gt;'],['../classMeltPoolDG_1_1Simulation_1_1VortexBubble_1_1AdvectionField.html',1,'MeltPoolDG::Simulation::VortexBubble::AdvectionField&lt; dim, number &gt;'],['../classMeltPoolDG_1_1Simulation_1_1VortexBubbleDG_1_1AdvectionField.html',1,'MeltPoolDG::Simulation::VortexBubbleDG::AdvectionField&lt; dim, number &gt;'],['../classMeltPoolDG_1_1Simulation_1_1ZalesakDisk_1_1AdvectionField.html',1,'MeltPoolDG::Simulation::ZalesakDisk::AdvectionField&lt; dim, number &gt;']]],
   ['amrindicatorbase_15',['AMRIndicatorBase',['../classMeltPoolDG_1_1AMR_1_1AMRIndicatorBase.html',1,'MeltPoolDG::AMR']]],
-  ['analyticaldata_16',['AnalyticalData',['../structMeltPoolDG_1_1Heat_1_1LaserData_1_1AnalyticalData.html',1,'MeltPoolDG::Heat::LaserData']]]
+  ['amrregion_16',['AMRRegion',['../classMeltPoolDG_1_1AMR_1_1AMRRegion.html',1,'MeltPoolDG::AMR']]],
+  ['analyticaldata_17',['AnalyticalData',['../structMeltPoolDG_1_1Heat_1_1LaserData_1_1AnalyticalData.html',1,'MeltPoolDG::Heat::LaserData']]]
 ];

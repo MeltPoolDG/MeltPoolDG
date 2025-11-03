@@ -33,6 +33,7 @@ var searchData=
   ['amr_5fdata_2ehpp_30',['amr_data.hpp',['../amr__data_8hpp.html',1,'']]],
   ['amr_5findicators_2ecpp_31',['amr_indicators.cpp',['../amr__indicators_8cpp.html',1,'']]],
   ['amr_5findicators_2ehpp_32',['amr_indicators.hpp',['../amr__indicators_8hpp.html',1,'']]],
-  ['attach_5fvectors_2ehpp_33',['attach_vectors.hpp',['../attach__vectors_8hpp.html',1,'']]],
-  ['averaged_5fnusselt_2epy_34',['averaged_nusselt.py',['../averaged__nusselt_8py.html',1,'']]]
+  ['amr_5fregions_2ehpp_33',['amr_regions.hpp',['../amr__regions_8hpp.html',1,'']]],
+  ['attach_5fvectors_2ehpp_34',['attach_vectors.hpp',['../attach__vectors_8hpp.html',1,'']]],
+  ['averaged_5fnusselt_2epy_35',['averaged_nusselt.py',['../averaged__nusselt_8py.html',1,'']]]
 ];

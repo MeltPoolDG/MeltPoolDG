@@ -17,5 +17,6 @@ var searchData=
   ['meltpoolapplication_14',['MeltPoolApplication',['../classMeltPoolDG_1_1MeltPoolApplication.html',1,'MeltPoolDG']]],
   ['meltpoolcase_15',['MeltPoolCase',['../classMeltPoolDG_1_1MeltPoolCase.html',1,'MeltPoolDG']]],
   ['meltpoolcaseparameters_16',['MeltPoolCaseParameters',['../structMeltPoolDG_1_1MeltPoolCaseParameters.html',1,'MeltPoolDG']]],
-  ['movinglevelset_17',['MovingLevelSet',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1MovingLevelSet.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]]
+  ['model_17',['Model',['../structMeltPoolDG_1_1AMR_1_1AMRRegion_1_1Model.html',1,'MeltPoolDG::AMR::AMRRegion']]],
+  ['movinglevelset_18',['MovingLevelSet',['../classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1MovingLevelSet.html',1,'MeltPoolDG::Simulation::CompressibleFlow']]]
 ];
