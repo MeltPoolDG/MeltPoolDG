@@ -72,7 +72,7 @@ $(function() {
   <div class="headertitle"><div class="title">Generating and Launching Cases</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md2"></a> Scripts used in the different studies are separated in two main folders, namely <code>pre_processing</code> and <code>post_processing</code>.</p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md9"></a> Scripts used in the different studies are separated in two main folders, namely <code>pre_processing</code> and <code>post_processing</code>.</p>
 <div class="fragment"><div class="line">wall_wetting_zahedi_2009_comparison/scripts/</div>
 <div class="line">├── post_processing</div>
 <div class="line">│   ├── compare_figure_2.py</div>
@@ -111,7 +111,7 @@ $(function() {
 </ul>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 Generating the cases</h1>
 <p>In the <code>pre_processing/</code> folder, cases are generated in using the <code>generate_cases.sh</code> bash script with the CSV case parameter file (<code>case_parameters.csv</code>) and the template parameter file (<code>zahedi_wall_wetting.tpl</code>).</p>
 <p>The CSV case parameter file takes the following form: </p><div class="fragment"><div class="line">case_name,static_contact_angle,epsilon_n_factor,epsilon_t_factor,gamma_factor,end_time</div>
@@ -127,7 +127,7 @@ Generating the cases</h1>
 <p>You can specify a different range of cases using the <code>-c</code> argument. For example, running </p><div class="fragment"><div class="line">./generate_cases.sh -c &quot;0-3, 20&quot;</div>
 </div><!-- fragment --><p>will generate JSON files for cases number 0, 1, 2, 3, and 20. For more information on the different arguments that can be passed on, run:</p>
 <div class="fragment"><div class="line">./generate_cases.sh --help</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
 Running the cases</h1>
 <p>Calling the <code>launch_cases.sh</code> script in the <code>pre_processing/</code> folder, as shown below, runs by default simulations for cases 0 to 20 on 20 processes.</p>
 <div class="fragment"><div class="line">./launch_cases.sh</div>
@@ -163,12 +163,12 @@ Running the cases</h1>
 <div class="line">├── ...</div>
 <div class="line">└── zahedi_wall_wetting_020</div>
 <div class="line">    └── ...</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md12"></a>
 Post-processing Simulation Results</h1>
 <p>From the <code>post_processing</code> folder, the <code>post_process_cases.sh</code> script can be run to generate all figures automatically using:</p>
 <div class="fragment"><div class="line">./post_process_cases.sh -r &lt;path_to_file_with_simulation_results_summary&gt;</div>
 </div><!-- fragment --><p>Calling this script also by default generates a <code>comparison_figures/</code> folder in the <code>meltpooldg_results/</code> directory where all figures will be saved. To change this, one may pass a different argument with the <code>-ff</code> or <code>--figures_folder</code> flags. For more information on the other arguments, use <code>-h</code> or <code>--help</code>.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 Reference</h1>
 <p>[^1]: S. Zahedi, K. Gustavsson, and G. Kreiss, “A conservative level set method for contact line dynamics,” <em>J. Comput. Phys.</em>, vol. 228, no. 17, pp. 6361–6375, Sep. 2009, doi: 10.1016/j.jcp.2009.05.043. </p>
 </div></div><!-- contents -->

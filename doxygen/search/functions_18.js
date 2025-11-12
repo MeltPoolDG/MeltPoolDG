@@ -19,5 +19,6 @@ var searchData=
   ['_7epostprocessorbase_16',['~PostProcessorBase',['../classMeltPoolDG_1_1PostProcessingTools_1_1PostProcessorBase.html#abcaa10b02bed0d29bb1de2fcc51df700',1,'MeltPoolDG::PostProcessingTools::PostProcessorBase']]],
   ['_7epreconditionerconcept_17',['~PreconditionerConcept',['../structMeltPoolDG_1_1Preconditioner_1_1PreconditionerConcept.html#a47837ff2836d2f89576de1867090f743',1,'MeltPoolDG::Preconditioner::PreconditionerConcept']]],
   ['_7escopedname_18',['~ScopedName',['../classMeltPoolDG_1_1ScopedName.html#a1d2b4713cd556da52241d4621677fcec',1,'MeltPoolDG::ScopedName']]],
-  ['_7etimeintegratorbase_19',['~TimeIntegratorBase',['../classMeltPoolDG_1_1TimeIntegration_1_1TimeIntegratorBase.html#a7a006902665781720b7561093e8cd153',1,'MeltPoolDG::TimeIntegration::TimeIntegratorBase']]]
+  ['_7esimulationcasebase_19',['~SimulationCaseBase',['../classMeltPoolDG_1_1SimulationCaseBase.html#a49558ff3c15c278c84c0fa5dccac8e96',1,'MeltPoolDG::SimulationCaseBase']]],
+  ['_7etimeintegratorbase_20',['~TimeIntegratorBase',['../classMeltPoolDG_1_1TimeIntegration_1_1TimeIntegratorBase.html#a7a006902665781720b7561093e8cd153',1,'MeltPoolDG::TimeIntegration::TimeIntegratorBase']]]
 ];

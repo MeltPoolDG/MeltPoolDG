@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['wall_20wetting_0',['Wall Wetting',['../md_applications_2mp-reinit_2cases_2wall__wetting__zahedi__2009__comparison_2wall__wetting__zahedi__2009.html',1,'']]],
-  ['wetting_1',['Wall Wetting',['../md_applications_2mp-reinit_2cases_2wall__wetting__zahedi__2009__comparison_2wall__wetting__zahedi__2009.html',1,'']]]
+  ['heating_20of_20a_202d_20fixed_20melt_20pool_20surface_20geometry_0',['Laser-induced heating of a 2D fixed melt pool surface geometry',['../md_applications_2mp-heat-transfer_2cases_2fixed__melt__pool__geometry_2README.html',1,'']]]
 ];
