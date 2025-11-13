@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/heat/heat_diffuse_operation.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/heat/heat_diffuse_operation.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/heat__diffuse__operation_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-heat-heat-diffuse-operation-hpp-source-file">
+<h1>include/meltpooldg/heat/heat_diffuse_operation.hpp Source File<a class="headerlink" href="#include-meltpooldg-heat-heat-diffuse-operation-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/heat/heat_diffuse_operation.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_8fea59914ed62cb03361854cdbc2abdc.html">heat</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">heat_diffuse_operation.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="heat__diffuse__operation_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/function.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;deal.II/base/point.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;deal.II/base/types.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;deal.II/dofs/dof_handler.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;deal.II/grid/tria.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;deal.II/lac/la_parallel_block_vector.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="boundary__conditions_8hpp.html">meltpooldg/core/boundary_conditions.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="material_8hpp.html">meltpooldg/core/material.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="operator__base_8hpp.html">meltpooldg/core/operator_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="periodic__boundary__conditions_8hpp.html">meltpooldg/core/periodic_boundary_conditions.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="scratch__data_8hpp.html">meltpooldg/core/scratch_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="heat__data_8hpp.html">meltpooldg/heat/heat_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="heat__diffuse__operator_8hpp.html">meltpooldg/heat/heat_diffuse_operator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="heat__operation__base_8hpp.html">meltpooldg/heat/heat_operation_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="nearest__point_8hpp.html">meltpooldg/level_set/nearest_point.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;<a class="code" href="nearest__point__data_8hpp.html">meltpooldg/level_set/nearest_point_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;<a class="code" href="newton__raphson__solver_8hpp.html">meltpooldg/linear_algebra/newton_raphson_solver.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;<a class="code" href="preconditioner_8hpp.html">meltpooldg/linear_algebra/preconditioner.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;<a class="code" href="predictor_8hpp.html">meltpooldg/linear_algebra/predictor.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;<a class="code" href="evaporation__data_8hpp.html">meltpooldg/phase_change/evaporation_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;<a class="code" href="generic__data__out_8hpp.html">meltpooldg/post_processing/generic_data_out.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;<a class="code" href="solution__history_8hpp.html">meltpooldg/time_integration/solution_history.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;<a class="code" href="time__iterator_8hpp.html">meltpooldg/time_integration/time_iterator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;tuple&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1Heat.html">MeltPoolDG::Heat</a></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html">   40</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html">HeatDiffuseOperation</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1Heat_1_1HeatOperationBase.html">HeatOperationBase</a>&lt;dim, number&gt;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">   43</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a>      = <span class="keyword">typename</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatOperationBase.html#a4e7994474000fed1863aef82a533a217">HeatOperationBase&lt;dim, number&gt;::VectorType</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a6e071f58a0c9b2de97ccc6784ba46251">   44</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a6e071f58a0c9b2de97ccc6784ba46251">BlockVectorType</a> = dealii::LinearAlgebra::distributed::BlockVector&lt;number&gt;;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a27defb0e0609f8650ebae6f168f88040">   46</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a>                                               &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a27defb0e0609f8650ebae6f168f88040">scratch_data</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a5445be3339099e6cbd704e0656e4ce46">   47</a></span>    <span class="keyword">const</span> std::map&lt;dealii::types::boundary_id, std::shared_ptr&lt;dealii::Function&lt;dim&gt;&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a5445be3339099e6cbd704e0656e4ce46">dirichlet_bc</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a46ee3a2d9d2106d7761e5d8b0c9839bf">   48</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1PeriodicBoundaryConditions.html">PeriodicBoundaryConditions&lt;dim&gt;</a>                                             &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a46ee3a2d9d2106d7761e5d8b0c9839bf">periodic_bc</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ae0fb7f8f43633ac8d47c1c45b0d0c307">   52</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Heat_1_1HeatData.html">HeatData&lt;number&gt;</a>                      &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ae0fb7f8f43633ac8d47c1c45b0d0c307">heat_data</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a21a1b07be3007850e9c20f4f1ea8cc9b">   53</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegration_1_1TimeIterator.html">TimeIntegration::TimeIterator&lt;number&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a21a1b07be3007850e9c20f4f1ea8cc9b">time_iterator</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aa3357cf3aa82a49da38af59e0d45ac92">   57</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aa3357cf3aa82a49da38af59e0d45ac92">heat_dof_idx</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a34342e72264674308b0a036334b245b9">   58</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a34342e72264674308b0a036334b245b9">heat_no_bc_dof_idx</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aa38bf8d9206d5a68210597ba17aa8e53">   59</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aa38bf8d9206d5a68210597ba17aa8e53">heat_quad_idx</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// These are the primary solution variables of this module, which will be also publicly</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// accessible for output_results.</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a2050ffbb5b9f9cec67bd13ded8cb8f1b">   63</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory&lt;VectorType&gt;</a> <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a2050ffbb5b9f9cec67bd13ded8cb8f1b">solution_history</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a840cba22d16ad90e6b97aaab5b918689">   64</a></span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a>                                   <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a840cba22d16ad90e6b97aaab5b918689">predictor_buffer</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ac44bae0a758c6d19ca68852916be37ef">   65</a></span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a>                                   <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ac44bae0a758c6d19ca68852916be37ef">heat_source</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ac881f849c755d1c6b9f621812b624d00">   66</a></span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a>                                   <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ac881f849c755d1c6b9f621812b624d00">user_rhs</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a69ccbd07ecd783fe5022d774257837a8">   67</a></span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a>                                   <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a69ccbd07ecd783fe5022d774257837a8">interface_temperature</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// for output only</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aeec2cc28152b3294d5b466a4ed75f734">   70</a></span>    <span class="keyword">mutable</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aeec2cc28152b3294d5b466a4ed75f734">user_rhs_projected</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a06091b1a248f3a0d57c8fee59db505f6">   72</a></span>    std::unique_ptr&lt;Predictor&lt;VectorType, number&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a06091b1a248f3a0d57c8fee59db505f6">predictor</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// optional flow velocity for internal convection</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aab6915a48e4d6b0bc2ec337361206cf9">   75</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aab6915a48e4d6b0bc2ec337361206cf9">vel_dof_idx</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aba73d1fa73d24737f3ba8fce9d4eb2db">   76</a></span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a>  *<a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aba73d1fa73d24737f3ba8fce9d4eb2db">velocity</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// optional level-set heaviside field for two phase flow</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab1955d973ababea69b3c2477e51717fb">   79</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab1955d973ababea69b3c2477e51717fb">ls_dof_idx</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a93f1314912464da8fe9b60523841cf01">   80</a></span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a>  *<a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a93f1314912464da8fe9b60523841cf01">level_set_as_heaviside</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab6392d9bddbdb7084506d165bf3d4b83">   82</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1NewtonRaphsonSolver.html">NewtonRaphsonSolver&lt;number, VectorType&gt;</a> <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab6392d9bddbdb7084506d165bf3d4b83">newton</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a8a8315146610524c03c8922596bb8f95">   84</a></span>    std::unique_ptr&lt;HeatDiffuseMultiPhaseOperator&lt;dim, number&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a8a8315146610524c03c8922596bb8f95">heat_operator</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a5e5003a31f89e99ac0d1a33aafa39c90">   86</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1Preconditioner.html">Preconditioner&lt;dim, VectorType, number&gt;</a> <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a5e5003a31f89e99ac0d1a33aafa39c90">preconditioner</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// determine whether solution vectors are prepared for time advance</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a25743a8e74b29b168c9463267b7a006c">   89</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a25743a8e74b29b168c9463267b7a006c">ready_for_time_advance</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a14be32f88286617edd6efca753f11c02">   91</a></span>    std::unique_ptr&lt;LevelSet::Tools::NearestPoint&lt;dim, double&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a14be32f88286617edd6efca753f11c02">nearest_point_search</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <a class="code hl_class" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html">HeatDiffuseOperation</a>(</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a>                               &amp;scratch_data_in,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>      <span class="keyword">const</span> std::shared_ptr&lt;<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1BoundaryConditionManager.html">BoundaryConditionManager&lt;dim, number&gt;</a>&gt; heat_bc_manager,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1PeriodicBoundaryConditions.html">PeriodicBoundaryConditions&lt;dim&gt;</a>                             &amp;periodic_bc_in,</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Heat_1_1HeatData.html">HeatData&lt;number&gt;</a>                                            &amp;heat_data_in,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1Material.html">Material&lt;number&gt;</a>                                            &amp;material,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegration_1_1TimeIterator.html">TimeIntegration::TimeIterator&lt;number&gt;</a>                       &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a21a1b07be3007850e9c20f4f1ea8cc9b">time_iterator</a>,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                                       heat_dof_idx_in,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                                       heat_no_bc_dof_idx_in,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                                       heat_quad_idx_in,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                                       vel_dof_idx_in = 0,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a>                                                  *velocity_in    = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                                       ls_dof_idx_in  = 0,</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a> *level_set_as_heaviside_in                                       = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <span class="keyword">const</span> <span class="keywordtype">bool</span>        do_solidifiaction                                               = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a90f4e54088b89c113b338af9ea98d162">register_evaporative_mass_flux</a>(<a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a>        *evaporative_mass_flux_in,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                                   <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> evapor_mass_flux_dof_idx_in,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                                   <span class="keyword">const</span> Evaporation::EvaporationData&lt;number&gt; &amp;evapor_data);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a72e8b21747c46f4ecc75ab8cad1a6881">register_surface_mesh</a>(</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <span class="keyword">const</span> std::vector&lt;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        std::tuple&lt;<span class="keyword">const</span> <span class="keyword">typename</span> dealii::Triangulation&lt;dim, dim&gt;::cell_iterator <span class="comment">/*cell*/</span>,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                   std::vector&lt;dealii::Point&lt;dim&gt;&gt; <span class="comment">/*quad_points*/</span>,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                   std::vector&lt;number&gt; <span class="comment">/*weights*/</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                   &gt;&gt; &amp;surface_mesh_info_in);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#afd795f05485861c1c631dd1b8fc551ab">distribute_dofs</a>(<a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;mutable_scratch_data) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a8e8f87f1bdb38ba9a3c7105ef9e80df6">setup_constraints</a>(<a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;mutable_scratch_data) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ae1d720cff74c4e18fddc326108e38922">set_initial_condition</a>(<span class="keyword">const</span> dealii::Function&lt;dim&gt; &amp;initial_field_function_temperature) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a9ff5f9c4ef473115269859c15b9c7002">reinit</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a86f906783232071f90b2cdace0fc3024">init_time_advance</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a1f5a3454e8f2a0ceeaeeef95f608e218">solve</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a1f5a3454e8f2a0ceeaeeef95f608e218">solve</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> do_finish_time_step);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#acb5760aca5391abecf70a705a4a7ea69">finish_time_advance</a>();</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#afae500a4607c4364980963383ad1def7">register_interface_projection_data</a>(</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a>                         &amp;distance,</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a6e071f58a0c9b2de97ccc6784ba46251">BlockVectorType</a>                    &amp;normal_vector,</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>      <span class="keyword">const</span> LevelSet::NearestPointData&lt;number&gt; &amp;nearest_point_data) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#adaa936bc887888d92549387622fc0346">compute_interface_temperature</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a938e9589276a18c36ceff3ca12d7b9c1">attach_vectors</a>(std::vector&lt;VectorType *&gt; &amp;vectors) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ad35b16b06f0431457fcfa8a872f5bf7b">distribute_constraints</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a9118b274e9fb61aef33914561ab7b4ae">attach_output_vectors</a>(<a class="code hl_class" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut&lt;dim, number&gt;</a> &amp;data_out) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a20c688571c4f7182c33afaf7397a1052">attach_output_vectors_failed_step</a>(<a class="code hl_class" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut&lt;dim, number&gt;</a> &amp;data_out) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a> &amp;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a13219a6df38f5ed329bb1368156c97cf">get_temperature</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a> &amp;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a13219a6df38f5ed329bb1368156c97cf">get_temperature</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a> &amp;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ac3a7a70cb52cd4d49fdd8e3bec66dae5">get_interface_temperature</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a> &amp;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ac3a7a70cb52cd4d49fdd8e3bec66dae5">get_interface_temperature</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a> &amp;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a506cf81a7f43e144e6cc2edf837bd2dd">get_heat_source</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a> &amp;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a506cf81a7f43e144e6cc2edf837bd2dd">get_heat_source</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a> &amp;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a579943c2dc2bed57081fbc64014596e9">get_user_rhs</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">VectorType</a> &amp;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a579943c2dc2bed57081fbc64014596e9">get_user_rhs</a>();</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <a class="code hl_function" href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#abde3109d1886ee9614ec20924ab8ece1">setup_newton</a>();</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  };</div>
+</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>} <span class="comment">// namespace MeltPoolDG::Heat</span></div>
+<div class="ttc" id="aboundary__conditions_8hpp_html"><div class="ttname"><a href="boundary__conditions_8hpp.html">boundary_conditions.hpp</a></div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1BoundaryConditionManager_html"><div class="ttname"><a href="classMeltPoolDG_1_1BoundaryConditionManager.html">MeltPoolDG::BoundaryConditionManager</a></div><div class="ttdef"><b>Definition</b> boundary_conditions.hpp:17</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1GenericDataOut_html"><div class="ttname"><a href="classMeltPoolDG_1_1GenericDataOut.html">MeltPoolDG::GenericDataOut</a></div><div class="ttdoc">A generic utility for managing simulation output data in the MeltPoolDG context.</div><div class="ttdef"><b>Definition</b> generic_data_out.hpp:32</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html">MeltPoolDG::Heat::HeatDiffuseOperation</a></div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:41</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a06091b1a248f3a0d57c8fee59db505f6"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a06091b1a248f3a0d57c8fee59db505f6">MeltPoolDG::Heat::HeatDiffuseOperation::predictor</a></div><div class="ttdeci">std::unique_ptr&lt; Predictor&lt; VectorType, number &gt; &gt; predictor</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:72</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a13219a6df38f5ed329bb1368156c97cf"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a13219a6df38f5ed329bb1368156c97cf">MeltPoolDG::Heat::HeatDiffuseOperation::get_temperature</a></div><div class="ttdeci">const VectorType &amp; get_temperature() const override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:421</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a14be32f88286617edd6efca753f11c02"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a14be32f88286617edd6efca753f11c02">MeltPoolDG::Heat::HeatDiffuseOperation::nearest_point_search</a></div><div class="ttdeci">std::unique_ptr&lt; LevelSet::Tools::NearestPoint&lt; dim, double &gt; &gt; nearest_point_search</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:91</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a1f5a3454e8f2a0ceeaeeef95f608e218"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a1f5a3454e8f2a0ceeaeeef95f608e218">MeltPoolDG::Heat::HeatDiffuseOperation::solve</a></div><div class="ttdeci">void solve() override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:253</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a2050ffbb5b9f9cec67bd13ded8cb8f1b"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a2050ffbb5b9f9cec67bd13ded8cb8f1b">MeltPoolDG::Heat::HeatDiffuseOperation::solution_history</a></div><div class="ttdeci">TimeIntegration::SolutionHistory&lt; VectorType &gt; solution_history</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:63</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a20c688571c4f7182c33afaf7397a1052"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a20c688571c4f7182c33afaf7397a1052">MeltPoolDG::Heat::HeatDiffuseOperation::attach_output_vectors_failed_step</a></div><div class="ttdeci">void attach_output_vectors_failed_step(GenericDataOut&lt; dim, number &gt; &amp;data_out) const override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:406</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a21a1b07be3007850e9c20f4f1ea8cc9b"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a21a1b07be3007850e9c20f4f1ea8cc9b">MeltPoolDG::Heat::HeatDiffuseOperation::time_iterator</a></div><div class="ttdeci">const TimeIntegration::TimeIterator&lt; number &gt; &amp; time_iterator</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:53</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a25743a8e74b29b168c9463267b7a006c"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a25743a8e74b29b168c9463267b7a006c">MeltPoolDG::Heat::HeatDiffuseOperation::ready_for_time_advance</a></div><div class="ttdeci">bool ready_for_time_advance</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:89</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a27defb0e0609f8650ebae6f168f88040"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a27defb0e0609f8650ebae6f168f88040">MeltPoolDG::Heat::HeatDiffuseOperation::scratch_data</a></div><div class="ttdeci">const ScratchData&lt; dim, dim, number &gt; &amp; scratch_data</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:46</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a34342e72264674308b0a036334b245b9"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a34342e72264674308b0a036334b245b9">MeltPoolDG::Heat::HeatDiffuseOperation::heat_no_bc_dof_idx</a></div><div class="ttdeci">const unsigned int heat_no_bc_dof_idx</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:58</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a46ee3a2d9d2106d7761e5d8b0c9839bf"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a46ee3a2d9d2106d7761e5d8b0c9839bf">MeltPoolDG::Heat::HeatDiffuseOperation::periodic_bc</a></div><div class="ttdeci">const PeriodicBoundaryConditions&lt; dim &gt; &amp; periodic_bc</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:48</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a506cf81a7f43e144e6cc2edf837bd2dd"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a506cf81a7f43e144e6cc2edf837bd2dd">MeltPoolDG::Heat::HeatDiffuseOperation::get_heat_source</a></div><div class="ttdeci">const VectorType &amp; get_heat_source() const override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:449</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a5445be3339099e6cbd704e0656e4ce46"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a5445be3339099e6cbd704e0656e4ce46">MeltPoolDG::Heat::HeatDiffuseOperation::dirichlet_bc</a></div><div class="ttdeci">const std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; dirichlet_bc</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:47</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a579943c2dc2bed57081fbc64014596e9"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a579943c2dc2bed57081fbc64014596e9">MeltPoolDG::Heat::HeatDiffuseOperation::get_user_rhs</a></div><div class="ttdeci">const VectorType &amp; get_user_rhs() const</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:463</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a5e5003a31f89e99ac0d1a33aafa39c90"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a5e5003a31f89e99ac0d1a33aafa39c90">MeltPoolDG::Heat::HeatDiffuseOperation::preconditioner</a></div><div class="ttdeci">Preconditioner&lt; dim, VectorType, number &gt; preconditioner</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:86</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a69ccbd07ecd783fe5022d774257837a8"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a69ccbd07ecd783fe5022d774257837a8">MeltPoolDG::Heat::HeatDiffuseOperation::interface_temperature</a></div><div class="ttdeci">VectorType interface_temperature</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:67</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a6e071f58a0c9b2de97ccc6784ba46251"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a6e071f58a0c9b2de97ccc6784ba46251">MeltPoolDG::Heat::HeatDiffuseOperation::BlockVectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::BlockVector&lt; number &gt; BlockVectorType</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:44</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a72e8b21747c46f4ecc75ab8cad1a6881"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a72e8b21747c46f4ecc75ab8cad1a6881">MeltPoolDG::Heat::HeatDiffuseOperation::register_surface_mesh</a></div><div class="ttdeci">void register_surface_mesh(const std::vector&lt; std::tuple&lt; const typename dealii::Triangulation&lt; dim, dim &gt;::cell_iterator, std::vector&lt; dealii::Point&lt; dim &gt; &gt;, std::vector&lt; number &gt; &gt; &gt; &amp;surface_mesh_info_in)</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:133</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a840cba22d16ad90e6b97aaab5b918689"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a840cba22d16ad90e6b97aaab5b918689">MeltPoolDG::Heat::HeatDiffuseOperation::predictor_buffer</a></div><div class="ttdeci">VectorType predictor_buffer</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:64</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a86f906783232071f90b2cdace0fc3024"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a86f906783232071f90b2cdace0fc3024">MeltPoolDG::Heat::HeatDiffuseOperation::init_time_advance</a></div><div class="ttdeci">void init_time_advance() override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:212</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a8a8315146610524c03c8922596bb8f95"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a8a8315146610524c03c8922596bb8f95">MeltPoolDG::Heat::HeatDiffuseOperation::heat_operator</a></div><div class="ttdeci">std::unique_ptr&lt; HeatDiffuseMultiPhaseOperator&lt; dim, number &gt; &gt; heat_operator</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:84</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a8e8f87f1bdb38ba9a3c7105ef9e80df6"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a8e8f87f1bdb38ba9a3c7105ef9e80df6">MeltPoolDG::Heat::HeatDiffuseOperation::setup_constraints</a></div><div class="ttdeci">void setup_constraints(ScratchData&lt; dim, dim, number &gt; &amp;mutable_scratch_data) const override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:159</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a90f4e54088b89c113b338af9ea98d162"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a90f4e54088b89c113b338af9ea98d162">MeltPoolDG::Heat::HeatDiffuseOperation::register_evaporative_mass_flux</a></div><div class="ttdeci">void register_evaporative_mass_flux(VectorType *evaporative_mass_flux_in, const unsigned int evapor_mass_flux_dof_idx_in, const Evaporation::EvaporationData&lt; number &gt; &amp;evapor_data)</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:120</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a9118b274e9fb61aef33914561ab7b4ae"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a9118b274e9fb61aef33914561ab7b4ae">MeltPoolDG::Heat::HeatDiffuseOperation::attach_output_vectors</a></div><div class="ttdeci">void attach_output_vectors(GenericDataOut&lt; dim, number &gt; &amp;data_out) const override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:362</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a938e9589276a18c36ceff3ca12d7b9c1"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a938e9589276a18c36ceff3ca12d7b9c1">MeltPoolDG::Heat::HeatDiffuseOperation::attach_vectors</a></div><div class="ttdeci">void attach_vectors(std::vector&lt; VectorType * &gt; &amp;vectors) override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:338</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a93f1314912464da8fe9b60523841cf01"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a93f1314912464da8fe9b60523841cf01">MeltPoolDG::Heat::HeatDiffuseOperation::level_set_as_heaviside</a></div><div class="ttdeci">const VectorType * level_set_as_heaviside</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:80</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_a9ff5f9c4ef473115269859c15b9c7002"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#a9ff5f9c4ef473115269859c15b9c7002">MeltPoolDG::Heat::HeatDiffuseOperation::reinit</a></div><div class="ttdeci">void reinit() override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:190</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_aa3357cf3aa82a49da38af59e0d45ac92"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aa3357cf3aa82a49da38af59e0d45ac92">MeltPoolDG::Heat::HeatDiffuseOperation::heat_dof_idx</a></div><div class="ttdeci">const unsigned int heat_dof_idx</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:57</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_aa38bf8d9206d5a68210597ba17aa8e53"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aa38bf8d9206d5a68210597ba17aa8e53">MeltPoolDG::Heat::HeatDiffuseOperation::heat_quad_idx</a></div><div class="ttdeci">const unsigned int heat_quad_idx</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:59</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_aab6915a48e4d6b0bc2ec337361206cf9"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aab6915a48e4d6b0bc2ec337361206cf9">MeltPoolDG::Heat::HeatDiffuseOperation::vel_dof_idx</a></div><div class="ttdeci">const unsigned int vel_dof_idx</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:75</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_ab1955d973ababea69b3c2477e51717fb"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab1955d973ababea69b3c2477e51717fb">MeltPoolDG::Heat::HeatDiffuseOperation::ls_dof_idx</a></div><div class="ttdeci">const unsigned int ls_dof_idx</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:79</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_ab6392d9bddbdb7084506d165bf3d4b83"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab6392d9bddbdb7084506d165bf3d4b83">MeltPoolDG::Heat::HeatDiffuseOperation::newton</a></div><div class="ttdeci">NewtonRaphsonSolver&lt; number, VectorType &gt; newton</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:82</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_ab72f80b96db0f54eb7dd61bebac99fb8"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ab72f80b96db0f54eb7dd61bebac99fb8">MeltPoolDG::Heat::HeatDiffuseOperation::VectorType</a></div><div class="ttdeci">typename HeatOperationBase&lt; dim, number &gt;::VectorType VectorType</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:43</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_aba73d1fa73d24737f3ba8fce9d4eb2db"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aba73d1fa73d24737f3ba8fce9d4eb2db">MeltPoolDG::Heat::HeatDiffuseOperation::velocity</a></div><div class="ttdeci">const VectorType * velocity</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:76</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_abde3109d1886ee9614ec20924ab8ece1"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#abde3109d1886ee9614ec20924ab8ece1">MeltPoolDG::Heat::HeatDiffuseOperation::setup_newton</a></div><div class="ttdeci">void setup_newton()</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:84</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_ac3a7a70cb52cd4d49fdd8e3bec66dae5"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ac3a7a70cb52cd4d49fdd8e3bec66dae5">MeltPoolDG::Heat::HeatDiffuseOperation::get_interface_temperature</a></div><div class="ttdeci">const VectorType &amp; get_interface_temperature() const override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:435</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_ac44bae0a758c6d19ca68852916be37ef"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ac44bae0a758c6d19ca68852916be37ef">MeltPoolDG::Heat::HeatDiffuseOperation::heat_source</a></div><div class="ttdeci">VectorType heat_source</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:65</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_ac881f849c755d1c6b9f621812b624d00"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ac881f849c755d1c6b9f621812b624d00">MeltPoolDG::Heat::HeatDiffuseOperation::user_rhs</a></div><div class="ttdeci">VectorType user_rhs</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:66</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_acb5760aca5391abecf70a705a4a7ea69"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#acb5760aca5391abecf70a705a4a7ea69">MeltPoolDG::Heat::HeatDiffuseOperation::finish_time_advance</a></div><div class="ttdeci">void finish_time_advance()</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:290</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_ad35b16b06f0431457fcfa8a872f5bf7b"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ad35b16b06f0431457fcfa8a872f5bf7b">MeltPoolDG::Heat::HeatDiffuseOperation::distribute_constraints</a></div><div class="ttdeci">void distribute_constraints() override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:352</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_adaa936bc887888d92549387622fc0346"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#adaa936bc887888d92549387622fc0346">MeltPoolDG::Heat::HeatDiffuseOperation::compute_interface_temperature</a></div><div class="ttdeci">void compute_interface_temperature() override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:317</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_ae0fb7f8f43633ac8d47c1c45b0d0c307"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ae0fb7f8f43633ac8d47c1c45b0d0c307">MeltPoolDG::Heat::HeatDiffuseOperation::heat_data</a></div><div class="ttdeci">const HeatData&lt; number &gt; &amp; heat_data</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:52</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_ae1d720cff74c4e18fddc326108e38922"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#ae1d720cff74c4e18fddc326108e38922">MeltPoolDG::Heat::HeatDiffuseOperation::set_initial_condition</a></div><div class="ttdeci">void set_initial_condition(const dealii::Function&lt; dim &gt; &amp;initial_field_function_temperature) override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:169</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_aeec2cc28152b3294d5b466a4ed75f734"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#aeec2cc28152b3294d5b466a4ed75f734">MeltPoolDG::Heat::HeatDiffuseOperation::user_rhs_projected</a></div><div class="ttdeci">VectorType user_rhs_projected</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.hpp:70</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_afae500a4607c4364980963383ad1def7"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#afae500a4607c4364980963383ad1def7">MeltPoolDG::Heat::HeatDiffuseOperation::register_interface_projection_data</a></div><div class="ttdeci">void register_interface_projection_data(const VectorType &amp;distance, const BlockVectorType &amp;normal_vector, const LevelSet::NearestPointData&lt; number &gt; &amp;nearest_point_data) override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:299</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation_html_afd795f05485861c1c631dd1b8fc551ab"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatDiffuseOperation.html#afd795f05485861c1c631dd1b8fc551ab">MeltPoolDG::Heat::HeatDiffuseOperation::distribute_dofs</a></div><div class="ttdeci">void distribute_dofs(ScratchData&lt; dim, dim, number &gt; &amp;mutable_scratch_data) const override</div><div class="ttdef"><b>Definition</b> heat_diffuse_operation.cpp:145</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatOperationBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatOperationBase.html">MeltPoolDG::Heat::HeatOperationBase</a></div><div class="ttdef"><b>Definition</b> heat_operation_base.hpp:18</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Heat_1_1HeatOperationBase_html_a4e7994474000fed1863aef82a533a217"><div class="ttname"><a href="classMeltPoolDG_1_1Heat_1_1HeatOperationBase.html#a4e7994474000fed1863aef82a533a217">MeltPoolDG::Heat::HeatOperationBase::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> heat_operation_base.hpp:20</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Material_html"><div class="ttname"><a href="classMeltPoolDG_1_1Material.html">MeltPoolDG::Material</a></div><div class="ttdef"><b>Definition</b> material.hpp:95</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1NewtonRaphsonSolver_html"><div class="ttname"><a href="classMeltPoolDG_1_1NewtonRaphsonSolver.html">MeltPoolDG::NewtonRaphsonSolver</a></div><div class="ttdef"><b>Definition</b> newton_raphson_solver.hpp:13</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html">MeltPoolDG::Preconditioner</a></div><div class="ttdef"><b>Definition</b> preconditioner.hpp:42</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdef"><b>Definition</b> scratch_data.hpp:41</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory_html"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">MeltPoolDG::TimeIntegration::SolutionHistory</a></div><div class="ttdef"><b>Definition</b> solution_history.hpp:21</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegration_1_1TimeIterator_html"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegration_1_1TimeIterator.html">MeltPoolDG::TimeIntegration::TimeIterator</a></div><div class="ttdef"><b>Definition</b> time_iterator.hpp:15</div></div>
+<div class="ttc" id="aevaporation__data_8hpp_html"><div class="ttname"><a href="evaporation__data_8hpp.html">evaporation_data.hpp</a></div></div>
+<div class="ttc" id="ageneric__data__out_8hpp_html"><div class="ttname"><a href="generic__data__out_8hpp.html">generic_data_out.hpp</a></div></div>
+<div class="ttc" id="aheat__data_8hpp_html"><div class="ttname"><a href="heat__data_8hpp.html">heat_data.hpp</a></div></div>
+<div class="ttc" id="aheat__diffuse__operator_8hpp_html"><div class="ttname"><a href="heat__diffuse__operator_8hpp.html">heat_diffuse_operator.hpp</a></div></div>
+<div class="ttc" id="aheat__operation__base_8hpp_html"><div class="ttname"><a href="heat__operation__base_8hpp.html">heat_operation_base.hpp</a></div></div>
+<div class="ttc" id="amaterial_8hpp_html"><div class="ttname"><a href="material_8hpp.html">material.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Heat_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Heat.html">MeltPoolDG::Heat</a></div><div class="ttdef"><b>Definition</b> heat_cut_operation.hpp:38</div></div>
+<div class="ttc" id="anearest__point_8hpp_html"><div class="ttname"><a href="nearest__point_8hpp.html">nearest_point.hpp</a></div></div>
+<div class="ttc" id="anearest__point__data_8hpp_html"><div class="ttname"><a href="nearest__point__data_8hpp.html">nearest_point_data.hpp</a></div></div>
+<div class="ttc" id="anewton__raphson__solver_8hpp_html"><div class="ttname"><a href="newton__raphson__solver_8hpp.html">newton_raphson_solver.hpp</a></div></div>
+<div class="ttc" id="aoperator__base_8hpp_html"><div class="ttname"><a href="operator__base_8hpp.html">operator_base.hpp</a></div></div>
+<div class="ttc" id="aperiodic__boundary__conditions_8hpp_html"><div class="ttname"><a href="periodic__boundary__conditions_8hpp.html">periodic_boundary_conditions.hpp</a></div></div>
+<div class="ttc" id="apreconditioner_8hpp_html"><div class="ttname"><a href="preconditioner_8hpp.html">preconditioner.hpp</a></div></div>
+<div class="ttc" id="apredictor_8hpp_html"><div class="ttname"><a href="predictor_8hpp.html">predictor.hpp</a></div></div>
+<div class="ttc" id="ascratch__data_8hpp_html"><div class="ttname"><a href="scratch__data_8hpp.html">scratch_data.hpp</a></div></div>
+<div class="ttc" id="asolution__history_8hpp_html"><div class="ttname"><a href="solution__history_8hpp.html">solution_history.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Heat_1_1HeatData_html"><div class="ttname"><a href="structMeltPoolDG_1_1Heat_1_1HeatData.html">MeltPoolDG::Heat::HeatData</a></div><div class="ttdef"><b>Definition</b> heat_data.hpp:18</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1PeriodicBoundaryConditions_html"><div class="ttname"><a href="structMeltPoolDG_1_1PeriodicBoundaryConditions.html">MeltPoolDG::PeriodicBoundaryConditions</a></div><div class="ttdef"><b>Definition</b> periodic_boundary_conditions.hpp:11</div></div>
+<div class="ttc" id="atime__iterator_8hpp_html"><div class="ttname"><a href="time__iterator_8hpp.html">time_iterator.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

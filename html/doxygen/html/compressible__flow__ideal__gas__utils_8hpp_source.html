@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/flow/compressible_flow_ideal_gas_utils.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/flow/compressible_flow_ideal_gas_utils.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/compressible__flow__ideal__gas__utils_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-flow-compressible-flow-ideal-gas-utils-hpp-source-file">
+<h1>include/meltpooldg/flow/compressible_flow_ideal_gas_utils.hpp Source File<a class="headerlink" href="#include-meltpooldg-flow-compressible-flow-ideal-gas-utils-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/flow/compressible_flow_ideal_gas_utils.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_e71d216056fb13ff2a67c48841417c25.html">flow</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">compressible_flow_ideal_gas_utils.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="compressible__flow__ideal__gas__utils_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="compressible__flow__material__data_8hpp.html">meltpooldg/flow/compressible_flow_material_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1Flow_1_1EOS.html">MeltPoolDG::Flow::EOS</a></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html">   12</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html">IdealGas</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1EquationOfStateUtils.html">EquationOfStateUtils</a>&lt;dim, number&gt;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a3abc06eea0fcc5d5fd1c45443b70dfa7">   21</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a3abc06eea0fcc5d5fd1c45443b70dfa7">IdealGas</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html">CompressibleFluidMaterialPhaseData&lt;number&gt;</a> &amp;material_data_in)</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>      : <a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">material_data</a>(material_data_in)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    {}</div>
+</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>      dealii::VectorizedArray&lt;number&gt;</div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a5d6da15ea31a1577c8fc340a6000c6ef">   34</a></span>      <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a5d6da15ea31a1577c8fc340a6000c6ef">calculate_thermodynamic_pressure</a>(</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a> &amp;conserved_variables)<span class="keyword"></span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">        override</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      <span class="keyword">const</span> dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; velocity =</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        calculate_velocity&lt;dim, number&gt;(conserved_variables);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keywordflow">return</span> (<a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">material_data</a>.gamma - 1.) *</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>             (conserved_variables[dim + 1] -</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>              conserved_variables[0] * 0.5 * <a class="code hl_function" href="namespaceMeltPoolDG.html#a954958def16a78c9e76564979a9a01e4">scalar_product</a>(velocity, velocity));</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
+</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt;</div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a64dfd467a3d7f5b2b403a0c833a3a43b">   57</a></span>      <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a64dfd467a3d7f5b2b403a0c833a3a43b">calculate_grad_T</a>(</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a> &amp;conserved_variables,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType&lt;dim, number&gt;</a></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>          &amp;grad_conserved_variables)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      <span class="keyword">const</span> dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; u =</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        calculate_velocity&lt;dim, number&gt;(conserved_variables);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keyword">const</span> dealii::Tensor&lt;2, dim, dealii::VectorizedArray&lt;number&gt;&gt; grad_u =</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        calculate_grad_velocity&lt;dim, number&gt;(conserved_variables, grad_conserved_variables);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      <span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; rho     = conserved_variables[0];</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      <span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; inv_rho = dealii::VectorizedArray&lt;number&gt;(1.) / rho;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      <span class="keyword">const</span> dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; grad_rho =</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        grad_conserved_variables[0];</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      <span class="keyword">const</span> dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; grad_E =</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        inv_rho *</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        (grad_conserved_variables[dim + 1] - inv_rho * conserved_variables[dim + 1] * grad_rho);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      <span class="keywordflow">return</span> (<a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">material_data</a>.gamma - 1.0) / <a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">material_data</a>.specific_gas_constant *</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>             (grad_E - grad_u * u);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      dealii::VectorizedArray&lt;number&gt;</div>
+<div class="foldopen" id="foldopen00087" data-start="{" data-end="}">
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a0a24784d18c4f81e74951b9371170252">   87</a></span>      <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a0a24784d18c4f81e74951b9371170252">calculate_speed_of_sound</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                                 &amp;conserved_variables)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      <span class="keyword">const</span> <span class="keyword">auto</span> pressure = <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a5d6da15ea31a1577c8fc340a6000c6ef">calculate_thermodynamic_pressure</a>(conserved_variables);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keyword">const</span> <span class="keyword">auto</span> density  = conserved_variables[0];</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      <span class="keywordflow">return</span> std::sqrt(<a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">material_data</a>.gamma * pressure / density);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
+</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      dealii::VectorizedArray&lt;number&gt;</div>
+<div class="foldopen" id="foldopen00105" data-start="{" data-end="}">
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a9e89c74ed966a7f47132db5b4fa8caea">  105</a></span>      <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a9e89c74ed966a7f47132db5b4fa8caea">calculate_temperature</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                              &amp;conserved_variables)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <span class="keyword">const</span> <span class="keyword">auto</span> pressure = <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a5d6da15ea31a1577c8fc340a6000c6ef">calculate_thermodynamic_pressure</a>(conserved_variables);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      <span class="keyword">const</span> <span class="keyword">auto</span> density  = conserved_variables[0];</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      <span class="keywordflow">return</span> pressure / (<a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">material_data</a>.specific_gas_constant * density);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    }</div>
+</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a></div>
+<div class="foldopen" id="foldopen00124" data-start="{" data-end="}">
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#afb646405af86044a5855375f17eb06aa">  124</a></span>      <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#afb646405af86044a5855375f17eb06aa">convert_primitive_into_conservative_variables</a>(</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a> &amp;u_prim)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>      <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a> u_cons;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      <span class="comment">// density</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>      u_cons[0] = u_prim[0] / (<a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">material_data</a>.specific_gas_constant * u_prim[dim + 1]);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>      <span class="comment">// momentum</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 1; i &lt; dim + 1; i++)</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        u_cons[i] = u_prim[i] * u_cons[0];</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>      <span class="comment">// total energy</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>      <span class="keyword">const</span> dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; velocity =</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        calculate_velocity&lt;dim, number&gt;(u_cons);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      u_cons[dim + 1] = u_cons[0] * (<a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">material_data</a>.specific_gas_constant /</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                                       (<a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">material_data</a>.gamma - 1.) * u_prim[dim + 1] +</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                                     0.5 * <a class="code hl_function" href="namespaceMeltPoolDG.html#a954958def16a78c9e76564979a9a01e4">scalar_product</a>(velocity, velocity));</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>      <span class="keywordflow">return</span> u_cons;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
+</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>      dealii::VectorizedArray&lt;number&gt;</div>
+<div class="foldopen" id="foldopen00152" data-start="{" data-end="}">
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a1818198341fb4304e718549dd6e2e1bd">  152</a></span>      <a class="code hl_function" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a1818198341fb4304e718549dd6e2e1bd">compute_inner_energy_from_pressure</a>(<span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; &amp;pressure,</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                                         <span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; &amp;)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>      <span class="keywordflow">return</span> pressure / (<a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">material_data</a>.gamma - 1.);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
+</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">  160</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html">CompressibleFluidMaterialPhaseData&lt;number&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">material_data</a>;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  };</div>
+</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>} <span class="comment">// namespace MeltPoolDG::Flow::EOS</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1EOS_1_1EquationOfStateUtils_html"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1EOS_1_1EquationOfStateUtils.html">MeltPoolDG::Flow::EOS::EquationOfStateUtils</a></div><div class="ttdoc">A base class for a collection of thermodynamic helper functions, which depend on the equation of stat...</div><div class="ttdef"><b>Definition</b> compressible_flow_eos_utils_base.hpp:13</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas_html"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html">MeltPoolDG::Flow::EOS::IdealGas</a></div><div class="ttdoc">A class for a collection of thermodynamic helper functions for the ideal gas equation of state.</div><div class="ttdef"><b>Definition</b> compressible_flow_ideal_gas_utils.hpp:13</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas_html_a0a24784d18c4f81e74951b9371170252"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a0a24784d18c4f81e74951b9371170252">MeltPoolDG::Flow::EOS::IdealGas::calculate_speed_of_sound</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE dealii::VectorizedArray&lt; number &gt; calculate_speed_of_sound(const CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; &amp;conserved_variables) override</div><div class="ttdoc">Calculate the speed of sound for an ideal gas.</div><div class="ttdef"><b>Definition</b> compressible_flow_ideal_gas_utils.hpp:87</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas_html_a1818198341fb4304e718549dd6e2e1bd"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a1818198341fb4304e718549dd6e2e1bd">MeltPoolDG::Flow::EOS::IdealGas::compute_inner_energy_from_pressure</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE dealii::VectorizedArray&lt; number &gt; compute_inner_energy_from_pressure(const dealii::VectorizedArray&lt; number &gt; &amp;pressure, const dealii::VectorizedArray&lt; number &gt; &amp;) override</div><div class="ttdoc">Calculate the inner energy from a given pressure.</div><div class="ttdef"><b>Definition</b> compressible_flow_ideal_gas_utils.hpp:152</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas_html_a3abc06eea0fcc5d5fd1c45443b70dfa7"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a3abc06eea0fcc5d5fd1c45443b70dfa7">MeltPoolDG::Flow::EOS::IdealGas::IdealGas</a></div><div class="ttdeci">IdealGas(const CompressibleFluidMaterialPhaseData&lt; number &gt; &amp;material_data_in)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> compressible_flow_ideal_gas_utils.hpp:21</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas_html_a5d6da15ea31a1577c8fc340a6000c6ef"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a5d6da15ea31a1577c8fc340a6000c6ef">MeltPoolDG::Flow::EOS::IdealGas::calculate_thermodynamic_pressure</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE dealii::VectorizedArray&lt; number &gt; calculate_thermodynamic_pressure(const CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; &amp;conserved_variables) override</div><div class="ttdoc">Calculate the pressure from the conserved variables for an ideal gas.</div><div class="ttdef"><b>Definition</b> compressible_flow_ideal_gas_utils.hpp:34</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas_html_a64dfd467a3d7f5b2b403a0c833a3a43b"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a64dfd467a3d7f5b2b403a0c833a3a43b">MeltPoolDG::Flow::EOS::IdealGas::calculate_grad_T</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; calculate_grad_T(const CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; &amp;conserved_variables, const CompressibleFlowTypes::ConservedVariablesGradType&lt; dim, number &gt; &amp;grad_conserved_variables) override</div><div class="ttdoc">Calculate the gradient of the temperature from the conserved variables and their gradients for an ide...</div><div class="ttdef"><b>Definition</b> compressible_flow_ideal_gas_utils.hpp:57</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas_html_a9e89c74ed966a7f47132db5b4fa8caea"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#a9e89c74ed966a7f47132db5b4fa8caea">MeltPoolDG::Flow::EOS::IdealGas::calculate_temperature</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE dealii::VectorizedArray&lt; number &gt; calculate_temperature(const CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; &amp;conserved_variables) override</div><div class="ttdoc">Calculate the temperature for an ideal gas.</div><div class="ttdef"><b>Definition</b> compressible_flow_ideal_gas_utils.hpp:105</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas_html_aa0a74e1ed5dcf01a6f528bf267ded6d7"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#aa0a74e1ed5dcf01a6f528bf267ded6d7">MeltPoolDG::Flow::EOS::IdealGas::material_data</a></div><div class="ttdeci">const CompressibleFluidMaterialPhaseData&lt; number &gt; &amp; material_data</div><div class="ttdoc">Material data object providing all relevant material parameters.</div><div class="ttdef"><b>Definition</b> compressible_flow_ideal_gas_utils.hpp:160</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas_html_afb646405af86044a5855375f17eb06aa"><div class="ttname"><a href="classMeltPoolDG_1_1Flow_1_1EOS_1_1IdealGas.html#afb646405af86044a5855375f17eb06aa">MeltPoolDG::Flow::EOS::IdealGas::convert_primitive_into_conservative_variables</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; convert_primitive_into_conservative_variables(const CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; &amp;u_prim) override</div><div class="ttdoc">Convert the given primitive variables (pressure, velocity, temperature) to conservative variables (rh...</div><div class="ttdef"><b>Definition</b> compressible_flow_ideal_gas_utils.hpp:124</div></div>
+<div class="ttc" id="acompressible__flow__material__data_8hpp_html"><div class="ttname"><a href="compressible__flow__material__data_8hpp.html">compressible_flow_material_data.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_1_1EOS_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow_1_1EOS.html">MeltPoolDG::Flow::EOS</a></div><div class="ttdef"><b>Definition</b> compressible_flow_eos_utils_base.hpp:6</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_a954958def16a78c9e76564979a9a01e4"><div class="ttname"><a href="namespaceMeltPoolDG.html#a954958def16a78c9e76564979a9a01e4">MeltPoolDG::scalar_product</a></div><div class="ttdeci">dealii::VectorizedArray&lt; number, N &gt; scalar_product(const dealii::VectorizedArray&lt; number, N &gt; &amp;scalar, const dealii::Tensor&lt; 1, 1, dealii::VectorizedArray&lt; number, N &gt; &gt; &amp;vec)</div><div class="ttdef"><b>Definition</b> dealii_tensor.hpp:59</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes_html_a0e2157d27bf6c7480302f4e8e9693d8e"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">MeltPoolDG::Flow::CompressibleFlowTypes::ConservedVariablesGradType</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim+2, dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &gt; ConservedVariablesGradType</div><div class="ttdoc">Type of the gradient of the conserved variables.</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:40</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes_html_a475c167d568ca252c2feec2fd01cff24"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">MeltPoolDG::Flow::CompressibleFlowTypes::ConservedVariablesType</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim+2, dealii::VectorizedArray&lt; number &gt; &gt; ConservedVariablesType</div><div class="ttdoc">Type of the conserved variables.</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:35</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFluidMaterialPhaseData.html">MeltPoolDG::Flow::CompressibleFluidMaterialPhaseData</a></div><div class="ttdoc">Collection of material parameters for a specific fluid phase.</div><div class="ttdef"><b>Definition</b> compressible_flow_material_data.hpp:87</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

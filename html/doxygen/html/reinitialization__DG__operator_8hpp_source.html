@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/level_set/reinitialization_DG_operator.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/level_set/reinitialization_DG_operator.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/reinitialization__DG__operator_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-level-set-reinitialization-dg-operator-hpp-source-file">
+<h1>include/meltpooldg/level_set/reinitialization_DG_operator.hpp Source File<a class="headerlink" href="#include-meltpooldg-level-set-reinitialization-dg-operator-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/level_set/reinitialization_DG_operator.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_d8c980f69678bb74c2eb96a617637411.html">level_set</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">reinitialization_DG_operator.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="reinitialization__DG__operator_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="reinitialization__DG__diffusion__operator_8hpp.html">meltpooldg/level_set/reinitialization_DG_diffusion_operator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="reinitialization__DG__grad__operator_8hpp.html">meltpooldg/level_set/reinitialization_DG_grad_operator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="solution__history_8hpp.html">meltpooldg/time_integration/solution_history.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="time__integrator__base_8hpp.html">meltpooldg/time_integration/time_integrator_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="fe__integrator_8hpp.html">meltpooldg/utilities/fe_integrator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html">   27</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html">ReinitilizationDGOperator</a></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">   30</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a>      = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a4cc48eb44a511bae88d802bb2086dbce">   31</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a4cc48eb44a511bae88d802bb2086dbce">BlockVectorType</a> = dealii::LinearAlgebra::distributed::BlockVector&lt;number&gt;;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html">ReinitilizationDGOperator</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData&lt;dim, dim, number&gt;</a> &amp;scratch_data_in,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                              <span class="keyword">const</span> ReinitializationData&lt;number&gt;              &amp;reinit_data_in,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                              <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                               reinit_dof_idx_in,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                              <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                               reinit_quad_idx_in,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                              <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a>                                &amp;curvature_in,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                              <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a4cc48eb44a511bae88d802bb2086dbce">BlockVectorType</a>                           &amp;normal_vector_in);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a8931b3a1d43f6284d523f1a274b115e6">prepare_operator</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> &amp;solution);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a1f079012b392e69d3159b52098c9f32a">apply_operator</a>(number <span class="keyword">const</span>                                           time,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                   <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a>                                            &amp;dst,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                   <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> <span class="keyword">const</span>                                      &amp;src,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                   <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)&gt; &amp;func) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ab447aa4c522b3c514222b37fef17b909">   69</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ab447aa4c522b3c514222b37fef17b909">apply_dirichlet_boundary_operator</a>([[maybe_unused]] number <span class="keyword">const</span>      time,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                                      [[maybe_unused]] <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a>       &amp;dst,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                                      [[maybe_unused]] <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> <span class="keyword">const</span> &amp;src)<span class="keyword"> const </span>{};</div>
+</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a4a8dd4608ac4f1c9a89a24e853b91b80">reinit</a>();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ab3c8f0d3934a9763a113bfeadc2c22ec">apply_diffusion_implicit</a>(</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      number <span class="keyword">const</span>                                                   time,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      number <span class="keyword">const</span>                                                   time_step,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      [[maybe_unused]] <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory&lt;VectorType&gt;</a> &amp;solution_history) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a32d278c2b6183afc53e66a35d0ba90ff">   95</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a32d278c2b6183afc53e66a35d0ba90ff">update_field_functions</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a7683bed6f1c08ce88761a1bbf5886be1">  102</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a7683bed6f1c08ce88761a1bbf5886be1">set_field_functions</a>([[maybe_unused]] number <span class="keyword">const</span> time)<span class="keyword"> const </span>{};</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    number</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ac269212176842aba8f7d28da4ed48b1b">get_max_diffusitivity</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> &amp;</div>
+<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ae61fb8a8963c408266b7187ffb1baba8">  108</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ae61fb8a8963c408266b7187ffb1baba8">get_signum_smoothed</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aebe780600f766144084093b117fdc185">signum_smoothed</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
+</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> &amp;</div>
+<div class="foldopen" id="foldopen00114" data-start="{" data-end="}">
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a773a94a190003e958838320ac197c48f">  114</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a773a94a190003e958838320ac197c48f">get_sign_indicator_function</a>()</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a6856c9161c0d05161e1849765495d85a">sign_indicator_function</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
+</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#add5d00c018af7abed9fee2d5240923d4">set_artificial_diffusitivity</a>();</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aae101b243b2cdd0aba8fc1c01e16ca11">  123</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData&lt;dim, dim, number&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aae101b243b2cdd0aba8fc1c01e16ca11">scratch_data</a>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ac6a0cab42b6923d8490422397f99b546">  125</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ac6a0cab42b6923d8490422397f99b546">reinit_dof_idx</a>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a8d9d8a0a25c725cfb990739b3afc8b4f">  126</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a8d9d8a0a25c725cfb990739b3afc8b4f">reinit_quad_idx</a>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aeae949ebab35b5abb182ac720996dd80">  128</a></span>    <span class="keyword">const</span> ReinitializationData&lt;number&gt; &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aeae949ebab35b5abb182ac720996dd80">reinit_data</a>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a159216098e2d3b900180fe63a344d09a">  130</a></span>    <span class="keyword">mutable</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a159216098e2d3b900180fe63a344d09a">num_Hamiltonian</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aebe780600f766144084093b117fdc185">  131</a></span>    <span class="keyword">mutable</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aebe780600f766144084093b117fdc185">signum_smoothed</a>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#acfc8aaa2c34ddd38f19519a8c3928fbc">  132</a></span>    <span class="keyword">mutable</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#acfc8aaa2c34ddd38f19519a8c3928fbc">God_grad</a>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a6856c9161c0d05161e1849765495d85a">  133</a></span>    <span class="keyword">mutable</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a6856c9161c0d05161e1849765495d85a">sign_indicator_function</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">// auxiliary vectors for Godunov&#39;s scheme</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a2432aefa131d65c7d4c93e728d695a19">  136</a></span>    <span class="keyword">mutable</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a2432aefa131d65c7d4c93e728d695a19">grad_x_l</a>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ae690dddac36e697e26533d354b920016">  137</a></span>    <span class="keyword">mutable</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ae690dddac36e697e26533d354b920016">grad_x_r</a>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ad2bd3e0f8edf508081bf98f660f264fb">  138</a></span>    <span class="keyword">mutable</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ad2bd3e0f8edf508081bf98f660f264fb">grad_y_l</a>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a24c597e4a43175d97f368c2032591128">  139</a></span>    <span class="keyword">mutable</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a24c597e4a43175d97f368c2032591128">grad_y_r</a>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a56ff9538f5871ff04cf6a338fd4afa29">  140</a></span>    <span class="keyword">mutable</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a56ff9538f5871ff04cf6a338fd4afa29">grad_z_l</a>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a641a71755c507cfca69edeacbb313119">  141</a></span>    <span class="keyword">mutable</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a641a71755c507cfca69edeacbb313119">grad_z_r</a>;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#af202bf69870d8696839d87044b5e2601">  146</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationDGDiffusionOperator.html">ReinitializationDGDiffusionOperator&lt;dim, number&gt;</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#af202bf69870d8696839d87044b5e2601">RI_DG_diffusion_operator</a>;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a45bfea891332ab0ec22e821d94d2e26c">  147</a></span>    <span class="keyword">mutable</span> <a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1RIGradOperator.html">RIGradOperator&lt;dim, number&gt;</a>              <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a45bfea891332ab0ec22e821d94d2e26c">RI_grad_operator</a>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a6059af0bbe83fdbc8239aced458e73a6">  153</a></span>    std::shared_ptr&lt;TimeIntegration::TimeIntegratorBase&lt;number&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a6059af0bbe83fdbc8239aced458e73a6">IMEX_integration</a>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a619dbb3c4bcc2c76af24ac8ecbfd22d4">compute_godunov_hamiltonian</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> &amp;solution) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a1dfa3ff8d0440d829a6def8454dba461">compute_godunov_gradient</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> &amp;solution) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a3f31d9e026ba9e58fb941bf4b6d62f4e">compute_smoothed_signum</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a> &amp;solution, <span class="keyword">const</span> number min_vertex_distance) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a2d2ee3ec8eb1b7901182514346ef1fbb">interface_movement_penalty</a>(<span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt;       &amp;data,</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>                               <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a>                                  &amp;dst,</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>                               <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a>                            &amp;src,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                               <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt; &amp;cell_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a45b3e0ae98cd37dfbe973fb6d2a7f760">local_apply_domain_num_Hamiltonian</a>(</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>      <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt;       &amp;data,</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>      <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a>                                  &amp;dst,</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">VectorType</a>                            &amp;src,</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>      <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt; &amp;cell_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  };</div>
+</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>} <span class="comment">// namespace MeltPoolDG::LevelSet</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1RIGradOperator_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1RIGradOperator.html">MeltPoolDG::LevelSet::RIGradOperator</a></div><div class="ttdef"><b>Definition</b> reinitialization_DG_grad_operator.hpp:17</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationDGDiffusionOperator_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationDGDiffusionOperator.html">MeltPoolDG::LevelSet::ReinitializationDGDiffusionOperator</a></div><div class="ttdef"><b>Definition</b> reinitialization_DG_diffusion_operator.hpp:18</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html">MeltPoolDG::LevelSet::ReinitilizationDGOperator</a></div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:28</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a159216098e2d3b900180fe63a344d09a"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a159216098e2d3b900180fe63a344d09a">MeltPoolDG::LevelSet::ReinitilizationDGOperator::num_Hamiltonian</a></div><div class="ttdeci">VectorType num_Hamiltonian</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:130</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a1dfa3ff8d0440d829a6def8454dba461"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a1dfa3ff8d0440d829a6def8454dba461">MeltPoolDG::LevelSet::ReinitilizationDGOperator::compute_godunov_gradient</a></div><div class="ttdeci">void compute_godunov_gradient(const VectorType &amp;solution) const</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.cpp:237</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a1f079012b392e69d3159b52098c9f32a"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a1f079012b392e69d3159b52098c9f32a">MeltPoolDG::LevelSet::ReinitilizationDGOperator::apply_operator</a></div><div class="ttdeci">void apply_operator(number const time, VectorType &amp;dst, VectorType const &amp;src, const std::function&lt; void(unsigned int, unsigned int)&gt; &amp;func) const</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.cpp:67</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a2432aefa131d65c7d4c93e728d695a19"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a2432aefa131d65c7d4c93e728d695a19">MeltPoolDG::LevelSet::ReinitilizationDGOperator::grad_x_l</a></div><div class="ttdeci">VectorType grad_x_l</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:136</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a24c597e4a43175d97f368c2032591128"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a24c597e4a43175d97f368c2032591128">MeltPoolDG::LevelSet::ReinitilizationDGOperator::grad_y_r</a></div><div class="ttdeci">VectorType grad_y_r</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:139</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a2d2ee3ec8eb1b7901182514346ef1fbb"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a2d2ee3ec8eb1b7901182514346ef1fbb">MeltPoolDG::LevelSet::ReinitilizationDGOperator::interface_movement_penalty</a></div><div class="ttdeci">void interface_movement_penalty(const dealii::MatrixFree&lt; dim, number &gt; &amp;data, VectorType &amp;dst, const VectorType &amp;src, const std::pair&lt; unsigned int, unsigned int &gt; &amp;cell_range) const</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.cpp:198</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a32d278c2b6183afc53e66a35d0ba90ff"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a32d278c2b6183afc53e66a35d0ba90ff">MeltPoolDG::LevelSet::ReinitilizationDGOperator::update_field_functions</a></div><div class="ttdeci">bool update_field_functions</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:95</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a3f31d9e026ba9e58fb941bf4b6d62f4e"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a3f31d9e026ba9e58fb941bf4b6d62f4e">MeltPoolDG::LevelSet::ReinitilizationDGOperator::compute_smoothed_signum</a></div><div class="ttdeci">void compute_smoothed_signum(const VectorType &amp;solution, const number min_vertex_distance) const</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.cpp:317</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a45b3e0ae98cd37dfbe973fb6d2a7f760"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a45b3e0ae98cd37dfbe973fb6d2a7f760">MeltPoolDG::LevelSet::ReinitilizationDGOperator::local_apply_domain_num_Hamiltonian</a></div><div class="ttdeci">void local_apply_domain_num_Hamiltonian(const dealii::MatrixFree&lt; dim, number &gt; &amp;data, VectorType &amp;dst, const VectorType &amp;src, const std::pair&lt; unsigned int, unsigned int &gt; &amp;cell_range) const</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.cpp:170</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a45bfea891332ab0ec22e821d94d2e26c"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a45bfea891332ab0ec22e821d94d2e26c">MeltPoolDG::LevelSet::ReinitilizationDGOperator::RI_grad_operator</a></div><div class="ttdeci">RIGradOperator&lt; dim, number &gt; RI_grad_operator</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:147</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a4a8dd4608ac4f1c9a89a24e853b91b80"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a4a8dd4608ac4f1c9a89a24e853b91b80">MeltPoolDG::LevelSet::ReinitilizationDGOperator::reinit</a></div><div class="ttdeci">void reinit()</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.cpp:127</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a4cc48eb44a511bae88d802bb2086dbce"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a4cc48eb44a511bae88d802bb2086dbce">MeltPoolDG::LevelSet::ReinitilizationDGOperator::BlockVectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::BlockVector&lt; number &gt; BlockVectorType</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:31</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a56ff9538f5871ff04cf6a338fd4afa29"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a56ff9538f5871ff04cf6a338fd4afa29">MeltPoolDG::LevelSet::ReinitilizationDGOperator::grad_z_l</a></div><div class="ttdeci">VectorType grad_z_l</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:140</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a6059af0bbe83fdbc8239aced458e73a6"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a6059af0bbe83fdbc8239aced458e73a6">MeltPoolDG::LevelSet::ReinitilizationDGOperator::IMEX_integration</a></div><div class="ttdeci">std::shared_ptr&lt; TimeIntegration::TimeIntegratorBase&lt; number &gt; &gt; IMEX_integration</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:153</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a619dbb3c4bcc2c76af24ac8ecbfd22d4"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a619dbb3c4bcc2c76af24ac8ecbfd22d4">MeltPoolDG::LevelSet::ReinitilizationDGOperator::compute_godunov_hamiltonian</a></div><div class="ttdeci">void compute_godunov_hamiltonian(const VectorType &amp;solution) const</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.cpp:153</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a641a71755c507cfca69edeacbb313119"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a641a71755c507cfca69edeacbb313119">MeltPoolDG::LevelSet::ReinitilizationDGOperator::grad_z_r</a></div><div class="ttdeci">VectorType grad_z_r</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:141</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a6856c9161c0d05161e1849765495d85a"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a6856c9161c0d05161e1849765495d85a">MeltPoolDG::LevelSet::ReinitilizationDGOperator::sign_indicator_function</a></div><div class="ttdeci">VectorType sign_indicator_function</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:133</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a7683bed6f1c08ce88761a1bbf5886be1"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a7683bed6f1c08ce88761a1bbf5886be1">MeltPoolDG::LevelSet::ReinitilizationDGOperator::set_field_functions</a></div><div class="ttdeci">void set_field_functions(number const time) const</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:102</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a773a94a190003e958838320ac197c48f"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a773a94a190003e958838320ac197c48f">MeltPoolDG::LevelSet::ReinitilizationDGOperator::get_sign_indicator_function</a></div><div class="ttdeci">VectorType &amp; get_sign_indicator_function()</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:114</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a8931b3a1d43f6284d523f1a274b115e6"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a8931b3a1d43f6284d523f1a274b115e6">MeltPoolDG::LevelSet::ReinitilizationDGOperator::prepare_operator</a></div><div class="ttdeci">void prepare_operator(const VectorType &amp;solution)</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.cpp:46</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_a8d9d8a0a25c725cfb990739b3afc8b4f"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#a8d9d8a0a25c725cfb990739b3afc8b4f">MeltPoolDG::LevelSet::ReinitilizationDGOperator::reinit_quad_idx</a></div><div class="ttdeci">const unsigned int reinit_quad_idx</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:126</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_aa8f1e74f1f15b2ba925dee0fe9b6f6d1"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aa8f1e74f1f15b2ba925dee0fe9b6f6d1">MeltPoolDG::LevelSet::ReinitilizationDGOperator::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:30</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_aae101b243b2cdd0aba8fc1c01e16ca11"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aae101b243b2cdd0aba8fc1c01e16ca11">MeltPoolDG::LevelSet::ReinitilizationDGOperator::scratch_data</a></div><div class="ttdeci">const MeltPoolDG::ScratchData&lt; dim, dim, number &gt; &amp; scratch_data</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:123</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_ab3c8f0d3934a9763a113bfeadc2c22ec"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ab3c8f0d3934a9763a113bfeadc2c22ec">MeltPoolDG::LevelSet::ReinitilizationDGOperator::apply_diffusion_implicit</a></div><div class="ttdeci">void apply_diffusion_implicit(number const time, number const time_step, TimeIntegration::SolutionHistory&lt; VectorType &gt; &amp;solution_history) const</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.cpp:57</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_ab447aa4c522b3c514222b37fef17b909"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ab447aa4c522b3c514222b37fef17b909">MeltPoolDG::LevelSet::ReinitilizationDGOperator::apply_dirichlet_boundary_operator</a></div><div class="ttdeci">void apply_dirichlet_boundary_operator(number const time, VectorType &amp;dst, VectorType const &amp;src) const</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:69</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_ac269212176842aba8f7d28da4ed48b1b"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ac269212176842aba8f7d28da4ed48b1b">MeltPoolDG::LevelSet::ReinitilizationDGOperator::get_max_diffusitivity</a></div><div class="ttdeci">number get_max_diffusitivity() const</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.cpp:370</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_ac6a0cab42b6923d8490422397f99b546"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ac6a0cab42b6923d8490422397f99b546">MeltPoolDG::LevelSet::ReinitilizationDGOperator::reinit_dof_idx</a></div><div class="ttdeci">const unsigned int reinit_dof_idx</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:125</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_acfc8aaa2c34ddd38f19519a8c3928fbc"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#acfc8aaa2c34ddd38f19519a8c3928fbc">MeltPoolDG::LevelSet::ReinitilizationDGOperator::God_grad</a></div><div class="ttdeci">VectorType God_grad</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:132</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_ad2bd3e0f8edf508081bf98f660f264fb"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ad2bd3e0f8edf508081bf98f660f264fb">MeltPoolDG::LevelSet::ReinitilizationDGOperator::grad_y_l</a></div><div class="ttdeci">VectorType grad_y_l</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:138</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_add5d00c018af7abed9fee2d5240923d4"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#add5d00c018af7abed9fee2d5240923d4">MeltPoolDG::LevelSet::ReinitilizationDGOperator::set_artificial_diffusitivity</a></div><div class="ttdeci">void set_artificial_diffusitivity()</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.cpp:377</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_ae61fb8a8963c408266b7187ffb1baba8"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ae61fb8a8963c408266b7187ffb1baba8">MeltPoolDG::LevelSet::ReinitilizationDGOperator::get_signum_smoothed</a></div><div class="ttdeci">VectorType &amp; get_signum_smoothed() const</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:108</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_ae690dddac36e697e26533d354b920016"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#ae690dddac36e697e26533d354b920016">MeltPoolDG::LevelSet::ReinitilizationDGOperator::grad_x_r</a></div><div class="ttdeci">VectorType grad_x_r</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:137</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_aeae949ebab35b5abb182ac720996dd80"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aeae949ebab35b5abb182ac720996dd80">MeltPoolDG::LevelSet::ReinitilizationDGOperator::reinit_data</a></div><div class="ttdeci">const ReinitializationData&lt; number &gt; &amp; reinit_data</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:128</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_aebe780600f766144084093b117fdc185"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#aebe780600f766144084093b117fdc185">MeltPoolDG::LevelSet::ReinitilizationDGOperator::signum_smoothed</a></div><div class="ttdeci">VectorType signum_smoothed</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:131</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator_html_af202bf69870d8696839d87044b5e2601"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitilizationDGOperator.html#af202bf69870d8696839d87044b5e2601">MeltPoolDG::LevelSet::ReinitilizationDGOperator::RI_DG_diffusion_operator</a></div><div class="ttdeci">ReinitializationDGDiffusionOperator&lt; dim, number &gt; RI_DG_diffusion_operator</div><div class="ttdef"><b>Definition</b> reinitialization_DG_operator.hpp:146</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdef"><b>Definition</b> scratch_data.hpp:41</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory_html"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">MeltPoolDG::TimeIntegration::SolutionHistory</a></div><div class="ttdef"><b>Definition</b> solution_history.hpp:21</div></div>
+<div class="ttc" id="afe__integrator_8hpp_html"><div class="ttname"><a href="fe__integrator_8hpp.html">fe_integrator.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1LevelSet_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div><div class="ttdef"><b>Definition</b> advection_DG_operation.hpp:20</div></div>
+<div class="ttc" id="areinitialization__DG__diffusion__operator_8hpp_html"><div class="ttname"><a href="reinitialization__DG__diffusion__operator_8hpp.html">reinitialization_DG_diffusion_operator.hpp</a></div></div>
+<div class="ttc" id="areinitialization__DG__grad__operator_8hpp_html"><div class="ttname"><a href="reinitialization__DG__grad__operator_8hpp.html">reinitialization_DG_grad_operator.hpp</a></div></div>
+<div class="ttc" id="asolution__history_8hpp_html"><div class="ttname"><a href="solution__history_8hpp.html">solution_history.hpp</a></div></div>
+<div class="ttc" id="atime__integrator__base_8hpp_html"><div class="ttname"><a href="time__integrator__base_8hpp.html">time_integrator_base.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

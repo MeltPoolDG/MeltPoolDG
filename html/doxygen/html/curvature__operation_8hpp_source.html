@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/level_set/curvature_operation.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/level_set/curvature_operation.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/curvature__operation_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-level-set-curvature-operation-hpp-source-file">
+<h1>include/meltpooldg/level_set/curvature_operation.hpp Source File<a class="headerlink" href="#include-meltpooldg-level-set-curvature-operation-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/level_set/curvature_operation.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_d8c980f69678bb74c2eb96a617637411.html">level_set</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">curvature_operation.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="curvature__operation_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// for parallelization</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/lac/generic_linear_algebra.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// MeltPoolDG</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="curvature__operation__base_8hpp.html">meltpooldg/level_set/curvature_operation_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="curvature__operator_8hpp.html">meltpooldg/level_set/curvature_operator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="normal__vector__operation_8hpp.html">meltpooldg/level_set/normal_vector_operation.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="preconditioner_8hpp.html">meltpooldg/linear_algebra/preconditioner.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="predictor_8hpp.html">meltpooldg/linear_algebra/predictor.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="solution__history_8hpp.html">meltpooldg/time_integration/solution_history.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html">   17</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html">CurvatureOperation</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperationBase.html">CurvatureOperationBase</a>&lt;dim, number&gt;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">     *  This function calculates the curvature of the current level set function being</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">     *  the solution of an intermediate projection step</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">     *              (w, κ)   +   η_κ (∇w, ∇κ)  = (w,∇·n_ϕ)</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">     *                    Ω                  Ω            Ω</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">     *  with test function w, curvature κ, damping parameter η_κ and the normal to the</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">     *  level set function n_ϕ.</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ab305b2d56ec13a3295d7f459fc534a52">   31</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ab305b2d56ec13a3295d7f459fc534a52">VectorType</a>       = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a6443e84ff37a87fe1ab4ddd7c72b2438">   32</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a6443e84ff37a87fe1ab4ddd7c72b2438">BlockVectorType</a>  = dealii::LinearAlgebra::distributed::BlockVector&lt;number&gt;;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a270dfea699e81f209b05b34315eef4e8">   33</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a270dfea699e81f209b05b34315eef4e8">SparseMatrixType</a> = dealii::TrilinosWrappers::SparseMatrix;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html">CurvatureOperation</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;scratch_data_in,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                       <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1LevelSet_1_1CurvatureData.html">CurvatureData&lt;number&gt;</a>         &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a7b086d19204b8b4511171ff124ec99bb">curvature_data</a>,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                       <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1LevelSet_1_1NormalVectorData.html">NormalVectorData&lt;number&gt;</a>      &amp;normal_vec_data,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                       <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ab305b2d56ec13a3295d7f459fc534a52">VectorType</a>                    &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#aaf0441f70530640cb651452e15a9d356">solution_level_set</a>,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   curv_dof_idx_in,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   curv_quad_idx_in,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                       <span class="keyword">const</span> std::array&lt;unsigned int, dim&gt; &amp;normal_dof_indices_per_block_in,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   normal_no_bc_dof_idx_in,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   ls_dof_idx_in);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a341dc2474989e8e32cc808b4b54977cb">solve</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a3de80130425774bc70e0496c34bfb500">update_normal_vector</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">const</span> dealii::LinearAlgebra::distributed::Vector&lt;number&gt; &amp;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a0fb1083060ea44df7456535ba228c450">get_curvature</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    dealii::LinearAlgebra::distributed::Vector&lt;number&gt; &amp;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a0fb1083060ea44df7456535ba228c450">get_curvature</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">const</span> dealii::LinearAlgebra::distributed::BlockVector&lt;number&gt; &amp;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a42de3745b3577c9b1bf62e0b3415a2e1">get_normal_vector</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    dealii::LinearAlgebra::distributed::BlockVector&lt;number&gt; &amp;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a42de3745b3577c9b1bf62e0b3415a2e1">get_normal_vector</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a216db85b91b5f86345d3f3bf0b615cb9">reinit</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a98b6ac2420b710cb98321a3941dd7ba2">attach_vectors</a>(</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      std::vector&lt;dealii::LinearAlgebra::distributed::Vector&lt;number&gt; *&gt; &amp;vectors) <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a07f73eee955b1bee23a875732f9d921e">create_operator</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ab305b2d56ec13a3295d7f459fc534a52">VectorType</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#aaf0441f70530640cb651452e15a9d356">solution_level_set</a>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a07e4d1fc1eb43d5892b7b190ce0865e6">   75</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a07e4d1fc1eb43d5892b7b190ce0865e6">scratch_data</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a7b086d19204b8b4511171ff124ec99bb">   77</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1LevelSet_1_1CurvatureData.html">CurvatureData&lt;number&gt;</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a7b086d19204b8b4511171ff124ec99bb">curvature_data</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#aaf0441f70530640cb651452e15a9d356">   79</a></span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ab305b2d56ec13a3295d7f459fc534a52">VectorType</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#aaf0441f70530640cb651452e15a9d356">solution_level_set</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">     *  Based on the following indices the correct DoFHandler or quadrature rule from</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">     *  ScratchData&lt;dim,dim,number&gt; object is selected. This is important when</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">     * ScratchData&lt;dim,dim,number&gt; holds multiple DoFHandlers, quadrature rules, etc.</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ac61e495a4890ebb028d750f08e49f6cf">   85</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ac61e495a4890ebb028d750f08e49f6cf">curv_dof_idx</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a4d308941f719b2d8a0c5f83d28e98735">   86</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a4d308941f719b2d8a0c5f83d28e98735">curv_quad_idx</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#aa43a6fca0fcb54ee9d7d493a27b07bfd">   87</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#aa43a6fca0fcb54ee9d7d493a27b07bfd">normal_dof_idx</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#aa91d66ee211a151bfdc912399fa1351b">   88</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#aa91d66ee211a151bfdc912399fa1351b">ls_dof_idx</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ae87a3b75f26645a51c1c0df27631aaa8">   90</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1NormalVectorOperation.html">LevelSet::NormalVectorOperation&lt;dim, number&gt;</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ae87a3b75f26645a51c1c0df27631aaa8">normal_vector_operation</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a7d54f712c6a0f515f34aea1c4b8c032e">   92</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory&lt;VectorType&gt;</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a7d54f712c6a0f515f34aea1c4b8c032e">solution_history</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a7cad1d4dd83c79c5bd74395bb346e7b3">   94</a></span>    std::unique_ptr&lt;Predictor&lt;VectorType, number&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a7cad1d4dd83c79c5bd74395bb346e7b3">predictor</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">     *  This pointer will point to your user-defined curvature operator.</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a35e2780b75efbbe7793dc9a7c336e870">   99</a></span>    std::shared_ptr&lt;CurvatureOperator&lt;dim, number&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a35e2780b75efbbe7793dc9a7c336e870">curvature_operator</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">     *    This is the primary solution variable of this module, which will be also publically</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">     *    accessible for output_results.</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ad05fb21179eab34cf5de3c0d19ff2cc9">  104</a></span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ab305b2d56ec13a3295d7f459fc534a52">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ad05fb21179eab34cf5de3c0d19ff2cc9">solution_curvature_predictor</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a83d2d76a3891a2cb6b8d0277c1796961">  105</a></span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ab305b2d56ec13a3295d7f459fc534a52">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a83d2d76a3891a2cb6b8d0277c1796961">rhs</a>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">     * Preconditioner for the matrix-free curvature operator</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a3cba232315ae2465e2822d0eace6dbb2">  109</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1Preconditioner.html">Preconditioner&lt;dim, VectorType, number&gt;</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a3cba232315ae2465e2822d0eace6dbb2">preconditioner</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  };</div>
+</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>} <span class="comment">// namespace MeltPoolDG::LevelSet</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperationBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperationBase.html">MeltPoolDG::LevelSet::CurvatureOperationBase</a></div><div class="ttdef"><b>Definition</b> curvature_operation_base.hpp:8</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html">MeltPoolDG::LevelSet::CurvatureOperation</a></div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:18</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a07e4d1fc1eb43d5892b7b190ce0865e6"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a07e4d1fc1eb43d5892b7b190ce0865e6">MeltPoolDG::LevelSet::CurvatureOperation::scratch_data</a></div><div class="ttdeci">const ScratchData&lt; dim, dim, number &gt; &amp; scratch_data</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:75</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a07f73eee955b1bee23a875732f9d921e"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a07f73eee955b1bee23a875732f9d921e">MeltPoolDG::LevelSet::CurvatureOperation::create_operator</a></div><div class="ttdeci">void create_operator(const VectorType &amp;solution_level_set)</div><div class="ttdef"><b>Definition</b> curvature_operation.cpp:224</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a0fb1083060ea44df7456535ba228c450"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a0fb1083060ea44df7456535ba228c450">MeltPoolDG::LevelSet::CurvatureOperation::get_curvature</a></div><div class="ttdeci">const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp; get_curvature() const override</div><div class="ttdef"><b>Definition</b> curvature_operation.cpp:155</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a216db85b91b5f86345d3f3bf0b615cb9"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a216db85b91b5f86345d3f3bf0b615cb9">MeltPoolDG::LevelSet::CurvatureOperation::reinit</a></div><div class="ttdeci">void reinit() override</div><div class="ttdef"><b>Definition</b> curvature_operation.cpp:183</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a270dfea699e81f209b05b34315eef4e8"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a270dfea699e81f209b05b34315eef4e8">MeltPoolDG::LevelSet::CurvatureOperation::SparseMatrixType</a></div><div class="ttdeci">dealii::TrilinosWrappers::SparseMatrix SparseMatrixType</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:33</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a341dc2474989e8e32cc808b4b54977cb"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a341dc2474989e8e32cc808b4b54977cb">MeltPoolDG::LevelSet::CurvatureOperation::solve</a></div><div class="ttdeci">void solve() override</div><div class="ttdef"><b>Definition</b> curvature_operation.cpp:56</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a35e2780b75efbbe7793dc9a7c336e870"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a35e2780b75efbbe7793dc9a7c336e870">MeltPoolDG::LevelSet::CurvatureOperation::curvature_operator</a></div><div class="ttdeci">std::shared_ptr&lt; CurvatureOperator&lt; dim, number &gt; &gt; curvature_operator</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:99</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a3cba232315ae2465e2822d0eace6dbb2"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a3cba232315ae2465e2822d0eace6dbb2">MeltPoolDG::LevelSet::CurvatureOperation::preconditioner</a></div><div class="ttdeci">Preconditioner&lt; dim, VectorType, number &gt; preconditioner</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:109</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a3de80130425774bc70e0496c34bfb500"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a3de80130425774bc70e0496c34bfb500">MeltPoolDG::LevelSet::CurvatureOperation::update_normal_vector</a></div><div class="ttdeci">void update_normal_vector() override</div><div class="ttdef"><b>Definition</b> curvature_operation.cpp:46</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a42de3745b3577c9b1bf62e0b3415a2e1"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a42de3745b3577c9b1bf62e0b3415a2e1">MeltPoolDG::LevelSet::CurvatureOperation::get_normal_vector</a></div><div class="ttdeci">const dealii::LinearAlgebra::distributed::BlockVector&lt; number &gt; &amp; get_normal_vector() const override</div><div class="ttdef"><b>Definition</b> curvature_operation.cpp:169</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a4d308941f719b2d8a0c5f83d28e98735"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a4d308941f719b2d8a0c5f83d28e98735">MeltPoolDG::LevelSet::CurvatureOperation::curv_quad_idx</a></div><div class="ttdeci">const unsigned int curv_quad_idx</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:86</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a6443e84ff37a87fe1ab4ddd7c72b2438"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a6443e84ff37a87fe1ab4ddd7c72b2438">MeltPoolDG::LevelSet::CurvatureOperation::BlockVectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::BlockVector&lt; number &gt; BlockVectorType</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:32</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a7b086d19204b8b4511171ff124ec99bb"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a7b086d19204b8b4511171ff124ec99bb">MeltPoolDG::LevelSet::CurvatureOperation::curvature_data</a></div><div class="ttdeci">const CurvatureData&lt; number &gt; curvature_data</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:77</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a7cad1d4dd83c79c5bd74395bb346e7b3"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a7cad1d4dd83c79c5bd74395bb346e7b3">MeltPoolDG::LevelSet::CurvatureOperation::predictor</a></div><div class="ttdeci">std::unique_ptr&lt; Predictor&lt; VectorType, number &gt; &gt; predictor</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:94</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a7d54f712c6a0f515f34aea1c4b8c032e"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a7d54f712c6a0f515f34aea1c4b8c032e">MeltPoolDG::LevelSet::CurvatureOperation::solution_history</a></div><div class="ttdeci">TimeIntegration::SolutionHistory&lt; VectorType &gt; solution_history</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:92</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a83d2d76a3891a2cb6b8d0277c1796961"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a83d2d76a3891a2cb6b8d0277c1796961">MeltPoolDG::LevelSet::CurvatureOperation::rhs</a></div><div class="ttdeci">VectorType rhs</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:105</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_a98b6ac2420b710cb98321a3941dd7ba2"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#a98b6ac2420b710cb98321a3941dd7ba2">MeltPoolDG::LevelSet::CurvatureOperation::attach_vectors</a></div><div class="ttdeci">void attach_vectors(std::vector&lt; dealii::LinearAlgebra::distributed::Vector&lt; number &gt; * &gt; &amp;vectors) final</div><div class="ttdef"><b>Definition</b> curvature_operation.cpp:214</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_aa43a6fca0fcb54ee9d7d493a27b07bfd"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#aa43a6fca0fcb54ee9d7d493a27b07bfd">MeltPoolDG::LevelSet::CurvatureOperation::normal_dof_idx</a></div><div class="ttdeci">const unsigned int normal_dof_idx</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:87</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_aa91d66ee211a151bfdc912399fa1351b"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#aa91d66ee211a151bfdc912399fa1351b">MeltPoolDG::LevelSet::CurvatureOperation::ls_dof_idx</a></div><div class="ttdeci">const unsigned int ls_dof_idx</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:88</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_aaf0441f70530640cb651452e15a9d356"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#aaf0441f70530640cb651452e15a9d356">MeltPoolDG::LevelSet::CurvatureOperation::solution_level_set</a></div><div class="ttdeci">const VectorType &amp; solution_level_set</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:79</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_ab305b2d56ec13a3295d7f459fc534a52"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ab305b2d56ec13a3295d7f459fc534a52">MeltPoolDG::LevelSet::CurvatureOperation::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:31</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_ac61e495a4890ebb028d750f08e49f6cf"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ac61e495a4890ebb028d750f08e49f6cf">MeltPoolDG::LevelSet::CurvatureOperation::curv_dof_idx</a></div><div class="ttdeci">const unsigned int curv_dof_idx</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:85</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_ad05fb21179eab34cf5de3c0d19ff2cc9"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ad05fb21179eab34cf5de3c0d19ff2cc9">MeltPoolDG::LevelSet::CurvatureOperation::solution_curvature_predictor</a></div><div class="ttdeci">VectorType solution_curvature_predictor</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:104</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1CurvatureOperation_html_ae87a3b75f26645a51c1c0df27631aaa8"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1CurvatureOperation.html#ae87a3b75f26645a51c1c0df27631aaa8">MeltPoolDG::LevelSet::CurvatureOperation::normal_vector_operation</a></div><div class="ttdeci">LevelSet::NormalVectorOperation&lt; dim, number &gt; normal_vector_operation</div><div class="ttdef"><b>Definition</b> curvature_operation.hpp:90</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1NormalVectorOperation_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1NormalVectorOperation.html">MeltPoolDG::LevelSet::NormalVectorOperation</a></div><div class="ttdef"><b>Definition</b> normal_vector_operation.hpp:38</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Preconditioner_html"><div class="ttname"><a href="classMeltPoolDG_1_1Preconditioner.html">MeltPoolDG::Preconditioner</a></div><div class="ttdef"><b>Definition</b> preconditioner.hpp:42</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdef"><b>Definition</b> scratch_data.hpp:41</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory_html"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">MeltPoolDG::TimeIntegration::SolutionHistory</a></div><div class="ttdef"><b>Definition</b> solution_history.hpp:21</div></div>
+<div class="ttc" id="acurvature__operation__base_8hpp_html"><div class="ttname"><a href="curvature__operation__base_8hpp.html">curvature_operation_base.hpp</a></div></div>
+<div class="ttc" id="acurvature__operator_8hpp_html"><div class="ttname"><a href="curvature__operator_8hpp.html">curvature_operator.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1LevelSet_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div><div class="ttdef"><b>Definition</b> advection_DG_operation.hpp:20</div></div>
+<div class="ttc" id="anormal__vector__operation_8hpp_html"><div class="ttname"><a href="normal__vector__operation_8hpp.html">normal_vector_operation.hpp</a></div></div>
+<div class="ttc" id="apreconditioner_8hpp_html"><div class="ttname"><a href="preconditioner_8hpp.html">preconditioner.hpp</a></div></div>
+<div class="ttc" id="apredictor_8hpp_html"><div class="ttname"><a href="predictor_8hpp.html">predictor.hpp</a></div></div>
+<div class="ttc" id="asolution__history_8hpp_html"><div class="ttname"><a href="solution__history_8hpp.html">solution_history.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1LevelSet_1_1CurvatureData_html"><div class="ttname"><a href="structMeltPoolDG_1_1LevelSet_1_1CurvatureData.html">MeltPoolDG::LevelSet::CurvatureData</a></div><div class="ttdef"><b>Definition</b> curvature_data.hpp:15</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1LevelSet_1_1NormalVectorData_html"><div class="ttname"><a href="structMeltPoolDG_1_1LevelSet_1_1NormalVectorData.html">MeltPoolDG::LevelSet::NormalVectorData</a></div><div class="ttdef"><b>Definition</b> normal_vector_data.hpp:15</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/particles/dem_util.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/particles/dem_util.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/dem__util_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-particles-dem-util-hpp-source-file">
+<h1>include/meltpooldg/particles/dem_util.hpp Source File<a class="headerlink" href="#include-meltpooldg-particles-dem-util-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/particles/dem_util.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_39446897a1438b7558941c3f21df2e43.html">particles</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">dem_util.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="dem__util_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;deal.II/particles/particle_handler.h&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="solution__history_8hpp.html">meltpooldg/time_integration/solution_history.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG.html">MeltPoolDG</a></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">   30</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">ParticleHandlerVectorView</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">ParticleHandlerVectorView</a>(dealii::Particles::ParticleHandler&lt;dim&gt; &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a0fdc40c25fe5e5e34e00e100d69cd3b5">particle_handler</a>,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                              <span class="keywordtype">unsigned</span>                                 <a class="code hl_variable" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#ab37042ef609df3fa74ccfc3805b4dc64">property_index</a>,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                              <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a374a1d9f367e8a8a32aa9d7552e570e3">index_describes_location</a> = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">ParticleHandlerVectorView&lt;dim, number&gt;</a> &amp;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a81057c5e720fbfd436c1b358b7e3cd13">operator*=</a>(<span class="keyword">const</span> number factor);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">ParticleHandlerVectorView&lt;dim, number&gt;</a> &amp;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#abfeacac7c78f1ff6a11a158e1c087bba">operator/=</a>(<span class="keyword">const</span> number factor);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">ParticleHandlerVectorView&lt;dim, number&gt;</a> &amp;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a705c8a910e670092204aef91173d738b">operator-=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">ParticleHandlerVectorView&lt;dim, number&gt;</a> &amp;v);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">ParticleHandlerVectorView&lt;dim, number&gt;</a> &amp;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#af3d43358804076deeec724060dffc18b">operator+=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">ParticleHandlerVectorView&lt;dim, number&gt;</a> &amp;v);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordtype">bool</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a19f891e25eb8696e26759101a355995a">has_ghost_elements</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a405e8fdecbaddeab4e788814dcedef00">zero_out_ghost_elements</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a36dc114449c545e65fe225f7d457e19d">update_ghost_values</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> exchange_particles = <span class="keyword">true</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#ab8cbb87769a0f6c2e5228277f21ae578">add</a>(<span class="keyword">const</span> number a, <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">ParticleHandlerVectorView&lt;dim, number&gt;</a> &amp;v);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a534d9225336afa1bca84a78a46f7c9ea">sadd</a>(<span class="keyword">const</span> number s, <span class="keyword">const</span> number a, <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">ParticleHandlerVectorView&lt;dim, number&gt;</a> &amp;v);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">unsigned</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a6389f35c725fc33ed008f41a77776e51">locally_owned_size</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    number &amp;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a276dbad059dba21bb3c24e5bb123f567">local_element</a>(<span class="keywordtype">unsigned</span> index);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keyword">const</span> number &amp;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a276dbad059dba21bb3c24e5bb123f567">local_element</a>(<span class="keywordtype">unsigned</span> index) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordtype">unsigned</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a088c87e1df8be3226d248b8ee1d5e393">size</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a0fdc40c25fe5e5e34e00e100d69cd3b5">  166</a></span>    dealii::Particles::ParticleHandler&lt;dim&gt; &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a0fdc40c25fe5e5e34e00e100d69cd3b5">particle_handler</a>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#ab37042ef609df3fa74ccfc3805b4dc64">  170</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#ab37042ef609df3fa74ccfc3805b4dc64">property_index</a>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a374a1d9f367e8a8a32aa9d7552e570e3">  174</a></span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a374a1d9f367e8a8a32aa9d7552e570e3">index_describes_location</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  };</div>
+</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00197" data-start="{" data-end="};">
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html">  197</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html">ParticleHandlerBlockVectorView</a></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  {</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#ac1c3a31b6c171e0ed28d8db771884116">  207</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#ac1c3a31b6c171e0ed28d8db771884116">ParticleHandlerBlockVectorView</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a915468efe58ff0676c444e1452b345c4">reinit</a>(dealii::Particles::ParticleHandler&lt;dim&gt; &amp;particle_handler);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a915468efe58ff0676c444e1452b345c4">reinit</a>(dealii::Particles::ParticleHandler&lt;dim&gt; &amp;particle_handler,</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>           <span class="keyword">const</span> std::vector&lt;unsigned&gt;             &amp;property_indices);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a915468efe58ff0676c444e1452b345c4">reinit</a>(dealii::Particles::ParticleHandler&lt;dim&gt; &amp;particle_handler,</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>           <span class="keywordtype">unsigned</span>                                 property_indices_begin,</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>           <span class="keywordtype">unsigned</span>                                 property_indices_size = 1);</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keywordtype">bool</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#ace21a2b66946d2da6d0fd70864bf9a8a">has_ghost_elements</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#aa8620fc5276943f8f8f214d2356bca4b">zero_out_ghost_elements</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a94e837e6043d5784c387edc0433d04aa">update_ghost_values</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> exchange_particles = <span class="keyword">true</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a7908fc3ccc063440f578cab56a3d9275">add</a>(<span class="keyword">const</span> number a, <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html">ParticleHandlerBlockVectorView&lt;dim, number&gt;</a> &amp;v);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#ae251374341fefe5b38f7bb7a67fbb2e6">sadd</a>(<span class="keyword">const</span> number s, <span class="keyword">const</span> number a, <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html">ParticleHandlerBlockVectorView&lt;dim, number&gt;</a> &amp;v);</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="keywordtype">unsigned</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a9f09d7f4262e615cd9881a3e087e30ea">n_blocks</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">ParticleHandlerVectorView&lt;dim, number&gt;</a> &amp;</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a0719179c5a54873ccef8c7ec233e6820">block</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> i) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <a class="code hl_class" href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">ParticleHandlerVectorView&lt;dim, number&gt;</a> &amp;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a0719179c5a54873ccef8c7ec233e6820">block</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> i);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a3202c81da3a0504b4ca735a7e69a7c94">  331</a></span>    std::vector&lt;ParticleHandlerVectorView&lt;dim, number&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a3202c81da3a0504b4ca735a7e69a7c94">vectors</a>;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>  };</div>
+</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number, <span class="keyword">typename</span> ObstacleType&gt;</div>
+<div class="foldopen" id="foldopen00347" data-start="{" data-end="};">
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html">  347</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html">DemTimeIntegratorVectorViews</a></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>  {</div>
+<div class="foldopen" id="foldopen00362" data-start="{" data-end="}">
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#aa6da875dd16b9f7455af38fe4c15aea5">  362</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#aa6da875dd16b9f7455af38fe4c15aea5">DemTimeIntegratorVectorViews</a>(</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>      <span class="keyword">const</span> std::vector&lt;std::reference_wrapper&lt;dealii::Particles::ParticleHandler&lt;dim&gt;&gt;&gt;</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>                    &amp;particle_handlers,</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> solution_history_size)</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>      : <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#a3720de53746ffd82fdc4020550eab671">location</a>(solution_history_size)</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#ae913f8e51f0c272c2288ae4d375ee849">translational_velocity</a>(solution_history_size)</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#aa114b23355614c2c290ca5a1a4b7e4d0">translational_acceleration</a>(solution_history_size)</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#a4632650cd1c2d89e959f34631dd43348">angular_velocity</a>(solution_history_size)</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#ae89fd5d2af921636a76f32420a21e7d3">angular_acceleration</a>(solution_history_size)</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    {</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>      Assert(solution_history_size == particle_handlers.size(),</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>             dealii::ExcMessage(</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>               <span class="stringliteral">&quot;The solution history size and the number of particle handlers must match!&quot;</span>));</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span> </div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; solution_history_size; ++i)</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>        {</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>          <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#a3720de53746ffd82fdc4020550eab671">location</a>.get_solution(i).reinit(particle_handlers[i]);</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>          <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#ae913f8e51f0c272c2288ae4d375ee849">translational_velocity</a>.get_solution(i).reinit(particle_handlers[i],</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>                                                        ObstacleType::Properties::velocity,</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>                                                        dim);</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>          <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#aa114b23355614c2c290ca5a1a4b7e4d0">translational_acceleration</a>.get_solution(i).reinit(particle_handlers[i],</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>                                                            ObstacleType::Properties::acceleration,</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>                                                            dim);</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>          <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#a4632650cd1c2d89e959f34631dd43348">angular_velocity</a>.get_solution(i).reinit(particle_handlers[i],</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>                                                  ObstacleType::Properties::angular_velocity,</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>                                                  ObstacleType::size_angular_velocity);</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>          <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#ae89fd5d2af921636a76f32420a21e7d3">angular_acceleration</a>.get_solution(i).reinit(</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>            particle_handlers[i],</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>            ObstacleType::Properties::angular_acceleration,</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>            ObstacleType::size_angular_velocity);</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>        }</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    }</div>
+</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span> </div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#a3720de53746ffd82fdc4020550eab671">  396</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory&lt;ParticleHandlerBlockVectorView&lt;dim, number&gt;</a>&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#a3720de53746ffd82fdc4020550eab671">location</a>;</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory&lt;ParticleHandlerBlockVectorView&lt;dim, number&gt;</a>&gt;</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#ae913f8e51f0c272c2288ae4d375ee849">  400</a></span>      <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#ae913f8e51f0c272c2288ae4d375ee849">translational_velocity</a>;</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory&lt;ParticleHandlerBlockVectorView&lt;dim, number&gt;</a>&gt;</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#aa114b23355614c2c290ca5a1a4b7e4d0">  404</a></span>      <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#aa114b23355614c2c290ca5a1a4b7e4d0">translational_acceleration</a>;</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#a4632650cd1c2d89e959f34631dd43348">  407</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory&lt;ParticleHandlerBlockVectorView&lt;dim, number&gt;</a>&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#a4632650cd1c2d89e959f34631dd43348">angular_velocity</a>;</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span> </div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>    <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory&lt;ParticleHandlerBlockVectorView&lt;dim, number&gt;</a>&gt;</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#ae89fd5d2af921636a76f32420a21e7d3">  411</a></span>      <a class="code hl_variable" href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#ae89fd5d2af921636a76f32420a21e7d3">angular_acceleration</a>;</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>  };</div>
+</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span> </div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerBlockVectorView_html"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html">MeltPoolDG::ParticleHandlerBlockVectorView</a></div><div class="ttdoc">A block vector view providing access to multiple particle properties managed by a dealii::Particles::...</div><div class="ttdef"><b>Definition</b> dem_util.hpp:198</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerBlockVectorView_html_a0719179c5a54873ccef8c7ec233e6820"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a0719179c5a54873ccef8c7ec233e6820">MeltPoolDG::ParticleHandlerBlockVectorView::block</a></div><div class="ttdeci">const ParticleHandlerVectorView&lt; dim, number &gt; &amp; block(const unsigned i) const</div><div class="ttdoc">Returns a read-only reference to the i-th block vector view.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:236</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerBlockVectorView_html_a3202c81da3a0504b4ca735a7e69a7c94"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a3202c81da3a0504b4ca735a7e69a7c94">MeltPoolDG::ParticleHandlerBlockVectorView::vectors</a></div><div class="ttdeci">std::vector&lt; ParticleHandlerVectorView&lt; dim, number &gt; &gt; vectors</div><div class="ttdoc">Collection of vector views representing individual particle properties.</div><div class="ttdef"><b>Definition</b> dem_util.hpp:331</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerBlockVectorView_html_a7908fc3ccc063440f578cab56a3d9275"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a7908fc3ccc063440f578cab56a3d9275">MeltPoolDG::ParticleHandlerBlockVectorView::add</a></div><div class="ttdeci">void add(const number a, const ParticleHandlerBlockVectorView&lt; dim, number &gt; &amp;v)</div><div class="ttdoc">Adds a scaled version of another block vector view to this one.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:206</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerBlockVectorView_html_a915468efe58ff0676c444e1452b345c4"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a915468efe58ff0676c444e1452b345c4">MeltPoolDG::ParticleHandlerBlockVectorView::reinit</a></div><div class="ttdeci">void reinit(dealii::Particles::ParticleHandler&lt; dim &gt; &amp;particle_handler)</div><div class="ttdoc">Reinitialize the block vector view for particle locations.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:145</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerBlockVectorView_html_a94e837e6043d5784c387edc0433d04aa"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a94e837e6043d5784c387edc0433d04aa">MeltPoolDG::ParticleHandlerBlockVectorView::update_ghost_values</a></div><div class="ttdeci">void update_ghost_values(const bool exchange_particles=true) const</div><div class="ttdoc">Updates ghost particle values across MPI ranks.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:197</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerBlockVectorView_html_a9f09d7f4262e615cd9881a3e087e30ea"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#a9f09d7f4262e615cd9881a3e087e30ea">MeltPoolDG::ParticleHandlerBlockVectorView::n_blocks</a></div><div class="ttdeci">unsigned n_blocks() const</div><div class="ttdoc">Returns the number of blocks in this block vector view.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:229</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerBlockVectorView_html_aa8620fc5276943f8f8f214d2356bca4b"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#aa8620fc5276943f8f8f214d2356bca4b">MeltPoolDG::ParticleHandlerBlockVectorView::zero_out_ghost_elements</a></div><div class="ttdeci">void zero_out_ghost_elements() const</div><div class="ttdef"><b>Definition</b> dem_util.cpp:189</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerBlockVectorView_html_ac1c3a31b6c171e0ed28d8db771884116"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#ac1c3a31b6c171e0ed28d8db771884116">MeltPoolDG::ParticleHandlerBlockVectorView::ParticleHandlerBlockVectorView</a></div><div class="ttdeci">ParticleHandlerBlockVectorView()=default</div><div class="ttdoc">Default constructor.</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerBlockVectorView_html_ace21a2b66946d2da6d0fd70864bf9a8a"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#ace21a2b66946d2da6d0fd70864bf9a8a">MeltPoolDG::ParticleHandlerBlockVectorView::has_ghost_elements</a></div><div class="ttdeci">bool has_ghost_elements() const</div><div class="ttdef"><b>Definition</b> dem_util.cpp:179</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerBlockVectorView_html_ae251374341fefe5b38f7bb7a67fbb2e6"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerBlockVectorView.html#ae251374341fefe5b38f7bb7a67fbb2e6">MeltPoolDG::ParticleHandlerBlockVectorView::sadd</a></div><div class="ttdeci">void sadd(const number s, const number a, const ParticleHandlerBlockVectorView&lt; dim, number &gt; &amp;v)</div><div class="ttdoc">Scales this block vector and adds a scaled version of another block vector.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:217</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html">MeltPoolDG::ParticleHandlerVectorView</a></div><div class="ttdoc">A vector-like view into a specific property of all particles managed by a dealii::Particles::Particle...</div><div class="ttdef"><b>Definition</b> dem_util.hpp:31</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_a088c87e1df8be3226d248b8ee1d5e393"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a088c87e1df8be3226d248b8ee1d5e393">MeltPoolDG::ParticleHandlerVectorView::size</a></div><div class="ttdeci">unsigned size() const</div><div class="ttdef"><b>Definition</b> dem_util.cpp:138</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_a0fdc40c25fe5e5e34e00e100d69cd3b5"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a0fdc40c25fe5e5e34e00e100d69cd3b5">MeltPoolDG::ParticleHandlerVectorView::particle_handler</a></div><div class="ttdeci">dealii::Particles::ParticleHandler&lt; dim &gt; &amp; particle_handler</div><div class="ttdoc">The particle handler that provides access to the actual particle data.</div><div class="ttdef"><b>Definition</b> dem_util.hpp:166</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_a19f891e25eb8696e26759101a355995a"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a19f891e25eb8696e26759101a355995a">MeltPoolDG::ParticleHandlerVectorView::has_ghost_elements</a></div><div class="ttdeci">bool has_ghost_elements() const</div><div class="ttdef"><b>Definition</b> dem_util.cpp:87</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_a276dbad059dba21bb3c24e5bb123f567"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a276dbad059dba21bb3c24e5bb123f567">MeltPoolDG::ParticleHandlerVectorView::local_element</a></div><div class="ttdeci">number &amp; local_element(unsigned index)</div><div class="ttdoc">Returns a mutable reference to a local particle property.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:118</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_a36dc114449c545e65fe225f7d457e19d"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a36dc114449c545e65fe225f7d457e19d">MeltPoolDG::ParticleHandlerVectorView::update_ghost_values</a></div><div class="ttdeci">void update_ghost_values(const bool exchange_particles=true) const</div><div class="ttdoc">Updates ghost particle values.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:101</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_a374a1d9f367e8a8a32aa9d7552e570e3"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a374a1d9f367e8a8a32aa9d7552e570e3">MeltPoolDG::ParticleHandlerVectorView::index_describes_location</a></div><div class="ttdeci">const bool index_describes_location</div><div class="ttdef"><b>Definition</b> dem_util.hpp:174</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_a405e8fdecbaddeab4e788814dcedef00"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a405e8fdecbaddeab4e788814dcedef00">MeltPoolDG::ParticleHandlerVectorView::zero_out_ghost_elements</a></div><div class="ttdeci">void zero_out_ghost_elements() const</div><div class="ttdef"><b>Definition</b> dem_util.cpp:94</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_a534d9225336afa1bca84a78a46f7c9ea"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a534d9225336afa1bca84a78a46f7c9ea">MeltPoolDG::ParticleHandlerVectorView::sadd</a></div><div class="ttdeci">void sadd(const number s, const number a, const ParticleHandlerVectorView&lt; dim, number &gt; &amp;v)</div><div class="ttdoc">Scales this vector and adds a scaled version of another vector.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:71</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_a6389f35c725fc33ed008f41a77776e51"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a6389f35c725fc33ed008f41a77776e51">MeltPoolDG::ParticleHandlerVectorView::locally_owned_size</a></div><div class="ttdeci">unsigned locally_owned_size() const</div><div class="ttdoc">Returns the number of particles owned by the current MPI process.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:111</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_a705c8a910e670092204aef91173d738b"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a705c8a910e670092204aef91173d738b">MeltPoolDG::ParticleHandlerVectorView::operator-=</a></div><div class="ttdeci">ParticleHandlerVectorView&lt; dim, number &gt; &amp; operator-=(const ParticleHandlerVectorView&lt; dim, number &gt; &amp;v)</div><div class="ttdoc">Subtracts another vector view from this one.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:37</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_a81057c5e720fbfd436c1b358b7e3cd13"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#a81057c5e720fbfd436c1b358b7e3cd13">MeltPoolDG::ParticleHandlerVectorView::operator*=</a></div><div class="ttdeci">ParticleHandlerVectorView&lt; dim, number &gt; &amp; operator*=(const number factor)</div><div class="ttdoc">Scales all elements of the vector view by a given factor.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:19</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_ab37042ef609df3fa74ccfc3805b4dc64"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#ab37042ef609df3fa74ccfc3805b4dc64">MeltPoolDG::ParticleHandlerVectorView::property_index</a></div><div class="ttdeci">const unsigned property_index</div><div class="ttdef"><b>Definition</b> dem_util.hpp:170</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_ab8cbb87769a0f6c2e5228277f21ae578"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#ab8cbb87769a0f6c2e5228277f21ae578">MeltPoolDG::ParticleHandlerVectorView::add</a></div><div class="ttdeci">void add(const number a, const ParticleHandlerVectorView&lt; dim, number &gt; &amp;v)</div><div class="ttdoc">Adds a scaled version of another vector view to this one.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:59</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_abfeacac7c78f1ff6a11a158e1c087bba"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#abfeacac7c78f1ff6a11a158e1c087bba">MeltPoolDG::ParticleHandlerVectorView::operator/=</a></div><div class="ttdeci">ParticleHandlerVectorView&lt; dim, number &gt; &amp; operator/=(const number factor)</div><div class="ttdoc">Divides all elements of the vector view by a given factor.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:28</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleHandlerVectorView_html_af3d43358804076deeec724060dffc18b"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleHandlerVectorView.html#af3d43358804076deeec724060dffc18b">MeltPoolDG::ParticleHandlerVectorView::operator+=</a></div><div class="ttdeci">ParticleHandlerVectorView&lt; dim, number &gt; &amp; operator+=(const ParticleHandlerVectorView&lt; dim, number &gt; &amp;v)</div><div class="ttdoc">Adds another vector view to this one.</div><div class="ttdef"><b>Definition</b> dem_util.cpp:48</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory_html"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">MeltPoolDG::TimeIntegration::SolutionHistory</a></div><div class="ttdef"><b>Definition</b> solution_history.hpp:21</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> base_data.hpp:9</div></div>
+<div class="ttc" id="asolution__history_8hpp_html"><div class="ttname"><a href="solution__history_8hpp.html">solution_history.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1DemTimeIntegratorVectorViews_html"><div class="ttname"><a href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html">MeltPoolDG::DemTimeIntegratorVectorViews</a></div><div class="ttdoc">Holds required block vector views for DEM particle time integration.</div><div class="ttdef"><b>Definition</b> dem_util.hpp:348</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1DemTimeIntegratorVectorViews_html_a3720de53746ffd82fdc4020550eab671"><div class="ttname"><a href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#a3720de53746ffd82fdc4020550eab671">MeltPoolDG::DemTimeIntegratorVectorViews::location</a></div><div class="ttdeci">TimeIntegration::SolutionHistory&lt; ParticleHandlerBlockVectorView&lt; dim, number &gt; &gt; location</div><div class="ttdoc">Block vector views for the x/y/z components of particle positions.</div><div class="ttdef"><b>Definition</b> dem_util.hpp:396</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1DemTimeIntegratorVectorViews_html_a4632650cd1c2d89e959f34631dd43348"><div class="ttname"><a href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#a4632650cd1c2d89e959f34631dd43348">MeltPoolDG::DemTimeIntegratorVectorViews::angular_velocity</a></div><div class="ttdeci">TimeIntegration::SolutionHistory&lt; ParticleHandlerBlockVectorView&lt; dim, number &gt; &gt; angular_velocity</div><div class="ttdoc">Block vector views for the x/y/z components of particle angular velocities.</div><div class="ttdef"><b>Definition</b> dem_util.hpp:407</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1DemTimeIntegratorVectorViews_html_aa114b23355614c2c290ca5a1a4b7e4d0"><div class="ttname"><a href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#aa114b23355614c2c290ca5a1a4b7e4d0">MeltPoolDG::DemTimeIntegratorVectorViews::translational_acceleration</a></div><div class="ttdeci">TimeIntegration::SolutionHistory&lt; ParticleHandlerBlockVectorView&lt; dim, number &gt; &gt; translational_acceleration</div><div class="ttdoc">Block vector views for the x/y/z components of particle translational acceleration.</div><div class="ttdef"><b>Definition</b> dem_util.hpp:404</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1DemTimeIntegratorVectorViews_html_aa6da875dd16b9f7455af38fe4c15aea5"><div class="ttname"><a href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#aa6da875dd16b9f7455af38fe4c15aea5">MeltPoolDG::DemTimeIntegratorVectorViews::DemTimeIntegratorVectorViews</a></div><div class="ttdeci">DemTimeIntegratorVectorViews(const std::vector&lt; std::reference_wrapper&lt; dealii::Particles::ParticleHandler&lt; dim &gt; &gt; &gt; &amp;particle_handlers, const unsigned solution_history_size)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> dem_util.hpp:362</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1DemTimeIntegratorVectorViews_html_ae89fd5d2af921636a76f32420a21e7d3"><div class="ttname"><a href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#ae89fd5d2af921636a76f32420a21e7d3">MeltPoolDG::DemTimeIntegratorVectorViews::angular_acceleration</a></div><div class="ttdeci">TimeIntegration::SolutionHistory&lt; ParticleHandlerBlockVectorView&lt; dim, number &gt; &gt; angular_acceleration</div><div class="ttdoc">Block vector views for the x/y/z components of particle angular acceleration.</div><div class="ttdef"><b>Definition</b> dem_util.hpp:411</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1DemTimeIntegratorVectorViews_html_ae913f8e51f0c272c2288ae4d375ee849"><div class="ttname"><a href="structMeltPoolDG_1_1DemTimeIntegratorVectorViews.html#ae913f8e51f0c272c2288ae4d375ee849">MeltPoolDG::DemTimeIntegratorVectorViews::translational_velocity</a></div><div class="ttdeci">TimeIntegration::SolutionHistory&lt; ParticleHandlerBlockVectorView&lt; dim, number &gt; &gt; translational_velocity</div><div class="ttdoc">Block vector views for the x/y/z components of particle translational velocities.</div><div class="ttdef"><b>Definition</b> dem_util.hpp:400</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
