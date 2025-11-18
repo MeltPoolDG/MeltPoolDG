@@ -142,121 +142,180 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Container for shared scratch data between operations/operators.  
+ <a href="classMeltPoolDG_1_1ScratchData.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="scratch__data_8hpp_source.html">scratch_data.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a571291519924ef97da78cf4a9d67debb" id="r_a571291519924ef97da78cf4a9d67debb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a571291519924ef97da78cf4a9d67debb">ScratchData</a> (const MPI_Comm mpi_communicator, const unsigned int verbosity_level_in, const bool <a class="el" href="classMeltPoolDG_1_1ScratchData.html#ab86008b998659d95b053dc20556514eb">do_matrix_free</a>)</td></tr>
+<tr class="memdesc:a571291519924ef97da78cf4a9d67debb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a scratch data container.  <br /></td></tr>
 <tr class="separator:a571291519924ef97da78cf4a9d67debb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af77a33619dd4a5a30363196eeae7cc92" id="r_af77a33619dd4a5a30363196eeae7cc92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#af77a33619dd4a5a30363196eeae7cc92">reinit</a> (const dealii::Mapping&lt; dim, spacedim &gt; &amp;<a class="el" href="classMeltPoolDG_1_1ScratchData.html#aff2467086660cc49c85e31d5222de7c0">mapping</a>, const std::vector&lt; const dealii::DoFHandler&lt; dim, spacedim &gt; * &gt; &amp;<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a71c6bd6928c06fefd2b773cb3d695e09">dof_handler</a>, const std::vector&lt; const dealii::AffineConstraints&lt; number &gt; * &gt; &amp;<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a23585a866a53de9c994576c4865e571c">constraint</a>, const std::vector&lt; dealii::Quadrature&lt; dim &gt; &gt; &amp;<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a974e88e353a85c2ca65eea1eb90bd435">quad</a>, const bool enable_boundary_face_loops, const bool enable_inner_face_loops, const bool enable_normal_vector_update=false)</td></tr>
+<tr class="memdesc:af77a33619dd4a5a30363196eeae7cc92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up mapping, DoFHandlers, constraints, quadrature rules and matrix-free data in a single call.  <br /></td></tr>
 <tr class="separator:af77a33619dd4a5a30363196eeae7cc92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2512990e6493899b1376eb3de3ef10be" id="r_a2512990e6493899b1376eb3de3ef10be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a2512990e6493899b1376eb3de3ef10be">set_mapping</a> (const dealii::Mapping&lt; dim, spacedim &gt; &amp;<a class="el" href="classMeltPoolDG_1_1ScratchData.html#aff2467086660cc49c85e31d5222de7c0">mapping</a>)</td></tr>
+<tr class="memdesc:a2512990e6493899b1376eb3de3ef10be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the mapping by value.  <br /></td></tr>
 <tr class="separator:a2512990e6493899b1376eb3de3ef10be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05784a359e87bd24ed2dbcda4cc34620" id="r_a05784a359e87bd24ed2dbcda4cc34620"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a05784a359e87bd24ed2dbcda4cc34620">set_mapping</a> (const std::shared_ptr&lt; dealii::Mapping&lt; dim, spacedim &gt; &gt; <a class="el" href="classMeltPoolDG_1_1ScratchData.html#aff2467086660cc49c85e31d5222de7c0">mapping</a>)</td></tr>
+<tr class="memdesc:a05784a359e87bd24ed2dbcda4cc34620"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the mapping from a shared pointer.  <br /></td></tr>
 <tr class="separator:a05784a359e87bd24ed2dbcda4cc34620"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13988c4f8698b04aa815d352ae60fa11" id="r_a13988c4f8698b04aa815d352ae60fa11"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a13988c4f8698b04aa815d352ae60fa11">attach_dof_handler</a> (const dealii::DoFHandler&lt; dim, spacedim &gt; &amp;<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a71c6bd6928c06fefd2b773cb3d695e09">dof_handler</a>)</td></tr>
+<tr class="memdesc:a13988c4f8698b04aa815d352ae60fa11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attach a DoFHandler and return its index.  <br /></td></tr>
 <tr class="separator:a13988c4f8698b04aa815d352ae60fa11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d89969f78778632455cf7ff7f0d8e9d" id="r_a8d89969f78778632455cf7ff7f0d8e9d"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8d89969f78778632455cf7ff7f0d8e9d">attach_constraint_matrix</a> (const dealii::AffineConstraints&lt; number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a23585a866a53de9c994576c4865e571c">constraint</a>)</td></tr>
+<tr class="memdesc:a8d89969f78778632455cf7ff7f0d8e9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attach a constraint matrix and return its index.  <br /></td></tr>
 <tr class="separator:a8d89969f78778632455cf7ff7f0d8e9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7699a104142c9ad4f2d13bd664bb8427" id="r_a7699a104142c9ad4f2d13bd664bb8427"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a7699a104142c9ad4f2d13bd664bb8427">attach_dof_handler_and_constraint</a> (const dealii::DoFHandler&lt; dim, spacedim &gt; &amp;<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a71c6bd6928c06fefd2b773cb3d695e09">dof_handler</a>, const dealii::AffineConstraints&lt; number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a23585a866a53de9c994576c4865e571c">constraint</a>)</td></tr>
+<tr class="memdesc:a7699a104142c9ad4f2d13bd664bb8427"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attach a DoFHandler and its corresponding constraint matrix.  <br /></td></tr>
+<tr class="separator:a7699a104142c9ad4f2d13bd664bb8427"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff3b49f75b4c36d97e301fd9a5fada48" id="r_aff3b49f75b4c36d97e301fd9a5fada48"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#aff3b49f75b4c36d97e301fd9a5fada48">attach_quadrature</a> (const dealii::Quadrature&lt; dim &gt; &amp;quadrature)</td></tr>
+<tr class="memdesc:aff3b49f75b4c36d97e301fd9a5fada48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attach a cell quadrature rule and create a corresponding face rule.  <br /></td></tr>
 <tr class="separator:aff3b49f75b4c36d97e301fd9a5fada48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24bb3c85b3231ff55ef4139acd4be8eb" id="r_a24bb3c85b3231ff55ef4139acd4be8eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a24bb3c85b3231ff55ef4139acd4be8eb">create_partitioning</a> ()</td></tr>
+<tr class="memdesc:a24bb3c85b3231ff55ef4139acd4be8eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build partitioning and cell-size information for all attached DoFHandlers.  <br /></td></tr>
 <tr class="separator:a24bb3c85b3231ff55ef4139acd4be8eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cd19fa26ce0de830df64c555a8402a9" id="r_a8cd19fa26ce0de830df64c555a8402a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build</a> (const bool enable_boundary_face_loops, const bool enable_inner_face_loops, const bool enable_normal_vector_update=false, const bool enable_inner_face_hessians_update=false)</td></tr>
+<tr class="memdesc:a8cd19fa26ce0de830df64c555a8402a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build matrix-free and mapping-related data structures.  <br /></td></tr>
 <tr class="separator:a8cd19fa26ce0de830df64c555a8402a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7f253daca546761e2e32599ad58343f" id="r_aa7f253daca546761e2e32599ad58343f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#aa7f253daca546761e2e32599ad58343f">initialize_dof_vector</a> (<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a390733fc74524b6e10e18a58197af50f">VectorType</a> &amp;vec, const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:aa7f253daca546761e2e32599ad58343f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a distributed vector for a given DoF index.  <br /></td></tr>
 <tr class="separator:aa7f253daca546761e2e32599ad58343f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24f39d1d9e41a63a84a1f79aff717f5b" id="r_a24f39d1d9e41a63a84a1f79aff717f5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a24f39d1d9e41a63a84a1f79aff717f5b">initialize_dof_vector</a> (<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a664259f37ab87857fbf6e617e4ab0a59">BlockVectorType</a> &amp;vec, const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:a24f39d1d9e41a63a84a1f79aff717f5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a block vector with <code>dim</code> components for a given DoF index.  <br /></td></tr>
 <tr class="separator:a24f39d1d9e41a63a84a1f79aff717f5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fb64dbe795b9e0a1a64934360306fa7" id="r_a6fb64dbe795b9e0a1a64934360306fa7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a6fb64dbe795b9e0a1a64934360306fa7">initialize_dof_vector</a> (<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a664259f37ab87857fbf6e617e4ab0a59">BlockVectorType</a> &amp;vec, const std::array&lt; unsigned int, dim &gt; &amp;dof_indices_per_block) const</td></tr>
 <tr class="memdesc:a6fb64dbe795b9e0a1a64934360306fa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize DoFs vectors with a per block DoF index.  <br /></td></tr>
 <tr class="separator:a6fb64dbe795b9e0a1a64934360306fa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a469a4f36cd78b1d12ddb13530511f0d7" id="r_a469a4f36cd78b1d12ddb13530511f0d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a469a4f36cd78b1d12ddb13530511f0d7">initialize_bc_vector</a> (<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a390733fc74524b6e10e18a58197af50f">VectorType</a> &amp;vec, const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:a469a4f36cd78b1d12ddb13530511f0d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a vector and distribute constraints for a given DoF index.  <br /></td></tr>
 <tr class="separator:a469a4f36cd78b1d12ddb13530511f0d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fa0ecd7183640a887c15a075e0d6dee" id="r_a6fa0ecd7183640a887c15a075e0d6dee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a6fa0ecd7183640a887c15a075e0d6dee">initialize_bc_vector</a> (<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a664259f37ab87857fbf6e617e4ab0a59">BlockVectorType</a> &amp;vec, const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:a6fa0ecd7183640a887c15a075e0d6dee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize all blocks of a block vector and distribute constraints.  <br /></td></tr>
 <tr class="separator:a6fa0ecd7183640a887c15a075e0d6dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18ca1fab9d86977fa9a9998aa0bd3e36" id="r_a18ca1fab9d86977fa9a9998aa0bd3e36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a18ca1fab9d86977fa9a9998aa0bd3e36">clear</a> ()</td></tr>
+<tr class="memdesc:a18ca1fab9d86977fa9a9998aa0bd3e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all attached data and reset to the default-constructed state.  <br /></td></tr>
 <tr class="separator:a18ca1fab9d86977fa9a9998aa0bd3e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38296c9682e2cd889fdecd6c699504a5" id="r_a38296c9682e2cd889fdecd6c699504a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a38296c9682e2cd889fdecd6c699504a5">create_remote_point_evaluation</a> (const unsigned int dof_idx, const std::function&lt; std::vector&lt; bool &gt;()&gt; &amp;marked_vertices={})</td></tr>
+<tr class="memdesc:a38296c9682e2cd889fdecd6c699504a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a dealii::Utilities::MPI::RemotePointEvaluation object for a given DoF index, if it does not already exist.  <br /></td></tr>
 <tr class="separator:a38296c9682e2cd889fdecd6c699504a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a858cd1d25283302e643a37104b1ee92d" id="r_a858cd1d25283302e643a37104b1ee92d"><td class="memItemLeft" align="right" valign="top">const dealii::Mapping&lt; dim, spacedim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a858cd1d25283302e643a37104b1ee92d">get_mapping</a> () const</td></tr>
+<tr class="memdesc:a858cd1d25283302e643a37104b1ee92d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the stored mapping.  <br /></td></tr>
 <tr class="separator:a858cd1d25283302e643a37104b1ee92d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a986431c9049d62a1d30b0ac99edd8c9e" id="r_a986431c9049d62a1d30b0ac99edd8c9e"><td class="memItemLeft" align="right" valign="top">const dealii::FiniteElement&lt; dim, spacedim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a986431c9049d62a1d30b0ac99edd8c9e">get_fe</a> (const unsigned int fe_index) const</td></tr>
+<tr class="memdesc:a986431c9049d62a1d30b0ac99edd8c9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the finite element associated with a given DoF index.  <br /></td></tr>
 <tr class="separator:a986431c9049d62a1d30b0ac99edd8c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4eff6a47377f36ead03517a8afe86b4" id="r_ae4eff6a47377f36ead03517a8afe86b4"><td class="memItemLeft" align="right" valign="top">const dealii::AffineConstraints&lt; number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#ae4eff6a47377f36ead03517a8afe86b4">get_constraint</a> (const unsigned int constraint_index) const</td></tr>
+<tr class="memdesc:ae4eff6a47377f36ead03517a8afe86b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a constraint object by index (const overload).  <br /></td></tr>
 <tr class="separator:ae4eff6a47377f36ead03517a8afe86b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d2f089b1d22576ecc7f1f1b339592e4" id="r_a7d2f089b1d22576ecc7f1f1b339592e4"><td class="memItemLeft" align="right" valign="top">dealii::AffineConstraints&lt; number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a7d2f089b1d22576ecc7f1f1b339592e4">get_constraint</a> (const unsigned int constraint_index)</td></tr>
+<tr class="memdesc:a7d2f089b1d22576ecc7f1f1b339592e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a constraint object by index (non-const overload).  <br /></td></tr>
 <tr class="separator:a7d2f089b1d22576ecc7f1f1b339592e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac564bc2c910154eb69675c5b2895c1b8" id="r_ac564bc2c910154eb69675c5b2895c1b8"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; const dealii::AffineConstraints&lt; number &gt; * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#ac564bc2c910154eb69675c5b2895c1b8">get_constraints</a> () const</td></tr>
+<tr class="memdesc:ac564bc2c910154eb69675c5b2895c1b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of all attached constraint matrices.  <br /></td></tr>
 <tr class="separator:ac564bc2c910154eb69675c5b2895c1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65eed09f1fdc8fe4dd71d6a14d361217" id="r_a65eed09f1fdc8fe4dd71d6a14d361217"><td class="memItemLeft" align="right" valign="top">const dealii::Quadrature&lt; dim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a65eed09f1fdc8fe4dd71d6a14d361217">get_quadrature</a> (const unsigned int quad_index) const</td></tr>
+<tr class="memdesc:a65eed09f1fdc8fe4dd71d6a14d361217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cell quadrature rule by index.  <br /></td></tr>
 <tr class="separator:a65eed09f1fdc8fe4dd71d6a14d361217"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab52bdcab759c54556e5d18d22d7a0c52" id="r_ab52bdcab759c54556e5d18d22d7a0c52"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; dealii::Quadrature&lt; dim &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#ab52bdcab759c54556e5d18d22d7a0c52">get_quadratures</a> () const</td></tr>
+<tr class="memdesc:ab52bdcab759c54556e5d18d22d7a0c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all stored cell quadrature rules.  <br /></td></tr>
 <tr class="separator:ab52bdcab759c54556e5d18d22d7a0c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad5dd2ab5f1952c696f64394db27a3ba" id="r_aad5dd2ab5f1952c696f64394db27a3ba"><td class="memItemLeft" align="right" valign="top">const dealii::Quadrature&lt; dim - 1 &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#aad5dd2ab5f1952c696f64394db27a3ba">get_face_quadrature</a> (const unsigned int quad_index) const</td></tr>
+<tr class="memdesc:aad5dd2ab5f1952c696f64394db27a3ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a face quadrature rule corresponding to a given cell rule.  <br /></td></tr>
 <tr class="separator:aad5dd2ab5f1952c696f64394db27a3ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adeb3c19cec23bf0b34fc5c08eca9220e" id="r_adeb3c19cec23bf0b34fc5c08eca9220e"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; dealii::Quadrature&lt; dim - 1 &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#adeb3c19cec23bf0b34fc5c08eca9220e">get_face_quadratures</a> () const</td></tr>
+<tr class="memdesc:adeb3c19cec23bf0b34fc5c08eca9220e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all stored face quadrature rules.  <br /></td></tr>
 <tr class="separator:adeb3c19cec23bf0b34fc5c08eca9220e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad230ba285d675be31ede2f975ef4fe15" id="r_ad230ba285d675be31ede2f975ef4fe15"><td class="memItemLeft" align="right" valign="top">dealii::MatrixFree&lt; dim, number, <a class="el" href="classMeltPoolDG_1_1ScratchData.html#afd64c7bb60d74b3bc7b14605ede7aeae">VectorizedArrayType</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#ad230ba285d675be31ede2f975ef4fe15">get_matrix_free</a> ()</td></tr>
+<tr class="memdesc:ad230ba285d675be31ede2f975ef4fe15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the internal MatrixFree object (non-const).  <br /></td></tr>
 <tr class="separator:ad230ba285d675be31ede2f975ef4fe15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bfbedb4dfd439df9187645d7887ed53" id="r_a2bfbedb4dfd439df9187645d7887ed53"><td class="memItemLeft" align="right" valign="top">const dealii::MatrixFree&lt; dim, number, <a class="el" href="classMeltPoolDG_1_1ScratchData.html#afd64c7bb60d74b3bc7b14605ede7aeae">VectorizedArrayType</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a2bfbedb4dfd439df9187645d7887ed53">get_matrix_free</a> () const</td></tr>
+<tr class="memdesc:a2bfbedb4dfd439df9187645d7887ed53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the internal MatrixFree object (const).  <br /></td></tr>
 <tr class="separator:a2bfbedb4dfd439df9187645d7887ed53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6604d4ae0327a44dc7320660afa22e41" id="r_a6604d4ae0327a44dc7320660afa22e41"><td class="memItemLeft" align="right" valign="top">const dealii::DoFHandler&lt; dim, spacedim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a6604d4ae0327a44dc7320660afa22e41">get_dof_handler</a> (const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:a6604d4ae0327a44dc7320660afa22e41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a DoFHandler by index (const overload).  <br /></td></tr>
 <tr class="separator:a6604d4ae0327a44dc7320660afa22e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcf211bae63bc173ebc9ba77adcbe0b8" id="r_adcf211bae63bc173ebc9ba77adcbe0b8"><td class="memItemLeft" align="right" valign="top">dealii::DoFHandler&lt; dim, spacedim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#adcf211bae63bc173ebc9ba77adcbe0b8">get_dof_handler</a> (const unsigned int dof_idx)</td></tr>
+<tr class="memdesc:adcf211bae63bc173ebc9ba77adcbe0b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a DoFHandler by index (non-const overload).  <br /></td></tr>
 <tr class="separator:adcf211bae63bc173ebc9ba77adcbe0b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c1b0bc191f84df3785b51d7e2f729e9" id="r_a7c1b0bc191f84df3785b51d7e2f729e9"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; const dealii::DoFHandler&lt; dim, spacedim &gt; * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a7c1b0bc191f84df3785b51d7e2f729e9">get_dof_handlers</a> () const</td></tr>
+<tr class="memdesc:a7c1b0bc191f84df3785b51d7e2f729e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the vector of all attached DoFHandlers.  <br /></td></tr>
 <tr class="separator:a7c1b0bc191f84df3785b51d7e2f729e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a868340033606f107d08746742773e045" id="r_a868340033606f107d08746742773e045"><td class="memItemLeft" align="right" valign="top">const dealii::Triangulation&lt; dim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a868340033606f107d08746742773e045">get_triangulation</a> (const unsigned int dof_idx=0) const</td></tr>
+<tr class="memdesc:a868340033606f107d08746742773e045"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the triangulation associated with a given DoFHandler index.  <br /></td></tr>
 <tr class="separator:a868340033606f107d08746742773e045"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45ce2ea7f460f495d3947f46eb636953" id="r_a45ce2ea7f460f495d3947f46eb636953"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a45ce2ea7f460f495d3947f46eb636953">get_n_dofs_per_cell</a> (const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:a45ce2ea7f460f495d3947f46eb636953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of DoFs per cell for a given DoFHandler index.  <br /></td></tr>
 <tr class="separator:a45ce2ea7f460f495d3947f46eb636953"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b6cda989022603bebbd5567cd8e7c3b" id="r_a9b6cda989022603bebbd5567cd8e7c3b"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a9b6cda989022603bebbd5567cd8e7c3b">get_degree</a> (const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:a9b6cda989022603bebbd5567cd8e7c3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the polynomial degree of the finite element at a given DoF index.  <br /></td></tr>
 <tr class="separator:a9b6cda989022603bebbd5567cd8e7c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad695f634529701c026f725f0cf86f03" id="r_aad695f634529701c026f725f0cf86f03"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#aad695f634529701c026f725f0cf86f03">get_n_q_points</a> (const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:aad695f634529701c026f725f0cf86f03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of quadrature points for a given quadrature index.  <br /></td></tr>
 <tr class="separator:aad695f634529701c026f725f0cf86f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef292112f95489a5f00c5a77da6f284a" id="r_aef292112f95489a5f00c5a77da6f284a"><td class="memItemLeft" align="right" valign="top">const number &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#aef292112f95489a5f00c5a77da6f284a">get_min_cell_size</a> () const</td></tr>
+<tr class="memdesc:aef292112f95489a5f00c5a77da6f284a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the global minimum cell size.  <br /></td></tr>
 <tr class="separator:aef292112f95489a5f00c5a77da6f284a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a247e68ec57d6268d8e5e3c820f33924c" id="r_a247e68ec57d6268d8e5e3c820f33924c"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a247e68ec57d6268d8e5e3c820f33924c">get_min_cell_size</a> (const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:a247e68ec57d6268d8e5e3c820f33924c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a suitable minimum cell size for a given finite element.  <br /></td></tr>
 <tr class="separator:a247e68ec57d6268d8e5e3c820f33924c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37afd100d6e1bae12964b8d05f1eefa8" id="r_a37afd100d6e1bae12964b8d05f1eefa8"><td class="memItemLeft" align="right" valign="top">const number &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a37afd100d6e1bae12964b8d05f1eefa8">get_max_cell_size</a> () const</td></tr>
+<tr class="memdesc:a37afd100d6e1bae12964b8d05f1eefa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the global maximum cell size.  <br /></td></tr>
 <tr class="separator:a37afd100d6e1bae12964b8d05f1eefa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74d10de918f7e8a0deca387c18bc596f" id="r_a74d10de918f7e8a0deca387c18bc596f"><td class="memItemLeft" align="right" valign="top">const number &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a74d10de918f7e8a0deca387c18bc596f">get_min_diameter</a> () const</td></tr>
+<tr class="memdesc:a74d10de918f7e8a0deca387c18bc596f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the minimal cell diameter over the triangulation.  <br /></td></tr>
 <tr class="separator:a74d10de918f7e8a0deca387c18bc596f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0b600900451c60b003d8283177bd41b" id="r_af0b600900451c60b003d8283177bd41b"><td class="memItemLeft" align="right" valign="top">const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#af0b600900451c60b003d8283177bd41b">get_cell_sizes</a> () const</td></tr>
+<tr class="memdesc:af0b600900451c60b003d8283177bd41b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the vector of cell sizes used by the MatrixFree object.  <br /></td></tr>
 <tr class="separator:af0b600900451c60b003d8283177bd41b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e4842157d910902fd950ca14871331f" id="r_a5e4842157d910902fd950ca14871331f"><td class="memItemLeft" align="right" valign="top">MPI_Comm&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a5e4842157d910902fd950ca14871331f">get_mpi_comm</a> (const unsigned int dof_idx=0) const</td></tr>
+<tr class="memdesc:a5e4842157d910902fd950ca14871331f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the MPI communicator for a given DoFHandler.  <br /></td></tr>
 <tr class="separator:a5e4842157d910902fd950ca14871331f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62e9b02be3194b3758f1a961e9261bfb" id="r_a62e9b02be3194b3758f1a961e9261bfb"><td class="memItemLeft" align="right" valign="top">const dealii::IndexSet &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a62e9b02be3194b3758f1a961e9261bfb">get_locally_owned_dofs</a> (const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:a62e9b02be3194b3758f1a961e9261bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the set of locally owned DoFs for a given DoFHandler index.  <br /></td></tr>
 <tr class="separator:a62e9b02be3194b3758f1a961e9261bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec0209a8dde3794c4447073e2b924bb7" id="r_aec0209a8dde3794c4447073e2b924bb7"><td class="memItemLeft" align="right" valign="top">const dealii::IndexSet &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#aec0209a8dde3794c4447073e2b924bb7">get_locally_relevant_dofs</a> (const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:aec0209a8dde3794c4447073e2b924bb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the set of locally relevant DoFs for a given DoFHandler index.  <br /></td></tr>
 <tr class="separator:aec0209a8dde3794c4447073e2b924bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2671c40230c73ca30cba9c04d9e085b3" id="r_a2671c40230c73ca30cba9c04d9e085b3"><td class="memItemLeft" align="right" valign="top">const std::shared_ptr&lt; dealii::Utilities::MPI::Partitioner &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a2671c40230c73ca30cba9c04d9e085b3">get_partitioner</a> (const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:a2671c40230c73ca30cba9c04d9e085b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the partitioner object for a given DoFHandler index.  <br /></td></tr>
 <tr class="separator:a2671c40230c73ca30cba9c04d9e085b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14c34bd03fecbbf63c516fdb06e7ef43" id="r_a14c34bd03fecbbf63c516fdb06e7ef43"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a14c34bd03fecbbf63c516fdb06e7ef43">get_pcout</a> (const unsigned int level=1) const</td></tr>
+<tr class="memdesc:a14c34bd03fecbbf63c516fdb06e7ef43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a <a class="el" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a> associated with a given verbosity level.  <br /></td></tr>
 <tr class="separator:a14c34bd03fecbbf63c516fdb06e7ef43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a628aee1ca09a5e7e7ee17e08216e65dd" id="r_a628aee1ca09a5e7e7ee17e08216e65dd"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a628aee1ca09a5e7e7ee17e08216e65dd">get_cell_range_category</a> (const std::pair&lt; unsigned, unsigned &gt; &amp;cell_range) const</td></tr>
+<tr class="memdesc:a628aee1ca09a5e7e7ee17e08216e65dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the cell range category for a given cell range.  <br /></td></tr>
 <tr class="separator:a628aee1ca09a5e7e7ee17e08216e65dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e1f59d315f9b87c102f4b122b67e1b3" id="r_a0e1f59d315f9b87c102f4b122b67e1b3"><td class="memItemLeft" align="right" valign="top">std::pair&lt; unsigned int, unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a0e1f59d315f9b87c102f4b122b67e1b3">get_face_range_category</a> (const std::pair&lt; unsigned, unsigned &gt; &amp;face_range) const</td></tr>
+<tr class="memdesc:a0e1f59d315f9b87c102f4b122b67e1b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the face range category for a given face range.  <br /></td></tr>
 <tr class="separator:a0e1f59d315f9b87c102f4b122b67e1b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7258368e3c948150494f58de77b5a722" id="r_a7258368e3c948150494f58de77b5a722"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a7258368e3c948150494f58de77b5a722">is_hex_mesh</a> (const unsigned int dof_idx=0) const</td></tr>
+<tr class="memdesc:a7258368e3c948150494f58de77b5a722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the underlying mesh is a pure hypercube mesh.  <br /></td></tr>
 <tr class="separator:a7258368e3c948150494f58de77b5a722"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b26bee005effa1888b6c9426c425017" id="r_a0b26bee005effa1888b6c9426c425017"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a0b26bee005effa1888b6c9426c425017">is_FE_Q_iso_Q_1</a> (const unsigned int dof_idx, const unsigned int component=0) const</td></tr>
+<tr class="memdesc:a0b26bee005effa1888b6c9426c425017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether a given component uses FE_Q_iso_Q1.  <br /></td></tr>
 <tr class="separator:a0b26bee005effa1888b6c9426c425017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fabea79caf8179d8fc97635b118347c" id="r_a7fabea79caf8179d8fc97635b118347c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a7fabea79caf8179d8fc97635b118347c">is_FE_DGQ</a> (const unsigned int dof_idx, const unsigned int component=0) const</td></tr>
+<tr class="memdesc:a7fabea79caf8179d8fc97635b118347c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether a given component uses FE_DGQ.  <br /></td></tr>
 <tr class="separator:a7fabea79caf8179d8fc97635b118347c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a641f8748b15e724a9eb44771c5f92990" id="r_a641f8748b15e724a9eb44771c5f92990"><td class="memItemLeft" align="right" valign="top">CutUtil::CutPhaseType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a641f8748b15e724a9eb44771c5f92990">get_cut_type</a> (const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:a641f8748b15e724a9eb44771c5f92990"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the cut-cell phase type for a given DoFHandler.  <br /></td></tr>
 <tr class="separator:a641f8748b15e724a9eb44771c5f92990"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb3ed6b30ac0ea89db74e195c3af5d39" id="r_adb3ed6b30ac0ea89db74e195c3af5d39"><td class="memItemLeft" align="right" valign="top">dealii::TimerOutput &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#adb3ed6b30ac0ea89db74e195c3af5d39">get_timer</a> () const</td></tr>
+<tr class="memdesc:adb3ed6b30ac0ea89db74e195c3af5d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the timer associated with this scratch data object.  <br /></td></tr>
 <tr class="separator:adb3ed6b30ac0ea89db74e195c3af5d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bdd9bec8dcd30b9370c9198ef75f693" id="r_a0bdd9bec8dcd30b9370c9198ef75f693"><td class="memItemLeft" align="right" valign="top">dealii::Utilities::MPI::RemotePointEvaluation&lt; dim, dim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a0bdd9bec8dcd30b9370c9198ef75f693">get_remote_point_evaluation</a> (const unsigned int dof_idx) const</td></tr>
+<tr class="memdesc:a0bdd9bec8dcd30b9370c9198ef75f693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the RemotePointEvaluation object for a given DoF index.  <br /></td></tr>
 <tr class="separator:a0bdd9bec8dcd30b9370c9198ef75f693"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ace7ce19504f18a9e01a10eba1896ac4a" id="r_ace7ce19504f18a9e01a10eba1896ac4a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#ace7ce19504f18a9e01a10eba1896ac4a">enable_boundary_faces</a></td></tr>
+<tr class="memdesc:ace7ce19504f18a9e01a10eba1896ac4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether boundary-face matrix-free loops are enabled.  <br /></td></tr>
 <tr class="separator:ace7ce19504f18a9e01a10eba1896ac4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2a5f0516d8aefeff3c4e0ff1f409106" id="r_ae2a5f0516d8aefeff3c4e0ff1f409106"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#ae2a5f0516d8aefeff3c4e0ff1f409106">enable_inner_faces</a></td></tr>
+<tr class="memdesc:ae2a5f0516d8aefeff3c4e0ff1f409106"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether interior-face matrix-free loops are enabled.  <br /></td></tr>
 <tr class="separator:ae2a5f0516d8aefeff3c4e0ff1f409106"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
@@ -271,6 +330,7 @@ Private Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:acced083f2aae7dfe40a91db00c8e8b2a" id="r_acced083f2aae7dfe40a91db00c8e8b2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#acced083f2aae7dfe40a91db00c8e8b2a">create_pcout</a> (MPI_Comm mpi_communicator)</td></tr>
+<tr class="memdesc:acced083f2aae7dfe40a91db00c8e8b2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that (re)creates the internal ConditionalOStreams.  <br /></td></tr>
 <tr class="separator:acced083f2aae7dfe40a91db00c8e8b2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -314,7 +374,25 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, int spacedim, typename number&gt;<br />
-class MeltPoolDG::ScratchData&lt; dim, spacedim, number &gt;</div><p>Container containing mapping-, finite-element-, and quadrature-related objects to be used either in matrix-based or in matrix-free context. </p>
+class MeltPoolDG::ScratchData&lt; dim, spacedim, number &gt;</div><p>Container for shared scratch data between operations/operators. </p>
+<p>This class centralizes all data that is commonly needed by different operations/operators working on the same mesh:</p>
+<ul>
+<li>The dealii::Mapping used to transfer between reference and real cells.</li>
+<li>One or more dealii::DoFHandler objects and their associated dealii::AffineConstraints.</li>
+<li>Cell and face quadrature rules.</li>
+<li>MPI-related data such as locally owned / relevant DoFs and dealii::Utilities::MPI::Partitioner objects.</li>
+<li>A dealii::MatrixFree object for matrix-free operator evaluations, plus per-cell size information.</li>
+<li>Optional utilities such as remote point evaluation and timing output.</li>
+</ul>
+<p>The class can be used both in matrix-free and matrix-based workflows, controlled by the <code>do_matrix_free</code> flag passed to the constructor. It is intended to be initialized once per mesh / discretization and then reused by multiple operators to avoid duplicated setup work.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">dim</td><td>Topological dimension of the problem. </td></tr>
+    <tr><td class="paramname">spacedim</td><td>Dimension of the embedding physical space. </td></tr>
+    <tr><td class="paramname">number</td><td>Scalar number type used for matrix-free data structures. </td></tr>
+  </table>
+  </dd>
+</dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a664259f37ab87857fbf6e617e4ab0a59" name="a664259f37ab87857fbf6e617e4ab0a59"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a664259f37ab87857fbf6e617e4ab0a59">&#9670;&#160;</a></span>BlockVectorType</h2>
@@ -423,6 +501,17 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Construct a scratch data container. </p>
+<p>Initializes the internal output streams and creates an associated dealii::TimerOutput object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mpi_communicator</td><td>MPI communicator used for all distributed data. </td></tr>
+    <tr><td class="paramname">verbosity_level_in</td><td>Verbosity level for dealii::ConditionalOStream output (0–3, where 0 effectively disables output). </td></tr>
+    <tr><td class="paramname">do_matrix_free</td><td>If true, <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build()</a> will set up the internal dealii::MatrixFree object. If false, only partitioning and related data are created. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -444,6 +533,16 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Attach a constraint matrix and return its index. </p>
+<p>The constraint pointer is stored internally; the referenced object must outlive this <a class="el" href="classMeltPoolDG_1_1ScratchData.html" title="Container for shared scratch data between operations/operators.">ScratchData</a> instance.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">constraint</td><td>Constraint matrix to attach. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Index of the newly attached constraint matrix (0-based). </dd></dl>
+
 </div>
 </div>
 <a id="a13988c4f8698b04aa815d352ae60fa11" name="a13988c4f8698b04aa815d352ae60fa11"></a>
@@ -464,6 +563,57 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Attach a DoFHandler and return its index. </p>
+<p>The DoFHandler pointer is stored internally; the referenced object must outlive this <a class="el" href="classMeltPoolDG_1_1ScratchData.html" title="Container for shared scratch data between operations/operators.">ScratchData</a> instance.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_handler</td><td>DoFHandler to attach. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Index of the newly attached DoFHandler (0-based). </dd></dl>
+
+</div>
+</div>
+<a id="a7699a104142c9ad4f2d13bd664bb8427" name="a7699a104142c9ad4f2d13bd664bb8427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7699a104142c9ad4f2d13bd664bb8427">&#9670;&#160;</a></span>attach_dof_handler_and_constraint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, int spacedim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a>&lt; dim, spacedim, number &gt;::attach_dof_handler_and_constraint </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::DoFHandler&lt; dim, spacedim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dof_handler</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::AffineConstraints&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>constraint</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attach a DoFHandler and its corresponding constraint matrix. </p>
+<p>This is a convenience wrapper combining <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a13988c4f8698b04aa815d352ae60fa11">attach_dof_handler()</a> and <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8d89969f78778632455cf7ff7f0d8e9d">attach_constraint_matrix()</a>, and asserts that the numbers of attached DoFHandlers and constraints remain consistent.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_handler</td><td>DoFHandler to attach. </td></tr>
+    <tr><td class="paramname">constraint</td><td>Constraint matrix corresponding to <code>dof_handler</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Index of the newly attached constraint / DoFHandler pair. </dd></dl>
+
 </div>
 </div>
 <a id="aff3b49f75b4c36d97e301fd9a5fada48" name="aff3b49f75b4c36d97e301fd9a5fada48"></a>
@@ -483,6 +633,16 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Attach a cell quadrature rule and create a corresponding face rule. </p>
+<p>The provided cell quadrature is stored internally. A matching face quadrature is constructed using deal.II's internal utilities, supporting both tensor-product and simplex elements.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">quadrature</td><td>Cell quadrature rule to attach. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Index of the newly attached quadrature rule (0-based). </dd></dl>
 
 </div>
 </div>
@@ -526,6 +686,19 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Build matrix-free and mapping-related data structures. </p>
+<p>If the class has been constructed with <code>do_matrix_free</code> = true, this function sets up the internal dealii::MatrixFree object from the stored mapping, DoFHandlers, constraints and quadrature rules. It also fills the vector of per-cell sizes.</p>
+<p>The <code>enable_*</code> flags control which mapping update flags are set for cell, boundary-face and inner-face integrals.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable_boundary_face_loops</td><td>Enable setup of boundary face data. </td></tr>
+    <tr><td class="paramname">enable_inner_face_loops</td><td>Enable setup of interior face data. </td></tr>
+    <tr><td class="paramname">enable_normal_vector_update</td><td>Include normal vectors in mapping updates. </td></tr>
+    <tr><td class="paramname">enable_inner_face_hessians_update</td><td>Include Hessians in mapping updates for inner face loops. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a18ca1fab9d86977fa9a9998aa0bd3e36" name="a18ca1fab9d86977fa9a9998aa0bd3e36"></a>
@@ -545,6 +718,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Clear all attached data and reset to the default-constructed state. </p>
+<p>This removes attached DoFHandlers, constraints, quadrature rules, partitioning information, mapping and matrix-free data. It does not modify the verbosity level or the <code>do_matrix_free</code> flag. </p>
+
 </div>
 </div>
 <a id="a24bb3c85b3231ff55ef4139acd4be8eb" name="a24bb3c85b3231ff55ef4139acd4be8eb"></a>
@@ -563,6 +739,14 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Build partitioning and cell-size information for all attached DoFHandlers. </p>
+<p>This function (re-)computes:</p><ul>
+<li><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a9c19b6feb4cc43905433c18a93864f4f">locally_owned_dofs</a> and <a class="el" href="classMeltPoolDG_1_1ScratchData.html#ae66f7e0c3c74daa1c906c3d76d76bf78">locally_relevant_dofs</a> for each DoFHandler.</li>
+<li>MPI dealii::Utilities::MPI::Partitioner objects.</li>
+<li>Minimum and maximum cell diameters and corresponding cell sizes.</li>
+</ul>
+<p>It assumes that at least one DoFHandler has been attached. </p>
 
 </div>
 </div>
@@ -591,7 +775,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Helper functions for setting up internal data. </p>
+
+<p>Helper function that (re)creates the internal ConditionalOStreams. </p>
+<p>One <a class="el" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a> is created for each verbosity level between 0 and 3.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mpi_communicator</td><td>MPI communicator used to decide which rank prints. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -623,6 +815,16 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Create a dealii::Utilities::MPI::RemotePointEvaluation object for a given DoF index, if it does not already exist. </p>
+<p>The <code>marked_vertices</code> callback allows to mark the vertices at which remote point evaluation will be performed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler for which the object is created. </td></tr>
+    <tr><td class="paramname">marked_vertices</td><td>Callback returning a boolean mask of marked vertices. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a628aee1ca09a5e7e7ee17e08216e65dd" name="a628aee1ca09a5e7e7ee17e08216e65dd"></a>
@@ -643,6 +845,16 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get the cell range category for a given cell range. </p>
+<p>This is a direct wrapper around dealii::MatrixFree::get_cell_range_category().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cell_range</td><td>Pair of indices denoting the cell range. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Category index of the cell range. </dd></dl>
+
 </div>
 </div>
 <a id="af0b600900451c60b003d8283177bd41b" name="af0b600900451c60b003d8283177bd41b"></a>
@@ -661,6 +873,10 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the vector of cell sizes used by the MatrixFree object. </p>
+<p>Each entry corresponds to a cell batch and stores the cell size in a dealii::VectorizedArray.</p>
+<dl class="section return"><dt>Returns</dt><dd>Constant reference to the cell size vector. </dd></dl>
 
 </div>
 </div>
@@ -682,6 +898,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get a constraint object by index (non-const overload). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">constraint_index</td><td>Index of the requested constraint matrix. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the constraint matrix. </dd></dl>
+
 </div>
 </div>
 <a id="ae4eff6a47377f36ead03517a8afe86b4" name="ae4eff6a47377f36ead03517a8afe86b4"></a>
@@ -702,6 +927,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get a constraint object by index (const overload). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">constraint_index</td><td>Index of the requested constraint matrix. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Constant reference to the constraint matrix. </dd></dl>
+
 </div>
 </div>
 <a id="ac564bc2c910154eb69675c5b2895c1b8" name="ac564bc2c910154eb69675c5b2895c1b8"></a>
@@ -720,6 +954,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the list of all attached constraint matrices. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of pointers to all attached constraint matrices. </dd></dl>
 
 </div>
 </div>
@@ -741,6 +978,16 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get the cut-cell phase type for a given DoFHandler. </p>
+<p>Delegates to <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a21047d9ca193cbe0019811486e9c7be0">CutUtil::get_cut_type()</a> for the attached DoFHandler.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Cut-phase type associated with the DoFHandler. </dd></dl>
+
 </div>
 </div>
 <a id="a9b6cda989022603bebbd5567cd8e7c3b" name="a9b6cda989022603bebbd5567cd8e7c3b"></a>
@@ -760,6 +1007,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the polynomial degree of the finite element at a given DoF index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Polynomial degree of the associated finite element. </dd></dl>
 
 </div>
 </div>
@@ -781,6 +1037,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get a DoFHandler by index (non-const overload). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the DoFHandler. </dd></dl>
+
 </div>
 </div>
 <a id="a6604d4ae0327a44dc7320660afa22e41" name="a6604d4ae0327a44dc7320660afa22e41"></a>
@@ -801,6 +1066,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get a DoFHandler by index (const overload). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Constant reference to the DoFHandler. </dd></dl>
+
 </div>
 </div>
 <a id="a7c1b0bc191f84df3785b51d7e2f729e9" name="a7c1b0bc191f84df3785b51d7e2f729e9"></a>
@@ -819,6 +1093,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the vector of all attached DoFHandlers. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of pointers to all DoFHandlers. </dd></dl>
 
 </div>
 </div>
@@ -840,6 +1117,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get a face quadrature rule corresponding to a given cell rule. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">quad_index</td><td>Index of the associated cell quadrature rule. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Constant reference to the face quadrature rule. </dd></dl>
+
 </div>
 </div>
 <a id="adeb3c19cec23bf0b34fc5c08eca9220e" name="adeb3c19cec23bf0b34fc5c08eca9220e"></a>
@@ -858,6 +1144,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get all stored face quadrature rules. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of face quadrature rules. </dd></dl>
 
 </div>
 </div>
@@ -879,6 +1168,16 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get the face range category for a given face range. </p>
+<p>This is a direct wrapper around dealii::MatrixFree::get_face_range_category().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">face_range</td><td>Pair of indices denoting the face range. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pair of category indices for the two sides of the face range. </dd></dl>
+
 </div>
 </div>
 <a id="a986431c9049d62a1d30b0ac99edd8c9e" name="a986431c9049d62a1d30b0ac99edd8c9e"></a>
@@ -898,6 +1197,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the finite element associated with a given DoF index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fe_index</td><td>Index of the DoFHandler / finite element. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Constant reference to the corresponding finite element. </dd></dl>
 
 </div>
 </div>
@@ -919,6 +1227,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get the set of locally owned DoFs for a given DoFHandler index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>IndexSet of locally owned DoFs. </dd></dl>
+
 </div>
 </div>
 <a id="aec0209a8dde3794c4447073e2b924bb7" name="aec0209a8dde3794c4447073e2b924bb7"></a>
@@ -939,6 +1256,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get the set of locally relevant DoFs for a given DoFHandler index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>IndexSet of locally relevant DoFs. </dd></dl>
+
 </div>
 </div>
 <a id="a858cd1d25283302e643a37104b1ee92d" name="a858cd1d25283302e643a37104b1ee92d"></a>
@@ -957,7 +1283,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Getter functions. </p>
+
+<p>Access the stored mapping. </p>
+<dl class="section return"><dt>Returns</dt><dd>Constant reference to the stored mapping. </dd></dl>
 
 </div>
 </div>
@@ -978,6 +1306,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Access the internal MatrixFree object (non-const). </p>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the MatrixFree object. </dd></dl>
+
 </div>
 </div>
 <a id="a2bfbedb4dfd439df9187645d7887ed53" name="a2bfbedb4dfd439df9187645d7887ed53"></a>
@@ -996,6 +1327,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Access the internal MatrixFree object (const). </p>
+<dl class="section return"><dt>Returns</dt><dd>Constant reference to the MatrixFree object. </dd></dl>
 
 </div>
 </div>
@@ -1016,6 +1350,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get the global maximum cell size. </p>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the maximal cell size. </dd></dl>
+
 </div>
 </div>
 <a id="aef292112f95489a5f00c5a77da6f284a" name="aef292112f95489a5f00c5a77da6f284a"></a>
@@ -1034,6 +1371,10 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the global minimum cell size. </p>
+<p>This is derived from the minimal cell diameter divided by sqrt(dim).</p>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the minimal cell size. </dd></dl>
 
 </div>
 </div>
@@ -1055,6 +1396,16 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get a suitable minimum cell size for a given finite element. </p>
+<p>For FE_Q_iso_Q1 elements, this is identical to <a class="el" href="classMeltPoolDG_1_1ScratchData.html#aef292112f95489a5f00c5a77da6f284a">get_min_cell_size()</a>. For higher-order elements, the minimum cell size is scaled by the polynomial degree.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Minimum cell size corresponding to the finite element at <code>dof_idx</code>. </dd></dl>
+
 </div>
 </div>
 <a id="a74d10de918f7e8a0deca387c18bc596f" name="a74d10de918f7e8a0deca387c18bc596f"></a>
@@ -1073,6 +1424,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the minimal cell diameter over the triangulation. </p>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the minimal cell diameter. </dd></dl>
 
 </div>
 </div>
@@ -1094,6 +1448,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get the MPI communicator for a given DoFHandler. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler (defaults to 0). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>MPI communicator associated with the DoFHandler. </dd></dl>
+
 </div>
 </div>
 <a id="a45ce2ea7f460f495d3947f46eb636953" name="a45ce2ea7f460f495d3947f46eb636953"></a>
@@ -1113,6 +1476,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the number of DoFs per cell for a given DoFHandler index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of DoFs per cell. </dd></dl>
 
 </div>
 </div>
@@ -1134,6 +1506,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get the number of quadrature points for a given quadrature index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">quad_idx</td><td>Index of the quadrature rule. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of quadrature points. </dd></dl>
+
 </div>
 </div>
 <a id="a2671c40230c73ca30cba9c04d9e085b3" name="a2671c40230c73ca30cba9c04d9e085b3"></a>
@@ -1153,6 +1534,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the partitioner object for a given DoFHandler index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Shared pointer to the corresponding MPI partitioner. </dd></dl>
 
 </div>
 </div>
@@ -1174,6 +1564,16 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get a <a class="el" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a> associated with a given verbosity level. </p>
+<p>Level 0 is always inactive, higher levels are active depending on the verbosity level passed to the constructor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>Verbosity level (0–3). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a> for the requested level. </dd></dl>
+
 </div>
 </div>
 <a id="a65eed09f1fdc8fe4dd71d6a14d361217" name="a65eed09f1fdc8fe4dd71d6a14d361217"></a>
@@ -1194,6 +1594,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Get a cell quadrature rule by index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">quad_index</td><td>Index of the quadrature rule. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Constant reference to the quadrature rule. </dd></dl>
+
 </div>
 </div>
 <a id="ab52bdcab759c54556e5d18d22d7a0c52" name="ab52bdcab759c54556e5d18d22d7a0c52"></a>
@@ -1212,6 +1621,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get all stored cell quadrature rules. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of cell quadrature rules. </dd></dl>
 
 </div>
 </div>
@@ -1233,6 +1645,21 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Access the RemotePointEvaluation object for a given DoF index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the corresponding RemotePointEvaluation object.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">dealii::ExcMessage</td><td>if no RemotePointEvaluation object was created yet for the given <code>dof_idx</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="adb3ed6b30ac0ea89db74e195c3af5d39" name="adb3ed6b30ac0ea89db74e195c3af5d39"></a>
@@ -1251,6 +1678,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Access the timer associated with this scratch data object. </p>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the internal dealii::TimerOutput. </dd></dl>
 
 </div>
 </div>
@@ -1271,6 +1701,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the triangulation associated with a given DoFHandler index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Constant reference to the associated triangulation. </dd></dl>
 
 </div>
 </div>
@@ -1302,6 +1741,16 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Initialize all blocks of a block vector and distribute constraints. </p>
+<p>All blocks are initialized using <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a469a4f36cd78b1d12ddb13530511f0d7">initialize_bc_vector()</a> with the same <code>dof_idx</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">vec</td><td>Block vector to be initialized and constrained. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dof_idx</td><td>Index of the DoFHandler / constraints pair to use. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a469a4f36cd78b1d12ddb13530511f0d7" name="a469a4f36cd78b1d12ddb13530511f0d7"></a>
@@ -1331,6 +1780,16 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initialize a vector and distribute constraints for a given DoF index. </p>
+<p>This is a convenience wrapper around <a class="el" href="classMeltPoolDG_1_1ScratchData.html#aa7f253daca546761e2e32599ad58343f">initialize_dof_vector()</a> which additionally applies the corresponding dealii::AffineConstraints via dealii::AffineConstraints::distribute().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">vec</td><td>Vector to be initialized and constrained. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dof_idx</td><td>Index of the DoFHandler / constraints pair to use. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1401,6 +1860,16 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Initialize a block vector with <code>dim</code> components for a given DoF index. </p>
+<p>All blocks are initialized consistently with the same DoFHandler index.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">vec</td><td>Block vector to be initialized (resized to <code>dim</code> blocks). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dof_idx</td><td>Index of the DoFHandler / partitioning to use. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aa7f253daca546761e2e32599ad58343f" name="aa7f253daca546761e2e32599ad58343f"></a>
@@ -1430,7 +1899,16 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>initialize vectors </p>
+
+<p>Initialize a distributed vector for a given DoF index. </p>
+<p>Either delegates to dealii::MatrixFree::initialize_dof_vector() (matrix-free mode) or reinitializes the vector using locally owned / relevant DoFs and the associated MPI communicator.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">vec</td><td>Vector to be initialized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dof_idx</td><td>Index of the DoFHandler / partitioning to use. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1462,6 +1940,17 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Check whether a given component uses FE_DGQ. </p>
+<p>This is implemented via string matching on the finite element name.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+    <tr><td class="paramname">component</td><td>Component index within the finite element. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the sub-element is FE_DGQ, false otherwise. </dd></dl>
+
 </div>
 </div>
 <a id="a0b26bee005effa1888b6c9426c425017" name="a0b26bee005effa1888b6c9426c425017"></a>
@@ -1492,6 +1981,17 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Check whether a given component uses FE_Q_iso_Q1. </p>
+<p>This is implemented via string matching on the finite element name.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+    <tr><td class="paramname">component</td><td>Component index within the finite element. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the sub-element is FE_Q_iso_Q1, false otherwise. </dd></dl>
+
 </div>
 </div>
 <a id="a7258368e3c948150494f58de77b5a722" name="a7258368e3c948150494f58de77b5a722"></a>
@@ -1511,6 +2011,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Check whether the underlying mesh is a pure hypercube mesh. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dof_idx</td><td>Index of the DoFHandler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if all reference cells are hypercubes, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -1571,7 +2080,21 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Setup everything in one go. </p>
+
+<p>Set up mapping, DoFHandlers, constraints, quadrature rules and matrix-free data in a single call. </p>
+<p>This is the high-level convenience entry point that clears any existing state, attaches all provided DoFHandlers, constraint matrices and quadrature rules, (re-)creates partitioning information and then calls <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build()</a> to initialize matrix-free data if requested.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mapping</td><td>Mapping used for all attached DoFHandlers. </td></tr>
+    <tr><td class="paramname">dof_handler</td><td>Vector of DoFHandlers to attach. </td></tr>
+    <tr><td class="paramname">constraint</td><td>Vector of constraint matrices corresponding one-to-one to <code>dof_handler</code>. </td></tr>
+    <tr><td class="paramname">quad</td><td>Vector of cell quadrature rules to attach. </td></tr>
+    <tr><td class="paramname">enable_boundary_face_loops</td><td>If true, face data for boundary loops are set up in <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build()</a>. </td></tr>
+    <tr><td class="paramname">enable_inner_face_loops</td><td>If true, face data for interior faces are set up in <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build()</a>. </td></tr>
+    <tr><td class="paramname">enable_normal_vector_update</td><td>If true, normal vectors are included in the mapping update flags. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1592,7 +2115,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Fill internal data structures step-by-step. </p>
+
+<p>Set the mapping by value. </p>
+<p>Stores a clone of the given mapping object internally.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mapping</td><td>Mapping object to be cloned and stored. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1613,6 +2144,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Set the mapping from a shared pointer. </p>
+<p>The shared pointer is stored internally and may be shared with other parts of the code.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mapping</td><td>Shared pointer to the mapping object to use. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1727,6 +2267,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Flag indicating whether boundary-face matrix-free loops are enabled. </p>
+<p>This is set in <a class="el" href="classMeltPoolDG_1_1ScratchData.html#af77a33619dd4a5a30363196eeae7cc92">reinit()</a> / <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build()</a> based on the corresponding arguments and can be queried by operators. </p>
+
 </div>
 </div>
 <a id="ae2a5f0516d8aefeff3c4e0ff1f409106" name="ae2a5f0516d8aefeff3c4e0ff1f409106"></a>
@@ -1742,6 +2285,9 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Flag indicating whether interior-face matrix-free loops are enabled. </p>
+<p>This is set in <a class="el" href="classMeltPoolDG_1_1ScratchData.html#af77a33619dd4a5a30363196eeae7cc92">reinit()</a> / <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build()</a> based on the corresponding arguments and can be queried by operators. </p>
 
 </div>
 </div>

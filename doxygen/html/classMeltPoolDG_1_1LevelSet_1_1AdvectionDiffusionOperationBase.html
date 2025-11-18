@@ -159,6 +159,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac70092aa7fc28b6ca3b9fe420f28da9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8a003a30c5af6db1522d01c86e6e1bf" id="r_ac8a003a30c5af6db1522d01c86e6e1bf"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html#ac8a003a30c5af6db1522d01c86e6e1bf">set_initial_condition</a> (const dealii::Function&lt; dim &gt; &amp;)=0</td></tr>
 <tr class="separator:ac8a003a30c5af6db1522d01c86e6e1bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad74f99311f9c906af56da9bbb985f53f" id="r_ad74f99311f9c906af56da9bbb985f53f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html#ad74f99311f9c906af56da9bbb985f53f">set_advection_velocity</a> (const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;, const unsigned int)</td></tr>
+<tr class="separator:ad74f99311f9c906af56da9bbb985f53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02294711eb402c2bff2e800f49f910d2" id="r_a02294711eb402c2bff2e800f49f910d2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html#a02294711eb402c2bff2e800f49f910d2">set_advection_velocity_function</a> (const std::shared_ptr&lt; dealii::Function&lt; dim, number &gt; &gt; &amp;)</td></tr>
+<tr class="separator:a02294711eb402c2bff2e800f49f910d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac817d87410218c6b9e5608256098b0ec" id="r_ac817d87410218c6b9e5608256098b0ec"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html#ac817d87410218c6b9e5608256098b0ec">setup_constraints</a> (<a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;mutable_scratch_data, const <a class="el" href="structMeltPoolDG_1_1PeriodicBoundaryConditions.html">PeriodicBoundaryConditions</a>&lt; dim &gt; &amp;pbc, const std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; &amp;dirichlet_bc_in)=0</td></tr>
+<tr class="separator:ac817d87410218c6b9e5608256098b0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60d467f8c5df470bf56745f29678aa84" id="r_a60d467f8c5df470bf56745f29678aa84"><td class="memItemLeft" align="right" valign="top">virtual const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html#a60d467f8c5df470bf56745f29678aa84">get_advected_field</a> () const =0</td></tr>
 <tr class="separator:a60d467f8c5df470bf56745f29678aa84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97fd45557f4687ac274d904810ad957b" id="r_a97fd45557f4687ac274d904810ad957b"><td class="memItemLeft" align="right" valign="top">virtual dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html#a97fd45557f4687ac274d904810ad957b">get_advected_field</a> ()=0</td></tr>
@@ -184,6 +190,7 @@ Public Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:aad8d3434b078bee4e444b76d4e4a2fee" id="r_aad8d3434b078bee4e444b76d4e4a2fee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html#aad8d3434b078bee4e444b76d4e4a2fee">ready_for_time_advance</a> = false</td></tr>
+<tr class="memdesc:aad8d3434b078bee4e444b76d4e4a2fee"><td class="mdescLeft">&#160;</td><td class="mdescRight">determine whether solution vectors are prepared for time advance  <br /></td></tr>
 <tr class="separator:aad8d3434b078bee4e444b76d4e4a2fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -506,6 +513,76 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
+<a id="ad74f99311f9c906af56da9bbb985f53f" name="ad74f99311f9c906af56da9bbb985f53f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad74f99311f9c906af56da9bbb985f53f">&#9670;&#160;</a></span>set_advection_velocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html">MeltPoolDG::LevelSet::AdvectionDiffusionOperationBase</a>&lt; dim, number &gt;::set_advection_velocity </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDGOperation.html#a4632cd75830b0c51e2185912e0a873b1">MeltPoolDG::LevelSet::AdvectionDGOperation&lt; dim, number &gt;</a>, and <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperation.html#aebc520ba515f34cd0c15adfd49a697e9">MeltPoolDG::LevelSet::AdvectionDiffusionOperation&lt; dim, number &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a02294711eb402c2bff2e800f49f910d2" name="a02294711eb402c2bff2e800f49f910d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02294711eb402c2bff2e800f49f910d2">&#9670;&#160;</a></span>set_advection_velocity_function()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html">MeltPoolDG::LevelSet::AdvectionDiffusionOperationBase</a>&lt; dim, number &gt;::set_advection_velocity_function </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; dealii::Function&lt; dim, number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDGOperation.html#aedc0fae28d60058cec87641245acbe9a">MeltPoolDG::LevelSet::AdvectionDGOperation&lt; dim, number &gt;</a>, and <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperation.html#a8f7be46598ceaa7b320502ecf8ddd495">MeltPoolDG::LevelSet::AdvectionDiffusionOperation&lt; dim, number &gt;</a>.</p>
+
+</div>
+</div>
 <a id="ac8a003a30c5af6db1522d01c86e6e1bf" name="ac8a003a30c5af6db1522d01c86e6e1bf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac8a003a30c5af6db1522d01c86e6e1bf">&#9670;&#160;</a></span>set_initial_condition()</h2>
 
@@ -533,6 +610,52 @@ template&lt;int dim, typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDGOperation.html#a72fe0353333be0866c38e6779d122931">MeltPoolDG::LevelSet::AdvectionDGOperation&lt; dim, number &gt;</a>, and <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperation.html#a85db548d273d4359699229c30d7ccd06">MeltPoolDG::LevelSet::AdvectionDiffusionOperation&lt; dim, number &gt;</a>.</p>
+
+</div>
+</div>
+<a id="ac817d87410218c6b9e5608256098b0ec" name="ac817d87410218c6b9e5608256098b0ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac817d87410218c6b9e5608256098b0ec">&#9670;&#160;</a></span>setup_constraints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperationBase.html">MeltPoolDG::LevelSet::AdvectionDiffusionOperationBase</a>&lt; dim, number &gt;::setup_constraints </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mutable_scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1PeriodicBoundaryConditions.html">PeriodicBoundaryConditions</a>&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>pbc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dirichlet_bc_in</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDGOperation.html#a2adddcf5f472e02281a9138521bd22e2">MeltPoolDG::LevelSet::AdvectionDGOperation&lt; dim, number &gt;</a>, and <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1AdvectionDiffusionOperation.html#aebf138e83af7f8e230d13545f208fe03">MeltPoolDG::LevelSet::AdvectionDiffusionOperation&lt; dim, number &gt;</a>.</p>
 
 </div>
 </div>
@@ -604,6 +727,8 @@ template&lt;int dim, typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>determine whether solution vectors are prepared for time advance </p>
 
 </div>
 </div>

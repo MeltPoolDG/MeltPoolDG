@@ -152,6 +152,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a76358e876dd0fb7ba6d1825fd4932c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a049369e94914fcbec9729b44b36d36ac" id="r_a049369e94914fcbec9729b44b36d36ac"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetOperationBase.html#a049369e94914fcbec9729b44b36d36ac">set_inflow_outflow_bc</a> (const std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; inflow_outflow_bc)=0</td></tr>
 <tr class="separator:a049369e94914fcbec9729b44b36d36ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc2f024c50eddf708f23359ed4b64cd5" id="r_abc2f024c50eddf708f23359ed4b64cd5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetOperationBase.html#abc2f024c50eddf708f23359ed4b64cd5">setup_constraints</a> (<a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;mutable_scratch_data, const <a class="el" href="structMeltPoolDG_1_1PeriodicBoundaryConditions.html">PeriodicBoundaryConditions</a>&lt; dim &gt; &amp;pbc, const std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; &amp;ls_dirichlet_bc_in, const std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; &amp;normal_x_dirichlet_bc_in, const std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; &amp;normal_y_dirichlet_bc_in, const std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; &amp;normal_z_dirichlet_bc_in)=0</td></tr>
+<tr class="separator:abc2f024c50eddf708f23359ed4b64cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6da38be18b6c0ec4947f6fcdc8d8e82c" id="r_a6da38be18b6c0ec4947f6fcdc8d8e82c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetOperationBase.html#a6da38be18b6c0ec4947f6fcdc8d8e82c">reinit</a> ()=0</td></tr>
 <tr class="separator:a6da38be18b6c0ec4947f6fcdc8d8e82c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7196e8e0b2975d2510ce4884365c69d4" id="r_a7196e8e0b2975d2510ce4884365c69d4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetOperationBase.html#a7196e8e0b2975d2510ce4884365c69d4">distribute_constraints</a> ()=0</td></tr>
@@ -822,6 +824,70 @@ template&lt;int dim, typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>Reimplemented in <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetOperation.html#ae7f246e4629cbd57eba25a583f91ae70">MeltPoolDG::LevelSet::LevelSetOperation&lt; dim, number &gt;</a>.</p>
+
+</div>
+</div>
+<a id="abc2f024c50eddf708f23359ed4b64cd5" name="abc2f024c50eddf708f23359ed4b64cd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc2f024c50eddf708f23359ed4b64cd5">&#9670;&#160;</a></span>setup_constraints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetOperationBase.html">MeltPoolDG::LevelSet::LevelSetOperationBase</a>&lt; dim, number &gt;::setup_constraints </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mutable_scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1PeriodicBoundaryConditions.html">PeriodicBoundaryConditions</a>&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>pbc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ls_dirichlet_bc_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>normal_x_dirichlet_bc_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>normal_y_dirichlet_bc_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>normal_z_dirichlet_bc_in</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetDGOperation.html#a7debb7aad7d71619970556cc6df8c2ac">MeltPoolDG::LevelSet::LevelSetDGOperation&lt; dim, number &gt;</a>, and <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1LevelSetOperation.html#a67231df34696b3cda08310a3d6a5cc32">MeltPoolDG::LevelSet::LevelSetOperation&lt; dim, number &gt;</a>.</p>
 
 </div>
 </div>
