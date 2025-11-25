@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/fluid_structure_interaction/brinkman_penalization.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/fluid_structure_interaction/brinkman_penalization.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/brinkman__penalization_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-fluid-structure-interaction-brinkman-penalization-hpp-source-file">
+<h1>include/meltpooldg/fluid_structure_interaction/brinkman_penalization.hpp Source File<a class="headerlink" href="#include-meltpooldg-fluid-structure-interaction-brinkman-penalization-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/fluid_structure_interaction/brinkman_penalization.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_181dbc04b0cb71942e1eaa5b395c05c0.html">fluid_structure_interaction</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">brinkman_penalization.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="brinkman__penalization_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/exception_macros.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;deal.II/base/exceptions.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;deal.II/base/point.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;deal.II/base/vectorization.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;deal.II/lac/la_parallel_vector.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;deal.II/matrix_free/matrix_free.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="brinkman__penalization__data_8hpp.html">meltpooldg/fluid_structure_interaction/brinkman_penalization_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="fluid__structure__interaction__util_8hpp.html">meltpooldg/fluid_structure_interaction/fluid_structure_interaction_util.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="obstacle__field_8hpp.html">meltpooldg/particles/obstacle_field.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="matrix__free__util_8hpp.html">meltpooldg/utilities/matrix_free_util.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG.html">MeltPoolDG</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number, <span class="keyword">typename</span> ObstacleType&gt;</div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html">   22</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html">BrinkmanObstacleForce</a></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a5adca0b7cf941a6cd6e6b428ccaa8f5f">   24</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a5adca0b7cf941a6cd6e6b428ccaa8f5f">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html">BrinkmanObstacleForce</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField&lt;dim, number, ObstacleType&gt;</a> &amp;obstacle_handler,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                          <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a5adca0b7cf941a6cd6e6b428ccaa8f5f">VectorType</a>                               &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a3a6d75a3e2181626e5124f8749db4f53">solution</a>,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                          <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1MatrixFreeContext.html">MatrixFreeContext&lt;dim, number&gt;</a>           &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a2ed9b6a950cdb3e9e026a6f97c7ba1cd">matrix_free</a>,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                          <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanPenalizationData.html">BrinkmanPenalizationData&lt;number&gt;</a>         &amp;data);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_function" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#ae560f08486d747d0a587ec83bbfe2e81">add_load_to_obstacles</a>(<a class="code hl_class" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField&lt;dim, number, ObstacleType&gt;</a> &amp;obstacle_field) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#ae39926afbd598f3896e120fbc313d1d0">   51</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanPenalizationData.html">BrinkmanPenalizationData&lt;number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#ae39926afbd598f3896e120fbc313d1d0">brinkman_penalization_data</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#ad918f172446ae212ec69bc01726ca22a">   54</a></span>    <span class="keyword">mutable</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CellObstacleCache.html">CellObstacleCache&lt;dim, number, ObstacleType&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#ad918f172446ae212ec69bc01726ca22a">cell_obstacle_cache</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a2ed9b6a950cdb3e9e026a6f97c7ba1cd">   57</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1MatrixFreeContext.html">MatrixFreeContext&lt;dim, number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a2ed9b6a950cdb3e9e026a6f97c7ba1cd">matrix_free</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a3a6d75a3e2181626e5124f8749db4f53">   60</a></span>    <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a5adca0b7cf941a6cd6e6b428ccaa8f5f">VectorType</a> &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a3a6d75a3e2181626e5124f8749db4f53">solution</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  };</div>
+</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number, <span class="keyword">typename</span> ObstacleType&gt;</div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="};">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html">   83</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html">BrinkmanPenalizationResidualContribution</a> final</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    : <span class="keyword">public</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1AdditionalCellAndQuadOperation.html">Flow::AdditionalCellAndQuadOperation</a>&lt;dim, number&gt;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#aa23324ee2858dda4a3988863b5b7a9d0">   86</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#aa23324ee2858dda4a3988863b5b7a9d0">ConservedVariablesType</a> = <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">Flow::CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html">BrinkmanPenalizationResidualContribution</a>(</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField&lt;dim, number, ObstacleType&gt;</a> &amp;obstacle_handler,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanPenalizationData.html">BrinkmanPenalizationData&lt;number&gt;</a>         &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#ab254de10a52a7995928f24de083a20a5">brinkman_penalization_data</a>);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <a class="code hl_function" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#af5002d4f9be355a86801a786ee4658e5">cell_operation</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1MatrixFreeContext.html">MatrixFreeContext&lt;dim, number&gt;</a> &amp;matrix_free,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                          cell_batch_id) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <a class="code hl_typedef" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#aa23324ee2858dda4a3988863b5b7a9d0">ConservedVariablesType</a></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_function" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#acebc5200553017ee0a7582ee08c0b9d9">quad_operation</a>(number                                                     time_step_size,</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                   <span class="keyword">const</span> dealii::Point&lt;dim, dealii::VectorizedArray&lt;number&gt;&gt; &amp;q_point,</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                   <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#aa23324ee2858dda4a3988863b5b7a9d0">ConservedVariablesType</a>                              &amp;w_q) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#ab254de10a52a7995928f24de083a20a5">  136</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanPenalizationData.html">BrinkmanPenalizationData&lt;number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#ab254de10a52a7995928f24de083a20a5">brinkman_penalization_data</a>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#a8aba8349dffdfb0281526e5aefff3862">  139</a></span>    <span class="keyword">mutable</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CellObstacleCache.html">CellObstacleCache&lt;dim, number, ObstacleType&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#a8aba8349dffdfb0281526e5aefff3862">cell_obstacle_cache</a>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  };</div>
+</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number, <span class="keyword">typename</span> ObstacleType&gt;</div>
+<div class="foldopen" id="foldopen00161" data-start="{" data-end="};">
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html">  161</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html">BrinkmanPenalizationJacobianContribution</a> final</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    : <span class="keyword">public</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1AdditionalCellAndQuadOperationJacobian.html">Flow::AdditionalCellAndQuadOperationJacobian</a>&lt;dim, number&gt;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  {</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a644aa382e4ea571f211b49efaf79c057">  164</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a644aa382e4ea571f211b49efaf79c057">ConservedVariablesType</a> = <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">Flow::CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html">BrinkmanPenalizationJacobianContribution</a>(</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField&lt;dim, number, ObstacleType&gt;</a> &amp;obstacle_handler,</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanPenalizationData.html">BrinkmanPenalizationData&lt;number&gt;</a>         &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#af2642728a7b7863f909070a66bc74bcb">brinkman_penalization_data</a>);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <a class="code hl_function" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a69a5085d10b9d1e9d22dac221e32feb7">cell_operation</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1MatrixFreeContext.html">MatrixFreeContext&lt;dim, number&gt;</a> &amp;matrix_free,</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                          cell_batch_id) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <a class="code hl_typedef" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a644aa382e4ea571f211b49efaf79c057">ConservedVariablesType</a></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <a class="code hl_function" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a8d8e94149741f8e9f5a394cb8489f0a9">quad_operation</a>(number                                                     time_step_size,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                   <span class="keyword">const</span> dealii::Point&lt;dim, dealii::VectorizedArray&lt;number&gt;&gt; &amp;q_point,</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>                   <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a644aa382e4ea571f211b49efaf79c057">ConservedVariablesType</a>                              &amp;w_q,</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                   <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a644aa382e4ea571f211b49efaf79c057">ConservedVariablesType</a>                              &amp;delta_w_q) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#af2642728a7b7863f909070a66bc74bcb">  215</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanPenalizationData.html">BrinkmanPenalizationData&lt;number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#af2642728a7b7863f909070a66bc74bcb">brinkman_penalization_data</a>;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a1070d832f286736173aed089722aecef">  218</a></span>    <span class="keyword">mutable</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CellObstacleCache.html">CellObstacleCache&lt;dim, number, ObstacleType&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a1070d832f286736173aed089722aecef">cell_obstacle_cache</a>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>  };</div>
+</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="abrinkman__penalization__data_8hpp_html"><div class="ttname"><a href="brinkman__penalization__data_8hpp.html">brinkman_penalization_data.hpp</a></div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ObstacleField_html"><div class="ttname"><a href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a></div><div class="ttdef"><b>Definition</b> obstacle_field.hpp:25</div></div>
+<div class="ttc" id="afluid__structure__interaction__util_8hpp_html"><div class="ttname"><a href="fluid__structure__interaction__util_8hpp.html">fluid_structure_interaction_util.hpp</a></div></div>
+<div class="ttc" id="amatrix__free__util_8hpp_html"><div class="ttname"><a href="matrix__free__util_8hpp.html">matrix_free_util.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> base_data.hpp:9</div></div>
+<div class="ttc" id="aobstacle__field_8hpp_html"><div class="ttname"><a href="obstacle__field_8hpp.html">obstacle_field.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanObstacleForce_html"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanObstacleForce.html">MeltPoolDG::BrinkmanObstacleForce</a></div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:23</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanObstacleForce_html_a2ed9b6a950cdb3e9e026a6f97c7ba1cd"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a2ed9b6a950cdb3e9e026a6f97c7ba1cd">MeltPoolDG::BrinkmanObstacleForce::matrix_free</a></div><div class="ttdeci">const MatrixFreeContext&lt; dim, number &gt; matrix_free</div><div class="ttdoc">Matrix free object and corresponding relevant indices used by the compressible flow solver.</div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:57</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanObstacleForce_html_a3a6d75a3e2181626e5124f8749db4f53"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a3a6d75a3e2181626e5124f8749db4f53">MeltPoolDG::BrinkmanObstacleForce::solution</a></div><div class="ttdeci">const VectorType &amp; solution</div><div class="ttdoc">Solution of the flow field.</div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:60</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanObstacleForce_html_a5adca0b7cf941a6cd6e6b428ccaa8f5f"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#a5adca0b7cf941a6cd6e6b428ccaa8f5f">MeltPoolDG::BrinkmanObstacleForce::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:24</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanObstacleForce_html_ad918f172446ae212ec69bc01726ca22a"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#ad918f172446ae212ec69bc01726ca22a">MeltPoolDG::BrinkmanObstacleForce::cell_obstacle_cache</a></div><div class="ttdeci">CellObstacleCache&lt; dim, number, ObstacleType &gt; cell_obstacle_cache</div><div class="ttdoc">Cached cell data for computing Brinkman penalty term.</div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:54</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanObstacleForce_html_ae39926afbd598f3896e120fbc313d1d0"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#ae39926afbd598f3896e120fbc313d1d0">MeltPoolDG::BrinkmanObstacleForce::brinkman_penalization_data</a></div><div class="ttdeci">const BrinkmanPenalizationData&lt; number &gt; brinkman_penalization_data</div><div class="ttdoc">Brinkman penalization data.</div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:51</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanObstacleForce_html_ae560f08486d747d0a587ec83bbfe2e81"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanObstacleForce.html#ae560f08486d747d0a587ec83bbfe2e81">MeltPoolDG::BrinkmanObstacleForce::add_load_to_obstacles</a></div><div class="ttdeci">void add_load_to_obstacles(ObstacleField&lt; dim, number, ObstacleType &gt; &amp;obstacle_field) const</div><div class="ttdef"><b>Definition</b> brinkman_penalization.cpp:37</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationData_html"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationData.html">MeltPoolDG::BrinkmanPenalizationData</a></div><div class="ttdef"><b>Definition</b> brinkman_penalization_data.hpp:12</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution_html"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html">MeltPoolDG::BrinkmanPenalizationJacobianContribution</a></div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:163</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution_html_a1070d832f286736173aed089722aecef"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a1070d832f286736173aed089722aecef">MeltPoolDG::BrinkmanPenalizationJacobianContribution::cell_obstacle_cache</a></div><div class="ttdeci">CellObstacleCache&lt; dim, number, ObstacleType &gt; cell_obstacle_cache</div><div class="ttdoc">Cached cell data for computing Brinkman penalty term.</div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:218</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution_html_a644aa382e4ea571f211b49efaf79c057"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a644aa382e4ea571f211b49efaf79c057">MeltPoolDG::BrinkmanPenalizationJacobianContribution::ConservedVariablesType</a></div><div class="ttdeci">Flow::CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; ConservedVariablesType</div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:164</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution_html_a69a5085d10b9d1e9d22dac221e32feb7"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a69a5085d10b9d1e9d22dac221e32feb7">MeltPoolDG::BrinkmanPenalizationJacobianContribution::cell_operation</a></div><div class="ttdeci">void cell_operation(const MatrixFreeContext&lt; dim, number &gt; &amp;matrix_free, unsigned int cell_batch_id) override</div><div class="ttdef"><b>Definition</b> brinkman_penalization.cpp:256</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution_html_a8d8e94149741f8e9f5a394cb8489f0a9"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#a8d8e94149741f8e9f5a394cb8489f0a9">MeltPoolDG::BrinkmanPenalizationJacobianContribution::quad_operation</a></div><div class="ttdeci">ConservedVariablesType quad_operation(number time_step_size, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, const ConservedVariablesType &amp;w_q, const ConservedVariablesType &amp;delta_w_q) override</div><div class="ttdef"><b>Definition</b> brinkman_penalization.cpp:267</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution_html_af2642728a7b7863f909070a66bc74bcb"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationJacobianContribution.html#af2642728a7b7863f909070a66bc74bcb">MeltPoolDG::BrinkmanPenalizationJacobianContribution::brinkman_penalization_data</a></div><div class="ttdeci">const BrinkmanPenalizationData&lt; number &gt; brinkman_penalization_data</div><div class="ttdoc">Brinkman penalization data.</div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:215</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationResidualContribution_html"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html">MeltPoolDG::BrinkmanPenalizationResidualContribution</a></div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:85</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationResidualContribution_html_a8aba8349dffdfb0281526e5aefff3862"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#a8aba8349dffdfb0281526e5aefff3862">MeltPoolDG::BrinkmanPenalizationResidualContribution::cell_obstacle_cache</a></div><div class="ttdeci">CellObstacleCache&lt; dim, number, ObstacleType &gt; cell_obstacle_cache</div><div class="ttdoc">Cached cell data for computing Brinkman penalty term.</div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:139</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationResidualContribution_html_aa23324ee2858dda4a3988863b5b7a9d0"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#aa23324ee2858dda4a3988863b5b7a9d0">MeltPoolDG::BrinkmanPenalizationResidualContribution::ConservedVariablesType</a></div><div class="ttdeci">Flow::CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; ConservedVariablesType</div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:86</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationResidualContribution_html_ab254de10a52a7995928f24de083a20a5"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#ab254de10a52a7995928f24de083a20a5">MeltPoolDG::BrinkmanPenalizationResidualContribution::brinkman_penalization_data</a></div><div class="ttdeci">const BrinkmanPenalizationData&lt; number &gt; brinkman_penalization_data</div><div class="ttdoc">Brinkman penalization data.</div><div class="ttdef"><b>Definition</b> brinkman_penalization.hpp:136</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationResidualContribution_html_acebc5200553017ee0a7582ee08c0b9d9"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#acebc5200553017ee0a7582ee08c0b9d9">MeltPoolDG::BrinkmanPenalizationResidualContribution::quad_operation</a></div><div class="ttdeci">ConservedVariablesType quad_operation(number time_step_size, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, const ConservedVariablesType &amp;w_q) override</div><div class="ttdef"><b>Definition</b> brinkman_penalization.cpp:209</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1BrinkmanPenalizationResidualContribution_html_af5002d4f9be355a86801a786ee4658e5"><div class="ttname"><a href="structMeltPoolDG_1_1BrinkmanPenalizationResidualContribution.html#af5002d4f9be355a86801a786ee4658e5">MeltPoolDG::BrinkmanPenalizationResidualContribution::cell_operation</a></div><div class="ttdeci">void cell_operation(const MatrixFreeContext&lt; dim, number &gt; &amp;matrix_free, unsigned int cell_batch_id) override</div><div class="ttdef"><b>Definition</b> brinkman_penalization.cpp:198</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CellObstacleCache_html"><div class="ttname"><a href="structMeltPoolDG_1_1CellObstacleCache.html">MeltPoolDG::CellObstacleCache</a></div><div class="ttdef"><b>Definition</b> fluid_structure_interaction_util.hpp:71</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1AdditionalCellAndQuadOperationJacobian_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1AdditionalCellAndQuadOperationJacobian.html">MeltPoolDG::Flow::AdditionalCellAndQuadOperationJacobian</a></div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:162</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1AdditionalCellAndQuadOperation_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1AdditionalCellAndQuadOperation.html">MeltPoolDG::Flow::AdditionalCellAndQuadOperation</a></div><div class="ttdoc">An abstract interface for defining external forces acting on the fluid that must be evaluated and inc...</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:130</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes_html_a475c167d568ca252c2feec2fd01cff24"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">MeltPoolDG::Flow::CompressibleFlowTypes::ConservedVariablesType</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim+2, dealii::VectorizedArray&lt; number &gt; &gt; ConservedVariablesType</div><div class="ttdoc">Type of the conserved variables.</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:36</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1MatrixFreeContext_html"><div class="ttname"><a href="structMeltPoolDG_1_1MatrixFreeContext.html">MeltPoolDG::MatrixFreeContext</a></div><div class="ttdef"><b>Definition</b> matrix_free_util.hpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

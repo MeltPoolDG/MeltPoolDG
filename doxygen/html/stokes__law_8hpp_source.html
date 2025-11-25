@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/fluid_structure_interaction/stokes_law.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/fluid_structure_interaction/stokes_law.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/stokes__law_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-fluid-structure-interaction-stokes-law-hpp-source-file">
+<h1>include/meltpooldg/fluid_structure_interaction/stokes_law.hpp Source File<a class="headerlink" href="#include-meltpooldg-fluid-structure-interaction-stokes-law-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/fluid_structure_interaction/stokes_law.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_181dbc04b0cb71942e1eaa5b395c05c0.html">fluid_structure_interaction</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">stokes_law.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="stokes__law_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/point.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;deal.II/base/vectorization.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;deal.II/lac/la_parallel_vector.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;deal.II/matrix_free/matrix_free.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="compressible__flow__utils_8hpp.html">meltpooldg/flow/compressible_flow_utils.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="fluid__structure__interaction__data_8hpp.html">meltpooldg/fluid_structure_interaction/fluid_structure_interaction_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="obstacle__field_8hpp.html">meltpooldg/particles/obstacle_field.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG.html">MeltPoolDG</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number, <span class="keyword">typename</span> ObstacleType&gt;</div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html">   17</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html">StokesLawSphericalParticleForce</a></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a73b88419ab53e80fa8eda96f775aceca">   19</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a73b88419ab53e80fa8eda96f775aceca">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_struct" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html">StokesLawSphericalParticleForce</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a73b88419ab53e80fa8eda96f775aceca">VectorType</a>                     &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a472ab7a464f3963704c63c8a34837773">solution</a>,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                                    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1MatrixFreeContext.html">MatrixFreeContext&lt;dim, number&gt;</a> &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a7b8a90774b6719b58181e030d8b26fb9">matrix_free</a>,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                                    <span class="keyword">const</span> number                          <a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a2d5b4646adc5629d4dc58184baa778a9">dynamic_viscosity</a>);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_function" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a8176995e2383fe5fbe88aa975af44c30">add_load_to_obstacles</a>(<a class="code hl_class" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField&lt;dim, number, ObstacleType&gt;</a> &amp;obstacle_field) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a7b8a90774b6719b58181e030d8b26fb9">   50</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1MatrixFreeContext.html">MatrixFreeContext&lt;dim, number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a7b8a90774b6719b58181e030d8b26fb9">matrix_free</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a472ab7a464f3963704c63c8a34837773">   53</a></span>    <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a73b88419ab53e80fa8eda96f775aceca">VectorType</a> &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a472ab7a464f3963704c63c8a34837773">solution</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a2d5b4646adc5629d4dc58184baa778a9">   56</a></span>    <span class="keyword">const</span> number <a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a2d5b4646adc5629d4dc58184baa778a9">dynamic_viscosity</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  };</div>
+</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number, <span class="keyword">typename</span> ObstacleType&gt;</div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="};">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1StokesLawFluidForce.html">   69</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1StokesLawFluidForce.html">StokesLawFluidForce</a> final : <span class="keyword">public</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1AdditionalCellAndQuadOperation.html">Flow::AdditionalCellAndQuadOperation</a>&lt;dim, number&gt;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1StokesLawFluidForce.html#ae7d8e1c426216bb8f7239feec1d1c45a">   71</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1StokesLawFluidForce.html#ae7d8e1c426216bb8f7239feec1d1c45a">ConservedVariablesType</a> = <a class="code hl_typedef" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">Flow::CompressibleFlowTypes::ConservedVariablesType&lt;dim, number&gt;</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1StokesLawFluidForce.html#a5b9a54500fd42b736f8dd9b09cf1d7ab">   72</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1StokesLawFluidForce.html#a5b9a54500fd42b736f8dd9b09cf1d7ab">VectorType</a>             = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_struct" href="structMeltPoolDG_1_1StokesLawFluidForce.html">StokesLawFluidForce</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1StokesLawFluidForce.html#a5b9a54500fd42b736f8dd9b09cf1d7ab">VectorType</a>                         &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawFluidForce.html#aea50f8dfcf089fc70d371bf8fed3f831">solution</a>,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                        <a class="code hl_class" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField&lt;dim, number, ObstacleType&gt;</a> &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawFluidForce.html#a087191ee5b9939bdeefa6c11db9aff51">obstacle_handler</a>,</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                        <span class="keyword">const</span> number                              <a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawFluidForce.html#ad57eda211faf9e32c946d2151daceaa9">dynamic_viscosity</a>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <a class="code hl_function" href="structMeltPoolDG_1_1StokesLawFluidForce.html#a222688df5776a7622448d8fd52eaaf5e">cell_operation</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1MatrixFreeContext.html">MatrixFreeContext&lt;dim, number&gt;</a> &amp;matrix_free,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                          cell_batch_id) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <a class="code hl_typedef" href="structMeltPoolDG_1_1StokesLawFluidForce.html#ae7d8e1c426216bb8f7239feec1d1c45a">ConservedVariablesType</a></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <a class="code hl_function" href="structMeltPoolDG_1_1StokesLawFluidForce.html#a398bcfb84c67739c45f6b0813adf3d11">quad_operation</a>(number                                                     time_step_size,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                   <span class="keyword">const</span> dealii::Point&lt;dim, dealii::VectorizedArray&lt;number&gt;&gt; &amp;q_point,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                   <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1StokesLawFluidForce.html#ae7d8e1c426216bb8f7239feec1d1c45a">ConservedVariablesType</a>                              &amp;w_q) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1StokesLawFluidForce.html#aea50f8dfcf089fc70d371bf8fed3f831">  126</a></span>    <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1StokesLawFluidForce.html#a5b9a54500fd42b736f8dd9b09cf1d7ab">VectorType</a> &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawFluidForce.html#aea50f8dfcf089fc70d371bf8fed3f831">solution</a>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1StokesLawFluidForce.html#ad57eda211faf9e32c946d2151daceaa9">  129</a></span>    <span class="keyword">const</span> number <a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawFluidForce.html#ad57eda211faf9e32c946d2151daceaa9">dynamic_viscosity</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1StokesLawFluidForce.html#abd2e2c9156321a51180e0fdfc5a67bd1">  132</a></span>    dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawFluidForce.html#abd2e2c9156321a51180e0fdfc5a67bd1">cell_penalty_force</a>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1StokesLawFluidForce.html#a087191ee5b9939bdeefa6c11db9aff51">  135</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField&lt;dim, number, ObstacleType&gt;</a> &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1StokesLawFluidForce.html#a087191ee5b9939bdeefa6c11db9aff51">obstacle_handler</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  };</div>
+</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ObstacleField_html"><div class="ttname"><a href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a></div><div class="ttdef"><b>Definition</b> obstacle_field.hpp:25</div></div>
+<div class="ttc" id="acompressible__flow__utils_8hpp_html"><div class="ttname"><a href="compressible__flow__utils_8hpp.html">compressible_flow_utils.hpp</a></div></div>
+<div class="ttc" id="afluid__structure__interaction__data_8hpp_html"><div class="ttname"><a href="fluid__structure__interaction__data_8hpp.html">fluid_structure_interaction_data.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> base_data.hpp:9</div></div>
+<div class="ttc" id="aobstacle__field_8hpp_html"><div class="ttname"><a href="obstacle__field_8hpp.html">obstacle_field.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1AdditionalCellAndQuadOperation_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1AdditionalCellAndQuadOperation.html">MeltPoolDG::Flow::AdditionalCellAndQuadOperation</a></div><div class="ttdoc">An abstract interface for defining external forces acting on the fluid that must be evaluated and inc...</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:130</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes_html_a475c167d568ca252c2feec2fd01cff24"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">MeltPoolDG::Flow::CompressibleFlowTypes::ConservedVariablesType</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim+2, dealii::VectorizedArray&lt; number &gt; &gt; ConservedVariablesType</div><div class="ttdoc">Type of the conserved variables.</div><div class="ttdef"><b>Definition</b> compressible_flow_utils.hpp:36</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1MatrixFreeContext_html"><div class="ttname"><a href="structMeltPoolDG_1_1MatrixFreeContext.html">MeltPoolDG::MatrixFreeContext</a></div><div class="ttdef"><b>Definition</b> matrix_free_util.hpp:10</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawFluidForce_html"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawFluidForce.html">MeltPoolDG::StokesLawFluidForce</a></div><div class="ttdef"><b>Definition</b> stokes_law.hpp:70</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawFluidForce_html_a087191ee5b9939bdeefa6c11db9aff51"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawFluidForce.html#a087191ee5b9939bdeefa6c11db9aff51">MeltPoolDG::StokesLawFluidForce::obstacle_handler</a></div><div class="ttdeci">ObstacleField&lt; dim, number, ObstacleType &gt; &amp; obstacle_handler</div><div class="ttdoc">Reference to the obstacle handler managing obstacles in the domain.</div><div class="ttdef"><b>Definition</b> stokes_law.hpp:135</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawFluidForce_html_a222688df5776a7622448d8fd52eaaf5e"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawFluidForce.html#a222688df5776a7622448d8fd52eaaf5e">MeltPoolDG::StokesLawFluidForce::cell_operation</a></div><div class="ttdeci">void cell_operation(const MatrixFreeContext&lt; dim, number &gt; &amp;matrix_free, unsigned int cell_batch_id) override</div><div class="ttdef"><b>Definition</b> stokes_law.cpp:87</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawFluidForce_html_a398bcfb84c67739c45f6b0813adf3d11"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawFluidForce.html#a398bcfb84c67739c45f6b0813adf3d11">MeltPoolDG::StokesLawFluidForce::quad_operation</a></div><div class="ttdeci">ConservedVariablesType quad_operation(number time_step_size, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, const ConservedVariablesType &amp;w_q) override</div><div class="ttdef"><b>Definition</b> stokes_law.cpp:138</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawFluidForce_html_a5b9a54500fd42b736f8dd9b09cf1d7ab"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawFluidForce.html#a5b9a54500fd42b736f8dd9b09cf1d7ab">MeltPoolDG::StokesLawFluidForce::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> stokes_law.hpp:72</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawFluidForce_html_abd2e2c9156321a51180e0fdfc5a67bd1"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawFluidForce.html#abd2e2c9156321a51180e0fdfc5a67bd1">MeltPoolDG::StokesLawFluidForce::cell_penalty_force</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; cell_penalty_force</div><div class="ttdoc">Momentum penalty force for the current cell batch.</div><div class="ttdef"><b>Definition</b> stokes_law.hpp:132</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawFluidForce_html_ad57eda211faf9e32c946d2151daceaa9"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawFluidForce.html#ad57eda211faf9e32c946d2151daceaa9">MeltPoolDG::StokesLawFluidForce::dynamic_viscosity</a></div><div class="ttdeci">const number dynamic_viscosity</div><div class="ttdoc">Dynamic viscosity of the fluid.</div><div class="ttdef"><b>Definition</b> stokes_law.hpp:129</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawFluidForce_html_ae7d8e1c426216bb8f7239feec1d1c45a"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawFluidForce.html#ae7d8e1c426216bb8f7239feec1d1c45a">MeltPoolDG::StokesLawFluidForce::ConservedVariablesType</a></div><div class="ttdeci">Flow::CompressibleFlowTypes::ConservedVariablesType&lt; dim, number &gt; ConservedVariablesType</div><div class="ttdef"><b>Definition</b> stokes_law.hpp:71</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawFluidForce_html_aea50f8dfcf089fc70d371bf8fed3f831"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawFluidForce.html#aea50f8dfcf089fc70d371bf8fed3f831">MeltPoolDG::StokesLawFluidForce::solution</a></div><div class="ttdeci">const VectorType &amp; solution</div><div class="ttdoc">Solution of the flow field.</div><div class="ttdef"><b>Definition</b> stokes_law.hpp:126</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawSphericalParticleForce_html"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html">MeltPoolDG::StokesLawSphericalParticleForce</a></div><div class="ttdef"><b>Definition</b> stokes_law.hpp:18</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawSphericalParticleForce_html_a2d5b4646adc5629d4dc58184baa778a9"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a2d5b4646adc5629d4dc58184baa778a9">MeltPoolDG::StokesLawSphericalParticleForce::dynamic_viscosity</a></div><div class="ttdeci">const number dynamic_viscosity</div><div class="ttdoc">Dynamic viscosity of the fluid.</div><div class="ttdef"><b>Definition</b> stokes_law.hpp:56</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawSphericalParticleForce_html_a472ab7a464f3963704c63c8a34837773"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a472ab7a464f3963704c63c8a34837773">MeltPoolDG::StokesLawSphericalParticleForce::solution</a></div><div class="ttdeci">const VectorType &amp; solution</div><div class="ttdoc">Solution of the flow field.</div><div class="ttdef"><b>Definition</b> stokes_law.hpp:53</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawSphericalParticleForce_html_a73b88419ab53e80fa8eda96f775aceca"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a73b88419ab53e80fa8eda96f775aceca">MeltPoolDG::StokesLawSphericalParticleForce::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> stokes_law.hpp:19</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawSphericalParticleForce_html_a7b8a90774b6719b58181e030d8b26fb9"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a7b8a90774b6719b58181e030d8b26fb9">MeltPoolDG::StokesLawSphericalParticleForce::matrix_free</a></div><div class="ttdeci">const MatrixFreeContext&lt; dim, number &gt; matrix_free</div><div class="ttdoc">Matrix free object and corresponding relevant indices used by the compressible flow solver.</div><div class="ttdef"><b>Definition</b> stokes_law.hpp:50</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1StokesLawSphericalParticleForce_html_a8176995e2383fe5fbe88aa975af44c30"><div class="ttname"><a href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html#a8176995e2383fe5fbe88aa975af44c30">MeltPoolDG::StokesLawSphericalParticleForce::add_load_to_obstacles</a></div><div class="ttdeci">void add_load_to_obstacles(ObstacleField&lt; dim, number, ObstacleType &gt; &amp;obstacle_field) const</div><div class="ttdef"><b>Definition</b> stokes_law.cpp:40</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
