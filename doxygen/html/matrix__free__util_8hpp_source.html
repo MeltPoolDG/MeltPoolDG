@@ -155,8 +155,28 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1MatrixFreeContext.html#a54cc0487425ffae515266e6164b9d850">   13</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                           <a class="code hl_variable" href="structMeltPoolDG_1_1MatrixFreeContext.html#a54cc0487425ffae515266e6164b9d850">quad_idx</a>;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  };</div>
 </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> FeEval&gt;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  dealii::Tensor&lt;1, FeEval::n_components, dealii::VectorizedArray&lt;typename FeEval::number_type&gt;&gt;</div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG.html#a3841379fcda83206763691df69c56c18">   34</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG.html#a3841379fcda83206763691df69c56c18">fe_evaluation_tensor_value_at_q</a>(<span class="keyword">const</span> FeEval &amp;fe_eval, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> q_index)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">using </span>ValueType           = <span class="keyword">typename</span> FeEval::value_type;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">using </span>VectorizedArrayType = dealii::VectorizedArray&lt;typename FeEval::number_type&gt;;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;ValueType, VectorizedArrayType&gt;)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        dealii::Tensor&lt;1, 1, VectorizedArrayType&gt; t;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        t[0] = fe_eval.get_value(q_index);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">return</span> t;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      <span class="keywordflow">return</span> fe_eval.get_value(q_index);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
+</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>} <span class="comment">// namespace MeltPoolDG</span></div>
 <div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> base_data.hpp:9</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_a3841379fcda83206763691df69c56c18"><div class="ttname"><a href="namespaceMeltPoolDG.html#a3841379fcda83206763691df69c56c18">MeltPoolDG::fe_evaluation_tensor_value_at_q</a></div><div class="ttdeci">dealii::Tensor&lt; 1, FeEval::n_components, dealii::VectorizedArray&lt; typename FeEval::number_type &gt; &gt; fe_evaluation_tensor_value_at_q(const FeEval &amp;fe_eval, const unsigned q_index)</div><div class="ttdef"><b>Definition</b> matrix_free_util.hpp:34</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1MatrixFreeContext_html"><div class="ttname"><a href="structMeltPoolDG_1_1MatrixFreeContext.html">MeltPoolDG::MatrixFreeContext</a></div><div class="ttdef"><b>Definition</b> matrix_free_util.hpp:10</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1MatrixFreeContext_html_a54cc0487425ffae515266e6164b9d850"><div class="ttname"><a href="structMeltPoolDG_1_1MatrixFreeContext.html#a54cc0487425ffae515266e6164b9d850">MeltPoolDG::MatrixFreeContext::quad_idx</a></div><div class="ttdeci">unsigned int quad_idx</div><div class="ttdef"><b>Definition</b> matrix_free_util.hpp:13</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1MatrixFreeContext_html_aa14de04075c806816f2020d5e443f767"><div class="ttname"><a href="structMeltPoolDG_1_1MatrixFreeContext.html#aa14de04075c806816f2020d5e443f767">MeltPoolDG::MatrixFreeContext::mf</a></div><div class="ttdeci">const dealii::MatrixFree&lt; dim, Number &gt; &amp; mf</div><div class="ttdef"><b>Definition</b> matrix_free_util.hpp:11</div></div>

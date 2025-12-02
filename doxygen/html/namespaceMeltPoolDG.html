@@ -513,6 +513,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a1f766e895cc542d6cf4ec9b6efaa9a0b" id="r_a1f766e895cc542d6cf4ec9b6efaa9a0b"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
 <tr class="memitem:a1f766e895cc542d6cf4ec9b6efaa9a0b"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim, dealii::Tensor&lt; 1, dim, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a1f766e895cc542d6cf4ec9b6efaa9a0b">identity</a> ()</td></tr>
 <tr class="separator:a1f766e895cc542d6cf4ec9b6efaa9a0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3841379fcda83206763691df69c56c18" id="r_a3841379fcda83206763691df69c56c18"><td class="memTemplParams" colspan="2">template&lt;typename FeEval &gt; </td></tr>
+<tr class="memitem:a3841379fcda83206763691df69c56c18"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, FeEval::n_components, dealii::VectorizedArray&lt; typename FeEval::number_type &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a3841379fcda83206763691df69c56c18">fe_evaluation_tensor_value_at_q</a> (const FeEval &amp;fe_eval, const unsigned q_index)</td></tr>
+<tr class="separator:a3841379fcda83206763691df69c56c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37dd82c286a9928ddef2bfe3ef6c5560" id="r_a37dd82c286a9928ddef2bfe3ef6c5560"><td class="memTemplParams" colspan="2">template&lt;int dim, int spacedim = dim&gt; </td></tr>
 <tr class="memitem:a37dd82c286a9928ddef2bfe3ef6c5560"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceMeltPoolDG.html#aac77cbe47f11bb47479887acb1345548">TriangulationType</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a37dd82c286a9928ddef2bfe3ef6c5560">get_triangulation_type</a> (const dealii::Triangulation&lt; dim, spacedim &gt; &amp;tria)</td></tr>
 <tr class="separator:a37dd82c286a9928ddef2bfe3ef6c5560"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1667,6 +1670,46 @@ template&lt;int T1_dim, int T2_dim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Compute the dyadic product of two rank-1 tensors passing a pointer to the start of the values of the two tensors. </p>
+
+</div>
+</div>
+<a id="a3841379fcda83206763691df69c56c18" name="a3841379fcda83206763691df69c56c18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3841379fcda83206763691df69c56c18">&#9670;&#160;</a></span>fe_evaluation_tensor_value_at_q()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FeEval &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::Tensor&lt; 1, FeEval::n_components, dealii::VectorizedArray&lt; typename FeEval::number_type &gt; &gt; MeltPoolDG::fe_evaluation_tensor_value_at_q </td>
+          <td>(</td>
+          <td class="paramtype">const FeEval &amp;&#160;</td>
+          <td class="paramname"><em>fe_eval</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned&#160;</td>
+          <td class="paramname"><em>q_index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Helper function that returns the values at a given quadrature point (specified by <code>q_index</code>) using the provided finite element evaluation object (<code>fe_eval</code>) and ensures that the result is always returned as a <code>dealii::Tensor</code>.</p>
+<p>In deal.II, <code>FEValues</code> and similar objects return a <code>VectorizedArray</code> directly when there is only a single component. However, the algorithms in this codebase are written to operate on tensors for both 2D and 3D problems and for systems with multiple components. This function provides a uniform interface by converting single-component vectorized values into a <code>Tensor&lt;1,1,VectorizedArray&gt;</code> while leaving multi-component values as-is.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fe_eval</td><td>The finite element evaluation object. </td></tr>
+    <tr><td class="paramname">q_index</td><td>Index of the quadrature point.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Value at the specified quadrature point as a <code>dealii::Tensor</code>. </dd></dl>
 
 </div>
 </div>

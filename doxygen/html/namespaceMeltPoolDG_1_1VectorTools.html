@@ -148,9 +148,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a603017f86b679bf0907e3bf0e374a1c6" id="r_a603017f86b679bf0907e3bf0e374a1c6"><td class="memTemplParams" colspan="2">template&lt;int dim, int spacedim, typename number &gt; </td></tr>
 <tr class="memitem:a603017f86b679bf0907e3bf0e374a1c6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1VectorTools.html#a603017f86b679bf0907e3bf0e374a1c6">convert_block_vector_to_fe_system_vector</a> (const dealii::LinearAlgebra::distributed::BlockVector&lt; number &gt; &amp;in, const dealii::DoFHandler&lt; dim, spacedim &gt; &amp;dof_handler, dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;out, const dealii::DoFHandler&lt; dim, spacedim &gt; &amp;dof_handler_fe_system)</td></tr>
 <tr class="separator:a603017f86b679bf0907e3bf0e374a1c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a310b5a6c0d72659f97655016e0848f23" id="r_a310b5a6c0d72659f97655016e0848f23"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , int n_components = dim&gt; </td></tr>
-<tr class="memitem:a310b5a6c0d72659f97655016e0848f23"><td class="memTemplItemLeft" align="right" valign="top">dealii::Vector&lt; number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1VectorTools.html#a310b5a6c0d72659f97655016e0848f23">convert_matrix_free_cell_aligned_vector_to_vector</a> (const dealii::MatrixFree&lt; dim, number &gt; &amp;mf, const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;cell_aligned_vector, const dealii::Triangulation&lt; dim &gt; &amp;tria, const unsigned dof_idx=0, const unsigned quad_idx=0)</td></tr>
-<tr class="separator:a310b5a6c0d72659f97655016e0848f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec1aa01cd6a374e24b4c7887f49c995d" id="r_aec1aa01cd6a374e24b4c7887f49c995d"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , int n_components = dim&gt; </td></tr>
+<tr class="memitem:aec1aa01cd6a374e24b4c7887f49c995d"><td class="memTemplItemLeft" align="right" valign="top">dealii::Vector&lt; number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1VectorTools.html#aec1aa01cd6a374e24b4c7887f49c995d">convert_matrix_free_cell_aligned_vector_to_vector</a> (const <a class="el" href="structMeltPoolDG_1_1MatrixFreeContext.html">MatrixFreeContext</a>&lt; dim, number &gt; &amp;mf_context, const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;cell_aligned_vector, const dealii::Triangulation&lt; dim &gt; &amp;tria)</td></tr>
+<tr class="separator:aec1aa01cd6a374e24b4c7887f49c995d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a404970cdfc35a34574f9c643145580f9" id="r_a404970cdfc35a34574f9c643145580f9"><td class="memTemplParams" colspan="2">template&lt;typename... T&gt; </td></tr>
 <tr class="memitem:a404970cdfc35a34574f9c643145580f9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1VectorTools.html#a404970cdfc35a34574f9c643145580f9">update_ghost_values</a> (const T &amp;...args)</td></tr>
 <tr class="separator:a404970cdfc35a34574f9c643145580f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -957,8 +957,8 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
 
 </div>
 </div>
-<a id="a310b5a6c0d72659f97655016e0848f23" name="a310b5a6c0d72659f97655016e0848f23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a310b5a6c0d72659f97655016e0848f23">&#9670;&#160;</a></span>convert_matrix_free_cell_aligned_vector_to_vector()</h2>
+<a id="aec1aa01cd6a374e24b4c7887f49c995d" name="aec1aa01cd6a374e24b4c7887f49c995d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec1aa01cd6a374e24b4c7887f49c995d">&#9670;&#160;</a></span>convert_matrix_free_cell_aligned_vector_to_vector()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -968,8 +968,8 @@ template&lt;int dim, typename number , int n_components = dim&gt; </div>
         <tr>
           <td class="memname">dealii::Vector&lt; number &gt; MeltPoolDG::VectorTools::convert_matrix_free_cell_aligned_vector_to_vector </td>
           <td>(</td>
-          <td class="paramtype">const dealii::MatrixFree&lt; dim, number &gt; &amp;&#160;</td>
-          <td class="paramname"><em>mf</em>, </td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1MatrixFreeContext.html">MatrixFreeContext</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mf_context</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -981,19 +981,7 @@ template&lt;int dim, typename number , int n_components = dim&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const dealii::Triangulation&lt; dim &gt; &amp;&#160;</td>
-          <td class="paramname"><em>tria</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned&#160;</td>
-          <td class="paramname"><em>dof_idx</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned&#160;</td>
-          <td class="paramname"><em>quad_idx</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>tria</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
