@@ -187,15 +187,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae6840cb115cdfb2feceb2ccd6df4a274" id="r_ae6840cb115cdfb2feceb2ccd6df4a274"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structMeltPoolDG_1_1ObstacleCompleteDomainSearch.html">ObstacleCompleteDomainSearch</a>&lt; dim, number, ObstacleType &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#ae6840cb115cdfb2feceb2ccd6df4a274">get_obstacle_data_structure</a> () const</td></tr>
 <tr class="memdesc:ae6840cb115cdfb2feceb2ccd6df4a274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a constant reference to the underlying obstacle data structure of this object.  <br /></td></tr>
 <tr class="separator:ae6840cb115cdfb2feceb2ccd6df4a274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a246be1bf851ed17bfac41660b13223e8" id="r_a246be1bf851ed17bfac41660b13223e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a246be1bf851ed17bfac41660b13223e8">insert_obstacles</a> (const dealii::Triangulation&lt; dim &gt; &amp;triangulation, std::vector&lt; dealii::Point&lt; dim, number &gt; &gt; &amp;obstacle_locations, std::vector&lt; std::vector&lt; number &gt; &gt; &amp;obstacle_properties)</td></tr>
+<tr class="memdesc:a246be1bf851ed17bfac41660b13223e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert obstacles into the particle handler based on provided locations and properties.  <br /></td></tr>
+<tr class="separator:a246be1bf851ed17bfac41660b13223e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6f72ac1e25ce5ca6084071592a6e869" id="r_ad6f72ac1e25ce5ca6084071592a6e869"><td class="memItemLeft" align="right" valign="top">std::ranges::subrange&lt; <a class="el" href="classMeltPoolDG_1_1ParticleIterator.html">ParticleIterator</a>&lt; dim, number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#ad6f72ac1e25ce5ca6084071592a6e869">locally_owned_particle_range</a> ()</td></tr>
+<tr class="separator:ad6f72ac1e25ce5ca6084071592a6e869"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36f5840255fb80c055f2aa23cdf6358c" id="r_a36f5840255fb80c055f2aa23cdf6358c"><td class="memItemLeft" align="right" valign="top">std::ranges::subrange&lt; <a class="el" href="classMeltPoolDG_1_1ParticleIterator.html">ParticleIterator</a>&lt; dim, number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a36f5840255fb80c055f2aa23cdf6358c">global_particle_range</a> ()</td></tr>
+<tr class="separator:a36f5840255fb80c055f2aa23cdf6358c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a4a9417c7a5ed7e1d6955cbf6976bd31f" id="r_a4a9417c7a5ed7e1d6955cbf6976bd31f"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::vector&lt; dealii::Point&lt; dim, number &gt; &gt;, std::vector&lt; std::vector&lt; number &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a4a9417c7a5ed7e1d6955cbf6976bd31f">read_obstacle_state_input_file</a> ()</td></tr>
 <tr class="memdesc:a4a9417c7a5ed7e1d6955cbf6976bd31f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the obstacle state input file and returns obstacle locations and properties.  <br /></td></tr>
 <tr class="separator:a4a9417c7a5ed7e1d6955cbf6976bd31f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a246be1bf851ed17bfac41660b13223e8" id="r_a246be1bf851ed17bfac41660b13223e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a246be1bf851ed17bfac41660b13223e8">insert_obstacles</a> (const dealii::Triangulation&lt; dim &gt; &amp;triangulation, std::vector&lt; dealii::Point&lt; dim, number &gt; &gt; &amp;obstacle_locations, std::vector&lt; std::vector&lt; number &gt; &gt; &amp;obstacle_properties)</td></tr>
-<tr class="memdesc:a246be1bf851ed17bfac41660b13223e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert obstacles into the particle handler based on provided locations and properties.  <br /></td></tr>
-<tr class="separator:a246be1bf851ed17bfac41660b13223e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -624,6 +628,27 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 
 </div>
 </div>
+<a id="a36f5840255fb80c055f2aa23cdf6358c" name="a36f5840255fb80c055f2aa23cdf6358c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36f5840255fb80c055f2aa23cdf6358c">&#9670;&#160;</a></span>global_particle_range()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ranges::subrange&lt; <a class="el" href="classMeltPoolDG_1_1ParticleIterator.html">MeltPoolDG::ParticleIterator</a>&lt; dim, number &gt; &gt; <a class="el" href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a>&lt; dim, number, ObstacleType &gt;::global_particle_range </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns a range over all global obstacle particles for iterating over all particles in the global particle data structure.</p>
+<dl class="section return"><dt>Returns</dt><dd>An iterable subrange representing all global particles. </dd></dl>
+
+</div>
+</div>
 <a id="a246be1bf851ed17bfac41660b13223e8" name="a246be1bf851ed17bfac41660b13223e8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a246be1bf851ed17bfac41660b13223e8">&#9670;&#160;</a></span>insert_obstacles()</h2>
 
@@ -631,9 +656,6 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 <div class="memproto">
 <div class="memtemplate">
 template&lt;int dim, typename number , typename ObstacleType &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a>&lt; dim, number, ObstacleType &gt;::insert_obstacles </td>
@@ -659,11 +681,6 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Insert obstacles into the particle handler based on provided locations and properties. </p>
@@ -676,6 +693,27 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ad6f72ac1e25ce5ca6084071592a6e869" name="ad6f72ac1e25ce5ca6084071592a6e869"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6f72ac1e25ce5ca6084071592a6e869">&#9670;&#160;</a></span>locally_owned_particle_range()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ranges::subrange&lt; <a class="el" href="classMeltPoolDG_1_1ParticleIterator.html">MeltPoolDG::ParticleIterator</a>&lt; dim, number &gt; &gt; <a class="el" href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a>&lt; dim, number, ObstacleType &gt;::locally_owned_particle_range </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns a subrange for iterating over particles that are owned locally.</p>
+<dl class="section return"><dt>Returns</dt><dd>An iterable subrange representing the local particles. </dd></dl>
 
 </div>
 </div>
