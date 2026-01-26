@@ -152,6 +152,8 @@ Classes</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4c20c8d7a67b2d50d4fc7c4eb7e79108" id="r_a4c20c8d7a67b2d50d4fc7c4eb7e79108"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a4c20c8d7a67b2d50d4fc7c4eb7e79108">SphericalParticleContactForce</a> (const <a class="el" href="structMeltPoolDG_1_1SphericalParticleContactData.html">SphericalParticleContactData</a>&lt; number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#abe117a373abf8cbab80ee8dc1275ba52">contact_data</a>, const <a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1TimeIterator.html">MeltPoolDG::TimeIntegration::TimeIterator</a>&lt; number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a6bd76c8100e8ccd204733c897b9db3ae">time_iterator</a>)</td></tr>
 <tr class="separator:a4c20c8d7a67b2d50d4fc7c4eb7e79108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19c24b990b60f03f59cf2f35db0a3be5" id="r_a19c24b990b60f03f59cf2f35db0a3be5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a19c24b990b60f03f59cf2f35db0a3be5">attach_wall</a> (std::unique_ptr&lt; dealii::Function&lt; dim &gt; &gt; &amp;&amp;wall_signed_distance_function)</td></tr>
+<tr class="separator:a19c24b990b60f03f59cf2f35db0a3be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6afea5674fe4f5cc3e6042a673ba77ea" id="r_a6afea5674fe4f5cc3e6042a673ba77ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a6afea5674fe4f5cc3e6042a673ba77ea">add_load_to_obstacles</a> (<a class="el" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField</a>&lt; dim, number, ObstacleType &gt; &amp;obstacle_field) const</td></tr>
 <tr class="separator:a6afea5674fe4f5cc3e6042a673ba77ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -172,10 +174,14 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a36514c95187d1567fbf20fe4c4821812" id="r_a36514c95187d1567fbf20fe4c4821812"><td class="memItemLeft" align="right" valign="top">const number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a36514c95187d1567fbf20fe4c4821812">damping_prefactor</a></td></tr>
 <tr class="memdesc:a36514c95187d1567fbf20fe4c4821812"><td class="mdescLeft">&#160;</td><td class="mdescRight">Damping prefactor computed from the restitution coefficient. This is cached for efficiency.  <br /></td></tr>
 <tr class="separator:a36514c95187d1567fbf20fe4c4821812"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c90789f396802ccae9ed0e45c8dde25" id="r_a1c90789f396802ccae9ed0e45c8dde25"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, std::map&lt; int, dealii::Tensor&lt; 1, dim, number &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a1c90789f396802ccae9ed0e45c8dde25">previous_tangential_gaps</a></td></tr>
-<tr class="separator:a1c90789f396802ccae9ed0e45c8dde25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41ac04562a3cb8684fc3636575a7ed4e" id="r_a41ac04562a3cb8684fc3636575a7ed4e"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, std::map&lt; int, dealii::Tensor&lt; 1, dim, number &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a41ac04562a3cb8684fc3636575a7ed4e">tangential_gaps</a></td></tr>
+<tr class="separator:a41ac04562a3cb8684fc3636575a7ed4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15af23a185d647af04f8c1c8cd9188fe" id="r_a15af23a185d647af04f8c1c8cd9188fe"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, std::map&lt; int, dealii::Tensor&lt; 1, dim, number &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a15af23a185d647af04f8c1c8cd9188fe">tangential_gaps_with_walls</a></td></tr>
+<tr class="separator:a15af23a185d647af04f8c1c8cd9188fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bd76c8100e8ccd204733c897b9db3ae" id="r_a6bd76c8100e8ccd204733c897b9db3ae"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1TimeIterator.html">MeltPoolDG::TimeIntegration::TimeIterator</a>&lt; number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a6bd76c8100e8ccd204733c897b9db3ae">time_iterator</a></td></tr>
 <tr class="separator:a6bd76c8100e8ccd204733c897b9db3ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b7b6e970cac261e334f9e4a88fd1757" id="r_a6b7b6e970cac261e334f9e4a88fd1757"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, std::unique_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a6b7b6e970cac261e334f9e4a88fd1757">wall_signed_distance_functions</a></td></tr>
+<tr class="separator:a6b7b6e970cac261e334f9e4a88fd1757"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4c20c8d7a67b2d50d4fc7c4eb7e79108" name="a4c20c8d7a67b2d50d4fc7c4eb7e79108"></a>
@@ -251,6 +257,34 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a19c24b990b60f03f59cf2f35db0a3be5" name="a19c24b990b60f03f59cf2f35db0a3be5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19c24b990b60f03f59cf2f35db0a3be5">&#9670;&#160;</a></span>attach_wall()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html">MeltPoolDG::SphericalParticleContactForce</a>&lt; dim, number, ObstacleType &gt;::attach_wall </td>
+          <td>(</td>
+          <td class="paramtype">std::unique_ptr&lt; dealii::Function&lt; dim &gt; &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>wall_signed_distance_function</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function adds a wall defined by a signed distance function to the contact force computation. The wall is represented by a function that returns the signed distance from any point in space to the wall surface. The normal vector at any point on the wall is obtained from the gradient of this function and must point outward from the wall surface.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wall_signed_distance_function</td><td>A unique pointer to a function representing the signed distance to the wall.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The wall function should return negative values inside the wall and positive values outside the wall. It is not possible to use a single wall function for a two-sided wall; if both sides of the wall should be considered, two separate wall functions must be added with different normal orientations. </dd></dl>
 
 </div>
 </div>
@@ -479,8 +513,8 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 
 </div>
 </div>
-<a id="a1c90789f396802ccae9ed0e45c8dde25" name="a1c90789f396802ccae9ed0e45c8dde25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c90789f396802ccae9ed0e45c8dde25">&#9670;&#160;</a></span>previous_tangential_gaps</h2>
+<a id="a41ac04562a3cb8684fc3636575a7ed4e" name="a41ac04562a3cb8684fc3636575a7ed4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41ac04562a3cb8684fc3636575a7ed4e">&#9670;&#160;</a></span>tangential_gaps</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -491,7 +525,7 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;int, std::map&lt;int, dealii::Tensor&lt;1, dim, number&gt; &gt; &gt; <a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html">MeltPoolDG::SphericalParticleContactForce</a>&lt; dim, number, ObstacleType &gt;::previous_tangential_gaps</td>
+          <td class="memname">std::map&lt;int, std::map&lt;int, dealii::Tensor&lt;1, dim, number&gt; &gt; &gt; <a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html">MeltPoolDG::SphericalParticleContactForce</a>&lt; dim, number, ObstacleType &gt;::tangential_gaps</td>
         </tr>
       </table>
   </td>
@@ -500,7 +534,32 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Normal tangential gap from the last time step. The key is of the outer map identifies the particle of consideration (self), the inner map the other particle in contact. </p>
+<p>Tangential gap vectors between particles. The key of the outer map identifies the particle of consideration (self), the inner map the other particle in contact. </p>
+
+</div>
+</div>
+<a id="a15af23a185d647af04f8c1c8cd9188fe" name="a15af23a185d647af04f8c1c8cd9188fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15af23a185d647af04f8c1c8cd9188fe">&#9670;&#160;</a></span>tangential_gaps_with_walls</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;int, std::map&lt;int, dealii::Tensor&lt;1, dim, number&gt; &gt; &gt; <a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html">MeltPoolDG::SphericalParticleContactForce</a>&lt; dim, number, ObstacleType &gt;::tangential_gaps_with_walls</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Same as above, but for particle–wall contacts. The outer key corresponds to the particle id, while the inner key corresponds to the wall id. The stored tangential gap represents the tangential displacement between the particle and the wall associated with the respective ids. </p>
 
 </div>
 </div>
@@ -526,6 +585,31 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 </table>
 </div><div class="memdoc">
 <p>Time iterator which is used in the DEM simulation. This is needed to get the current time step size. </p>
+
+</div>
+</div>
+<a id="a6b7b6e970cac261e334f9e4a88fd1757" name="a6b7b6e970cac261e334f9e4a88fd1757"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b7b6e970cac261e334f9e4a88fd1757">&#9670;&#160;</a></span>wall_signed_distance_functions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;int, std::unique_ptr&lt;dealii::Function&lt;dim&gt; &gt; &gt; <a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html">MeltPoolDG::SphericalParticleContactForce</a>&lt; dim, number, ObstacleType &gt;::wall_signed_distance_functions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Map of wall signed distance functions added to the contact model. The key is a unique wall id to identify each wall. </p>
 
 </div>
 </div>
