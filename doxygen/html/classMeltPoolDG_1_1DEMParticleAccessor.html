@@ -168,6 +168,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abcd1ff2fb42ef4a0ef99ad599c91c70f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30fa370e54efc3df937cb39eec759af4" id="r_a30fa370e54efc3df937cb39eec759af4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html#a30fa370e54efc3df937cb39eec759af4">add_force</a> (const dealii::Tensor&lt; 1, dim, number &gt; &amp;force)</td></tr>
 <tr class="separator:a30fa370e54efc3df937cb39eec759af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69ecb354407646566964a58fcf8de2fd" id="r_a69ecb354407646566964a58fcf8de2fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html#a69ecb354407646566964a58fcf8de2fd">set_torque</a> (const dealii::Tensor&lt; 1, <a class="el" href="namespaceMeltPoolDG.html#aeab3fd5860cac14df3f0cc5b8f708833">axial_dim</a>&lt; dim &gt;, number &gt; &amp;torque)</td></tr>
+<tr class="separator:a69ecb354407646566964a58fcf8de2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dc0dee4166d9fdd2b5061a60443d862" id="r_a7dc0dee4166d9fdd2b5061a60443d862"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html#a7dc0dee4166d9fdd2b5061a60443d862">add_torque</a> (const dealii::Tensor&lt; 1, <a class="el" href="namespaceMeltPoolDG.html#aeab3fd5860cac14df3f0cc5b8f708833">axial_dim</a>&lt; dim &gt;, number &gt; &amp;torque)</td></tr>
+<tr class="separator:a7dc0dee4166d9fdd2b5061a60443d862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae749a9c0e3591f6a14ac5f4318c9430f" id="r_ae749a9c0e3591f6a14ac5f4318c9430f"><td class="memItemLeft" align="right" valign="top">const number &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html#ae749a9c0e3591f6a14ac5f4318c9430f">id</a> () const</td></tr>
 <tr class="separator:ae749a9c0e3591f6a14ac5f4318c9430f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f83fe677b1a0163efde08894e4d77d5" id="r_a7f83fe677b1a0163efde08894e4d77d5"><td class="memItemLeft" align="right" valign="top">number &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html#a7f83fe677b1a0163efde08894e4d77d5">get_property</a> (const typename <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html">SphericalParticle</a>&lt; dim, number &gt;::Properties property)</td></tr>
@@ -341,7 +345,34 @@ template&lt;int dim, typename number &gt; </div>
 <p>Accumulates the specified force vector to the particle by adding its components into the particle's property array.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">force</td><td>The force vector to assign to the particle. </td></tr>
+    <tr><td class="paramname">force</td><td>The force vector to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7dc0dee4166d9fdd2b5061a60443d862" name="a7dc0dee4166d9fdd2b5061a60443d862"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dc0dee4166d9fdd2b5061a60443d862">&#9670;&#160;</a></span>add_torque()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html">MeltPoolDG::DEMParticleAccessor</a>&lt; dim, number &gt;::add_torque </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, <a class="el" href="namespaceMeltPoolDG.html#aeab3fd5860cac14df3f0cc5b8f708833">axial_dim</a>&lt; dim &gt;, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>torque</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Accumulates the specified torque vector to the particle by adding its components into the internal torque vector.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">torque</td><td>The torque vector to be added. </td></tr>
   </table>
   </dd>
 </dl>
@@ -581,6 +612,33 @@ template&lt;int dim, typename number &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">force</td><td>The force vector to assign to the particle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a69ecb354407646566964a58fcf8de2fd" name="a69ecb354407646566964a58fcf8de2fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69ecb354407646566964a58fcf8de2fd">&#9670;&#160;</a></span>set_torque()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html">MeltPoolDG::DEMParticleAccessor</a>&lt; dim, number &gt;::set_torque </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, <a class="el" href="namespaceMeltPoolDG.html#aeab3fd5860cac14df3f0cc5b8f708833">axial_dim</a>&lt; dim &gt;, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>torque</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets the specified torque vector to the particle by assigning its components into the particle's property array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">torque</td><td>The torque vector to assign to the particle. </td></tr>
   </table>
   </dd>
 </dl>

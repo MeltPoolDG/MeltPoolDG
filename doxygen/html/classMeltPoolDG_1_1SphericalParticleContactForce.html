@@ -163,6 +163,8 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a4a1da39774eedd8d81825796a609d0e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4c3dfa44ec3c240003a44a43028cbe0" id="r_ab4c3dfa44ec3c240003a44a43028cbe0"><td class="memItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#ab4c3dfa44ec3c240003a44a43028cbe0">tangential_contact_force</a> (const <a class="el" href="structMeltPoolDG_1_1SphericalParticleContactForce_1_1ContactConfiguration.html">ContactConfiguration</a> &amp;contact_configuration, const dealii::Tensor&lt; 1, dim, number &gt; &amp;normal_force, dealii::Tensor&lt; 1, dim, number &gt; &amp;tangential_gap) const</td></tr>
 <tr class="separator:ab4c3dfa44ec3c240003a44a43028cbe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ecee481c55adcb3b89e958f46c2c138" id="r_a8ecee481c55adcb3b89e958f46c2c138"><td class="memItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, <a class="el" href="namespaceMeltPoolDG.html#aeab3fd5860cac14df3f0cc5b8f708833">axial_dim</a>&lt; dim &gt;, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a8ecee481c55adcb3b89e958f46c2c138">tangential_contact_torque</a> (const <a class="el" href="structMeltPoolDG_1_1SphericalParticleContactForce_1_1ContactConfiguration.html">ContactConfiguration</a> &amp;contact_configuration, const dealii::Tensor&lt; 1, dim, number &gt; &amp;tangential_force, const number particle_radius) const</td></tr>
+<tr class="separator:a8ecee481c55adcb3b89e958f46c2c138"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae11d9279cd5c02322e753cb6ecf5fe9f" id="r_ae11d9279cd5c02322e753cb6ecf5fe9f"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#ae11d9279cd5c02322e753cb6ecf5fe9f">compute_damping_prefactor</a> (const number restitution_coefficient) const</td></tr>
 <tr class="separator:ae11d9279cd5c02322e753cb6ecf5fe9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -457,6 +459,60 @@ k_t = 8 G_e \sqrt{R_e \delta_n},
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Tangential contact force vector. </dd></dl>
+
+</div>
+</div>
+<a id="a8ecee481c55adcb3b89e958f46c2c138" name="a8ecee481c55adcb3b89e958f46c2c138"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ecee481c55adcb3b89e958f46c2c138">&#9670;&#160;</a></span>tangential_contact_torque()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::Tensor&lt; 1, <a class="el" href="namespaceMeltPoolDG.html#aeab3fd5860cac14df3f0cc5b8f708833">axial_dim</a>&lt; dim &gt;, number &gt; <a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html">MeltPoolDG::SphericalParticleContactForce</a>&lt; dim, number, ObstacleType &gt;::tangential_contact_torque </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1SphericalParticleContactForce_1_1ContactConfiguration.html">ContactConfiguration</a> &amp;&#160;</td>
+          <td class="paramname"><em>contact_configuration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tangential_force</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>particle_radius</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Given the tangential contact force at a particle–particle contact, this function calculates the resulting torque about the particle center as the cross product of the contact lever arm and the tangential force (M = (r*N) × F) with r being the particle radius, N is the contact normal vector pointing from the particle center to the point of contact, and F the tangential contact force acting at the contact point.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">contact_configuration</td><td>Geometric contact configuration between the two particles. </td></tr>
+    <tr><td class="paramname">tangential_force</td><td>Tangential contact force vector at the contact point. </td></tr>
+    <tr><td class="paramname">particle_radius</td><td>Radius of the particle for which the torque is computed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Tangential contact torque vector acting on the particle. </dd></dl>
 
 </div>
 </div>
