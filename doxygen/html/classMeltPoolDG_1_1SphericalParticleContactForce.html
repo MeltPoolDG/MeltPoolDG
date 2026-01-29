@@ -165,6 +165,8 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:ab4c3dfa44ec3c240003a44a43028cbe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ecee481c55adcb3b89e958f46c2c138" id="r_a8ecee481c55adcb3b89e958f46c2c138"><td class="memItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, <a class="el" href="namespaceMeltPoolDG.html#aeab3fd5860cac14df3f0cc5b8f708833">axial_dim</a>&lt; dim &gt;, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a8ecee481c55adcb3b89e958f46c2c138">tangential_contact_torque</a> (const <a class="el" href="structMeltPoolDG_1_1SphericalParticleContactForce_1_1ContactConfiguration.html">ContactConfiguration</a> &amp;contact_configuration, const dealii::Tensor&lt; 1, dim, number &gt; &amp;tangential_force, const number particle_radius) const</td></tr>
 <tr class="separator:a8ecee481c55adcb3b89e958f46c2c138"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4edd684455ca9081695d56b4977741f8" id="r_a4edd684455ca9081695d56b4977741f8"><td class="memItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, <a class="el" href="namespaceMeltPoolDG.html#aeab3fd5860cac14df3f0cc5b8f708833">axial_dim</a>&lt; dim &gt;, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#a4edd684455ca9081695d56b4977741f8">rolling_resistance_torque</a> (const <a class="el" href="structMeltPoolDG_1_1SphericalParticleContactForce_1_1ContactConfiguration.html">ContactConfiguration</a> &amp;contact_configuration, const dealii::Tensor&lt; 1, dim, number &gt; &amp;contact_normal_force) const</td></tr>
+<tr class="separator:a4edd684455ca9081695d56b4977741f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae11d9279cd5c02322e753cb6ecf5fe9f" id="r_ae11d9279cd5c02322e753cb6ecf5fe9f"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html#ae11d9279cd5c02322e753cb6ecf5fe9f">compute_damping_prefactor</a> (const number restitution_coefficient) const</td></tr>
 <tr class="separator:ae11d9279cd5c02322e753cb6ecf5fe9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -381,6 +383,58 @@ k_n = \frac{4}{3} Y_e \sqrt{R_e \delta_n},
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The computed normal contact force vector. </dd></dl>
+
+</div>
+</div>
+<a id="a4edd684455ca9081695d56b4977741f8" name="a4edd684455ca9081695d56b4977741f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4edd684455ca9081695d56b4977741f8">&#9670;&#160;</a></span>rolling_resistance_torque()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::Tensor&lt; 1, <a class="el" href="namespaceMeltPoolDG.html#aeab3fd5860cac14df3f0cc5b8f708833">axial_dim</a>&lt; dim &gt;, number &gt; <a class="el" href="classMeltPoolDG_1_1SphericalParticleContactForce.html">MeltPoolDG::SphericalParticleContactForce</a>&lt; dim, number, ObstacleType &gt;::rolling_resistance_torque </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1SphericalParticleContactForce_1_1ContactConfiguration.html">ContactConfiguration</a> &amp;&#160;</td>
+          <td class="paramname"><em>contact_configuration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>contact_normal_force</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Computes the rolling resistance torque at a particle–particle or particle-wall contact based on a viscous rolling resistance model. The model used in this function follows the formulation presented by Meier et al. (DOI:10.1016/j.powtec.2018.11.072).</p>
+<p>The rolling resistance torque is defined as  </p><p class="formulaDsp">
+\[
+\boldsymbol{M}_r = \mu_r |\boldsymbol{F}_n| R_e \boldsymbol{\omega}_c,
+\]
+</p>
+<p> where \(\mu_r\) is the rolling resistance coefficient, \(\boldsymbol{F}_n\) the normal contact force, \(R_e\) the effective radius, and \(\boldsymbol{\omega}_c\) the relative angular velocity projected onto the contact plane.</p>
+<p>The relative angular velocity projected onto the contact plane is computed as  </p><p class="formulaDsp">
+\[
+\boldsymbol{\omega}_c = \boldsymbol{\omega}_r - (\boldsymbol{\omega}_r \cdot \boldsymbol{n})
+\boldsymbol{n},
+ \]
+</p>
+<p> where \(\boldsymbol{\omega}_r\) is the relative angular velocity between the two particles (or particle and wall) and \(\boldsymbol{n}\) the contact normal vector. </p>
 
 </div>
 </div>
