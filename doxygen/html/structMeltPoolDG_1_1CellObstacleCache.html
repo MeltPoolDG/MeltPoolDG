@@ -147,6 +147,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a85ab261df5e38540a251779b1a434161"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a141aacd94748cf179ebc2c089fed88c0" id="r_a141aacd94748cf179ebc2c089fed88c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CellObstacleCache.html#a141aacd94748cf179ebc2c089fed88c0">~CellObstacleCache</a> ()</td></tr>
 <tr class="separator:a141aacd94748cf179ebc2c089fed88c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e0339777d346963d6cfb57003547abf" id="r_a8e0339777d346963d6cfb57003547abf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CellObstacleCache.html#a8e0339777d346963d6cfb57003547abf">update_cache</a> (const std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt; &amp;cells)</td></tr>
+<tr class="separator:a8e0339777d346963d6cfb57003547abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -158,6 +160,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:af4ba98391362a6dfdbfaea70860d3a67" id="r_af4ba98391362a6dfdbfaea70860d3a67"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField</a>&lt; dim, number, ObstacleType &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CellObstacleCache.html#af4ba98391362a6dfdbfaea70860d3a67">obstacle_handler</a></td></tr>
 <tr class="memdesc:af4ba98391362a6dfdbfaea70860d3a67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the obstacle handler managing all obstacles in the domain.  <br /></td></tr>
 <tr class="separator:af4ba98391362a6dfdbfaea70860d3a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9217dd5ce605631b8671a3b3a954eb05" id="r_a9217dd5ce605631b8671a3b3a954eb05"><td class="memItemLeft" align="right" valign="top">std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CellObstacleCache.html#a9217dd5ce605631b8671a3b3a954eb05">cached_cells</a></td></tr>
+<tr class="memdesc:a9217dd5ce605631b8671a3b3a954eb05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cells, for which the object cache is currently valid.  <br /></td></tr>
+<tr class="separator:a9217dd5ce605631b8671a3b3a954eb05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number, typename ObstacleType&gt;<br />
@@ -218,7 +223,61 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 
 </div>
 </div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8e0339777d346963d6cfb57003547abf" name="a8e0339777d346963d6cfb57003547abf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e0339777d346963d6cfb57003547abf">&#9670;&#160;</a></span>update_cache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="structMeltPoolDG_1_1CellObstacleCache.html">MeltPoolDG::CellObstacleCache</a>&lt; dim, number, ObstacleType &gt;::update_cache </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>cells</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Updates the cache. Checks whether the provided cell iterators differ from the previously cached ones, and if so, refreshes the stored obstacle data accordingly.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cells</td><td>Array of cell iterators for which the cache should be updated. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9217dd5ce605631b8671a3b3a954eb05" name="a9217dd5ce605631b8671a3b3a954eb05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9217dd5ce605631b8671a3b3a954eb05">&#9670;&#160;</a></span>cached_cells</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;dealii::TriaIterator&lt;dealii::CellAccessor&lt;dim&gt; &gt; &gt; <a class="el" href="structMeltPoolDG_1_1CellObstacleCache.html">MeltPoolDG::CellObstacleCache</a>&lt; dim, number, ObstacleType &gt;::cached_cells</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cells, for which the object cache is currently valid. </p>
+
+</div>
+</div>
 <a id="af4ba98391362a6dfdbfaea70860d3a67" name="af4ba98391362a6dfdbfaea70860d3a67"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af4ba98391362a6dfdbfaea70860d3a67">&#9670;&#160;</a></span>obstacle_handler</h2>
 

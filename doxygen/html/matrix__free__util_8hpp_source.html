@@ -174,9 +174,27 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      <span class="keywordflow">return</span> fe_eval.get_value(q_index);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
 </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  std::vector&lt;dealii::TriaIterator&lt;dealii::CellAccessor&lt;dim&gt;&gt;&gt;</div>
+<div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG.html#aa4f563dbab6a56ee8385f3cf26e65ea0">   58</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG.html#aa4f563dbab6a56ee8385f3cf26e65ea0">cells_in_cell_batch</a>(<span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt; &amp;mf, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_batch_id)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_active_lanes = mf.n_active_entries_per_cell_batch(cell_batch_id);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    std::vector&lt;dealii::TriaIterator&lt;dealii::CellAccessor&lt;dim&gt;&gt;&gt; cells;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    cells.reserve(n_active_lanes);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lane = 0; lane &lt; n_active_lanes; ++lane)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      cells.push_back(mf.get_cell_iterator(cell_batch_id, lane));</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">return</span> cells;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  }</div>
+</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>} <span class="comment">// namespace MeltPoolDG</span></div>
 <div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> base_data.hpp:9</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_html_a3841379fcda83206763691df69c56c18"><div class="ttname"><a href="namespaceMeltPoolDG.html#a3841379fcda83206763691df69c56c18">MeltPoolDG::fe_evaluation_tensor_value_at_q</a></div><div class="ttdeci">dealii::Tensor&lt; 1, FeEval::n_components, dealii::VectorizedArray&lt; typename FeEval::number_type &gt; &gt; fe_evaluation_tensor_value_at_q(const FeEval &amp;fe_eval, const unsigned q_index)</div><div class="ttdef"><b>Definition</b> matrix_free_util.hpp:34</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_aa4f563dbab6a56ee8385f3cf26e65ea0"><div class="ttname"><a href="namespaceMeltPoolDG.html#aa4f563dbab6a56ee8385f3cf26e65ea0">MeltPoolDG::cells_in_cell_batch</a></div><div class="ttdeci">std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt; cells_in_cell_batch(const dealii::MatrixFree&lt; dim, number &gt; &amp;mf, const unsigned int cell_batch_id)</div><div class="ttdef"><b>Definition</b> matrix_free_util.hpp:58</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1MatrixFreeContext_html"><div class="ttname"><a href="structMeltPoolDG_1_1MatrixFreeContext.html">MeltPoolDG::MatrixFreeContext</a></div><div class="ttdef"><b>Definition</b> matrix_free_util.hpp:10</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1MatrixFreeContext_html_a54cc0487425ffae515266e6164b9d850"><div class="ttname"><a href="structMeltPoolDG_1_1MatrixFreeContext.html#a54cc0487425ffae515266e6164b9d850">MeltPoolDG::MatrixFreeContext::quad_idx</a></div><div class="ttdeci">unsigned int quad_idx</div><div class="ttdef"><b>Definition</b> matrix_free_util.hpp:13</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1MatrixFreeContext_html_aa14de04075c806816f2020d5e443f767"><div class="ttname"><a href="structMeltPoolDG_1_1MatrixFreeContext.html#aa14de04075c806816f2020d5e443f767">MeltPoolDG::MatrixFreeContext::mf</a></div><div class="ttdeci">const dealii::MatrixFree&lt; dim, Number &gt; &amp; mf</div><div class="ttdef"><b>Definition</b> matrix_free_util.hpp:11</div></div>

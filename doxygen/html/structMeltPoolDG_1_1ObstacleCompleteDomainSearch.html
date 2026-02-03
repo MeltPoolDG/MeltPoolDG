@@ -158,9 +158,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa6397a4a16603d508e865fd943884424" id="r_aa6397a4a16603d508e865fd943884424"><td class="memItemLeft" align="right" valign="top">std::vector&lt; typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleCompleteDomainSearch.html#aa6397a4a16603d508e865fd943884424">get_obstacles_in_cell</a> (dealii::Particles::PropertyPool&lt; dim &gt; &amp;dst, const dealii::CellAccessor&lt; dim &gt; &amp;cell) const</td></tr>
 <tr class="memdesc:aa6397a4a16603d508e865fd943884424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identify obstacles that partially or fully occupy the specified cell, and store their properties in the destination property pool.  <br /></td></tr>
 <tr class="separator:aa6397a4a16603d508e865fd943884424"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2733f52dff22baa8e5bc9d1d4d427181" id="r_a2733f52dff22baa8e5bc9d1d4d427181"><td class="memItemLeft" align="right" valign="top">std::vector&lt; typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleCompleteDomainSearch.html#a2733f52dff22baa8e5bc9d1d4d427181">get_obstacles_in_cell_batch</a> (dealii::Particles::PropertyPool&lt; dim &gt; &amp;dst, const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, const unsigned int cell_batch_id) const</td></tr>
-<tr class="memdesc:a2733f52dff22baa8e5bc9d1d4d427181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identify obstacles that partially or fully occupy any cell in the specified cell batch, and store their properties in the destination property pool.  <br /></td></tr>
-<tr class="separator:a2733f52dff22baa8e5bc9d1d4d427181"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88a01b3893d5b97ac0bb9e124d34eec2" id="r_a88a01b3893d5b97ac0bb9e124d34eec2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleCompleteDomainSearch.html#a88a01b3893d5b97ac0bb9e124d34eec2">get_obstacles_in_cell</a> (dealii::Particles::PropertyPool&lt; dim &gt; &amp;dst, const std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt; &amp;cells) const</td></tr>
+<tr class="memdesc:a88a01b3893d5b97ac0bb9e124d34eec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identify obstacles that partially or fully occupy any cell in the specified cell batch, and store their properties in the destination property pool.  <br /></td></tr>
+<tr class="separator:a88a01b3893d5b97ac0bb9e124d34eec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a353e43b398336a1a4e86b15af8b741e7" id="r_a353e43b398336a1a4e86b15af8b741e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1ObstacleCompleteDomainSearch.html#a353e43b398336a1a4e86b15af8b741e7">broadcast_global_particles</a> () const</td></tr>
 <tr class="memdesc:a353e43b398336a1a4e86b15af8b741e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broadcasts obstacle properties of all locally owned particles to all MPI processes.  <br /></td></tr>
 <tr class="separator:a353e43b398336a1a4e86b15af8b741e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -350,7 +350,7 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 </div>
 </div>
 <a id="aa6397a4a16603d508e865fd943884424" name="aa6397a4a16603d508e865fd943884424"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6397a4a16603d508e865fd943884424">&#9670;&#160;</a></span>get_obstacles_in_cell()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6397a4a16603d508e865fd943884424">&#9670;&#160;</a></span>get_obstacles_in_cell() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -391,8 +391,8 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 
 </div>
 </div>
-<a id="a2733f52dff22baa8e5bc9d1d4d427181" name="a2733f52dff22baa8e5bc9d1d4d427181"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2733f52dff22baa8e5bc9d1d4d427181">&#9670;&#160;</a></span>get_obstacles_in_cell_batch()</h2>
+<a id="a88a01b3893d5b97ac0bb9e124d34eec2" name="a88a01b3893d5b97ac0bb9e124d34eec2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88a01b3893d5b97ac0bb9e124d34eec2">&#9670;&#160;</a></span>get_obstacles_in_cell() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -400,7 +400,7 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 template&lt;int dim, typename number , typename ObstacleType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle &gt; <a class="el" href="structMeltPoolDG_1_1ObstacleCompleteDomainSearch.html">MeltPoolDG::ObstacleCompleteDomainSearch</a>&lt; dim, number, ObstacleType &gt;::get_obstacles_in_cell_batch </td>
+          <td class="memname">std::vector&lt; typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle &gt; <a class="el" href="structMeltPoolDG_1_1ObstacleCompleteDomainSearch.html">MeltPoolDG::ObstacleCompleteDomainSearch</a>&lt; dim, number, ObstacleType &gt;::get_obstacles_in_cell </td>
           <td>(</td>
           <td class="paramtype">dealii::Particles::PropertyPool&lt; dim &gt; &amp;&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
@@ -408,14 +408,8 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const dealii::MatrixFree&lt; dim, number &gt; &amp;&#160;</td>
-          <td class="paramname"><em>matrix_free</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned int&#160;</td>
-          <td class="paramname"><em>cell_batch_id</em>&#160;</td>
+          <td class="paramtype">const std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>cells</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
