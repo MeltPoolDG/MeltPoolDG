@@ -156,10 +156,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a97efb05dcba8037a0960a721a5d7487b" id="r_a97efb05dcba8037a0960a721a5d7487b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a97efb05dcba8037a0960a721a5d7487b">compute_loads_on_obstacles</a> ()</td></tr>
 <tr class="memdesc:a97efb05dcba8037a0960a721a5d7487b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes and applies the total load acting on each obstacle in the field. This includes both forces and torques.  <br /></td></tr>
 <tr class="separator:a97efb05dcba8037a0960a721a5d7487b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe052db3a37308710d4455f07e6b32d2" id="r_afe052db3a37308710d4455f07e6b32d2"><td class="memTemplParams" colspan="2">template&lt;typename ObstacleLoadType &gt; </td></tr>
-<tr class="memitem:afe052db3a37308710d4455f07e6b32d2"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#afe052db3a37308710d4455f07e6b32d2">add_load_type</a> (ObstacleLoadType &amp;&amp;obstacle_load)</td></tr>
-<tr class="memdesc:afe052db3a37308710d4455f07e6b32d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new obstacle load to the list of loads acting on obstacles.  <br /></td></tr>
-<tr class="separator:afe052db3a37308710d4455f07e6b32d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f9f82fde316f770e2c15a3fb1525a02" id="r_a0f9f82fde316f770e2c15a3fb1525a02"><td class="memTemplParams" colspan="2">template&lt;typename ObstacleLoadType &gt; <br />
+requires (!std::is_lvalue_reference_v&lt;ObstacleLoadType&gt;)</td></tr>
+<tr class="memitem:a0f9f82fde316f770e2c15a3fb1525a02"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a0f9f82fde316f770e2c15a3fb1525a02">add_load_type</a> (ObstacleLoadType &amp;&amp;obstacle_load)</td></tr>
+<tr class="memdesc:a0f9f82fde316f770e2c15a3fb1525a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new obstacle load to the list of loads acting on obstacles.  <br /></td></tr>
+<tr class="separator:a0f9f82fde316f770e2c15a3fb1525a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a426c1d16f8d8277cf9b6bfb7b94aa2ba" id="r_a426c1d16f8d8277cf9b6bfb7b94aa2ba"><td class="memItemLeft" align="right" valign="top">std::vector&lt; typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a426c1d16f8d8277cf9b6bfb7b94aa2ba">get_obstacles_in_cell</a> (dealii::Particles::PropertyPool&lt; dim &gt; &amp;dst, const dealii::CellAccessor&lt; dim &gt; &amp;cell) const</td></tr>
 <tr class="memdesc:a426c1d16f8d8277cf9b6bfb7b94aa2ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies obstacles that partially or fully occupy a given cell, and stores their properties in the destination property pool.  <br /></td></tr>
 <tr class="separator:a426c1d16f8d8277cf9b6bfb7b94aa2ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -331,15 +332,16 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="afe052db3a37308710d4455f07e6b32d2" name="afe052db3a37308710d4455f07e6b32d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe052db3a37308710d4455f07e6b32d2">&#9670;&#160;</a></span>add_load_type()</h2>
+<a id="a0f9f82fde316f770e2c15a3fb1525a02" name="a0f9f82fde316f770e2c15a3fb1525a02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f9f82fde316f770e2c15a3fb1525a02">&#9670;&#160;</a></span>add_load_type()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 <div class="memtemplate">
-template&lt;typename ObstacleLoadType &gt; </div>
+template&lt;typename ObstacleLoadType &gt; <br />
+requires (!std::is_lvalue_reference_v&lt;ObstacleLoadType&gt;)</div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
