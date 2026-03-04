@@ -158,6 +158,10 @@ Public Types</h2></td></tr>
 <tr class="separator:aa75d2a371f94967a461da1648744529c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f4bd0cbb54318c36050dbb188fcccde" id="r_a3f4bd0cbb54318c36050dbb188fcccde"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a3f4bd0cbb54318c36050dbb188fcccde">ConservedVariablesGradType</a> = dealii::Tensor&lt; 1, dim+2, dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &gt;</td></tr>
 <tr class="separator:a3f4bd0cbb54318c36050dbb188fcccde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ee72073345cf54d0a7467fbe312c2e5" id="r_a1ee72073345cf54d0a7467fbe312c2e5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a1ee72073345cf54d0a7467fbe312c2e5">ConvectionDiffusionOperator</a> = <a class="el" href="structMeltPoolDG_1_1Flow_1_1DGConvectionDiffusionOperator.html">DGConvectionDiffusionOperator</a>&lt; dim, number, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleConvectiveFlux.html">CompressibleConvectiveFlux</a>&lt; dim, number &gt;, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleDiffusiveFlux.html">CompressibleDiffusiveFlux</a>&lt; dim, number &gt; &gt;</td></tr>
+<tr class="separator:a1ee72073345cf54d0a7467fbe312c2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b7c5557db7ff0a1ec39ef96f55efb39" id="r_a0b7c5557db7ff0a1ec39ef96f55efb39"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a0b7c5557db7ff0a1ec39ef96f55efb39">ConvectionOperator</a> = <a class="el" href="structMeltPoolDG_1_1Flow_1_1DGConvectionOperator.html">DGConvectionOperator</a>&lt; dim, number, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleConvectiveFlux.html">CompressibleConvectiveFlux</a>&lt; dim, number &gt; &gt;</td></tr>
+<tr class="separator:a0b7c5557db7ff0a1ec39ef96f55efb39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -170,6 +174,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a221106456637ccb375697112f122f71f" id="r_a221106456637ccb375697112f122f71f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a221106456637ccb375697112f122f71f">set_unfitted_object_velocity</a> (std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &amp;velocity_function)</td></tr>
 <tr class="memdesc:a221106456637ccb375697112f122f71f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the velocity function in the case of an unfitted (rigid) moving object.  <br /></td></tr>
 <tr class="separator:a221106456637ccb375697112f122f71f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9afa986c8895156911c20f368699b243" id="r_a9afa986c8895156911c20f368699b243"><td class="memTemplParams" colspan="2">template&lt;CellEvaluatorType&lt; dim, dim+2, number, dealii::VectorizedArray&lt; number &gt; &gt; Integrator&gt; </td></tr>
+<tr class="memitem:a9afa986c8895156911c20f368699b243"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a9afa986c8895156911c20f368699b243">do_cell_integral_rhs</a> (Integrator &amp;phi, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html">CompressibleFlowScratchData</a>&lt; dim, number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a0821cbf81cbf7ec87609284214192098">flow_scratch_data</a>, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; *constant_body_force, const unsigned int q) const</td></tr>
+<tr class="memdesc:a9afa986c8895156911c20f368699b243"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate and submit the right-hand side cell integral contributions at a given quadrature point.  <br /></td></tr>
+<tr class="separator:a9afa986c8895156911c20f368699b243"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3821527b728480ab0bc97369555cc83" id="r_aa3821527b728480ab0bc97369555cc83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#aa3821527b728480ab0bc97369555cc83">do_surface_integral_rhs</a> (dealii::FEPointEvaluation&lt; dim+2, dim, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;phi, const dealii::VectorizedArray&lt; number &gt; &amp;interior_penalty_parameter, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html">CompressibleFlowScratchData</a>&lt; dim, number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a0821cbf81cbf7ec87609284214192098">flow_scratch_data</a>, const unsigned int q) const</td></tr>
+<tr class="memdesc:aa3821527b728480ab0bc97369555cc83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate and submit the right-hand side cut surface integral contributions at a given quadrature point.  <br /></td></tr>
+<tr class="separator:aa3821527b728480ab0bc97369555cc83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa896548da63316f756199801ef282d2a" id="r_aa896548da63316f756199801ef282d2a"><td class="memTemplParams" colspan="2">template&lt;FaceEvaluatorType&lt; dim, dim+2, number, dealii::VectorizedArray&lt; number &gt; &gt; Integrator&gt; </td></tr>
+<tr class="memitem:aa896548da63316f756199801ef282d2a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#aa896548da63316f756199801ef282d2a">do_face_integral_rhs</a> (Integrator &amp;phi_m, Integrator &amp;phi_p, const dealii::VectorizedArray&lt; number &gt; &amp;interior_penalty_parameter, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html">CompressibleFlowScratchData</a>&lt; dim, number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a0821cbf81cbf7ec87609284214192098">flow_scratch_data</a>, const unsigned int q) const</td></tr>
+<tr class="memdesc:aa896548da63316f756199801ef282d2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate and submit the right-and side face integral contributions at a given quadrature point.  <br /></td></tr>
+<tr class="separator:aa896548da63316f756199801ef282d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39084229e666dcdedb6ac369e97aaec5" id="r_a39084229e666dcdedb6ac369e97aaec5"><td class="memTemplParams" colspan="2">template&lt;FaceEvaluatorType&lt; dim, dim+2, number, dealii::VectorizedArray&lt; number &gt; &gt; Integrator&gt; </td></tr>
+<tr class="memitem:a39084229e666dcdedb6ac369e97aaec5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a39084229e666dcdedb6ac369e97aaec5">do_boundary_face_integral_rhs</a> (Integrator &amp;phi, const dealii::VectorizedArray&lt; number &gt; &amp;interior_penalty_parameter, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html">CompressibleFlowScratchData</a>&lt; dim, number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a0821cbf81cbf7ec87609284214192098">flow_scratch_data</a>, const auto boundary_id, const unsigned int q) const</td></tr>
+<tr class="memdesc:a39084229e666dcdedb6ac369e97aaec5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate and submit the right-hand side boundary face integral contributions at a given quadrature point.  <br /></td></tr>
+<tr class="separator:a39084229e666dcdedb6ac369e97aaec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae28550f16ac689b27bc355479a9dec57" id="r_ae28550f16ac689b27bc355479a9dec57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#ae28550f16ac689b27bc355479a9dec57">local_apply_cell_rhs</a> (const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a1458c39ad6d2084afd0da2b490b4c61a">VectorType</a> &amp;dst, const <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a1458c39ad6d2084afd0da2b490b4c61a">VectorType</a> &amp;src, const std::pair&lt; unsigned int, unsigned int &gt; &amp;cell_range) const</td></tr>
 <tr class="memdesc:ae28550f16ac689b27bc355479a9dec57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local applier for the cell integrals in the right-hand side evaluation.  <br /></td></tr>
 <tr class="separator:ae28550f16ac689b27bc355479a9dec57"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -206,12 +225,6 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a0821cbf81cbf7ec87609284214192098" id="r_a0821cbf81cbf7ec87609284214192098"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html">CompressibleFlowScratchData</a>&lt; dim, number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a0821cbf81cbf7ec87609284214192098">flow_scratch_data</a></td></tr>
 <tr class="memdesc:a0821cbf81cbf7ec87609284214192098"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scratch data for compressible flows.  <br /></td></tr>
 <tr class="separator:a0821cbf81cbf7ec87609284214192098"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac891ff3170dd4d1a6a8010db019035c" id="r_aac891ff3170dd4d1a6a8010db019035c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowConvectiveKernels.html">CompressibleFlowConvectiveKernels</a>&lt; dim, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#aac891ff3170dd4d1a6a8010db019035c">convective_terms</a></td></tr>
-<tr class="memdesc:aac891ff3170dd4d1a6a8010db019035c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object for the convective term evaluations.  <br /></td></tr>
-<tr class="separator:aac891ff3170dd4d1a6a8010db019035c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35db3c52134f4c9d9a6e9b218ff11987" id="r_a35db3c52134f4c9d9a6e9b218ff11987"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowViscousKernels.html">CompressibleFlowViscousKernels</a>&lt; dim, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a35db3c52134f4c9d9a6e9b218ff11987">viscous_terms</a></td></tr>
-<tr class="memdesc:a35db3c52134f4c9d9a6e9b218ff11987"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object for the viscous term evaluations.  <br /></td></tr>
-<tr class="separator:a35db3c52134f4c9d9a6e9b218ff11987"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb899c554c8d38401fe1c606c5f2e747" id="r_aeb899c554c8d38401fe1c606c5f2e747"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a4867d708c85085994e157304175070ee">MappingInfoType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#aeb899c554c8d38401fe1c606c5f2e747">mapping_info_surface</a></td></tr>
 <tr class="memdesc:aeb899c554c8d38401fe1c606c5f2e747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapping information for integration over immersed boundaries.  <br /></td></tr>
 <tr class="separator:aeb899c554c8d38401fe1c606c5f2e747"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -227,9 +240,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ae06c63fee32bbe08ce18f8ee5875e6ec" id="r_ae06c63fee32bbe08ce18f8ee5875e6ec"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#ae06c63fee32bbe08ce18f8ee5875e6ec">n_dofs_per_cell</a></td></tr>
 <tr class="memdesc:ae06c63fee32bbe08ce18f8ee5875e6ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of DoFs per cell.  <br /></td></tr>
 <tr class="separator:ae06c63fee32bbe08ce18f8ee5875e6ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40dbe53471cee9108de07f07980cb953" id="r_a40dbe53471cee9108de07f07980cb953"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a40dbe53471cee9108de07f07980cb953">inv_time_step</a> = 0.</td></tr>
-<tr class="memdesc:a40dbe53471cee9108de07f07980cb953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inverse time step size.  <br /></td></tr>
-<tr class="separator:a40dbe53471cee9108de07f07980cb953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8047e687704660b2ab6604a4259f9bf5" id="r_a8047e687704660b2ab6604a4259f9bf5"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a8047e687704660b2ab6604a4259f9bf5">current_time_step</a> = 0.</td></tr>
+<tr class="memdesc:a8047e687704660b2ab6604a4259f9bf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current time step size.  <br /></td></tr>
+<tr class="separator:a8047e687704660b2ab6604a4259f9bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70b14335f7c11ed7903ac56233d431c3" id="r_a70b14335f7c11ed7903ac56233d431c3"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a70b14335f7c11ed7903ac56233d431c3">current_inv_time_step</a> = 0.</td></tr>
+<tr class="memdesc:a70b14335f7c11ed7903ac56233d431c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current inverse time step size.  <br /></td></tr>
+<tr class="separator:a70b14335f7c11ed7903ac56233d431c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88eac8288dad7740f44ab1b66ae75a86" id="r_a88eac8288dad7740f44ab1b66ae75a86"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html#a88eac8288dad7740f44ab1b66ae75a86">unfitted_object_velocity</a></td></tr>
 <tr class="memdesc:a88eac8288dad7740f44ab1b66ae75a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function, which describes the velocity of the unfitted object.  <br /></td></tr>
 <tr class="separator:a88eac8288dad7740f44ab1b66ae75a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -275,6 +291,38 @@ template&lt;int dim, typename number , bool is_viscous = true&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html">MeltPoolDG::Flow::CutDGCompressibleFlowOperator</a>&lt; dim, number, is_viscous &gt;::ConservedVariablesType =  dealii::Tensor&lt;1, dim + 2, dealii::VectorizedArray&lt;number&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ee72073345cf54d0a7467fbe312c2e5" name="a1ee72073345cf54d0a7467fbe312c2e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ee72073345cf54d0a7467fbe312c2e5">&#9670;&#160;</a></span>ConvectionDiffusionOperator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html">MeltPoolDG::Flow::CutDGCompressibleFlowOperator</a>&lt; dim, number, is_viscous &gt;::ConvectionDiffusionOperator =  <a class="el" href="structMeltPoolDG_1_1Flow_1_1DGConvectionDiffusionOperator.html">DGConvectionDiffusionOperator</a>&lt;dim, number, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleConvectiveFlux.html">CompressibleConvectiveFlux</a>&lt;dim, number&gt;, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleDiffusiveFlux.html">CompressibleDiffusiveFlux</a>&lt;dim, number&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b7c5557db7ff0a1ec39ef96f55efb39" name="a0b7c5557db7ff0a1ec39ef96f55efb39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b7c5557db7ff0a1ec39ef96f55efb39">&#9670;&#160;</a></span>ConvectionOperator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous = true&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html">MeltPoolDG::Flow::CutDGCompressibleFlowOperator</a>&lt; dim, number, is_viscous &gt;::ConvectionOperator =  <a class="el" href="structMeltPoolDG_1_1Flow_1_1DGConvectionOperator.html">DGConvectionOperator</a>&lt;dim, number, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleConvectiveFlux.html">CompressibleConvectiveFlux</a>&lt;dim, number&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -440,6 +488,258 @@ template&lt;int dim, typename number , bool is_viscous&gt; </div>
     <tr><td class="paramname">time_step</td><td>Current time step size. </td></tr>
     <tr><td class="paramname">dst</td><td>Vector where the computed right-hand side rhs(src) is stored. </td></tr>
     <tr><td class="paramname">src</td><td>The solution vector at the current time. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a39084229e666dcdedb6ac369e97aaec5" name="a39084229e666dcdedb6ac369e97aaec5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39084229e666dcdedb6ac369e97aaec5">&#9670;&#160;</a></span>do_boundary_face_integral_rhs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous&gt; </div>
+<div class="memtemplate">
+template&lt;FaceEvaluatorType&lt; dim, dim+2, number, dealii::VectorizedArray&lt; number &gt; &gt; Integrator&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html">MeltPoolDG::Flow::CutDGCompressibleFlowOperator</a>&lt; dim, number, is_viscous &gt;::do_boundary_face_integral_rhs </td>
+          <td>(</td>
+          <td class="paramtype">Integrator &amp;&#160;</td>
+          <td class="paramname"><em>phi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::VectorizedArray&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>interior_penalty_parameter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html">CompressibleFlowScratchData</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>flow_scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const auto&#160;</td>
+          <td class="paramname"><em>boundary_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Evaluate and submit the right-hand side boundary face integral contributions at a given quadrature point. </p>
+<p>This function can be used for both cut and non-cut faces, depending on the templated <code>Integrator</code> type.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Integrator</td><td>Type of the matrix-free face integrator providing the interface for evaluating and submitting values at quadrature points.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>Face integrator used to access solution values and to submit the local integral contributions at quadrature point <code>q</code> at the boundary face. </td></tr>
+    <tr><td class="paramname">interior_penalty_parameter</td><td>Interior penalty parameter for symmetric interior penalty flux. </td></tr>
+    <tr><td class="paramname">flow_scratch_data</td><td><a class="el" href="namespaceMeltPoolDG_1_1Flow.html" title="Collection of convective term computations for the compressible Navier-Stokes equations.">Flow</a> scratch data object holding all relevant compressible flow data. </td></tr>
+    <tr><td class="paramname">boundary_id</td><td>Boundary id of the current face. </td></tr>
+    <tr><td class="paramname">q</td><td>Index of the quadrature point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9afa986c8895156911c20f368699b243" name="a9afa986c8895156911c20f368699b243"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9afa986c8895156911c20f368699b243">&#9670;&#160;</a></span>do_cell_integral_rhs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous&gt; </div>
+<div class="memtemplate">
+template&lt;CellEvaluatorType&lt; dim, dim+2, number, dealii::VectorizedArray&lt; number &gt; &gt; Integrator&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html">MeltPoolDG::Flow::CutDGCompressibleFlowOperator</a>&lt; dim, number, is_viscous &gt;::do_cell_integral_rhs </td>
+          <td>(</td>
+          <td class="paramtype">Integrator &amp;&#160;</td>
+          <td class="paramname"><em>phi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html">CompressibleFlowScratchData</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>flow_scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; *&#160;</td>
+          <td class="paramname"><em>constant_body_force</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Evaluate and submit the right-hand side cell integral contributions at a given quadrature point. </p>
+<p>This function can be used for both cut and non-cut elements, depending on the templated <code>Integrator</code> type.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Integrator</td><td>Type of the matrix-free cell integrator providing the interface for evaluating and submitting values at quadrature points.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>Cell integrator used to access solution values and to submit the local integral contributions at quadrature point <code>q</code>. </td></tr>
+    <tr><td class="paramname">flow_scratch_data</td><td><a class="el" href="namespaceMeltPoolDG_1_1Flow.html" title="Collection of convective term computations for the compressible Navier-Stokes equations.">Flow</a> scratch data object holding all relevant compressible flow data. </td></tr>
+    <tr><td class="paramname">constant_body_force</td><td>Value of the body force. If the body force is not constant the pointer must be set to nullptr. </td></tr>
+    <tr><td class="paramname">q</td><td>Index of the quadrature point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa896548da63316f756199801ef282d2a" name="aa896548da63316f756199801ef282d2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa896548da63316f756199801ef282d2a">&#9670;&#160;</a></span>do_face_integral_rhs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous&gt; </div>
+<div class="memtemplate">
+template&lt;FaceEvaluatorType&lt; dim, dim+2, number, dealii::VectorizedArray&lt; number &gt; &gt; Integrator&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html">MeltPoolDG::Flow::CutDGCompressibleFlowOperator</a>&lt; dim, number, is_viscous &gt;::do_face_integral_rhs </td>
+          <td>(</td>
+          <td class="paramtype">Integrator &amp;&#160;</td>
+          <td class="paramname"><em>phi_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Integrator &amp;&#160;</td>
+          <td class="paramname"><em>phi_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::VectorizedArray&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>interior_penalty_parameter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html">CompressibleFlowScratchData</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>flow_scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Evaluate and submit the right-and side face integral contributions at a given quadrature point. </p>
+<p>This function can be used for both cut and non-cut faces, depending on the templated <code>Integrator</code> type. s </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Integrator</td><td>Type of the matrix-free face integrator providing the interface for evaluating and submitting values at quadrature points.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi_m</td><td>Face integrator used to access solution values and to submit the local integral contributions at quadrature point <code>q</code> at the interior face. </td></tr>
+    <tr><td class="paramname">phi_p</td><td>Face integrator used to access solution values and to submit the local integral contributions at quadrature point <code>q</code> at the exterior face. </td></tr>
+    <tr><td class="paramname">interior_penalty_parameter</td><td>Interior penalty parameter for symmetric interior penalty flux. </td></tr>
+    <tr><td class="paramname">flow_scratch_data</td><td><a class="el" href="namespaceMeltPoolDG_1_1Flow.html" title="Collection of convective term computations for the compressible Navier-Stokes equations.">Flow</a> scratch data object holding all relevant compressible flow data. </td></tr>
+    <tr><td class="paramname">q</td><td>Index of the quadrature point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa3821527b728480ab0bc97369555cc83" name="aa3821527b728480ab0bc97369555cc83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3821527b728480ab0bc97369555cc83">&#9670;&#160;</a></span>do_surface_integral_rhs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html">MeltPoolDG::Flow::CutDGCompressibleFlowOperator</a>&lt; dim, number, is_viscous &gt;::do_surface_integral_rhs </td>
+          <td>(</td>
+          <td class="paramtype">dealii::FEPointEvaluation&lt; dim+2, dim, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>phi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::VectorizedArray&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>interior_penalty_parameter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html">CompressibleFlowScratchData</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>flow_scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Evaluate and submit the right-hand side cut surface integral contributions at a given quadrature point. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>Surface integrator used to access solution values and to submit the local integral contributions at quadrature point <code>q</code>. </td></tr>
+    <tr><td class="paramname">interior_penalty_parameter</td><td>Interior penalty parameter for symmetric interior penalty flux. </td></tr>
+    <tr><td class="paramname">flow_scratch_data</td><td><a class="el" href="namespaceMeltPoolDG_1_1Flow.html" title="Collection of convective term computations for the compressible Navier-Stokes equations.">Flow</a> scratch data object holding all relevant compressible flow data. </td></tr>
+    <tr><td class="paramname">q</td><td>Index of the quadrature point. </td></tr>
   </table>
   </dd>
 </dl>
@@ -928,8 +1228,8 @@ template&lt;int dim, typename number , bool is_viscous&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="aac891ff3170dd4d1a6a8010db019035c" name="aac891ff3170dd4d1a6a8010db019035c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac891ff3170dd4d1a6a8010db019035c">&#9670;&#160;</a></span>convective_terms</h2>
+<a id="a70b14335f7c11ed7903ac56233d431c3" name="a70b14335f7c11ed7903ac56233d431c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70b14335f7c11ed7903ac56233d431c3">&#9670;&#160;</a></span>current_inv_time_step</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -940,17 +1240,43 @@ template&lt;int dim, typename number , bool is_viscous = true&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowConvectiveKernels.html">CompressibleFlowConvectiveKernels</a>&lt;dim, number&gt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html">MeltPoolDG::Flow::CutDGCompressibleFlowOperator</a>&lt; dim, number, is_viscous &gt;::convective_terms</td>
+          <td class="memname">number <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html">MeltPoolDG::Flow::CutDGCompressibleFlowOperator</a>&lt; dim, number, is_viscous &gt;::current_inv_time_step = 0.</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Object for the convective term evaluations. </p>
+<p>Current inverse time step size. </p>
+
+</div>
+</div>
+<a id="a8047e687704660b2ab6604a4259f9bf5" name="a8047e687704660b2ab6604a4259f9bf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8047e687704660b2ab6604a4259f9bf5">&#9670;&#160;</a></span>current_time_step</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous = true&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">number <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html">MeltPoolDG::Flow::CutDGCompressibleFlowOperator</a>&lt; dim, number, is_viscous &gt;::current_time_step = 0.</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current time step size. </p>
 
 </div>
 </div>
@@ -1003,32 +1329,6 @@ template&lt;int dim, typename number , bool is_viscous = true&gt; </div>
 </div><div class="memdoc">
 
 <p>Scratch data for compressible flows. </p>
-
-</div>
-</div>
-<a id="a40dbe53471cee9108de07f07980cb953" name="a40dbe53471cee9108de07f07980cb953"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40dbe53471cee9108de07f07980cb953">&#9670;&#160;</a></span>inv_time_step</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number , bool is_viscous = true&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">number <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html">MeltPoolDG::Flow::CutDGCompressibleFlowOperator</a>&lt; dim, number, is_viscous &gt;::inv_time_step = 0.</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Inverse time step size. </p>
 
 </div>
 </div>
@@ -1185,32 +1485,6 @@ template&lt;int dim, typename number , bool is_viscous = true&gt; </div>
 </div><div class="memdoc">
 
 <p>Function, which describes the velocity of the unfitted object. </p>
-
-</div>
-</div>
-<a id="a35db3c52134f4c9d9a6e9b218ff11987" name="a35db3c52134f4c9d9a6e9b218ff11987"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35db3c52134f4c9d9a6e9b218ff11987">&#9670;&#160;</a></span>viscous_terms</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number , bool is_viscous = true&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowViscousKernels.html">CompressibleFlowViscousKernels</a>&lt;dim, number&gt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1CutDGCompressibleFlowOperator.html">MeltPoolDG::Flow::CutDGCompressibleFlowOperator</a>&lt; dim, number, is_viscous &gt;::viscous_terms</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Object for the viscous term evaluations. </p>
 
 </div>
 </div>
