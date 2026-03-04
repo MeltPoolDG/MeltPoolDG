@@ -152,13 +152,13 @@ Inheritance diagram for MeltPoolDG::Flow::ExternalFlowForce&lt; dim, number &gt;
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2bb5e2e9c30a222082ecb96728193fa4" id="r_a2bb5e2e9c30a222082ecb96728193fa4"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1ExternalFlowForce.html#a2bb5e2e9c30a222082ecb96728193fa4">~ExternalFlowForce</a> ()=default</td></tr>
 <tr class="separator:a2bb5e2e9c30a222082ecb96728193fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1d00a37b6fe0aa111a837fd6e14c940" id="r_ad1d00a37b6fe0aa111a837fd6e14c940"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1ExternalFlowForce.html#ad1d00a37b6fe0aa111a837fd6e14c940">value</a> (number time_step_size, const std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt; &amp;cells, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;points, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt; &amp;w)=0</td></tr>
-<tr class="separator:ad1d00a37b6fe0aa111a837fd6e14c940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa894349fd02ec5f63c8f61afdd36723e" id="r_aa894349fd02ec5f63c8f61afdd36723e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1ExternalFlowForce.html#aa894349fd02ec5f63c8f61afdd36723e">value</a> (number time_step_size, const std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt; &amp;cells, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;points, const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt; &amp;w)=0</td></tr>
+<tr class="separator:aa894349fd02ec5f63c8f61afdd36723e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number&gt;<br />
 struct MeltPoolDG::Flow::ExternalFlowForce&lt; dim, number &gt;</div><p>An abstract interface for defining external forces acting on the fluid that must be evaluated and incorporated during the cell loop of an explicit time integration scheme. </p>
-<p>This struct serves as a base for user-defined external fluid force models. Any derived class must implement the core functions: <code><a class="el" href="structMeltPoolDG_1_1Flow_1_1ExternalFlowForce.html#ad1d00a37b6fe0aa111a837fd6e14c940">value()</a></code>: Invoked at each quadrature point to compute the contribution of the external force. </p>
+<p>This struct serves as a base for user-defined external fluid force models. Any derived class must implement the core functions: <code><a class="el" href="structMeltPoolDG_1_1Flow_1_1ExternalFlowForce.html#aa894349fd02ec5f63c8f61afdd36723e">value()</a></code>: Invoked at each quadrature point to compute the contribution of the external force. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2bb5e2e9c30a222082ecb96728193fa4" name="a2bb5e2e9c30a222082ecb96728193fa4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2bb5e2e9c30a222082ecb96728193fa4">&#9670;&#160;</a></span>~ExternalFlowForce()</h2>
@@ -188,8 +188,8 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad1d00a37b6fe0aa111a837fd6e14c940" name="ad1d00a37b6fe0aa111a837fd6e14c940"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1d00a37b6fe0aa111a837fd6e14c940">&#9670;&#160;</a></span>value()</h2>
+<a id="aa894349fd02ec5f63c8f61afdd36723e" name="aa894349fd02ec5f63c8f61afdd36723e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa894349fd02ec5f63c8f61afdd36723e">&#9670;&#160;</a></span>value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -200,7 +200,7 @@ template&lt;int dim, typename number &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt; <a class="el" href="structMeltPoolDG_1_1Flow_1_1ExternalFlowForce.html">MeltPoolDG::Flow::ExternalFlowForce</a>&lt; dim, number &gt;::value </td>
+          <td class="memname">virtual <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt; <a class="el" href="structMeltPoolDG_1_1Flow_1_1ExternalFlowForce.html">MeltPoolDG::Flow::ExternalFlowForce</a>&lt; dim, number &gt;::value </td>
           <td>(</td>
           <td class="paramtype">number&#160;</td>
           <td class="paramname"><em>time_step_size</em>, </td>
@@ -220,7 +220,7 @@ template&lt;int dim, typename number &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt; &amp;&#160;</td>
           <td class="paramname"><em>w</em>&#160;</td>
         </tr>
         <tr>

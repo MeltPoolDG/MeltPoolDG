@@ -192,9 +192,6 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html">CompressibleFlowScratchData</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scratch data structure for compressible single-phase flow solvers.  <a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowScratchData.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html">CompressibleFlowTypes</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct providing type aliases that might be useful in the compressible flow implementations.  <a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowViscousKernels.html">CompressibleFlowViscousKernels</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Viscous kernel operations for compressible flow solvers.  <a href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowViscousKernels.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -288,18 +285,18 @@ Functions</h2></td></tr>
 <tr class="separator:a792ddd081eca3a9b59d6b5a106d84b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1931516fb9a3cf3408a16750e097cf2d" id="r_a1931516fb9a3cf3408a16750e097cf2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a1931516fb9a3cf3408a16750e097cf2d">BETTER_ENUM</a> (JacobianType, <a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a0cf67a82f4673be3eda96c72944a232f">char</a>, exact, finite_difference)</td></tr>
 <tr class="separator:a1931516fb9a3cf3408a16750e097cf2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a6dab575fb3d983fcba6e693aa92c22" id="r_a5a6dab575fb3d983fcba6e693aa92c22"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , CellEvaluatorType&lt; dim, dim+2, number, dealii::VectorizedArray&lt; number &gt; &gt; Integrator, bool is_viscous = true&gt; </td></tr>
-<tr class="memitem:a5a6dab575fb3d983fcba6e693aa92c22"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::tuple&lt; <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType</a>&lt; dim, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a5a6dab575fb3d983fcba6e693aa92c22">rhs_cell_integral_kernel</a> (const Integrator &amp;evaluator, const unsigned int q, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; *constant_body_force, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowConvectiveKernels.html">CompressibleFlowConvectiveKernels</a>&lt; dim, number &gt; &amp;convective_terms, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowViscousKernels.html">CompressibleFlowViscousKernels</a>&lt; dim, number &gt; &amp;viscous_terms, const std::unique_ptr&lt; dealii::Function&lt; dim &gt; &gt; &amp;body_force)</td></tr>
-<tr class="memdesc:a5a6dab575fb3d983fcba6e693aa92c22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the right-hand side cell integral kernels at a quadrature point.  <br /></td></tr>
-<tr class="separator:a5a6dab575fb3d983fcba6e693aa92c22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4b635a8eb03393ac2e44c60fbfaf64c" id="r_af4b635a8eb03393ac2e44c60fbfaf64c"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , FaceEvaluatorType&lt; dim, dim+2, number, dealii::VectorizedArray&lt; number &gt; &gt; Integrator, bool is_viscous = true&gt; </td></tr>
-<tr class="memitem:af4b635a8eb03393ac2e44c60fbfaf64c"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::tuple&lt; <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType</a>&lt; dim, number &gt;, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType</a>&lt; dim, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#af4b635a8eb03393ac2e44c60fbfaf64c">rhs_face_integral_kernel</a> (const Integrator &amp;evaluator_m, const Integrator &amp;evaluator_p, const unsigned int q, dealii::VectorizedArray&lt; number &gt; penalty_parameter, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowConvectiveKernels.html">CompressibleFlowConvectiveKernels</a>&lt; dim, number &gt; &amp;convective_terms, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowViscousKernels.html">CompressibleFlowViscousKernels</a>&lt; dim, number &gt; &amp;viscous_terms)</td></tr>
-<tr class="memdesc:af4b635a8eb03393ac2e44c60fbfaf64c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the right-hand side face integral kernels at a face quadrature point.  <br /></td></tr>
-<tr class="separator:af4b635a8eb03393ac2e44c60fbfaf64c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a128999567deddad939e475f92c8ca88b" id="r_a128999567deddad939e475f92c8ca88b"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , FaceEvaluatorType&lt; dim, dim+2, number, dealii::VectorizedArray&lt; number &gt; &gt; Integrator, bool is_viscous = true, bool is_gas_phase = true&gt; </td></tr>
-<tr class="memitem:a128999567deddad939e475f92c8ca88b"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::tuple&lt; <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType</a>&lt; dim, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a128999567deddad939e475f92c8ca88b">rhs_boundary_face_integral_kernel</a> (const Integrator &amp;evaluator_m, const unsigned int q, const dealii::types::boundary_id boundary_id, const dealii::VectorizedArray&lt; number &gt; penalty_parameter, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowConvectiveKernels.html">CompressibleFlowConvectiveKernels</a>&lt; dim, number &gt; &amp;convective_terms, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowViscousKernels.html">CompressibleFlowViscousKernels</a>&lt; dim, number &gt; &amp;viscous_terms, const <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowMaterial.html">CompressibleFlowMaterial</a>&lt; dim, number &gt; &amp;material, const <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowBoundaryConditions.html">CompressibleFlowBoundaryConditions</a>&lt; dim, number &gt; &amp;boundary_conditions)</td></tr>
-<tr class="memdesc:a128999567deddad939e475f92c8ca88b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the right-hand side boundary face integral kernels at a boundary face quadrature point.  <br /></td></tr>
-<tr class="separator:a128999567deddad939e475f92c8ca88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72f090ab99550d2dd6ef1bdfa9d5a6ff" id="r_a72f090ab99550d2dd6ef1bdfa9d5a6ff"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , CellEvaluatorType&lt; dim, dim+2, number, dealii::VectorizedArray&lt; number &gt; &gt; Integrator, bool is_viscous = true&gt; </td></tr>
+<tr class="memitem:a72f090ab99550d2dd6ef1bdfa9d5a6ff"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::tuple&lt; <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e8e15943d8de72ce0cf6d5282e5fb5a">CompressibleFlow::ConservedVariablesGradientType</a>&lt; dim, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a72f090ab99550d2dd6ef1bdfa9d5a6ff">rhs_cell_integral_kernel</a> (const Integrator &amp;evaluator, const unsigned int q, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; *constant_body_force, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowConvectiveKernels.html">CompressibleFlowConvectiveKernels</a>&lt; dim, number &gt; &amp;convective_terms, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowViscousKernels.html">CompressibleFlowViscousKernels</a>&lt; dim, number &gt; &amp;viscous_terms, const std::unique_ptr&lt; dealii::Function&lt; dim &gt; &gt; &amp;body_force)</td></tr>
+<tr class="memdesc:a72f090ab99550d2dd6ef1bdfa9d5a6ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the right-hand side cell integral kernels at a quadrature point.  <br /></td></tr>
+<tr class="separator:a72f090ab99550d2dd6ef1bdfa9d5a6ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59d9017413984b0a6e1734f2f1133f75" id="r_a59d9017413984b0a6e1734f2f1133f75"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , FaceEvaluatorType&lt; dim, dim+2, number, dealii::VectorizedArray&lt; number &gt; &gt; Integrator, bool is_viscous = true&gt; </td></tr>
+<tr class="memitem:a59d9017413984b0a6e1734f2f1133f75"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::tuple&lt; <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e8e15943d8de72ce0cf6d5282e5fb5a">CompressibleFlow::ConservedVariablesGradientType</a>&lt; dim, number &gt;, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e8e15943d8de72ce0cf6d5282e5fb5a">CompressibleFlow::ConservedVariablesGradientType</a>&lt; dim, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a59d9017413984b0a6e1734f2f1133f75">rhs_face_integral_kernel</a> (const Integrator &amp;evaluator_m, const Integrator &amp;evaluator_p, const unsigned int q, dealii::VectorizedArray&lt; number &gt; penalty_parameter, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowConvectiveKernels.html">CompressibleFlowConvectiveKernels</a>&lt; dim, number &gt; &amp;convective_terms, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowViscousKernels.html">CompressibleFlowViscousKernels</a>&lt; dim, number &gt; &amp;viscous_terms)</td></tr>
+<tr class="memdesc:a59d9017413984b0a6e1734f2f1133f75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the right-hand side face integral kernels at a face quadrature point.  <br /></td></tr>
+<tr class="separator:a59d9017413984b0a6e1734f2f1133f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26f9525c07defd149b50f6c8f92cfff8" id="r_a26f9525c07defd149b50f6c8f92cfff8"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , FaceEvaluatorType&lt; dim, dim+2, number, dealii::VectorizedArray&lt; number &gt; &gt; Integrator, bool is_viscous = true, bool is_gas_phase = true&gt; </td></tr>
+<tr class="memitem:a26f9525c07defd149b50f6c8f92cfff8"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::tuple&lt; <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e8e15943d8de72ce0cf6d5282e5fb5a">CompressibleFlow::ConservedVariablesGradientType</a>&lt; dim, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a26f9525c07defd149b50f6c8f92cfff8">rhs_boundary_face_integral_kernel</a> (const Integrator &amp;evaluator_m, const unsigned int q, const dealii::types::boundary_id boundary_id, const dealii::VectorizedArray&lt; number &gt; penalty_parameter, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowConvectiveKernels.html">CompressibleFlowConvectiveKernels</a>&lt; dim, number &gt; &amp;convective_terms, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowViscousKernels.html">CompressibleFlowViscousKernels</a>&lt; dim, number &gt; &amp;viscous_terms, const <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowMaterial.html">CompressibleFlowMaterial</a>&lt; dim, number &gt; &amp;material, const <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowBoundaryConditions.html">CompressibleFlowBoundaryConditions</a>&lt; dim, number &gt; &amp;boundary_conditions)</td></tr>
+<tr class="memdesc:a26f9525c07defd149b50f6c8f92cfff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the right-hand side boundary face integral kernels at a boundary face quadrature point.  <br /></td></tr>
+<tr class="separator:a26f9525c07defd149b50f6c8f92cfff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a715d79a6506764a3d2c3a6ec88738b51" id="r_a715d79a6506764a3d2c3a6ec88738b51"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , CompressibleFlow::IsConservedStateCompatible&lt; dim &gt; value_type&gt; </td></tr>
 <tr class="memitem:a715d79a6506764a3d2c3a6ec88738b51"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a074ae3d281d8ee92a1872729eb6593f0">CompressibleFlow::FluxType</a>&lt; dim, number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a715d79a6506764a3d2c3a6ec88738b51">convective_flux</a> (const <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1DofStateView.html">CompressibleFlow::DofStateView</a>&lt; dim, number, const value_type &gt; &amp;conserved_variables)</td></tr>
 <tr class="separator:a715d79a6506764a3d2c3a6ec88738b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -320,14 +317,14 @@ Functions</h2></td></tr>
 <tr class="separator:a8010e596a36ffa3fc55959caec8e57b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd24a9e799d39f5cc63e43c7c6e72eaf" id="r_acd24a9e799d39f5cc63e43c7c6e72eaf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#acd24a9e799d39f5cc63e43c7c6e72eaf">BETTER_ENUM</a> (Idx3D, <a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a0cf67a82f4673be3eda96c72944a232f">char</a>, density, momentum_x, momentum_y, momentum_z, energy)</td></tr>
 <tr class="separator:acd24a9e799d39f5cc63e43c7c6e72eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a953eb4a3a471d8da41ece611481c0f2b" id="r_a953eb4a3a471d8da41ece611481c0f2b"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
-<tr class="memitem:a953eb4a3a471d8da41ece611481c0f2b"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a953eb4a3a471d8da41ece611481c0f2b">calculate_velocity</a> (const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt; &amp;conserved_variables)</td></tr>
-<tr class="memdesc:a953eb4a3a471d8da41ece611481c0f2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the velocity from the conserved variables by computing u = (ρu)/ρ.  <br /></td></tr>
-<tr class="separator:a953eb4a3a471d8da41ece611481c0f2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfe501b4176536ec3cbd029ce5c296af" id="r_abfe501b4176536ec3cbd029ce5c296af"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
-<tr class="memitem:abfe501b4176536ec3cbd029ce5c296af"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#abfe501b4176536ec3cbd029ce5c296af">calculate_grad_velocity</a> (const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt; &amp;conserved_variables, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType</a>&lt; dim, number &gt; &amp;grad_conserved_variables)</td></tr>
-<tr class="memdesc:abfe501b4176536ec3cbd029ce5c296af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the velocity gradient.  <br /></td></tr>
-<tr class="separator:abfe501b4176536ec3cbd029ce5c296af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af50687a35511ea3f8f1d27ac7660c083" id="r_af50687a35511ea3f8f1d27ac7660c083"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
+<tr class="memitem:af50687a35511ea3f8f1d27ac7660c083"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#af50687a35511ea3f8f1d27ac7660c083">calculate_velocity</a> (const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt; &amp;conserved_variables)</td></tr>
+<tr class="memdesc:af50687a35511ea3f8f1d27ac7660c083"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the velocity from the conserved variables by computing u = (ρu)/ρ.  <br /></td></tr>
+<tr class="separator:af50687a35511ea3f8f1d27ac7660c083"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a172dec140bb4c139837d0b6eb4c63df9" id="r_a172dec140bb4c139837d0b6eb4c63df9"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
+<tr class="memitem:a172dec140bb4c139837d0b6eb4c63df9"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a172dec140bb4c139837d0b6eb4c63df9">calculate_grad_velocity</a> (const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt; &amp;conserved_variables, const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e8e15943d8de72ce0cf6d5282e5fb5a">CompressibleFlow::ConservedVariablesGradientType</a>&lt; dim, number &gt; &amp;grad_conserved_variables)</td></tr>
+<tr class="memdesc:a172dec140bb4c139837d0b6eb4c63df9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the velocity gradient.  <br /></td></tr>
+<tr class="separator:a172dec140bb4c139837d0b6eb4c63df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f8adb978e865134cc701d545b9c915e" id="r_a2f8adb978e865134cc701d545b9c915e"><td class="memTemplParams" colspan="2">template&lt;int dim, typename Number &gt; </td></tr>
 <tr class="memitem:a2f8adb978e865134cc701d545b9c915e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a2f8adb978e865134cc701d545b9c915e">calculate_penalty_parameter</a> (dealii::AlignedVector&lt; dealii::VectorizedArray&lt; Number &gt; &gt; &amp;array_penalty_parameter, const dealii::MatrixFree&lt; dim, Number &gt; &amp;matrix_free, const std::string &amp;domain_representation_type, const unsigned int dof_index=0, const Number scaling_factor=1.0)</td></tr>
 <tr class="memdesc:a2f8adb978e865134cc701d545b9c915e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function computes the local values of the internal penalty parameter used in the viscous numerical flux.  <br /></td></tr>
@@ -769,8 +766,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="abfe501b4176536ec3cbd029ce5c296af" name="abfe501b4176536ec3cbd029ce5c296af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfe501b4176536ec3cbd029ce5c296af">&#9670;&#160;</a></span>calculate_grad_velocity()</h2>
+<a id="a172dec140bb4c139837d0b6eb4c63df9" name="a172dec140bb4c139837d0b6eb4c63df9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a172dec140bb4c139837d0b6eb4c63df9">&#9670;&#160;</a></span>calculate_grad_velocity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -783,13 +780,13 @@ template&lt;int dim, typename number &gt; </div>
         <tr>
           <td class="memname">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt; MeltPoolDG::Flow::calculate_grad_velocity </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt; &amp;&#160;</td>
           <td class="paramname"><em>conserved_variables</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e8e15943d8de72ce0cf6d5282e5fb5a">CompressibleFlow::ConservedVariablesGradientType</a>&lt; dim, number &gt; &amp;&#160;</td>
           <td class="paramname"><em>grad_conserved_variables</em>&#160;</td>
         </tr>
         <tr>
@@ -878,8 +875,8 @@ template&lt;int dim, typename Number &gt; </div>
 
 </div>
 </div>
-<a id="a953eb4a3a471d8da41ece611481c0f2b" name="a953eb4a3a471d8da41ece611481c0f2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a953eb4a3a471d8da41ece611481c0f2b">&#9670;&#160;</a></span>calculate_velocity()</h2>
+<a id="af50687a35511ea3f8f1d27ac7660c083" name="af50687a35511ea3f8f1d27ac7660c083"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af50687a35511ea3f8f1d27ac7660c083">&#9670;&#160;</a></span>calculate_velocity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -892,7 +889,7 @@ template&lt;int dim, typename number &gt; </div>
         <tr>
           <td class="memname">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; MeltPoolDG::Flow::calculate_velocity </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt; &amp;&#160;</td>
           <td class="paramname"><em>conserved_variables</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1073,8 +1070,8 @@ template&lt;int dim, typename number , CompressibleFlow::IsConservedStateCompati
 
 </div>
 </div>
-<a id="a128999567deddad939e475f92c8ca88b" name="a128999567deddad939e475f92c8ca88b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a128999567deddad939e475f92c8ca88b">&#9670;&#160;</a></span>rhs_boundary_face_integral_kernel()</h2>
+<a id="a26f9525c07defd149b50f6c8f92cfff8" name="a26f9525c07defd149b50f6c8f92cfff8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26f9525c07defd149b50f6c8f92cfff8">&#9670;&#160;</a></span>rhs_boundary_face_integral_kernel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1085,7 +1082,7 @@ template&lt;int dim, typename number , FaceEvaluatorType&lt; dim, dim+2, number,
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DEAL_II_ALWAYS_INLINE std::tuple&lt; <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType</a>&lt; dim, number &gt; &gt; MeltPoolDG::Flow::rhs_boundary_face_integral_kernel </td>
+          <td class="memname">DEAL_II_ALWAYS_INLINE std::tuple&lt; <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e8e15943d8de72ce0cf6d5282e5fb5a">CompressibleFlow::ConservedVariablesGradientType</a>&lt; dim, number &gt; &gt; MeltPoolDG::Flow::rhs_boundary_face_integral_kernel </td>
           <td>(</td>
           <td class="paramtype">const Integrator &amp;&#160;</td>
           <td class="paramname"><em>evaluator_m</em>, </td>
@@ -1164,8 +1161,8 @@ template&lt;int dim, typename number , FaceEvaluatorType&lt; dim, dim+2, number,
 
 </div>
 </div>
-<a id="a5a6dab575fb3d983fcba6e693aa92c22" name="a5a6dab575fb3d983fcba6e693aa92c22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a6dab575fb3d983fcba6e693aa92c22">&#9670;&#160;</a></span>rhs_cell_integral_kernel()</h2>
+<a id="a72f090ab99550d2dd6ef1bdfa9d5a6ff" name="a72f090ab99550d2dd6ef1bdfa9d5a6ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72f090ab99550d2dd6ef1bdfa9d5a6ff">&#9670;&#160;</a></span>rhs_cell_integral_kernel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1176,7 +1173,7 @@ template&lt;int dim, typename number , CellEvaluatorType&lt; dim, dim+2, number,
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DEAL_II_ALWAYS_INLINE std::tuple&lt; <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType</a>&lt; dim, number &gt; &gt; MeltPoolDG::Flow::rhs_cell_integral_kernel </td>
+          <td class="memname">DEAL_II_ALWAYS_INLINE std::tuple&lt; <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e8e15943d8de72ce0cf6d5282e5fb5a">CompressibleFlow::ConservedVariablesGradientType</a>&lt; dim, number &gt; &gt; MeltPoolDG::Flow::rhs_cell_integral_kernel </td>
           <td>(</td>
           <td class="paramtype">const Integrator &amp;&#160;</td>
           <td class="paramname"><em>evaluator</em>, </td>
@@ -1241,8 +1238,8 @@ template&lt;int dim, typename number , CellEvaluatorType&lt; dim, dim+2, number,
 
 </div>
 </div>
-<a id="af4b635a8eb03393ac2e44c60fbfaf64c" name="af4b635a8eb03393ac2e44c60fbfaf64c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4b635a8eb03393ac2e44c60fbfaf64c">&#9670;&#160;</a></span>rhs_face_integral_kernel()</h2>
+<a id="a59d9017413984b0a6e1734f2f1133f75" name="a59d9017413984b0a6e1734f2f1133f75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59d9017413984b0a6e1734f2f1133f75">&#9670;&#160;</a></span>rhs_face_integral_kernel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1253,7 +1250,7 @@ template&lt;int dim, typename number , FaceEvaluatorType&lt; dim, dim+2, number,
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DEAL_II_ALWAYS_INLINE std::tuple&lt; <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a475c167d568ca252c2feec2fd01cff24">CompressibleFlowTypes::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType</a>&lt; dim, number &gt;, <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowTypes.html#a0e2157d27bf6c7480302f4e8e9693d8e">CompressibleFlowTypes::ConservedVariablesGradType</a>&lt; dim, number &gt; &gt; MeltPoolDG::Flow::rhs_face_integral_kernel </td>
+          <td class="memname">DEAL_II_ALWAYS_INLINE std::tuple&lt; <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a81166d7398d77e55918b3c4e3179d96e">CompressibleFlow::ConservedVariablesType</a>&lt; dim, number &gt;, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e8e15943d8de72ce0cf6d5282e5fb5a">CompressibleFlow::ConservedVariablesGradientType</a>&lt; dim, number &gt;, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e8e15943d8de72ce0cf6d5282e5fb5a">CompressibleFlow::ConservedVariablesGradientType</a>&lt; dim, number &gt; &gt; MeltPoolDG::Flow::rhs_face_integral_kernel </td>
           <td>(</td>
           <td class="paramtype">const Integrator &amp;&#160;</td>
           <td class="paramname"><em>evaluator_m</em>, </td>
