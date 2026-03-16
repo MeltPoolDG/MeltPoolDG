@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/flow/equation_of_state.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/flow/equation_of_state.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/equation__of__state_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-flow-equation-of-state-hpp-source-file">
+<h1>include/meltpooldg/flow/equation_of_state.hpp Source File<a class="headerlink" href="#include-meltpooldg-flow-equation-of-state-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/flow/equation_of_state.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_e71d216056fb13ff2a67c48841417c25.html">flow</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">equation_of_state.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="equation__of__state_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/config.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;deal.II/base/exceptions.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;deal.II/base/tensor.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;deal.II/base/vectorization.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="compressible__flow__material__data_8hpp.html">meltpooldg/flow/compressible_flow_material_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="concepts_8hpp.html">meltpooldg/utilities/concepts.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="dealii__tensor_8hpp.html">meltpooldg/utilities/dealii_tensor.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1Flow.html">MeltPoolDG::Flow</a></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="conceptMeltPoolDG_1_1Flow_1_1EOSIsValueView.html">   23</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="conceptMeltPoolDG_1_1Flow_1_1EOSIsValueView.html">EOSIsValueView</a> = <span class="keyword">requires</span>(<span class="keyword">const</span> T v) {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>      v.density()</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    };</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>      v.velocity()</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    };</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      v.total_energy()</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    };</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  };</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="conceptMeltPoolDG_1_1Flow_1_1EOSIsGradientView.html">   40</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="conceptMeltPoolDG_1_1Flow_1_1EOSIsGradientView.html">EOSIsGradientView</a> = <span class="keyword">requires</span>(<span class="keyword">const</span> T g) {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      g.grad_density()</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    };</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      g.grad_velocity()</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    };</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      g.grad_total_energy()</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    };</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  };</div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="conceptMeltPoolDG_1_1Flow_1_1IdealGasIsMaterialView.html">   57</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="conceptMeltPoolDG_1_1Flow_1_1IdealGasIsMaterialView.html">IdealGasIsMaterialView</a> = <span class="keyword">requires</span>(<span class="keyword">const</span> T m) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      m.heat_capacity_ratio()</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    };</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      m.specific_gas_constant()</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    };</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  };</div>
+</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="foldopen" id="foldopen00066" data-start="{" data-end="};">
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html">   66</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html">IdealGasEOS</a></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">template</span> &lt;EOSIsValueView ValueView, IdealGasIsMaterialView MaterialView&gt;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">static</span> <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      <span class="keyword">auto</span></div>
+<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#abad03d2b3cd6bf59b10ebf82120004af">   79</a></span>      <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#abad03d2b3cd6bf59b10ebf82120004af">thermodynamic_pressure</a>(<span class="keyword">const</span> ValueView &amp;value_view, <span class="keyword">const</span> MaterialView &amp;material_view)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      <span class="keywordflow">return</span> (material_view.heat_capacity_ratio() - 1.) *</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>             (value_view.total_energy() -</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>              value_view.density() * 0.5 *</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                <a class="code hl_function" href="namespaceMeltPoolDG.html#a954958def16a78c9e76564979a9a01e4">scalar_product</a>(value_view.velocity(), value_view.velocity()));</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
+</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keyword">template</span> &lt;<a class="code hl_concept" href="conceptMeltPoolDG_1_1Flow_1_1EOSIsValueView.html">EOSIsValueView</a>         ValueView,</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>              <a class="code hl_concept" href="conceptMeltPoolDG_1_1Flow_1_1EOSIsGradientView.html">EOSIsGradientView</a>      GradientView,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>              <a class="code hl_concept" href="conceptMeltPoolDG_1_1Flow_1_1IdealGasIsMaterialView.html">IdealGasIsMaterialView</a> MaterialView&gt;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">static</span> <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="keyword">auto</span></div>
+<div class="foldopen" id="foldopen00102" data-start="{" data-end="}">
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#a918ba920aa8c2b0c90acc23bdfc9e181">  102</a></span>      <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#a918ba920aa8c2b0c90acc23bdfc9e181">grad_temperature</a>(<span class="keyword">const</span> ValueView    &amp;value_view,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                       <span class="keyword">const</span> GradientView &amp;gradient_view,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                       <span class="keyword">const</span> MaterialView &amp;material_view)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      <span class="keyword">const</span> <span class="keyword">auto</span> grad_E =</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        1. / value_view.density() *</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        (gradient_view.grad_total_energy() -</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>         1. / value_view.density() * value_view.total_energy() * gradient_view.grad_density());</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      <span class="keywordflow">return</span> (material_view.heat_capacity_ratio() - 1.0) / material_view.specific_gas_constant() *</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>             (grad_E - <a class="code hl_function" href="namespaceMeltPoolDG.html#af2ec00d9aabe9f0ce67a0eaa6676c22d">matrix_vector_product</a>(gradient_view.grad_velocity(), value_view.velocity()));</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    }</div>
+</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keyword">template</span> &lt;EOSIsValueView ValueView, IdealGasIsMaterialView MaterialView&gt;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keyword">static</span> <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      <span class="keyword">auto</span></div>
+<div class="foldopen" id="foldopen00127" data-start="{" data-end="}">
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#aaa98b94938f012e73eecd2ec0c80e15b">  127</a></span>      <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#aaa98b94938f012e73eecd2ec0c80e15b">speed_of_sound</a>(<span class="keyword">const</span> ValueView &amp;value_view, <span class="keyword">const</span> MaterialView &amp;material_view)</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      <span class="keywordflow">return</span> std::sqrt(material_view.heat_capacity_ratio() *</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                       <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#abad03d2b3cd6bf59b10ebf82120004af">thermodynamic_pressure</a>(value_view, material_view) / value_view.density());</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    }</div>
+</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keyword">template</span> &lt;EOSIsValueView ValueView, IdealGasIsMaterialView MaterialView&gt;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keyword">static</span> <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>      <span class="keyword">auto</span></div>
+<div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#a98785034ab207eec27eb010bf009ae5b">  144</a></span>      <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#a98785034ab207eec27eb010bf009ae5b">temperature</a>(<span class="keyword">const</span> ValueView &amp;value_view, <span class="keyword">const</span> MaterialView &amp;material_view)</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#abad03d2b3cd6bf59b10ebf82120004af">thermodynamic_pressure</a>(value_view, material_view) /</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>             (material_view.specific_gas_constant() * value_view.density());</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
+</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ValueType, IdealGasIsMaterialView MaterialView&gt;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keyword">static</span> <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      <span class="keyword">auto</span></div>
+<div class="foldopen" id="foldopen00162" data-start="{" data-end="}">
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#a9baf3c0d322eb736ecf904e138e2e04a">  162</a></span>      <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#a9baf3c0d322eb736ecf904e138e2e04a">inner_energy_from_pressure</a>(<span class="keyword">const</span> ValueType &amp;pressure, <span class="keyword">const</span> MaterialView &amp;material_view)</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    {</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>      <span class="keywordflow">return</span> pressure / (material_view.heat_capacity_ratio() - 1.);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    }</div>
+</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  };</div>
+</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> F&gt;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keyword">decltype</span>(<span class="keyword">auto</span>)</div>
+<div class="foldopen" id="foldopen00188" data-start="{" data-end="}">
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1Flow.html#a05b48f099e336851e47405b2ddbd6bd9">  188</a></span>    <a class="code hl_function" href="namespaceMeltPoolDG_1_1Flow.html#a05b48f099e336851e47405b2ddbd6bd9">dispatch_eos</a>(EquationOfState eos_type, F &amp;&amp;f)</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  {</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordflow">switch</span> (eos_type)</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      {</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        <span class="keywordflow">case</span> EquationOfState::ideal_gas:</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>          <span class="keywordflow">return</span> std::forward&lt;F&gt;(f)(<a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html">IdealGasEOS</a>{});</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>          AssertThrow(<span class="keyword">false</span>,</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                      dealii::ExcMessage(<span class="stringliteral">&quot;The provided equation of state type is not supported!&quot;</span>));</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>      }</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  }</div>
+</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, ArithmeticType ValueType, <span class="keyword">typename</span> Derived&gt;</div>
+<div class="foldopen" id="foldopen00210" data-start="{" data-end="};">
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html">  210</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html">EOSValueMixin</a></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keyword">decltype</span>(<span class="keyword">auto</span>)</div>
+<div class="foldopen" id="foldopen00213" data-start="{" data-end="}">
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#aea0d68f7879a7f7ebe312336573c8b75">  213</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#aea0d68f7879a7f7ebe312336573c8b75">pressure</a>() <span class="keyword">const</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceMeltPoolDG_1_1Flow.html#a05b48f099e336851e47405b2ddbd6bd9">dispatch_eos</a>(<a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#ad888303c3573860b823994463dcee8c8">eos_type</a>(), [&amp;](<span class="keyword">auto</span> eos) -&gt; <span class="keyword">decltype</span>(<span class="keyword">auto</span>) {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <span class="keywordflow">return</span> eos.thermodynamic_pressure(<a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a2b31128654a3d9ce3a01af25681c5d39">derived</a>(), <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a2b31128654a3d9ce3a01af25681c5d39">derived</a>());</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>      });</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    }</div>
+</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keyword">decltype</span>(<span class="keyword">auto</span>)</div>
+<div class="foldopen" id="foldopen00221" data-start="{" data-end="}">
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#ae882705d8ff500724ab97802cad9a96c">  221</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#ae882705d8ff500724ab97802cad9a96c">temperature</a>() <span class="keyword">const</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    {</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceMeltPoolDG_1_1Flow.html#a05b48f099e336851e47405b2ddbd6bd9">dispatch_eos</a>(<a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#ad888303c3573860b823994463dcee8c8">eos_type</a>(), [&amp;](<span class="keyword">auto</span> eos) -&gt; <span class="keyword">decltype</span>(<span class="keyword">auto</span>) {</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        <span class="keywordflow">return</span> eos.temperature(<a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a2b31128654a3d9ce3a01af25681c5d39">derived</a>(), <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a2b31128654a3d9ce3a01af25681c5d39">derived</a>());</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      });</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    }</div>
+</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keyword">decltype</span>(<span class="keyword">auto</span>)</div>
+<div class="foldopen" id="foldopen00229" data-start="{" data-end="}">
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a7b91adaf5bd479b6a6f9c5d84493faea">  229</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a7b91adaf5bd479b6a6f9c5d84493faea">speed_of_sound</a>() <span class="keyword">const</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    {</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceMeltPoolDG_1_1Flow.html#a05b48f099e336851e47405b2ddbd6bd9">dispatch_eos</a>(<a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#ad888303c3573860b823994463dcee8c8">eos_type</a>(), [&amp;](<span class="keyword">auto</span> eos) -&gt; <span class="keyword">decltype</span>(<span class="keyword">auto</span>) {</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        <span class="keywordflow">return</span> eos.speed_of_sound(<a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a2b31128654a3d9ce3a01af25681c5d39">derived</a>(), <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a2b31128654a3d9ce3a01af25681c5d39">derived</a>());</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>      });</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    }</div>
+</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keyword">decltype</span>(<span class="keyword">auto</span>)</div>
+<div class="foldopen" id="foldopen00237" data-start="{" data-end="}">
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#aee8f567481b96f8da195133e0388c11b">  237</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#aee8f567481b96f8da195133e0388c11b">inner_energy_from_pressure</a>(<span class="keyword">const</span> ValueType &amp;<a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#aea0d68f7879a7f7ebe312336573c8b75">pressure</a>) <span class="keyword">const</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    {</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceMeltPoolDG_1_1Flow.html#a05b48f099e336851e47405b2ddbd6bd9">dispatch_eos</a>(<a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#ad888303c3573860b823994463dcee8c8">eos_type</a>(), [&amp;](<span class="keyword">auto</span> eos) -&gt; <span class="keyword">decltype</span>(<span class="keyword">auto</span>) {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        <span class="keywordflow">return</span> eos.inner_energy_from_pressure(<a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#aea0d68f7879a7f7ebe312336573c8b75">pressure</a>, <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a2b31128654a3d9ce3a01af25681c5d39">derived</a>());</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>      });</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    }</div>
+</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keyword">decltype</span>(<span class="keyword">auto</span>)</div>
+<div class="foldopen" id="foldopen00246" data-start="{" data-end="}">
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#ad888303c3573860b823994463dcee8c8">  246</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#ad888303c3573860b823994463dcee8c8">eos_type</a>() <span class="keyword">const</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    {</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived &amp;<span class="keyword">&gt;</span>(*this).eos_type();</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    }</div>
+</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keyword">const</span> Derived &amp;</div>
+<div class="foldopen" id="foldopen00252" data-start="{" data-end="}">
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a2b31128654a3d9ce3a01af25681c5d39">  252</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a2b31128654a3d9ce3a01af25681c5d39">derived</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived &amp;<span class="keyword">&gt;</span>(*this);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    }</div>
+</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>  };</div>
+</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> Derived&gt;</div>
+<div class="foldopen" id="foldopen00267" data-start="{" data-end="};">
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html">  267</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html">EOSGradientMixin</a></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  {</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="keyword">decltype</span>(<span class="keyword">auto</span>)</div>
+<div class="foldopen" id="foldopen00270" data-start="{" data-end="}">
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a54612ebb0e8107994866421937f1fa10">  270</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a54612ebb0e8107994866421937f1fa10">grad_temperature</a>() <span class="keyword">const</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    {</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceMeltPoolDG_1_1Flow.html#a05b48f099e336851e47405b2ddbd6bd9">dispatch_eos</a>(<a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a713e25acd316430a74e183cefaa260eb">eos_type</a>(), [&amp;](<span class="keyword">auto</span> eos) -&gt; <span class="keyword">decltype</span>(<span class="keyword">auto</span>) {</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        <span class="keywordflow">return</span> eos.grad_temperature(<a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a498314a77696040ba94ea325e499ff95">derived</a>(), <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a498314a77696040ba94ea325e499ff95">derived</a>(), <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a498314a77696040ba94ea325e499ff95">derived</a>());</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>      });</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    }</div>
+</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keyword">const</span> Derived &amp;</div>
+<div class="foldopen" id="foldopen00279" data-start="{" data-end="}">
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a498314a77696040ba94ea325e499ff95">  279</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a498314a77696040ba94ea325e499ff95">derived</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived &amp;<span class="keyword">&gt;</span>(*this);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    }</div>
+</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="keyword">decltype</span>(<span class="keyword">auto</span>)</div>
+<div class="foldopen" id="foldopen00285" data-start="{" data-end="}">
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a713e25acd316430a74e183cefaa260eb">  285</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a713e25acd316430a74e183cefaa260eb">eos_type</a>() <span class="keyword">const</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    {</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived &amp;<span class="keyword">&gt;</span>(*this).eos_type();</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    }</div>
+</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>  };</div>
+</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>} <span class="comment">// namespace MeltPoolDG::Flow</span></div>
+<div class="ttc" id="acompressible__flow__material__data_8hpp_html"><div class="ttname"><a href="compressible__flow__material__data_8hpp.html">compressible_flow_material_data.hpp</a></div></div>
+<div class="ttc" id="aconceptMeltPoolDG_1_1Flow_1_1EOSIsGradientView_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1Flow_1_1EOSIsGradientView.html">MeltPoolDG::Flow::EOSIsGradientView</a></div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:40</div></div>
+<div class="ttc" id="aconceptMeltPoolDG_1_1Flow_1_1EOSIsValueView_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1Flow_1_1EOSIsValueView.html">MeltPoolDG::Flow::EOSIsValueView</a></div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:23</div></div>
+<div class="ttc" id="aconceptMeltPoolDG_1_1Flow_1_1IdealGasIsMaterialView_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1Flow_1_1IdealGasIsMaterialView.html">MeltPoolDG::Flow::IdealGasIsMaterialView</a></div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:57</div></div>
+<div class="ttc" id="aconcepts_8hpp_html"><div class="ttname"><a href="concepts_8hpp.html">concepts.hpp</a></div></div>
+<div class="ttc" id="adealii__tensor_8hpp_html"><div class="ttname"><a href="dealii__tensor_8hpp.html">dealii_tensor.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html">MeltPoolDG::Flow</a></div><div class="ttdoc">Collection of convective term computations for the compressible Navier-Stokes equations.</div><div class="ttdef"><b>Definition</b> adaflo_wrapper_parameters.hpp:14</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Flow_html_a05b48f099e336851e47405b2ddbd6bd9"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Flow.html#a05b48f099e336851e47405b2ddbd6bd9">MeltPoolDG::Flow::dispatch_eos</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE decltype(auto) dispatch_eos(EquationOfState eos_type, F &amp;&amp;f)</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:188</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_a954958def16a78c9e76564979a9a01e4"><div class="ttname"><a href="namespaceMeltPoolDG.html#a954958def16a78c9e76564979a9a01e4">MeltPoolDG::scalar_product</a></div><div class="ttdeci">dealii::VectorizedArray&lt; number, N &gt; scalar_product(const dealii::VectorizedArray&lt; number, N &gt; &amp;scalar, const dealii::Tensor&lt; 1, 1, dealii::VectorizedArray&lt; number, N &gt; &gt; &amp;vec)</div><div class="ttdef"><b>Definition</b> dealii_tensor.hpp:60</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_af2ec00d9aabe9f0ce67a0eaa6676c22d"><div class="ttname"><a href="namespaceMeltPoolDG.html#af2ec00d9aabe9f0ce67a0eaa6676c22d">MeltPoolDG::matrix_vector_product</a></div><div class="ttdeci">dealii::Tensor&lt; 1, n_rows, number &gt; matrix_vector_product(const dealii::Tensor&lt; 1, n_rows, dealii::Tensor&lt; 1, n_columns, number &gt; &gt; &amp;matrix, const dealii::Tensor&lt; 1, n_columns, number &gt; &amp;vector)</div><div class="ttdef"><b>Definition</b> dealii_tensor.hpp:80</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1EOSGradientMixin_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html">MeltPoolDG::Flow::EOSGradientMixin</a></div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:268</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1EOSGradientMixin_html_a498314a77696040ba94ea325e499ff95"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a498314a77696040ba94ea325e499ff95">MeltPoolDG::Flow::EOSGradientMixin::derived</a></div><div class="ttdeci">const Derived &amp; derived() const</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:279</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1EOSGradientMixin_html_a54612ebb0e8107994866421937f1fa10"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a54612ebb0e8107994866421937f1fa10">MeltPoolDG::Flow::EOSGradientMixin::grad_temperature</a></div><div class="ttdeci">decltype(auto) grad_temperature() const</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:270</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1EOSGradientMixin_html_a713e25acd316430a74e183cefaa260eb"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html#a713e25acd316430a74e183cefaa260eb">MeltPoolDG::Flow::EOSGradientMixin::eos_type</a></div><div class="ttdeci">decltype(auto) eos_type() const</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:285</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1EOSValueMixin_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html">MeltPoolDG::Flow::EOSValueMixin</a></div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:211</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1EOSValueMixin_html_a2b31128654a3d9ce3a01af25681c5d39"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a2b31128654a3d9ce3a01af25681c5d39">MeltPoolDG::Flow::EOSValueMixin::derived</a></div><div class="ttdeci">const Derived &amp; derived() const</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:252</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1EOSValueMixin_html_a7b91adaf5bd479b6a6f9c5d84493faea"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#a7b91adaf5bd479b6a6f9c5d84493faea">MeltPoolDG::Flow::EOSValueMixin::speed_of_sound</a></div><div class="ttdeci">decltype(auto) speed_of_sound() const</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:229</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1EOSValueMixin_html_ad888303c3573860b823994463dcee8c8"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#ad888303c3573860b823994463dcee8c8">MeltPoolDG::Flow::EOSValueMixin::eos_type</a></div><div class="ttdeci">decltype(auto) eos_type() const</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:246</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1EOSValueMixin_html_ae882705d8ff500724ab97802cad9a96c"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#ae882705d8ff500724ab97802cad9a96c">MeltPoolDG::Flow::EOSValueMixin::temperature</a></div><div class="ttdeci">decltype(auto) temperature() const</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:221</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1EOSValueMixin_html_aea0d68f7879a7f7ebe312336573c8b75"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#aea0d68f7879a7f7ebe312336573c8b75">MeltPoolDG::Flow::EOSValueMixin::pressure</a></div><div class="ttdeci">decltype(auto) pressure() const</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:213</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1EOSValueMixin_html_aee8f567481b96f8da195133e0388c11b"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html#aee8f567481b96f8da195133e0388c11b">MeltPoolDG::Flow::EOSValueMixin::inner_energy_from_pressure</a></div><div class="ttdeci">decltype(auto) inner_energy_from_pressure(const ValueType &amp;pressure) const</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:237</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1IdealGasEOS_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html">MeltPoolDG::Flow::IdealGasEOS</a></div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:67</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1IdealGasEOS_html_a918ba920aa8c2b0c90acc23bdfc9e181"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#a918ba920aa8c2b0c90acc23bdfc9e181">MeltPoolDG::Flow::IdealGasEOS::grad_temperature</a></div><div class="ttdeci">static DEAL_II_ALWAYS_INLINE auto grad_temperature(const ValueView &amp;value_view, const GradientView &amp;gradient_view, const MaterialView &amp;material_view)</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:102</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1IdealGasEOS_html_a98785034ab207eec27eb010bf009ae5b"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#a98785034ab207eec27eb010bf009ae5b">MeltPoolDG::Flow::IdealGasEOS::temperature</a></div><div class="ttdeci">static DEAL_II_ALWAYS_INLINE auto temperature(const ValueView &amp;value_view, const MaterialView &amp;material_view)</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:144</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1IdealGasEOS_html_a9baf3c0d322eb736ecf904e138e2e04a"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#a9baf3c0d322eb736ecf904e138e2e04a">MeltPoolDG::Flow::IdealGasEOS::inner_energy_from_pressure</a></div><div class="ttdeci">static DEAL_II_ALWAYS_INLINE auto inner_energy_from_pressure(const ValueType &amp;pressure, const MaterialView &amp;material_view)</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:162</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1IdealGasEOS_html_aaa98b94938f012e73eecd2ec0c80e15b"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#aaa98b94938f012e73eecd2ec0c80e15b">MeltPoolDG::Flow::IdealGasEOS::speed_of_sound</a></div><div class="ttdeci">static DEAL_II_ALWAYS_INLINE auto speed_of_sound(const ValueView &amp;value_view, const MaterialView &amp;material_view)</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:127</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1IdealGasEOS_html_abad03d2b3cd6bf59b10ebf82120004af"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html#abad03d2b3cd6bf59b10ebf82120004af">MeltPoolDG::Flow::IdealGasEOS::thermodynamic_pressure</a></div><div class="ttdeci">static DEAL_II_ALWAYS_INLINE auto thermodynamic_pressure(const ValueView &amp;value_view, const MaterialView &amp;material_view)</div><div class="ttdef"><b>Definition</b> equation_of_state.hpp:79</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
