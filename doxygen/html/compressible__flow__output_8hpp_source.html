@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/flow/compressible_flow_output.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/flow/compressible_flow_output.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/compressible__flow__output_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-flow-compressible-flow-output-hpp-source-file">
+<h1>include/meltpooldg/flow/compressible_flow_output.hpp Source File<a class="headerlink" href="#include-meltpooldg-flow-compressible-flow-output-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/flow/compressible_flow_output.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_e71d216056fb13ff2a67c48841417c25.html">flow</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">compressible_flow_output.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="compressible__flow__output_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/dofs/dof_handler.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;deal.II/lac/la_parallel_vector.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;deal.II/numerics/data_component_interpretation.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;deal.II/numerics/data_postprocessor.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="compressible__flow__data_8hpp.html">meltpooldg/flow/compressible_flow_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="compressible__flow__types_8hpp.html">meltpooldg/flow/compressible_flow_types.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="generic__data__out_8hpp.html">meltpooldg/post_processing/generic_data_out.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="postprocessor_8hpp.html">meltpooldg/post_processing/postprocessor.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="cpp23__functions_8h.html">meltpooldg/utilities/cpp23_functions.h</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="}">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1CompressibleFlow.html">   20</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1CompressibleFlow.html">MeltPoolDG::CompressibleFlow</a></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number, IsConservedView View&gt;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">requires</span> <span class="keyword">requires</span> { <span class="keyword">typename</span> View::state_type; }</div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html">   30</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html">ConservedVariablesPostProcessor</a> : <span class="keyword">public</span> dealii::DataPostprocessor&lt;dim&gt;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a66baea08ae50ec1301ab9f6c98483132">   40</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a66baea08ae50ec1301ab9f6c98483132">ConservedVariablesPostProcessor</a>(</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keyword">const</span> std::function&lt;View(<span class="keyword">typename</span> View::state_type &amp;)&gt; &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a0e29454d730e40f6485a1882d6ed9409">view_creator</a>)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      : <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a0e29454d730e40f6485a1882d6ed9409">view_creator</a>(<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a0e29454d730e40f6485a1882d6ed9409">view_creator</a>)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {}</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    std::vector&lt;std::string&gt;</div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#abff2f45aa9c13ff62984660d5e25f0e4">   46</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#abff2f45aa9c13ff62984660d5e25f0e4">get_names</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      std::vector&lt;std::string&gt; names;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      names.reserve(n_conserved_variables&lt;dim&gt;);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      names.emplace_back(<span class="stringliteral">&quot;density&quot;</span>);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      names.insert(names.end(), dim, <span class="stringliteral">&quot;momentum&quot;</span>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      names.emplace_back(<span class="stringliteral">&quot;total_energy&quot;</span>);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      <span class="keywordflow">return</span> names;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    std::vector&lt;dealii::DataComponentInterpretation::DataComponentInterpretation&gt;</div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a259c1a03731511fd7b067211622dff52">   57</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a259c1a03731511fd7b067211622dff52">get_data_component_interpretation</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      std::vector&lt;dealii::DataComponentInterpretation::DataComponentInterpretation&gt; interpretations;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      interpretations.reserve(n_conserved_variables&lt;dim&gt;);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      interpretations.push_back(dealii::DataComponentInterpretation::component_is_scalar);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      interpretations.insert(interpretations.end(),</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                             dim,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                             dealii::DataComponentInterpretation::component_is_part_of_vector);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      interpretations.push_back(dealii::DataComponentInterpretation::component_is_scalar);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      <span class="keywordflow">return</span> interpretations;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    dealii::UpdateFlags</div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a526d12f2f8d17e1156afa4547890d1ae">   70</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a526d12f2f8d17e1156afa4547890d1ae">get_needed_update_flags</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <span class="keywordflow">return</span> dealii::update_values;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
+</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00086" data-start="{" data-end="}">
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a34bae5dc7a7af46dd6a4d57c2263fd09">   86</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a34bae5dc7a7af46dd6a4d57c2263fd09">evaluate_vector_field</a>(<span class="keyword">const</span> dealii::DataPostprocessorInputs::Vector&lt;dim&gt; &amp;inputs,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                          std::vector&lt;dealii::Vector&lt;number&gt;&gt; &amp;computed_quantities)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_evaluation_points = inputs.solution_values.size();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> p = 0; p &lt; n_evaluation_points; ++p)</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>          <span class="keyword">typename</span> View::state_type w(dealii::make_array_view(inputs.solution_values[p]));</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>          <span class="keyword">const</span> View                accessor = <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a0e29454d730e40f6485a1882d6ed9409">view_creator</a>(w);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>          computed_quantities[p](<a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariableIndex.html">ConservedVariableIndex&lt;dim&gt;::density</a>) = accessor.density();</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>          <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; dim; ++d)</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            computed_quantities[p](<a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariableIndex.html">ConservedVariableIndex&lt;dim&gt;::momentum</a> + d) =</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>              accessor.momentum(d);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>          computed_quantities[p](<a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariableIndex.html">ConservedVariableIndex&lt;dim&gt;::energy</a>) = accessor.total_energy();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
+</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a0e29454d730e40f6485a1882d6ed9409">  106</a></span>    <span class="keyword">const</span> std::function&lt;View(<span class="keyword">typename</span> View::state_type &amp;)&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a0e29454d730e40f6485a1882d6ed9409">view_creator</a>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  };</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number, IsPrimitiveView View&gt;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">requires</span> <span class="keyword">requires</span> { <span class="keyword">typename</span> View::state_type; }</div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="};">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html">  117</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html">PrimitiveVariablesPostProcessor</a> : <span class="keyword">public</span> dealii::DataPostprocessor&lt;dim&gt;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a0431c20ca326a682ec5b1eeb1121bf42">  119</a></span>    <span class="keyword">constexpr</span> <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a0431c20ca326a682ec5b1eeb1121bf42">n_primitive_variables</a> = dim + 2;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="foldopen" id="foldopen00121" data-start="{" data-end="};">
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aa9f3e96b5edc0cb1935f0dbd93f4ce62">  121</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aa9f3e96b5edc0cb1935f0dbd93f4ce62">PrimitiveVariablesIndex</a> : <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      <a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aa9f3e96b5edc0cb1935f0dbd93f4ce62aac1a453d0cdc1f19d9479ccfaa8b082c">velocity</a> = 0,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>      <a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aa9f3e96b5edc0cb1935f0dbd93f4ce62ad99fad96a5d0a7cb2eb41341ea556093">pressure</a> = dim,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      <a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aa9f3e96b5edc0cb1935f0dbd93f4ce62aeef438f7e448aa48c1f8db568d27b591">temperature</a></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    };</div>
+</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00136" data-start="{" data-end="}">
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#ac5ac55bb53ff31c6d2d340f207bde1ea">  136</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#ac5ac55bb53ff31c6d2d340f207bde1ea">PrimitiveVariablesPostProcessor</a>(</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      <span class="keyword">const</span> std::function&lt;View(<span class="keyword">typename</span> View::state_type &amp;)&gt; &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a376d5c90b792c668c40129b19f930bc1">view_creator</a>)</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      : <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a376d5c90b792c668c40129b19f930bc1">view_creator</a>(<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a376d5c90b792c668c40129b19f930bc1">view_creator</a>)</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    {}</div>
+</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    std::vector&lt;std::string&gt;</div>
+<div class="foldopen" id="foldopen00142" data-start="{" data-end="}">
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a5a6b7b1dac8deded2d22fd04e08dfae9">  142</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a5a6b7b1dac8deded2d22fd04e08dfae9">get_names</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>      std::vector&lt;std::string&gt; names;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>      names.reserve(<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a0431c20ca326a682ec5b1eeb1121bf42">n_primitive_variables</a>);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      names.insert(names.end(), dim, <span class="stringliteral">&quot;velocity&quot;</span>);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      names.emplace_back(<span class="stringliteral">&quot;pressure&quot;</span>);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      names.emplace_back(<span class="stringliteral">&quot;temperature&quot;</span>);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <span class="keywordflow">return</span> names;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    }</div>
+</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    std::vector&lt;dealii::DataComponentInterpretation::DataComponentInterpretation&gt;</div>
+<div class="foldopen" id="foldopen00153" data-start="{" data-end="}">
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aeea68cd7611ed470ff77fb18cdfa51e4">  153</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aeea68cd7611ed470ff77fb18cdfa51e4">get_data_component_interpretation</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>      std::vector&lt;dealii::DataComponentInterpretation::DataComponentInterpretation&gt; interpretations;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      interpretations.reserve(<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a0431c20ca326a682ec5b1eeb1121bf42">n_primitive_variables</a>);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>      interpretations.insert(interpretations.end(),</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                             dim,</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                             dealii::DataComponentInterpretation::component_is_part_of_vector);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      interpretations.push_back(dealii::DataComponentInterpretation::component_is_scalar);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      interpretations.push_back(dealii::DataComponentInterpretation::component_is_scalar);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      <span class="keywordflow">return</span> interpretations;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    }</div>
+</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    dealii::UpdateFlags</div>
+<div class="foldopen" id="foldopen00166" data-start="{" data-end="}">
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a763e0271e219ec360a81f3250f60fc9d">  166</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a763e0271e219ec360a81f3250f60fc9d">get_needed_update_flags</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      <span class="keywordflow">return</span> dealii::update_values;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
+</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00182" data-start="{" data-end="}">
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aff7134259f5feb0fe0bf7eddc3c53997">  182</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aff7134259f5feb0fe0bf7eddc3c53997">evaluate_vector_field</a>(<span class="keyword">const</span> dealii::DataPostprocessorInputs::Vector&lt;dim&gt; &amp;inputs,</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>                          std::vector&lt;dealii::Vector&lt;number&gt;&gt; &amp;computed_quantities)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_evaluation_points = inputs.solution_values.size();</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> p = 0; p &lt; n_evaluation_points; ++p)</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>          <span class="keyword">typename</span> View::state_type w(dealii::make_array_view(inputs.solution_values[p]));</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>          <span class="keyword">const</span> View                accessor = <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a376d5c90b792c668c40129b19f930bc1">view_creator</a>(w);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>          computed_quantities[p](<span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aa9f3e96b5edc0cb1935f0dbd93f4ce62ad99fad96a5d0a7cb2eb41341ea556093">PrimitiveVariablesIndex::pressure</a>)) =</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>            accessor.pressure();</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>          <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; dim; ++d)</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>            computed_quantities[p](<span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aa9f3e96b5edc0cb1935f0dbd93f4ce62aac1a453d0cdc1f19d9479ccfaa8b082c">PrimitiveVariablesIndex::velocity</a>) +</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                                   d) = accessor.velocity(d);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>          computed_quantities[p](<span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aa9f3e96b5edc0cb1935f0dbd93f4ce62aeef438f7e448aa48c1f8db568d27b591">PrimitiveVariablesIndex::temperature</a>)) =</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            accessor.temperature();</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        }</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    }</div>
+</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a376d5c90b792c668c40129b19f930bc1">  204</a></span>    <span class="keyword">const</span> std::function&lt;View(<span class="keyword">typename</span> View::state_type &amp;)&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a376d5c90b792c668c40129b19f930bc1">view_creator</a>;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>  };</div>
+</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number, IsMaterialView View&gt;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keyword">requires</span> <span class="keyword">requires</span> { <span class="keyword">typename</span> View::state_type; }</div>
+<div class="foldopen" id="foldopen00217" data-start="{" data-end="};">
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html">  217</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html">MaterialVariablesPostProcessor</a> : <span class="keyword">public</span> dealii::DataPostprocessor&lt;dim&gt;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  {</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a6fea8511da0034e26d88927803a8ea2e">  219</a></span>    <span class="keyword">constexpr</span> <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a6fea8511da0034e26d88927803a8ea2e">n_material_variables</a> = 5;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="foldopen" id="foldopen00221" data-start="{" data-end="};">
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5a">  221</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5a">MaterialVariablesIndex</a> : <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    {</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>      <a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa63f6f235648b617683ac604f8323be0d">dynamic_viscosity</a> = 0,</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>      <a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa041b13b54deeb559bb42fd124d969568">specific_gas_constant</a>,</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      <a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa0b0d04eb76a0ee42703977672b2638b7">heat_capacity_ratio</a>,</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>      <a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa819eaabeeb2e0d47339176fe677c3b89">heat_capacity_at_constant_pressure</a>,</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>      <a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa41615c4baa7555513c57fc53f9cf812a">thermal_conductivity</a></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    };</div>
+</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>  <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00238" data-start="{" data-end="}">
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a9e67fafc467a48c171536b7e903334fa">  238</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a9e67fafc467a48c171536b7e903334fa">MaterialVariablesPostProcessor</a>(</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>      <span class="keyword">const</span> std::function&lt;View(<span class="keyword">typename</span> View::state_type &amp;)&gt; &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a9bca014bef80f349a05312769030bb5f">view_creator</a>)</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>      : <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a9bca014bef80f349a05312769030bb5f">view_creator</a>(<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a9bca014bef80f349a05312769030bb5f">view_creator</a>)</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    {}</div>
+</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    std::vector&lt;std::string&gt;</div>
+<div class="foldopen" id="foldopen00244" data-start="{" data-end="}">
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#ac26812c51b1102951ec000e02fac97aa">  244</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#ac26812c51b1102951ec000e02fac97aa">get_names</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>      std::vector&lt;std::string&gt; names;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>      names.reserve(<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a6fea8511da0034e26d88927803a8ea2e">n_material_variables</a>);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>      names.emplace_back(<span class="stringliteral">&quot;dynamic_viscosity&quot;</span>);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>      names.emplace_back(<span class="stringliteral">&quot;specific_gas_constant&quot;</span>);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>      names.emplace_back(<span class="stringliteral">&quot;heat_capacity_ratio&quot;</span>);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>      names.emplace_back(<span class="stringliteral">&quot;specific_isobaric_heat&quot;</span>);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>      names.emplace_back(<span class="stringliteral">&quot;thermal_conductivity&quot;</span>);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>      <span class="keywordflow">return</span> names;</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    }</div>
+</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    std::vector&lt;dealii::DataComponentInterpretation::DataComponentInterpretation&gt;</div>
+<div class="foldopen" id="foldopen00257" data-start="{" data-end="}">
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#ac4f5c0ee22da4adcb0283670257615a1">  257</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#ac4f5c0ee22da4adcb0283670257615a1">get_data_component_interpretation</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>      std::vector&lt;dealii::DataComponentInterpretation::DataComponentInterpretation&gt; interpretations(</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a6fea8511da0034e26d88927803a8ea2e">n_material_variables</a>, dealii::DataComponentInterpretation::component_is_scalar);</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>      <span class="keywordflow">return</span> interpretations;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    }</div>
+</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    dealii::UpdateFlags</div>
+<div class="foldopen" id="foldopen00265" data-start="{" data-end="}">
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#aa5bb5cfba86e31371b03c7a416335918">  265</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#aa5bb5cfba86e31371b03c7a416335918">get_needed_update_flags</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>      <span class="keywordflow">return</span> dealii::update_values;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    }</div>
+</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00281" data-start="{" data-end="}">
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#ac45486b04384aff85f1563a748b064a1">  281</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#ac45486b04384aff85f1563a748b064a1">evaluate_vector_field</a>(<span class="keyword">const</span> dealii::DataPostprocessorInputs::Vector&lt;dim&gt; &amp;inputs,</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>                          std::vector&lt;dealii::Vector&lt;number&gt;&gt; &amp;computed_quantities)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_evaluation_points = inputs.solution_values.size();</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> p = 0; p &lt; n_evaluation_points; ++p)</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>        {</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>          <span class="keyword">typename</span> View::state_type w(dealii::make_array_view(inputs.solution_values[p]));</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>          <span class="keyword">const</span> View                accessor = <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a9bca014bef80f349a05312769030bb5f">view_creator</a>(w);</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>          computed_quantities[p](<span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>            <a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa63f6f235648b617683ac604f8323be0d">MaterialVariablesIndex::dynamic_viscosity</a>))     = accessor.dynamic_viscosity();</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>          computed_quantities[p](<span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>            <a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa041b13b54deeb559bb42fd124d969568">MaterialVariablesIndex::specific_gas_constant</a>)) = accessor.specific_gas_constant();</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>          computed_quantities[p](<span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>            <a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa0b0d04eb76a0ee42703977672b2638b7">MaterialVariablesIndex::heat_capacity_ratio</a>))   = accessor.heat_capacity_ratio();</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>          computed_quantities[p](</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>            <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa819eaabeeb2e0d47339176fe677c3b89">MaterialVariablesIndex::heat_capacity_at_constant_pressure</a>)) =</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>            accessor.specific_isobaric_heat();</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>          computed_quantities[p](<span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>            <a class="code hl_enumvalue" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa41615c4baa7555513c57fc53f9cf812a">MaterialVariablesIndex::thermal_conductivity</a>)) = accessor.thermal_conductivity();</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        }</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    }</div>
+</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a9bca014bef80f349a05312769030bb5f">  307</a></span>    <span class="keyword">const</span> std::function&lt;View(<span class="keyword">typename</span> View::state_type &amp;)&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a9bca014bef80f349a05312769030bb5f">view_creator</a>;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>  };</div>
+</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim,</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>            <span class="keyword">typename</span> number,</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>            <a class="code hl_concept" href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsConservedView.html">IsConservedView</a> ConservedView,</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>            <a class="code hl_concept" href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsPrimitiveView.html">IsPrimitiveView</a> PrimitiveView,</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>            <a class="code hl_concept" href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsMaterialView.html">IsMaterialView</a>  <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialView.html">MaterialView</a>&gt;</div>
+<div class="foldopen" id="foldopen00325" data-start="{" data-end="};">
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html">  325</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html">OutputManager</a></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>  {</div>
+<div class="foldopen" id="foldopen00340" data-start="{" data-end="}">
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a12cd153ce1a9695dab00c8edf15b38b3">  340</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a12cd153ce1a9695dab00c8edf15b38b3">OutputManager</a>(</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>      std::function&lt;ConservedView(<span class="keyword">typename</span> ConservedView::state_type &amp;)&gt; conserved_view_creator,</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>      std::function&lt;PrimitiveView(<span class="keyword">typename</span> PrimitiveView::state_type &amp;)&gt; primitive_view_creator,</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>      std::function&lt;<a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialView.html">MaterialView</a>(<span class="keyword">typename</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialView.html#a889b64b09ec7813d618b33212bdc1d58">MaterialView::state_type</a> &amp;)&gt;   material_view_creator)</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>      : <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a6641ef5ea78fb912e2900136ce9dd580">conserved_variables_post_processor</a>(conserved_view_creator)</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a4991240c8e11e5ceb0984a5576395a68">primitive_variables_post_processor</a>(primitive_view_creator)</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#afa0708da26baba3603baf42d0d943a41">material_quantities_post_processor</a>(material_view_creator)</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    {}</div>
+</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00360" data-start="{" data-end="}">
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a9bf92f69be453f8396aa0634edaecca3">  360</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a9bf92f69be453f8396aa0634edaecca3">attach_to_data_out</a>(<a class="code hl_class" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut&lt;dim, number&gt;</a>                              &amp;data_out,</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>                       <span class="keyword">const</span> dealii::DoFHandler&lt;dim&gt;                            &amp;dof_handler,</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>                       <span class="keyword">const</span> dealii::LinearAlgebra::distributed::Vector&lt;number&gt; &amp;solution,</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>                       <span class="keyword">const</span> std::vector&lt;Flow::CompressibleFlowOutputType&gt;      &amp;output_types)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>      <span class="keywordflow">if</span> (<a class="code hl_function" href="namespaceMeltPoolDG_1_1Utils.html#a0df095ceeb5ccde83d10d155500a8d77">Utils::contains</a>(output_types, Flow::CompressibleFlowOutputType::conserved_variables))</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>        {</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>          data_out.<a class="code hl_function" href="classMeltPoolDG_1_1GenericDataOut.html#a5e45c6f8525cc11ca255e3205cee5972">add_data_vector</a>(&amp;dof_handler, &amp;solution, &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a6641ef5ea78fb912e2900136ce9dd580">conserved_variables_post_processor</a>);</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>        }</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>      <span class="keywordflow">if</span> (<a class="code hl_function" href="namespaceMeltPoolDG_1_1Utils.html#a0df095ceeb5ccde83d10d155500a8d77">Utils::contains</a>(output_types, Flow::CompressibleFlowOutputType::primitive_variables))</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        {</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>          data_out.<a class="code hl_function" href="classMeltPoolDG_1_1GenericDataOut.html#a5e45c6f8525cc11ca255e3205cee5972">add_data_vector</a>(&amp;dof_handler, &amp;solution, &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a4991240c8e11e5ceb0984a5576395a68">primitive_variables_post_processor</a>);</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>        }</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>      <span class="keywordflow">if</span> (<a class="code hl_function" href="namespaceMeltPoolDG_1_1Utils.html#a0df095ceeb5ccde83d10d155500a8d77">Utils::contains</a>(output_types, Flow::CompressibleFlowOutputType::material_quantities))</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>        {</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>          data_out.<a class="code hl_function" href="classMeltPoolDG_1_1GenericDataOut.html#a5e45c6f8525cc11ca255e3205cee5972">add_data_vector</a>(&amp;dof_handler, &amp;solution, &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#afa0708da26baba3603baf42d0d943a41">material_quantities_post_processor</a>);</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>        }</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    }</div>
+</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a6641ef5ea78fb912e2900136ce9dd580">  379</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html">ConservedVariablesPostProcessor&lt;dim, number, ConservedView&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a6641ef5ea78fb912e2900136ce9dd580">conserved_variables_post_processor</a>;</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span> </div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a4991240c8e11e5ceb0984a5576395a68">  381</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html">PrimitiveVariablesPostProcessor&lt;dim, number, PrimitiveView&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a4991240c8e11e5ceb0984a5576395a68">primitive_variables_post_processor</a>;</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#afa0708da26baba3603baf42d0d943a41">  383</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html">MaterialVariablesPostProcessor&lt;dim, number, MaterialView&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#afa0708da26baba3603baf42d0d943a41">material_quantities_post_processor</a>;</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>  };</div>
+</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>} <span class="comment">// namespace MeltPoolDG::CompressibleFlow</span></div>
+</div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor_html"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html">MeltPoolDG::CompressibleFlow::ConservedVariablesPostProcessor</a></div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:31</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor_html_a0e29454d730e40f6485a1882d6ed9409"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a0e29454d730e40f6485a1882d6ed9409">MeltPoolDG::CompressibleFlow::ConservedVariablesPostProcessor::view_creator</a></div><div class="ttdeci">const std::function&lt; View(typename View::state_type &amp;)&gt; view_creator</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:106</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor_html_a259c1a03731511fd7b067211622dff52"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a259c1a03731511fd7b067211622dff52">MeltPoolDG::CompressibleFlow::ConservedVariablesPostProcessor::get_data_component_interpretation</a></div><div class="ttdeci">std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt; get_data_component_interpretation() const override</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:57</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor_html_a34bae5dc7a7af46dd6a4d57c2263fd09"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a34bae5dc7a7af46dd6a4d57c2263fd09">MeltPoolDG::CompressibleFlow::ConservedVariablesPostProcessor::evaluate_vector_field</a></div><div class="ttdeci">void evaluate_vector_field(const dealii::DataPostprocessorInputs::Vector&lt; dim &gt; &amp;inputs, std::vector&lt; dealii::Vector&lt; number &gt; &gt; &amp;computed_quantities) const override</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:86</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor_html_a526d12f2f8d17e1156afa4547890d1ae"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a526d12f2f8d17e1156afa4547890d1ae">MeltPoolDG::CompressibleFlow::ConservedVariablesPostProcessor::get_needed_update_flags</a></div><div class="ttdeci">dealii::UpdateFlags get_needed_update_flags() const override</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:70</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor_html_a66baea08ae50ec1301ab9f6c98483132"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#a66baea08ae50ec1301ab9f6c98483132">MeltPoolDG::CompressibleFlow::ConservedVariablesPostProcessor::ConservedVariablesPostProcessor</a></div><div class="ttdeci">ConservedVariablesPostProcessor(const std::function&lt; View(typename View::state_type &amp;)&gt; &amp;view_creator)</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:40</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor_html_abff2f45aa9c13ff62984660d5e25f0e4"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariablesPostProcessor.html#abff2f45aa9c13ff62984660d5e25f0e4">MeltPoolDG::CompressibleFlow::ConservedVariablesPostProcessor::get_names</a></div><div class="ttdeci">std::vector&lt; std::string &gt; get_names() const override</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:46</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor</a></div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:218</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_a2ab44b2faf6c16f388de335555c30e5a"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5a">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::MaterialVariablesIndex</a></div><div class="ttdeci">MaterialVariablesIndex</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:222</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_a2ab44b2faf6c16f388de335555c30e5aa041b13b54deeb559bb42fd124d969568"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa041b13b54deeb559bb42fd124d969568">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::MaterialVariablesIndex::specific_gas_constant</a></div><div class="ttdeci">@ specific_gas_constant</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_a2ab44b2faf6c16f388de335555c30e5aa0b0d04eb76a0ee42703977672b2638b7"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa0b0d04eb76a0ee42703977672b2638b7">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::MaterialVariablesIndex::heat_capacity_ratio</a></div><div class="ttdeci">@ heat_capacity_ratio</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_a2ab44b2faf6c16f388de335555c30e5aa41615c4baa7555513c57fc53f9cf812a"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa41615c4baa7555513c57fc53f9cf812a">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::MaterialVariablesIndex::thermal_conductivity</a></div><div class="ttdeci">@ thermal_conductivity</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_a2ab44b2faf6c16f388de335555c30e5aa63f6f235648b617683ac604f8323be0d"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa63f6f235648b617683ac604f8323be0d">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::MaterialVariablesIndex::dynamic_viscosity</a></div><div class="ttdeci">@ dynamic_viscosity</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_a2ab44b2faf6c16f388de335555c30e5aa819eaabeeb2e0d47339176fe677c3b89"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a2ab44b2faf6c16f388de335555c30e5aa819eaabeeb2e0d47339176fe677c3b89">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::MaterialVariablesIndex::heat_capacity_at_constant_pressure</a></div><div class="ttdeci">@ heat_capacity_at_constant_pressure</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_a6fea8511da0034e26d88927803a8ea2e"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a6fea8511da0034e26d88927803a8ea2e">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::n_material_variables</a></div><div class="ttdeci">static constexpr unsigned int n_material_variables</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:219</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_a9bca014bef80f349a05312769030bb5f"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a9bca014bef80f349a05312769030bb5f">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::view_creator</a></div><div class="ttdeci">const std::function&lt; View(typename View::state_type &amp;)&gt; view_creator</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:307</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_a9e67fafc467a48c171536b7e903334fa"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#a9e67fafc467a48c171536b7e903334fa">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::MaterialVariablesPostProcessor</a></div><div class="ttdeci">MaterialVariablesPostProcessor(const std::function&lt; View(typename View::state_type &amp;)&gt; &amp;view_creator)</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:238</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_aa5bb5cfba86e31371b03c7a416335918"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#aa5bb5cfba86e31371b03c7a416335918">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::get_needed_update_flags</a></div><div class="ttdeci">dealii::UpdateFlags get_needed_update_flags() const override</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:265</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_ac26812c51b1102951ec000e02fac97aa"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#ac26812c51b1102951ec000e02fac97aa">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::get_names</a></div><div class="ttdeci">std::vector&lt; std::string &gt; get_names() const override</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:244</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_ac45486b04384aff85f1563a748b064a1"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#ac45486b04384aff85f1563a748b064a1">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::evaluate_vector_field</a></div><div class="ttdeci">void evaluate_vector_field(const dealii::DataPostprocessorInputs::Vector&lt; dim &gt; &amp;inputs, std::vector&lt; dealii::Vector&lt; number &gt; &gt; &amp;computed_quantities) const override</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:281</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor_html_ac4f5c0ee22da4adcb0283670257615a1"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1MaterialVariablesPostProcessor.html#ac4f5c0ee22da4adcb0283670257615a1">MeltPoolDG::CompressibleFlow::MaterialVariablesPostProcessor::get_data_component_interpretation</a></div><div class="ttdeci">std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt; get_data_component_interpretation() const override</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:257</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor_html"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html">MeltPoolDG::CompressibleFlow::PrimitiveVariablesPostProcessor</a></div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:118</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor_html_a0431c20ca326a682ec5b1eeb1121bf42"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a0431c20ca326a682ec5b1eeb1121bf42">MeltPoolDG::CompressibleFlow::PrimitiveVariablesPostProcessor::n_primitive_variables</a></div><div class="ttdeci">static constexpr unsigned int n_primitive_variables</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:119</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor_html_a376d5c90b792c668c40129b19f930bc1"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a376d5c90b792c668c40129b19f930bc1">MeltPoolDG::CompressibleFlow::PrimitiveVariablesPostProcessor::view_creator</a></div><div class="ttdeci">const std::function&lt; View(typename View::state_type &amp;)&gt; view_creator</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:204</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor_html_a5a6b7b1dac8deded2d22fd04e08dfae9"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a5a6b7b1dac8deded2d22fd04e08dfae9">MeltPoolDG::CompressibleFlow::PrimitiveVariablesPostProcessor::get_names</a></div><div class="ttdeci">std::vector&lt; std::string &gt; get_names() const override</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:142</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor_html_a763e0271e219ec360a81f3250f60fc9d"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#a763e0271e219ec360a81f3250f60fc9d">MeltPoolDG::CompressibleFlow::PrimitiveVariablesPostProcessor::get_needed_update_flags</a></div><div class="ttdeci">dealii::UpdateFlags get_needed_update_flags() const override</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:166</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor_html_aa9f3e96b5edc0cb1935f0dbd93f4ce62"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aa9f3e96b5edc0cb1935f0dbd93f4ce62">MeltPoolDG::CompressibleFlow::PrimitiveVariablesPostProcessor::PrimitiveVariablesIndex</a></div><div class="ttdeci">PrimitiveVariablesIndex</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:122</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor_html_aa9f3e96b5edc0cb1935f0dbd93f4ce62aac1a453d0cdc1f19d9479ccfaa8b082c"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aa9f3e96b5edc0cb1935f0dbd93f4ce62aac1a453d0cdc1f19d9479ccfaa8b082c">MeltPoolDG::CompressibleFlow::PrimitiveVariablesPostProcessor::PrimitiveVariablesIndex::velocity</a></div><div class="ttdeci">@ velocity</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor_html_aa9f3e96b5edc0cb1935f0dbd93f4ce62ad99fad96a5d0a7cb2eb41341ea556093"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aa9f3e96b5edc0cb1935f0dbd93f4ce62ad99fad96a5d0a7cb2eb41341ea556093">MeltPoolDG::CompressibleFlow::PrimitiveVariablesPostProcessor::PrimitiveVariablesIndex::pressure</a></div><div class="ttdeci">@ pressure</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor_html_aa9f3e96b5edc0cb1935f0dbd93f4ce62aeef438f7e448aa48c1f8db568d27b591"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aa9f3e96b5edc0cb1935f0dbd93f4ce62aeef438f7e448aa48c1f8db568d27b591">MeltPoolDG::CompressibleFlow::PrimitiveVariablesPostProcessor::PrimitiveVariablesIndex::temperature</a></div><div class="ttdeci">@ temperature</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor_html_ac5ac55bb53ff31c6d2d340f207bde1ea"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#ac5ac55bb53ff31c6d2d340f207bde1ea">MeltPoolDG::CompressibleFlow::PrimitiveVariablesPostProcessor::PrimitiveVariablesPostProcessor</a></div><div class="ttdeci">PrimitiveVariablesPostProcessor(const std::function&lt; View(typename View::state_type &amp;)&gt; &amp;view_creator)</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:136</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor_html_aeea68cd7611ed470ff77fb18cdfa51e4"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aeea68cd7611ed470ff77fb18cdfa51e4">MeltPoolDG::CompressibleFlow::PrimitiveVariablesPostProcessor::get_data_component_interpretation</a></div><div class="ttdeci">std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt; get_data_component_interpretation() const override</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:153</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor_html_aff7134259f5feb0fe0bf7eddc3c53997"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1PrimitiveVariablesPostProcessor.html#aff7134259f5feb0fe0bf7eddc3c53997">MeltPoolDG::CompressibleFlow::PrimitiveVariablesPostProcessor::evaluate_vector_field</a></div><div class="ttdeci">void evaluate_vector_field(const dealii::DataPostprocessorInputs::Vector&lt; dim &gt; &amp;inputs, std::vector&lt; dealii::Vector&lt; number &gt; &gt; &amp;computed_quantities) const override</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:182</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1GenericDataOut_html"><div class="ttname"><a href="classMeltPoolDG_1_1GenericDataOut.html">MeltPoolDG::GenericDataOut</a></div><div class="ttdoc">A generic utility for managing simulation output data in the MeltPoolDG context.</div><div class="ttdef"><b>Definition</b> generic_data_out.hpp:32</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1GenericDataOut_html_a5e45c6f8525cc11ca255e3205cee5972"><div class="ttname"><a href="classMeltPoolDG_1_1GenericDataOut.html#a5e45c6f8525cc11ca255e3205cee5972">MeltPoolDG::GenericDataOut::add_data_vector</a></div><div class="ttdeci">void add_data_vector(const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const VectorType &amp;data, const std::vector&lt; std::string &gt; &amp;names, const std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt; &amp;data_component_interpretation=std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt;(), const bool force_output=false)</div><div class="ttdoc">Add a distributed vector with multiple components and custom interpretations.</div></div>
+<div class="ttc" id="acompressible__flow__data_8hpp_html"><div class="ttname"><a href="compressible__flow__data_8hpp.html">compressible_flow_data.hpp</a></div></div>
+<div class="ttc" id="acompressible__flow__types_8hpp_html"><div class="ttname"><a href="compressible__flow__types_8hpp.html">compressible_flow_types.hpp</a></div></div>
+<div class="ttc" id="aconceptMeltPoolDG_1_1CompressibleFlow_1_1IsConservedView_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsConservedView.html">MeltPoolDG::CompressibleFlow::IsConservedView</a></div><div class="ttdef"><b>Definition</b> compressible_flow_types.hpp:84</div></div>
+<div class="ttc" id="aconceptMeltPoolDG_1_1CompressibleFlow_1_1IsMaterialView_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsMaterialView.html">MeltPoolDG::CompressibleFlow::IsMaterialView</a></div><div class="ttdef"><b>Definition</b> compressible_flow_types.hpp:110</div></div>
+<div class="ttc" id="aconceptMeltPoolDG_1_1CompressibleFlow_1_1IsPrimitiveView_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsPrimitiveView.html">MeltPoolDG::CompressibleFlow::IsPrimitiveView</a></div><div class="ttdef"><b>Definition</b> compressible_flow_types.hpp:97</div></div>
+<div class="ttc" id="acpp23__functions_8h_html"><div class="ttname"><a href="cpp23__functions_8h.html">cpp23_functions.h</a></div></div>
+<div class="ttc" id="ageneric__data__out_8hpp_html"><div class="ttname"><a href="generic__data__out_8hpp.html">generic_data_out.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CompressibleFlow_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CompressibleFlow.html">MeltPoolDG::CompressibleFlow</a></div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:21</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Utils_html_a0df095ceeb5ccde83d10d155500a8d77"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Utils.html#a0df095ceeb5ccde83d10d155500a8d77">MeltPoolDG::Utils::contains</a></div><div class="ttdeci">bool contains(const Container &amp;c, typename Container::value_type const value)</div><div class="ttdef"><b>Definition</b> cpp23_functions.h:26</div></div>
+<div class="ttc" id="apostprocessor_8hpp_html"><div class="ttname"><a href="postprocessor_8hpp.html">postprocessor.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariableIndex_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1ConservedVariableIndex.html">MeltPoolDG::CompressibleFlow::ConservedVariableIndex</a></div><div class="ttdef"><b>Definition</b> compressible_flow_types.hpp:22</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MaterialView_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialView.html">MeltPoolDG::CompressibleFlow::MaterialView</a></div><div class="ttdef"><b>Definition</b> compressible_flow_views.hpp:50</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MaterialView_html_a889b64b09ec7813d618b33212bdc1d58"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialView.html#a889b64b09ec7813d618b33212bdc1d58">MeltPoolDG::CompressibleFlow::MaterialView::state_type</a></div><div class="ttdeci">std::any state_type</div><div class="ttdef"><b>Definition</b> compressible_flow_views.hpp:51</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OutputManager_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html">MeltPoolDG::CompressibleFlow::OutputManager</a></div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:326</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OutputManager_html_a12cd153ce1a9695dab00c8edf15b38b3"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a12cd153ce1a9695dab00c8edf15b38b3">MeltPoolDG::CompressibleFlow::OutputManager::OutputManager</a></div><div class="ttdeci">OutputManager(std::function&lt; ConservedView(typename ConservedView::state_type &amp;)&gt; conserved_view_creator, std::function&lt; PrimitiveView(typename PrimitiveView::state_type &amp;)&gt; primitive_view_creator, std::function&lt; MaterialView(typename MaterialView::state_type &amp;)&gt; material_view_creator)</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:340</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OutputManager_html_a4991240c8e11e5ceb0984a5576395a68"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a4991240c8e11e5ceb0984a5576395a68">MeltPoolDG::CompressibleFlow::OutputManager::primitive_variables_post_processor</a></div><div class="ttdeci">PrimitiveVariablesPostProcessor&lt; dim, number, PrimitiveView &gt; primitive_variables_post_processor</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:381</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OutputManager_html_a6641ef5ea78fb912e2900136ce9dd580"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a6641ef5ea78fb912e2900136ce9dd580">MeltPoolDG::CompressibleFlow::OutputManager::conserved_variables_post_processor</a></div><div class="ttdeci">ConservedVariablesPostProcessor&lt; dim, number, ConservedView &gt; conserved_variables_post_processor</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:379</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OutputManager_html_a9bf92f69be453f8396aa0634edaecca3"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#a9bf92f69be453f8396aa0634edaecca3">MeltPoolDG::CompressibleFlow::OutputManager::attach_to_data_out</a></div><div class="ttdeci">void attach_to_data_out(GenericDataOut&lt; dim, number &gt; &amp;data_out, const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;solution, const std::vector&lt; Flow::CompressibleFlowOutputType &gt; &amp;output_types) const</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:360</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OutputManager_html_afa0708da26baba3603baf42d0d943a41"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html#afa0708da26baba3603baf42d0d943a41">MeltPoolDG::CompressibleFlow::OutputManager::material_quantities_post_processor</a></div><div class="ttdeci">MaterialVariablesPostProcessor&lt; dim, number, MaterialView &gt; material_quantities_post_processor</div><div class="ttdef"><b>Definition</b> compressible_flow_output.hpp:383</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

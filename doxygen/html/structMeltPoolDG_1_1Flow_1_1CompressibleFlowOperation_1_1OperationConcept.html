@@ -154,6 +154,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a13939c5b0ca92ea0d5cd9051a5cf68c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5e5bc344bb5edd6f29653e7e400fd2c" id="r_aa5e5bc344bb5edd6f29653e7e400fd2c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept.html#aa5e5bc344bb5edd6f29653e7e400fd2c">distribute_dofs</a> (dealii::DoFHandler&lt; dim &gt; &amp;dof_handler) const =0</td></tr>
 <tr class="separator:aa5e5bc344bb5edd6f29653e7e400fd2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c83820df898b0b875261ecb5ed46c71" id="r_a3c83820df898b0b875261ecb5ed46c71"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept.html#a3c83820df898b0b875261ecb5ed46c71">attach_output_vectors</a> (<a class="el" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut</a>&lt; dim, number &gt; &amp;data_out) const =0</td></tr>
+<tr class="separator:a3c83820df898b0b875261ecb5ed46c71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf3ce465575cdb65387240b8fa539cb0" id="r_abf3ce465575cdb65387240b8fa539cb0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept.html#abf3ce465575cdb65387240b8fa539cb0">reinit</a> ()=0</td></tr>
 <tr class="separator:abf3ce465575cdb65387240b8fa539cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bda4d407ada9b3637afac210c41c6f6" id="r_a0bda4d407ada9b3637afac210c41c6f6"><td class="memItemLeft" align="right" valign="top">virtual number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept.html#a0bda4d407ada9b3637afac210c41c6f6">compute_time_step_size</a> (bool do_print=false) const =0</td></tr>
@@ -168,8 +170,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a621aa0db7f4c6d4963e59fa3df01d562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44315e0eecb01c0d3d0d1efdb3a71e82" id="r_a44315e0eecb01c0d3d0d1efdb3a71e82"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#afefe6ce05a822d1595d9fa15da3e17f0">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept.html#a44315e0eecb01c0d3d0d1efdb3a71e82">get_solution</a> ()=0</td></tr>
 <tr class="separator:a44315e0eecb01c0d3d0d1efdb3a71e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a120665f37988f851cdc53d388685decc" id="r_a120665f37988f851cdc53d388685decc"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#afefe6ce05a822d1595d9fa15da3e17f0">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept.html#a120665f37988f851cdc53d388685decc">get_solution_in_primitive_variables</a> ()=0</td></tr>
-<tr class="separator:a120665f37988f851cdc53d388685decc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3efc65593237d4e07dc12ecb7e9b64bb" id="r_a3efc65593237d4e07dc12ecb7e9b64bb"><td class="memItemLeft" align="right" valign="top">virtual const dealii::DoFHandler&lt; dim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept.html#a3efc65593237d4e07dc12ecb7e9b64bb">get_dof_handler</a> () const =0</td></tr>
 <tr class="separator:a3efc65593237d4e07dc12ecb7e9b64bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -206,6 +206,36 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3c83820df898b0b875261ecb5ed46c71" name="a3c83820df898b0b875261ecb5ed46c71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c83820df898b0b875261ecb5ed46c71">&#9670;&#160;</a></span>attach_output_vectors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html">MeltPoolDG::Flow::CompressibleFlowOperation</a>&lt; dim, number &gt;::OperationConcept::attach_output_vectors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data_out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationModel.html#a877cb481c342a5bb16d3b92a1b00aceb">MeltPoolDG::Flow::CompressibleFlowOperation&lt; dim, number &gt;::OperationModel&lt; OperationType &gt;</a>.</p>
+
+</div>
+</div>
 <a id="a0bda4d407ada9b3637afac210c41c6f6" name="a0bda4d407ada9b3637afac210c41c6f6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0bda4d407ada9b3637afac210c41c6f6">&#9670;&#160;</a></span>compute_time_step_size()</h2>
 
@@ -350,35 +380,6 @@ template&lt;int dim, typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationModel.html#a6f0d2e58caca960931475a99353fd8e4">MeltPoolDG::Flow::CompressibleFlowOperation&lt; dim, number &gt;::OperationModel&lt; OperationType &gt;</a>.</p>
-
-</div>
-</div>
-<a id="a120665f37988f851cdc53d388685decc" name="a120665f37988f851cdc53d388685decc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a120665f37988f851cdc53d388685decc">&#9670;&#160;</a></span>get_solution_in_primitive_variables()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#afefe6ce05a822d1595d9fa15da3e17f0">VectorType</a> &amp; <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html">MeltPoolDG::Flow::CompressibleFlowOperation</a>&lt; dim, number &gt;::OperationConcept::get_solution_in_primitive_variables </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationModel.html#af588c38f71cfa28be7a0c284044df517">MeltPoolDG::Flow::CompressibleFlowOperation&lt; dim, number &gt;::OperationModel&lt; OperationType &gt;</a>.</p>
 
 </div>
 </div>

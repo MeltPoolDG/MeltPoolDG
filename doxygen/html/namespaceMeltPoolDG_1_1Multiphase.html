@@ -167,33 +167,44 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1LevelSetOscillatingWaterColumn.html">LevelSetOscillatingWaterColumn</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for the analytical advection of a 1D test case with two phase interfaces.  <a href="classMeltPoolDG_1_1Multiphase_1_1LevelSetOscillatingWaterColumn.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Multiphase_1_1PhaseChangeData.html">PhaseChangeData</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of parameters related to liquid-gas and solid-liquid phase transitions.  <a href="structMeltPoolDG_1_1Multiphase_1_1PhaseChangeData.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a266039a43a32393aeabd8632542351ad" id="r_a266039a43a32393aeabd8632542351ad"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType , typename ConservedVariablesGradType &gt; </td></tr>
-<tr class="memitem:a266039a43a32393aeabd8632542351ad"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::pair&lt; ConservedVariablesType, ConservedVariablesType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a266039a43a32393aeabd8632542351ad">calculate_convective_and_viscous_interface_flux_penalty</a> (const ConservedVariablesType &amp;u_liquid, const ConservedVariablesType &amp;u_gas, const ConservedVariablesGradType &amp;grad_u_liquid, const ConservedVariablesGradType &amp;grad_u_gas, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data, const auto &amp;viscous_terms_liquid, const auto &amp;viscous_terms_gas)</td></tr>
-<tr class="memdesc:a266039a43a32393aeabd8632542351ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">"penalty" method ///  <br /></td></tr>
-<tr class="separator:a266039a43a32393aeabd8632542351ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fffa790561e8b4313efd329b51f8b2e" id="r_a2fffa790561e8b4313efd329b51f8b2e"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType , typename ConservedVariablesGradType &gt; </td></tr>
-<tr class="memitem:a2fffa790561e8b4313efd329b51f8b2e"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::tuple&lt; ConservedVariablesGradType, ConservedVariablesGradType, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a2fffa790561e8b4313efd329b51f8b2e">calculate_convective_interface_flux_HLLP0</a> (const ConservedVariablesType &amp;u_liquid, const ConservedVariablesType &amp;u_gas, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, const auto &amp;convective_terms_liquid, const auto &amp;convective_terms_gas, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data)</td></tr>
-<tr class="memdesc:a2fffa790561e8b4313efd329b51f8b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">HLLP0 Riemann solver ///.  <br /></td></tr>
-<tr class="separator:a2fffa790561e8b4313efd329b51f8b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f06a923430902db934413f2728c2144" id="r_a5f06a923430902db934413f2728c2144"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType &gt; </td></tr>
-<tr class="memitem:a5f06a923430902db934413f2728c2144"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE ConservedVariablesType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a5f06a923430902db934413f2728c2144">calculate_Dirichlet_jump_in_conservative_variables</a> (const ConservedVariablesType &amp;u_liquid_cons, const ConservedVariablesType &amp;u_gas_cons, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data)</td></tr>
-<tr class="memdesc:a5f06a923430902db934413f2728c2144"><td class="mdescLeft">&#160;</td><td class="mdescRight">SIPG functions for method "HLLP and SIPG" ///.  <br /></td></tr>
-<tr class="separator:a5f06a923430902db934413f2728c2144"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8ae6381a35bd79c83720a24d2244b72" id="r_ad8ae6381a35bd79c83720a24d2244b72"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType , typename ConservedVariablesGradType &gt; </td></tr>
-<tr class="memitem:ad8ae6381a35bd79c83720a24d2244b72"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::pair&lt; ConservedVariablesType, ConservedVariablesType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#ad8ae6381a35bd79c83720a24d2244b72">calculate_viscous_interface_flux</a> (const ConservedVariablesType &amp;u_liquid, const ConservedVariablesType &amp;u_gas, const ConservedVariablesGradType &amp;grad_u_liquid, const ConservedVariablesGradType &amp;grad_u_gas, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, const number &amp;visc_ave_weight_phase_liquid, const number &amp;visc_ave_weight_phase_gas, const number &amp;tau, const auto &amp;viscous_terms_liquid, const auto &amp;viscous_terms_gas, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data, const number &amp;cell_size)</td></tr>
-<tr class="memdesc:ad8ae6381a35bd79c83720a24d2244b72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the viscous interface flux for viscous phase coupling with the SIPG method.  <br /></td></tr>
-<tr class="separator:ad8ae6381a35bd79c83720a24d2244b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff6d8ef8eb3a6d1fd9132027b8e77c55" id="r_aff6d8ef8eb3a6d1fd9132027b8e77c55"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType , typename ConservedVariablesGradType &gt; </td></tr>
-<tr class="memitem:aff6d8ef8eb3a6d1fd9132027b8e77c55"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::pair&lt; ConservedVariablesGradType, ConservedVariablesGradType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#aff6d8ef8eb3a6d1fd9132027b8e77c55">calculate_viscous_interface_flux_gradient</a> (const ConservedVariablesType &amp;u_liquid, const ConservedVariablesType &amp;u_gas, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, const number &amp;visc_ave_weight_phase_liquid, const number &amp;visc_ave_weight_phase_gas, const auto &amp;viscous_terms_liquid, const auto &amp;viscous_terms_gas, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data)</td></tr>
-<tr class="memdesc:aff6d8ef8eb3a6d1fd9132027b8e77c55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate gradient-tested viscous interface flux for viscous phase coupling with the SIPG method.  <br /></td></tr>
-<tr class="separator:aff6d8ef8eb3a6d1fd9132027b8e77c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae91201182b644858d7f866c26f33c8fc" id="r_ae91201182b644858d7f866c26f33c8fc"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType , typename ConservedVariablesGradType &gt; </td></tr>
-<tr class="memitem:ae91201182b644858d7f866c26f33c8fc"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::pair&lt; ConservedVariablesType, ConservedVariablesType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#ae91201182b644858d7f866c26f33c8fc">calculate_viscous_interface_flux_method_3</a> (const ConservedVariablesType &amp;u_liquid, const ConservedVariablesType &amp;u_gas, const ConservedVariablesGradType &amp;grad_u_liquid, const ConservedVariablesGradType &amp;grad_u_gas, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, const number &amp;visc_ave_weight_phase_liquid, const number &amp;visc_ave_weight_phase_gas, const auto &amp;viscous_terms_liquid, const auto &amp;viscous_terms_gas, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data, const number &amp;cell_size)</td></tr>
-<tr class="memdesc:ae91201182b644858d7f866c26f33c8fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">viscous terms for the method "HLLP0 and penalty" ///  <br /></td></tr>
-<tr class="separator:ae91201182b644858d7f866c26f33c8fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee1862c4751184f3e0cc72042a45044" id="r_a7ee1862c4751184f3e0cc72042a45044"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType , typename ConservedVariablesGradType &gt; </td></tr>
+<tr class="memitem:a7ee1862c4751184f3e0cc72042a45044"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::pair&lt; ConservedVariablesType, ConservedVariablesType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a7ee1862c4751184f3e0cc72042a45044">calculate_convective_and_viscous_interface_flux_penalty</a> (const ConservedVariablesType &amp;u_liquid, const ConservedVariablesType &amp;u_gas, const ConservedVariablesGradType &amp;grad_u_liquid, const ConservedVariablesGradType &amp;grad_u_gas, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data, const auto &amp;viscous_terms_liquid, const auto &amp;viscous_terms_gas, const number &amp;m_dot_evap, const number &amp;laser_heat_source)</td></tr>
+<tr class="memdesc:a7ee1862c4751184f3e0cc72042a45044"><td class="mdescLeft">&#160;</td><td class="mdescRight">"penalty" method ///  <br /></td></tr>
+<tr class="separator:a7ee1862c4751184f3e0cc72042a45044"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab521bb83fea8cc44eb82724fe6411b8" id="r_aab521bb83fea8cc44eb82724fe6411b8"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType , typename ConservedVariablesGradType &gt; </td></tr>
+<tr class="memitem:aab521bb83fea8cc44eb82724fe6411b8"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::tuple&lt; ConservedVariablesGradType, ConservedVariablesGradType, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#aab521bb83fea8cc44eb82724fe6411b8">calculate_convective_interface_flux_HLLP0</a> (const ConservedVariablesType &amp;u_liquid, const ConservedVariablesType &amp;u_gas, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, const auto &amp;convective_terms_liquid, const auto &amp;convective_terms_gas, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data, const number &amp;m_dot_evap)</td></tr>
+<tr class="memdesc:aab521bb83fea8cc44eb82724fe6411b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">HLLP0 Riemann solver ///.  <br /></td></tr>
+<tr class="separator:aab521bb83fea8cc44eb82724fe6411b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c818b528b1dfefa5b04ccc0c04c8076" id="r_a2c818b528b1dfefa5b04ccc0c04c8076"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType &gt; </td></tr>
+<tr class="memitem:a2c818b528b1dfefa5b04ccc0c04c8076"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE ConservedVariablesType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a2c818b528b1dfefa5b04ccc0c04c8076">calculate_Dirichlet_jump_in_conservative_variables</a> (const ConservedVariablesType &amp;u_liquid_cons, const ConservedVariablesType &amp;u_gas_cons, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data, const number &amp;m_dot_evap, const number &amp;delta_T)</td></tr>
+<tr class="memdesc:a2c818b528b1dfefa5b04ccc0c04c8076"><td class="mdescLeft">&#160;</td><td class="mdescRight">SIPG functions for method "HLLP and SIPG" ///.  <br /></td></tr>
+<tr class="separator:a2c818b528b1dfefa5b04ccc0c04c8076"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29b4b3c420d193e3563fc88a2e76f408" id="r_a29b4b3c420d193e3563fc88a2e76f408"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType , typename ConservedVariablesGradType &gt; </td></tr>
+<tr class="memitem:a29b4b3c420d193e3563fc88a2e76f408"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::pair&lt; ConservedVariablesType, ConservedVariablesType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a29b4b3c420d193e3563fc88a2e76f408">calculate_viscous_interface_flux</a> (const ConservedVariablesType &amp;u_liquid, const ConservedVariablesType &amp;u_gas, const ConservedVariablesGradType &amp;grad_u_liquid, const ConservedVariablesGradType &amp;grad_u_gas, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, const number &amp;visc_ave_weight_phase_liquid, const number &amp;visc_ave_weight_phase_gas, const number &amp;tau, const auto &amp;viscous_terms_liquid, const auto &amp;viscous_terms_gas, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data, const number &amp;cell_size, const number &amp;m_dot_evap, const number &amp;delta_T, const number &amp;laser_heat_source)</td></tr>
+<tr class="memdesc:a29b4b3c420d193e3563fc88a2e76f408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the viscous interface flux for viscous phase coupling with the SIPG method.  <br /></td></tr>
+<tr class="separator:a29b4b3c420d193e3563fc88a2e76f408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a555ce0e7dccad627a1bc2a8ea16e6369" id="r_a555ce0e7dccad627a1bc2a8ea16e6369"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType , typename ConservedVariablesGradType &gt; </td></tr>
+<tr class="memitem:a555ce0e7dccad627a1bc2a8ea16e6369"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::pair&lt; ConservedVariablesGradType, ConservedVariablesGradType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a555ce0e7dccad627a1bc2a8ea16e6369">calculate_viscous_interface_flux_gradient</a> (const ConservedVariablesType &amp;u_liquid, const ConservedVariablesType &amp;u_gas, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, const number &amp;visc_ave_weight_phase_liquid, const number &amp;visc_ave_weight_phase_gas, const auto &amp;viscous_terms_liquid, const auto &amp;viscous_terms_gas, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data, const number &amp;m_dot_evap, const number &amp;delta_T)</td></tr>
+<tr class="memdesc:a555ce0e7dccad627a1bc2a8ea16e6369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate gradient-tested viscous interface flux for viscous phase coupling with the SIPG method.  <br /></td></tr>
+<tr class="separator:a555ce0e7dccad627a1bc2a8ea16e6369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0934f175021b55c209f5cbf12648352" id="r_af0934f175021b55c209f5cbf12648352"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType , typename ConservedVariablesGradType &gt; </td></tr>
+<tr class="memitem:af0934f175021b55c209f5cbf12648352"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::pair&lt; ConservedVariablesType, ConservedVariablesType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#af0934f175021b55c209f5cbf12648352">calculate_viscous_interface_flux_method_3</a> (const ConservedVariablesType &amp;u_liquid, const ConservedVariablesType &amp;u_gas, const ConservedVariablesGradType &amp;grad_u_liquid, const ConservedVariablesGradType &amp;grad_u_gas, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, const number &amp;visc_ave_weight_phase_liquid, const number &amp;visc_ave_weight_phase_gas, const auto &amp;viscous_terms_liquid, const auto &amp;viscous_terms_gas, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data, const number &amp;cell_size, const number &amp;m_dot_evap, const number &amp;delta_T, const number &amp;laser_heat_source)</td></tr>
+<tr class="memdesc:af0934f175021b55c209f5cbf12648352"><td class="mdescLeft">&#160;</td><td class="mdescRight">viscous terms for the method "HLLP0 and penalty" ///  <br /></td></tr>
+<tr class="separator:af0934f175021b55c209f5cbf12648352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64842e0c7997cf142623719fac0060a2" id="r_a64842e0c7997cf142623719fac0060a2"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
+<tr class="memitem:a64842e0c7997cf142623719fac0060a2"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE number&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a64842e0c7997cf142623719fac0060a2">update_laser_heat_source</a> (const <a class="el" href="structMeltPoolDG_1_1Multiphase_1_1CompressibleFlowPhaseCouplingData.html">CompressibleFlowPhaseCouplingData</a>&lt; number &gt; &amp;phase_coupling_data, const number &amp;time)</td></tr>
+<tr class="memdesc:a64842e0c7997cf142623719fac0060a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the current value of the laser heat source.  <br /></td></tr>
+<tr class="separator:a64842e0c7997cf142623719fac0060a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c43386691a8b860d3776156a0b9e7d4" id="r_a6c43386691a8b860d3776156a0b9e7d4"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType &gt; </td></tr>
+<tr class="memitem:a6c43386691a8b860d3776156a0b9e7d4"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::tuple&lt; number, number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a6c43386691a8b860d3776156a0b9e7d4">update_evaporative_mass_flux_and_temperature_jump</a> (const ConservedVariablesType &amp;u_liquid, const ConservedVariablesType &amp;u_gas, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data, <a class="el" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelKnight.html">Evaporation::EvaporationModelKnight</a>&lt; number &gt; *evaporation_model_knight=nullptr)</td></tr>
+<tr class="memdesc:a6c43386691a8b860d3776156a0b9e7d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the current evaporative mass flux and temperature jump across the interface.  <br /></td></tr>
+<tr class="separator:a6c43386691a8b860d3776156a0b9e7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A collection of functions for the computation of the interface terms for compressible two-phase flows. </p>
@@ -222,8 +233,8 @@ Functions</h2></td></tr>
 <li>"penalty": strong enforcement of both convective and viscous fluxes in the weak form and penalty terms for Dirichlet density and temperature constraints for the gas phase </li>
 </ul>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a266039a43a32393aeabd8632542351ad" name="a266039a43a32393aeabd8632542351ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a266039a43a32393aeabd8632542351ad">&#9670;&#160;</a></span>calculate_convective_and_viscous_interface_flux_penalty()</h2>
+<a id="a7ee1862c4751184f3e0cc72042a45044" name="a7ee1862c4751184f3e0cc72042a45044"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ee1862c4751184f3e0cc72042a45044">&#9670;&#160;</a></span>calculate_convective_and_viscous_interface_flux_penalty()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -273,7 +284,19 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const auto &amp;&#160;</td>
-          <td class="paramname"><em>viscous_terms_gas</em>&#160;</td>
+          <td class="paramname"><em>viscous_terms_gas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>m_dot_evap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>laser_heat_source</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -299,7 +322,9 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
     <tr><td class="paramname">grad_u_gas</td><td>Gradient of conserved variables for gas phase at quadrature point on the (unfitted) interface. </td></tr>
     <tr><td class="paramname">multiphase_scratch_data</td><td>Collection of parameters required by the compressible Navier-Stokes multiphase operator. </td></tr>
     <tr><td class="paramname">viscous_terms_liquid</td><td>Collection of helper functions for viscous term evaluations in the liquid phase. </td></tr>
-    <tr><td class="paramname">viscous_terms_gas</td><td>Collection of helper functions for viscous term evaluations in the gas phase.</td></tr>
+    <tr><td class="paramname">viscous_terms_gas</td><td>Collection of helper functions for viscous term evaluations in the gas phase. </td></tr>
+    <tr><td class="paramname">m_dot_evap</td><td>Current evaporation mass flux (SI: in kg/(m^2 s)). </td></tr>
+    <tr><td class="paramname">laser_heat_source</td><td>Current value of the laser heat source (SI: in W/m^2).</td></tr>
   </table>
   </dd>
 </dl>
@@ -307,8 +332,8 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
 
 </div>
 </div>
-<a id="a2fffa790561e8b4313efd329b51f8b2e" name="a2fffa790561e8b4313efd329b51f8b2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2fffa790561e8b4313efd329b51f8b2e">&#9670;&#160;</a></span>calculate_convective_interface_flux_HLLP0()</h2>
+<a id="aab521bb83fea8cc44eb82724fe6411b8" name="aab521bb83fea8cc44eb82724fe6411b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab521bb83fea8cc44eb82724fe6411b8">&#9670;&#160;</a></span>calculate_convective_interface_flux_HLLP0()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,7 +377,13 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;&#160;</td>
-          <td class="paramname"><em>multiphase_scratch_data</em>&#160;</td>
+          <td class="paramname"><em>multiphase_scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>m_dot_evap</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -377,7 +408,8 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
     <tr><td class="paramname">normal</td><td>Interface normal vector, pointing outside the liquid phase. </td></tr>
     <tr><td class="paramname">convective_terms_liquid</td><td>Collection of convective term computations for the compressible Navier-Stokes equations in the liquid phase. </td></tr>
     <tr><td class="paramname">convective_terms_gas</td><td>Collection of convective term computations for the compressible Navier-Stokes equations in the gas phase. </td></tr>
-    <tr><td class="paramname">multiphase_scratch_data</td><td>Collection of parameters required by the compressible Navier-Stokes multiphase operator.</td></tr>
+    <tr><td class="paramname">multiphase_scratch_data</td><td>Collection of parameters required by the compressible Navier-Stokes multiphase operator. </td></tr>
+    <tr><td class="paramname">m_dot_evap</td><td>Current evaporation mass flux (SI: in kg/(m^2 s)).</td></tr>
   </table>
   </dd>
 </dl>
@@ -386,8 +418,8 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
 
 </div>
 </div>
-<a id="a5f06a923430902db934413f2728c2144" name="a5f06a923430902db934413f2728c2144"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f06a923430902db934413f2728c2144">&#9670;&#160;</a></span>calculate_Dirichlet_jump_in_conservative_variables()</h2>
+<a id="a2c818b528b1dfefa5b04ccc0c04c8076" name="a2c818b528b1dfefa5b04ccc0c04c8076"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c818b528b1dfefa5b04ccc0c04c8076">&#9670;&#160;</a></span>calculate_Dirichlet_jump_in_conservative_variables()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -413,7 +445,19 @@ template&lt;int dim, typename number , typename ConservedVariablesType &gt; </di
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;&#160;</td>
-          <td class="paramname"><em>multiphase_scratch_data</em>&#160;</td>
+          <td class="paramname"><em>multiphase_scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>m_dot_evap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>delta_T</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -435,7 +479,9 @@ template&lt;int dim, typename number , typename ConservedVariablesType &gt; </di
   <table class="params">
     <tr><td class="paramname">u_liquid_cons</td><td>Conserved variables for liquid phase at quadrature point on the (unfitted) interface. </td></tr>
     <tr><td class="paramname">u_gas_cons</td><td>Conserved variables for gas phase at quadrature point on the (unfitted) interface. </td></tr>
-    <tr><td class="paramname">multiphase_scratch_data</td><td>Collection of parameters required by the compressible multiphase Navier-Stokes operator.</td></tr>
+    <tr><td class="paramname">multiphase_scratch_data</td><td>Collection of parameters required by the compressible multiphase Navier-Stokes operator. </td></tr>
+    <tr><td class="paramname">m_dot_evap</td><td>Current evaporation mass flux (SI: in kg/(m^2 s)). </td></tr>
+    <tr><td class="paramname">delta_T</td><td>Current temperature jump at the interface (T^l - T^g) (SI: in K)</td></tr>
   </table>
   </dd>
 </dl>
@@ -443,8 +489,8 @@ template&lt;int dim, typename number , typename ConservedVariablesType &gt; </di
 
 </div>
 </div>
-<a id="ad8ae6381a35bd79c83720a24d2244b72" name="ad8ae6381a35bd79c83720a24d2244b72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8ae6381a35bd79c83720a24d2244b72">&#9670;&#160;</a></span>calculate_viscous_interface_flux()</h2>
+<a id="a29b4b3c420d193e3563fc88a2e76f408" name="a29b4b3c420d193e3563fc88a2e76f408"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29b4b3c420d193e3563fc88a2e76f408">&#9670;&#160;</a></span>calculate_viscous_interface_flux()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -524,7 +570,25 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const number &amp;&#160;</td>
-          <td class="paramname"><em>cell_size</em>&#160;</td>
+          <td class="paramname"><em>cell_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>m_dot_evap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>delta_T</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>laser_heat_source</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -554,7 +618,10 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
     <tr><td class="paramname">viscous_terms_liquid</td><td>Collection of helper functions for viscous term evaluations in the liquid phase. </td></tr>
     <tr><td class="paramname">viscous_terms_gas</td><td>Collection of helper functions for viscous term evaluations in the gas phase. </td></tr>
     <tr><td class="paramname">multiphase_scratch_data</td><td>Collection of parameters required by the compressible multiphase Navier-Stokes operator. </td></tr>
-    <tr><td class="paramname">cell_size</td><td>Cell size.</td></tr>
+    <tr><td class="paramname">cell_size</td><td>Cell size. </td></tr>
+    <tr><td class="paramname">m_dot_evap</td><td>Current evaporation mass flux (SI: in kg/(m^2 s)). </td></tr>
+    <tr><td class="paramname">delta_T</td><td>Current temperature jump at the interface (T^l - T^g) (SI: in K). </td></tr>
+    <tr><td class="paramname">laser_heat_source</td><td>Current value of the laser heat source (SI: in W/m^2).</td></tr>
   </table>
   </dd>
 </dl>
@@ -562,8 +629,8 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
 
 </div>
 </div>
-<a id="aff6d8ef8eb3a6d1fd9132027b8e77c55" name="aff6d8ef8eb3a6d1fd9132027b8e77c55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff6d8ef8eb3a6d1fd9132027b8e77c55">&#9670;&#160;</a></span>calculate_viscous_interface_flux_gradient()</h2>
+<a id="a555ce0e7dccad627a1bc2a8ea16e6369" name="a555ce0e7dccad627a1bc2a8ea16e6369"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a555ce0e7dccad627a1bc2a8ea16e6369">&#9670;&#160;</a></span>calculate_viscous_interface_flux_gradient()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -619,7 +686,19 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;&#160;</td>
-          <td class="paramname"><em>multiphase_scratch_data</em>&#160;</td>
+          <td class="paramname"><em>multiphase_scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>m_dot_evap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>delta_T</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -645,7 +724,9 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
     <tr><td class="paramname">visc_ave_weight_phase_gas</td><td>Weighting factor for Nitsche-type weighted viscous interface fluxes. </td></tr>
     <tr><td class="paramname">viscous_terms_liquid</td><td>Collection of helper functions for viscous term evaluations in the liquid phase. </td></tr>
     <tr><td class="paramname">viscous_terms_gas</td><td>Collection of helper functions for viscous term evaluations in the gas phase. </td></tr>
-    <tr><td class="paramname">multiphase_scratch_data</td><td>Collection of parameters required by the compressible multiphase Navier-Stokes operator.</td></tr>
+    <tr><td class="paramname">multiphase_scratch_data</td><td>Collection of parameters required by the compressible multiphase Navier-Stokes operator. </td></tr>
+    <tr><td class="paramname">m_dot_evap</td><td>Current evaporation mass flux (SI: in kg/(m^2 s)). </td></tr>
+    <tr><td class="paramname">delta_T</td><td>Current temperature jump at the interface (T^l - T^g) (SI: in K).</td></tr>
   </table>
   </dd>
 </dl>
@@ -653,8 +734,8 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
 
 </div>
 </div>
-<a id="ae91201182b644858d7f866c26f33c8fc" name="ae91201182b644858d7f866c26f33c8fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae91201182b644858d7f866c26f33c8fc">&#9670;&#160;</a></span>calculate_viscous_interface_flux_method_3()</h2>
+<a id="af0934f175021b55c209f5cbf12648352" name="af0934f175021b55c209f5cbf12648352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0934f175021b55c209f5cbf12648352">&#9670;&#160;</a></span>calculate_viscous_interface_flux_method_3()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -728,7 +809,25 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const number &amp;&#160;</td>
-          <td class="paramname"><em>cell_size</em>&#160;</td>
+          <td class="paramname"><em>cell_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>m_dot_evap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>delta_T</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>laser_heat_source</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -758,11 +857,131 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
     <tr><td class="paramname">viscous_terms_liquid</td><td>Collection of helper functions for viscous term evaluations in the liquid phase. </td></tr>
     <tr><td class="paramname">viscous_terms_gas</td><td>Collection of helper functions for viscous term evaluations in the gas phase. </td></tr>
     <tr><td class="paramname">multiphase_scratch_data</td><td>Collection of parameters required by the compressible multiphaes Navier-Stokes operator. </td></tr>
-    <tr><td class="paramname">cell_size</td><td>Cell size.</td></tr>
+    <tr><td class="paramname">cell_size</td><td>Cell size. </td></tr>
+    <tr><td class="paramname">m_dot_evap</td><td>Current evaporation mass flux (SI: in kg/(m^2 s)). </td></tr>
+    <tr><td class="paramname">delta_T</td><td>Current temperature jump at the interface (T^l - T^g) (SI: in K). </td></tr>
+    <tr><td class="paramname">laser_heat_source</td><td>Current value of the laser heat source (SI: in W/m^2).</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pair of interface viscous fluxes for liquid and gas phase, which are weighted with the test functions. </dd></dl>
+
+</div>
+</div>
+<a id="a6c43386691a8b860d3776156a0b9e7d4" name="a6c43386691a8b860d3776156a0b9e7d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c43386691a8b860d3776156a0b9e7d4">&#9670;&#160;</a></span>update_evaporative_mass_flux_and_temperature_jump()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ConservedVariablesType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DEAL_II_ALWAYS_INLINE std::tuple&lt; number, number &gt; MeltPoolDG::Multiphase::update_evaporative_mass_flux_and_temperature_jump </td>
+          <td>(</td>
+          <td class="paramtype">const ConservedVariablesType &amp;&#160;</td>
+          <td class="paramname"><em>u_liquid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ConservedVariablesType &amp;&#160;</td>
+          <td class="paramname"><em>u_gas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>normal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleMultiphaseScratchData.html">Flow::CompressibleMultiphaseScratchData</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>multiphase_scratch_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelKnight.html">Evaporation::EvaporationModelKnight</a>&lt; number &gt; *&#160;</td>
+          <td class="paramname"><em>evaporation_model_knight</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the current evaporative mass flux and temperature jump across the interface. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u_liquid</td><td>Conserved variables for liquid phase at quadrature point on the (unfitted) interface. </td></tr>
+    <tr><td class="paramname">u_gas</td><td>Conserved variables for gas phase at quadrature point on the (unfitted) interface. </td></tr>
+    <tr><td class="paramname">normal</td><td>Interface normal vector, pointing outwards the liquid phase. </td></tr>
+    <tr><td class="paramname">multiphase_scratch_data</td><td>Collection of parameters required by the compressible multiphase Navier-Stokes operator. </td></tr>
+    <tr><td class="paramname">evaporation_model_knight</td><td>Applied evaporation model.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Tuple, containing the current values of the evaporative mass flux and the interface temperature jump (T^l - T^g). </dd></dl>
+
+</div>
+</div>
+<a id="a64842e0c7997cf142623719fac0060a2" name="a64842e0c7997cf142623719fac0060a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64842e0c7997cf142623719fac0060a2">&#9670;&#160;</a></span>update_laser_heat_source()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DEAL_II_ALWAYS_INLINE number MeltPoolDG::Multiphase::update_laser_heat_source </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Multiphase_1_1CompressibleFlowPhaseCouplingData.html">CompressibleFlowPhaseCouplingData</a>&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>phase_coupling_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number &amp;&#160;</td>
+          <td class="paramname"><em>time</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the current value of the laser heat source. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phase_coupling_data</td><td>Collection of parameters specific for phase coupling. </td></tr>
+    <tr><td class="paramname">time</td><td>Current time.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Current value of the laser heat source. </dd></dl>
 
 </div>
 </div>

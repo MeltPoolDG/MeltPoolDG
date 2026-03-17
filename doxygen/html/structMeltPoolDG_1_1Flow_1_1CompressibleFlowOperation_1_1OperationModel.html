@@ -162,6 +162,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad391722754df6c811db073a2797f31ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab89280ccec9175f7c51a697b8245851a" id="r_ab89280ccec9175f7c51a697b8245851a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationModel.html#ab89280ccec9175f7c51a697b8245851a">reinit</a> () override</td></tr>
 <tr class="separator:ab89280ccec9175f7c51a697b8245851a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a877cb481c342a5bb16d3b92a1b00aceb" id="r_a877cb481c342a5bb16d3b92a1b00aceb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationModel.html#a877cb481c342a5bb16d3b92a1b00aceb">attach_output_vectors</a> (<a class="el" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut</a>&lt; dim, number &gt; &amp;data_out) const override</td></tr>
+<tr class="separator:a877cb481c342a5bb16d3b92a1b00aceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fa914378133684df8d5f423a8814916" id="r_a6fa914378133684df8d5f423a8814916"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationModel.html#a6fa914378133684df8d5f423a8814916">compute_time_step_size</a> (const bool do_print=false) const override</td></tr>
 <tr class="separator:a6fa914378133684df8d5f423a8814916"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73d6ab57d8e772f6a12cc220a5647aea" id="r_a73d6ab57d8e772f6a12cc220a5647aea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationModel.html#a73d6ab57d8e772f6a12cc220a5647aea">set_initial_condition</a> (const dealii::Function&lt; dim &gt; &amp;function) override</td></tr>
@@ -174,8 +176,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a930bc7dfe3c52371dc142227e2614265"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f0d2e58caca960931475a99353fd8e4" id="r_a6f0d2e58caca960931475a99353fd8e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#afefe6ce05a822d1595d9fa15da3e17f0">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationModel.html#a6f0d2e58caca960931475a99353fd8e4">get_solution</a> () override</td></tr>
 <tr class="separator:a6f0d2e58caca960931475a99353fd8e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af588c38f71cfa28be7a0c284044df517" id="r_af588c38f71cfa28be7a0c284044df517"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#afefe6ce05a822d1595d9fa15da3e17f0">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationModel.html#af588c38f71cfa28be7a0c284044df517">get_solution_in_primitive_variables</a> () override</td></tr>
-<tr class="separator:af588c38f71cfa28be7a0c284044df517"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04ee73a3bf713a3a251cee836a31ace6" id="r_a04ee73a3bf713a3a251cee836a31ace6"><td class="memItemLeft" align="right" valign="top">const dealii::DoFHandler&lt; dim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationModel.html#a04ee73a3bf713a3a251cee836a31ace6">get_dof_handler</a> () const override</td></tr>
 <tr class="separator:a04ee73a3bf713a3a251cee836a31ace6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept.html">MeltPoolDG::Flow::CompressibleFlowOperation&lt; dim, number &gt;::OperationConcept</a></td></tr>
@@ -231,6 +231,38 @@ template&lt;typename OperationType &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a877cb481c342a5bb16d3b92a1b00aceb" name="a877cb481c342a5bb16d3b92a1b00aceb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a877cb481c342a5bb16d3b92a1b00aceb">&#9670;&#160;</a></span>attach_output_vectors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename OperationType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html">MeltPoolDG::Flow::CompressibleFlowOperation</a>&lt; dim, number &gt;<a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationModel.html#aaf5fbaa0ada78a9395c14a1d82e15516">::OperationModel</a>&lt; OperationType &gt;::attach_output_vectors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data_out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept.html#a3c83820df898b0b875261ecb5ed46c71">MeltPoolDG::Flow::CompressibleFlowOperation&lt; dim, number &gt;::OperationConcept</a>.</p>
+
+</div>
+</div>
 <a id="a6fa914378133684df8d5f423a8814916" name="a6fa914378133684df8d5f423a8814916"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6fa914378133684df8d5f423a8814916">&#9670;&#160;</a></span>compute_time_step_size()</h2>
 
@@ -385,37 +417,6 @@ template&lt;typename OperationType &gt; </div>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept.html#a44315e0eecb01c0d3d0d1efdb3a71e82">MeltPoolDG::Flow::CompressibleFlowOperation&lt; dim, number &gt;::OperationConcept</a>.</p>
-
-</div>
-</div>
-<a id="af588c38f71cfa28be7a0c284044df517" name="af588c38f71cfa28be7a0c284044df517"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af588c38f71cfa28be7a0c284044df517">&#9670;&#160;</a></span>get_solution_in_primitive_variables()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number &gt; </div>
-<div class="memtemplate">
-template&lt;typename OperationType &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html#afefe6ce05a822d1595d9fa15da3e17f0">VectorType</a> &amp; <a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation.html">MeltPoolDG::Flow::CompressibleFlowOperation</a>&lt; dim, number &gt;<a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationModel.html#aaf5fbaa0ada78a9395c14a1d82e15516">::OperationModel</a>&lt; OperationType &gt;::get_solution_in_primitive_variables </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="structMeltPoolDG_1_1Flow_1_1CompressibleFlowOperation_1_1OperationConcept.html#a120665f37988f851cdc53d388685decc">MeltPoolDG::Flow::CompressibleFlowOperation&lt; dim, number &gt;::OperationConcept</a>.</p>
 
 </div>
 </div>

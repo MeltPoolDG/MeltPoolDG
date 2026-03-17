@@ -172,6 +172,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad0b9754135db2763d797e2942f4006a3" id="r_ad0b9754135db2763d797e2942f4006a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Simulation_1_1CompressibleMultiphase_1_1SimulationTwoPhase.html#ad0b9754135db2763d797e2942f4006a3">set_boundary_conditions</a> () override</td></tr>
 <tr class="memdesc:ad0b9754135db2763d797e2942f4006a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the boundary conditions.  <br /></td></tr>
 <tr class="separator:ad0b9754135db2763d797e2942f4006a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada36fc0cacba732135d8c824fa16ecc7" id="r_ada36fc0cacba732135d8c824fa16ecc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Simulation_1_1CompressibleMultiphase_1_1SimulationTwoPhase.html#ada36fc0cacba732135d8c824fa16ecc7">attach_boundary</a> (const dealii::types::boundary_id id, const std::string &amp;type)</td></tr>
+<tr class="memdesc:ada36fc0cacba732135d8c824fa16ecc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attach the boundary condition function to the current boundary id.  <br /></td></tr>
+<tr class="separator:ada36fc0cacba732135d8c824fa16ecc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a089044b508a8798623f6bb04e30f262e" id="r_a089044b508a8798623f6bb04e30f262e"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; dealii::Function&lt; dim, number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Simulation_1_1CompressibleMultiphase_1_1SimulationTwoPhase.html#a089044b508a8798623f6bb04e30f262e">create_boundary_function</a> (const std::string &amp;type)</td></tr>
+<tr class="memdesc:a089044b508a8798623f6bb04e30f262e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the boundary value function for a given boundary condition type.  <br /></td></tr>
+<tr class="separator:a089044b508a8798623f6bb04e30f262e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4da90b4200f676e34847c278a74dabe" id="r_af4da90b4200f676e34847c278a74dabe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Simulation_1_1CompressibleMultiphase_1_1SimulationTwoPhase.html#af4da90b4200f676e34847c278a74dabe">set_field_conditions</a> () override</td></tr>
 <tr class="memdesc:af4da90b4200f676e34847c278a74dabe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the field functions for the simulation.  <br /></td></tr>
 <tr class="separator:af4da90b4200f676e34847c278a74dabe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,6 +228,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a53524da460856b9acb2d3e030de3dec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa23b3ec18ac2b969d07e8ccbf32234ee" id="r_aa23b3ec18ac2b969d07e8ccbf32234ee"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structMeltPoolDG_1_1Simulation_1_1CompressibleMultiphase_1_1SimulationTwoPhase_1_1InitialConditions.html">MeltPoolDG::Simulation::CompressibleMultiphase::SimulationTwoPhase::InitialConditions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Simulation_1_1CompressibleMultiphase_1_1SimulationTwoPhase.html#aa23b3ec18ac2b969d07e8ccbf32234ee">initial_conditions</a></td></tr>
 <tr class="separator:aa23b3ec18ac2b969d07e8ccbf32234ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a550da20486d21f2691f63c19a90d33c3" id="r_a550da20486d21f2691f63c19a90d33c3"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Simulation_1_1CompressibleMultiphase_1_1SimulationTwoPhase.html#a550da20486d21f2691f63c19a90d33c3">atmospheric_pressure</a> {}</td></tr>
+<tr class="separator:a550da20486d21f2691f63c19a90d33c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -341,6 +349,89 @@ template&lt;int dim, typename number &gt; </div>
 </dl>
 
 <p>Reimplemented from <a class="el" href="classMeltPoolDG_1_1SimulationCaseBase.html#a31fa5dea9882359a67228181bdd885d9">MeltPoolDG::SimulationCaseBase&lt; dim, number, spacedim &gt;</a>.</p>
+
+</div>
+</div>
+<a id="ada36fc0cacba732135d8c824fa16ecc7" name="ada36fc0cacba732135d8c824fa16ecc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada36fc0cacba732135d8c824fa16ecc7">&#9670;&#160;</a></span>attach_boundary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Simulation_1_1CompressibleMultiphase_1_1SimulationTwoPhase.html">MeltPoolDG::Simulation::CompressibleMultiphase::SimulationTwoPhase</a>&lt; dim, number &gt;::attach_boundary </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::types::boundary_id&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Attach the boundary condition function to the current boundary id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Boundary id. </td></tr>
+    <tr><td class="paramname">type</td><td>Boundary condition type. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a089044b508a8798623f6bb04e30f262e" name="a089044b508a8798623f6bb04e30f262e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a089044b508a8798623f6bb04e30f262e">&#9670;&#160;</a></span>create_boundary_function()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; dealii::Function&lt; dim, number &gt; &gt; <a class="el" href="classMeltPoolDG_1_1Simulation_1_1CompressibleMultiphase_1_1SimulationTwoPhase.html">MeltPoolDG::Simulation::CompressibleMultiphase::SimulationTwoPhase</a>&lt; dim, number &gt;::create_boundary_function </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the boundary value function for a given boundary condition type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Given boundary condition type. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -476,6 +567,31 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a550da20486d21f2691f63c19a90d33c3" name="a550da20486d21f2691f63c19a90d33c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a550da20486d21f2691f63c19a90d33c3">&#9670;&#160;</a></span>atmospheric_pressure</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">number <a class="el" href="classMeltPoolDG_1_1Simulation_1_1CompressibleMultiphase_1_1SimulationTwoPhase.html">MeltPoolDG::Simulation::CompressibleMultiphase::SimulationTwoPhase</a>&lt; dim, number &gt;::atmospheric_pressure {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Atmospheric pressure in the gas phase (SI: Pa) (Required for fixed pressure outflow boundary condition) </p>
+
+</div>
+</div>
 <a id="aa23b3ec18ac2b969d07e8ccbf32234ee" name="aa23b3ec18ac2b969d07e8ccbf32234ee"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa23b3ec18ac2b969d07e8ccbf32234ee">&#9670;&#160;</a></span>initial_conditions</h2>
 
