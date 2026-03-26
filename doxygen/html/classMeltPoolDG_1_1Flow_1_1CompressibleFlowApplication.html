@@ -170,9 +170,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:aa0db36c07b40e2cec9b2adccf612282d" id="r_aa0db36c07b40e2cec9b2adccf612282d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowApplication.html#aa0db36c07b40e2cec9b2adccf612282d">initialize</a> ()</td></tr>
 <tr class="memdesc:aa0db36c07b40e2cec9b2adccf612282d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the relevant member data required for solving the compressible flow problem and prepares the object for starting the time loop.  <br /></td></tr>
 <tr class="separator:aa0db36c07b40e2cec9b2adccf612282d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4669e03a163536e533c52d2dd7cf1ba2" id="r_a4669e03a163536e533c52d2dd7cf1ba2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowApplication.html#a4669e03a163536e533c52d2dd7cf1ba2">output_results</a> (unsigned int time_step, number current_time)</td></tr>
-<tr class="memdesc:a4669e03a163536e533c52d2dd7cf1ba2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the output of the results.  <br /></td></tr>
-<tr class="separator:a4669e03a163536e533c52d2dd7cf1ba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae85b795123e74711d01a429aac451653" id="r_ae85b795123e74711d01a429aac451653"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowApplication.html#ae85b795123e74711d01a429aac451653">output_results</a> (unsigned int time_step, number current_time, const bool force_output=false)</td></tr>
+<tr class="memdesc:ae85b795123e74711d01a429aac451653"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the output of the results.  <br /></td></tr>
+<tr class="separator:ae85b795123e74711d01a429aac451653"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c41336f3fa4568a1bbd26213e78e1e9" id="r_a7c41336f3fa4568a1bbd26213e78e1e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1CompressibleFlowApplication.html#a7c41336f3fa4568a1bbd26213e78e1e9">compute_level_set</a> ()</td></tr>
 <tr class="memdesc:a7c41336f3fa4568a1bbd26213e78e1e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolates the values of a (currently) analytically given level-set function to the level-set dof vector.  <br /></td></tr>
 <tr class="separator:a7c41336f3fa4568a1bbd26213e78e1e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -359,8 +359,8 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
-<a id="a4669e03a163536e533c52d2dd7cf1ba2" name="a4669e03a163536e533c52d2dd7cf1ba2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4669e03a163536e533c52d2dd7cf1ba2">&#9670;&#160;</a></span>output_results()</h2>
+<a id="ae85b795123e74711d01a429aac451653" name="ae85b795123e74711d01a429aac451653"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae85b795123e74711d01a429aac451653">&#9670;&#160;</a></span>output_results()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -380,7 +380,13 @@ template&lt;int dim, typename number &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">number&#160;</td>
-          <td class="paramname"><em>current_time</em>&#160;</td>
+          <td class="paramname"><em>current_time</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>force_output</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -400,6 +406,7 @@ template&lt;int dim, typename number &gt; </div>
   <table class="params">
     <tr><td class="paramname">time_step</td><td>Current time step size. </td></tr>
     <tr><td class="paramname">current_time</td><td>Current time at t^n. </td></tr>
+    <tr><td class="paramname">force_output</td><td>If true, output will be generated regardless of the output frequency defined in the parameters. </td></tr>
   </table>
   </dd>
 </dl>
