@@ -149,12 +149,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa6c6c7653740249011067b806cf82a0c" id="r_aa6c6c7653740249011067b806cf82a0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1EOSData.html#aa6c6c7653740249011067b806cf82a0c">add_parameters</a> (dealii::ParameterHandler &amp;prm)</td></tr>
 <tr class="memdesc:aa6c6c7653740249011067b806cf82a0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add EOS-specific material parameters in the parameter handler.  <br /></td></tr>
 <tr class="separator:aa6c6c7653740249011067b806cf82a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ce770470f602518e8fb008e2161b61a" id="r_a4ce770470f602518e8fb008e2161b61a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1EOSData.html#a4ce770470f602518e8fb008e2161b61a">post</a> (const EquationOfState eos_type) const</td></tr>
+<tr class="separator:a4ce770470f602518e8fb008e2161b61a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a24f1ddfa8c23d150ee418ab7c472e750" id="r_a24f1ddfa8c23d150ee418ab7c472e750"><td class="memItemLeft" align="right" valign="top">EquationOfState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1EOSData.html#a24f1ddfa8c23d150ee418ab7c472e750">type</a> = EquationOfState::ideal_gas</td></tr>
-<tr class="memdesc:a24f1ddfa8c23d150ee418ab7c472e750"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of equation of state.  <br /></td></tr>
-<tr class="separator:a24f1ddfa8c23d150ee418ab7c472e750"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e24e29f1debe2db3dacbdf28f78efaa" id="r_a0e24e29f1debe2db3dacbdf28f78efaa"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1EOSData.html#a0e24e29f1debe2db3dacbdf28f78efaa">p_inf</a> = std::numeric_limits&lt;number&gt;::max()</td></tr>
 <tr class="separator:a0e24e29f1debe2db3dacbdf28f78efaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa28a0177a55109951b2d58746f1519f2" id="r_aa28a0177a55109951b2d58746f1519f2"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1EOSData.html#aa28a0177a55109951b2d58746f1519f2">b</a> = std::numeric_limits&lt;number&gt;::max()</td></tr>
@@ -174,9 +173,6 @@ struct MeltPoolDG::Flow::EOSData&lt; number &gt;</div><p>Collection of parameter
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename number &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="structMeltPoolDG_1_1Flow_1_1EOSData.html">MeltPoolDG::Flow::EOSData</a>&lt; number &gt;::add_parameters </td>
@@ -186,17 +182,39 @@ template&lt;typename number &gt; </div>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Add EOS-specific material parameters in the parameter handler. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">prm</td><td>The parameter handler to which the parameters are added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4ce770470f602518e8fb008e2161b61a" name="a4ce770470f602518e8fb008e2161b61a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ce770470f602518e8fb008e2161b61a">&#9670;&#160;</a></span>post()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="structMeltPoolDG_1_1Flow_1_1EOSData.html">MeltPoolDG::Flow::EOSData</a>&lt; number &gt;::post </td>
+          <td>(</td>
+          <td class="paramtype">const EquationOfState&#160;</td>
+          <td class="paramname"><em>eos_type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Post-process EOS-specific material data parameters. This function essentially checks that the required parameters for the selected equation of state are set and throws an exception if this is not the case.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eos_type</td><td>The type of equation of state for which the parameters should be checked. </td></tr>
   </table>
   </dd>
 </dl>
@@ -255,26 +273,9 @@ template&lt;typename number &gt; </div>
 
 </div>
 </div>
-<a id="a24f1ddfa8c23d150ee418ab7c472e750" name="a24f1ddfa8c23d150ee418ab7c472e750"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24f1ddfa8c23d150ee418ab7c472e750">&#9670;&#160;</a></span>type</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename number &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">EquationOfState <a class="el" href="structMeltPoolDG_1_1Flow_1_1EOSData.html">MeltPoolDG::Flow::EOSData</a>&lt; number &gt;::type = EquationOfState::ideal_gas</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Type of equation of state. </p>
-
-</div>
-</div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<hr/>The documentation for this struct was generated from the following files:<ul>
 <li>include/meltpooldg/flow/<a class="el" href="compressible__flow__material__data_8hpp_source.html">compressible_flow_material_data.hpp</a></li>
+<li>source/flow/<a class="el" href="compressible__flow__material__data_8cpp.html">compressible_flow_material_data.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
