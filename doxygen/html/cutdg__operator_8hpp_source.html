@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/compressible_flow/cutdg_operator.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/compressible_flow/cutdg_operator.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/cutdg__operator_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-compressible-flow-cutdg-operator-hpp-source-file">
+<h1>include/meltpooldg/compressible_flow/cutdg_operator.hpp Source File<a class="headerlink" href="#include-meltpooldg-compressible-flow-cutdg-operator-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/compressible_flow/cutdg_operator.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_bb77f7f27cd899d864c2a9921966d6b9.html">compressible_flow</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">cutdg_operator.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="cutdg__operator_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/fe/fe_system.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="data__types_8hpp.html">meltpooldg/compressible_flow/data_types.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="explicit__time__integration__utils_8hpp.html">meltpooldg/compressible_flow/explicit_time_integration_utils.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="kernels_8hpp.html">meltpooldg/compressible_flow/kernels.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="operation__scratch__data_8hpp.html">meltpooldg/compressible_flow/operation_scratch_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="dg__generic__convection__diffusion__worker_8hpp.html">meltpooldg/utilities/dg_generic_convection_diffusion_worker.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1CompressibleFlow.html">MeltPoolDG::CompressibleFlow</a></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number, <span class="keywordtype">bool</span> is_viscous = true&gt;</div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html">   22</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html">CutDGOperator</a></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">   25</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>            = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#abb4d52a8b8a6406481fc78871c219365">   26</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#abb4d52a8b8a6406481fc78871c219365">MappingInfoType</a>       = <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1CutUtil.html#a65482f1d63bf468a14abfe61d4a6278a">CutUtil::MappingInfoType&lt;dim, number&gt;</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a17096af7ace0d2e729d494b8589b69eb">   27</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a17096af7ace0d2e729d494b8589b69eb">MappingInfoVectorType</a> = <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1CutUtil.html#a2f7423e0844ee248df7ba907faaccba1">CutUtil::MappingInfoVectorType&lt;dim, number&gt;</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a0c7d62d22ced224fce86e597dfc2c3c2">   29</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a0c7d62d22ced224fce86e597dfc2c3c2">ConservedVariables</a>         = <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#acb63341992992daa69923d7e611f781d">ConservedVariablesType&lt;dim, number&gt;</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a95555d52fd35294c7cbca6ca453e43c0">   30</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a95555d52fd35294c7cbca6ca453e43c0">ConservedVariablesGradient</a> = <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a73490fae730d5082b9f635582778c2da">ConservedVariablesGradientType&lt;dim, number&gt;</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#aaa97e44c94705f2434e93bfa39e1b058">   32</a></span>    <span class="keyword">using </span><a class="code hl_struct" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html">ConvectionDiffusionOperator</a> =</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>      <a class="code hl_struct" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html">Utils::DGConvectionDiffusionOperator</a>&lt;dim,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                                           number,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                                           <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1ConvectiveFlux.html">ConvectiveFlux&lt;dim, number&gt;</a>,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                                           <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1DiffusiveFlux.html">DiffusiveFlux&lt;dim, number&gt;</a>&gt;;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a99e5b961a32e3635fa6fea9cb0a76b8c">   38</a></span>    <span class="keyword">using </span><a class="code hl_struct" href="structMeltPoolDG_1_1Utils_1_1DGConvectionOperator.html">ConvectionOperator</a> =</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      <a class="code hl_struct" href="structMeltPoolDG_1_1Utils_1_1DGConvectionOperator.html">Utils::DGConvectionOperator&lt;dim, number, ConvectiveFlux&lt;dim, number&gt;</a>&gt;;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html">CutDGOperator</a>(<a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html">OperationScratchData&lt;dim, number&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a920118264882ec2f28d2b19384b0ece6">flow_scratch_data</a>,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                           <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#abb4d52a8b8a6406481fc78871c219365">MappingInfoType</a>             &amp;mapping_info_surface_in,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                           <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a17096af7ace0d2e729d494b8589b69eb">MappingInfoVectorType</a>       &amp;mapping_info_cells_in,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                           <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a17096af7ace0d2e729d494b8589b69eb">MappingInfoVectorType</a>       &amp;mapping_info_faces_in);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a7e57b7c56a443466b9c774070dac198f">set_inflow_field_unfitted_boundary</a>(std::shared_ptr&lt;dealii::Function&lt;dim&gt;&gt; &amp;inflow_function);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#acaa826a29bdb872b3b4d3914f4d450d9">set_unfitted_object_velocity</a>(std::shared_ptr&lt;dealii::Function&lt;dim&gt;&gt; &amp;velocity_function);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">template</span> &lt;CellEvaluatorType&lt;dim, dim + 2, number, dealii::VectorizedArray&lt;number&gt;&gt; Integrator&gt;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#ae27ce35f16e18840198963886043eca8">do_cell_integral_rhs</a>(</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      Integrator                                                    &amp;phi,</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html">OperationScratchData&lt;dim, number&gt;</a>                       &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a920118264882ec2f28d2b19384b0ece6">flow_scratch_data</a>,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keyword">const</span> dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt;&gt; *constant_body_force,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                             q) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a1ee6c14e3be98ab4ba2fc55099b1365d">do_surface_integral_rhs</a>(</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>      dealii::FEPointEvaluation&lt;dim + 2, dim, dim, dealii::VectorizedArray&lt;number&gt;&gt; &amp;phi,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      <span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt;   &amp;interior_penalty_parameter,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html">OperationScratchData&lt;dim, number&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a920118264882ec2f28d2b19384b0ece6">flow_scratch_data</a>,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                       q) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keyword">template</span> &lt;FaceEvaluatorType&lt;dim, dim + 2, number, dealii::VectorizedArray&lt;number&gt;&gt; Integrator&gt;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a9befd59ab3cd37644a174df758b68c94">do_face_integral_rhs</a>(Integrator                              &amp;phi_m,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                         Integrator                              &amp;phi_p,</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                         <span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt;   &amp;interior_penalty_parameter,</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                         <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html">OperationScratchData&lt;dim, number&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a920118264882ec2f28d2b19384b0ece6">flow_scratch_data</a>,</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                       q) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keyword">template</span> &lt;FaceEvaluatorType&lt;dim, dim + 2, number, dealii::VectorizedArray&lt;number&gt;&gt; Integrator&gt;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a04cf449e52a725ec283a04d2a04ca97f">do_boundary_face_integral_rhs</a>(Integrator                            &amp;phi,</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                                  <span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; &amp;interior_penalty_parameter,</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                                  <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html">OperationScratchData&lt;dim, number&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a920118264882ec2f28d2b19384b0ece6">flow_scratch_data</a>,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                                  <span class="keyword">const</span> <span class="keyword">auto</span>                               boundary_id,</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                                  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                       q) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#aa45cfef9c2a185d49e507a3bc9236b20">local_apply_cell_rhs</a>(<span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt;       &amp;matrix_free,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>                         <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>                                  &amp;dst,</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>                         <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>                            &amp;src,</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                         <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt; &amp;cell_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a10259b28efd6e440a24b19ddcc774c4f">local_apply_face_rhs</a>(<span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt;       &amp;matrix_free,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                         <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>                                  &amp;dst,</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                         <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>                            &amp;src,</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                         <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt; &amp;face_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a16db18fcb9ac51a171748b7534e19160">local_apply_boundary_face_rhs</a>(<span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt;       &amp;matrix_free,</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>                                  <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>                                  &amp;dst,</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                                  <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>                            &amp;src,</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>                                  <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt; &amp;face_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#aebd3de720fda36992b65cfe32e67f13b">local_apply_cell_lhs</a>(<span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt;       &amp;matrix_free,</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                         <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>                                  &amp;dst,</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                         <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>                            &amp;src,</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                         <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt; &amp;cell_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a05426241fb8b06d9b6a5b7a116247f09">local_apply_face_lhs</a>(<span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt;       &amp;matrix_free,</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                         <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>                                  &amp;dst,</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                         <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>                            &amp;src,</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                         <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt; &amp;face_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a14da00bd2c9a1125f85866593ceeccb3">local_apply_boundary_face_lhs</a>(<span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt;       &amp;matrix_free,</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                                  <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>                                  &amp;dst,</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                                  <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>                            &amp;src,</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                                  <span class="keyword">const</span> std::pair&lt;unsigned int, unsigned int&gt; &amp;face_range) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#ac8c948e8c9cb0f12070323aac6e72439">create_rhs</a>(<span class="keyword">const</span> number     &amp;time,</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>               <span class="keyword">const</span> number     &amp;time_step,</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>               <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a>       &amp;dst,</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>               <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a> &amp;src) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a963f33af262f9223fef02399f0af0fc2">vmult</a>(<a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">VectorType</a> &amp;src) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a920118264882ec2f28d2b19384b0ece6">  275</a></span>    <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html">OperationScratchData&lt;dim, number&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a920118264882ec2f28d2b19384b0ece6">flow_scratch_data</a>;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a24bc64f0bd4c625582830dcbbfdb19da">  278</a></span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#abb4d52a8b8a6406481fc78871c219365">MappingInfoType</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a24bc64f0bd4c625582830dcbbfdb19da">mapping_info_surface</a>;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a2c6b9fc5e127f0360d4c9d2ac36df839">  281</a></span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a17096af7ace0d2e729d494b8589b69eb">MappingInfoVectorType</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a2c6b9fc5e127f0360d4c9d2ac36df839">mapping_info_cells</a>;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a3e8a63c7486f4248d169567bbc3b3940">  284</a></span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a17096af7ace0d2e729d494b8589b69eb">MappingInfoVectorType</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a3e8a63c7486f4248d169567bbc3b3940">mapping_info_faces</a>;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a1367f52c24d0079c00a39dcbafdda49e">  287</a></span>    dealii::FESystem&lt;dim&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a1367f52c24d0079c00a39dcbafdda49e">fe_point_temp</a>;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a1a8643c1ed0bfab91c8357ed88df41ab">  290</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a1a8643c1ed0bfab91c8357ed88df41ab">n_dofs_per_cell</a>;</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a5e9f62038a067578fca3de608e6acbc3">  293</a></span>    <span class="keyword">mutable</span> number <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a5e9f62038a067578fca3de608e6acbc3">current_time_step</a> = 0.;</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a487e136f6d6447fe4a4be3ee13f0cd89">  296</a></span>    <span class="keyword">mutable</span> number <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a487e136f6d6447fe4a4be3ee13f0cd89">current_inv_time_step</a> = 0.;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6b3f0731ec048f4300676d7e9a0fa48f">  299</a></span>    std::shared_ptr&lt;dealii::Function&lt;dim&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6b3f0731ec048f4300676d7e9a0fa48f">unfitted_object_velocity</a>;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a8e6d72c67c3e73edbdcde2ea43eacd55">  302</a></span>    std::shared_ptr&lt;dealii::Function&lt;dim&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a8e6d72c67c3e73edbdcde2ea43eacd55">unfitted_inflow</a>;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <a class="code hl_function" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a84a09d728a909097304d25507c0e1e47">get_adjacent_face_values_at_unfitted_boundary</a>(</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>      <span class="keyword">const</span> dealii::Point&lt;dim, dealii::VectorizedArray&lt;number&gt;&gt; &amp;q_point,</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a0c7d62d22ced224fce86e597dfc2c3c2">ConservedVariables</a>                                  &amp;w_m,</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>      <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a0c7d62d22ced224fce86e597dfc2c3c2">ConservedVariables</a>                                        &amp;w_p,</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a95555d52fd35294c7cbca6ca453e43c0">ConservedVariablesGradient</a>                          &amp;grad_w_m,</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>      <a class="code hl_typedef" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a95555d52fd35294c7cbca6ca453e43c0">ConservedVariablesGradient</a>                                &amp;grad_w_p) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>  };</div>
+</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>} <span class="comment">// namespace MeltPoolDG::CompressibleFlow</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html">MeltPoolDG::CompressibleFlow::CutDGOperator</a></div><div class="ttdoc">Operator for the matrix-free evaluation of a compressible single-phase flow cutDG formulation.</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:23</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a04cf449e52a725ec283a04d2a04ca97f"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a04cf449e52a725ec283a04d2a04ca97f">MeltPoolDG::CompressibleFlow::CutDGOperator::do_boundary_face_integral_rhs</a></div><div class="ttdeci">void do_boundary_face_integral_rhs(Integrator &amp;phi, const dealii::VectorizedArray&lt; number &gt; &amp;interior_penalty_parameter, const OperationScratchData&lt; dim, number &gt; &amp;flow_scratch_data, const auto boundary_id, const unsigned int q) const</div><div class="ttdoc">Evaluate and submit the right-hand side boundary face integral contributions at a given quadrature po...</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:254</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a05426241fb8b06d9b6a5b7a116247f09"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a05426241fb8b06d9b6a5b7a116247f09">MeltPoolDG::CompressibleFlow::CutDGOperator::local_apply_face_lhs</a></div><div class="ttdeci">void local_apply_face_lhs(const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, VectorType &amp;dst, const VectorType &amp;src, const std::pair&lt; unsigned int, unsigned int &gt; &amp;face_range) const</div><div class="ttdoc">Local applier for the face integrals in the left-hand side matrix-vector product evaluation.</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:754</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a0c7d62d22ced224fce86e597dfc2c3c2"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a0c7d62d22ced224fce86e597dfc2c3c2">MeltPoolDG::CompressibleFlow::CutDGOperator::ConservedVariables</a></div><div class="ttdeci">ConservedVariablesType&lt; dim, number &gt; ConservedVariables</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:29</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a10259b28efd6e440a24b19ddcc774c4f"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a10259b28efd6e440a24b19ddcc774c4f">MeltPoolDG::CompressibleFlow::CutDGOperator::local_apply_face_rhs</a></div><div class="ttdeci">void local_apply_face_rhs(const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, VectorType &amp;dst, const VectorType &amp;src, const std::pair&lt; unsigned int, unsigned int &gt; &amp;face_range) const</div><div class="ttdoc">Local applier for the face integrals in the right-hand side evaluation.</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:430</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a1367f52c24d0079c00a39dcbafdda49e"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a1367f52c24d0079c00a39dcbafdda49e">MeltPoolDG::CompressibleFlow::CutDGOperator::fe_point_temp</a></div><div class="ttdeci">dealii::FESystem&lt; dim &gt; fe_point_temp</div><div class="ttdoc">FESystem object, required by FEPointEvaluation.</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:287</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a14da00bd2c9a1125f85866593ceeccb3"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a14da00bd2c9a1125f85866593ceeccb3">MeltPoolDG::CompressibleFlow::CutDGOperator::local_apply_boundary_face_lhs</a></div><div class="ttdeci">void local_apply_boundary_face_lhs(const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, VectorType &amp;dst, const VectorType &amp;src, const std::pair&lt; unsigned int, unsigned int &gt; &amp;face_range) const</div><div class="ttdoc">Local applier for the boundary face integrals in the left-hand side matrix-vector product evaluation.</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:841</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a16db18fcb9ac51a171748b7534e19160"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a16db18fcb9ac51a171748b7534e19160">MeltPoolDG::CompressibleFlow::CutDGOperator::local_apply_boundary_face_rhs</a></div><div class="ttdeci">void local_apply_boundary_face_rhs(const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, VectorType &amp;dst, const VectorType &amp;src, const std::pair&lt; unsigned int, unsigned int &gt; &amp;face_range) const</div><div class="ttdoc">Local applier for the boundary face integral in the right-hand side evaluation.</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:587</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a17096af7ace0d2e729d494b8589b69eb"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a17096af7ace0d2e729d494b8589b69eb">MeltPoolDG::CompressibleFlow::CutDGOperator::MappingInfoVectorType</a></div><div class="ttdeci">CutUtil::MappingInfoVectorType&lt; dim, number &gt; MappingInfoVectorType</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:27</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a1a8643c1ed0bfab91c8357ed88df41ab"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a1a8643c1ed0bfab91c8357ed88df41ab">MeltPoolDG::CompressibleFlow::CutDGOperator::n_dofs_per_cell</a></div><div class="ttdeci">const unsigned int n_dofs_per_cell</div><div class="ttdoc">Number of DoFs per cell.</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:290</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a1ee6c14e3be98ab4ba2fc55099b1365d"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a1ee6c14e3be98ab4ba2fc55099b1365d">MeltPoolDG::CompressibleFlow::CutDGOperator::do_surface_integral_rhs</a></div><div class="ttdeci">void do_surface_integral_rhs(dealii::FEPointEvaluation&lt; dim+2, dim, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;phi, const dealii::VectorizedArray&lt; number &gt; &amp;interior_penalty_parameter, const OperationScratchData&lt; dim, number &gt; &amp;flow_scratch_data, const unsigned int q) const</div><div class="ttdoc">Evaluate and submit the right-hand side cut surface integral contributions at a given quadrature poin...</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:156</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a24bc64f0bd4c625582830dcbbfdb19da"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a24bc64f0bd4c625582830dcbbfdb19da">MeltPoolDG::CompressibleFlow::CutDGOperator::mapping_info_surface</a></div><div class="ttdeci">const MappingInfoType &amp; mapping_info_surface</div><div class="ttdoc">Mapping information for integration over immersed boundaries.</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:278</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a2c6b9fc5e127f0360d4c9d2ac36df839"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a2c6b9fc5e127f0360d4c9d2ac36df839">MeltPoolDG::CompressibleFlow::CutDGOperator::mapping_info_cells</a></div><div class="ttdeci">const MappingInfoVectorType &amp; mapping_info_cells</div><div class="ttdoc">Mapping information for integration over cut cells.</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:281</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a3e8a63c7486f4248d169567bbc3b3940"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a3e8a63c7486f4248d169567bbc3b3940">MeltPoolDG::CompressibleFlow::CutDGOperator::mapping_info_faces</a></div><div class="ttdeci">const MappingInfoVectorType &amp; mapping_info_faces</div><div class="ttdoc">Mapping information for integration over cut faces.</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:284</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a487e136f6d6447fe4a4be3ee13f0cd89"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a487e136f6d6447fe4a4be3ee13f0cd89">MeltPoolDG::CompressibleFlow::CutDGOperator::current_inv_time_step</a></div><div class="ttdeci">number current_inv_time_step</div><div class="ttdoc">Current inverse time step size.</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:296</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a5e9f62038a067578fca3de608e6acbc3"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a5e9f62038a067578fca3de608e6acbc3">MeltPoolDG::CompressibleFlow::CutDGOperator::current_time_step</a></div><div class="ttdeci">number current_time_step</div><div class="ttdoc">Current time step size.</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:293</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a6793e5a27485c46de1f3ff8c5aed2fe4"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6793e5a27485c46de1f3ff8c5aed2fe4">MeltPoolDG::CompressibleFlow::CutDGOperator::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:25</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a6b3f0731ec048f4300676d7e9a0fa48f"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a6b3f0731ec048f4300676d7e9a0fa48f">MeltPoolDG::CompressibleFlow::CutDGOperator::unfitted_object_velocity</a></div><div class="ttdeci">std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; unfitted_object_velocity</div><div class="ttdoc">Function, which describes the velocity of the unfitted object.</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:299</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a7e57b7c56a443466b9c774070dac198f"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a7e57b7c56a443466b9c774070dac198f">MeltPoolDG::CompressibleFlow::CutDGOperator::set_inflow_field_unfitted_boundary</a></div><div class="ttdeci">void set_inflow_field_unfitted_boundary(std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &amp;inflow_function)</div><div class="ttdoc">Set the inflow field function in the case of an unfitted inflow boundary.</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:94</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a84a09d728a909097304d25507c0e1e47"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a84a09d728a909097304d25507c0e1e47">MeltPoolDG::CompressibleFlow::CutDGOperator::get_adjacent_face_values_at_unfitted_boundary</a></div><div class="ttdeci">void get_adjacent_face_values_at_unfitted_boundary(const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, const ConservedVariables &amp;w_m, ConservedVariables &amp;w_p, const ConservedVariablesGradient &amp;grad_w_m, ConservedVariablesGradient &amp;grad_w_p) const</div><div class="ttdoc">This function sets the corresponding values on the fictional outer face if the face is located at an ...</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:852</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a8e6d72c67c3e73edbdcde2ea43eacd55"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a8e6d72c67c3e73edbdcde2ea43eacd55">MeltPoolDG::CompressibleFlow::CutDGOperator::unfitted_inflow</a></div><div class="ttdeci">std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; unfitted_inflow</div><div class="ttdoc">Inflow function for unfitted inflow boundary.</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:302</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a920118264882ec2f28d2b19384b0ece6"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a920118264882ec2f28d2b19384b0ece6">MeltPoolDG::CompressibleFlow::CutDGOperator::flow_scratch_data</a></div><div class="ttdeci">OperationScratchData&lt; dim, number &gt; &amp; flow_scratch_data</div><div class="ttdoc">Scratch data for compressible flows.</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:275</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a95555d52fd35294c7cbca6ca453e43c0"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a95555d52fd35294c7cbca6ca453e43c0">MeltPoolDG::CompressibleFlow::CutDGOperator::ConservedVariablesGradient</a></div><div class="ttdeci">ConservedVariablesGradientType&lt; dim, number &gt; ConservedVariablesGradient</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:30</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a963f33af262f9223fef02399f0af0fc2"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a963f33af262f9223fef02399f0af0fc2">MeltPoolDG::CompressibleFlow::CutDGOperator::vmult</a></div><div class="ttdeci">void vmult(VectorType &amp;dst, const VectorType &amp;src) const</div><div class="ttdoc">Function for the matrix-free matrix-vector product evaluation.</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:34</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_a9befd59ab3cd37644a174df758b68c94"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#a9befd59ab3cd37644a174df758b68c94">MeltPoolDG::CompressibleFlow::CutDGOperator::do_face_integral_rhs</a></div><div class="ttdeci">void do_face_integral_rhs(Integrator &amp;phi_m, Integrator &amp;phi_p, const dealii::VectorizedArray&lt; number &gt; &amp;interior_penalty_parameter, const OperationScratchData&lt; dim, number &gt; &amp;flow_scratch_data, const unsigned int q) const</div><div class="ttdoc">Evaluate and submit the right-and side face integral contributions at a given quadrature point.</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:207</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_aa45cfef9c2a185d49e507a3bc9236b20"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#aa45cfef9c2a185d49e507a3bc9236b20">MeltPoolDG::CompressibleFlow::CutDGOperator::local_apply_cell_rhs</a></div><div class="ttdeci">void local_apply_cell_rhs(const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, VectorType &amp;dst, const VectorType &amp;src, const std::pair&lt; unsigned int, unsigned int &gt; &amp;cell_range) const</div><div class="ttdoc">Local applier for the cell integrals in the right-hand side evaluation.</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:310</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_abb4d52a8b8a6406481fc78871c219365"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#abb4d52a8b8a6406481fc78871c219365">MeltPoolDG::CompressibleFlow::CutDGOperator::MappingInfoType</a></div><div class="ttdeci">CutUtil::MappingInfoType&lt; dim, number &gt; MappingInfoType</div><div class="ttdef"><b>Definition</b> cutdg_operator.hpp:26</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_ac8c948e8c9cb0f12070323aac6e72439"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#ac8c948e8c9cb0f12070323aac6e72439">MeltPoolDG::CompressibleFlow::CutDGOperator::create_rhs</a></div><div class="ttdeci">void create_rhs(const number &amp;time, const number &amp;time_step, VectorType &amp;dst, const VectorType &amp;src) const</div><div class="ttdoc">Function for the matrix-free right-hand side vector evaluation.</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:58</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_acaa826a29bdb872b3b4d3914f4d450d9"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#acaa826a29bdb872b3b4d3914f4d450d9">MeltPoolDG::CompressibleFlow::CutDGOperator::set_unfitted_object_velocity</a></div><div class="ttdeci">void set_unfitted_object_velocity(std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &amp;velocity_function)</div><div class="ttdoc">Set the velocity function in the case of an unfitted (rigid) moving object.</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:102</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_ae27ce35f16e18840198963886043eca8"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#ae27ce35f16e18840198963886043eca8">MeltPoolDG::CompressibleFlow::CutDGOperator::do_cell_integral_rhs</a></div><div class="ttdeci">void do_cell_integral_rhs(Integrator &amp;phi, const OperationScratchData&lt; dim, number &gt; &amp;flow_scratch_data, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; *constant_body_force, const unsigned int q) const</div><div class="ttdoc">Evaluate and submit the right-hand side cell integral contributions at a given quadrature point.</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:111</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator_html_aebd3de720fda36992b65cfe32e67f13b"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperator.html#aebd3de720fda36992b65cfe32e67f13b">MeltPoolDG::CompressibleFlow::CutDGOperator::local_apply_cell_lhs</a></div><div class="ttdeci">void local_apply_cell_lhs(const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, VectorType &amp;dst, const VectorType &amp;src, const std::pair&lt; unsigned int, unsigned int &gt; &amp;cell_range) const</div><div class="ttdoc">Local applier for the cell integrals in the left-hand side matrix-vector product evaluation.</div><div class="ttdef"><b>Definition</b> cutdg_operator.cpp:689</div></div>
+<div class="ttc" id="adata__types_8hpp_html"><div class="ttname"><a href="data__types_8hpp.html">data_types.hpp</a></div></div>
+<div class="ttc" id="adg__generic__convection__diffusion__worker_8hpp_html"><div class="ttname"><a href="dg__generic__convection__diffusion__worker_8hpp.html">dg_generic_convection_diffusion_worker.hpp</a></div></div>
+<div class="ttc" id="aexplicit__time__integration__utils_8hpp_html"><div class="ttname"><a href="explicit__time__integration__utils_8hpp.html">explicit_time_integration_utils.hpp</a></div></div>
+<div class="ttc" id="akernels_8hpp_html"><div class="ttname"><a href="kernels_8hpp.html">kernels.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CompressibleFlow_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CompressibleFlow.html">MeltPoolDG::CompressibleFlow</a></div><div class="ttdoc">Collection of convective term computations for the compressible Navier-Stokes equations.</div><div class="ttdef"><b>Definition</b> boundary_conditions.hpp:23</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CompressibleFlow_html_a73490fae730d5082b9f635582778c2da"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a73490fae730d5082b9f635582778c2da">MeltPoolDG::CompressibleFlow::ConservedVariablesGradientType</a></div><div class="ttdeci">dealii::Tensor&lt; 1, n_conserved_variables&lt; dim &gt;, dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &gt; ConservedVariablesGradientType</div><div class="ttdef"><b>Definition</b> data_types.hpp:41</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CompressibleFlow_html_acb63341992992daa69923d7e611f781d"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CompressibleFlow.html#acb63341992992daa69923d7e611f781d">MeltPoolDG::CompressibleFlow::ConservedVariablesType</a></div><div class="ttdeci">dealii::Tensor&lt; 1, n_conserved_variables&lt; dim &gt;, VectorizedArrayType &gt; ConservedVariablesType</div><div class="ttdef"><b>Definition</b> data_types.hpp:33</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CutUtil_html_a2f7423e0844ee248df7ba907faaccba1"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CutUtil.html#a2f7423e0844ee248df7ba907faaccba1">MeltPoolDG::CutUtil::MappingInfoVectorType</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; MappingInfoType&lt; dim, number &gt; &gt; &gt; MappingInfoVectorType</div><div class="ttdef"><b>Definition</b> util.hpp:56</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CutUtil_html_a65482f1d63bf468a14abfe61d4a6278a"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CutUtil.html#a65482f1d63bf468a14abfe61d4a6278a">MeltPoolDG::CutUtil::MappingInfoType</a></div><div class="ttdeci">dealii::NonMatching::MappingInfo&lt; dim, dim, dealii::VectorizedArray&lt; number &gt; &gt; MappingInfoType</div><div class="ttdef"><b>Definition</b> util.hpp:53</div></div>
+<div class="ttc" id="aoperation__scratch__data_8hpp_html"><div class="ttname"><a href="operation__scratch__data_8hpp.html">operation_scratch_data.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1ConvectiveFlux_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1ConvectiveFlux.html">MeltPoolDG::CompressibleFlow::ConvectiveFlux</a></div><div class="ttdef"><b>Definition</b> kernels.hpp:126</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1DiffusiveFlux_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1DiffusiveFlux.html">MeltPoolDG::CompressibleFlow::DiffusiveFlux</a></div><div class="ttdef"><b>Definition</b> kernels.hpp:181</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html">MeltPoolDG::CompressibleFlow::OperationScratchData</a></div><div class="ttdoc">Scratch data structure for compressible single-phase flow solvers.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:33</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator_html"><div class="ttname"><a href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html">MeltPoolDG::Utils::DGConvectionDiffusionOperator</a></div><div class="ttdef"><b>Definition</b> dg_generic_convection_diffusion_worker.hpp:231</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Utils_1_1DGConvectionOperator_html"><div class="ttname"><a href="structMeltPoolDG_1_1Utils_1_1DGConvectionOperator.html">MeltPoolDG::Utils::DGConvectionOperator</a></div><div class="ttdef"><b>Definition</b> dg_generic_convection_diffusion_worker.hpp:66</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

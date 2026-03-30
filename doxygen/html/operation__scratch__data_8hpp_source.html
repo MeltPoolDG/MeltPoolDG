@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/compressible_flow/operation_scratch_data.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/compressible_flow/operation_scratch_data.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/operation__scratch__data_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-compressible-flow-operation-scratch-data-hpp-source-file">
+<h1>include/meltpooldg/compressible_flow/operation_scratch_data.hpp Source File<a class="headerlink" href="#include-meltpooldg-compressible-flow-operation-scratch-data-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/compressible_flow/operation_scratch_data.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_bb77f7f27cd899d864c2a9921966d6b9.html">compressible_flow</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">operation_scratch_data.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="operation__scratch__data_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/aligned_vector.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;deal.II/base/vectorization.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;deal.II/dofs/dof_handler.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;deal.II/fe/fe.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;deal.II/matrix_free/matrix_free.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="compressible__flow_2boundary__conditions_8hpp.html">meltpooldg/compressible_flow/boundary_conditions.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="compressible__flow_2material_8hpp.html">meltpooldg/compressible_flow/material.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="compressible__flow_2material__data_8hpp.html">meltpooldg/compressible_flow/material_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="operation__data_8hpp.html">meltpooldg/compressible_flow/operation_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="phase__coupling__data_8hpp.html">meltpooldg/compressible_flow/phase_coupling_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="utils_8hpp.html">meltpooldg/compressible_flow/utils.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="scratch__data_8hpp.html">meltpooldg/core/scratch_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="darcy__damping__data_8hpp.html">meltpooldg/flow/darcy_damping_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="phase__change__data_8hpp.html">meltpooldg/phase_change/phase_change_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="solution__history_8hpp.html">meltpooldg/time_integration/solution_history.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1CompressibleFlow.html">MeltPoolDG::CompressibleFlow</a></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html">   32</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html">OperationScratchData</a></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a955503c24f5a0ebe766370e0f776251b">   34</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a955503c24f5a0ebe766370e0f776251b">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a9bf8222e9c3f39e39787137d55e0f048">   49</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a9bf8222e9c3f39e39787137d55e0f048">OperationScratchData</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationData.html">OperationData&lt;number&gt;</a>         &amp;flow_data_in,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                                  <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html">MaterialPhaseData&lt;number&gt;</a>     &amp;material_data_in,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                                  <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;scratch_data_in,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                                  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   dof_idx_in,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                                  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   quad_idx_in,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                                  <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1CutSolverData.html">CutSolverData&lt;number&gt;</a>         *cut_data_in = <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      : <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a1e8fa6ec304fdcc156629de6a38bc107">flow_data</a>(flow_data_in)</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a297e68273be56d0925234b16060297f2">scratch_data</a>(scratch_data_in)</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#ac8da817a089f3f861d44a644aa422ddb">material</a>(material_data_in)</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a639b3e3256a453631e1f92b5dd590e13">cut</a>(cut_data_in)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a507f0997635228dd116cd0ae95723ea7">dof_idx</a>(dof_idx_in)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a5b508f0d81598737ec2bea8fc7f61522">quad_idx</a>(quad_idx_in)</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#aefea509a59bd7cb8fd90e83bff172b8e">is_viscous</a> = <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#ac8da817a089f3f861d44a644aa422ddb">material</a>.data.dynamic_viscosity &gt; 0.;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a1e8fa6ec304fdcc156629de6a38bc107">flow_data</a>.domain_representation_type == <span class="stringliteral">&quot;cut&quot;</span>)</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        AssertThrow(</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>          cut_data_in != <span class="keyword">nullptr</span>,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>          dealii::ExcMessage(</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="stringliteral">&quot;A CompressibleFlowCutData object has to be provided to the constructor of &quot;</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            <span class="stringliteral">&quot;CompressibleFlowScratchData in the case of domain_representation_type = &#39;cut&#39;.&quot;</span>));</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a1e8fa6ec304fdcc156629de6a38bc107">   73</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationData.html">OperationData&lt;number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a1e8fa6ec304fdcc156629de6a38bc107">flow_data</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a297e68273be56d0925234b16060297f2">   76</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a297e68273be56d0925234b16060297f2">scratch_data</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#ac8da817a089f3f861d44a644aa422ddb">   79</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1Material.html">Material&lt;dim, number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#ac8da817a089f3f861d44a644aa422ddb">material</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a639b3e3256a453631e1f92b5dd590e13">   82</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1CutSolverData.html">CutSolverData&lt;number&gt;</a> *<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a639b3e3256a453631e1f92b5dd590e13">cut</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a507f0997635228dd116cd0ae95723ea7">   85</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a507f0997635228dd116cd0ae95723ea7">dof_idx</a> = 0;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a5b508f0d81598737ec2bea8fc7f61522">   88</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a5b508f0d81598737ec2bea8fc7f61522">quad_idx</a> = 0;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#aefea509a59bd7cb8fd90e83bff172b8e">   91</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#aefea509a59bd7cb8fd90e83bff172b8e">is_viscous</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#aa153675116c96f80c735a59c64397a77">   94</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">BoundaryConditions&lt;dim, number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#aa153675116c96f80c735a59c64397a77">boundary_conditions</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a9d6cb9c2316d2dd73093b09265e29eb5">   97</a></span>    dealii::AlignedVector&lt;dealii::VectorizedArray&lt;number&gt;&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a9d6cb9c2316d2dd73093b09265e29eb5">interior_penalty_parameter</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#adc0b9aacc878d1fdc4cdd551143ac4d5">  100</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory&lt;VectorType&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#adc0b9aacc878d1fdc4cdd551143ac4d5">solution_history</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a60a64d72103636b1ad4c1721fe020682">  103</a></span>    std::unique_ptr&lt;dealii::Function&lt;dim&gt;&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a60a64d72103636b1ad4c1721fe020682">body_force</a>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00115" data-start="{" data-end="}">
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a755612047aff4b899db086aa23781e42">  115</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a755612047aff4b899db086aa23781e42">reinit</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> solution_history_size)</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    {</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#adc0b9aacc878d1fdc4cdd551143ac4d5">solution_history</a>.resize(solution_history_size);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#adc0b9aacc878d1fdc4cdd551143ac4d5">solution_history</a>.apply(</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        [&amp;<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a297e68273be56d0925234b16060297f2">scratch_data</a> = <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a297e68273be56d0925234b16060297f2">scratch_data</a>, comp_flow_dof_idx = <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a507f0997635228dd116cd0ae95723ea7">dof_idx</a>](<a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a955503c24f5a0ebe766370e0f776251b">VectorType</a> &amp;v) {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>          <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a297e68273be56d0925234b16060297f2">scratch_data</a>.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#aa7f253daca546761e2e32599ad58343f">initialize_dof_vector</a>(v, comp_flow_dof_idx);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        });</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#aefea509a59bd7cb8fd90e83bff172b8e">is_viscous</a>)</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <a class="code hl_function" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#aa408ee1f6ba6d6b77c4e1024377ae15a">calculate_penalty_parameter</a>(<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a9d6cb9c2316d2dd73093b09265e29eb5">interior_penalty_parameter</a>,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                                    <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a297e68273be56d0925234b16060297f2">scratch_data</a>.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#ad230ba285d675be31ede2f975ef4fe15">get_matrix_free</a>(),</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                                    <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a1e8fa6ec304fdcc156629de6a38bc107">flow_data</a>.domain_representation_type,</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                                    <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a507f0997635228dd116cd0ae95723ea7">dof_idx</a>);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    }</div>
+</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  };</div>
+</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00138" data-start="{" data-end="};">
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html">  138</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html">MultiphaseOperationScratchData</a></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a959d1b4289c2ad27d9e77bc6f002ef58">  140</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a959d1b4289c2ad27d9e77bc6f002ef58">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="foldopen" id="foldopen00157" data-start="{" data-end="}">
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae8cfa9d6f20c827ffce56e7718bbd510">  157</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae8cfa9d6f20c827ffce56e7718bbd510">MultiphaseOperationScratchData</a>(</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationData.html">OperationData&lt;number&gt;</a>                                 &amp;flow_data_in,</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html">MaterialPhaseData&lt;number&gt;</a>                             &amp;material_data_gas_in,</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html">MaterialPhaseData&lt;number&gt;</a>                             &amp;material_data_liquid_in,</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Multiphase_1_1PhaseChangeData.html">Multiphase::PhaseChangeData&lt;number&gt;</a>                   &amp;phase_change_data_in,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1CutSolverData.html">CutSolverData&lt;number&gt;</a>                                 &amp;cut_data_in,</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Multiphase_1_1CompressibleFlowPhaseCouplingData.html">Multiphase::CompressibleFlowPhaseCouplingData&lt;number&gt;</a> &amp;phase_coupling_data_in,</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1DarcyDampingData.html">Flow::DarcyDampingData&lt;number&gt;</a>                        &amp;darcy_damping_data_in,</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>      <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a>                         &amp;scratch_data_in,</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                           dof_idx_in,</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                                           quad_idx_in)</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      : <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a7b3358c554b4a5b2cb1c180a644705bc">flow_data</a>(flow_data_in)</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae17e30bda800218b6c563e625c45f03f">scratch_data</a>(scratch_data_in)</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a6f89a7b5b60e14ed610cdd0ac0719440">material_gas</a>(material_data_gas_in)</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ac465a3b1ce1d74c3ec6422b37c72353d">material_liquid</a>(material_data_liquid_in)</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae5734921cbc7109952c0cc63686d6226">phase_change</a>(phase_change_data_in)</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae761ac045bbd9813a3bd46277bcaddbc">cut</a>(cut_data_in)</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a0e1d7b1232b329d502957a7ef92d5261">phase_coupling</a>(phase_coupling_data_in)</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a017c5b47ae0c6a246bb99131ee22c597">darcy_damping</a>(darcy_damping_data_in)</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a40429f4a1c5234873d4c28e055e2ba08">dof_idx</a>(dof_idx_in)</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      , <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#afeb531327e23becb292b0fcb21ef3f58">quad_idx</a>(quad_idx_in)</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>      <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a96b07abc62f88d0201c0a642124384d8">is_viscous</a> =</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a6f89a7b5b60e14ed610cdd0ac0719440">material_gas</a>.data.dynamic_viscosity &gt; 0. or <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ac465a3b1ce1d74c3ec6422b37c72353d">material_liquid</a>.data.dynamic_viscosity &gt; 0.;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    }</div>
+</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a7b3358c554b4a5b2cb1c180a644705bc">  184</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationData.html">OperationData&lt;number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a7b3358c554b4a5b2cb1c180a644705bc">flow_data</a>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae17e30bda800218b6c563e625c45f03f">  187</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae17e30bda800218b6c563e625c45f03f">scratch_data</a>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a6f89a7b5b60e14ed610cdd0ac0719440">  190</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1Material.html">Material&lt;dim, number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a6f89a7b5b60e14ed610cdd0ac0719440">material_gas</a>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ac465a3b1ce1d74c3ec6422b37c72353d">  193</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1Material.html">Material&lt;dim, number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ac465a3b1ce1d74c3ec6422b37c72353d">material_liquid</a>;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae5734921cbc7109952c0cc63686d6226">  196</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Multiphase_1_1PhaseChangeData.html">Multiphase::PhaseChangeData&lt;number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae5734921cbc7109952c0cc63686d6226">phase_change</a>;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae761ac045bbd9813a3bd46277bcaddbc">  199</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1CutSolverData.html">CutSolverData&lt;number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae761ac045bbd9813a3bd46277bcaddbc">cut</a>;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a0e1d7b1232b329d502957a7ef92d5261">  202</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Multiphase_1_1CompressibleFlowPhaseCouplingData.html">Multiphase::CompressibleFlowPhaseCouplingData&lt;number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a0e1d7b1232b329d502957a7ef92d5261">phase_coupling</a>;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a017c5b47ae0c6a246bb99131ee22c597">  205</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Flow_1_1DarcyDampingData.html">Flow::DarcyDampingData&lt;number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a017c5b47ae0c6a246bb99131ee22c597">darcy_damping</a>;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a40429f4a1c5234873d4c28e055e2ba08">  208</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a40429f4a1c5234873d4c28e055e2ba08">dof_idx</a> = 0;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#afeb531327e23becb292b0fcb21ef3f58">  211</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#afeb531327e23becb292b0fcb21ef3f58">quad_idx</a> = 0;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a96b07abc62f88d0201c0a642124384d8">  214</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a96b07abc62f88d0201c0a642124384d8">is_viscous</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a2c35ce350d676863740cf3cbebbdeccd">  217</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">BoundaryConditions&lt;dim, number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a2c35ce350d676863740cf3cbebbdeccd">boundary_conditions</a>;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#aaac05fef083cc6637c29821ac11f1c8b">  220</a></span>    dealii::AlignedVector&lt;dealii::VectorizedArray&lt;number&gt;&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#aaac05fef083cc6637c29821ac11f1c8b">interior_penalty_parameter</a>;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a1dec389501bdff436dd1fe5c9ccd248b">  223</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory&lt;VectorType&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a1dec389501bdff436dd1fe5c9ccd248b">solution_history</a>;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a8ca7cb40feefec82aa6816a0384d3e2c">  226</a></span>    std::unique_ptr&lt;dealii::Function&lt;dim&gt;&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a8ca7cb40feefec82aa6816a0384d3e2c">body_force</a>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00238" data-start="{" data-end="}">
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a4d773902f135c72e6846802fc22013a7">  238</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a4d773902f135c72e6846802fc22013a7">reinit</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> solution_history_size)</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>      <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a1dec389501bdff436dd1fe5c9ccd248b">solution_history</a>.resize(solution_history_size);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>      <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a1dec389501bdff436dd1fe5c9ccd248b">solution_history</a>.apply(</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        [&amp;<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae17e30bda800218b6c563e625c45f03f">scratch_data</a> = <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae17e30bda800218b6c563e625c45f03f">scratch_data</a>, comp_flow_dof_idx = <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a40429f4a1c5234873d4c28e055e2ba08">dof_idx</a>](<a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a959d1b4289c2ad27d9e77bc6f002ef58">VectorType</a> &amp;v) {</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>          <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae17e30bda800218b6c563e625c45f03f">scratch_data</a>.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#aa7f253daca546761e2e32599ad58343f">initialize_dof_vector</a>(v, comp_flow_dof_idx);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        });</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a96b07abc62f88d0201c0a642124384d8">is_viscous</a>)</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>        <a class="code hl_function" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#aa408ee1f6ba6d6b77c4e1024377ae15a">calculate_penalty_parameter</a>(<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#aaac05fef083cc6637c29821ac11f1c8b">interior_penalty_parameter</a>,</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                                    <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae17e30bda800218b6c563e625c45f03f">scratch_data</a>.<a class="code hl_function" href="classMeltPoolDG_1_1ScratchData.html#ad230ba285d675be31ede2f975ef4fe15">get_matrix_free</a>(),</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                                    <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a7b3358c554b4a5b2cb1c180a644705bc">flow_data</a>.domain_representation_type,</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                                    <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a40429f4a1c5234873d4c28e055e2ba08">dof_idx</a>);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    }</div>
+</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  };</div>
+</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>} <span class="comment">// namespace MeltPoolDG::CompressibleFlow</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions_html"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a></div><div class="ttdoc">Helper class taking care of all boundary condition related computations for the compressible flow sol...</div><div class="ttdef"><b>Definition</b> boundary_conditions.hpp:51</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CompressibleFlow_1_1Material_html"><div class="ttname"><a href="classMeltPoolDG_1_1CompressibleFlow_1_1Material.html">MeltPoolDG::CompressibleFlow::Material</a></div><div class="ttdoc">A class which provides all relevant material properties for a specific phase.</div><div class="ttdef"><b>Definition</b> material_data.hpp:18</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdoc">Container for shared scratch data between operations/operators.</div><div class="ttdef"><b>Definition</b> scratch_data.hpp:61</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_aa7f253daca546761e2e32599ad58343f"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#aa7f253daca546761e2e32599ad58343f">MeltPoolDG::ScratchData::initialize_dof_vector</a></div><div class="ttdeci">void initialize_dof_vector(VectorType &amp;vec, const unsigned int dof_idx) const</div><div class="ttdoc">Initialize a distributed vector for a given DoF index.</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:272</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html_ad230ba285d675be31ede2f975ef4fe15"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html#ad230ba285d675be31ede2f975ef4fe15">MeltPoolDG::ScratchData::get_matrix_free</a></div><div class="ttdeci">dealii::MatrixFree&lt; dim, number, VectorizedArrayType &gt; &amp; get_matrix_free()</div><div class="ttdoc">Access the internal MatrixFree object (non-const).</div><div class="ttdef"><b>Definition</b> scratch_data.cpp:424</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory_html"><div class="ttname"><a href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">MeltPoolDG::TimeIntegration::SolutionHistory</a></div><div class="ttdef"><b>Definition</b> solution_history.hpp:21</div></div>
+<div class="ttc" id="acompressible__flow_2boundary__conditions_8hpp_html"><div class="ttname"><a href="compressible__flow_2boundary__conditions_8hpp.html">boundary_conditions.hpp</a></div></div>
+<div class="ttc" id="acompressible__flow_2material_8hpp_html"><div class="ttname"><a href="compressible__flow_2material_8hpp.html">material.hpp</a></div></div>
+<div class="ttc" id="acompressible__flow_2material__data_8hpp_html"><div class="ttname"><a href="compressible__flow_2material__data_8hpp.html">material_data.hpp</a></div></div>
+<div class="ttc" id="adarcy__damping__data_8hpp_html"><div class="ttname"><a href="darcy__damping__data_8hpp.html">darcy_damping_data.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CompressibleFlow_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CompressibleFlow.html">MeltPoolDG::CompressibleFlow</a></div><div class="ttdoc">Collection of convective term computations for the compressible Navier-Stokes equations.</div><div class="ttdef"><b>Definition</b> boundary_conditions.hpp:23</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CompressibleFlow_html_aa408ee1f6ba6d6b77c4e1024377ae15a"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CompressibleFlow.html#aa408ee1f6ba6d6b77c4e1024377ae15a">MeltPoolDG::CompressibleFlow::calculate_penalty_parameter</a></div><div class="ttdeci">void calculate_penalty_parameter(dealii::AlignedVector&lt; dealii::VectorizedArray&lt; Number &gt; &gt; &amp;array_penalty_parameter, const dealii::MatrixFree&lt; dim, Number &gt; &amp;matrix_free, const std::string &amp;domain_representation_type, const unsigned int dof_index=0, const Number scaling_factor=1.0)</div><div class="ttdoc">This function computes the local values of the internal penalty parameter used in the viscous numeric...</div><div class="ttdef"><b>Definition</b> utils.hpp:221</div></div>
+<div class="ttc" id="aoperation__data_8hpp_html"><div class="ttname"><a href="operation__data_8hpp.html">operation_data.hpp</a></div></div>
+<div class="ttc" id="aphase__change__data_8hpp_html"><div class="ttname"><a href="phase__change__data_8hpp.html">phase_change_data.hpp</a></div></div>
+<div class="ttc" id="aphase__coupling__data_8hpp_html"><div class="ttname"><a href="phase__coupling__data_8hpp.html">phase_coupling_data.hpp</a></div></div>
+<div class="ttc" id="ascratch__data_8hpp_html"><div class="ttname"><a href="scratch__data_8hpp.html">scratch_data.hpp</a></div></div>
+<div class="ttc" id="asolution__history_8hpp_html"><div class="ttname"><a href="solution__history_8hpp.html">solution_history.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1CutSolverData_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1CutSolverData.html">MeltPoolDG::CompressibleFlow::CutSolverData</a></div><div class="ttdoc">Collection of cut-related solver parameters required by the cut single-phase and multiphase compressi...</div><div class="ttdef"><b>Definition</b> operation_data.hpp:171</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html">MeltPoolDG::CompressibleFlow::MaterialPhaseData</a></div><div class="ttdoc">Collection of material parameters for a specific fluid phase.</div><div class="ttdef"><b>Definition</b> material.hpp:119</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData</a></div><div class="ttdoc">Scratch data structure for compressible multiphase flow solvers.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:139</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_a017c5b47ae0c6a246bb99131ee22c597"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a017c5b47ae0c6a246bb99131ee22c597">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::darcy_damping</a></div><div class="ttdeci">const Flow::DarcyDampingData&lt; number &gt; darcy_damping</div><div class="ttdoc">Parameters for darcy damping in the solid domain and mushy zone.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:205</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_a0e1d7b1232b329d502957a7ef92d5261"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a0e1d7b1232b329d502957a7ef92d5261">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::phase_coupling</a></div><div class="ttdeci">const Multiphase::CompressibleFlowPhaseCouplingData&lt; number &gt; phase_coupling</div><div class="ttdoc">Parameters for the coupling of two compressible (or nearly incompressible) phases.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:202</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_a1dec389501bdff436dd1fe5c9ccd248b"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a1dec389501bdff436dd1fe5c9ccd248b">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::solution_history</a></div><div class="ttdeci">TimeIntegration::SolutionHistory&lt; VectorType &gt; solution_history</div><div class="ttdoc">Solution history object.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:223</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_a2c35ce350d676863740cf3cbebbdeccd"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a2c35ce350d676863740cf3cbebbdeccd">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::boundary_conditions</a></div><div class="ttdeci">BoundaryConditions&lt; dim, number &gt; boundary_conditions</div><div class="ttdoc">Object taking care of all boundary condition related computations.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:217</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_a40429f4a1c5234873d4c28e055e2ba08"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a40429f4a1c5234873d4c28e055e2ba08">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::dof_idx</a></div><div class="ttdeci">const unsigned int dof_idx</div><div class="ttdoc">DoF index within the matrix-free object.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:208</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_a4d773902f135c72e6846802fc22013a7"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a4d773902f135c72e6846802fc22013a7">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::reinit</a></div><div class="ttdeci">void reinit(const unsigned solution_history_size)</div><div class="ttdoc">Set up the internal data structures.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:238</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_a6f89a7b5b60e14ed610cdd0ac0719440"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a6f89a7b5b60e14ed610cdd0ac0719440">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::material_gas</a></div><div class="ttdeci">const Material&lt; dim, number &gt; material_gas</div><div class="ttdoc">Material parameters and thermodynamic relations for the gas phase.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:190</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_a7b3358c554b4a5b2cb1c180a644705bc"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a7b3358c554b4a5b2cb1c180a644705bc">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::flow_data</a></div><div class="ttdeci">const OperationData&lt; number &gt; flow_data</div><div class="ttdoc">General parameters for the compressible Navier-Stokes operators.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:184</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_a8ca7cb40feefec82aa6816a0384d3e2c"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a8ca7cb40feefec82aa6816a0384d3e2c">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::body_force</a></div><div class="ttdeci">std::unique_ptr&lt; dealii::Function&lt; dim &gt; &gt; body_force</div><div class="ttdoc">Pointer to the body force function.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:226</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_a959d1b4289c2ad27d9e77bc6f002ef58"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a959d1b4289c2ad27d9e77bc6f002ef58">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:140</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_a96b07abc62f88d0201c0a642124384d8"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#a96b07abc62f88d0201c0a642124384d8">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::is_viscous</a></div><div class="ttdeci">bool is_viscous</div><div class="ttdoc">Boolean variable indicating whether viscosity is present.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:214</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_aaac05fef083cc6637c29821ac11f1c8b"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#aaac05fef083cc6637c29821ac11f1c8b">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::interior_penalty_parameter</a></div><div class="ttdeci">dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; interior_penalty_parameter</div><div class="ttdoc">Penalty parameter for the Symmetric Interior Penalty Galerkin (SIPG) method.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:220</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_ac465a3b1ce1d74c3ec6422b37c72353d"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ac465a3b1ce1d74c3ec6422b37c72353d">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::material_liquid</a></div><div class="ttdeci">const Material&lt; dim, number &gt; material_liquid</div><div class="ttdoc">Material parameters and thermodynamic relations for the liquid phase.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:193</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_ae17e30bda800218b6c563e625c45f03f"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae17e30bda800218b6c563e625c45f03f">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::scratch_data</a></div><div class="ttdeci">const ScratchData&lt; dim, dim, number &gt; &amp; scratch_data</div><div class="ttdoc">Mapping-, finite-element-, and quadrature-related parameters.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:187</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_ae5734921cbc7109952c0cc63686d6226"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae5734921cbc7109952c0cc63686d6226">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::phase_change</a></div><div class="ttdeci">const Multiphase::PhaseChangeData&lt; number &gt; phase_change</div><div class="ttdoc">Parameters related to liquid-gas and solid-liquid phase transitions.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:196</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_ae761ac045bbd9813a3bd46277bcaddbc"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae761ac045bbd9813a3bd46277bcaddbc">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::cut</a></div><div class="ttdeci">const CutSolverData&lt; number &gt; cut</div><div class="ttdoc">Cut-related parameters.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:199</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_ae8cfa9d6f20c827ffce56e7718bbd510"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#ae8cfa9d6f20c827ffce56e7718bbd510">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::MultiphaseOperationScratchData</a></div><div class="ttdeci">MultiphaseOperationScratchData(const OperationData&lt; number &gt; &amp;flow_data_in, const MaterialPhaseData&lt; number &gt; &amp;material_data_gas_in, const MaterialPhaseData&lt; number &gt; &amp;material_data_liquid_in, const Multiphase::PhaseChangeData&lt; number &gt; &amp;phase_change_data_in, const CutSolverData&lt; number &gt; &amp;cut_data_in, const Multiphase::CompressibleFlowPhaseCouplingData&lt; number &gt; &amp;phase_coupling_data_in, const Flow::DarcyDampingData&lt; number &gt; &amp;darcy_damping_data_in, const ScratchData&lt; dim, dim, number &gt; &amp;scratch_data_in, const unsigned int dof_idx_in, const unsigned int quad_idx_in)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:157</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData_html_afeb531327e23becb292b0fcb21ef3f58"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html#afeb531327e23becb292b0fcb21ef3f58">MeltPoolDG::CompressibleFlow::MultiphaseOperationScratchData::quad_idx</a></div><div class="ttdeci">const unsigned int quad_idx</div><div class="ttdoc">Quadrature index within the matrix-free object.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:211</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationData_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationData.html">MeltPoolDG::CompressibleFlow::OperationData</a></div><div class="ttdoc">Collection of parameters required by the compressible Navier-Stokes operator.</div><div class="ttdef"><b>Definition</b> operation_data.hpp:33</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html">MeltPoolDG::CompressibleFlow::OperationScratchData</a></div><div class="ttdoc">Scratch data structure for compressible single-phase flow solvers.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:33</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_a1e8fa6ec304fdcc156629de6a38bc107"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a1e8fa6ec304fdcc156629de6a38bc107">MeltPoolDG::CompressibleFlow::OperationScratchData::flow_data</a></div><div class="ttdeci">const OperationData&lt; number &gt; flow_data</div><div class="ttdoc">General parameters for the compressible Navier-Stokes operators.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:73</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_a297e68273be56d0925234b16060297f2"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a297e68273be56d0925234b16060297f2">MeltPoolDG::CompressibleFlow::OperationScratchData::scratch_data</a></div><div class="ttdeci">const ScratchData&lt; dim, dim, number &gt; &amp; scratch_data</div><div class="ttdoc">Mapping-, finite-element-, and quadrature-related parameters.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:76</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_a507f0997635228dd116cd0ae95723ea7"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a507f0997635228dd116cd0ae95723ea7">MeltPoolDG::CompressibleFlow::OperationScratchData::dof_idx</a></div><div class="ttdeci">const unsigned int dof_idx</div><div class="ttdoc">DoF index within the matrix-free object.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:85</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_a5b508f0d81598737ec2bea8fc7f61522"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a5b508f0d81598737ec2bea8fc7f61522">MeltPoolDG::CompressibleFlow::OperationScratchData::quad_idx</a></div><div class="ttdeci">const unsigned int quad_idx</div><div class="ttdoc">Quadrature index within the matrix-free object.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:88</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_a60a64d72103636b1ad4c1721fe020682"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a60a64d72103636b1ad4c1721fe020682">MeltPoolDG::CompressibleFlow::OperationScratchData::body_force</a></div><div class="ttdeci">std::unique_ptr&lt; dealii::Function&lt; dim &gt; &gt; body_force</div><div class="ttdoc">Pointer to the body force function.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:103</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_a639b3e3256a453631e1f92b5dd590e13"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a639b3e3256a453631e1f92b5dd590e13">MeltPoolDG::CompressibleFlow::OperationScratchData::cut</a></div><div class="ttdeci">const CutSolverData&lt; number &gt; * cut</div><div class="ttdoc">Cut-related parameters (only relevant for cut applications)</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:82</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_a755612047aff4b899db086aa23781e42"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a755612047aff4b899db086aa23781e42">MeltPoolDG::CompressibleFlow::OperationScratchData::reinit</a></div><div class="ttdeci">void reinit(const unsigned solution_history_size)</div><div class="ttdoc">Set up the internal data structures.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:115</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_a955503c24f5a0ebe766370e0f776251b"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a955503c24f5a0ebe766370e0f776251b">MeltPoolDG::CompressibleFlow::OperationScratchData::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:34</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_a9bf8222e9c3f39e39787137d55e0f048"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a9bf8222e9c3f39e39787137d55e0f048">MeltPoolDG::CompressibleFlow::OperationScratchData::OperationScratchData</a></div><div class="ttdeci">OperationScratchData(const OperationData&lt; number &gt; &amp;flow_data_in, const MaterialPhaseData&lt; number &gt; &amp;material_data_in, const ScratchData&lt; dim, dim, number &gt; &amp;scratch_data_in, const unsigned int dof_idx_in, const unsigned int quad_idx_in, const CutSolverData&lt; number &gt; *cut_data_in=nullptr)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:49</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_a9d6cb9c2316d2dd73093b09265e29eb5"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a9d6cb9c2316d2dd73093b09265e29eb5">MeltPoolDG::CompressibleFlow::OperationScratchData::interior_penalty_parameter</a></div><div class="ttdeci">dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; interior_penalty_parameter</div><div class="ttdoc">Penalty parameter for the Symmetric Interior Penalty Galerkin (SIPG) method.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:97</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_aa153675116c96f80c735a59c64397a77"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#aa153675116c96f80c735a59c64397a77">MeltPoolDG::CompressibleFlow::OperationScratchData::boundary_conditions</a></div><div class="ttdeci">BoundaryConditions&lt; dim, number &gt; boundary_conditions</div><div class="ttdoc">Object taking care of all boundary condition related computations.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:94</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_ac8da817a089f3f861d44a644aa422ddb"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#ac8da817a089f3f861d44a644aa422ddb">MeltPoolDG::CompressibleFlow::OperationScratchData::material</a></div><div class="ttdeci">const Material&lt; dim, number &gt; material</div><div class="ttdoc">Material parameters and thermodynamic relations.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:79</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_adc0b9aacc878d1fdc4cdd551143ac4d5"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#adc0b9aacc878d1fdc4cdd551143ac4d5">MeltPoolDG::CompressibleFlow::OperationScratchData::solution_history</a></div><div class="ttdeci">TimeIntegration::SolutionHistory&lt; VectorType &gt; solution_history</div><div class="ttdoc">Solution history object.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:100</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData_html_aefea509a59bd7cb8fd90e83bff172b8e"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#aefea509a59bd7cb8fd90e83bff172b8e">MeltPoolDG::CompressibleFlow::OperationScratchData::is_viscous</a></div><div class="ttdeci">bool is_viscous</div><div class="ttdoc">Boolean variable indicating whether viscosity is present.</div><div class="ttdef"><b>Definition</b> operation_scratch_data.hpp:91</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Flow_1_1DarcyDampingData_html"><div class="ttname"><a href="structMeltPoolDG_1_1Flow_1_1DarcyDampingData.html">MeltPoolDG::Flow::DarcyDampingData</a></div><div class="ttdoc">Collection of parameters for Darcy damping.</div><div class="ttdef"><b>Definition</b> darcy_damping_data.hpp:16</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Multiphase_1_1CompressibleFlowPhaseCouplingData_html"><div class="ttname"><a href="structMeltPoolDG_1_1Multiphase_1_1CompressibleFlowPhaseCouplingData.html">MeltPoolDG::Multiphase::CompressibleFlowPhaseCouplingData</a></div><div class="ttdoc">Data structure, which contains parameters specifically for the phase coupling of compressible multiph...</div><div class="ttdef"><b>Definition</b> phase_coupling_data.hpp:23</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Multiphase_1_1PhaseChangeData_html"><div class="ttname"><a href="structMeltPoolDG_1_1Multiphase_1_1PhaseChangeData.html">MeltPoolDG::Multiphase::PhaseChangeData</a></div><div class="ttdoc">Collection of parameters related to liquid-gas and solid-liquid phase transitions.</div><div class="ttdef"><b>Definition</b> phase_change_data.hpp:12</div></div>
+<div class="ttc" id="autils_8hpp_html"><div class="ttname"><a href="utils_8hpp.html">utils.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
