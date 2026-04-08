@@ -1,0 +1,496 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/species_transport/state_views_mixins.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/species_transport/state_views_mixins.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/species__transport_2state__views__mixins_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-species-transport-state-views-mixins-hpp-source-file">
+<h1>include/meltpooldg/species_transport/state_views_mixins.hpp Source File<a class="headerlink" href="#include-meltpooldg-species-transport-state-views-mixins-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/species_transport/state_views_mixins.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_039686281a67abccd75d5178e86105cb.html">species_transport</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">state_views_mixins.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="species__transport_2state__views__mixins_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/exception_macros.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;deal.II/base/exceptions.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="concepts_8hpp.html">meltpooldg/utilities/concepts.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1SpeciesTransport.html">MeltPoolDG::SpeciesTransport</a></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_start_index, <span class="keywordtype">int</span> n_species, <span class="keyword">typename</span> ValueType, <span class="keyword">typename</span> Derived&gt;</div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html">   30</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html">DofValueMixin</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a3243445cec925a5bca3f3ec871675572">   32</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a3243445cec925a5bca3f3ec871675572">value_type</a> = std::conditional_t&lt;std::is_const_v&lt;std::remove_reference_t&lt;ValueType&gt;&gt;,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                                          std::add_const_t&lt;typename ValueType::value_type&gt;,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                                          <span class="keyword">typename</span> ValueType::value_type&gt;;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_typedef" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a3243445cec925a5bca3f3ec871675572">value_type</a> &amp;</div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#aec7be721dce500fde5d4ae3cbfe6fdc6">   43</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#aec7be721dce500fde5d4ae3cbfe6fdc6">partial_density</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> species_component)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      AssertIndexRange(species_component, n_species);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      <span class="keywordflow">if</span> (species_component &lt; n_species - 1)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>          <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a40d0709b58a7cc2af5e72aa9037188c4">value</a>()[n_start_index + species_component];</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#af638200ec0192b87ab93789479c557d0">last_species_partial_density</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">typename</span> ValueType::value_type</div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="}">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a7bdf3a1fd585b94f44f94a20423886eb">   60</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a7bdf3a1fd585b94f44f94a20423886eb">mass_fraction</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> species_component)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      AssertIndexRange(species_component, n_species);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <span class="keywordflow">if</span> (species_component &lt; n_species - 1)</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a40d0709b58a7cc2af5e72aa9037188c4">value</a>()[n_start_index + species_component] / <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a7110eee778947eb5f9283f3696bc814e">derived</a>().density();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a5f10d98f1eb31e84a5a2339b6a33ae95">last_species_mass_fraction</a>();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    ValueType &amp;</div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a40d0709b58a7cc2af5e72aa9037188c4">   71</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a40d0709b58a7cc2af5e72aa9037188c4">value</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived &amp;<span class="keyword">&gt;</span>(*this).value();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
+</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">const</span> Derived &amp;</div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a7110eee778947eb5f9283f3696bc814e">   77</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a7110eee778947eb5f9283f3696bc814e">derived</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived &amp;<span class="keyword">&gt;</span>(*this);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
+</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">typename</span> ValueType::value_type</div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a5f10d98f1eb31e84a5a2339b6a33ae95">   89</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a5f10d98f1eb31e84a5a2339b6a33ae95">last_species_mass_fraction</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a220ab538dfa990ecf5504baf4836cfba">last_species_cache</a>.mass_fraction.has_value())</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a220ab538dfa990ecf5504baf4836cfba">last_species_cache</a>.mass_fraction.value();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>          <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a220ab538dfa990ecf5504baf4836cfba">last_species_cache</a>.mass_fraction = <span class="keyword">typename</span> ValueType::value_type(1.);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>          <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_species - 1; ++i)</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>              <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a220ab538dfa990ecf5504baf4836cfba">last_species_cache</a>.mass_fraction.value() -= <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#ab4b9fbc4a18fe84cf6d630ffaf215367">mass_fraction</a>(i);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>          <span class="keywordflow">return</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a220ab538dfa990ecf5504baf4836cfba">last_species_cache</a>.mass_fraction.value();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
+</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_typedef" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a3243445cec925a5bca3f3ec871675572">value_type</a> &amp;</div>
+<div class="foldopen" id="foldopen00111" data-start="{" data-end="}">
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#af638200ec0192b87ab93789479c557d0">  111</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#af638200ec0192b87ab93789479c557d0">last_species_partial_density</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a220ab538dfa990ecf5504baf4836cfba">last_species_cache</a>.partial_density.has_value())</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a220ab538dfa990ecf5504baf4836cfba">last_species_cache</a>.partial_density.value();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        {</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>          <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a220ab538dfa990ecf5504baf4836cfba">last_species_cache</a>.partial_density = <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a7110eee778947eb5f9283f3696bc814e">derived</a>().density() * <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a5f10d98f1eb31e84a5a2339b6a33ae95">last_species_mass_fraction</a>();</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>          <span class="keywordflow">return</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a220ab538dfa990ecf5504baf4836cfba">last_species_cache</a>.partial_density.value();</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
+</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">struct</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    {</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#ab4b9fbc4a18fe84cf6d630ffaf215367">  125</a></span>      <span class="keyword">mutable</span> std::optional&lt;typename ValueType::value_type&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#ab4b9fbc4a18fe84cf6d630ffaf215367">mass_fraction</a>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#aea6645c0fd94e8a1d45105347835d814">  126</a></span>      <span class="keyword">mutable</span> std::optional&lt;typename ValueType::value_type&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#aea6645c0fd94e8a1d45105347835d814">partial_density</a>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a220ab538dfa990ecf5504baf4836cfba">  127</a></span>    } <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a220ab538dfa990ecf5504baf4836cfba">last_species_cache</a>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  };</div>
+</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_species, <span class="keyword">typename</span> ValueType, <span class="keyword">typename</span> Derived&gt;</div>
+<div class="foldopen" id="foldopen00131" data-start="{" data-end="};">
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html">  131</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html">DerivedPartialValueMixin</a></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#aa797f27b131ad4f53ab79f73eb347b99">  133</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#aa797f27b131ad4f53ab79f73eb347b99">value_type</a> = std::conditional_t&lt;std::is_const_v&lt;std::remove_reference_t&lt;ValueType&gt;&gt;,</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                                          std::add_const_t&lt;typename ValueType::value_type&gt;,</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                                          <span class="keyword">typename</span> ValueType::value_type&gt;;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keyword">typename</span> ValueType::value_type</div>
+<div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a4cdc680cca787fe96713c9176320ff1e">  144</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a4cdc680cca787fe96713c9176320ff1e">partial_pressure</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> species_component)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a803d264f269c3b3c74bad65f39fb92d8">derived</a>().mole_fraction(species_component) * <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a803d264f269c3b3c74bad65f39fb92d8">derived</a>().thermodynamic_pressure();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    }</div>
+</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keyword">typename</span> ValueType::value_type</div>
+<div class="foldopen" id="foldopen00157" data-start="{" data-end="}">
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a2f2b4b91511e52838437c78775efa455">  157</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a2f2b4b91511e52838437c78775efa455">partial_inner_energy</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> species_component)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a803d264f269c3b3c74bad65f39fb92d8">derived</a>().specific_inner_energy() * <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a803d264f269c3b3c74bad65f39fb92d8">derived</a>().mass_fraction(species_component);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    }</div>
+</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    ValueType &amp;</div>
+<div class="foldopen" id="foldopen00164" data-start="{" data-end="}">
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a2f54eb57080e1f1ab19db83e0e4a3e74">  164</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a2f54eb57080e1f1ab19db83e0e4a3e74">value</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived &amp;<span class="keyword">&gt;</span>(*this).value();</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    }</div>
+</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keyword">const</span> Derived &amp;</div>
+<div class="foldopen" id="foldopen00170" data-start="{" data-end="}">
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a803d264f269c3b3c74bad65f39fb92d8">  170</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a803d264f269c3b3c74bad65f39fb92d8">derived</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived &amp;<span class="keyword">&gt;</span>(*this);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    }</div>
+</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  };</div>
+</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_start_index,</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>            <span class="keywordtype">int</span> n_species,</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>            <span class="keyword">typename</span> ValueType,</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>            <span class="keyword">typename</span> GradientType,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>            <span class="keyword">typename</span> Derived&gt;</div>
+<div class="foldopen" id="foldopen00194" data-start="{" data-end="};">
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html">  194</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html">GradientValueMixin</a></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a8319f794acc65e689b6f8d27093e16de">  196</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a8319f794acc65e689b6f8d27093e16de">value_type</a> = std::conditional_t&lt;std::is_const_v&lt;std::remove_reference_t&lt;ValueType&gt;&gt;,</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                                          std::add_const_t&lt;typename ValueType::value_type&gt;,</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                                          <span class="keyword">typename</span> ValueType::value_type&gt;;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a0dad03f0aa16d62bac6fdfe7401c84a3">  200</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a0dad03f0aa16d62bac6fdfe7401c84a3">gradient_type</a> = std::conditional_t&lt;std::is_const_v&lt;std::remove_reference_t&lt;GradientType&gt;&gt;,</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                                             std::add_const_t&lt;typename GradientType::value_type&gt;,</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                                             <span class="keyword">typename</span> GradientType::value_type&gt;;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <a class="code hl_typedef" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a0dad03f0aa16d62bac6fdfe7401c84a3">gradient_type</a> &amp;</div>
+<div class="foldopen" id="foldopen00211" data-start="{" data-end="}">
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a6b850964f3841354d47a2dc398e5c9e7">  211</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a6b850964f3841354d47a2dc398e5c9e7">grad_partial_density</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> species_component)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>      AssertIndexRange(species_component, n_species);</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      <span class="keywordflow">if</span> (species_component &lt; n_species - 1)</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a98e618a4dbe055b2128a0bbc3cd46d6b">gradient_value</a>()[n_start_index + species_component];</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a9fe35c4e8101ed66c064f595f4faad2c">last_species_grad_partial_density</a>();</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    }</div>
+</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keyword">typename</span> GradientType::value_type</div>
+<div class="foldopen" id="foldopen00227" data-start="{" data-end="}">
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5743a747a77c6f90c20bc6f4f04db95a">  227</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5743a747a77c6f90c20bc6f4f04db95a">grad_mass_fraction</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> species_component)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>      AssertIndexRange(species_component, n_species);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>      <span class="keywordflow">if</span> (species_component &lt; n_species - 1)</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        <span class="keywordflow">return</span> (<a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a98e618a4dbe055b2128a0bbc3cd46d6b">gradient_value</a>()[n_start_index + species_component] -</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5fd446e4624693ec1b7d12e0108c945f">derived</a>().grad_density() * <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5fd446e4624693ec1b7d12e0108c945f">derived</a>().<a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#ae86a7bdc530619dd8f285c058b0fb90e">mass_fraction</a>(species_component)) /</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>               <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5fd446e4624693ec1b7d12e0108c945f">derived</a>().density();</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#afe480e89b274c43772e7d98f97880937">last_species_grad_mass_fraction</a>();</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    }</div>
+</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    ValueType &amp;</div>
+<div class="foldopen" id="foldopen00241" data-start="{" data-end="}">
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a8e9b9bd27fd18cc1c73e48d7b4296a55">  241</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a8e9b9bd27fd18cc1c73e48d7b4296a55">value</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived &amp;<span class="keyword">&gt;</span>(*this).value();</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    }</div>
+</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    GradientType &amp;</div>
+<div class="foldopen" id="foldopen00247" data-start="{" data-end="}">
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a98e618a4dbe055b2128a0bbc3cd46d6b">  247</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a98e618a4dbe055b2128a0bbc3cd46d6b">gradient_value</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived &amp;<span class="keyword">&gt;</span>(*this).gradient_value();</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    }</div>
+</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keyword">const</span> Derived &amp;</div>
+<div class="foldopen" id="foldopen00253" data-start="{" data-end="}">
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5fd446e4624693ec1b7d12e0108c945f">  253</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5fd446e4624693ec1b7d12e0108c945f">derived</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived &amp;<span class="keyword">&gt;</span>(*this);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    }</div>
+</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <a class="code hl_typedef" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a0dad03f0aa16d62bac6fdfe7401c84a3">gradient_type</a> &amp;</div>
+<div class="foldopen" id="foldopen00265" data-start="{" data-end="}">
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#afe480e89b274c43772e7d98f97880937">  265</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#afe480e89b274c43772e7d98f97880937">last_species_grad_mass_fraction</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#aeb565277778ad589fde47a75ddb98b7a">last_species_cache</a>.mass_fraction.has_value())</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#aeb565277778ad589fde47a75ddb98b7a">last_species_cache</a>.mass_fraction.value();</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        {</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>          <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#aeb565277778ad589fde47a75ddb98b7a">last_species_cache</a>.mass_fraction = <span class="keyword">typename</span> GradientType::value_type();</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>          <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_species - 1; ++i)</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            {</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>              <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#aeb565277778ad589fde47a75ddb98b7a">last_species_cache</a>.mass_fraction.value() -= <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5743a747a77c6f90c20bc6f4f04db95a">grad_mass_fraction</a>(i);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            }</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>          <span class="keywordflow">return</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#aeb565277778ad589fde47a75ddb98b7a">last_species_cache</a>.mass_fraction.value();</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        }</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    }</div>
+</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="keyword">typename</span> GradientType::value_type &amp;</div>
+<div class="foldopen" id="foldopen00287" data-start="{" data-end="}">
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a9fe35c4e8101ed66c064f595f4faad2c">  287</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a9fe35c4e8101ed66c064f595f4faad2c">last_species_grad_partial_density</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#aeb565277778ad589fde47a75ddb98b7a">last_species_cache</a>.partial_density.has_value())</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#aeb565277778ad589fde47a75ddb98b7a">last_species_cache</a>.partial_density.value();</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        {</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>          <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#aeb565277778ad589fde47a75ddb98b7a">last_species_cache</a>.partial_density =</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>            <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5fd446e4624693ec1b7d12e0108c945f">derived</a>().grad_density() * <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5fd446e4624693ec1b7d12e0108c945f">derived</a>().mass_fraction(n_species - 1) +</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>            <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5fd446e4624693ec1b7d12e0108c945f">derived</a>().density() * <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5fd446e4624693ec1b7d12e0108c945f">derived</a>().grad_mass_fraction(n_species - 1);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>          <span class="keywordflow">return</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#aeb565277778ad589fde47a75ddb98b7a">last_species_cache</a>.partial_density.value();</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        }</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    }</div>
+</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="keyword">struct</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    {</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#ae86a7bdc530619dd8f285c058b0fb90e">  304</a></span>      <span class="keyword">mutable</span> std::optional&lt;typename GradientType::value_type&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#ae86a7bdc530619dd8f285c058b0fb90e">mass_fraction</a>;</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#ae05082797d00bc4353742d7bb77c309e">  305</a></span>      <span class="keyword">mutable</span> std::optional&lt;typename GradientType::value_type&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#ae05082797d00bc4353742d7bb77c309e">partial_density</a>;</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#aeb565277778ad589fde47a75ddb98b7a">  306</a></span>    } <a class="code hl_variable" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#aeb565277778ad589fde47a75ddb98b7a">last_species_cache</a>;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  };</div>
+</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_start_index, <span class="keywordtype">int</span> n_species, <span class="keyword">typename</span> Derived&gt;</div>
+<div class="foldopen" id="foldopen00317" data-start="{" data-end="};">
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin.html">  317</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin.html">FluxMixin</a></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>  {</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="keyword">decltype</span>(<span class="keyword">auto</span>)</div>
+<div class="foldopen" id="foldopen00320" data-start="{" data-end="}">
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin.html#a83c6004345e5d40a58269b784fc95a8c">  320</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin.html#a83c6004345e5d40a58269b784fc95a8c">partial_density_flux</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> species_component) <span class="keyword">const</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    {</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>      AssertIndexRange(species_component, n_species - 1);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin.html#a6794cffeed09ed5b716bb0a368d7f198">get_value</a>()[n_start_index + species_component];</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    }</div>
+</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="keyword">decltype</span>(<span class="keyword">auto</span>)</div>
+<div class="foldopen" id="foldopen00328" data-start="{" data-end="}">
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin.html#a6794cffeed09ed5b716bb0a368d7f198">  328</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin.html#a6794cffeed09ed5b716bb0a368d7f198">get_value</a>() <span class="keyword">const</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    {</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>      <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>Derived &amp;<span class="keyword">&gt;</span>(*this).value();</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    }</div>
+</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>  };</div>
+</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>} <span class="comment">// namespace MeltPoolDG::SpeciesTransport</span></div>
+<div class="ttc" id="aconcepts_8hpp_html"><div class="ttname"><a href="concepts_8hpp.html">concepts.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html">MeltPoolDG::SpeciesTransport</a></div><div class="ttdef"><b>Definition</b> boundary_conditions.hpp:8</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin_html"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html">MeltPoolDG::SpeciesTransport::DerivedPartialValueMixin</a></div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:132</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin_html_a2f2b4b91511e52838437c78775efa455"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a2f2b4b91511e52838437c78775efa455">MeltPoolDG::SpeciesTransport::DerivedPartialValueMixin::partial_inner_energy</a></div><div class="ttdeci">ValueType::value_type partial_inner_energy(const unsigned species_component) const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:157</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin_html_a2f54eb57080e1f1ab19db83e0e4a3e74"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a2f54eb57080e1f1ab19db83e0e4a3e74">MeltPoolDG::SpeciesTransport::DerivedPartialValueMixin::value</a></div><div class="ttdeci">ValueType &amp; value() const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:164</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin_html_a4cdc680cca787fe96713c9176320ff1e"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a4cdc680cca787fe96713c9176320ff1e">MeltPoolDG::SpeciesTransport::DerivedPartialValueMixin::partial_pressure</a></div><div class="ttdeci">ValueType::value_type partial_pressure(const unsigned species_component) const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:144</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin_html_a803d264f269c3b3c74bad65f39fb92d8"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#a803d264f269c3b3c74bad65f39fb92d8">MeltPoolDG::SpeciesTransport::DerivedPartialValueMixin::derived</a></div><div class="ttdeci">const Derived &amp; derived() const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:170</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin_html_aa797f27b131ad4f53ab79f73eb347b99"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html#aa797f27b131ad4f53ab79f73eb347b99">MeltPoolDG::SpeciesTransport::DerivedPartialValueMixin::value_type</a></div><div class="ttdeci">std::conditional_t&lt; std::is_const_v&lt; std::remove_reference_t&lt; ValueType &gt; &gt;, std::add_const_t&lt; typename ValueType::value_type &gt;, typename ValueType::value_type &gt; value_type</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:135</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin_html"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html">MeltPoolDG::SpeciesTransport::DofValueMixin</a></div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:31</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin_html_a220ab538dfa990ecf5504baf4836cfba"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a220ab538dfa990ecf5504baf4836cfba">MeltPoolDG::SpeciesTransport::DofValueMixin::last_species_cache</a></div><div class="ttdeci">struct MeltPoolDG::SpeciesTransport::DofValueMixin::@3 last_species_cache</div><div class="ttdoc">Cache for the mass fraction and the partial density of the last species component.</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin_html_a3243445cec925a5bca3f3ec871675572"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a3243445cec925a5bca3f3ec871675572">MeltPoolDG::SpeciesTransport::DofValueMixin::value_type</a></div><div class="ttdeci">std::conditional_t&lt; std::is_const_v&lt; std::remove_reference_t&lt; ValueType &gt; &gt;, std::add_const_t&lt; typename ValueType::value_type &gt;, typename ValueType::value_type &gt; value_type</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:34</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin_html_a40d0709b58a7cc2af5e72aa9037188c4"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a40d0709b58a7cc2af5e72aa9037188c4">MeltPoolDG::SpeciesTransport::DofValueMixin::value</a></div><div class="ttdeci">ValueType &amp; value() const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:71</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin_html_a5f10d98f1eb31e84a5a2339b6a33ae95"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a5f10d98f1eb31e84a5a2339b6a33ae95">MeltPoolDG::SpeciesTransport::DofValueMixin::last_species_mass_fraction</a></div><div class="ttdeci">ValueType::value_type last_species_mass_fraction() const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:89</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin_html_a7110eee778947eb5f9283f3696bc814e"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a7110eee778947eb5f9283f3696bc814e">MeltPoolDG::SpeciesTransport::DofValueMixin::derived</a></div><div class="ttdeci">const Derived &amp; derived() const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:77</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin_html_a7bdf3a1fd585b94f44f94a20423886eb"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#a7bdf3a1fd585b94f44f94a20423886eb">MeltPoolDG::SpeciesTransport::DofValueMixin::mass_fraction</a></div><div class="ttdeci">ValueType::value_type mass_fraction(const unsigned species_component) const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:60</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin_html_ab4b9fbc4a18fe84cf6d630ffaf215367"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#ab4b9fbc4a18fe84cf6d630ffaf215367">MeltPoolDG::SpeciesTransport::DofValueMixin::mass_fraction</a></div><div class="ttdeci">std::optional&lt; typename ValueType::value_type &gt; mass_fraction</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:125</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin_html_aea6645c0fd94e8a1d45105347835d814"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#aea6645c0fd94e8a1d45105347835d814">MeltPoolDG::SpeciesTransport::DofValueMixin::partial_density</a></div><div class="ttdeci">std::optional&lt; typename ValueType::value_type &gt; partial_density</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:126</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin_html_aec7be721dce500fde5d4ae3cbfe6fdc6"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#aec7be721dce500fde5d4ae3cbfe6fdc6">MeltPoolDG::SpeciesTransport::DofValueMixin::partial_density</a></div><div class="ttdeci">value_type &amp; partial_density(const unsigned species_component) const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:43</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin_html_af638200ec0192b87ab93789479c557d0"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html#af638200ec0192b87ab93789479c557d0">MeltPoolDG::SpeciesTransport::DofValueMixin::last_species_partial_density</a></div><div class="ttdeci">value_type &amp; last_species_partial_density() const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:111</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin_html"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin.html">MeltPoolDG::SpeciesTransport::FluxMixin</a></div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:318</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin_html_a6794cffeed09ed5b716bb0a368d7f198"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin.html#a6794cffeed09ed5b716bb0a368d7f198">MeltPoolDG::SpeciesTransport::FluxMixin::get_value</a></div><div class="ttdeci">decltype(auto) get_value() const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:328</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin_html_a83c6004345e5d40a58269b784fc95a8c"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin.html#a83c6004345e5d40a58269b784fc95a8c">MeltPoolDG::SpeciesTransport::FluxMixin::partial_density_flux</a></div><div class="ttdeci">decltype(auto) partial_density_flux(const unsigned species_component) const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:320</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html">MeltPoolDG::SpeciesTransport::GradientValueMixin</a></div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:195</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html_a0dad03f0aa16d62bac6fdfe7401c84a3"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a0dad03f0aa16d62bac6fdfe7401c84a3">MeltPoolDG::SpeciesTransport::GradientValueMixin::gradient_type</a></div><div class="ttdeci">std::conditional_t&lt; std::is_const_v&lt; std::remove_reference_t&lt; GradientType &gt; &gt;, std::add_const_t&lt; typename GradientType::value_type &gt;, typename GradientType::value_type &gt; gradient_type</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:202</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html_a5743a747a77c6f90c20bc6f4f04db95a"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5743a747a77c6f90c20bc6f4f04db95a">MeltPoolDG::SpeciesTransport::GradientValueMixin::grad_mass_fraction</a></div><div class="ttdeci">GradientType::value_type grad_mass_fraction(const unsigned species_component) const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:227</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html_a5fd446e4624693ec1b7d12e0108c945f"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a5fd446e4624693ec1b7d12e0108c945f">MeltPoolDG::SpeciesTransport::GradientValueMixin::derived</a></div><div class="ttdeci">const Derived &amp; derived() const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:253</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html_a6b850964f3841354d47a2dc398e5c9e7"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a6b850964f3841354d47a2dc398e5c9e7">MeltPoolDG::SpeciesTransport::GradientValueMixin::grad_partial_density</a></div><div class="ttdeci">gradient_type &amp; grad_partial_density(const unsigned species_component) const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:211</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html_a8319f794acc65e689b6f8d27093e16de"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a8319f794acc65e689b6f8d27093e16de">MeltPoolDG::SpeciesTransport::GradientValueMixin::value_type</a></div><div class="ttdeci">std::conditional_t&lt; std::is_const_v&lt; std::remove_reference_t&lt; ValueType &gt; &gt;, std::add_const_t&lt; typename ValueType::value_type &gt;, typename ValueType::value_type &gt; value_type</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:198</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html_a8e9b9bd27fd18cc1c73e48d7b4296a55"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a8e9b9bd27fd18cc1c73e48d7b4296a55">MeltPoolDG::SpeciesTransport::GradientValueMixin::value</a></div><div class="ttdeci">ValueType &amp; value() const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:241</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html_a98e618a4dbe055b2128a0bbc3cd46d6b"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a98e618a4dbe055b2128a0bbc3cd46d6b">MeltPoolDG::SpeciesTransport::GradientValueMixin::gradient_value</a></div><div class="ttdeci">GradientType &amp; gradient_value() const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:247</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html_a9fe35c4e8101ed66c064f595f4faad2c"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#a9fe35c4e8101ed66c064f595f4faad2c">MeltPoolDG::SpeciesTransport::GradientValueMixin::last_species_grad_partial_density</a></div><div class="ttdeci">GradientType::value_type &amp; last_species_grad_partial_density() const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:287</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html_ae05082797d00bc4353742d7bb77c309e"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#ae05082797d00bc4353742d7bb77c309e">MeltPoolDG::SpeciesTransport::GradientValueMixin::partial_density</a></div><div class="ttdeci">std::optional&lt; typename GradientType::value_type &gt; partial_density</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:305</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html_ae86a7bdc530619dd8f285c058b0fb90e"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#ae86a7bdc530619dd8f285c058b0fb90e">MeltPoolDG::SpeciesTransport::GradientValueMixin::mass_fraction</a></div><div class="ttdeci">std::optional&lt; typename GradientType::value_type &gt; mass_fraction</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:304</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html_aeb565277778ad589fde47a75ddb98b7a"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#aeb565277778ad589fde47a75ddb98b7a">MeltPoolDG::SpeciesTransport::GradientValueMixin::last_species_cache</a></div><div class="ttdeci">struct MeltPoolDG::SpeciesTransport::GradientValueMixin::@4 last_species_cache</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin_html_afe480e89b274c43772e7d98f97880937"><div class="ttname"><a href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html#afe480e89b274c43772e7d98f97880937">MeltPoolDG::SpeciesTransport::GradientValueMixin::last_species_grad_mass_fraction</a></div><div class="ttdeci">gradient_type &amp; last_species_grad_mass_fraction() const</div><div class="ttdef"><b>Definition</b> state_views_mixins.hpp:265</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

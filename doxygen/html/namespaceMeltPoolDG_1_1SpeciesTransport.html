@@ -132,12 +132,26 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">MeltPoolDG::SpeciesTransport Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1SpeciesTransport_1_1DerivedPartialValueMixin.html">DerivedPartialValueMixin</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1SpeciesTransport_1_1DofValueMixin.html">DofValueMixin</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1SpeciesTransport_1_1EffectiveMaterialMixin.html">EffectiveMaterialMixin</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1SpeciesTransport_1_1FluxMixin.html">FluxMixin</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html">GradientValueMixin</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a751d101b97024c3b9e6956f07b409e28" id="r_a751d101b97024c3b9e6956f07b409e28"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28">BoundaryConditionType</a> { <a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28a503b9bc8f55d2a048f0cb35ddf3fb4ec">dirichlet</a>
@@ -150,6 +164,19 @@ Functions</h2></td></tr>
 <tr class="memitem:a6e3aede731053a06b4eb56cdae353635" id="r_a6e3aede731053a06b4eb56cdae353635"><td class="memTemplParams" colspan="2">template&lt;std::size_t n_species, typename VectorizedArrayType , typename ReadOnlyDofView , typename WritableDofView &gt; </td></tr>
 <tr class="memitem:a6e3aede731053a06b4eb56cdae353635"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a6e3aede731053a06b4eb56cdae353635">set_boundary_value_and_gradient</a> (const WritableDofView &amp;w_p, const ReadOnlyDofView &amp;w_m, const <a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28">BoundaryConditionType</a> boundary_type, const std::array&lt; VectorizedArrayType, n_species &gt; &amp;dirichlet_boundary_values={})</td></tr>
 <tr class="separator:a6e3aede731053a06b4eb56cdae353635"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9510e86c1af96af0214a461daf883a8f" id="r_a9510e86c1af96af0214a461daf883a8f"><td class="memTemplParams" colspan="2">template&lt;int n_species, typename ConservedVariablesView , typename WritableFluxView &gt; </td></tr>
+<tr class="memitem:a9510e86c1af96af0214a461daf883a8f"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9510e86c1af96af0214a461daf883a8f">convective_flux</a> (const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</td></tr>
+<tr class="memdesc:a9510e86c1af96af0214a461daf883a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the convective species transport flux for each species.  <br /></td></tr>
+<tr class="separator:a9510e86c1af96af0214a461daf883a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ab5948f0bfbfafd29fd2daac33e77d7" id="r_a0ab5948f0bfbfafd29fd2daac33e77d7"><td class="memTemplParams" colspan="2">template&lt;int n_species, typename ConservedVariablesView &gt; </td></tr>
+<tr class="memitem:a0ab5948f0bfbfafd29fd2daac33e77d7"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a0ab5948f0bfbfafd29fd2daac33e77d7">fickian_diffusion_approximation</a> (const ConservedVariablesView &amp;conserved_variables, const unsigned int species_idx)</td></tr>
+<tr class="separator:a0ab5948f0bfbfafd29fd2daac33e77d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3edb6111758268a05e707b3b7132b5a" id="r_af3edb6111758268a05e707b3b7132b5a"><td class="memTemplParams" colspan="2">template&lt;int n_species, typename ConservedVariablesView , typename WritableFluxView &gt; </td></tr>
+<tr class="memitem:af3edb6111758268a05e707b3b7132b5a"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#af3edb6111758268a05e707b3b7132b5a">diffusive_flux</a> (const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</td></tr>
+<tr class="separator:af3edb6111758268a05e707b3b7132b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9002e9ec4c12bfd27c1bd5bf7cb38534" id="r_a9002e9ec4c12bfd27c1bd5bf7cb38534"><td class="memTemplParams" colspan="2">template&lt;int n_species, typename VectorizedArrayType , typename ConservedVariablesView , typename WritableFluxView &gt; </td></tr>
+<tr class="memitem:a9002e9ec4c12bfd27c1bd5bf7cb38534"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9002e9ec4c12bfd27c1bd5bf7cb38534">interdiffusional_enthalpy_flux</a> (const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</td></tr>
+<tr class="separator:a9002e9ec4c12bfd27c1bd5bf7cb38534"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a751d101b97024c3b9e6956f07b409e28" name="a751d101b97024c3b9e6956f07b409e28"></a>
@@ -180,6 +207,187 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a9510e86c1af96af0214a461daf883a8f" name="a9510e86c1af96af0214a461daf883a8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9510e86c1af96af0214a461daf883a8f">&#9670;&#160;</a></span>convective_flux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int n_species, typename ConservedVariablesView , typename WritableFluxView &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DEAL_II_ALWAYS_INLINE void MeltPoolDG::SpeciesTransport::convective_flux </td>
+          <td>(</td>
+          <td class="paramtype">const ConservedVariablesView &amp;&#160;</td>
+          <td class="paramname"><em>conserved_variables</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const WritableFluxView &amp;&#160;</td>
+          <td class="paramname"><em>flux</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the convective species transport flux for each species. </p>
+<p>Updates the species partial density flux based on the conserved variables and their velocity. Only iterates over n_species-1 since the last species is assumed to be not present in the solution vector but computed from the mass fractions summing to one.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">conserved_variables</td><td>The conserved variables of the system. </td></tr>
+    <tr><td class="paramname">flux</td><td>The flux object to be updated. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af3edb6111758268a05e707b3b7132b5a" name="af3edb6111758268a05e707b3b7132b5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3edb6111758268a05e707b3b7132b5a">&#9670;&#160;</a></span>diffusive_flux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int n_species, typename ConservedVariablesView , typename WritableFluxView &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DEAL_II_ALWAYS_INLINE void MeltPoolDG::SpeciesTransport::diffusive_flux </td>
+          <td>(</td>
+          <td class="paramtype">const ConservedVariablesView &amp;&#160;</td>
+          <td class="paramname"><em>conserved_variables</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const WritableFluxView &amp;&#160;</td>
+          <td class="paramname"><em>flux</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Computes the diffusive species transport flux for each species based on the Fickian diffusion approximation. Only iterates over n_species-1 since the last species is assumed to be not present in the solution vector but computed from the mass fractions summing to one.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">conserved_variables</td><td>The conserved variables of the system including their gradients. </td></tr>
+    <tr><td class="paramname">flux</td><td>The flux object to be updated. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0ab5948f0bfbfafd29fd2daac33e77d7" name="a0ab5948f0bfbfafd29fd2daac33e77d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ab5948f0bfbfafd29fd2daac33e77d7">&#9670;&#160;</a></span>fickian_diffusion_approximation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int n_species, typename ConservedVariablesView &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DEAL_II_ALWAYS_INLINE auto MeltPoolDG::SpeciesTransport::fickian_diffusion_approximation </td>
+          <td>(</td>
+          <td class="paramtype">const ConservedVariablesView &amp;&#160;</td>
+          <td class="paramname"><em>conserved_variables</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>species_idx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Computes an approximation of the Fickian diffusion flux for a single species as presented in</p>
+<p>Cook et al., "Enthalpy diffusion in multicomponent flows", Physics of Fluids 21, 055109(2009)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">conserved_variables</td><td>The conserved variables of the system including their gradients. </td></tr>
+    <tr><td class="paramname">species_idx</td><td>Index of the species for which to compute the flux.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The approximate Fickian diffusion flux for the given species. </dd></dl>
+
+</div>
+</div>
+<a id="a9002e9ec4c12bfd27c1bd5bf7cb38534" name="a9002e9ec4c12bfd27c1bd5bf7cb38534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9002e9ec4c12bfd27c1bd5bf7cb38534">&#9670;&#160;</a></span>interdiffusional_enthalpy_flux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int n_species, typename VectorizedArrayType , typename ConservedVariablesView , typename WritableFluxView &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void MeltPoolDG::SpeciesTransport::interdiffusional_enthalpy_flux </td>
+          <td>(</td>
+          <td class="paramtype">const ConservedVariablesView &amp;&#160;</td>
+          <td class="paramname"><em>conserved_variables</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const WritableFluxView &amp;&#160;</td>
+          <td class="paramname"><em>flux</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Computes the interdiffusional enthalpy flux based on the Fickian diffusion approximation for each species. The mathematical formulation of the interdiffusional enthalpy flux is given in</p>
+<p>Cook et al., "Enthalpy diffusion in multicomponent flows", Physics of Fluids 21, 055109(2009)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">conserved_variables</td><td>The conserved variables of the system including their gradients. </td></tr>
+    <tr><td class="paramname">flux</td><td>The flux object to be updated with the interdiffusional enthalpy flux contribution to the energy flux. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a6e3aede731053a06b4eb56cdae353635" name="a6e3aede731053a06b4eb56cdae353635"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6e3aede731053a06b4eb56cdae353635">&#9670;&#160;</a></span>set_boundary_value_and_gradient()</h2>
 
