@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/compressible_flow/kernels_multi_species.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/compressible_flow/kernels_multi_species.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/kernels__multi__species_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-compressible-flow-kernels-multi-species-hpp-source-file">
+<h1>include/meltpooldg/compressible_flow/kernels_multi_species.hpp Source File<a class="headerlink" href="#include-meltpooldg-compressible-flow-kernels-multi-species-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/compressible_flow/kernels_multi_species.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_bb77f7f27cd899d864c2a9921966d6b9.html">compressible_flow</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">kernels_multi_species.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="kernels__multi__species_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="compressible__flow_2kernels_8hpp.html">meltpooldg/compressible_flow/kernels.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="compressible__flow_2material_8hpp.html">meltpooldg/compressible_flow/material.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="state__views_8hpp.html">meltpooldg/compressible_flow/state_views.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="state__views__multi__species_8hpp.html">meltpooldg/compressible_flow/state_views_multi_species.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="species__transport_2kernels_8hpp.html">meltpooldg/species_transport/kernels.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1CompressibleFlow.html">MeltPoolDG::CompressibleFlow</a></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keywordtype">int</span> n_species, <span class="keyword">typename</span> number, <span class="keyword">typename</span> ValueTypeIn, <span class="keyword">typename</span> FluxTypeIn&gt;</div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html">   12</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html">SpeciesTransportConvectiveFlux</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a6497864c496c079519c7a42371e9d81b">   14</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a6497864c496c079519c7a42371e9d81b">ValueType</a>        = ValueTypeIn;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a0ab18255f836b6a1a11ce824d733b4fb">   15</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a0ab18255f836b6a1a11ce824d733b4fb">PhysicalFluxType</a> = FluxTypeIn;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a950835c42a5cfb17f22abc082af2c39e">   17</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a950835c42a5cfb17f22abc082af2c39e">DofStateView</a> = <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiSpeciesDofStateView.html">MultiSpeciesDofStateView&lt;dim, n_species, number, const ValueType&gt;</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a1e70f5b211d4f8acdbddf6e9cbe51d32">   18</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a1e70f5b211d4f8acdbddf6e9cbe51d32">SpeciesWritableFluxView</a> = <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiSpeciesFluxView.html">MultiSpeciesFluxView&lt;dim, n_species, PhysicalFluxType&gt;</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a6af08c9aefac301c7ca569831ea887ee">   19</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a6af08c9aefac301c7ca569831ea887ee">FlowWritableFluxView</a>    = <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1FluxView.html">FluxView&lt;dim, PhysicalFluxType&gt;</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a656e40f239aa5415942ba389f45b02b5">   21</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a656e40f239aa5415942ba389f45b02b5">SpeciesTransportConvectiveFlux</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html">MaterialPhaseData&lt;number&gt;</a> &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a47102a33caa6da671f9ef3d00ff4a547">material</a>)</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>      : <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a47102a33caa6da671f9ef3d00ff4a547">material</a>(<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a47102a33caa6da671f9ef3d00ff4a547">material</a>)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    {}</div>
+</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a0ab18255f836b6a1a11ce824d733b4fb">PhysicalFluxType</a></div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a4837e6b7de9ded08e945282084e40ee7">   31</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a4837e6b7de9ded08e945282084e40ee7">flux</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a6497864c496c079519c7a42371e9d81b">ValueType</a> &amp;conserved_variables)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>      <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a0ab18255f836b6a1a11ce824d733b4fb">PhysicalFluxType</a> <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a4837e6b7de9ded08e945282084e40ee7">flux</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>      <span class="keywordflow">if</span> (n_species &gt; 1)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>          SpeciesTransport::</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            compute_convective_flux&lt;n_species, DofStateView, SpeciesWritableFluxView&gt;(</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>              <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a950835c42a5cfb17f22abc082af2c39e">DofStateView</a>(conserved_variables, <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a47102a33caa6da671f9ef3d00ff4a547">material</a>), <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a1e70f5b211d4f8acdbddf6e9cbe51d32">SpeciesWritableFluxView</a>(<a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a4837e6b7de9ded08e945282084e40ee7">flux</a>));</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      CompressibleFlow::convective_flux&lt;dim, DofStateView, FlowWritableFluxView&gt;(</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a950835c42a5cfb17f22abc082af2c39e">DofStateView</a>(conserved_variables, <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a47102a33caa6da671f9ef3d00ff4a547">material</a>), <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a6af08c9aefac301c7ca569831ea887ee">FlowWritableFluxView</a>(<a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a4837e6b7de9ded08e945282084e40ee7">flux</a>));</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a4837e6b7de9ded08e945282084e40ee7">flux</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    dealii::VectorizedArray&lt;number&gt;</div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#aa762ca7cbbc10b7eb524fd9b8358d365">   52</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#aa762ca7cbbc10b7eb524fd9b8358d365">local_maximum_wave_speed</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a6497864c496c079519c7a42371e9d81b">ValueType</a> &amp;u_m, <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a6497864c496c079519c7a42371e9d81b">ValueType</a> &amp;u_p)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <span class="keywordflow">return</span> maximum_local_wave_speed&lt;DofStateView, dealii::VectorizedArray&lt;number&gt;&gt;(</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a950835c42a5cfb17f22abc082af2c39e">DofStateView</a>(u_m, <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a47102a33caa6da671f9ef3d00ff4a547">material</a>), <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a950835c42a5cfb17f22abc082af2c39e">DofStateView</a>(u_p, <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a47102a33caa6da671f9ef3d00ff4a547">material</a>));</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
+</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a47102a33caa6da671f9ef3d00ff4a547">   59</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html">MaterialPhaseData&lt;number&gt;</a> &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a47102a33caa6da671f9ef3d00ff4a547">material</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  };</div>
+</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            <span class="keywordtype">int</span> n_species,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <span class="keyword">typename</span> number,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="keyword">typename</span> ValueTypeIn    = <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">CompressibleFlow::ConservedVariablesType&lt;dim, number&gt;</a>,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            <span class="keyword">typename</span> GradientTypeIn = <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e39e12c307a8da07383fa6f8c07c222">CompressibleFlow::ConservedVariablesGradientType&lt;dim, number&gt;</a>,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            <span class="keyword">typename</span> FluxTypeIn     = <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a715190141a256a2144825a52cea2d75a">CompressibleFlow::FluxType&lt;dim, number&gt;</a>&gt;</div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="};">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html">   68</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html">SpeciesTransportDiffusiveFlux</a></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a40ace0b61fdd4990ef5beb88eb6e0bf9">   70</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a40ace0b61fdd4990ef5beb88eb6e0bf9">ValueType</a>        = ValueTypeIn;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a64b5ed48241c2635c9f25268e4cf8eef">   71</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a64b5ed48241c2635c9f25268e4cf8eef">GradientType</a>     = GradientTypeIn;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a7823804d48b1c6b158dfad8fd52ef56b">   72</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a7823804d48b1c6b158dfad8fd52ef56b">PhysicalFluxType</a> = FluxTypeIn;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a3e2241277fd612d44a845d9113fe575e">   74</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a3e2241277fd612d44a845d9113fe575e">DofStateViewType</a> =</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiSpeciesDofValueAndGradientStateView.html">CompressibleFlow::MultiSpeciesDofValueAndGradientStateView</a>&lt;dim,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                                                                 n_species,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                                                                 number,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                                                                 <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a40ace0b61fdd4990ef5beb88eb6e0bf9">ValueType</a>,</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                                                                 <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a64b5ed48241c2635c9f25268e4cf8eef">GradientType</a>&gt;;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#acc0da9e3307a5540a612d807db55ddb0">   81</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#acc0da9e3307a5540a612d807db55ddb0">WritableFluxViewType</a>    = <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1FluxView.html">CompressibleFlow::FluxView&lt;dim, PhysicalFluxType&gt;</a>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af89b3209ff4b21f8294c11636ddd6008">   82</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af89b3209ff4b21f8294c11636ddd6008">SpeciesWritableFluxView</a> = <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiSpeciesFluxView.html">MultiSpeciesFluxView&lt;dim, n_species, PhysicalFluxType&gt;</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="foldopen" id="foldopen00088" data-start="{" data-end="}">
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a0b995ad7cef8ba666abfde1fc64ae151">   88</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a0b995ad7cef8ba666abfde1fc64ae151">SpeciesTransportDiffusiveFlux</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html">MaterialPhaseData&lt;number&gt;</a> &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af8f832de8088546ac868e6d470cacc7e">material</a>)</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      : <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af8f832de8088546ac868e6d470cacc7e">material</a>(<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af8f832de8088546ac868e6d470cacc7e">material</a>)</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    {}</div>
+</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a7823804d48b1c6b158dfad8fd52ef56b">PhysicalFluxType</a></div>
+<div class="foldopen" id="foldopen00099" data-start="{" data-end="}">
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a1429bd19a354d68f1b902d4524867757">   99</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a1429bd19a354d68f1b902d4524867757">flux</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a40ace0b61fdd4990ef5beb88eb6e0bf9">ValueType</a> &amp;u, <span class="keyword">const</span> <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a64b5ed48241c2635c9f25268e4cf8eef">GradientType</a> &amp;grad_u)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a7823804d48b1c6b158dfad8fd52ef56b">PhysicalFluxType</a> <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a1429bd19a354d68f1b902d4524867757">flux</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      diffusive_flux&lt;dim, typename ValueType::value_type, DofStateViewType, WritableFluxViewType&gt;(</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a3e2241277fd612d44a845d9113fe575e">DofStateViewType</a>(u, grad_u, <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af8f832de8088546ac868e6d470cacc7e">material</a>), <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#acc0da9e3307a5540a612d807db55ddb0">WritableFluxViewType</a>(<a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a1429bd19a354d68f1b902d4524867757">flux</a>));</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="keywordflow">if</span> (n_species &gt; 1)</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>          SpeciesTransport::</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            compute_diffusive_flux&lt;n_species, DofStateViewType, SpeciesWritableFluxView&gt;(</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>              <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a3e2241277fd612d44a845d9113fe575e">DofStateViewType</a>(u, grad_u, <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af8f832de8088546ac868e6d470cacc7e">material</a>), <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af89b3209ff4b21f8294c11636ddd6008">SpeciesWritableFluxView</a>(<a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a1429bd19a354d68f1b902d4524867757">flux</a>));</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>          <a class="code hl_function" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9002e9ec4c12bfd27c1bd5bf7cb38534">SpeciesTransport::interdiffusional_enthalpy_flux</a>&lt;dim,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                                                           <span class="keyword">typename</span> ValueType::value_type,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                                                           <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a3e2241277fd612d44a845d9113fe575e">DofStateViewType</a>,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                                                           <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af89b3209ff4b21f8294c11636ddd6008">SpeciesWritableFluxView</a>&gt;(</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a3e2241277fd612d44a845d9113fe575e">DofStateViewType</a>(u, grad_u, <a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af8f832de8088546ac868e6d470cacc7e">material</a>), <a class="code hl_typedef" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af89b3209ff4b21f8294c11636ddd6008">SpeciesWritableFluxView</a>(<a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a1429bd19a354d68f1b902d4524867757">flux</a>));</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a1429bd19a354d68f1b902d4524867757">flux</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
+</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af8f832de8088546ac868e6d470cacc7e">  120</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html">MaterialPhaseData&lt;number&gt;</a> &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af8f832de8088546ac868e6d470cacc7e">material</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  };</div>
+</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>} <span class="comment">// namespace MeltPoolDG::CompressibleFlow</span></div>
+<div class="ttc" id="acompressible__flow_2kernels_8hpp_html"><div class="ttname"><a href="compressible__flow_2kernels_8hpp.html">kernels.hpp</a></div></div>
+<div class="ttc" id="acompressible__flow_2material_8hpp_html"><div class="ttname"><a href="compressible__flow_2material_8hpp.html">material.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CompressibleFlow_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CompressibleFlow.html">MeltPoolDG::CompressibleFlow</a></div><div class="ttdoc">Collection of convective term computations for the compressible Navier-Stokes equations.</div><div class="ttdef"><b>Definition</b> boundary_conditions.hpp:23</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CompressibleFlow_html_a715190141a256a2144825a52cea2d75a"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a715190141a256a2144825a52cea2d75a">MeltPoolDG::CompressibleFlow::FluxType</a></div><div class="ttdeci">dealii::Tensor&lt; 1, n_conserved_variables&lt; dim, n_species &gt;, dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &gt; FluxType</div><div class="ttdef"><b>Definition</b> data_types.hpp:51</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CompressibleFlow_html_a8e39e12c307a8da07383fa6f8c07c222"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e39e12c307a8da07383fa6f8c07c222">MeltPoolDG::CompressibleFlow::ConservedVariablesGradientType</a></div><div class="ttdeci">dealii::Tensor&lt; 1, n_conserved_variables&lt; dim, n_species &gt;, dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &gt; ConservedVariablesGradientType</div><div class="ttdef"><b>Definition</b> data_types.hpp:44</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CompressibleFlow_html_ac54e4194de7c0696b4f2bcdb801895cf"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">MeltPoolDG::CompressibleFlow::ConservedVariablesType</a></div><div class="ttdeci">dealii::Tensor&lt; 1, n_conserved_variables&lt; dim, n_species &gt;, VectorizedArrayType &gt; ConservedVariablesType</div><div class="ttdef"><b>Definition</b> data_types.hpp:35</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_a9002e9ec4c12bfd27c1bd5bf7cb38534"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9002e9ec4c12bfd27c1bd5bf7cb38534">MeltPoolDG::SpeciesTransport::interdiffusional_enthalpy_flux</a></div><div class="ttdeci">void interdiffusional_enthalpy_flux(const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</div><div class="ttdef"><b>Definition</b> kernels.hpp:97</div></div>
+<div class="ttc" id="aspecies__transport_2kernels_8hpp_html"><div class="ttname"><a href="species__transport_2kernels_8hpp.html">kernels.hpp</a></div></div>
+<div class="ttc" id="astate__views_8hpp_html"><div class="ttname"><a href="state__views_8hpp.html">state_views.hpp</a></div><div class="ttdoc">This file provides a collection of view types for the compressible Navier–Stokes solver....</div></div>
+<div class="ttc" id="astate__views__multi__species_8hpp_html"><div class="ttname"><a href="state__views__multi__species_8hpp.html">state_views_multi_species.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1FluxView_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1FluxView.html">MeltPoolDG::CompressibleFlow::FluxView</a></div><div class="ttdef"><b>Definition</b> state_views.hpp:279</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html">MeltPoolDG::CompressibleFlow::MaterialPhaseData</a></div><div class="ttdoc">Collection of material parameters for a specific fluid phase.</div><div class="ttdef"><b>Definition</b> material.hpp:119</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiSpeciesDofStateView_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiSpeciesDofStateView.html">MeltPoolDG::CompressibleFlow::MultiSpeciesDofStateView</a></div><div class="ttdef"><b>Definition</b> state_views_multi_species.hpp:122</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiSpeciesDofValueAndGradientStateView_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiSpeciesDofValueAndGradientStateView.html">MeltPoolDG::CompressibleFlow::MultiSpeciesDofValueAndGradientStateView</a></div><div class="ttdef"><b>Definition</b> state_views_multi_species.hpp:215</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1MultiSpeciesFluxView_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiSpeciesFluxView.html">MeltPoolDG::CompressibleFlow::MultiSpeciesFluxView</a></div><div class="ttdef"><b>Definition</b> state_views_multi_species.hpp:272</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html">MeltPoolDG::CompressibleFlow::SpeciesTransportConvectiveFlux</a></div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:13</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux_html_a0ab18255f836b6a1a11ce824d733b4fb"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a0ab18255f836b6a1a11ce824d733b4fb">MeltPoolDG::CompressibleFlow::SpeciesTransportConvectiveFlux::PhysicalFluxType</a></div><div class="ttdeci">FluxTypeIn PhysicalFluxType</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:15</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux_html_a1e70f5b211d4f8acdbddf6e9cbe51d32"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a1e70f5b211d4f8acdbddf6e9cbe51d32">MeltPoolDG::CompressibleFlow::SpeciesTransportConvectiveFlux::SpeciesWritableFluxView</a></div><div class="ttdeci">MultiSpeciesFluxView&lt; dim, n_species, PhysicalFluxType &gt; SpeciesWritableFluxView</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:18</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux_html_a47102a33caa6da671f9ef3d00ff4a547"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a47102a33caa6da671f9ef3d00ff4a547">MeltPoolDG::CompressibleFlow::SpeciesTransportConvectiveFlux::material</a></div><div class="ttdeci">const MaterialPhaseData&lt; number &gt; &amp; material</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:59</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux_html_a4837e6b7de9ded08e945282084e40ee7"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a4837e6b7de9ded08e945282084e40ee7">MeltPoolDG::CompressibleFlow::SpeciesTransportConvectiveFlux::flux</a></div><div class="ttdeci">PhysicalFluxType flux(const ValueType &amp;conserved_variables) const</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:31</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux_html_a6497864c496c079519c7a42371e9d81b"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a6497864c496c079519c7a42371e9d81b">MeltPoolDG::CompressibleFlow::SpeciesTransportConvectiveFlux::ValueType</a></div><div class="ttdeci">ValueTypeIn ValueType</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:14</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux_html_a656e40f239aa5415942ba389f45b02b5"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a656e40f239aa5415942ba389f45b02b5">MeltPoolDG::CompressibleFlow::SpeciesTransportConvectiveFlux::SpeciesTransportConvectiveFlux</a></div><div class="ttdeci">SpeciesTransportConvectiveFlux(const MaterialPhaseData&lt; number &gt; &amp;material)</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:21</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux_html_a6af08c9aefac301c7ca569831ea887ee"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a6af08c9aefac301c7ca569831ea887ee">MeltPoolDG::CompressibleFlow::SpeciesTransportConvectiveFlux::FlowWritableFluxView</a></div><div class="ttdeci">FluxView&lt; dim, PhysicalFluxType &gt; FlowWritableFluxView</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:19</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux_html_a950835c42a5cfb17f22abc082af2c39e"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#a950835c42a5cfb17f22abc082af2c39e">MeltPoolDG::CompressibleFlow::SpeciesTransportConvectiveFlux::DofStateView</a></div><div class="ttdeci">MultiSpeciesDofStateView&lt; dim, n_species, number, const ValueType &gt; DofStateView</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:17</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux_html_aa762ca7cbbc10b7eb524fd9b8358d365"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html#aa762ca7cbbc10b7eb524fd9b8358d365">MeltPoolDG::CompressibleFlow::SpeciesTransportConvectiveFlux::local_maximum_wave_speed</a></div><div class="ttdeci">dealii::VectorizedArray&lt; number &gt; local_maximum_wave_speed(const ValueType &amp;u_m, const ValueType &amp;u_p) const</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:52</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux_html"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html">MeltPoolDG::CompressibleFlow::SpeciesTransportDiffusiveFlux</a></div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:69</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux_html_a0b995ad7cef8ba666abfde1fc64ae151"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a0b995ad7cef8ba666abfde1fc64ae151">MeltPoolDG::CompressibleFlow::SpeciesTransportDiffusiveFlux::SpeciesTransportDiffusiveFlux</a></div><div class="ttdeci">SpeciesTransportDiffusiveFlux(const MaterialPhaseData&lt; number &gt; &amp;material)</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:88</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux_html_a1429bd19a354d68f1b902d4524867757"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a1429bd19a354d68f1b902d4524867757">MeltPoolDG::CompressibleFlow::SpeciesTransportDiffusiveFlux::flux</a></div><div class="ttdeci">PhysicalFluxType flux(const ValueType &amp;u, const GradientType &amp;grad_u) const</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:99</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux_html_a3e2241277fd612d44a845d9113fe575e"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a3e2241277fd612d44a845d9113fe575e">MeltPoolDG::CompressibleFlow::SpeciesTransportDiffusiveFlux::DofStateViewType</a></div><div class="ttdeci">CompressibleFlow::MultiSpeciesDofValueAndGradientStateView&lt; dim, n_species, number, const ValueType, const GradientType &gt; DofStateViewType</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:79</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux_html_a40ace0b61fdd4990ef5beb88eb6e0bf9"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a40ace0b61fdd4990ef5beb88eb6e0bf9">MeltPoolDG::CompressibleFlow::SpeciesTransportDiffusiveFlux::ValueType</a></div><div class="ttdeci">ValueTypeIn ValueType</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:70</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux_html_a64b5ed48241c2635c9f25268e4cf8eef"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a64b5ed48241c2635c9f25268e4cf8eef">MeltPoolDG::CompressibleFlow::SpeciesTransportDiffusiveFlux::GradientType</a></div><div class="ttdeci">GradientTypeIn GradientType</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:71</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux_html_a7823804d48b1c6b158dfad8fd52ef56b"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#a7823804d48b1c6b158dfad8fd52ef56b">MeltPoolDG::CompressibleFlow::SpeciesTransportDiffusiveFlux::PhysicalFluxType</a></div><div class="ttdeci">FluxTypeIn PhysicalFluxType</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:72</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux_html_acc0da9e3307a5540a612d807db55ddb0"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#acc0da9e3307a5540a612d807db55ddb0">MeltPoolDG::CompressibleFlow::SpeciesTransportDiffusiveFlux::WritableFluxViewType</a></div><div class="ttdeci">CompressibleFlow::FluxView&lt; dim, PhysicalFluxType &gt; WritableFluxViewType</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:81</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux_html_af89b3209ff4b21f8294c11636ddd6008"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af89b3209ff4b21f8294c11636ddd6008">MeltPoolDG::CompressibleFlow::SpeciesTransportDiffusiveFlux::SpeciesWritableFluxView</a></div><div class="ttdeci">MultiSpeciesFluxView&lt; dim, n_species, PhysicalFluxType &gt; SpeciesWritableFluxView</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:82</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux_html_af8f832de8088546ac868e6d470cacc7e"><div class="ttname"><a href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html#af8f832de8088546ac868e6d470cacc7e">MeltPoolDG::CompressibleFlow::SpeciesTransportDiffusiveFlux::material</a></div><div class="ttdeci">const MaterialPhaseData&lt; number &gt; &amp; material</div><div class="ttdef"><b>Definition</b> kernels_multi_species.hpp:120</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

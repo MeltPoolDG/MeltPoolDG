@@ -151,6 +151,10 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1SpeciesTransport_1_1GradientValueMixin.html">GradientValueMixin</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SpeciesTransport_1_1MassFractionPostProcessor.html">MassFractionPostProcessor</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SpeciesTransport_1_1PartialDensityPostProcessor.html">PartialDensityPostProcessor</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -161,19 +165,19 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6e3aede731053a06b4eb56cdae353635" id="r_a6e3aede731053a06b4eb56cdae353635"><td class="memTemplParams" colspan="2">template&lt;std::size_t n_species, typename VectorizedArrayType , typename ReadOnlyDofView , typename WritableDofView &gt; </td></tr>
-<tr class="memitem:a6e3aede731053a06b4eb56cdae353635"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a6e3aede731053a06b4eb56cdae353635">set_boundary_value_and_gradient</a> (const WritableDofView &amp;w_p, const ReadOnlyDofView &amp;w_m, const <a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28">BoundaryConditionType</a> boundary_type, const std::array&lt; VectorizedArrayType, n_species &gt; &amp;dirichlet_boundary_values={})</td></tr>
-<tr class="separator:a6e3aede731053a06b4eb56cdae353635"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9510e86c1af96af0214a461daf883a8f" id="r_a9510e86c1af96af0214a461daf883a8f"><td class="memTemplParams" colspan="2">template&lt;int n_species, typename ConservedVariablesView , typename WritableFluxView &gt; </td></tr>
-<tr class="memitem:a9510e86c1af96af0214a461daf883a8f"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9510e86c1af96af0214a461daf883a8f">convective_flux</a> (const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</td></tr>
-<tr class="memdesc:a9510e86c1af96af0214a461daf883a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the convective species transport flux for each species.  <br /></td></tr>
-<tr class="separator:a9510e86c1af96af0214a461daf883a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae918ad0f13d976e3b66858df64c33f26" id="r_ae918ad0f13d976e3b66858df64c33f26"><td class="memTemplParams" colspan="2">template&lt;std::size_t n_partial_densities, typename VectorizedArrayType , typename ReadOnlyDofView , typename WritableDofView &gt; </td></tr>
+<tr class="memitem:ae918ad0f13d976e3b66858df64c33f26"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#ae918ad0f13d976e3b66858df64c33f26">set_boundary_value_and_gradient</a> (const WritableDofView &amp;w_p, const ReadOnlyDofView &amp;w_m, const <a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28">BoundaryConditionType</a> boundary_type, const std::array&lt; VectorizedArrayType, n_partial_densities &gt; &amp;dirichlet_boundary_values={})</td></tr>
+<tr class="separator:ae918ad0f13d976e3b66858df64c33f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1bbd9004384151161b6924012b1be32" id="r_aa1bbd9004384151161b6924012b1be32"><td class="memTemplParams" colspan="2">template&lt;int n_species, typename ConservedVariablesView , typename WritableFluxView &gt; </td></tr>
+<tr class="memitem:aa1bbd9004384151161b6924012b1be32"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#aa1bbd9004384151161b6924012b1be32">compute_convective_flux</a> (const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</td></tr>
+<tr class="memdesc:aa1bbd9004384151161b6924012b1be32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the convective species transport flux for each species.  <br /></td></tr>
+<tr class="separator:aa1bbd9004384151161b6924012b1be32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ab5948f0bfbfafd29fd2daac33e77d7" id="r_a0ab5948f0bfbfafd29fd2daac33e77d7"><td class="memTemplParams" colspan="2">template&lt;int n_species, typename ConservedVariablesView &gt; </td></tr>
 <tr class="memitem:a0ab5948f0bfbfafd29fd2daac33e77d7"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a0ab5948f0bfbfafd29fd2daac33e77d7">fickian_diffusion_approximation</a> (const ConservedVariablesView &amp;conserved_variables, const unsigned int species_idx)</td></tr>
 <tr class="separator:a0ab5948f0bfbfafd29fd2daac33e77d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3edb6111758268a05e707b3b7132b5a" id="r_af3edb6111758268a05e707b3b7132b5a"><td class="memTemplParams" colspan="2">template&lt;int n_species, typename ConservedVariablesView , typename WritableFluxView &gt; </td></tr>
-<tr class="memitem:af3edb6111758268a05e707b3b7132b5a"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#af3edb6111758268a05e707b3b7132b5a">diffusive_flux</a> (const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</td></tr>
-<tr class="separator:af3edb6111758268a05e707b3b7132b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefa5c30c90b4bd3032ae5e76499a1256" id="r_aefa5c30c90b4bd3032ae5e76499a1256"><td class="memTemplParams" colspan="2">template&lt;int n_species, typename ConservedVariablesView , typename WritableFluxView &gt; </td></tr>
+<tr class="memitem:aefa5c30c90b4bd3032ae5e76499a1256"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#aefa5c30c90b4bd3032ae5e76499a1256">compute_diffusive_flux</a> (const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</td></tr>
+<tr class="separator:aefa5c30c90b4bd3032ae5e76499a1256"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9002e9ec4c12bfd27c1bd5bf7cb38534" id="r_a9002e9ec4c12bfd27c1bd5bf7cb38534"><td class="memTemplParams" colspan="2">template&lt;int n_species, typename VectorizedArrayType , typename ConservedVariablesView , typename WritableFluxView &gt; </td></tr>
 <tr class="memitem:a9002e9ec4c12bfd27c1bd5bf7cb38534"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9002e9ec4c12bfd27c1bd5bf7cb38534">interdiffusional_enthalpy_flux</a> (const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</td></tr>
 <tr class="separator:a9002e9ec4c12bfd27c1bd5bf7cb38534"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,8 +211,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a9510e86c1af96af0214a461daf883a8f" name="a9510e86c1af96af0214a461daf883a8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9510e86c1af96af0214a461daf883a8f">&#9670;&#160;</a></span>convective_flux()</h2>
+<a id="aa1bbd9004384151161b6924012b1be32" name="aa1bbd9004384151161b6924012b1be32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1bbd9004384151161b6924012b1be32">&#9670;&#160;</a></span>compute_convective_flux()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -219,7 +223,7 @@ template&lt;int n_species, typename ConservedVariablesView , typename WritableFl
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DEAL_II_ALWAYS_INLINE void MeltPoolDG::SpeciesTransport::convective_flux </td>
+          <td class="memname">DEAL_II_ALWAYS_INLINE void MeltPoolDG::SpeciesTransport::compute_convective_flux </td>
           <td>(</td>
           <td class="paramtype">const ConservedVariablesView &amp;&#160;</td>
           <td class="paramname"><em>conserved_variables</em>, </td>
@@ -255,8 +259,8 @@ template&lt;int n_species, typename ConservedVariablesView , typename WritableFl
 
 </div>
 </div>
-<a id="af3edb6111758268a05e707b3b7132b5a" name="af3edb6111758268a05e707b3b7132b5a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3edb6111758268a05e707b3b7132b5a">&#9670;&#160;</a></span>diffusive_flux()</h2>
+<a id="aefa5c30c90b4bd3032ae5e76499a1256" name="aefa5c30c90b4bd3032ae5e76499a1256"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefa5c30c90b4bd3032ae5e76499a1256">&#9670;&#160;</a></span>compute_diffusive_flux()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -267,7 +271,7 @@ template&lt;int n_species, typename ConservedVariablesView , typename WritableFl
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DEAL_II_ALWAYS_INLINE void MeltPoolDG::SpeciesTransport::diffusive_flux </td>
+          <td class="memname">DEAL_II_ALWAYS_INLINE void MeltPoolDG::SpeciesTransport::compute_diffusive_flux </td>
           <td>(</td>
           <td class="paramtype">const ConservedVariablesView &amp;&#160;</td>
           <td class="paramname"><em>conserved_variables</em>, </td>
@@ -388,13 +392,13 @@ template&lt;int n_species, typename VectorizedArrayType , typename ConservedVari
 
 </div>
 </div>
-<a id="a6e3aede731053a06b4eb56cdae353635" name="a6e3aede731053a06b4eb56cdae353635"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e3aede731053a06b4eb56cdae353635">&#9670;&#160;</a></span>set_boundary_value_and_gradient()</h2>
+<a id="ae918ad0f13d976e3b66858df64c33f26" name="ae918ad0f13d976e3b66858df64c33f26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae918ad0f13d976e3b66858df64c33f26">&#9670;&#160;</a></span>set_boundary_value_and_gradient()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;std::size_t n_species, typename VectorizedArrayType , typename ReadOnlyDofView , typename WritableDofView &gt; </div>
+template&lt;std::size_t n_partial_densities, typename VectorizedArrayType , typename ReadOnlyDofView , typename WritableDofView &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void MeltPoolDG::SpeciesTransport::set_boundary_value_and_gradient </td>
@@ -417,7 +421,7 @@ template&lt;std::size_t n_species, typename VectorizedArrayType , typename ReadO
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::array&lt; VectorizedArrayType, n_species &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::array&lt; VectorizedArrayType, n_partial_densities &gt; &amp;&#160;</td>
           <td class="paramname"><em>dirichlet_boundary_values</em> = <code>{}</code>&#160;</td>
         </tr>
         <tr>
@@ -427,7 +431,7 @@ template&lt;std::size_t n_species, typename VectorizedArrayType , typename ReadO
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets the boundary value and gradient for partial densities in species transport. The boundary condition is only applied to the first n_species - 1 species, as it is assumed that the last species is a dependent variable and therefore is not part of the solution vector.</p>
+<p>Sets the boundary value and gradient for partial densities in species transport. The boundary condition is only applied to all partial densities and their gradients.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">w_p</td><td>The writable degree of freedom view for the values on the outer face. </td></tr>

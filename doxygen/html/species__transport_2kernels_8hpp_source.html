@@ -151,83 +151,85 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span></div>
 <div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9510e86c1af96af0214a461daf883a8f">   22</a></span>    <a class="code hl_function" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9510e86c1af96af0214a461daf883a8f">convective_flux</a>(<span class="keyword">const</span> ConservedVariablesView &amp;conserved_variables, <span class="keyword">const</span> WritableFluxView &amp;flux)</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_species - 1; ++i)</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>      {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        flux.partial_density_flux(i) +=</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>          conserved_variables.partial_density(i) * conserved_variables.velocity();</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>      }</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  }</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#aa1bbd9004384151161b6924012b1be32">   22</a></span>    <a class="code hl_function" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#aa1bbd9004384151161b6924012b1be32">compute_convective_flux</a>(<span class="keyword">const</span> ConservedVariablesView &amp;conserved_variables,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                            <span class="keyword">const</span> WritableFluxView       &amp;flux)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_species - 1; ++i)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        flux.partial_density_flux(i) +=</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>          conserved_variables.partial_density(i) * conserved_variables.velocity();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>      }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  }</div>
 </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_species, <span class="keyword">typename</span> ConservedVariablesView&gt;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  [[nodiscard]] <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">auto</span></div>
-<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a0ab5948f0bfbfafd29fd2daac33e77d7">   44</a></span>    <a class="code hl_function" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a0ab5948f0bfbfafd29fd2daac33e77d7">fickian_diffusion_approximation</a>(<span class="keyword">const</span> ConservedVariablesView &amp;conserved_variables,</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>            species_idx)</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">auto</span> flux = conserved_variables.mixture_averaged_diffusion_coefficient(species_idx) *</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                conserved_variables.grad_mass_fraction(species_idx);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_species; ++i)</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      flux -= conserved_variables.mass_fraction(species_idx) *</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>              conserved_variables.mixture_averaged_diffusion_coefficient(i) *</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>              conserved_variables.grad_mass_fraction(i);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    flux *= -conserved_variables.density();</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">return</span> flux;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_species, <span class="keyword">typename</span> ConservedVariablesView&gt;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  [[nodiscard]] <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">auto</span></div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a0ab5948f0bfbfafd29fd2daac33e77d7">   45</a></span>    <a class="code hl_function" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a0ab5948f0bfbfafd29fd2daac33e77d7">fickian_diffusion_approximation</a>(<span class="keyword">const</span> ConservedVariablesView &amp;conserved_variables,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>            species_idx)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">auto</span> flux = conserved_variables.mixture_averaged_diffusion_coefficient(species_idx) *</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                conserved_variables.grad_mass_fraction(species_idx);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_species; ++i)</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      flux -= conserved_variables.mass_fraction(species_idx) *</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>              conserved_variables.mixture_averaged_diffusion_coefficient(i) *</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>              conserved_variables.grad_mass_fraction(i);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    flux *= -conserved_variables.density();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">return</span> flux;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  }</div>
 </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_species, <span class="keyword">typename</span> ConservedVariablesView, <span class="keyword">typename</span> WritableFluxView&gt;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#af3edb6111758268a05e707b3b7132b5a">   70</a></span>    <a class="code hl_function" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#af3edb6111758268a05e707b3b7132b5a">diffusive_flux</a>(<span class="keyword">const</span> ConservedVariablesView &amp;conserved_variables, <span class="keyword">const</span> WritableFluxView &amp;flux)</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_species - 1; ++i)</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        flux.partial_density_flux(i) -=</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>          fickian_diffusion_approximation&lt;n_species, ConservedVariablesView&gt;(conserved_variables,</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                                                                             i);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      }</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_species, <span class="keyword">typename</span> ConservedVariablesView, <span class="keyword">typename</span> WritableFluxView&gt;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keyword">inline</span> DEAL_II_ALWAYS_INLINE <span class="comment">//</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#aefa5c30c90b4bd3032ae5e76499a1256">   71</a></span>    <a class="code hl_function" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#aefa5c30c90b4bd3032ae5e76499a1256">compute_diffusive_flux</a>(<span class="keyword">const</span> ConservedVariablesView &amp;conserved_variables,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                           <span class="keyword">const</span> WritableFluxView       &amp;flux)</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_species - 1; ++i)</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        flux.partial_density_flux(i) -=</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>          fickian_diffusion_approximation&lt;n_species, ConservedVariablesView&gt;(conserved_variables,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                                                                             i);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  }</div>
 </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_species,</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="keyword">typename</span> VectorizedArrayType,</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <span class="keyword">typename</span> ConservedVariablesView,</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            <span class="keyword">typename</span> WritableFluxView&gt;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00095" data-start="{" data-end="}">
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9002e9ec4c12bfd27c1bd5bf7cb38534">   95</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9002e9ec4c12bfd27c1bd5bf7cb38534">interdiffusional_enthalpy_flux</a>(<span class="keyword">const</span> ConservedVariablesView &amp;conserved_variables,</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                                 <span class="keyword">const</span> WritableFluxView       &amp;flux)</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  {</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">const</span> <span class="keyword">auto</span> species_enthalpy = [&amp;](<span class="keyword">const</span> <span class="keywordtype">int</span> idx) -&gt; VectorizedArrayType {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="comment">// If the partial density of the species is zero, set the species enthalpy to zero to avoid</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="comment">// NaNs in the interdiffusional enthalpy flux.</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="keywordflow">return</span> dealii::compare_and_apply_mask&lt;dealii::SIMDComparison::greater_than&gt;(</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        conserved_variables.mass_fraction(idx),</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        VectorizedArrayType(1e-15),</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        conserved_variables.partial_inner_energy(idx) +</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>          conserved_variables.partial_pressure(idx) / conserved_variables.partial_density(idx),</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        VectorizedArrayType(0.));</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    };</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_species; ++i)</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      flux.energy_flux() +=</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        species_enthalpy(i) *</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        fickian_diffusion_approximation&lt;n_species, ConservedVariablesView&gt;(conserved_variables, i);</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_species,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            <span class="keyword">typename</span> VectorizedArrayType,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            <span class="keyword">typename</span> ConservedVariablesView,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            <span class="keyword">typename</span> WritableFluxView&gt;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9002e9ec4c12bfd27c1bd5bf7cb38534">   97</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9002e9ec4c12bfd27c1bd5bf7cb38534">interdiffusional_enthalpy_flux</a>(<span class="keyword">const</span> ConservedVariablesView &amp;conserved_variables,</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                                 <span class="keyword">const</span> WritableFluxView       &amp;flux)</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">const</span> <span class="keyword">auto</span> species_enthalpy = [&amp;](<span class="keyword">const</span> <span class="keywordtype">int</span> idx) -&gt; VectorizedArrayType {</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="comment">// If the partial density of the species is zero, set the species enthalpy to zero to avoid</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="comment">// NaNs in the interdiffusional enthalpy flux.</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      <span class="keywordflow">return</span> dealii::compare_and_apply_mask&lt;dealii::SIMDComparison::greater_than&gt;(</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        conserved_variables.mass_fraction(idx),</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        VectorizedArrayType(1e-15),</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        conserved_variables.partial_inner_energy(idx) +</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>          conserved_variables.partial_pressure(idx) / conserved_variables.partial_density(idx),</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        VectorizedArrayType(0.));</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    };</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; n_species; ++i)</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>      flux.energy_flux() +=</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        species_enthalpy(i) *</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        fickian_diffusion_approximation&lt;n_species, ConservedVariablesView&gt;(conserved_variables, i);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  }</div>
 </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>} <span class="comment">// namespace MeltPoolDG::SpeciesTransport</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>} <span class="comment">// namespace MeltPoolDG::SpeciesTransport</span></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html">MeltPoolDG::SpeciesTransport</a></div><div class="ttdef"><b>Definition</b> boundary_conditions.hpp:8</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_a0ab5948f0bfbfafd29fd2daac33e77d7"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a0ab5948f0bfbfafd29fd2daac33e77d7">MeltPoolDG::SpeciesTransport::fickian_diffusion_approximation</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE auto fickian_diffusion_approximation(const ConservedVariablesView &amp;conserved_variables, const unsigned int species_idx)</div><div class="ttdef"><b>Definition</b> kernels.hpp:44</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_a9002e9ec4c12bfd27c1bd5bf7cb38534"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9002e9ec4c12bfd27c1bd5bf7cb38534">MeltPoolDG::SpeciesTransport::interdiffusional_enthalpy_flux</a></div><div class="ttdeci">void interdiffusional_enthalpy_flux(const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</div><div class="ttdef"><b>Definition</b> kernels.hpp:95</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_a9510e86c1af96af0214a461daf883a8f"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9510e86c1af96af0214a461daf883a8f">MeltPoolDG::SpeciesTransport::convective_flux</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE void convective_flux(const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</div><div class="ttdoc">Computes the convective species transport flux for each species.</div><div class="ttdef"><b>Definition</b> kernels.hpp:22</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_af3edb6111758268a05e707b3b7132b5a"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#af3edb6111758268a05e707b3b7132b5a">MeltPoolDG::SpeciesTransport::diffusive_flux</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE void diffusive_flux(const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</div><div class="ttdef"><b>Definition</b> kernels.hpp:70</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_a0ab5948f0bfbfafd29fd2daac33e77d7"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a0ab5948f0bfbfafd29fd2daac33e77d7">MeltPoolDG::SpeciesTransport::fickian_diffusion_approximation</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE auto fickian_diffusion_approximation(const ConservedVariablesView &amp;conserved_variables, const unsigned int species_idx)</div><div class="ttdef"><b>Definition</b> kernels.hpp:45</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_a9002e9ec4c12bfd27c1bd5bf7cb38534"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a9002e9ec4c12bfd27c1bd5bf7cb38534">MeltPoolDG::SpeciesTransport::interdiffusional_enthalpy_flux</a></div><div class="ttdeci">void interdiffusional_enthalpy_flux(const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</div><div class="ttdef"><b>Definition</b> kernels.hpp:97</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_aa1bbd9004384151161b6924012b1be32"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#aa1bbd9004384151161b6924012b1be32">MeltPoolDG::SpeciesTransport::compute_convective_flux</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE void compute_convective_flux(const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</div><div class="ttdoc">Computes the convective species transport flux for each species.</div><div class="ttdef"><b>Definition</b> kernels.hpp:22</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_aefa5c30c90b4bd3032ae5e76499a1256"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#aefa5c30c90b4bd3032ae5e76499a1256">MeltPoolDG::SpeciesTransport::compute_diffusive_flux</a></div><div class="ttdeci">DEAL_II_ALWAYS_INLINE void compute_diffusive_flux(const ConservedVariablesView &amp;conserved_variables, const WritableFluxView &amp;flux)</div><div class="ttdef"><b>Definition</b> kernels.hpp:71</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

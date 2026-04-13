@@ -157,62 +157,59 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  };</div>
 </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keyword">template</span> &lt;std::size_t n_species,</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keyword">typename</span> VectorizedArrayType,</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <span class="keyword">typename</span> ReadOnlyDofView,</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <span class="keyword">typename</span> WritableDofView&gt;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a6e3aede731053a06b4eb56cdae353635">   36</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a6e3aede731053a06b4eb56cdae353635">set_boundary_value_and_gradient</a>(</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">const</span> WritableDofView                            &amp;w_p,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">const</span> ReadOnlyDofView                            &amp;w_m,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">const</span> <a class="code hl_enumeration" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28">BoundaryConditionType</a>                       boundary_type,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">const</span> std::array&lt;VectorizedArrayType, n_species&gt; &amp;dirichlet_boundary_values = {})</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">static_assert</span>(n_species &gt; 1,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                  <span class="stringliteral">&quot;There must be at least two species for this function to make sense.&quot;</span>);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">const</span> <span class="keyword">auto</span> set_to_value = [](<span class="keyword">const</span> ReadOnlyDofView     &amp;src,</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                                 <span class="keyword">const</span> WritableDofView     &amp;dst,</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                                 <span class="keyword">const</span> VectorizedArrayType &amp;scaling_factor = 1.) {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> species = 0; species &lt; n_species - 1; ++species)</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>          dst.partial_density(species) = src.partial_density(species) * scaling_factor;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        }</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    };</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">const</span> <span class="keyword">auto</span> set_to_gradient = [](<span class="keyword">const</span> ReadOnlyDofView     &amp;src,</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                                    <span class="keyword">const</span> WritableDofView     &amp;dst,</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                                    <span class="keyword">const</span> VectorizedArrayType &amp;scaling_factor = 1.) {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> species = 0; species &lt; n_species - 1; ++species)</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        dst.grad_partial_density(species) = src.grad_partial_density(species) * scaling_factor;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    };</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">if</span> (boundary_type == <a class="code hl_enumvalue" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28a503b9bc8f55d2a048f0cb35ddf3fb4ec">BoundaryConditionType::dirichlet</a>)</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      {</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> species = 0; species &lt; n_species - 1; ++species)</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>          w_p.partial_density(species) = dirichlet_boundary_values[species];</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        set_to_gradient(w_m, w_p);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      }</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (boundary_type == <a class="code hl_enumvalue" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28aba3b05bd11ea46ae6bb9c8f51eb2bf93">BoundaryConditionType::neumann</a>)</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        set_to_value(w_m, w_p);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        set_to_gradient(w_m, w_p, -1.);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keyword">template</span> &lt;std::size_t n_partial_densities,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <span class="keyword">typename</span> VectorizedArrayType,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keyword">typename</span> ReadOnlyDofView,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <span class="keyword">typename</span> WritableDofView&gt;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#ae918ad0f13d976e3b66858df64c33f26">   35</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#ae918ad0f13d976e3b66858df64c33f26">set_boundary_value_and_gradient</a>(</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">const</span> WritableDofView                                      &amp;w_p,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">const</span> ReadOnlyDofView                                      &amp;w_m,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">const</span> <a class="code hl_enumeration" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28">BoundaryConditionType</a>                                 boundary_type,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">const</span> std::array&lt;VectorizedArrayType, n_partial_densities&gt; &amp;dirichlet_boundary_values = {})</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">const</span> <span class="keyword">auto</span> set_to_value = [](<span class="keyword">const</span> ReadOnlyDofView     &amp;src,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                                 <span class="keyword">const</span> WritableDofView     &amp;dst,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                                 <span class="keyword">const</span> VectorizedArrayType &amp;scaling_factor = 1.) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> species = 0; species &lt; n_partial_densities; ++species)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>          dst.partial_density(species) = src.partial_density(species) * scaling_factor;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    };</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">const</span> <span class="keyword">auto</span> set_to_gradient = [](<span class="keyword">const</span> ReadOnlyDofView     &amp;src,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                                    <span class="keyword">const</span> WritableDofView     &amp;dst,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                                    <span class="keyword">const</span> VectorizedArrayType &amp;scaling_factor = 1.) {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> species = 0; species &lt; n_partial_densities; ++species)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        dst.grad_partial_density(species) = src.grad_partial_density(species) * scaling_factor;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    };</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">if</span> (boundary_type == <a class="code hl_enumvalue" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28a503b9bc8f55d2a048f0cb35ddf3fb4ec">BoundaryConditionType::dirichlet</a>)</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> species = 0; species &lt; n_partial_densities; ++species)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>          w_p.partial_density(species) = dirichlet_boundary_values[species];</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        set_to_gradient(w_m, w_p);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (boundary_type == <a class="code hl_enumvalue" href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28aba3b05bd11ea46ae6bb9c8f51eb2bf93">BoundaryConditionType::neumann</a>)</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        set_to_value(w_m, w_p);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        set_to_gradient(w_m, w_p, -1.);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        AssertThrow(<span class="keyword">false</span>, dealii::ExcMessage(<span class="stringliteral">&quot;Unknown boundary type for species transport.&quot;</span>));</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      }</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        AssertThrow(<span class="keyword">false</span>, dealii::ExcMessage(<span class="stringliteral">&quot;Unknown boundary type for species transport.&quot;</span>));</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      }</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  }</div>
 </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>} <span class="comment">// namespace MeltPoolDG::SpeciesTransport</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>} <span class="comment">// namespace MeltPoolDG::SpeciesTransport</span></div>
 </div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html">MeltPoolDG::SpeciesTransport</a></div><div class="ttdef"><b>Definition</b> boundary_conditions.hpp:8</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_a6e3aede731053a06b4eb56cdae353635"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a6e3aede731053a06b4eb56cdae353635">MeltPoolDG::SpeciesTransport::set_boundary_value_and_gradient</a></div><div class="ttdeci">void set_boundary_value_and_gradient(const WritableDofView &amp;w_p, const ReadOnlyDofView &amp;w_m, const BoundaryConditionType boundary_type, const std::array&lt; VectorizedArrayType, n_species &gt; &amp;dirichlet_boundary_values={})</div><div class="ttdef"><b>Definition</b> boundary_conditions.hpp:36</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_a751d101b97024c3b9e6956f07b409e28"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28">MeltPoolDG::SpeciesTransport::BoundaryConditionType</a></div><div class="ttdeci">BoundaryConditionType</div><div class="ttdef"><b>Definition</b> boundary_conditions.hpp:15</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_a751d101b97024c3b9e6956f07b409e28a503b9bc8f55d2a048f0cb35ddf3fb4ec"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28a503b9bc8f55d2a048f0cb35ddf3fb4ec">MeltPoolDG::SpeciesTransport::BoundaryConditionType::dirichlet</a></div><div class="ttdeci">@ dirichlet</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_a751d101b97024c3b9e6956f07b409e28aba3b05bd11ea46ae6bb9c8f51eb2bf93"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#a751d101b97024c3b9e6956f07b409e28aba3b05bd11ea46ae6bb9c8f51eb2bf93">MeltPoolDG::SpeciesTransport::BoundaryConditionType::neumann</a></div><div class="ttdeci">@ neumann</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1SpeciesTransport_html_ae918ad0f13d976e3b66858df64c33f26"><div class="ttname"><a href="namespaceMeltPoolDG_1_1SpeciesTransport.html#ae918ad0f13d976e3b66858df64c33f26">MeltPoolDG::SpeciesTransport::set_boundary_value_and_gradient</a></div><div class="ttdeci">void set_boundary_value_and_gradient(const WritableDofView &amp;w_p, const ReadOnlyDofView &amp;w_m, const BoundaryConditionType boundary_type, const std::array&lt; VectorizedArrayType, n_partial_densities &gt; &amp;dirichlet_boundary_values={})</div><div class="ttdef"><b>Definition</b> boundary_conditions.hpp:35</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

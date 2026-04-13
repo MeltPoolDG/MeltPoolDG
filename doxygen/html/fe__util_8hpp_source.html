@@ -141,38 +141,106 @@ $(document).ready(function() { init_codefold(0); });
 <div class="contents">
 <a href="fe__util_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/quadrature.h&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;deal.II/dofs/dof_handler.h&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;deal.II/fe/mapping.h&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="finite__element__data_8hpp.html">meltpooldg/core/finite_element_data.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="foldopen" id="foldopen00013" data-start="{" data-end="}">
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html">   13</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html">MeltPoolDG::FiniteElementUtils</a></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_components = 1&gt;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#ab95c220565e72ccd4dd83c0f1a84994a">distribute_dofs</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1FiniteElementData.html">FiniteElementData</a> &amp;fe_data, dealii::DoFHandler&lt;dim&gt; &amp;dof_handler);</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/exceptions.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;deal.II/base/quadrature.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;deal.II/dofs/dof_handler.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;deal.II/fe/fe_dgq.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;deal.II/fe/fe_q.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;deal.II/fe/fe_q_iso_q1.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;deal.II/fe/fe_simplex_p.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;deal.II/fe/fe_system.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;deal.II/fe/mapping.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="finite__element__data_8hpp.html">meltpooldg/core/finite_element_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim&gt;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  std::shared_ptr&lt;dealii::Mapping&lt;dim&gt;&gt;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#a38749dfda7601a08773b23cbcf39e66b">create_mapping</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1FiniteElementData.html">FiniteElementData</a> &amp;fe_data);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim&gt;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  dealii::Quadrature&lt;dim&gt;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#a96c7953a9dec516d561e0ca2ae0ccd62">create_quadrature</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1FiniteElementData.html">FiniteElementData</a> &amp;fe_data);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>} <span class="comment">// namespace MeltPoolDG::FiniteElementUtils</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html">   19</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html">MeltPoolDG::FiniteElementUtils</a></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_components = 1&gt;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#ab95c220565e72ccd4dd83c0f1a84994a">   23</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#ab95c220565e72ccd4dd83c0f1a84994a">distribute_dofs</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1FiniteElementData.html">FiniteElementData</a> &amp;fe_data, dealii::DoFHandler&lt;dim&gt; &amp;dof_handler)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (n_components == 1)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keywordflow">switch</span> (fe_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FiniteElementData.html#ab87f03d393f283ba8d8c3a28f0b35798">type</a>)</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>          {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>              <span class="keywordflow">case</span> FiniteElementType::FE_Q: {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                dof_handler.distribute_dofs(dealii::FE_Q&lt;dim&gt;(fe_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FiniteElementData.html#a83fc1cda1ace699b1f312b6f1ce76c47">degree</a>));</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>              }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>              <span class="keywordflow">case</span> FiniteElementType::FE_SimplexP: {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                dof_handler.distribute_dofs(dealii::FE_SimplexP&lt;dim&gt;(fe_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FiniteElementData.html#a83fc1cda1ace699b1f312b6f1ce76c47">degree</a>));</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>              }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>              <span class="keywordflow">case</span> FiniteElementType::FE_Q_iso_Q1: {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                dof_handler.distribute_dofs(dealii::FE_Q_iso_Q1&lt;dim&gt;(fe_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FiniteElementData.html#a83fc1cda1ace699b1f312b6f1ce76c47">degree</a>));</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>              }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>              <span class="keywordflow">case</span> FiniteElementType::FE_DGQ: {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                dof_handler.distribute_dofs(dealii::FE_DGQ&lt;dim&gt;(fe_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FiniteElementData.html#a83fc1cda1ace699b1f312b6f1ce76c47">degree</a>));</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>              }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="keywordflow">case</span> FiniteElementType::not_initialized:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>              DEAL_II_ASSERT_UNREACHABLE();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>              DEAL_II_NOT_IMPLEMENTED();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>          }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">switch</span> (fe_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FiniteElementData.html#ab87f03d393f283ba8d8c3a28f0b35798">type</a>)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>          {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>              <span class="keywordflow">case</span> FiniteElementType::FE_Q: {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                dof_handler.distribute_dofs(</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                  dealii::FESystem&lt;dim&gt;(dealii::FE_Q&lt;dim&gt;(fe_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FiniteElementData.html#a83fc1cda1ace699b1f312b6f1ce76c47">degree</a>), n_components));</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>              }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>              <span class="keywordflow">case</span> FiniteElementType::FE_SimplexP: {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                dof_handler.distribute_dofs(</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                  dealii::FESystem&lt;dim&gt;(dealii::FE_SimplexP&lt;dim&gt;(fe_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FiniteElementData.html#a83fc1cda1ace699b1f312b6f1ce76c47">degree</a>), n_components));</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>              }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>              <span class="keywordflow">case</span> FiniteElementType::FE_Q_iso_Q1: {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                dof_handler.distribute_dofs(</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                  dealii::FESystem&lt;dim&gt;(dealii::FE_Q_iso_Q1&lt;dim&gt;(fe_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FiniteElementData.html#a83fc1cda1ace699b1f312b6f1ce76c47">degree</a>), n_components));</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>              }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>              <span class="keywordflow">case</span> FiniteElementType::FE_DGQ: {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                dof_handler.distribute_dofs(</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                  dealii::FESystem&lt;dim&gt;(dealii::FE_DGQ&lt;dim&gt;(fe_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FiniteElementData.html#a83fc1cda1ace699b1f312b6f1ce76c47">degree</a>), n_components));</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>              }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keywordflow">case</span> FiniteElementType::not_initialized:</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>              DEAL_II_ASSERT_UNREACHABLE();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>              DEAL_II_NOT_IMPLEMENTED();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>          }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  }</div>
+</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim&gt;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  std::shared_ptr&lt;dealii::Mapping&lt;dim&gt;&gt;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#a38749dfda7601a08773b23cbcf39e66b">create_mapping</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1FiniteElementData.html">FiniteElementData</a> &amp;fe_data);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim&gt;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  dealii::Quadrature&lt;dim&gt;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#a96c7953a9dec516d561e0ca2ae0ccd62">create_quadrature</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1FiniteElementData.html">FiniteElementData</a> &amp;fe_data);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>} <span class="comment">// namespace MeltPoolDG::FiniteElementUtils</span></div>
 </div>
 <div class="ttc" id="afinite__element__data_8hpp_html"><div class="ttname"><a href="finite__element__data_8hpp.html">finite_element_data.hpp</a></div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1FiniteElementUtils_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1FiniteElementUtils.html">MeltPoolDG::FiniteElementUtils</a></div><div class="ttdef"><b>Definition</b> fe_util.hpp:14</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1FiniteElementUtils_html_a38749dfda7601a08773b23cbcf39e66b"><div class="ttname"><a href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#a38749dfda7601a08773b23cbcf39e66b">MeltPoolDG::FiniteElementUtils::create_mapping</a></div><div class="ttdeci">std::shared_ptr&lt; dealii::Mapping&lt; dim &gt; &gt; create_mapping(const FiniteElementData &amp;fe_data)</div><div class="ttdef"><b>Definition</b> fe_util.cpp:80</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1FiniteElementUtils_html_a96c7953a9dec516d561e0ca2ae0ccd62"><div class="ttname"><a href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#a96c7953a9dec516d561e0ca2ae0ccd62">MeltPoolDG::FiniteElementUtils::create_quadrature</a></div><div class="ttdeci">dealii::Quadrature&lt; dim &gt; create_quadrature(const FiniteElementData &amp;fe_data)</div><div class="ttdef"><b>Definition</b> fe_util.cpp:102</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1FiniteElementUtils_html_ab95c220565e72ccd4dd83c0f1a84994a"><div class="ttname"><a href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#ab95c220565e72ccd4dd83c0f1a84994a">MeltPoolDG::FiniteElementUtils::distribute_dofs</a></div><div class="ttdeci">void distribute_dofs(const FiniteElementData &amp;fe_data, dealii::DoFHandler&lt; dim &gt; &amp;dof_handler)</div><div class="ttdef"><b>Definition</b> fe_util.cpp:18</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1FiniteElementUtils_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1FiniteElementUtils.html">MeltPoolDG::FiniteElementUtils</a></div><div class="ttdef"><b>Definition</b> fe_util.hpp:20</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1FiniteElementUtils_html_a38749dfda7601a08773b23cbcf39e66b"><div class="ttname"><a href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#a38749dfda7601a08773b23cbcf39e66b">MeltPoolDG::FiniteElementUtils::create_mapping</a></div><div class="ttdeci">std::shared_ptr&lt; dealii::Mapping&lt; dim &gt; &gt; create_mapping(const FiniteElementData &amp;fe_data)</div><div class="ttdef"><b>Definition</b> fe_util.cpp:18</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1FiniteElementUtils_html_a96c7953a9dec516d561e0ca2ae0ccd62"><div class="ttname"><a href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#a96c7953a9dec516d561e0ca2ae0ccd62">MeltPoolDG::FiniteElementUtils::create_quadrature</a></div><div class="ttdeci">dealii::Quadrature&lt; dim &gt; create_quadrature(const FiniteElementData &amp;fe_data)</div><div class="ttdef"><b>Definition</b> fe_util.cpp:40</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1FiniteElementUtils_html_ab95c220565e72ccd4dd83c0f1a84994a"><div class="ttname"><a href="namespaceMeltPoolDG_1_1FiniteElementUtils.html#ab95c220565e72ccd4dd83c0f1a84994a">MeltPoolDG::FiniteElementUtils::distribute_dofs</a></div><div class="ttdeci">void distribute_dofs(const FiniteElementData &amp;fe_data, dealii::DoFHandler&lt; dim &gt; &amp;dof_handler)</div><div class="ttdef"><b>Definition</b> fe_util.hpp:23</div></div>
 <div class="ttc" id="astructMeltPoolDG_1_1FiniteElementData_html"><div class="ttname"><a href="structMeltPoolDG_1_1FiniteElementData.html">MeltPoolDG::FiniteElementData</a></div><div class="ttdef"><b>Definition</b> finite_element_data.hpp:12</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1FiniteElementData_html_a83fc1cda1ace699b1f312b6f1ce76c47"><div class="ttname"><a href="structMeltPoolDG_1_1FiniteElementData.html#a83fc1cda1ace699b1f312b6f1ce76c47">MeltPoolDG::FiniteElementData::degree</a></div><div class="ttdeci">int degree</div><div class="ttdef"><b>Definition</b> finite_element_data.hpp:14</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1FiniteElementData_html_ab87f03d393f283ba8d8c3a28f0b35798"><div class="ttname"><a href="structMeltPoolDG_1_1FiniteElementData.html#ab87f03d393f283ba8d8c3a28f0b35798">MeltPoolDG::FiniteElementData::type</a></div><div class="ttdeci">FiniteElementType type</div><div class="ttdef"><b>Definition</b> finite_element_data.hpp:13</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

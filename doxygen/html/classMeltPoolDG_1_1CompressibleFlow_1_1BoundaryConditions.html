@@ -182,6 +182,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae557dcb43d9c3134a657a5db698d863d" id="r_ae557dcb43d9c3134a657a5db698d863d"><td class="memTemplParams" colspan="2">template&lt;typename DofReadView , typename DofWriteView &gt; </td></tr>
 <tr class="memitem:ae557dcb43d9c3134a657a5db698d863d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ae557dcb43d9c3134a657a5db698d863d">set_conserved_variables_boundary_value_and_gradient</a> (const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, dealii::types::boundary_id boundary_id, const DofReadView &amp;w_m, const DofWriteView &amp;w_p) const</td></tr>
 <tr class="separator:ae557dcb43d9c3134a657a5db698d863d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10fd805c6371dfddb307e69835caf5d9" id="r_a10fd805c6371dfddb307e69835caf5d9"><td class="memTemplParams" colspan="2">template&lt;int n_species, typename DofReadView , typename DofWriteView &gt; </td></tr>
+<tr class="memitem:a10fd805c6371dfddb307e69835caf5d9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a10fd805c6371dfddb307e69835caf5d9">set_partial_density_boundary_value_and_gradient</a> (const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, dealii::types::boundary_id boundary_id, const DofReadView &amp;w_m, const DofWriteView &amp;w_p) const</td></tr>
+<tr class="memdesc:a10fd805c6371dfddb307e69835caf5d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets the values of partial density in the case of multi-component flows on the fictional outer face if the face is located at a boundary.  <br /></td></tr>
+<tr class="separator:a10fd805c6371dfddb307e69835caf5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bd7f5056c40c87cec84ed8ba325ceb2" id="r_a0bd7f5056c40c87cec84ed8ba325ceb2"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a>, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a>, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a>, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0bd7f5056c40c87cec84ed8ba325ceb2">get_jacobian_boundary_face_value_and_gradient</a> (const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, dealii::types::boundary_id boundary_id, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a> &amp;w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a> &amp;delta_w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a> &amp;grad_w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a> &amp;grad_delta_w_m, number gamma) const</td></tr>
 <tr class="memdesc:a0bd7f5056c40c87cec84ed8ba325ceb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute boundary values and gradients, as well as their linearizations for the Jacobian.  <br /></td></tr>
 <tr class="separator:a0bd7f5056c40c87cec84ed8ba325ceb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -719,6 +723,61 @@ template&lt;typename DofReadView , typename DofWriteView &gt; </div>
   <table class="params">
     <tr><td class="paramname">q_point</td><td>Location of the quadrature points at which the values shall be computed. </td></tr>
     <tr><td class="paramname">normal</td><td>Outer facing normal vector. </td></tr>
+    <tr><td class="paramname">boundary_id</td><td>ID of the boundary. </td></tr>
+    <tr><td class="paramname">w_m</td><td>View for the conserved variables on the inner face. </td></tr>
+    <tr><td class="paramname">w_p</td><td>View for the conserved variables on the outer face, which shall be set by this function. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a10fd805c6371dfddb307e69835caf5d9" name="a10fd805c6371dfddb307e69835caf5d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10fd805c6371dfddb307e69835caf5d9">&#9670;&#160;</a></span>set_partial_density_boundary_value_and_gradient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;int n_species, typename DofReadView , typename DofWriteView &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::set_partial_density_boundary_value_and_gradient </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>q_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dealii::types::boundary_id&#160;</td>
+          <td class="paramname"><em>boundary_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const DofReadView &amp;&#160;</td>
+          <td class="paramname"><em>w_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const DofWriteView &amp;&#160;</td>
+          <td class="paramname"><em>w_p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets the values of partial density in the case of multi-component flows on the fictional outer face if the face is located at a boundary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">q_point</td><td>Location of the quadrature points at which the values shall be computed. </td></tr>
     <tr><td class="paramname">boundary_id</td><td>ID of the boundary. </td></tr>
     <tr><td class="paramname">w_m</td><td>View for the conserved variables on the inner face. </td></tr>
     <tr><td class="paramname">w_p</td><td>View for the conserved variables on the outer face, which shall be set by this function. </td></tr>
