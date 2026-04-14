@@ -133,22 +133,24 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle"><div class="title">generic_hyper_rectangle_domain.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;deal.II/base/exceptions.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;deal.II/base/bounding_box.h&gt;</code><br />
+<code>#include &lt;deal.II/base/exceptions.h&gt;</code><br />
 <code>#include &lt;deal.II/base/function.h&gt;</code><br />
 <code>#include &lt;deal.II/base/function_parser.h&gt;</code><br />
 <code>#include &lt;deal.II/base/point.h&gt;</code><br />
 <code>#include &lt;deal.II/distributed/tria.h&gt;</code><br />
 <code>#include &lt;deal.II/grid/grid_generator.h&gt;</code><br />
+<code>#include &lt;deal.II/grid/grid_tools.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="compressible__flow_2boundary__conditions_8hpp_source.html">meltpooldg/compressible_flow/boundary_conditions.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="data__types_8hpp_source.html">meltpooldg/compressible_flow/data_types.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="case__utils_8hpp_source.html">meltpooldg/compressible_flow/case_utils.hpp</a>&gt;</code><br />
 <code>#include &lt;meltpooldg/utilities/better_enum.hpp&gt;</code><br />
+<code>#include &lt;<a class="el" href="functions_8hpp_source.html">meltpooldg/utilities/functions.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="cpp23__functions_8h_source.html">meltpooldg/utilities/cpp23_functions.h</a>&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
-<code>#include &lt;numbers&gt;</code><br />
 <code>#include &quot;<a class="el" href="compressible__flow__case_8hpp_source.html">../compressible_flow_case.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for generic_hyper_rectangle_domain.hpp:</div>
@@ -165,14 +167,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1ConservativeFunction.html">MeltPoolDG::Simulation::CompressibleFlow::ConservativeFunction&lt; dim, number &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1BoundaryCondition.html">MeltPoolDG::Simulation::CompressibleFlow::BoundaryCondition&lt; dim, number &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationGenericHyperRectangleDomain.html">MeltPoolDG::Simulation::CompressibleFlow::SimulationGenericHyperRectangleDomain&lt; dim, number &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A specific compressible flow simulation setup for a flow on a generic hyper rectangular domain. The four boundary conditions and the domain size can be chosen individually.  <a href="classMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationGenericHyperRectangleDomain.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Simulation_1_1CompressibleFlow_1_1SimulationGenericHyperRectangleDomain_1_1ScenarioData.html">MeltPoolDG::Simulation::CompressibleFlow::SimulationGenericHyperRectangleDomain&lt; dim, number &gt;::ScenarioData</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -184,12 +179,6 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1Simulation_1_1CompressibleFlow" id="r_namespaceMeltPoolDG_1_1Simulation_1_1CompressibleFlow"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Simulation_1_1CompressibleFlow.html">MeltPoolDG::Simulation::CompressibleFlow</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a0c9a1b627a9d68edb681b9397057341f" id="r_a0c9a1b627a9d68edb681b9397057341f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Simulation_1_1CompressibleFlow.html#a0c9a1b627a9d68edb681b9397057341f">MeltPoolDG::Simulation::CompressibleFlow::BETTER_ENUM</a> (RampUpType, <a class="el" href="namespaceMeltPoolDG.html#aab9575e612e8c720bbb25e0a6bd86044">char</a>, none, linear, exponential, cosine)</td></tr>
-<tr class="memdesc:a0c9a1b627a9d68edb681b9397057341f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum for the type of ramp up function used for the velocity at an inflow boundary.  <br /></td></tr>
-<tr class="separator:a0c9a1b627a9d68edb681b9397057341f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
