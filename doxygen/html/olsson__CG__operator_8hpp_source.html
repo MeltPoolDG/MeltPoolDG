@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/level_set/olsson_CG_operator.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/level_set/olsson_CG_operator.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/olsson__CG__operator_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-level-set-olsson-cg-operator-hpp-source-file">
+<h1>include/meltpooldg/level_set/olsson_CG_operator.hpp Source File<a class="headerlink" href="#include-meltpooldg-level-set-olsson-cg-operator-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/level_set/olsson_CG_operator.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_d8c980f69678bb74c2eb96a617637411.html">level_set</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">olsson_CG_operator.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="olsson__CG__operator_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;deal.II/lac/generic_linear_algebra.h&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/lac/la_parallel_block_vector.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;deal.II/matrix_free/fe_evaluation.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;deal.II/matrix_free/matrix_free.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// MeltPoolDG</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="operator__base_8hpp.html">meltpooldg/core/operator_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="scratch__data_8hpp.html">meltpooldg/core/scratch_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="normal__vector__operator_8hpp.html">meltpooldg/level_set/normal_vector_operator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="reinitialization__data_8hpp.html">meltpooldg/level_set/reinitialization_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="fe__integrator_8hpp.html">meltpooldg/utilities/fe_integrator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="vector__tools_8hpp.html">meltpooldg/utilities/vector_tools.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html">   43</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html">OlssonOperator</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1OperatorMatrixBased.html">OperatorMatrixBased</a>&lt;dim, number&gt;,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                         <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1OperatorMatrixFree.html">OperatorMatrixFree</a>&lt;dim, number&gt;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">//@todo: to avoid compiler warnings regarding hidden overriden functions</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">using </span><a class="code hl_class" href="classMeltPoolDG_1_1OperatorMatrixBased.html">OperatorMatrixBased</a>&lt;dim, number&gt;<a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a91f0c88965c1800f90ebf6466d98d3b8">::compute_system_matrix_and_rhs</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">using </span><a class="code hl_class" href="classMeltPoolDG_1_1OperatorMatrixFree.html">OperatorMatrixFree</a>&lt;dim, number&gt;<a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ab2870b405dca8cd503ae9b23a4525bad">::vmult</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">using </span><a class="code hl_class" href="classMeltPoolDG_1_1OperatorMatrixFree.html">OperatorMatrixFree</a>&lt;dim, number&gt;<a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ae2e79924497a41b8c3deba559bf3ed19">::create_rhs</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">using </span><a class="code hl_class" href="classMeltPoolDG_1_1OperatorMatrixFree.html">OperatorMatrixFree</a>&lt;dim, number&gt;<a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a72caa44c442d3d323f44fb2ccdd5183f">::compute_inverse_diagonal_from_matrixfree</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">   54</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a228bd8d9e1051a8699f429b5d210c896">   57</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a228bd8d9e1051a8699f429b5d210c896">BlockVectorType</a> = dealii::LinearAlgebra::distributed::BlockVector&lt;number&gt;;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a10d2a26441bfc7fc5bb230105f31d0c8">   60</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a10d2a26441bfc7fc5bb230105f31d0c8">SparseMatrixType</a> = dealii::TrilinosWrappers::SparseMatrix;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a88c96f88903e753a33a069be870f0ebd">   63</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a88c96f88903e753a33a069be870f0ebd">VectorizedArrayType</a> = dealii::VectorizedArray&lt;number&gt;;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a6a31f410ace48176e1717b46e533362a">   66</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a6a31f410ace48176e1717b46e533362a">vector</a> = dealii::Tensor&lt;1, dim, VectorizedArrayType&gt;;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a7a5d38e67e58328cd7a943ea3d24b852">   69</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a7a5d38e67e58328cd7a943ea3d24b852">scalar</a> = <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a88c96f88903e753a33a069be870f0ebd">VectorizedArrayType</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html">OlssonOperator</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;scratch_data_in,</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                   <span class="keyword">const</span> ReinitializationData&lt;number&gt;  &amp;reinit_data_in,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                   <span class="keyword">const</span> <span class="keywordtype">int</span>                            <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#acb6054812dd9dd94c1d7fb1d46be17d7">ls_n_subdivisions</a>,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                   <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a228bd8d9e1051a8699f429b5d210c896">BlockVectorType</a>               &amp;n_in,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                   <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   reinit_dof_idx_in,</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                   <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   reinit_quad_idx_in,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                   <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   ls_dof_idx_in,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                   <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   normal_dof_idx_in);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a91f0c88965c1800f90ebf6466d98d3b8">compute_system_matrix_and_rhs</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">VectorType</a> &amp;old_level_set, <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">VectorType</a> &amp;rhs) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ab2870b405dca8cd503ae9b23a4525bad">vmult</a>(<a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">VectorType</a> &amp;dst, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">VectorType</a> &amp;src) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ae2e79924497a41b8c3deba559bf3ed19">create_rhs</a>(<a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">VectorType</a> &amp;rhs, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">VectorType</a> &amp;old_level_set) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#afaf2da3eb34870994dbf7e0cc0e0499e">compute_system_matrix_from_matrixfree</a>(</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      dealii::TrilinosWrappers::SparseMatrix &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1OperatorMatrixBased.html#a8efabdb2c9b10e41de8ccfb4b511e7a6">system_matrix</a>) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a72caa44c442d3d323f44fb2ccdd5183f">compute_inverse_diagonal_from_matrixfree</a>(<a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">VectorType</a> &amp;diagonal) <span class="keyword">const</span> <span class="keyword">final</span>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ac4fb60bcef11c2dbca2b8e5a52d3f10e">reinit</a>() final;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#aa8e3eea6f414991e594256d66f5a0c9c">set_wetting_boundary_condition_ids</a>(std::<a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a6a31f410ace48176e1717b46e533362a">vector</a>&lt;<a class="code hl_namespace" href="namespacedealii.html">dealii</a>::types::boundary_id&gt; &amp;&amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a8b303a9533eba05e1b1f486c52499224">wetting_bc_ids</a>);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  private:</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a65f0dd7fb347d2132353e7eae1d95cf6">tangent_cell_operation</a>(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt;dim, 1, number&gt; &amp;delta_psi) const;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a058ce6927b89c72325025bc8bed16eb4">tangent_boundary_face_operation</a>(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator</a>&lt;dim, 1, number&gt;   &amp;face_eval,</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>                                    <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator</a>&lt;dim, dim, number&gt; &amp;normal_face_eval) const;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a231d03c9456906a1e2977286899e1bb0">rhs_boundary_face_operation</a>(<a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator</a>&lt;dim, 1, number&gt;   &amp;face_eval,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>                                <a class="code hl_typedef" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator</a>&lt;dim, dim, number&gt; &amp;normal_face_eval) const;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a03c856a0b0130e6644eee6cbf4ff3b93">tangent_boundary_loop</a>(const <a class="code hl_namespace" href="namespacedealii.html">dealii</a>::MatrixFree&lt;dim, number&gt; &amp;matrix_free,</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>                          <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">VectorType</a>                            &amp;dst,</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>                          const <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">VectorType</a>                      &amp;src,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                          std::pair&lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&gt;  face_range) const;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a1fbab230dbf17a7917daa5277dbf2832">rhs_boundary_loop</a>(const <a class="code hl_namespace" href="namespacedealii.html">dealii</a>::MatrixFree&lt;dim, number&gt; &amp;matrix_free,</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>                      <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">VectorType</a>                            &amp;dst,</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                      const <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">VectorType</a>                      &amp;src,</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                      std::pair&lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&gt;  face_range) const;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  private:</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ad554b035f54511a1b38faa662a48a50d">  206</a></span>    const <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt;dim, dim, number&gt; &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ad554b035f54511a1b38faa662a48a50d">scratch_data</a>;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ad180a12543db489d1bc2a52a4b411447">  209</a></span>    const ReinitializationData&lt;number&gt; &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ad180a12543db489d1bc2a52a4b411447">reinit_data</a>;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#acb6054812dd9dd94c1d7fb1d46be17d7">  212</a></span>    const number <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#acb6054812dd9dd94c1d7fb1d46be17d7">ls_n_subdivisions</a>;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a801c596defefba98e34bc97f346a4bdf">  215</a></span>    const <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a228bd8d9e1051a8699f429b5d210c896">BlockVectorType</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a801c596defefba98e34bc97f346a4bdf">normal_vec</a>;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#af61d601df565b278f999a722d8a0b89a">  218</a></span>    const <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#af61d601df565b278f999a722d8a0b89a">reinit_quad_idx</a>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a1eef0b4ac935fcd22ad7f1b792ffcf0a">  221</a></span>    const <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a1eef0b4ac935fcd22ad7f1b792ffcf0a">normal_dof_idx</a>;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a372ddbf50d37dc77e75c9cb70d291aae">  224</a></span>    const <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a372ddbf50d37dc77e75c9cb70d291aae">ls_dof_idx</a>;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a8b303a9533eba05e1b1f486c52499224">  227</a></span>    std::<a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a6a31f410ace48176e1717b46e533362a">vector</a>&lt;<a class="code hl_namespace" href="namespacedealii.html">dealii</a>::types::boundary_id&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a8b303a9533eba05e1b1f486c52499224">wetting_bc_ids</a>;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#aeb882232fb3bf1aed56175486e0a3c6b">  230</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#aeb882232fb3bf1aed56175486e0a3c6b">enable_boundary_face_integral</a> = false;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ad5b2b0e5f3ee1dd8633a21c201761ef0">  233</a></span>    const number <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ad5b2b0e5f3ee1dd8633a21c201761ef0">tolerance_normal_vector</a>;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#acef9f6ed41c2d497cce8c54d19a2d71a">  236</a></span>    <a class="code hl_namespace" href="namespacedealii.html">dealii</a>::AlignedVector&lt;<a class="code hl_namespace" href="namespacedealii.html">dealii</a>::VectorizedArray&lt;number&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#acef9f6ed41c2d497cce8c54d19a2d71a">normal_diffusion_length</a>;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a7182b4d74518b363d4f2f02693dc8d5c">  239</a></span>    <a class="code hl_namespace" href="namespacedealii.html">dealii</a>::AlignedVector&lt;<a class="code hl_namespace" href="namespacedealii.html">dealii</a>::VectorizedArray&lt;number&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a7182b4d74518b363d4f2f02693dc8d5c">tangential_diffusion_length</a>;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#aef9931fdcb13587e773b0e085ff0d641">  243</a></span>    mutable <a class="code hl_namespace" href="namespacedealii.html">dealii</a>::AlignedVector&lt;<a class="code hl_namespace" href="namespacedealii.html">dealii</a>::VectorizedArray&lt;number&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#aef9931fdcb13587e773b0e085ff0d641">solution_old</a>;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    mutable <a class="code hl_namespace" href="namespacedealii.html">dealii</a>::AlignedVector&lt;<a class="code hl_namespace" href="namespacedealii.html">dealii</a>::Tensor&lt;1, dim, <a class="code hl_namespace" href="namespacedealii.html">dealii</a>::VectorizedArray&lt;number&gt;&gt;&gt;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a2b100597663e996d269b998a703f9f0b">  248</a></span>      <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a2b100597663e996d269b998a703f9f0b">unit_normal</a>;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  };</div>
+</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>} <span class="comment">// namespace MeltPoolDG::LevelSet</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html">MeltPoolDG::LevelSet::OlssonOperator</a></div><div class="ttdoc">Operator for the Olsson reinitialization method used in level set methods.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:45</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a03c856a0b0130e6644eee6cbf4ff3b93"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a03c856a0b0130e6644eee6cbf4ff3b93">MeltPoolDG::LevelSet::OlssonOperator::tangent_boundary_loop</a></div><div class="ttdeci">void tangent_boundary_loop(const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, VectorType &amp;dst, const VectorType &amp;src, std::pair&lt; unsigned int, unsigned int &gt; face_range) const</div><div class="ttdoc">Loop over boundary faces to compute tangent (left-hand side) contributions in matrix-free mode.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.cpp:425</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a058ce6927b89c72325025bc8bed16eb4"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a058ce6927b89c72325025bc8bed16eb4">MeltPoolDG::LevelSet::OlssonOperator::tangent_boundary_face_operation</a></div><div class="ttdeci">void tangent_boundary_face_operation(FEFaceIntegrator&lt; dim, 1, number &gt; &amp;face_eval, FEFaceIntegrator&lt; dim, dim, number &gt; &amp;normal_face_eval) const</div><div class="ttdoc">Compute the contribution of a single boundary face integral to the tangent.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.cpp:500</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a10d2a26441bfc7fc5bb230105f31d0c8"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a10d2a26441bfc7fc5bb230105f31d0c8">MeltPoolDG::LevelSet::OlssonOperator::SparseMatrixType</a></div><div class="ttdeci">dealii::TrilinosWrappers::SparseMatrix SparseMatrixType</div><div class="ttdoc">Sparse matrix type used for assembling and storing the system matrix.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:60</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a1eef0b4ac935fcd22ad7f1b792ffcf0a"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a1eef0b4ac935fcd22ad7f1b792ffcf0a">MeltPoolDG::LevelSet::OlssonOperator::normal_dof_idx</a></div><div class="ttdeci">const unsigned int normal_dof_idx</div><div class="ttdoc">DOF handler index for the normal vector field.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:221</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a1fbab230dbf17a7917daa5277dbf2832"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a1fbab230dbf17a7917daa5277dbf2832">MeltPoolDG::LevelSet::OlssonOperator::rhs_boundary_loop</a></div><div class="ttdeci">void rhs_boundary_loop(const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, VectorType &amp;dst, const VectorType &amp;src, std::pair&lt; unsigned int, unsigned int &gt; face_range) const</div><div class="ttdoc">Loop over boundary faces to compute right-hand side contributions in matrix-free mode.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.cpp:463</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a228bd8d9e1051a8699f429b5d210c896"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a228bd8d9e1051a8699f429b5d210c896">MeltPoolDG::LevelSet::OlssonOperator::BlockVectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::BlockVector&lt; number &gt; BlockVectorType</div><div class="ttdoc">Distributed block vector type used for storing the interface normal field.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:57</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a231d03c9456906a1e2977286899e1bb0"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a231d03c9456906a1e2977286899e1bb0">MeltPoolDG::LevelSet::OlssonOperator::rhs_boundary_face_operation</a></div><div class="ttdeci">void rhs_boundary_face_operation(FEFaceIntegrator&lt; dim, 1, number &gt; &amp;face_eval, FEFaceIntegrator&lt; dim, dim, number &gt; &amp;normal_face_eval) const</div><div class="ttdoc">Compute the contribution of a single boundary face integral to the right-hand side.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.cpp:545</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a2b100597663e996d269b998a703f9f0b"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a2b100597663e996d269b998a703f9f0b">MeltPoolDG::LevelSet::OlssonOperator::unit_normal</a></div><div class="ttdeci">dealii::AlignedVector&lt; dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &gt; unit_normal</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:248</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a372ddbf50d37dc77e75c9cb70d291aae"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a372ddbf50d37dc77e75c9cb70d291aae">MeltPoolDG::LevelSet::OlssonOperator::ls_dof_idx</a></div><div class="ttdeci">const unsigned int ls_dof_idx</div><div class="ttdoc">DOF handler index for the level set field.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:224</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a65f0dd7fb347d2132353e7eae1d95cf6"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a65f0dd7fb347d2132353e7eae1d95cf6">MeltPoolDG::LevelSet::OlssonOperator::tangent_cell_operation</a></div><div class="ttdeci">void tangent_cell_operation(FECellIntegrator&lt; dim, 1, number &gt; &amp;delta_psi) const</div><div class="ttdoc">Compute the contribution of a single cell integral to the tangent.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.cpp:394</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a6a31f410ace48176e1717b46e533362a"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a6a31f410ace48176e1717b46e533362a">MeltPoolDG::LevelSet::OlssonOperator::vector</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; vector</div><div class="ttdoc">Vector type with SIMD-enabled entries in dim dimensions.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:66</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a7182b4d74518b363d4f2f02693dc8d5c"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a7182b4d74518b363d4f2f02693dc8d5c">MeltPoolDG::LevelSet::OlssonOperator::tangential_diffusion_length</a></div><div class="ttdeci">dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; tangential_diffusion_length</div><div class="ttdoc">Precomputed diffusive length scale in the tangential direction at each quadrature point.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:239</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a72caa44c442d3d323f44fb2ccdd5183f"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a72caa44c442d3d323f44fb2ccdd5183f">MeltPoolDG::LevelSet::OlssonOperator::compute_inverse_diagonal_from_matrixfree</a></div><div class="ttdeci">void compute_inverse_diagonal_from_matrixfree(VectorType &amp;diagonal) const final</div><div class="ttdoc">Compute an approximation of the inverse diagonal of the system matrix.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.cpp:321</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a77b08ff8ebc7cc15432a9f2ca3dcd150"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a77b08ff8ebc7cc15432a9f2ca3dcd150">MeltPoolDG::LevelSet::OlssonOperator::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdoc">Distributed vector type used for matrix-free and matrix-based computations.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:54</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a7a5d38e67e58328cd7a943ea3d24b852"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a7a5d38e67e58328cd7a943ea3d24b852">MeltPoolDG::LevelSet::OlssonOperator::scalar</a></div><div class="ttdeci">VectorizedArrayType scalar</div><div class="ttdoc">Scalar type with SIMD-enabled entries.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:69</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a801c596defefba98e34bc97f346a4bdf"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a801c596defefba98e34bc97f346a4bdf">MeltPoolDG::LevelSet::OlssonOperator::normal_vec</a></div><div class="ttdeci">const BlockVectorType &amp; normal_vec</div><div class="ttdoc">Reference to the vector field representing the interface normals.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:215</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a88c96f88903e753a33a069be870f0ebd"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a88c96f88903e753a33a069be870f0ebd">MeltPoolDG::LevelSet::OlssonOperator::VectorizedArrayType</a></div><div class="ttdeci">dealii::VectorizedArray&lt; number &gt; VectorizedArrayType</div><div class="ttdoc">Vectorized scalar type used in SIMD computations.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:63</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a8b303a9533eba05e1b1f486c52499224"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a8b303a9533eba05e1b1f486c52499224">MeltPoolDG::LevelSet::OlssonOperator::wetting_bc_ids</a></div><div class="ttdeci">std::vector&lt; dealii::types::boundary_id &gt; wetting_bc_ids</div><div class="ttdoc">List of boundary IDs where wetting boundary conditions are applied.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:227</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_a91f0c88965c1800f90ebf6466d98d3b8"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#a91f0c88965c1800f90ebf6466d98d3b8">MeltPoolDG::LevelSet::OlssonOperator::compute_system_matrix_and_rhs</a></div><div class="ttdeci">void compute_system_matrix_and_rhs(const VectorType &amp;old_level_set, VectorType &amp;rhs) const final</div><div class="ttdoc">Assemble the system matrix and right-hand side using a matrix-based approach.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.cpp:65</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_aa8e3eea6f414991e594256d66f5a0c9c"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#aa8e3eea6f414991e594256d66f5a0c9c">MeltPoolDG::LevelSet::OlssonOperator::set_wetting_boundary_condition_ids</a></div><div class="ttdeci">void set_wetting_boundary_condition_ids(std::vector&lt; dealii::types::boundary_id &gt; &amp;&amp;wetting_bc_ids)</div><div class="ttdoc">Specify the boundary IDs where wetting boundary conditions should be applied.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.cpp:56</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_ab2870b405dca8cd503ae9b23a4525bad"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ab2870b405dca8cd503ae9b23a4525bad">MeltPoolDG::LevelSet::OlssonOperator::vmult</a></div><div class="ttdeci">void vmult(VectorType &amp;dst, const VectorType &amp;src) const final</div><div class="ttdoc">Apply the operator in a matrix-free fashion.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.cpp:154</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_ac4fb60bcef11c2dbca2b8e5a52d3f10e"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ac4fb60bcef11c2dbca2b8e5a52d3f10e">MeltPoolDG::LevelSet::OlssonOperator::reinit</a></div><div class="ttdeci">void reinit() final</div><div class="ttdoc">Reinitialize internal data structures, typically after mesh changes.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.cpp:593</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_acb6054812dd9dd94c1d7fb1d46be17d7"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#acb6054812dd9dd94c1d7fb1d46be17d7">MeltPoolDG::LevelSet::OlssonOperator::ls_n_subdivisions</a></div><div class="ttdeci">const number ls_n_subdivisions</div><div class="ttdoc">Number of subdivisions used to define the interface thickness parameter.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:212</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_acef9f6ed41c2d497cce8c54d19a2d71a"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#acef9f6ed41c2d497cce8c54d19a2d71a">MeltPoolDG::LevelSet::OlssonOperator::normal_diffusion_length</a></div><div class="ttdeci">dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; normal_diffusion_length</div><div class="ttdoc">Precomputed diffusive length scale in the normal direction at each quadrature point.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:236</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_ad180a12543db489d1bc2a52a4b411447"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ad180a12543db489d1bc2a52a4b411447">MeltPoolDG::LevelSet::OlssonOperator::reinit_data</a></div><div class="ttdeci">const ReinitializationData&lt; number &gt; &amp; reinit_data</div><div class="ttdoc">Reference to the reinitialization parameters and coefficients.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:209</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_ad554b035f54511a1b38faa662a48a50d"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ad554b035f54511a1b38faa662a48a50d">MeltPoolDG::LevelSet::OlssonOperator::scratch_data</a></div><div class="ttdeci">const ScratchData&lt; dim, dim, number &gt; &amp; scratch_data</div><div class="ttdoc">Reference to scratch data containing mesh, geometry, and FE evaluation utilities.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:206</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_ad5b2b0e5f3ee1dd8633a21c201761ef0"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ad5b2b0e5f3ee1dd8633a21c201761ef0">MeltPoolDG::LevelSet::OlssonOperator::tolerance_normal_vector</a></div><div class="ttdeci">const number tolerance_normal_vector</div><div class="ttdoc">Tolerance threshold used for validating or correcting normal vectors.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:233</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_ae2e79924497a41b8c3deba559bf3ed19"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#ae2e79924497a41b8c3deba559bf3ed19">MeltPoolDG::LevelSet::OlssonOperator::create_rhs</a></div><div class="ttdeci">void create_rhs(VectorType &amp;rhs, const VectorType &amp;old_level_set) const final</div><div class="ttdoc">Create the right-hand side vector using a matrix-free evaluation.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.cpp:184</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_aeb882232fb3bf1aed56175486e0a3c6b"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#aeb882232fb3bf1aed56175486e0a3c6b">MeltPoolDG::LevelSet::OlssonOperator::enable_boundary_face_integral</a></div><div class="ttdeci">bool enable_boundary_face_integral</div><div class="ttdoc">Flag to enable or disable boundary face integral contributions.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:230</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_aef9931fdcb13587e773b0e085ff0d641"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#aef9931fdcb13587e773b0e085ff0d641">MeltPoolDG::LevelSet::OlssonOperator::solution_old</a></div><div class="ttdeci">dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; solution_old</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:243</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_af61d601df565b278f999a722d8a0b89a"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#af61d601df565b278f999a722d8a0b89a">MeltPoolDG::LevelSet::OlssonOperator::reinit_quad_idx</a></div><div class="ttdeci">const unsigned int reinit_quad_idx</div><div class="ttdoc">Quadrature index for evaluating terms during reinitialization.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.hpp:218</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1OlssonOperator_html_afaf2da3eb34870994dbf7e0cc0e0499e"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1OlssonOperator.html#afaf2da3eb34870994dbf7e0cc0e0499e">MeltPoolDG::LevelSet::OlssonOperator::compute_system_matrix_from_matrixfree</a></div><div class="ttdeci">void compute_system_matrix_from_matrixfree(dealii::TrilinosWrappers::SparseMatrix &amp;system_matrix) const final</div><div class="ttdoc">Compute and assemble the system matrix from matrix-free operator evaluations.</div><div class="ttdef"><b>Definition</b> olsson_CG_operator.cpp:252</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1OperatorMatrixBased_html"><div class="ttname"><a href="classMeltPoolDG_1_1OperatorMatrixBased.html">MeltPoolDG::OperatorMatrixBased</a></div><div class="ttdoc">Operator handling matrix-based computations.</div><div class="ttdef"><b>Definition</b> operator_base.hpp:94</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1OperatorMatrixBased_html_a8efabdb2c9b10e41de8ccfb4b511e7a6"><div class="ttname"><a href="classMeltPoolDG_1_1OperatorMatrixBased.html#a8efabdb2c9b10e41de8ccfb4b511e7a6">MeltPoolDG::OperatorMatrixBased::system_matrix</a></div><div class="ttdeci">SparseMatrixType system_matrix</div><div class="ttdef"><b>Definition</b> operator_base.hpp:176</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1OperatorMatrixFree_html"><div class="ttname"><a href="classMeltPoolDG_1_1OperatorMatrixFree.html">MeltPoolDG::OperatorMatrixFree</a></div><div class="ttdoc">Operator handling matrix-free computations.</div><div class="ttdef"><b>Definition</b> operator_base.hpp:190</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdoc">Container for shared scratch data between operations/operators.</div><div class="ttdef"><b>Definition</b> scratch_data.hpp:61</div></div>
+<div class="ttc" id="afe__integrator_8hpp_html"><div class="ttname"><a href="fe__integrator_8hpp.html">fe_integrator.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1LevelSet_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div><div class="ttdef"><b>Definition</b> advection_DG_operation.hpp:20</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_a3856136741da9c4cff969def99045d0e"><div class="ttname"><a href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">MeltPoolDG::FEFaceIntegrator</a></div><div class="ttdeci">dealii::FEFaceEvaluation&lt; dim, -1, 0, n_components, number, VectorizedArrayType &gt; FEFaceIntegrator</div><div class="ttdef"><b>Definition</b> fe_integrator.hpp:22</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_aeab3a15b4bcb11af3fd3e496734f9a8c"><div class="ttname"><a href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">MeltPoolDG::FECellIntegrator</a></div><div class="ttdeci">dealii::FEEvaluation&lt; dim, -1, 0, n_components, number, VectorizedArrayType &gt; FECellIntegrator</div><div class="ttdef"><b>Definition</b> fe_integrator.hpp:14</div></div>
+<div class="ttc" id="anamespacedealii_html"><div class="ttname"><a href="namespacedealii.html">dealii</a></div><div class="ttdef"><b>Definition</b> dealii_tensor.hpp:10</div></div>
+<div class="ttc" id="anormal__vector__operator_8hpp_html"><div class="ttname"><a href="normal__vector__operator_8hpp.html">normal_vector_operator.hpp</a></div></div>
+<div class="ttc" id="aoperator__base_8hpp_html"><div class="ttname"><a href="operator__base_8hpp.html">operator_base.hpp</a></div></div>
+<div class="ttc" id="areinitialization__data_8hpp_html"><div class="ttname"><a href="reinitialization__data_8hpp.html">reinitialization_data.hpp</a></div></div>
+<div class="ttc" id="ascratch__data_8hpp_html"><div class="ttname"><a href="scratch__data_8hpp.html">scratch_data.hpp</a></div></div>
+<div class="ttc" id="avector__tools_8hpp_html"><div class="ttname"><a href="vector__tools_8hpp.html">vector_tools.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
