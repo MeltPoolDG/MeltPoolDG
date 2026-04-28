@@ -142,7 +142,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Collection of convective term computations for the compressible Navier-Stokes equations.  
+<p>This file contains various functions that can be used to set and evaluate boundary conditions for the compressible flow solver. The functions can be directly used with the <code><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html" title="Helper class taking care of all boundary condition related computations for the compressible flow sol...">BoundaryConditions</a></code> class, which provides an interface to manage and evaluate the different boundary conditions in the solver.  
 <a href="namespaceMeltPoolDG_1_1CompressibleFlow.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -163,6 +163,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1CaseParameters.html">CaseParameters</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct that manages all relevant parameters for compressible flow simulations.  <a href="structMeltPoolDG_1_1CompressibleFlow_1_1CaseParameters.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1CombinedInflowNoSlipWallValueInterpretation.html">CombinedInflowNoSlipWallValueInterpretation</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ConcreteConvectiveFluxImpl.html">ConcreteConvectiveFluxImpl</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -249,7 +251,16 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1FluxView.html">FluxView</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1FreeJetInflow.html">FreeJetInflow</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1FreeJetVelocityFunction.html">FreeJetVelocityFunction</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum for the type of velocity profile of a free jet inflow.  <a href="classMeltPoolDG_1_1CompressibleFlow_1_1FreeJetVelocityFunction.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1InflowValueInterpretation.html">InflowValueInterpretation</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1InputDefinedBoundaryCondition.html">InputDefinedBoundaryCondition</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1InputDefinedFreeJetInflow.html">InputDefinedFreeJetInflow</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1InputDefinedInitialCondition.html">InputDefinedInitialCondition</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -368,11 +379,11 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a236fb0a34677b543a9f407106b45f8c8" id="r_a236fb0a34677b543a9f407106b45f8c8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a236fb0a34677b543a9f407106b45f8c8">BETTER_ENUM</a> (BoundaryConditionType, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a3b8bab9f7260948360bcce936a8e1cd2">char</a>, inflow, slip_wall, no_slip_wall, subsonic_outflow_fixed_energy, subsonic_outflow_fixed_pressure)</td></tr>
-<tr class="separator:a236fb0a34677b543a9f407106b45f8c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee800051378749c4821b62d0d9044f33" id="r_aee800051378749c4821b62d0d9044f33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#aee800051378749c4821b62d0d9044f33">BETTER_ENUM</a> (RampUpType, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a3b8bab9f7260948360bcce936a8e1cd2">char</a>, none, linear, exponential, cosine)</td></tr>
 <tr class="memdesc:aee800051378749c4821b62d0d9044f33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum for the type of ramp up function used for the velocity at an inflow boundary.  <br /></td></tr>
 <tr class="separator:aee800051378749c4821b62d0d9044f33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21001641e8a455471a8a8ab5cd463a08" id="r_a21001641e8a455471a8a8ab5cd463a08"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a21001641e8a455471a8a8ab5cd463a08">BETTER_ENUM</a> (BoundaryConditionType, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a3b8bab9f7260948360bcce936a8e1cd2">char</a>, combined_inflow_no_slip_wall, inflow, slip_wall, no_slip_wall, subsonic_outflow_fixed_energy, subsonic_outflow_fixed_pressure)</td></tr>
+<tr class="separator:a21001641e8a455471a8a8ab5cd463a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf66927d2f1a59e7d391e35a61974d81" id="r_adf66927d2f1a59e7d391e35a61974d81"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
 <tr class="memitem:adf66927d2f1a59e7d391e35a61974d81"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#adf66927d2f1a59e7d391e35a61974d81">add_hyper_rectangle_custom_boundary_condition_parameters</a> (dealii::ParameterHandler &amp;prm, std::array&lt; <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1InputDefinedBoundaryCondition.html">InputDefinedBoundaryCondition</a>&lt; dim, number &gt;, 2 *dim &gt; &amp;boundary_conditions)</td></tr>
 <tr class="separator:adf66927d2f1a59e7d391e35a61974d81"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -445,11 +456,12 @@ Variables</h2></td></tr>
 <tr class="separator:a3e93c8f774e1d996fd985d6adb05f2ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Collection of convective term computations for the compressible Navier-Stokes equations. </p>
+<div class="textblock"><p>This file contains various functions that can be used to set and evaluate boundary conditions for the compressible flow solver. The functions can be directly used with the <code><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html" title="Helper class taking care of all boundary condition related computations for the compressible flow sol...">BoundaryConditions</a></code> class, which provides an interface to manage and evaluate the different boundary conditions in the solver. </p>
 <p>Type definitions and helper functions for the compressible flow implementations.</p>
 <p>A collection of helper functions that might be useful when solving the compressible Navier-Stokes equations with an explicit time stepping strategy.</p>
 <p>This operation solves the compressible Navier-Stokes equations, comprising the primary variables.</p>
 <p>This operator solves the compressible Navier-Stokes equations, comprising the primary variables.</p>
+<p>Collection of convective term computations for the compressible Navier-Stokes equations.</p>
 <ul>
 <li>density (ρ)</li>
 <li>momentum (ρ u)</li>
@@ -711,8 +723,8 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
-<a id="a236fb0a34677b543a9f407106b45f8c8" name="a236fb0a34677b543a9f407106b45f8c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a236fb0a34677b543a9f407106b45f8c8">&#9670;&#160;</a></span>BETTER_ENUM() <span class="overload">[1/8]</span></h2>
+<a id="a21001641e8a455471a8a8ab5cd463a08" name="a21001641e8a455471a8a8ab5cd463a08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21001641e8a455471a8a8ab5cd463a08">&#9670;&#160;</a></span>BETTER_ENUM() <span class="overload">[1/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -727,6 +739,12 @@ template&lt;int dim, typename number &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a3b8bab9f7260948360bcce936a8e1cd2">char</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">combined_inflow_no_slip_wall&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>

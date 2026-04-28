@@ -149,7 +149,7 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1CharacteristicFunctions" id="r_namespaceMeltPoolDG_1_1CharacteristicFunctions"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CharacteristicFunctions.html">CharacteristicFunctions</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1CompressibleFlow" id="r_namespaceMeltPoolDG_1_1CompressibleFlow"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html">CompressibleFlow</a></td></tr>
-<tr class="memdesc:namespaceMeltPoolDG_1_1CompressibleFlow"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of convective term computations for the compressible Navier-Stokes equations. <br /></td></tr>
+<tr class="memdesc:namespaceMeltPoolDG_1_1CompressibleFlow"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file contains various functions that can be used to set and evaluate boundary conditions for the compressible flow solver. The functions can be directly used with the <code><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html" title="Helper class taking care of all boundary condition related computations for the compressible flow sol...">BoundaryConditions</a></code> class, which provides an interface to manage and evaluate the different boundary conditions in the solver. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1Constraints" id="r_namespaceMeltPoolDG_1_1Constraints"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Constraints.html">Constraints</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -545,6 +545,12 @@ Functions</h2></td></tr>
 <tr class="memitem:aabe7404207eb9539bce56fdd8de8d0e1" id="r_aabe7404207eb9539bce56fdd8de8d0e1"><td class="memTemplParams" colspan="2">template&lt;int dim1, int dim2, typename number &gt; </td></tr>
 <tr class="memitem:aabe7404207eb9539bce56fdd8de8d0e1"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim1, dealii::Tensor&lt; 1, dim2, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#aabe7404207eb9539bce56fdd8de8d0e1">jump</a> (const dealii::Tensor&lt; 1, dim1, number &gt; &amp;tensor_m, const dealii::Tensor&lt; 1, dim1, number &gt; &amp;tensor_p, const dealii::Tensor&lt; 1, dim2, number &gt; &amp;normal)</td></tr>
 <tr class="separator:aabe7404207eb9539bce56fdd8de8d0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2571dbc22fd134fb17bd5b61c0e9097f" id="r_a2571dbc22fd134fb17bd5b61c0e9097f"><td class="memTemplParams" colspan="2">template&lt;typename VectorType , typename Operator &gt; </td></tr>
+<tr class="memitem:a2571dbc22fd134fb17bd5b61c0e9097f"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; double &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a2571dbc22fd134fb17bd5b61c0e9097f">estimate_eigenvalues_gmres</a> (const Operator &amp;op, const VectorType &amp;b, const unsigned max_eigenvalues=100)</td></tr>
+<tr class="separator:a2571dbc22fd134fb17bd5b61c0e9097f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea5c6e1bf23dc12ff4d4a728d80b545" id="r_a3ea5c6e1bf23dc12ff4d4a728d80b545"><td class="memTemplParams" colspan="2">template&lt;typename VectorType , typename Operator &gt; </td></tr>
+<tr class="memitem:a3ea5c6e1bf23dc12ff4d4a728d80b545"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; double &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a3ea5c6e1bf23dc12ff4d4a728d80b545">estimate_eigenvalues_gmres</a> (const Operator &amp;op, const VectorType &amp;b, const unsigned int max_eigenvalues)</td></tr>
+<tr class="separator:a3ea5c6e1bf23dc12ff4d4a728d80b545"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3841379fcda83206763691df69c56c18" id="r_a3841379fcda83206763691df69c56c18"><td class="memTemplParams" colspan="2">template&lt;typename FeEval &gt; </td></tr>
 <tr class="memitem:a3841379fcda83206763691df69c56c18"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, FeEval::n_components, dealii::VectorizedArray&lt; typename FeEval::number_type &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a3841379fcda83206763691df69c56c18">fe_evaluation_tensor_value_at_q</a> (const FeEval &amp;fe_eval, const unsigned q_index)</td></tr>
 <tr class="separator:a3841379fcda83206763691df69c56c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1895,6 +1901,89 @@ template&lt;int T1_dim, int T2_dim, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Compute the dyadic product of two rank-1 tensors passing a pointer to the start of the values of the two tensors. </p>
+
+</div>
+</div>
+<a id="a3ea5c6e1bf23dc12ff4d4a728d80b545" name="a3ea5c6e1bf23dc12ff4d4a728d80b545"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ea5c6e1bf23dc12ff4d4a728d80b545">&#9670;&#160;</a></span>estimate_eigenvalues_gmres() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VectorType , typename Operator &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::complex&lt; double &gt; &gt; MeltPoolDG::estimate_eigenvalues_gmres </td>
+          <td>(</td>
+          <td class="paramtype">const Operator &amp;&#160;</td>
+          <td class="paramname"><em>op</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const VectorType &amp;&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>max_eigenvalues</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2571dbc22fd134fb17bd5b61c0e9097f" name="a2571dbc22fd134fb17bd5b61c0e9097f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2571dbc22fd134fb17bd5b61c0e9097f">&#9670;&#160;</a></span>estimate_eigenvalues_gmres() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VectorType , typename Operator &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::complex&lt; double &gt; &gt; MeltPoolDG::estimate_eigenvalues_gmres </td>
+          <td>(</td>
+          <td class="paramtype">const Operator &amp;&#160;</td>
+          <td class="paramname"><em>op</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const VectorType &amp;&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned&#160;</td>
+          <td class="paramname"><em>max_eigenvalues</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Estimate the eigenvalues of Operator <code>op</code>. Eigenvalues can be useful to estimate the condition number (largest eigenvalue divided by smallest eigenvalue) or the spectral radius (maximum absolute eigenvalue).</p>
+<p>The estimation is done via a dummy solve of the linear system <code>op*x = b</code> with GMRES. The GMRES algorithm allows to estimate the eigenvalues after every iteration. Therefore, we perform a fixed number of iterations which may not even lead to convergence but allows us to get a good estimate for the eigenvalue range. The number of iterations is limited by <code>max_eigenvalues</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>The linear operator of which you want to estimate the eigenvalues. It must support <code>vmult</code>. </td></tr>
+    <tr><td class="paramname">b</td><td>A dummy right-hand side, which is used for the solve. This vector must be chosen, such that <code>op*x=b</code> is sufficiently hard to solve. For instance, a zero vector will not work. Instead, this should e.g. be the residual of a weak form, if <code>op</code> is the Jacobian of a weak form. </td></tr>
+    <tr><td class="paramname">max_eigenvalues</td><td>The maximum number of eigenvalues that should be estimated. The GMRES solver will need to perform as many iterations as specified here (unless the system size is smaller), so choose this value rather small. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of complex eigenvalues. This vector will have a maximum of <code>max_eigenvalues</code> or <code>b.size()</code> entries, whichever is smaller. If <code>b</code> is poorly chosen, the number of returned eigenvalues may be a lot smaller though, even zero, because we can only get as many eigenvalues as GRMES iterations are performed. It is therefore recommended to check the size of the returned vector before any other operations. </dd></dl>
 
 </div>
 </div>

@@ -143,6 +143,7 @@ $(function() {
 <code>#include &lt;deal.II/base/parameter_handler.h&gt;</code><br />
 <code>#include &lt;deal.II/base/point.h&gt;</code><br />
 <code>#include &lt;deal.II/grid/tria.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="boundary__condition__functions_8hpp_source.html">meltpooldg/compressible_flow/boundary_condition_functions.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="compressible__flow_2boundary__conditions_8hpp_source.html">meltpooldg/compressible_flow/boundary_conditions.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="data__types_8hpp_source.html">meltpooldg/compressible_flow/data_types.hpp</a>&gt;</code><br />
 <code>#include &lt;array&gt;</code><br />
@@ -164,9 +165,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1ConservativeVariablesFunction.html">MeltPoolDG::CompressibleFlow::ConservativeVariablesFunction&lt; dim, number &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ConservativeVariablesFunction_1_1RampUpParameters.html">MeltPoolDG::CompressibleFlow::ConservativeVariablesFunction&lt; dim, number &gt;::RampUpParameters</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1InputDefinedFreeJetInflow.html">MeltPoolDG::CompressibleFlow::InputDefinedFreeJetInflow&lt; dim, number &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1InputDefinedBoundaryCondition.html">MeltPoolDG::CompressibleFlow::InputDefinedBoundaryCondition&lt; dim, number &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,14 +182,11 @@ Namespaces</h2></td></tr>
 <tr class="memdesc:namespaceMeltPoolDG"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for a general preconditioner. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1CompressibleFlow" id="r_namespaceMeltPoolDG_1_1CompressibleFlow"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html">MeltPoolDG::CompressibleFlow</a></td></tr>
-<tr class="memdesc:namespaceMeltPoolDG_1_1CompressibleFlow"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of convective term computations for the compressible Navier-Stokes equations. <br /></td></tr>
+<tr class="memdesc:namespaceMeltPoolDG_1_1CompressibleFlow"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file contains various functions that can be used to set and evaluate boundary conditions for the compressible flow solver. The functions can be directly used with the <code><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html" title="Helper class taking care of all boundary condition related computations for the compressible flow sol...">BoundaryConditions</a></code> class, which provides an interface to manage and evaluate the different boundary conditions in the solver. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aee800051378749c4821b62d0d9044f33" id="r_aee800051378749c4821b62d0d9044f33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#aee800051378749c4821b62d0d9044f33">MeltPoolDG::CompressibleFlow::BETTER_ENUM</a> (RampUpType, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a3b8bab9f7260948360bcce936a8e1cd2">char</a>, none, linear, exponential, cosine)</td></tr>
-<tr class="memdesc:aee800051378749c4821b62d0d9044f33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum for the type of ramp up function used for the velocity at an inflow boundary.  <br /></td></tr>
-<tr class="separator:aee800051378749c4821b62d0d9044f33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf66927d2f1a59e7d391e35a61974d81" id="r_adf66927d2f1a59e7d391e35a61974d81"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
 <tr class="memitem:adf66927d2f1a59e7d391e35a61974d81"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#adf66927d2f1a59e7d391e35a61974d81">MeltPoolDG::CompressibleFlow::add_hyper_rectangle_custom_boundary_condition_parameters</a> (dealii::ParameterHandler &amp;prm, std::array&lt; <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1InputDefinedBoundaryCondition.html">InputDefinedBoundaryCondition</a>&lt; dim, number &gt;, 2 *dim &gt; &amp;boundary_conditions)</td></tr>
 <tr class="separator:adf66927d2f1a59e7d391e35a61974d81"><td class="memSeparator" colspan="2">&#160;</td></tr>

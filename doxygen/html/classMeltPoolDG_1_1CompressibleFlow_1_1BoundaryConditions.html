@@ -135,6 +135,7 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">MeltPoolDG::CompressibleFlow::BoundaryConditions&lt; dim, number &gt; Class Template Reference</div></div>
@@ -148,10 +149,10 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ab714ac3053310e88028026b5de01004f" id="r_ab714ac3053310e88028026b5de01004f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a> = dealii::Tensor&lt; 1, dim+2, dealii::VectorizedArray&lt; number &gt; &gt;</td></tr>
-<tr class="separator:ab714ac3053310e88028026b5de01004f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bb287385209e47fd014a50acbb6c999" id="r_a8bb287385209e47fd014a50acbb6c999"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a> = dealii::Tensor&lt; 1, dim+2, dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &gt;</td></tr>
-<tr class="separator:a8bb287385209e47fd014a50acbb6c999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e89a74775e667a802b49e415de44889" id="r_a0e89a74775e667a802b49e415de44889"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0e89a74775e667a802b49e415de44889">ConservedVariables</a> = <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number &gt;</td></tr>
+<tr class="separator:a0e89a74775e667a802b49e415de44889"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa50d43ff2953f8a6412539609c37ec8f" id="r_aa50d43ff2953f8a6412539609c37ec8f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#aa50d43ff2953f8a6412539609c37ec8f">ConservedVariablesGradient</a> = <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e39e12c307a8da07383fa6f8c07c222">ConservedVariablesGradientType</a>&lt; dim, number &gt;</td></tr>
+<tr class="separator:aa50d43ff2953f8a6412539609c37ec8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeabf6ef382a4dc4f27b050e7af8acee" id="r_afeabf6ef382a4dc4f27b050e7af8acee"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#afeabf6ef382a4dc4f27b050e7af8acee">BoundaryType</a> = BoundaryConditionType</td></tr>
 <tr class="separator:afeabf6ef382a4dc4f27b050e7af8acee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1af49338f69e8746823a3082f7cd7e74" id="r_a1af49338f69e8746823a3082f7cd7e74"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a1af49338f69e8746823a3082f7cd7e74">VectorizedArrayType</a> = dealii::VectorizedArray&lt; number &gt;</td></tr>
@@ -165,36 +166,53 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0db2d7267090b70b31826ee37bad81b6" id="r_a0db2d7267090b70b31826ee37bad81b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0db2d7267090b70b31826ee37bad81b6">set_boundary_conditions</a> (const std::shared_ptr&lt; <a class="el" href="classMeltPoolDG_1_1SimulationCaseBase.html">SimulationCaseBase</a>&lt; dim, number &gt; &gt; &amp;simulation_case, const std::string &amp;operation_name)</td></tr>
 <tr class="memdesc:a0db2d7267090b70b31826ee37bad81b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the compressible flow boundary conditions.  <br /></td></tr>
 <tr class="separator:a0db2d7267090b70b31826ee37bad81b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ce3f2628384b0d8587dee58359483cf" id="r_a4ce3f2628384b0d8587dee58359483cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a4ce3f2628384b0d8587dee58359483cf">set_boundary_condition</a> (BoundaryConditionType boundary_condition, std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; boundary_condition_function={})</td></tr>
-<tr class="memdesc:a4ce3f2628384b0d8587dee58359483cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a specific boundary condition and store it internally.  <br /></td></tr>
-<tr class="separator:a4ce3f2628384b0d8587dee58359483cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfc97d048e5a9dd4f45257772559484d" id="r_abfc97d048e5a9dd4f45257772559484d"><td class="memItemLeft" align="right" valign="top">BoundaryConditionType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#abfc97d048e5a9dd4f45257772559484d">get_boundary_type</a> (const dealii::types::boundary_id boundary_id) const</td></tr>
-<tr class="memdesc:abfc97d048e5a9dd4f45257772559484d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the type of the boundary condition at a specific domain boundary.  <br /></td></tr>
-<tr class="separator:abfc97d048e5a9dd4f45257772559484d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c0caa73d140a164b37cce3c77686404" id="r_a5c0caa73d140a164b37cce3c77686404"><td class="memItemLeft" align="right" valign="top">dealii::VectorizedArray&lt; number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a5c0caa73d140a164b37cce3c77686404">get_boundary_value</a> (dealii::types::boundary_id boundary_id, BoundaryConditionType boundary_condition, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;location, unsigned component) const</td></tr>
-<tr class="memdesc:a5c0caa73d140a164b37cce3c77686404"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the prescribed boundary value at a specific location on the boundary.  <br /></td></tr>
-<tr class="separator:a5c0caa73d140a164b37cce3c77686404"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88e0838a39fb58ade0e486da5382f36c" id="r_a88e0838a39fb58ade0e486da5382f36c"><td class="memItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim+2, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a88e0838a39fb58ade0e486da5382f36c">get_boundary_value</a> (const dealii::types::boundary_id boundary_id, const BoundaryConditionType boundary_condition, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;location) const</td></tr>
-<tr class="memdesc:a88e0838a39fb58ade0e486da5382f36c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as above but returns the complete vector.  <br /></td></tr>
-<tr class="separator:a88e0838a39fb58ade0e486da5382f36c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae70c569c6fe040083c9878521a07173e" id="r_ae70c569c6fe040083c9878521a07173e"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a>, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ae70c569c6fe040083c9878521a07173e">get_boundary_face_value_and_gradient</a> (const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, dealii::types::boundary_id boundary_id, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a> &amp;w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a> &amp;grad_w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1Material.html">Material</a>&lt; dim, number &gt; &amp;material, bool is_gas_phase=true) const</td></tr>
-<tr class="memdesc:ae70c569c6fe040083c9878521a07173e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets the corresponding values on the fictional outer face if the face is located at a boundary.  <br /></td></tr>
-<tr class="separator:ae70c569c6fe040083c9878521a07173e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c08225ab351d34e004c6be9a9fa4f04" id="r_a4c08225ab351d34e004c6be9a9fa4f04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a4c08225ab351d34e004c6be9a9fa4f04">set_boundary_condition</a> (<a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#afeabf6ef382a4dc4f27b050e7af8acee">BoundaryType</a> boundary_condition, std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt; boundary_condition_function={})</td></tr>
+<tr class="memdesc:a4c08225ab351d34e004c6be9a9fa4f04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a specific boundary condition and store it internally.  <br /></td></tr>
+<tr class="separator:a4c08225ab351d34e004c6be9a9fa4f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab52eda1874a96c8528fa0d977510d1e9" id="r_ab52eda1874a96c8528fa0d977510d1e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#afeabf6ef382a4dc4f27b050e7af8acee">BoundaryType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab52eda1874a96c8528fa0d977510d1e9">get_boundary_type</a> (const dealii::types::boundary_id boundary_id) const</td></tr>
+<tr class="memdesc:ab52eda1874a96c8528fa0d977510d1e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the type of the boundary condition at a specific domain boundary.  <br /></td></tr>
+<tr class="separator:ab52eda1874a96c8528fa0d977510d1e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a392f8f2008448395c3be25a2c8add236" id="r_a392f8f2008448395c3be25a2c8add236"><td class="memItemLeft" align="right" valign="top">dealii::VectorizedArray&lt; number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a392f8f2008448395c3be25a2c8add236">get_boundary_value</a> (dealii::types::boundary_id boundary_id, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#afeabf6ef382a4dc4f27b050e7af8acee">BoundaryType</a> boundary_condition, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;location, unsigned component) const</td></tr>
+<tr class="memdesc:a392f8f2008448395c3be25a2c8add236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the prescribed boundary value at a specific location on the boundary.  <br /></td></tr>
+<tr class="separator:a392f8f2008448395c3be25a2c8add236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b586380d1dbd1cb3bcbbd45ae5a406f" id="r_a0b586380d1dbd1cb3bcbbd45ae5a406f"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0e89a74775e667a802b49e415de44889">ConservedVariables</a>, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#aa50d43ff2953f8a6412539609c37ec8f">ConservedVariablesGradient</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0b586380d1dbd1cb3bcbbd45ae5a406f">get_boundary_face_value_and_gradient</a> (const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, dealii::types::boundary_id boundary_id, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0e89a74775e667a802b49e415de44889">ConservedVariables</a> &amp;w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#aa50d43ff2953f8a6412539609c37ec8f">ConservedVariablesGradient</a> &amp;grad_w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1Material.html">Material</a>&lt; dim, number &gt; &amp;material, bool is_gas_phase=true) const</td></tr>
+<tr class="memdesc:a0b586380d1dbd1cb3bcbbd45ae5a406f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets the corresponding values on the fictional outer face if the face is located at a boundary.  <br /></td></tr>
+<tr class="separator:a0b586380d1dbd1cb3bcbbd45ae5a406f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae557dcb43d9c3134a657a5db698d863d" id="r_ae557dcb43d9c3134a657a5db698d863d"><td class="memTemplParams" colspan="2">template&lt;typename DofReadView , typename DofWriteView &gt; </td></tr>
 <tr class="memitem:ae557dcb43d9c3134a657a5db698d863d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ae557dcb43d9c3134a657a5db698d863d">set_conserved_variables_boundary_value_and_gradient</a> (const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, dealii::types::boundary_id boundary_id, const DofReadView &amp;w_m, const DofWriteView &amp;w_p) const</td></tr>
 <tr class="separator:ae557dcb43d9c3134a657a5db698d863d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10fd805c6371dfddb307e69835caf5d9" id="r_a10fd805c6371dfddb307e69835caf5d9"><td class="memTemplParams" colspan="2">template&lt;int n_species, typename DofReadView , typename DofWriteView &gt; </td></tr>
 <tr class="memitem:a10fd805c6371dfddb307e69835caf5d9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a10fd805c6371dfddb307e69835caf5d9">set_partial_density_boundary_value_and_gradient</a> (const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, dealii::types::boundary_id boundary_id, const DofReadView &amp;w_m, const DofWriteView &amp;w_p) const</td></tr>
-<tr class="memdesc:a10fd805c6371dfddb307e69835caf5d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets the values of partial density in the case of multi-component flows on the fictional outer face if the face is located at a boundary.  <br /></td></tr>
 <tr class="separator:a10fd805c6371dfddb307e69835caf5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bd7f5056c40c87cec84ed8ba325ceb2" id="r_a0bd7f5056c40c87cec84ed8ba325ceb2"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a>, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a>, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a>, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0bd7f5056c40c87cec84ed8ba325ceb2">get_jacobian_boundary_face_value_and_gradient</a> (const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, dealii::types::boundary_id boundary_id, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a> &amp;w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a> &amp;delta_w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a> &amp;grad_w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a> &amp;grad_delta_w_m, number gamma) const</td></tr>
-<tr class="memdesc:a0bd7f5056c40c87cec84ed8ba325ceb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute boundary values and gradients, as well as their linearizations for the Jacobian.  <br /></td></tr>
-<tr class="separator:a0bd7f5056c40c87cec84ed8ba325ceb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac72cc21f46b88851d771a79cd18298a1" id="r_ac72cc21f46b88851d771a79cd18298a1"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0e89a74775e667a802b49e415de44889">ConservedVariables</a>, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#aa50d43ff2953f8a6412539609c37ec8f">ConservedVariablesGradient</a>, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0e89a74775e667a802b49e415de44889">ConservedVariables</a>, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#aa50d43ff2953f8a6412539609c37ec8f">ConservedVariablesGradient</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ac72cc21f46b88851d771a79cd18298a1">get_jacobian_boundary_face_value_and_gradient</a> (const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, dealii::types::boundary_id boundary_id, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0e89a74775e667a802b49e415de44889">ConservedVariables</a> &amp;w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0e89a74775e667a802b49e415de44889">ConservedVariables</a> &amp;delta_w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#aa50d43ff2953f8a6412539609c37ec8f">ConservedVariablesGradient</a> &amp;grad_w_m, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#aa50d43ff2953f8a6412539609c37ec8f">ConservedVariablesGradient</a> &amp;grad_delta_w_m, number gamma) const</td></tr>
+<tr class="memdesc:ac72cc21f46b88851d771a79cd18298a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute boundary values and gradients, as well as their linearizations for the Jacobian.  <br /></td></tr>
+<tr class="separator:ac72cc21f46b88851d771a79cd18298a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a8b4416edde42a3c92aee066394f27429" id="r_a8b4416edde42a3c92aee066394f27429"><td class="memItemLeft" align="right" valign="top">static const std::map&lt; MeltPoolDG::CompressibleFlow::BoundaryConditionType, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8b4416edde42a3c92aee066394f27429">boundary_type_to_string_map</a></td></tr>
-<tr class="separator:a8b4416edde42a3c92aee066394f27429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2862f7e7a4422eac4160bd26e080d083" id="r_a2862f7e7a4422eac4160bd26e080d083"><td class="memItemLeft" align="right" valign="top">static const std::map&lt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#afeabf6ef382a4dc4f27b050e7af8acee">BoundaryType</a>, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a2862f7e7a4422eac4160bd26e080d083">boundary_type_to_string_map</a></td></tr>
+<tr class="separator:a2862f7e7a4422eac4160bd26e080d083"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a8638f3804d233d21788ee4d01cff4d4c" id="r_a8638f3804d233d21788ee4d01cff4d4c"><td class="memTemplParams" colspan="2">template&lt;typename DofReadView , typename DofWriteView &gt; </td></tr>
+<tr class="memitem:a8638f3804d233d21788ee4d01cff4d4c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8638f3804d233d21788ee4d01cff4d4c">apply_slip_wall_boundary</a> (DofReadView w_m, DofWriteView w_p, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal) const</td></tr>
+<tr class="separator:a8638f3804d233d21788ee4d01cff4d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b2937314d0e19fcc956851215db25d0" id="r_a2b2937314d0e19fcc956851215db25d0"><td class="memTemplParams" colspan="2">template&lt;typename DofReadView , typename DofWriteView &gt; </td></tr>
+<tr class="memitem:a2b2937314d0e19fcc956851215db25d0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a2b2937314d0e19fcc956851215db25d0">apply_no_slip_wall_boundary</a> (DofReadView w_m, DofWriteView w_p) const</td></tr>
+<tr class="separator:a2b2937314d0e19fcc956851215db25d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a373e90d3eb0d453e9ecab292761d35cb" id="r_a373e90d3eb0d453e9ecab292761d35cb"><td class="memTemplParams" colspan="2">template&lt;typename DofReadView , typename DofWriteView , typename DirichletValueInterpretation  = InflowValueInterpretation&lt;dim&gt;&gt; </td></tr>
+<tr class="memitem:a373e90d3eb0d453e9ecab292761d35cb"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a373e90d3eb0d453e9ecab292761d35cb">apply_inflow_boundary</a> (const dealii::types::boundary_id boundary_id, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, DofReadView w_m, DofWriteView w_p, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#afeabf6ef382a4dc4f27b050e7af8acee">BoundaryType</a> bc_value_type=BoundaryType::inflow) const</td></tr>
+<tr class="separator:a373e90d3eb0d453e9ecab292761d35cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eed83279bb4966a965aab9074964f3b" id="r_a7eed83279bb4966a965aab9074964f3b"><td class="memTemplParams" colspan="2">template&lt;typename DofReadView , typename DofWriteView &gt; </td></tr>
+<tr class="memitem:a7eed83279bb4966a965aab9074964f3b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a7eed83279bb4966a965aab9074964f3b">apply_subsonic_outflow_with_fixed_pressure_boundary</a> (const dealii::types::boundary_id boundary_id, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, DofReadView w_m, DofWriteView w_p) const</td></tr>
+<tr class="separator:a7eed83279bb4966a965aab9074964f3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a323a6f03370acf3d9ad3780d83a5984d" id="r_a323a6f03370acf3d9ad3780d83a5984d"><td class="memTemplParams" colspan="2">template&lt;typename DofReadView , typename DofWriteView &gt; </td></tr>
+<tr class="memitem:a323a6f03370acf3d9ad3780d83a5984d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a323a6f03370acf3d9ad3780d83a5984d">apply_subsonic_outflow_with_fixed_energy_boundary</a> (const dealii::types::boundary_id boundary_id, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, DofReadView w_m, DofWriteView w_p) const</td></tr>
+<tr class="separator:a323a6f03370acf3d9ad3780d83a5984d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad76a84c4dd859fd398536677b7952ee8" id="r_ad76a84c4dd859fd398536677b7952ee8"><td class="memTemplParams" colspan="2">template&lt;typename DofReadView , typename DofWriteView &gt; </td></tr>
+<tr class="memitem:ad76a84c4dd859fd398536677b7952ee8"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ad76a84c4dd859fd398536677b7952ee8">apply_combined_inflow_no_slip_wall_boundary</a> (const dealii::types::boundary_id boundary_id, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;q_point, DofReadView w_m, DofWriteView w_p) const</td></tr>
+<tr class="separator:ad76a84c4dd859fd398536677b7952ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -205,6 +223,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:abdef4f32d73286de967a6b9df383f6fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0834f90aab7eefae35b4da08bb2130f3" id="r_a0834f90aab7eefae35b4da08bb2130f3"><td class="memItemLeft" align="right" valign="top">std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0834f90aab7eefae35b4da08bb2130f3">subsonic_outflow_fixed_energy</a></td></tr>
 <tr class="separator:a0834f90aab7eefae35b4da08bb2130f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a925586842f37dcf07886aabed8525a84" id="r_a925586842f37dcf07886aabed8525a84"><td class="memItemLeft" align="right" valign="top">std::map&lt; dealii::types::boundary_id, std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a925586842f37dcf07886aabed8525a84">combined_inflow_no_slip_wall_boundaries</a></td></tr>
+<tr class="separator:a925586842f37dcf07886aabed8525a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dfe9c8c0b24c3d307158a07b89c2006" id="r_a9dfe9c8c0b24c3d307158a07b89c2006"><td class="memItemLeft" align="right" valign="top">std::set&lt; dealii::types::boundary_id &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a9dfe9c8c0b24c3d307158a07b89c2006">slip_wall_boundaries</a></td></tr>
 <tr class="memdesc:a9dfe9c8c0b24c3d307158a07b89c2006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets of boundary IDs.  <br /></td></tr>
 <tr class="separator:a9dfe9c8c0b24c3d307158a07b89c2006"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,7 +240,8 @@ class MeltPoolDG::CompressibleFlow::BoundaryConditions&lt; dim, number &gt;</div
 <li>Slip wall</li>
 <li>No-slip adiabatic wall</li>
 <li>Subsonic outflow with fixed pressure</li>
-<li>Subsonic outflow with fixed energy </li>
+<li>Subsonic outflow with fixed energy</li>
+<li>Combined inflow and no-slip wall boundary condition, which can be used to apply a free jet inflow. </li>
 </ul>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="afeabf6ef382a4dc4f27b050e7af8acee" name="afeabf6ef382a4dc4f27b050e7af8acee"></a>
@@ -239,8 +260,8 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
-<a id="a8bb287385209e47fd014a50acbb6c999" name="a8bb287385209e47fd014a50acbb6c999"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8bb287385209e47fd014a50acbb6c999">&#9670;&#160;</a></span>ConservedVariablesGradType</h2>
+<a id="a0e89a74775e667a802b49e415de44889" name="a0e89a74775e667a802b49e415de44889"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e89a74775e667a802b49e415de44889">&#9670;&#160;</a></span>ConservedVariables</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -248,15 +269,15 @@ template&lt;int dim, typename number &gt; </div>
 template&lt;int dim, typename number &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::ConservedVariablesGradType =  dealii::Tensor&lt;1, dim + 2, dealii::Tensor&lt;1, dim, dealii::VectorizedArray&lt;number&gt; &gt;&gt;</td>
+          <td class="memname">using <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::ConservedVariables =  <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt;dim, number&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ab714ac3053310e88028026b5de01004f" name="ab714ac3053310e88028026b5de01004f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab714ac3053310e88028026b5de01004f">&#9670;&#160;</a></span>ConservedVariablesType</h2>
+<a id="aa50d43ff2953f8a6412539609c37ec8f" name="aa50d43ff2953f8a6412539609c37ec8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa50d43ff2953f8a6412539609c37ec8f">&#9670;&#160;</a></span>ConservedVariablesGradient</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,7 +285,7 @@ template&lt;int dim, typename number &gt; </div>
 template&lt;int dim, typename number &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::ConservedVariablesType =  dealii::Tensor&lt;1, dim + 2, dealii::VectorizedArray&lt;number&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::ConservedVariablesGradient =  <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e39e12c307a8da07383fa6f8c07c222">ConservedVariablesGradientType</a>&lt;dim, number&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -288,8 +309,372 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae70c569c6fe040083c9878521a07173e" name="ae70c569c6fe040083c9878521a07173e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae70c569c6fe040083c9878521a07173e">&#9670;&#160;</a></span>get_boundary_face_value_and_gradient()</h2>
+<a id="ad76a84c4dd859fd398536677b7952ee8" name="ad76a84c4dd859fd398536677b7952ee8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad76a84c4dd859fd398536677b7952ee8">&#9670;&#160;</a></span>apply_combined_inflow_no_slip_wall_boundary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename DofReadView , typename DofWriteView &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::apply_combined_inflow_no_slip_wall_boundary </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::types::boundary_id&#160;</td>
+          <td class="paramname"><em>boundary_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>q_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DofReadView&#160;</td>
+          <td class="paramname"><em>w_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DofWriteView&#160;</td>
+          <td class="paramname"><em>w_p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Apply the combined inflow and no-slip wall boundary condition by setting the corresponding values in <code>w_p</code> based on the values in <code>w_m</code> and the boundary function corresponding to the boundary. For points located in the inflow region of the boundary, the values are set based on the boundary function, while for points located in the wall region, the no-slip wall condition is applied.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boundary_id</td><td>ID of the boundary at which the combined inflow and no-slip wall boundary condition is applied. </td></tr>
+    <tr><td class="paramname">q_point</td><td>Coordinates at which the boundary function is evaluated. </td></tr>
+    <tr><td class="paramname">w_m</td><td>View for the conserved variables on the inner face. </td></tr>
+    <tr><td class="paramname">w_p</td><td>View for the conserved variables on the outer face, which shall be set by this function. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a373e90d3eb0d453e9ecab292761d35cb" name="a373e90d3eb0d453e9ecab292761d35cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a373e90d3eb0d453e9ecab292761d35cb">&#9670;&#160;</a></span>apply_inflow_boundary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename DofReadView , typename DofWriteView , typename DirichletValueInterpretation &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::apply_inflow_boundary </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::types::boundary_id&#160;</td>
+          <td class="paramname"><em>boundary_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>q_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DofReadView&#160;</td>
+          <td class="paramname"><em>w_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DofWriteView&#160;</td>
+          <td class="paramname"><em>w_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#afeabf6ef382a4dc4f27b050e7af8acee">BoundaryType</a>&#160;</td>
+          <td class="paramname"><em>bc_value_type</em> = <code>BoundaryType::inflow</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Apply the inflow boundary condition by setting the corresponding values in <code>w_p</code> based on the values in <code>w_m</code> and the boundary function corresponding to the inflow boundary with id <code>boundary_id</code> evaluated at the coordinates <code>q_point</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boundary_id</td><td>ID of the boundary at which the inflow boundary condition is applied. </td></tr>
+    <tr><td class="paramname">q_point</td><td>Coordinates at which the boundary function is evaluated. </td></tr>
+    <tr><td class="paramname">w_m</td><td>View for the conserved variables on the inner face. </td></tr>
+    <tr><td class="paramname">w_p</td><td>View for the conserved variables on the outer face, which shall be set by this function. </td></tr>
+    <tr><td class="paramname">bc_value_type</td><td>Type of the boundary condition, from which the Dirichlet boundary values are obtained.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">DirichletValueInterpretation</td><td>A struct defining an enum to interpret the components of the vector returned by the boundary function. This allows to use the same function for different types of boundary conditions, where the interpretation of the returned vector can differ. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2b2937314d0e19fcc956851215db25d0" name="a2b2937314d0e19fcc956851215db25d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b2937314d0e19fcc956851215db25d0">&#9670;&#160;</a></span>apply_no_slip_wall_boundary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename DofReadView , typename DofWriteView &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::apply_no_slip_wall_boundary </td>
+          <td>(</td>
+          <td class="paramtype">DofReadView&#160;</td>
+          <td class="paramname"><em>w_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DofWriteView&#160;</td>
+          <td class="paramname"><em>w_p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Apply the no-slip adiabatic wall boundary condition by setting the corresponding values in <code>w_p</code> based on the values in <code>w_m</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w_m</td><td>View for the conserved variables on the inner face. </td></tr>
+    <tr><td class="paramname">w_p</td><td>View for the conserved variables on the outer face, which shall be set by this function. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8638f3804d233d21788ee4d01cff4d4c" name="a8638f3804d233d21788ee4d01cff4d4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8638f3804d233d21788ee4d01cff4d4c">&#9670;&#160;</a></span>apply_slip_wall_boundary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename DofReadView , typename DofWriteView &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::apply_slip_wall_boundary </td>
+          <td>(</td>
+          <td class="paramtype">DofReadView&#160;</td>
+          <td class="paramname"><em>w_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DofWriteView&#160;</td>
+          <td class="paramname"><em>w_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>normal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Apply the slip wall boundary condition by setting the corresponding values in <code>w_p</code> based on the values in <code>w_m</code> and the normal vector <code>normal</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w_m</td><td>View for the conserved variables on the inner face. </td></tr>
+    <tr><td class="paramname">w_p</td><td>View for the conserved variables on the outer face, which shall be set by this function. </td></tr>
+    <tr><td class="paramname">normal</td><td>Outer facing normal vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a323a6f03370acf3d9ad3780d83a5984d" name="a323a6f03370acf3d9ad3780d83a5984d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a323a6f03370acf3d9ad3780d83a5984d">&#9670;&#160;</a></span>apply_subsonic_outflow_with_fixed_energy_boundary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename DofReadView , typename DofWriteView &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::apply_subsonic_outflow_with_fixed_energy_boundary </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::types::boundary_id&#160;</td>
+          <td class="paramname"><em>boundary_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>q_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DofReadView&#160;</td>
+          <td class="paramname"><em>w_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DofWriteView&#160;</td>
+          <td class="paramname"><em>w_p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Apply the subsonic outflow boundary condition with fixed energy by setting the corresponding values in <code>w_p</code> based on the values in <code>w_m</code> and the boundary function corresponding to the boundary.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boundary_id</td><td>ID of the boundary at which the subsonic outflow with fixed energy boundary condition is applied. </td></tr>
+    <tr><td class="paramname">q_point</td><td>Coordinates at which the boundary function is evaluated. </td></tr>
+    <tr><td class="paramname">w_m</td><td>View for the conserved variables on the inner face. </td></tr>
+    <tr><td class="paramname">w_p</td><td>View for the conserved variables on the outer face, which shall be set by this function. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7eed83279bb4966a965aab9074964f3b" name="a7eed83279bb4966a965aab9074964f3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eed83279bb4966a965aab9074964f3b">&#9670;&#160;</a></span>apply_subsonic_outflow_with_fixed_pressure_boundary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename DofReadView , typename DofWriteView &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::apply_subsonic_outflow_with_fixed_pressure_boundary </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::types::boundary_id&#160;</td>
+          <td class="paramname"><em>boundary_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>q_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DofReadView&#160;</td>
+          <td class="paramname"><em>w_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DofWriteView&#160;</td>
+          <td class="paramname"><em>w_p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Apply the subsonic outflow boundary condition with fixed pressure by setting the corresponding values in <code>w_p</code> based on the values in <code>w_m</code> and the boundary function corresponding to the boundary.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boundary_id</td><td>ID of the boundary at which the subsonic outflow with fixed pressure boundary condition is applied. </td></tr>
+    <tr><td class="paramname">q_point</td><td>Coordinates at which the boundary function is evaluated. </td></tr>
+    <tr><td class="paramname">w_m</td><td>View for the conserved variables on the inner face. </td></tr>
+    <tr><td class="paramname">w_p</td><td>View for the conserved variables on the outer face, which shall be set by this function. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0b586380d1dbd1cb3bcbbd45ae5a406f" name="a0b586380d1dbd1cb3bcbbd45ae5a406f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b586380d1dbd1cb3bcbbd45ae5a406f">&#9670;&#160;</a></span>get_boundary_face_value_and_gradient()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -317,13 +702,13 @@ template&lt;int dim, typename number &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0e89a74775e667a802b49e415de44889">ConservedVariables</a> &amp;&#160;</td>
           <td class="paramname"><em>w_m</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#aa50d43ff2953f8a6412539609c37ec8f">ConservedVariablesGradient</a> &amp;&#160;</td>
           <td class="paramname"><em>grad_w_m</em>, </td>
         </tr>
         <tr>
@@ -363,8 +748,8 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
-<a id="abfc97d048e5a9dd4f45257772559484d" name="abfc97d048e5a9dd4f45257772559484d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfc97d048e5a9dd4f45257772559484d">&#9670;&#160;</a></span>get_boundary_type()</h2>
+<a id="ab52eda1874a96c8528fa0d977510d1e9" name="ab52eda1874a96c8528fa0d977510d1e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab52eda1874a96c8528fa0d977510d1e9">&#9670;&#160;</a></span>get_boundary_type()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -375,7 +760,7 @@ template&lt;int dim, typename number &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">BoundaryConditionType <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::get_boundary_type </td>
+          <td class="memname"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#afeabf6ef382a4dc4f27b050e7af8acee">BoundaryType</a> <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::get_boundary_type </td>
           <td>(</td>
           <td class="paramtype">const dealii::types::boundary_id&#160;</td>
           <td class="paramname"><em>boundary_id</em></td><td>)</td>
@@ -406,55 +791,8 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
-<a id="a88e0838a39fb58ade0e486da5382f36c" name="a88e0838a39fb58ade0e486da5382f36c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88e0838a39fb58ade0e486da5382f36c">&#9670;&#160;</a></span>get_boundary_value() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">dealii::Tensor&lt; 1, dim+2, dealii::VectorizedArray&lt; number &gt; &gt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::get_boundary_value </td>
-          <td>(</td>
-          <td class="paramtype">const dealii::types::boundary_id&#160;</td>
-          <td class="paramname"><em>boundary_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const BoundaryConditionType&#160;</td>
-          <td class="paramname"><em>boundary_condition</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>location</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Same as above but returns the complete vector. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">boundary_id</td><td>Boundary id of the boundary of interest. </td></tr>
-    <tr><td class="paramname">boundary_condition</td><td>Type of the boundary condition. </td></tr>
-    <tr><td class="paramname">location</td><td>Coordinates at which the boundary value is computed.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Prescribed boundary value. </dd></dl>
-
-</div>
-</div>
-<a id="a5c0caa73d140a164b37cce3c77686404" name="a5c0caa73d140a164b37cce3c77686404"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c0caa73d140a164b37cce3c77686404">&#9670;&#160;</a></span>get_boundary_value() <span class="overload">[2/2]</span></h2>
+<a id="a392f8f2008448395c3be25a2c8add236" name="a392f8f2008448395c3be25a2c8add236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a392f8f2008448395c3be25a2c8add236">&#9670;&#160;</a></span>get_boundary_value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -470,7 +808,7 @@ template&lt;int dim, typename number &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">BoundaryConditionType&#160;</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#afeabf6ef382a4dc4f27b050e7af8acee">BoundaryType</a>&#160;</td>
           <td class="paramname"><em>boundary_condition</em>, </td>
         </tr>
         <tr>
@@ -507,8 +845,8 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
-<a id="a0bd7f5056c40c87cec84ed8ba325ceb2" name="a0bd7f5056c40c87cec84ed8ba325ceb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0bd7f5056c40c87cec84ed8ba325ceb2">&#9670;&#160;</a></span>get_jacobian_boundary_face_value_and_gradient()</h2>
+<a id="ac72cc21f46b88851d771a79cd18298a1" name="ac72cc21f46b88851d771a79cd18298a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac72cc21f46b88851d771a79cd18298a1">&#9670;&#160;</a></span>get_jacobian_boundary_face_value_and_gradient()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -536,25 +874,25 @@ template&lt;int dim, typename number &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0e89a74775e667a802b49e415de44889">ConservedVariables</a> &amp;&#160;</td>
           <td class="paramname"><em>w_m</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#ab714ac3053310e88028026b5de01004f">ConservedVariablesType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a0e89a74775e667a802b49e415de44889">ConservedVariables</a> &amp;&#160;</td>
           <td class="paramname"><em>delta_w_m</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#aa50d43ff2953f8a6412539609c37ec8f">ConservedVariablesGradient</a> &amp;&#160;</td>
           <td class="paramname"><em>grad_w_m</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a8bb287385209e47fd014a50acbb6c999">ConservedVariablesGradType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#aa50d43ff2953f8a6412539609c37ec8f">ConservedVariablesGradient</a> &amp;&#160;</td>
           <td class="paramname"><em>grad_delta_w_m</em>, </td>
         </tr>
         <tr>
@@ -590,8 +928,8 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
-<a id="a4ce3f2628384b0d8587dee58359483cf" name="a4ce3f2628384b0d8587dee58359483cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ce3f2628384b0d8587dee58359483cf">&#9670;&#160;</a></span>set_boundary_condition()</h2>
+<a id="a4c08225ab351d34e004c6be9a9fa4f04" name="a4c08225ab351d34e004c6be9a9fa4f04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c08225ab351d34e004c6be9a9fa4f04">&#9670;&#160;</a></span>set_boundary_condition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -601,7 +939,7 @@ template&lt;int dim, typename number &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::set_boundary_condition </td>
           <td>(</td>
-          <td class="paramtype">BoundaryConditionType&#160;</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#afeabf6ef382a4dc4f27b050e7af8acee">BoundaryType</a>&#160;</td>
           <td class="paramname"><em>boundary_condition</em>, </td>
         </tr>
         <tr>
@@ -779,8 +1117,7 @@ template&lt;int n_species, typename DofReadView , typename DofWriteView &gt; </d
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>This function sets the values of partial density in the case of multi-component flows on the fictional outer face if the face is located at a boundary. </p>
+<p>This function sets the values of partial density in the case of multi-component flows on the fictional outer face if the face is located at a boundary.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">q_point</td><td>Location of the quadrature points at which the values shall be computed. </td></tr>
@@ -823,8 +1160,8 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a8b4416edde42a3c92aee066394f27429" name="a8b4416edde42a3c92aee066394f27429"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b4416edde42a3c92aee066394f27429">&#9670;&#160;</a></span>boundary_type_to_string_map</h2>
+<a id="a2862f7e7a4422eac4160bd26e080d083" name="a2862f7e7a4422eac4160bd26e080d083"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2862f7e7a4422eac4160bd26e080d083">&#9670;&#160;</a></span>boundary_type_to_string_map</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -835,7 +1172,7 @@ template&lt;int dim, typename number &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::map&lt;MeltPoolDG::CompressibleFlow::BoundaryConditionType, std::string&gt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::boundary_type_to_string_map</td>
+          <td class="memname">const std::map&lt;<a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#afeabf6ef382a4dc4f27b050e7af8acee">BoundaryType</a>, std::string&gt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::boundary_type_to_string_map</td>
         </tr>
       </table>
   </td>
@@ -845,15 +1182,38 @@ template&lt;int dim, typename number &gt; </div>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">        {MeltPoolDG::CompressibleFlow::BoundaryConditionType::inflow, <span class="stringliteral">&quot;inflow&quot;</span>},</div>
-<div class="line">        {MeltPoolDG::CompressibleFlow::BoundaryConditionType::subsonic_outflow_fixed_pressure,</div>
-<div class="line">         <span class="stringliteral">&quot;outflow_fixed_pressure&quot;</span>},</div>
-<div class="line">        {MeltPoolDG::CompressibleFlow::BoundaryConditionType::subsonic_outflow_fixed_energy,</div>
-<div class="line">         <span class="stringliteral">&quot;outflow_fixed_energy&quot;</span>},</div>
-<div class="line">        {MeltPoolDG::CompressibleFlow::BoundaryConditionType::slip_wall, <span class="stringliteral">&quot;slip_wall&quot;</span>},</div>
-<div class="line">        {MeltPoolDG::CompressibleFlow::BoundaryConditionType::no_slip_wall, <span class="stringliteral">&quot;no_slip_wall&quot;</span>},</div>
+<div class="line">      {BoundaryType::inflow, <span class="stringliteral">&quot;inflow&quot;</span>},</div>
+<div class="line">      {BoundaryType::subsonic_outflow_fixed_pressure, <span class="stringliteral">&quot;outflow_fixed_pressure&quot;</span>},</div>
+<div class="line">      {BoundaryType::subsonic_outflow_fixed_energy, <span class="stringliteral">&quot;outflow_fixed_energy&quot;</span>},</div>
+<div class="line">      {BoundaryType::slip_wall, <span class="stringliteral">&quot;slip_wall&quot;</span>},</div>
+<div class="line">      {BoundaryType::no_slip_wall, <span class="stringliteral">&quot;no_slip_wall&quot;</span>},</div>
+<div class="line">      {BoundaryType::combined_inflow_no_slip_wall, <span class="stringliteral">&quot;combined_inflow_no_slip_wall&quot;</span>},</div>
 <div class="line">    }</div>
 </div><!-- fragment --><p>Mapping to translate between the enum used to identify boundary conditions and the corresponding string names used in the simulation case. </p>
+
+</div>
+</div>
+<a id="a925586842f37dcf07886aabed8525a84" name="a925586842f37dcf07886aabed8525a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a925586842f37dcf07886aabed8525a84">&#9670;&#160;</a></span>combined_inflow_no_slip_wall_boundaries</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;dealii::types::boundary_id, std::shared_ptr&lt;dealii::Function&lt;dim&gt; &gt; &gt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html">MeltPoolDG::CompressibleFlow::BoundaryConditions</a>&lt; dim, number &gt;::combined_inflow_no_slip_wall_boundaries</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
