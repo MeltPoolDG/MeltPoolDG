@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/level_set/reinitialization_elliptic_operation.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/level_set/reinitialization_elliptic_operation.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/reinitialization__elliptic__operation_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-level-set-reinitialization-elliptic-operation-hpp-source-file">
+<h1>include/meltpooldg/level_set/reinitialization_elliptic_operation.hpp Source File<a class="headerlink" href="#include-meltpooldg-level-set-reinitialization-elliptic-operation-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/level_set/reinitialization_elliptic_operation.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_d8c980f69678bb74c2eb96a617637411.html">level_set</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">reinitialization_elliptic_operation.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="reinitialization__elliptic__operation_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="scratch__data_8hpp.html">meltpooldg/core/scratch_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="normal__vector__DG__operation_8hpp.html">meltpooldg/level_set/normal_vector_DG_operation.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="normal__vector__operation_8hpp.html">meltpooldg/level_set/normal_vector_operation.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="reinitialization__elliptic__operator_8hpp.html">meltpooldg/level_set/reinitialization_elliptic_operator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="reinitialization__operation__base_8hpp.html">meltpooldg/level_set/reinitialization_operation_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html">   31</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html">ReinitializationEllipticOperation</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationOperationBase.html">ReinitializationOperationBase</a>&lt;dim, number&gt;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af93d6e749a1b18838c193b091bd66733">   34</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af93d6e749a1b18838c193b091bd66733">VectorType</a>      = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ab69ddd530ebc7eae70ad86a752024596">   35</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ab69ddd530ebc7eae70ad86a752024596">BlockVectorType</a> = dealii::LinearAlgebra::distributed::BlockVector&lt;number&gt;;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html">ReinitializationEllipticOperation</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData&lt;dim, dim, number&gt;</a> &amp;scratch_data_in,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                                      <span class="keyword">const</span> ReinitializationData&lt;number&gt;  &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af72081bec120959b42f7e4ee8488ffda">reinit_data</a>,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                                      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   reinit_dof_idx_in,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                                      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   reinit_quad_idx_in,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                                      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   ls_dof_idx_in,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                                      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1LevelSet_1_1NormalVectorData.html">NormalVectorData&lt;number&gt;</a>      &amp;normal_vec_data);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a861bc553f4dc76a8a0740752f2b36dd8">solve</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a22927e62fd72ea07bdb2c811a8171ff3">reinit</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a48198311bba35792e9231682f4d46ff8">update_dof_idx</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;reinit_dof_idx_in) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a6a833969b9ae61d0b2b73aba5df58096">set_initial_condition</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af93d6e749a1b18838c193b091bd66733">VectorType</a> &amp;solution_level_set_in) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a6a833969b9ae61d0b2b73aba5df58096">set_initial_condition</a>(<span class="keyword">const</span> dealii::Function&lt;dim&gt; &amp;initial_field_function) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af93d6e749a1b18838c193b091bd66733">VectorType</a> &amp;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a688c9d970c241efb30f07c8d2235b29b">get_level_set</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af93d6e749a1b18838c193b091bd66733">VectorType</a> &amp;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a688c9d970c241efb30f07c8d2235b29b">get_level_set</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    number</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ae6db04f4f44bfc039d68a0d6151e3c1d">get_max_change_level_set</a>() const final;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    const <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ab69ddd530ebc7eae70ad86a752024596">BlockVectorType</a> &amp;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ad9e0b65c5b2316d9113034df206b7bfb">get_normal_vector</a>() const override;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ab69ddd530ebc7eae70ad86a752024596">BlockVectorType</a> &amp;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ad9e0b65c5b2316d9113034df206b7bfb">get_normal_vector</a>() override;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ad5d216f47607ebe60d7938b7bbb388d8">attach_vectors</a>(</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      std::vector&lt;<a class="code hl_namespace" href="namespacedealii.html">dealii</a>::LinearAlgebra::distributed::Vector&lt;number&gt; *&gt; &amp;vectors) override;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <a class="code hl_function" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af80dbe127faf10a8228d9197d8aeb5da">attach_output_vectors</a>(<a class="code hl_class" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut</a>&lt;dim, number&gt; &amp;data_out) const override;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  private:</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a30ce7d5770d338ef5d58ee06164ebe83">  161</a></span>    const <a class="code hl_class" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt;dim, dim, number&gt; &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a30ce7d5770d338ef5d58ee06164ebe83">scratch_data</a>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af72081bec120959b42f7e4ee8488ffda">  164</a></span>    const ReinitializationData&lt;number&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af72081bec120959b42f7e4ee8488ffda">reinit_data</a>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a43e5f7bea59da6e6a34ae436f61453ce">  171</a></span>    mutable <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a43e5f7bea59da6e6a34ae436f61453ce">reinit_dof_idx</a>;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ad0a5af1a594e1d84d2ee5f266c5862f8">  172</a></span>    const <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>   <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ad0a5af1a594e1d84d2ee5f266c5862f8">reinit_quad_idx</a>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a48595b2aa6cbee4727409f0d25f20bb4">  173</a></span>    const <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>   <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a48595b2aa6cbee4727409f0d25f20bb4">ls_dof_idx</a>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a436eadd129a2648858665e49dcf76329">  176</a></span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af93d6e749a1b18838c193b091bd66733">VectorType</a> <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a436eadd129a2648858665e49dcf76329">solution_level_set</a>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af3bb6fb9da69ab708a833d2bd3f5c8b8">  179</a></span>    std::unique_ptr&lt;<a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">ReinitializationEllipticOperator</a>&lt;dim, number&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af3bb6fb9da69ab708a833d2bd3f5c8b8">reinit_operator</a>;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a21ecb59c6dde58124a5c77eb88fad6d5">  182</a></span>    std::shared_ptr&lt;<a class="code hl_class" href="classMeltPoolDG_1_1LevelSet_1_1NormalVectorOperationBase.html">NormalVectorOperationBase</a>&lt;dim, number&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a21ecb59c6dde58124a5c77eb88fad6d5">normal_vector_operation</a>;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a1c96f92d79b59b1024e6193c5029160a">  185</a></span>    number <a class="code hl_variable" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a1c96f92d79b59b1024e6193c5029160a">max_change_level_set</a> = std::numeric_limits&lt;number&gt;::max();</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  };</div>
+</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>} <span class="comment">// namespace MeltPoolDG::LevelSet</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1GenericDataOut_html"><div class="ttname"><a href="classMeltPoolDG_1_1GenericDataOut.html">MeltPoolDG::GenericDataOut</a></div><div class="ttdoc">A generic utility for managing simulation output data in the MeltPoolDG context.</div><div class="ttdef"><b>Definition</b> generic_data_out.hpp:32</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1NormalVectorOperationBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1NormalVectorOperationBase.html">MeltPoolDG::LevelSet::NormalVectorOperationBase</a></div><div class="ttdef"><b>Definition</b> normal_vector_operation_base.hpp:8</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperation</a></div><div class="ttdoc">Operation that performs the elliptic reinitialization process.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.hpp:32</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_a1c96f92d79b59b1024e6193c5029160a"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a1c96f92d79b59b1024e6193c5029160a">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::max_change_level_set</a></div><div class="ttdeci">number max_change_level_set</div><div class="ttdoc">Maximum change of the level set due to the reinitialization procedure.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.hpp:185</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_a21ecb59c6dde58124a5c77eb88fad6d5"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a21ecb59c6dde58124a5c77eb88fad6d5">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::normal_vector_operation</a></div><div class="ttdeci">std::shared_ptr&lt; NormalVectorOperationBase&lt; dim, number &gt; &gt; normal_vector_operation</div><div class="ttdoc">Pointer to the operation for the normal vector computation.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.hpp:182</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_a22927e62fd72ea07bdb2c811a8171ff3"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a22927e62fd72ea07bdb2c811a8171ff3">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::reinit</a></div><div class="ttdeci">void reinit() override</div><div class="ttdoc">Resizes the vectors to the right size of the underlying DoF handler and initializes further internal ...</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.cpp:47</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_a30ce7d5770d338ef5d58ee06164ebe83"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a30ce7d5770d338ef5d58ee06164ebe83">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::scratch_data</a></div><div class="ttdeci">const ScratchData&lt; dim, dim, number &gt; &amp; scratch_data</div><div class="ttdoc">Scratch data object.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.hpp:161</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_a436eadd129a2648858665e49dcf76329"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a436eadd129a2648858665e49dcf76329">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::solution_level_set</a></div><div class="ttdeci">VectorType solution_level_set</div><div class="ttdoc">This is the primary solution vector of this class.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.hpp:176</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_a43e5f7bea59da6e6a34ae436f61453ce"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a43e5f7bea59da6e6a34ae436f61453ce">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::reinit_dof_idx</a></div><div class="ttdeci">unsigned int reinit_dof_idx</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.hpp:171</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_a48198311bba35792e9231682f4d46ff8"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a48198311bba35792e9231682f4d46ff8">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::update_dof_idx</a></div><div class="ttdeci">void update_dof_idx(const unsigned int &amp;reinit_dof_idx_in) override</div><div class="ttdoc">Updates the current reinit_dof_idx.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.cpp:54</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_a48595b2aa6cbee4727409f0d25f20bb4"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a48595b2aa6cbee4727409f0d25f20bb4">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::ls_dof_idx</a></div><div class="ttdeci">const unsigned int ls_dof_idx</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.hpp:173</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_a688c9d970c241efb30f07c8d2235b29b"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a688c9d970c241efb30f07c8d2235b29b">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::get_level_set</a></div><div class="ttdeci">const VectorType &amp; get_level_set() const override</div><div class="ttdoc">Access the level-set field (const version).</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.cpp:78</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_a6a833969b9ae61d0b2b73aba5df58096"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a6a833969b9ae61d0b2b73aba5df58096">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::set_initial_condition</a></div><div class="ttdeci">void set_initial_condition(const VectorType &amp;solution_level_set_in) override</div><div class="ttdoc">Copies a solution field to solution_level_set.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.cpp:62</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_a861bc553f4dc76a8a0740752f2b36dd8"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#a861bc553f4dc76a8a0740752f2b36dd8">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::solve</a></div><div class="ttdeci">void solve() override</div><div class="ttdoc">Solve the nonlinear system of equations of the elliptic reinitialization problem.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.cpp:40</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_ab69ddd530ebc7eae70ad86a752024596"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ab69ddd530ebc7eae70ad86a752024596">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::BlockVectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::BlockVector&lt; number &gt; BlockVectorType</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.hpp:35</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_ad0a5af1a594e1d84d2ee5f266c5862f8"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ad0a5af1a594e1d84d2ee5f266c5862f8">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::reinit_quad_idx</a></div><div class="ttdeci">const unsigned int reinit_quad_idx</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.hpp:172</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_ad5d216f47607ebe60d7938b7bbb388d8"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ad5d216f47607ebe60d7938b7bbb388d8">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::attach_vectors</a></div><div class="ttdeci">void attach_vectors(std::vector&lt; dealii::LinearAlgebra::distributed::Vector&lt; number &gt; * &gt; &amp;vectors) override</div><div class="ttdoc">Attach internal vectors to an external container.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.cpp:113</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_ad9e0b65c5b2316d9113034df206b7bfb"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ad9e0b65c5b2316d9113034df206b7bfb">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::get_normal_vector</a></div><div class="ttdeci">const BlockVectorType &amp; get_normal_vector() const override</div><div class="ttdoc">Access the normal vector field (const version).</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.cpp:99</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_ae6db04f4f44bfc039d68a0d6151e3c1d"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#ae6db04f4f44bfc039d68a0d6151e3c1d">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::get_max_change_level_set</a></div><div class="ttdeci">number get_max_change_level_set() const final</div><div class="ttdoc">Get the maximum change in the level-set field.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.cpp:92</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_af3bb6fb9da69ab708a833d2bd3f5c8b8"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af3bb6fb9da69ab708a833d2bd3f5c8b8">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::reinit_operator</a></div><div class="ttdeci">std::unique_ptr&lt; ReinitializationEllipticOperator&lt; dim, number &gt; &gt; reinit_operator</div><div class="ttdoc">Pointer to the elliptic reinitialization operator object.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.hpp:179</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_af72081bec120959b42f7e4ee8488ffda"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af72081bec120959b42f7e4ee8488ffda">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::reinit_data</a></div><div class="ttdeci">const ReinitializationData&lt; number &gt; reinit_data</div><div class="ttdoc">Container for reinitialization-related data.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.hpp:164</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_af80dbe127faf10a8228d9197d8aeb5da"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af80dbe127faf10a8228d9197d8aeb5da">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::attach_output_vectors</a></div><div class="ttdeci">void attach_output_vectors(GenericDataOut&lt; dim, number &gt; &amp;data_out) const override</div><div class="ttdoc">Attach the level-set solution, and normal vector components for output.</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.cpp:121</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation_html_af93d6e749a1b18838c193b091bd66733"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperation.html#af93d6e749a1b18838c193b091bd66733">MeltPoolDG::LevelSet::ReinitializationEllipticOperation::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operation.hpp:34</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a></div><div class="ttdoc">Operator for the matrix-free evaluation of a compressible single-phase flow cutDG formulation for exp...</div><div class="ttdef"><b>Definition</b> reinitialization_elliptic_operator.hpp:20</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1LevelSet_1_1ReinitializationOperationBase_html"><div class="ttname"><a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationOperationBase.html">MeltPoolDG::LevelSet::ReinitializationOperationBase</a></div><div class="ttdef"><b>Definition</b> reinitialization_operation_base.hpp:10</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ScratchData_html"><div class="ttname"><a href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a></div><div class="ttdoc">Container for shared scratch data between operations/operators.</div><div class="ttdef"><b>Definition</b> scratch_data.hpp:61</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1LevelSet_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></div><div class="ttdoc">This operation solves the reinitialization problem for a CG- or DG-FEM-based discrete level-set field...</div><div class="ttdef"><b>Definition</b> advection_DG_operation.hpp:20</div></div>
+<div class="ttc" id="anamespacedealii_html"><div class="ttname"><a href="namespacedealii.html">dealii</a></div><div class="ttdef"><b>Definition</b> dealii_tensor.hpp:10</div></div>
+<div class="ttc" id="anormal__vector__DG__operation_8hpp_html"><div class="ttname"><a href="normal__vector__DG__operation_8hpp.html">normal_vector_DG_operation.hpp</a></div></div>
+<div class="ttc" id="anormal__vector__operation_8hpp_html"><div class="ttname"><a href="normal__vector__operation_8hpp.html">normal_vector_operation.hpp</a></div></div>
+<div class="ttc" id="areinitialization__elliptic__operator_8hpp_html"><div class="ttname"><a href="reinitialization__elliptic__operator_8hpp.html">reinitialization_elliptic_operator.hpp</a></div></div>
+<div class="ttc" id="areinitialization__operation__base_8hpp_html"><div class="ttname"><a href="reinitialization__operation__base_8hpp.html">reinitialization_operation_base.hpp</a></div></div>
+<div class="ttc" id="ascratch__data_8hpp_html"><div class="ttname"><a href="scratch__data_8hpp.html">scratch_data.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1LevelSet_1_1NormalVectorData_html"><div class="ttname"><a href="structMeltPoolDG_1_1LevelSet_1_1NormalVectorData.html">MeltPoolDG::LevelSet::NormalVectorData</a></div><div class="ttdef"><b>Definition</b> normal_vector_data.hpp:15</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
