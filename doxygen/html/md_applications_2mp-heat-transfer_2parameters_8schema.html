@@ -761,7 +761,8 @@ Allowed values:<br  />
 - <code>analytical</code><br  />
 - <code>recoil_pressure</code><br  />
 - <code>saturated_vapor_pressure</code><br  />
-- <code>hardt_wondra</code>    </td></tr>
+- <code>hardt_wondra</code><br  />
+- <code>pressure_aware</code>    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>interface temperature evaluation type</code>   </td><td class="markdownTableBodyNone"><code>string</code>   </td><td class="markdownTableBodyNone"><code>local_value</code>   </td><td class="markdownTableBodyNone">Choose the formulation how the (local) evaporative mass flux will be converted to a DoF vector.will be calculated. When the CutFEM heat transfer operator is used, this input parameter is ignored and the temperature is evaluated at the sharp interface which is equivalent to "sharp".<br  />
 <br  />
@@ -773,12 +774,14 @@ Allowed values:<br  />
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-hardt-wondra">`hardt wondra`</a>   </td><td class="markdownTableBodyNone"><code>object</code>   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-hardt-wondra">See table</a>    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-pressure-aware">`pressure aware`</a>   </td><td class="markdownTableBodyNone"><code>object</code>   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-pressure-aware">See table</a>    </td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-evaporative-dilation-rate">`evaporative dilation rate`</a>   </td><td class="markdownTableBodyNone"><code>object</code>   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-evaporative-dilation-rate">See table</a>    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-evaporative-cooling">`evaporative cooling`</a>   </td><td class="markdownTableBodyNone"><code>object</code>   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-evaporative-cooling">See table</a>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-recoil-pressure">`recoil pressure`</a>   </td><td class="markdownTableBodyNone"><code>object</code>   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-recoil-pressure">See table</a>    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-evaporative-cooling">`evaporative cooling`</a>   </td><td class="markdownTableBodyNone"><code>object</code>   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-evaporative-cooling">See table</a>    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-recoil-pressure">`recoil pressure`</a>   </td><td class="markdownTableBodyNone"><code>object</code>   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"><a class="el" href="md_applications_2mp-melt-pool_2parameters_8schema.html#evaporation-recoil-pressure">See table</a>    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>formulation source term level set</code>   </td><td class="markdownTableBodyNone"><code>string</code>   </td><td class="markdownTableBodyNone"><code>interface_velocity_local</code>   </td><td class="markdownTableBodyNone">Select the type how the evaporative mass flux should be considered in the level set equation.<br  />
 <br  />
 Allowed values:<br  />
@@ -786,7 +789,7 @@ Allowed values:<br  />
 - <code>interface_velocity_sharp_heavy</code><br  />
 - <code>interface_velocity_local</code><br  />
 - <code>rhs</code>    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>do level set pressure gradient interpolation</code>   </td><td class="markdownTableBodyNone"><code>boolean</code>   </td><td class="markdownTableBodyNone"><code>False</code>   </td><td class="markdownTableBodyNone">Set if the level set gradient for computing the delta function within the evaporative mass flux source terms should be computed based on an interpolation to the pressure space. This is only implemented for evapor_level_set_source_term_type = rhs.   </td></tr>
 </table>
 <p><a class="anchor" id="evaporation-analytical"></a> </p><h2><code>evaporation: analytical</code></h2>
@@ -802,6 +805,15 @@ Allowed values:<br  />
 <th class="markdownTableHeadNone">Parameter   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Default   </th><th class="markdownTableHeadNone">Description    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>coefficient</code>   </td><td class="markdownTableBodyNone"><code>number</code>   </td><td class="markdownTableBodyNone"><code>0.0</code>   </td><td class="markdownTableBodyNone">Evaporation coefficient for the model by Hardt and Wondra.   </td></tr>
+</table>
+<p><a class="anchor" id="evaporation-pressure-aware"></a> </p><h2><code>evaporation: pressure aware</code></h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Parameter   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Default   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>Km</code>   </td><td class="markdownTableBodyNone"><code>array</code>   </td><td class="markdownTableBodyNone"><code>[]</code>   </td><td class="markdownTableBodyNone">Fitting parameters for the evaporative mass flux function of the pressure-aware model.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>ambient_gas_pressure</code>   </td><td class="markdownTableBodyNone"><code>number</code>   </td><td class="markdownTableBodyNone"><code>0.0</code>   </td><td class="markdownTableBodyNone">Ambient gas pressure for the pressure-aware model.   </td></tr>
 </table>
 <p><a class="anchor" id="evaporation-evaporative-dilation-rate"></a> </p><h2><code>evaporation: evaporative dilation rate</code></h2>
 <table class="markdownTable">
