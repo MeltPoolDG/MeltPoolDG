@@ -16,7 +16,7 @@
 
 ## Coding conventions
 
-Our coding conventions are primarily based on [deal.II](https://www.dealii.org/current/doxygen/deal.II/CodingConventions.html). For unclear cases, we typically refer to the [Google C++ style guide](https://google.github.io/styleguide/cppguide.html). 
+Our coding conventions are primarily based on [deal.II](https://www.dealii.org/current/doxygen/deal.II/CodingConventions.html). For unclear cases, we typically refer to the [Google C++ style guide](https://google.github.io/styleguide/cppguide.html).
 
 However, some key conventions we follow may differ from these sources.
 
@@ -77,7 +77,7 @@ public:
 // 10) Private or Protected section
 private:
 
-    // 11) Private members 
+    // 11) Private members
     std::string name;
     std::vector<int> data;
 
@@ -89,7 +89,7 @@ private:
 ```
 
 ### Documentation and comments
-- Use `//` for inline comments within the code. 
+- Use `//` for inline comments within the code.
 
 Follow the Doxygen format when documenting functions, classes, and variables in header files:
 - Use the `/** ... */` style for documenting functions and classes.
@@ -110,6 +110,3 @@ When adding new parameters to a data structure using `ParameterHandler::add_para
 - Use [dealii::Patterns](https://dealii.org/current/doxygen/deal.II/namespacePatterns.html) to validate the parameter.
 - If the pattern-based validation is insufficient, add an assertion during the `check_input_parameters()` operation to prevent invalid parameters.
 - Provide a helpful description of the meaning of the parameter. If applicable, also add SI units in the description.
-
-
-
