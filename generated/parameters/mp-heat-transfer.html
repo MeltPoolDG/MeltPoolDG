@@ -1,0 +1,1949 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mp-heat-transfer: Parameter description &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">📦 Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">mp-heat-transfer: Parameter description</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/generated/parameters/mp-heat-transfer.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mp-heat-transfer-parameter-description">
+<h1>mp-heat-transfer: Parameter description<a class="headerlink" href="#mp-heat-transfer-parameter-description" title="Link to this heading"></a></h1>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#base"><span class="std std-ref">base</span></a></p></li>
+<li><p><a class="reference internal" href="#time-stepping"><span class="std std-ref">time stepping</span></a></p></li>
+<li><p><a class="reference internal" href="#adaptive-meshing"><span class="std std-ref">adaptive meshing</span></a></p></li>
+<li><p><a class="reference internal" href="#heat"><span class="std std-ref">heat</span></a></p></li>
+<li><p><a class="reference internal" href="#material"><span class="std std-ref">material</span></a></p></li>
+<li><p><a class="reference internal" href="#laser"><span class="std std-ref">laser</span></a></p></li>
+<li><p><a class="reference internal" href="#rte"><span class="std std-ref">rte</span></a></p></li>
+<li><p><a class="reference internal" href="#evaporation"><span class="std std-ref">evaporation</span></a></p></li>
+<li><p><a class="reference internal" href="#output"><span class="std std-ref">output</span></a></p></li>
+<li><p><a class="reference internal" href="#profiling"><span class="std std-ref">profiling</span></a></p></li>
+<li><p><a class="reference internal" href="#application-specific"><span class="std std-ref">application specific</span></a></p></li>
+</ul>
+<hr class="docutils" />
+<p><a id="base"></a></p>
+</section>
+<section id="base">
+<h2><code class="docutils literal notranslate"><span class="pre">🔷</span> <span class="pre">base</span></code><a class="headerlink" href="#base" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">case</span> <span class="pre">name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">not_initialized</span></code></p></td>
+<td><p>Sets the base name for the application that will be fed to the problem type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dimension</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><p>Defines the dimension of the problem</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+<td><p>Floating point number format. Currently, only ‘double’ is explicitely instantiated.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">global</span> <span class="pre">refinements</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Defines the number of initial global refinements</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">print</span> <span class="pre">parameters</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Set this parameter to true to list parameters in output</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">verbosity</span> <span class="pre">level</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Sets the verbosity level of the console output: 0: silent: for non-robust tests and benchmark runs; 1: minimal: for robust tests; 2: detailed; 3: full</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#base-fe"><span class="std std-ref">fe</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#base-fe"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="base-fe"></a></p>
+<section id="base-fe">
+<h3><code class="docutils literal notranslate"><span class="pre">base:</span> <span class="pre">fe</span></code><a class="headerlink" href="#base-fe" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FE_Q</span></code></p></td>
+<td><p>Finite Element.FE_Q: hexahedral continuous finite element with polynomial degree p; FE_SimplexP: tetrahedral continuous finite element with polynomial degree p; FE_Q_iso_Q1: hexahedral continuous finite element with p subdivisions containing linear elements; FE_DGQ: hexahedral discontinuous finite element with polynomial degree p<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">not_initialized</span></code><br>- <code class="docutils literal notranslate"><span class="pre">FE_Q</span></code><br>- <code class="docutils literal notranslate"><span class="pre">FE_SimplexP</span></code><br>- <code class="docutils literal notranslate"><span class="pre">FE_Q_iso_Q1</span></code><br>- <code class="docutils literal notranslate"><span class="pre">FE_DGQ</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">degree</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Defines the degree p of the finite element type. If “type” is “FE_Q_iso_Q1” this parameter defines the number of subdivisions.</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><a id="time-stepping"></a></p>
+</section>
+</section>
+<section id="time-stepping">
+<h2><code class="docutils literal notranslate"><span class="pre">🔷</span> <span class="pre">time</span> <span class="pre">stepping</span></code><a class="headerlink" href="#time-stepping" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">time</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Defines the start time for the solution of the levelset problem</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">time</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Sets the end time for the solution of the levelset problem</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">step</span> <span class="pre">size</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.01</span></code></p></td>
+<td><p>Sets the step size for time stepping. For non-uniform time stepping, this parameter determines the size of the first time step.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">n</span> <span class="pre">steps</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10000000</span></code></p></td>
+<td><p>Sets the maximum number of melt_pool steps</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">step</span> <span class="pre">size</span> <span class="pre">function</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0*t</span></code></p></td>
+<td><p>Set an analytical function to determine the time step size. For the prediction of the new time increment, the old time is used.</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><a id="adaptive-meshing"></a></p>
+</section>
+<section id="adaptive-meshing">
+<h2><code class="docutils literal notranslate"><span class="pre">🔷</span> <span class="pre">adaptive</span> <span class="pre">meshing</span></code><a class="headerlink" href="#adaptive-meshing" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">amr</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true to activate adaptive meshing</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">not</span> <span class="pre">modify</span> <span class="pre">boundary</span> <span class="pre">cells</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true to not refine/coarsen along boundaries.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">upper</span> <span class="pre">perc</span> <span class="pre">to</span> <span class="pre">refine</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Defines the (upper) percentage of elements that should be refined</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lower</span> <span class="pre">perc</span> <span class="pre">to</span> <span class="pre">coarsen</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Defines the (lower) percentage of elements that should be coarsened</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">grid</span> <span class="pre">refinement</span> <span class="pre">level</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">12</span></code></p></td>
+<td><p>Defines the number of maximum refinement steps one grid cell will be undergone.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">min</span> <span class="pre">grid</span> <span class="pre">refinement</span> <span class="pre">level</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>Defines the number of minimum refinement steps one grid cell will be undergone.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">initial</span> <span class="pre">refinement</span> <span class="pre">cycles</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Defines the number of initial refinements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">every</span> <span class="pre">n</span> <span class="pre">step</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Defines at every nth step the amr should be performed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">min</span> <span class="pre">cells</span> <span class="pre">marked</span> <span class="pre">to</span> <span class="pre">refine</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Minimum number of cells that must be marked for refinement/coarsening before the mesh is updated.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">min</span> <span class="pre">indicator</span> <span class="pre">threshold</span> <span class="pre">to</span> <span class="pre">refine</span> <span class="pre">cell</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Minimum indicator value required for a cell to be considered for refinement.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">solution</span> <span class="pre">transfer</span> <span class="pre">average</span> <span class="pre">values</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true to average the contribututions to the same DoF coming from different cells during solution transfer.</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><a id="heat"></a></p>
+</section>
+<section id="heat">
+<h2><code class="docutils literal notranslate"><span class="pre">🔷</span> <span class="pre">heat</span></code><a class="headerlink" href="#heat" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#heat-fe"><span class="std std-ref">fe</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#heat-fe"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">diffuse</span></code></p></td>
+<td><p>Choose the heat operator implementation. Options: diffuse, cut<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">diffuse</span></code><br>- <code class="docutils literal notranslate"><span class="pre">cut</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#heat-cut"><span class="std std-ref">cut</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#heat-cut"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">enable</span> <span class="pre">time</span> <span class="pre">dependent</span> <span class="pre">bc</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true to enable time-dependent bc.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#heat-diffuse"><span class="std std-ref">diffuse</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#heat-diffuse"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#heat-radiative-boundary-condition"><span class="std std-ref">radiative boundary condition</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#heat-radiative-boundary-condition"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#heat-convective-boundary-condition"><span class="std std-ref">convective boundary condition</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#heat-convective-boundary-condition"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">verbosity</span> <span class="pre">level</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>Sets the maximum verbosity level of the console output.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#heat-nlsolve"><span class="std std-ref">nlsolve</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#heat-nlsolve"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#heat-linear-solver"><span class="std std-ref">linear solver</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#heat-linear-solver"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#heat-predictor"><span class="std std-ref">predictor</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#heat-predictor"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="heat-fe"></a></p>
+<section id="heat-fe">
+<h3><code class="docutils literal notranslate"><span class="pre">heat:</span> <span class="pre">fe</span></code><a class="headerlink" href="#heat-fe" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">not_initialized</span></code></p></td>
+<td><p>Finite Element.FE_Q: hexahedral continuous finite element with polynomial degree p; FE_SimplexP: tetrahedral continuous finite element with polynomial degree p; FE_Q_iso_Q1: hexahedral continuous finite element with p subdivisions containing linear elements; FE_DGQ: hexahedral discontinuous finite element with polynomial degree p<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">not_initialized</span></code><br>- <code class="docutils literal notranslate"><span class="pre">FE_Q</span></code><br>- <code class="docutils literal notranslate"><span class="pre">FE_SimplexP</span></code><br>- <code class="docutils literal notranslate"><span class="pre">FE_Q_iso_Q1</span></code><br>- <code class="docutils literal notranslate"><span class="pre">FE_DGQ</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">degree</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>Defines the degree p of the finite element type. If “type” is “FE_Q_iso_Q1” this parameter defines the number of subdivisions.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="heat-cut"></a></p>
+</section>
+<section id="heat-cut">
+<h3><code class="docutils literal notranslate"><span class="pre">heat:</span> <span class="pre">cut</span></code><a class="headerlink" href="#heat-cut" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">two</span> <span class="pre">phase</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Set this parameter to “false” to ignore the gas phase.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">theta</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.5</span></code></p></td>
+<td><p>Parameter for one step theta time integration.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">explicit</span> <span class="pre">symmetry</span> <span class="pre">term</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Set this parameter to true to consider the explicit symmetry term. Note: this parameter only applies if the setup is two-phase.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#heat-cut-stabilization"><span class="std std-ref">stabilization</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#heat-cut-stabilization"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="heat-cut-stabilization"></a></p>
+<section id="heat-cut-stabilization">
+<h4><code class="docutils literal notranslate"><span class="pre">heat:</span> <span class="pre">cut:</span> <span class="pre">stabilization</span></code><a class="headerlink" href="#heat-cut-stabilization" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nitsche</span> <span class="pre">parameter</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Nitsche stabilization parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#heat-cut-stabilization-ghost-penalty"><span class="std std-ref">ghost-penalty</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#heat-cut-stabilization-ghost-penalty"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="heat-cut-stabilization-ghost-penalty"></a></p>
+<section id="heat-cut-stabilization-ghost-penalty">
+<h5><code class="docutils literal notranslate"><span class="pre">heat:</span> <span class="pre">cut:</span> <span class="pre">stabilization:</span> <span class="pre">ghost-penalty</span></code><a class="headerlink" href="#heat-cut-stabilization-ghost-penalty" title="Link to this heading"></a></h5>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gamma</span> <span class="pre">M</span> <span class="pre">degree</span> <span class="pre">0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Mass matrix ghost-penalty parameter for degree 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gamma</span> <span class="pre">M</span> <span class="pre">degree</span> <span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Mass matrix ghost-penalty parameter for degree 1.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gamma</span> <span class="pre">M</span> <span class="pre">degree</span> <span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Mass matrix ghost-penalty parameter for degree 2.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gamma</span> <span class="pre">A</span> <span class="pre">degree</span> <span class="pre">0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Stiffness matrix ghost-penalty parameter for degree 0.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gamma</span> <span class="pre">A</span> <span class="pre">degree</span> <span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Stiffness matrix ghost-penalty parameter for degree 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gamma</span> <span class="pre">A</span> <span class="pre">degree</span> <span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Stiffness matrix ghost-penalty parameter for degree 2.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="heat-diffuse"></a></p>
+</section>
+</section>
+</section>
+<section id="heat-diffuse">
+<h3><code class="docutils literal notranslate"><span class="pre">heat:</span> <span class="pre">diffuse</span></code><a class="headerlink" href="#heat-diffuse" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">volume-specific</span> <span class="pre">thermal</span> <span class="pre">capacity</span> <span class="pre">for</span> <span class="pre">phase</span> <span class="pre">interpolation</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Perform phase interpolation via the volumetric thermal capacity (product of density  and capacity) instead of interpolating density and thermal capacity individually.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="heat-radiative-boundary-condition"></a></p>
+</section>
+<section id="heat-radiative-boundary-condition">
+<h3><code class="docutils literal notranslate"><span class="pre">heat:</span> <span class="pre">radiative</span> <span class="pre">boundary</span> <span class="pre">condition</span></code><a class="headerlink" href="#heat-radiative-boundary-condition" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">emissivity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Emissivity.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">temperature</span> <span class="pre">infinity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Infinity temperature.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="heat-convective-boundary-condition"></a></p>
+</section>
+<section id="heat-convective-boundary-condition">
+<h3><code class="docutils literal notranslate"><span class="pre">heat:</span> <span class="pre">convective</span> <span class="pre">boundary</span> <span class="pre">condition</span></code><a class="headerlink" href="#heat-convective-boundary-condition" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">convection</span> <span class="pre">coefficient</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Convection coefficient.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">temperature</span> <span class="pre">infinity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Infinity temperature.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="heat-nlsolve"></a></p>
+</section>
+<section id="heat-nlsolve">
+<h3><code class="docutils literal notranslate"><span class="pre">heat:</span> <span class="pre">nlsolve</span></code><a class="headerlink" href="#heat-nlsolve" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">nonlinear</span> <span class="pre">iterations</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10</span></code></p></td>
+<td><p>Set the number of maximum nonlinear iterations with standard tolerances.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">field</span> <span class="pre">correction</span> <span class="pre">tolerance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1e-10</span></code></p></td>
+<td><p>Set the tolerance for the maximum allowed correction of the unknown field.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">residual</span> <span class="pre">tolerance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1e-09</span></code></p></td>
+<td><p>Set the tolerance for the maximum allowed residual of the nonlinear system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">nonlinear</span> <span class="pre">iterations</span> <span class="pre">alt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Set the number of maximum nonlinear iterations with alternative tolerances.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">field</span> <span class="pre">correction</span> <span class="pre">tolerance</span> <span class="pre">alt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1e-09</span></code></p></td>
+<td><p>Set the alternative tolerance for the maximum allowed correction of the unknown field.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">residual</span> <span class="pre">tolerance</span> <span class="pre">alt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1e-08</span></code></p></td>
+<td><p>Set the alternative tolerance for the maximum allowed residual of the nonlinear system.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">verbosity</span> <span class="pre">level</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>Set to one for detailed solver output.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="heat-linear-solver"></a></p>
+</section>
+<section id="heat-linear-solver">
+<h3><code class="docutils literal notranslate"><span class="pre">heat:</span> <span class="pre">linear</span> <span class="pre">solver</span></code><a class="headerlink" href="#heat-linear-solver" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">solver</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GMRES</span></code></p></td>
+<td><p>Set this parameter for choosing an iterative linear solver type.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">CG</span></code><br>- <code class="docutils literal notranslate"><span class="pre">GMRES</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">preconditioner</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Diagonal</span></code></p></td>
+<td><p>Set this parameter for choosing a preconditioner type.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">Identity</span></code><br>- <code class="docutils literal notranslate"><span class="pre">AMG</span></code><br>- <code class="docutils literal notranslate"><span class="pre">ILU</span></code><br>- <code class="docutils literal notranslate"><span class="pre">Diagonal</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">iterations</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10000</span></code></p></td>
+<td><p>Set the maximum number of iterations for solving the linear system of equations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rel</span> <span class="pre">tolerance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1e-12</span></code></p></td>
+<td><p>Set the relative tolerance for a successful solution of the linear system of equations.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">abs</span> <span class="pre">tolerance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1e-20</span></code></p></td>
+<td><p>Set the absolute tolerance for a successful solution of the linear system of equations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">matrix</span> <span class="pre">free</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Set this parameter if a matrix free solution procedure should be performed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">monitor</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+<td><p>Set the monitor type of the linear solver.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">none</span></code><br>- <code class="docutils literal notranslate"><span class="pre">reduced</span></code><br>- <code class="docutils literal notranslate"><span class="pre">all</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="heat-predictor"></a></p>
+</section>
+<section id="heat-predictor">
+<h3><code class="docutils literal notranslate"><span class="pre">heat:</span> <span class="pre">predictor</span></code><a class="headerlink" href="#heat-predictor" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">linear_extrapolation</span></code></p></td>
+<td><p>Choose a predictor type: none: use old value as initial guess; zero: se zeros as initial guess; linear_extrapolation: calculate the predictor by a linear combination from the two old solution vectors; least_squares_projection: least squares projection (WIP)<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">none</span></code><br>- <code class="docutils literal notranslate"><span class="pre">zero</span></code><br>- <code class="docutils literal notranslate"><span class="pre">linear_extrapolation</span></code><br>- <code class="docutils literal notranslate"><span class="pre">least_squares_projection</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">old</span> <span class="pre">solutions</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><p>Choose the number of old solution vectors considered.This parameter is only relevant for least squares projection.For all other predictors, this parameter will be set appropriately.</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><a id="material"></a></p>
+</section>
+</section>
+<section id="material">
+<h2><code class="docutils literal notranslate"><span class="pre">🔷</span> <span class="pre">material</span></code><a class="headerlink" href="#material" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">material</span> <span class="pre">template</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+<td><p>If this parameter is initialized, the material parameters of the specified material will be used as template. Individual properties can be modified. However, be aware to put <material template> in the first place of the <material> section in these cases.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">none</span></code><br>- <code class="docutils literal notranslate"><span class="pre">stainless_steel</span></code><br>- <code class="docutils literal notranslate"><span class="pre">Ti64</span></code><br>- <code class="docutils literal notranslate"><span class="pre">Ti64Cunningham</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#material-gas"><span class="std std-ref">gas</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#material-gas"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#material-liquid"><span class="std std-ref">liquid</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#material-liquid"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#material-solid"><span class="std std-ref">solid</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#material-solid"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">solidus</span> <span class="pre">temperature</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Solidus temperature (K).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">liquidus</span> <span class="pre">temperature</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Liquidus temperature (K).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">apparent</span> <span class="pre">capacity</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qlq</span></code></p></td>
+<td><p>Function type for the apparent capacity method to model latent heat during solidification. constant: apparent capacity is constant between the solidus and liquidus temperature; qlq: apparent capacity is given by a quadratic/quadratic function of temperature between the solidus and liquidus temperature (default); poly4_bell: apparent capacity is given by a bell-shaped quartic polynomial function of temperature between the solidus and liquidus temperature.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">poly4_bell</span></code><br>- <code class="docutils literal notranslate"><span class="pre">constant</span></code><br>- <code class="docutils literal notranslate"><span class="pre">qlq</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">latent</span> <span class="pre">heat</span> <span class="pre">of</span> <span class="pre">fusion</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Latent heat of fusion (J/kg)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">boiling</span> <span class="pre">temperature</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Boiling temperature (K).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">latent</span> <span class="pre">heat</span> <span class="pre">of</span> <span class="pre">evaporation</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Latent heat of evaporation (J/kg).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">molar</span> <span class="pre">mass</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Molar mass (mol/kg).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">specific</span> <span class="pre">enthalpy</span> <span class="pre">reference</span> <span class="pre">temperature</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1e+100</span></code></p></td>
+<td><p>Reference temperature of the specific enthalpy</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">two</span> <span class="pre">phase</span> <span class="pre">fluid</span> <span class="pre">properties</span> <span class="pre">transition</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">smooth</span></code></p></td>
+<td><p>Choose how to interpolate the properties over the interface. sharp: properties jump at heaviside = 0.5; smooth: properties are smeared between the phases proportional to the heaviside (default); consistent_with_evaporation: same as “smooth”, but the density is interpolated proportional by the harmonic mean.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">sharp</span></code><br>- <code class="docutils literal notranslate"><span class="pre">smooth</span></code><br>- <code class="docutils literal notranslate"><span class="pre">consistent_with_evaporation</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">solid</span> <span class="pre">liquid</span> <span class="pre">properties</span> <span class="pre">transition</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mushy_zone</span></code></p></td>
+<td><p>Choose how to interpolate the properties over between the liquid and the solid phase. mushy_zone: solid and liquid properties are interpolated between the solidus and liquidus temperature (default); sharp: the solid and liquid properties jump at the melting point, which is set via the solidus temperature.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">mushy_zone</span></code><br>- <code class="docutils literal notranslate"><span class="pre">sharp</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="material-gas"></a></p>
+<section id="material-gas">
+<h3><code class="docutils literal notranslate"><span class="pre">material:</span> <span class="pre">gas</span></code><a class="headerlink" href="#material-gas" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">thermal</span> <span class="pre">conductivity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>thermal conductivity of the gas phase</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">specific</span> <span class="pre">heat</span> <span class="pre">capacity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>specific heat capacity of the gas phase</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">density</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>density of the gas phase</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dynamic</span> <span class="pre">viscosity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>dynamic viscosity of the gas phase</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="material-liquid"></a></p>
+</section>
+<section id="material-liquid">
+<h3><code class="docutils literal notranslate"><span class="pre">material:</span> <span class="pre">liquid</span></code><a class="headerlink" href="#material-liquid" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">thermal</span> <span class="pre">conductivity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>thermal conductivity of the liquid phase</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">specific</span> <span class="pre">heat</span> <span class="pre">capacity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>specific heat capacity of the liquid phase</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">density</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>density of the liquid phase</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dynamic</span> <span class="pre">viscosity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>dynamic viscosity of the liquid phase</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="material-solid"></a></p>
+</section>
+<section id="material-solid">
+<h3><code class="docutils literal notranslate"><span class="pre">material:</span> <span class="pre">solid</span></code><a class="headerlink" href="#material-solid" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">thermal</span> <span class="pre">conductivity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>thermal conductivity of the solid phase</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">specific</span> <span class="pre">heat</span> <span class="pre">capacity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>specific heat capacity of the solid phase</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">density</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>density of the solid phase</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dynamic</span> <span class="pre">viscosity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>dynamic viscosity of the solid phase</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><a id="laser"></a></p>
+</section>
+</section>
+<section id="laser">
+<h2><code class="docutils literal notranslate"><span class="pre">🔷</span> <span class="pre">laser</span></code><a class="headerlink" href="#laser" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">not_initialized</span></code></p></td>
+<td><p>Laser model. analytical_temperature: see Mirkoohi et al. (2019); volumetric: volumetric heat source, the intensity is defined by “”intensity profile””; interface_projection: projection-based regularized continuum surface flux in “direction”, the intensity is defined by “”intensity profile””; interface_projection_sharp: projection-based sharp surface flux in “direction”, the intensity is defined by “”intensity profile””; interface_projection_sharp_conforming: projection-based sharp surface flux in “direction” on a conforming mesh, the intensity is defined by “”intensity profile””; RTE: continuum surface flux projected using the radiative transport equation in “direction”, supporting shadowing of undercuts, the intensity is defined by “”intensity profile””;<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">not_initialized</span></code><br>- <code class="docutils literal notranslate"><span class="pre">analytical_temperature</span></code><br>- <code class="docutils literal notranslate"><span class="pre">volumetric</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_projection_regularized</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_projection_sharp</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_projection_sharp_conforming</span></code><br>- <code class="docutils literal notranslate"><span class="pre">RTE</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">intensity</span> <span class="pre">profile</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Gauss</span></code></p></td>
+<td><p>Laser intensity profile. uniform: note that the “power” input is treated as the uniform power density in the whole domain; Gauss: Gaussian laser intensity shape with “radius” that retains the “power”; Gusarov: see Gusarov et al. (2009);<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">uniform</span></code><br>- <code class="docutils literal notranslate"><span class="pre">Gauss</span></code><br>- <code class="docutils literal notranslate"><span class="pre">Gusarov</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">power</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Laser power</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">over</span> <span class="pre">time</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">constant</span></code></p></td>
+<td><p>Temporal distribution of the laser power<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">constant</span></code><br>- <code class="docutils literal notranslate"><span class="pre">ramp</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">start</span> <span class="pre">time</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>In case of time-dependent laser power: activation time of</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">end</span> <span class="pre">time</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.79769e+308</span></code></p></td>
+<td><p>In case of time-dependent laser power: end time of</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">absorptivity</span> <span class="pre">gas</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Laser energy absorptivity of the gaseous part of the domain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">absorptivity</span> <span class="pre">liquid</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Laser energy absorptivity of the liquid part of the domain.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">starting</span> <span class="pre">position</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
+<td><p>Center coordinates of the laser beam starting position on the interface melt/gas.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">scan</span> <span class="pre">speed</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Scan speed of the laser</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">scan</span> <span class="pre">direction</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
+<td><p>Direction of laser motion as a vector</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">beam</span> <span class="pre">direction</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
+<td><p>Laser beam direction.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">beam</span> <span class="pre">rotation</span> <span class="pre">axis</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
+<td><p>Axis around which the initial laser beam direction will be rotated. Relevant only in 3D.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">beam</span> <span class="pre">rotation</span> <span class="pre">angle</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Rotation angle applied to the laser beam direction (in 3D about ‘beam rotation axis’ following the right-hand rule; in 2D: as defined by the 2D rotation matrix</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">radius</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Laser beam radius.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laser-gusarov"><span class="std std-ref">gusarov</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#laser-gusarov"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laser-analytical"><span class="std std-ref">analytical</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#laser-analytical"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laser-dirac-delta-function-approximation"><span class="std std-ref">dirac delta function approximation</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#laser-dirac-delta-function-approximation"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="laser-gusarov"></a></p>
+<section id="laser-gusarov">
+<h3><code class="docutils literal notranslate"><span class="pre">laser:</span> <span class="pre">gusarov</span></code><a class="headerlink" href="#laser-gusarov" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reflectivity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Reflectivity of the material.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">extinction</span> <span class="pre">coefficient</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Extinction coefficient in [1/m].</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">layer</span> <span class="pre">thickness</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Layer thickness</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="laser-analytical"></a></p>
+</section>
+<section id="laser-analytical">
+<h3><code class="docutils literal notranslate"><span class="pre">laser:</span> <span class="pre">analytical</span></code><a class="headerlink" href="#laser-analytical" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ambient</span> <span class="pre">temperature</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Ambient temperature in the inert gas.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">temperature</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Maximum temperature arising in the melt pool. If this temperature is lower than the boiling temperature, this value is corrected to correspond to the boiling temperature + 500 K.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">temperature</span> <span class="pre">x</span> <span class="pre">to</span> <span class="pre">y</span> <span class="pre">ratio</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>This factor scales the analytical temperature field to be anisotropic.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="laser-dirac-delta-function-approximation"></a></p>
+</section>
+<section id="laser-dirac-delta-function-approximation">
+<h3><code class="docutils literal notranslate"><span class="pre">laser:</span> <span class="pre">dirac</span> <span class="pre">delta</span> <span class="pre">function</span> <span class="pre">approximation</span></code><a class="headerlink" href="#laser-dirac-delta-function-approximation" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">norm_of_indicator_gradient</span></code></p></td>
+<td><p>Choose how to smear a parameter over the interface.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">norm_of_indicator_gradient</span></code><br>- <code class="docutils literal notranslate"><span class="pre">heaviside_phase_weighted</span></code><br>- <code class="docutils literal notranslate"><span class="pre">heaviside_times_heaviside_phase_weighted</span></code><br>- <code class="docutils literal notranslate"><span class="pre">reciprocal_phase_weighted</span></code><br>- <code class="docutils literal notranslate"><span class="pre">reciprocal_times_heaviside_phase_weighted</span></code><br>- <code class="docutils literal notranslate"><span class="pre">heavy_phase_only</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">weights</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Choose if weights should be computed automatically.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gas</span> <span class="pre">phase</span> <span class="pre">weight</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>If &gt;&gt;&gt; dirac delta function approximation type &lt;&lt;&lt; is set to any phase weighted optionthis parameter controls the (first) weight of the gas phase (level set = -1).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">heavy</span> <span class="pre">phase</span> <span class="pre">weight</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>If &gt;&gt;&gt; dirac delta function approximation type &lt;&lt;&lt; is set to any phase weighted optionthis parameter controls the (first) weight of the heavy phase (level set = 1).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gas</span> <span class="pre">phase</span> <span class="pre">weight</span> <span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>If &gt;&gt;&gt; dirac delta function approximation type &lt;&lt;&lt; is set to &gt;&gt;&gt; heaviside_times_heaviside_phase_weighted &lt;&lt;&lt; this parameter controls the second weight of the gas phase (level set = -1).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">heavy</span> <span class="pre">phase</span> <span class="pre">weight</span> <span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>If &gt;&gt;&gt; dirac delta function approximation type &lt;&lt;&lt; is set to &gt;&gt;&gt; heaviside_times_heaviside_phase_weighted &lt;&lt;&lt; this parameter controls the second weight of the heavy liquid/solid phase (level set = 1).</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><a id="rte"></a></p>
+</section>
+</section>
+<section id="rte">
+<h2><code class="docutils literal notranslate"><span class="pre">🔷</span> <span class="pre">rte</span></code><a class="headerlink" href="#rte" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#rte-fe"><span class="std std-ref">fe</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#rte-fe"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rte</span> <span class="pre">verbosity</span> <span class="pre">level</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>Sets the maximum verbosity level of the console output. The maximum level with respect to the  base value is decisive.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">predictor</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+<td><p>Choose a predictor type.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">none</span></code><br>- <code class="docutils literal notranslate"><span class="pre">pseudo_time_stepping</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">absorptivity</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gradient_based</span></code></p></td>
+<td><p>Chooses the formulation of the absorptivity coefficient<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">constant</span></code><br>- <code class="docutils literal notranslate"><span class="pre">gradient_based</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">avoid</span> <span class="pre">singular</span> <span class="pre">matrix</span> <span class="pre">absorptivity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1e-16</span></code></p></td>
+<td><p>Minimum value for absorptivity to ensure a non-singular matrix for RTE.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rte-linear-solver"><span class="std std-ref">linear solver</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#rte-linear-solver"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#rte-pseudo-time-stepping"><span class="std std-ref">pseudo time stepping</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#rte-pseudo-time-stepping"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rte-absorptivity"><span class="std std-ref">absorptivity</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#rte-absorptivity"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="rte-fe"></a></p>
+<section id="rte-fe">
+<h3><code class="docutils literal notranslate"><span class="pre">rte:</span> <span class="pre">fe</span></code><a class="headerlink" href="#rte-fe" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">not_initialized</span></code></p></td>
+<td><p>Finite Element.FE_Q: hexahedral continuous finite element with polynomial degree p; FE_SimplexP: tetrahedral continuous finite element with polynomial degree p; FE_Q_iso_Q1: hexahedral continuous finite element with p subdivisions containing linear elements; FE_DGQ: hexahedral discontinuous finite element with polynomial degree p<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">not_initialized</span></code><br>- <code class="docutils literal notranslate"><span class="pre">FE_Q</span></code><br>- <code class="docutils literal notranslate"><span class="pre">FE_SimplexP</span></code><br>- <code class="docutils literal notranslate"><span class="pre">FE_Q_iso_Q1</span></code><br>- <code class="docutils literal notranslate"><span class="pre">FE_DGQ</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">degree</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>Defines the degree p of the finite element type. If “type” is “FE_Q_iso_Q1” this parameter defines the number of subdivisions.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="rte-linear-solver"></a></p>
+</section>
+<section id="rte-linear-solver">
+<h3><code class="docutils literal notranslate"><span class="pre">rte:</span> <span class="pre">linear</span> <span class="pre">solver</span></code><a class="headerlink" href="#rte-linear-solver" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">solver</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GMRES</span></code></p></td>
+<td><p>Set this parameter for choosing an iterative linear solver type.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">CG</span></code><br>- <code class="docutils literal notranslate"><span class="pre">GMRES</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">preconditioner</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ILU</span></code></p></td>
+<td><p>Set this parameter for choosing a preconditioner type.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">Identity</span></code><br>- <code class="docutils literal notranslate"><span class="pre">AMG</span></code><br>- <code class="docutils literal notranslate"><span class="pre">ILU</span></code><br>- <code class="docutils literal notranslate"><span class="pre">Diagonal</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">iterations</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10000</span></code></p></td>
+<td><p>Set the maximum number of iterations for solving the linear system of equations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rel</span> <span class="pre">tolerance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1e-12</span></code></p></td>
+<td><p>Set the relative tolerance for a successful solution of the linear system of equations.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">abs</span> <span class="pre">tolerance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1e-20</span></code></p></td>
+<td><p>Set the absolute tolerance for a successful solution of the linear system of equations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">matrix</span> <span class="pre">free</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Set this parameter if a matrix free solution procedure should be performed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">monitor</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+<td><p>Set the monitor type of the linear solver.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">none</span></code><br>- <code class="docutils literal notranslate"><span class="pre">reduced</span></code><br>- <code class="docutils literal notranslate"><span class="pre">all</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="rte-pseudo-time-stepping"></a></p>
+</section>
+<section id="rte-pseudo-time-stepping">
+<h3><code class="docutils literal notranslate"><span class="pre">rte:</span> <span class="pre">pseudo</span> <span class="pre">time</span> <span class="pre">stepping</span></code><a class="headerlink" href="#rte-pseudo-time-stepping" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">diffusion</span> <span class="pre">term</span> <span class="pre">scaling</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Scaling parameter of diffusion term.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">advection</span> <span class="pre">term</span> <span class="pre">scaling</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Scaling parameter of advection term.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pseudo</span> <span class="pre">time</span> <span class="pre">scaling</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.01</span></code></p></td>
+<td><p>Determine the pseudo-time step as the product of this scaling and minimum cell size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rel</span> <span class="pre">tolerance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.001</span></code></p></td>
+<td><p>Pseudo-time stepping relative tolerance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#rte-pseudo-time-stepping-time-stepping"><span class="std std-ref">time stepping</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#rte-pseudo-time-stepping-time-stepping"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rte-pseudo-time-stepping-linear-solver"><span class="std std-ref">linear solver</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#rte-pseudo-time-stepping-linear-solver"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="rte-pseudo-time-stepping-time-stepping"></a></p>
+<section id="rte-pseudo-time-stepping-time-stepping">
+<h4><code class="docutils literal notranslate"><span class="pre">rte:</span> <span class="pre">pseudo</span> <span class="pre">time</span> <span class="pre">stepping:</span> <span class="pre">time</span> <span class="pre">stepping</span></code><a class="headerlink" href="#rte-pseudo-time-stepping-time-stepping" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">time</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Defines the start time for the solution of the levelset problem</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">time</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.79769e+308</span></code></p></td>
+<td><p>Sets the end time for the solution of the levelset problem</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">step</span> <span class="pre">size</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Sets the step size for time stepping. For non-uniform time stepping, this parameter determines the size of the first time step.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">n</span> <span class="pre">steps</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Sets the maximum number of melt_pool steps</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">step</span> <span class="pre">size</span> <span class="pre">function</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0*t</span></code></p></td>
+<td><p>Set an analytical function to determine the time step size. For the prediction of the new time increment, the old time is used.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="rte-pseudo-time-stepping-linear-solver"></a></p>
+</section>
+<section id="rte-pseudo-time-stepping-linear-solver">
+<h4><code class="docutils literal notranslate"><span class="pre">rte:</span> <span class="pre">pseudo</span> <span class="pre">time</span> <span class="pre">stepping:</span> <span class="pre">linear</span> <span class="pre">solver</span></code><a class="headerlink" href="#rte-pseudo-time-stepping-linear-solver" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">solver</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CG</span></code></p></td>
+<td><p>Set this parameter for choosing an iterative linear solver type.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">CG</span></code><br>- <code class="docutils literal notranslate"><span class="pre">GMRES</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">preconditioner</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ILU</span></code></p></td>
+<td><p>Set this parameter for choosing a preconditioner type.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">Identity</span></code><br>- <code class="docutils literal notranslate"><span class="pre">AMG</span></code><br>- <code class="docutils literal notranslate"><span class="pre">ILU</span></code><br>- <code class="docutils literal notranslate"><span class="pre">Diagonal</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">iterations</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10000</span></code></p></td>
+<td><p>Set the maximum number of iterations for solving the linear system of equations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rel</span> <span class="pre">tolerance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1e-12</span></code></p></td>
+<td><p>Set the relative tolerance for a successful solution of the linear system of equations.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">abs</span> <span class="pre">tolerance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1e-20</span></code></p></td>
+<td><p>Set the absolute tolerance for a successful solution of the linear system of equations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">matrix</span> <span class="pre">free</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Set this parameter if a matrix free solution procedure should be performed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">monitor</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+<td><p>Set the monitor type of the linear solver.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">none</span></code><br>- <code class="docutils literal notranslate"><span class="pre">reduced</span></code><br>- <code class="docutils literal notranslate"><span class="pre">all</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="rte-absorptivity"></a></p>
+</section>
+</section>
+<section id="rte-absorptivity">
+<h3><code class="docutils literal notranslate"><span class="pre">rte:</span> <span class="pre">absorptivity</span></code><a class="headerlink" href="#rte-absorptivity" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">absorptivity</span> <span class="pre">gas</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.1</span></code></p></td>
+<td><p>Sets the absorptivity of the gas phase.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">absorptivity</span> <span class="pre">liquid</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.9</span></code></p></td>
+<td><p>Sets the absorptivity of the liquid phase.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">avoid</span> <span class="pre">div</span> <span class="pre">zero</span> <span class="pre">constant</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1e-16</span></code></p></td>
+<td><p>Sets the absorptivity of the gas phase.</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><a id="evaporation"></a></p>
+</section>
+</section>
+<section id="evaporation">
+<h2><code class="docutils literal notranslate"><span class="pre">🔷</span> <span class="pre">evaporation</span></code><a class="headerlink" href="#evaporation" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">evaporative</span> <span class="pre">mass</span> <span class="pre">flux</span> <span class="pre">model</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">analytical</span></code></p></td>
+<td><p>Choose the formulation how the evaporative mass flux mDot (kg/(m2s)) will be calculated.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">analytical</span></code><br>- <code class="docutils literal notranslate"><span class="pre">recoil_pressure</span></code><br>- <code class="docutils literal notranslate"><span class="pre">saturated_vapor_pressure</span></code><br>- <code class="docutils literal notranslate"><span class="pre">hardt_wondra</span></code><br>- <code class="docutils literal notranslate"><span class="pre">pressure_aware</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">temperature</span> <span class="pre">evaluation</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">local_value</span></code></p></td>
+<td><p>Choose the formulation how the (local) evaporative mass flux will be converted to a DoF vector.will be calculated. When the CutFEM heat transfer operator is used, this input parameter is ignored and the temperature is evaluated at the sharp interface which is equivalent to “sharp”.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">local_value</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_value</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#evaporation-analytical"><span class="std std-ref">analytical</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#evaporation-analytical"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#evaporation-hardt-wondra"><span class="std std-ref">hardt wondra</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#evaporation-hardt-wondra"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#evaporation-pressure-aware"><span class="std std-ref">pressure aware</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#evaporation-pressure-aware"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#evaporation-evaporative-dilation-rate"><span class="std std-ref">evaporative dilation rate</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#evaporation-evaporative-dilation-rate"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#evaporation-evaporative-cooling"><span class="std std-ref">evaporative cooling</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#evaporation-evaporative-cooling"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#evaporation-recoil-pressure"><span class="std std-ref">recoil pressure</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#evaporation-recoil-pressure"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">formulation</span> <span class="pre">source</span> <span class="pre">term</span> <span class="pre">level</span> <span class="pre">set</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">interface_velocity_local</span></code></p></td>
+<td><p>Select the type how the evaporative mass flux should be considered in the level set equation.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">interface_velocity_sharp</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_velocity_sharp_heavy</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_velocity_local</span></code><br>- <code class="docutils literal notranslate"><span class="pre">rhs</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">level</span> <span class="pre">set</span> <span class="pre">pressure</span> <span class="pre">gradient</span> <span class="pre">interpolation</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set if the level set gradient for computing the delta function within the evaporative mass flux source terms should be computed based on an interpolation to the pressure space. This is only implemented for evapor_level_set_source_term_type = rhs.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="evaporation-analytical"></a></p>
+<section id="evaporation-analytical">
+<h3><code class="docutils literal notranslate"><span class="pre">evaporation:</span> <span class="pre">analytical</span></code><a class="headerlink" href="#evaporation-analytical" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">function</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">not_initialized</span></code></p></td>
+<td><p>For evapor evaporation model == analytical, prescribe a spatially constant mass flux due to evaporation (SI unit in kg/m²s), as a function over time t , e.g. min(2.*t,0.01).</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="evaporation-hardt-wondra"></a></p>
+</section>
+<section id="evaporation-hardt-wondra">
+<h3><code class="docutils literal notranslate"><span class="pre">evaporation:</span> <span class="pre">hardt</span> <span class="pre">wondra</span></code><a class="headerlink" href="#evaporation-hardt-wondra" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">coefficient</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Evaporation coefficient for the model by Hardt and Wondra.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="evaporation-pressure-aware"></a></p>
+</section>
+<section id="evaporation-pressure-aware">
+<h3><code class="docutils literal notranslate"><span class="pre">evaporation:</span> <span class="pre">pressure</span> <span class="pre">aware</span></code><a class="headerlink" href="#evaporation-pressure-aware" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Km</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
+<td><p>Fitting parameters for the evaporative mass flux function of the pressure-aware model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ambient_gas_pressure</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Ambient gas pressure for the pressure-aware model.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="evaporation-evaporative-dilation-rate"></a></p>
+</section>
+<section id="evaporation-evaporative-dilation-rate">
+<h3><code class="docutils literal notranslate"><span class="pre">evaporation:</span> <span class="pre">evaporative</span> <span class="pre">dilation</span> <span class="pre">rate</span></code><a class="headerlink" href="#evaporation-evaporative-dilation-rate" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enable</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true to consider the evaporative dilation rate in the Navier-Stokes equation. This results in an evaporation-induced jump in the normal velocity component.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">model</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">regularized</span></code></p></td>
+<td><p>Select how the additional source term due to evaporation in the continuity equation (=evaporative dilation rate) is computed.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">regularized</span></code><br>- <code class="docutils literal notranslate"><span class="pre">sharp</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="evaporation-evaporative-cooling"></a></p>
+</section>
+<section id="evaporation-evaporative-cooling">
+<h3><code class="docutils literal notranslate"><span class="pre">evaporation:</span> <span class="pre">evaporative</span> <span class="pre">cooling</span></code><a class="headerlink" href="#evaporation-evaporative-cooling" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enable</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true to consider evaporative cooling in the heat equation</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">consider</span> <span class="pre">enthalpy</span> <span class="pre">transport</span> <span class="pre">vapor</span> <span class="pre">mass</span> <span class="pre">flux</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">default</span></code></p></td>
+<td><p>Set this parameter to true to account for the enthalpy transported by the vapor mass flux in the heat equation. This is only recommended if the vapor mass flux is not considered in the Navier-Stokes equations.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">default</span></code><br>- <code class="docutils literal notranslate"><span class="pre">true</span></code><br>- <code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">activation</span> <span class="pre">temperature</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1e+100</span></code></p></td>
+<td><p>Activation temperature for the evaporative cooling. It must be smaller than or equal to the boiling temperature. By default, it will be chosen such that the transition from the linear activation ramp is kink-free.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">model</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">regularized</span></code></p></td>
+<td><p>Select how the additional source term due to evaporation in the heat equation (evaporative cooling) is computed.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">none</span></code><br>- <code class="docutils literal notranslate"><span class="pre">regularized</span></code><br>- <code class="docutils literal notranslate"><span class="pre">sharp</span></code><br>- <code class="docutils literal notranslate"><span class="pre">sharp_conforming</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#evaporation-evaporative-cooling-dirac-delta-function-approximation"><span class="std std-ref">dirac delta function approximation</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#evaporation-evaporative-cooling-dirac-delta-function-approximation"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="evaporation-evaporative-cooling-dirac-delta-function-approximation"></a></p>
+<section id="evaporation-evaporative-cooling-dirac-delta-function-approximation">
+<h4><code class="docutils literal notranslate"><span class="pre">evaporation:</span> <span class="pre">evaporative</span> <span class="pre">cooling:</span> <span class="pre">dirac</span> <span class="pre">delta</span> <span class="pre">function</span> <span class="pre">approximation</span></code><a class="headerlink" href="#evaporation-evaporative-cooling-dirac-delta-function-approximation" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">norm_of_indicator_gradient</span></code></p></td>
+<td><p>Choose how to smear a parameter over the interface.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">norm_of_indicator_gradient</span></code><br>- <code class="docutils literal notranslate"><span class="pre">heaviside_phase_weighted</span></code><br>- <code class="docutils literal notranslate"><span class="pre">heaviside_times_heaviside_phase_weighted</span></code><br>- <code class="docutils literal notranslate"><span class="pre">reciprocal_phase_weighted</span></code><br>- <code class="docutils literal notranslate"><span class="pre">reciprocal_times_heaviside_phase_weighted</span></code><br>- <code class="docutils literal notranslate"><span class="pre">heavy_phase_only</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">weights</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Choose if weights should be computed automatically.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gas</span> <span class="pre">phase</span> <span class="pre">weight</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>If &gt;&gt;&gt; dirac delta function approximation type &lt;&lt;&lt; is set to any phase weighted optionthis parameter controls the (first) weight of the gas phase (level set = -1).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">heavy</span> <span class="pre">phase</span> <span class="pre">weight</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>If &gt;&gt;&gt; dirac delta function approximation type &lt;&lt;&lt; is set to any phase weighted optionthis parameter controls the (first) weight of the heavy phase (level set = 1).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gas</span> <span class="pre">phase</span> <span class="pre">weight</span> <span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>If &gt;&gt;&gt; dirac delta function approximation type &lt;&lt;&lt; is set to &gt;&gt;&gt; heaviside_times_heaviside_phase_weighted &lt;&lt;&lt; this parameter controls the second weight of the gas phase (level set = -1).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">heavy</span> <span class="pre">phase</span> <span class="pre">weight</span> <span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>If &gt;&gt;&gt; dirac delta function approximation type &lt;&lt;&lt; is set to &gt;&gt;&gt; heaviside_times_heaviside_phase_weighted &lt;&lt;&lt; this parameter controls the second weight of the heavy liquid/solid phase (level set = 1).</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="evaporation-recoil-pressure"></a></p>
+</section>
+</section>
+<section id="evaporation-recoil-pressure">
+<h3><code class="docutils literal notranslate"><span class="pre">evaporation:</span> <span class="pre">recoil</span> <span class="pre">pressure</span></code><a class="headerlink" href="#evaporation-recoil-pressure" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enable</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true to prescribe the evaporation-induced jump in the pressure field (i.e. recoil pressure), considered as an interfacial force in the momentum balance equation.If ‘evaporative dilation rate’ is enabled, this pressure jump will be added to the one resulting from the discontinuous normal velocity field.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ambient</span> <span class="pre">gas</span> <span class="pre">pressure</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">101300.0</span></code></p></td>
+<td><p>Ambient gas pressure for the recoil pressure model.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pressure</span> <span class="pre">coefficient</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.55</span></code></p></td>
+<td><p>Pressure coefficient for the recoil pressure model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">temperature</span> <span class="pre">constant</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1.0</span></code></p></td>
+<td><p>Temperature constant for the recoil pressure model. If this parameter is not set, the value is computed by latent_heat_evaporation * molar_mass / universal_gas_constant;</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sticking</span> <span class="pre">constant</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Sticking constant.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">distributed</span> <span class="pre">flux</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">local_value</span></code></p></td>
+<td><p>Type that determines how the recoil pressure force is computed in the interfacial zone.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">local_value</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_value</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">activation</span> <span class="pre">temperature</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1e+100</span></code></p></td>
+<td><p>Activation temperature for the recoil pressure. It must be smaller than or equal to the boiling temperature. As default value, the boiling temperature is chosen.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#evaporation-recoil-pressure-dirac-delta-function-approximation"><span class="std std-ref">dirac delta function approximation</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#evaporation-recoil-pressure-dirac-delta-function-approximation"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">phenomenological</span></code></p></td>
+<td><p>Choose the model to compute the recoil pressure coefficient: phenomenological or hybrid, in case there is also an evaporation-induced velocity jump.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">phenomenological</span></code><br>- <code class="docutils literal notranslate"><span class="pre">hybrid</span></code><br>- <code class="docutils literal notranslate"><span class="pre">pressure_aware</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="evaporation-recoil-pressure-dirac-delta-function-approximation"></a></p>
+<section id="evaporation-recoil-pressure-dirac-delta-function-approximation">
+<h4><code class="docutils literal notranslate"><span class="pre">evaporation:</span> <span class="pre">recoil</span> <span class="pre">pressure:</span> <span class="pre">dirac</span> <span class="pre">delta</span> <span class="pre">function</span> <span class="pre">approximation</span></code><a class="headerlink" href="#evaporation-recoil-pressure-dirac-delta-function-approximation" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">norm_of_indicator_gradient</span></code></p></td>
+<td><p>Choose how to smear a parameter over the interface.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">norm_of_indicator_gradient</span></code><br>- <code class="docutils literal notranslate"><span class="pre">heaviside_phase_weighted</span></code><br>- <code class="docutils literal notranslate"><span class="pre">heaviside_times_heaviside_phase_weighted</span></code><br>- <code class="docutils literal notranslate"><span class="pre">reciprocal_phase_weighted</span></code><br>- <code class="docutils literal notranslate"><span class="pre">reciprocal_times_heaviside_phase_weighted</span></code><br>- <code class="docutils literal notranslate"><span class="pre">heavy_phase_only</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">weights</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Choose if weights should be computed automatically.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gas</span> <span class="pre">phase</span> <span class="pre">weight</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>If &gt;&gt;&gt; dirac delta function approximation type &lt;&lt;&lt; is set to any phase weighted optionthis parameter controls the (first) weight of the gas phase (level set = -1).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">heavy</span> <span class="pre">phase</span> <span class="pre">weight</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>If &gt;&gt;&gt; dirac delta function approximation type &lt;&lt;&lt; is set to any phase weighted optionthis parameter controls the (first) weight of the heavy phase (level set = 1).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gas</span> <span class="pre">phase</span> <span class="pre">weight</span> <span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>If &gt;&gt;&gt; dirac delta function approximation type &lt;&lt;&lt; is set to &gt;&gt;&gt; heaviside_times_heaviside_phase_weighted &lt;&lt;&lt; this parameter controls the second weight of the gas phase (level set = -1).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">heavy</span> <span class="pre">phase</span> <span class="pre">weight</span> <span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>If &gt;&gt;&gt; dirac delta function approximation type &lt;&lt;&lt; is set to &gt;&gt;&gt; heaviside_times_heaviside_phase_weighted &lt;&lt;&lt; this parameter controls the second weight of the heavy liquid/solid phase (level set = 1).</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><a id="output"></a></p>
+</section>
+</section>
+</section>
+<section id="output">
+<h2><code class="docutils literal notranslate"><span class="pre">🔷</span> <span class="pre">output</span></code><a class="headerlink" href="#output" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">directory</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">./</span></code></p></td>
+<td><p>Sets the base directory for all output.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">write</span> <span class="pre">frequency</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Every n timestep that should be written</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">write</span> <span class="pre">time</span> <span class="pre">step</span> <span class="pre">size</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.79769e+308</span></code></p></td>
+<td><p>Write output output every given time step. If this parameter is set, the output write frequency is deactivated.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">variables</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">['all']</span></code></p></td>
+<td><p>Specify variables that you request to output.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">user</span> <span class="pre">defined</span> <span class="pre">postprocessing</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true to enable user defined postprocessing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#output-paraview"><span class="std std-ref">paraview</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#output-paraview"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#output-particles"><span class="std std-ref">particles</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#output-particles"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="output-paraview"></a></p>
+<section id="output-paraview">
+<h3><code class="docutils literal notranslate"><span class="pre">output:</span> <span class="pre">paraview</span></code><a class="headerlink" href="#output-paraview" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enable</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true to activate paraview output.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">filename</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">solution</span></code></p></td>
+<td><p>Sets the base name for paraview output files.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">digits</span> <span class="pre">timestep</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
+<td><p>Number of digits for the frame number of the vtu-file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">boundary</span> <span class="pre">id</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true to output a vtu-file with the boundary id.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">subdomains</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true to output the subdomain ranks.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">material</span> <span class="pre">id</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set to true to output the material id.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">write</span> <span class="pre">higher</span> <span class="pre">order</span> <span class="pre">cells</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Set this parameter to false to write bi- or trilinear data only. Set this parameter to true to write higher order cell data. Note: higher order cell data can only be written for hexahedron meshes and 2 or 3 dimensions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">groups</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Number of parallel written vtu-files.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">patches</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Control number of patches to enable high-order.</p></td>
+</tr>
+</tbody>
+</table>
+<p><a id="output-particles"></a></p>
+</section>
+<section id="output-particles">
+<h3><code class="docutils literal notranslate"><span class="pre">output:</span> <span class="pre">particles</span></code><a class="headerlink" href="#output-particles" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enable</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true to activate particle paraview output.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">filename</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">particle</span></code></p></td>
+<td><p>Sets the base name for particle output files.</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><a id="profiling"></a></p>
+</section>
+</section>
+<section id="profiling">
+<h2><code class="docutils literal notranslate"><span class="pre">🔷</span> <span class="pre">profiling</span></code><a class="headerlink" href="#profiling" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enable</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true if profiling should be enabled. It will be automaticallyenabled for verbosity level &gt;=1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">write</span> <span class="pre">time</span> <span class="pre">step</span> <span class="pre">size</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10.0</span></code></p></td>
+<td><p>Write profiling output every given time step size. If this parameter is set, the specified parameter for write frequency is overwritten.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real</span></code></p></td>
+<td><p>Choose the type of time measure to write profiling information.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">real</span></code><br>- <code class="docutils literal notranslate"><span class="pre">simulation</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><a id="application-specific"></a></p>
+</section>
+<section id="application-specific">
+<h2><code class="docutils literal notranslate"><span class="pre">🔷</span> <span class="pre">application</span> <span class="pre">specific</span></code><a class="headerlink" href="#application-specific" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">solidification</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Set this parameter to true if you want to consider melting/solidification effects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">amr</span> <span class="pre">strategy</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">KellyErrorEstimator</span></code></p></td>
+<td><p>Select the AMR strategy.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">KellyErrorEstimator</span></code><br>- <code class="docutils literal notranslate"><span class="pre">generic</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

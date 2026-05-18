@@ -20,5 +20,6 @@ Welcome to
    :maxdepth: 2
 
    installation
+   generated/parameters/index
    developer_guide
    publications
