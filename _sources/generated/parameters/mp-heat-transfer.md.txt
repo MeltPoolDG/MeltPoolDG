@@ -417,7 +417,7 @@
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `Km` | `array` | `[]` | Fitting parameters for the evaporative mass flux function of the pressure-aware model. |
+| `Km` | `array` | `[]` | Fitting parameters for the evaporative mass flux function with pressure-aware boundary conditions. |
 | `ambient_gas_pressure` | `number` | `0.0` | Ambient gas pressure for the pressure-aware model. |
 
 <a id="evaporation-evaporative-dilation-rate"></a>
@@ -465,6 +465,7 @@
 | `activation temperature` | `number` | `-1e+100` | Activation temperature for the recoil pressure. It must be smaller than or equal to the boiling temperature. As default value, the boiling temperature is chosen. |
 | [`dirac delta function approximation`](#evaporation-recoil-pressure-dirac-delta-function-approximation) | `object` |  | [See table](#evaporation-recoil-pressure-dirac-delta-function-approximation) |
 | `type` | `string` | `phenomenological` | Choose the model to compute the recoil pressure coefficient: phenomenological or hybrid, in case there is also an evaporation-induced velocity jump.<br><br>Allowed values:<br>- `phenomenological`<br>- `hybrid`<br>- `pressure_aware` |
+| [`pressure aware`](#evaporation-recoil-pressure-pressure-aware) | `object` |  | [See table](#evaporation-recoil-pressure-pressure-aware) |
 
 <a id="evaporation-recoil-pressure-dirac-delta-function-approximation"></a>
 #### `evaporation: recoil pressure: dirac delta function approximation`
@@ -477,6 +478,14 @@
 | `heavy phase weight` | `number` | `1.0` | If >>> dirac delta function approximation type <<< is set to any phase weighted optionthis parameter controls the (first) weight of the heavy phase (level set = 1). |
 | `gas phase weight 2` | `number` | `1.0` | If >>> dirac delta function approximation type <<< is set to >>> heaviside_times_heaviside_phase_weighted <<< this parameter controls the second weight of the gas phase (level set = -1). |
 | `heavy phase weight 2` | `number` | `1.0` | If >>> dirac delta function approximation type <<< is set to >>> heaviside_times_heaviside_phase_weighted <<< this parameter controls the second weight of the heavy liquid/solid phase (level set = 1). |
+
+<a id="evaporation-recoil-pressure-pressure-aware"></a>
+#### `evaporation: recoil pressure: pressure aware`
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `Kp` | `array` | `[]` | Fitting parameters for the recoil pressure calculation with pressure-aware boundary conditions. |
+| `ambient_gas_pressure` | `number` | `0.0` | Ambient gas pressure for the pressure-aware model. |
 
 
 ---
