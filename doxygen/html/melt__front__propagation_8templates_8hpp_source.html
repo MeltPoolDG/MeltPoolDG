@@ -527,20 +527,21 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;CaseClass, MeltPoolCase&lt;dim, number&gt;&gt;)</div>
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>      {</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>        <span class="keyword">const</span> number eps = this-&gt;parameters.ls.reinit.compute_interface_thickness_parameter_epsilon(</div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>          dealii::GridTools::minimal_cell_diameter(*this-&gt;triangulation) /</div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>          this-&gt;parameters.ls.get_n_subdivisions() / std::sqrt(dim));</div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>        this-&gt;attach_initial_condition(</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>          std::make_shared&lt;<a class="code hl_class" href="classMeltPoolDG_1_1Simulation_1_1MeltFrontPropagation_1_1InitialLevelSet.html">InitialLevelSet&lt;dim, number&gt;</a>&gt;(0.0, LevelSet::LevelSetType::tanh, eps),</div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>          <span class="stringliteral">&quot;level_set&quot;</span>);</div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>        this-&gt;attach_initial_condition(</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>          std::shared_ptr&lt;dealii::Function&lt;dim, number&gt;&gt;(</div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>            std::make_shared&lt;dealii::Functions::ZeroFunction&lt;dim, number&gt;&gt;(dim)),</div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>          <span class="stringliteral">&quot;navier_stokes_u&quot;</span>);</div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>      }</div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>  }</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>        <span class="keyword">const</span> number eps =</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>          this-&gt;parameters.ls.reinit.hyperbolic.compute_interface_thickness_parameter_epsilon(</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>            dealii::GridTools::minimal_cell_diameter(*this-&gt;triangulation) /</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>            this-&gt;parameters.ls.get_n_subdivisions() / std::sqrt(dim));</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>        this-&gt;attach_initial_condition(</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>          std::make_shared&lt;<a class="code hl_class" href="classMeltPoolDG_1_1Simulation_1_1MeltFrontPropagation_1_1InitialLevelSet.html">InitialLevelSet&lt;dim, number&gt;</a>&gt;(0.0, LevelSet::LevelSetType::tanh, eps),</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>          <span class="stringliteral">&quot;level_set&quot;</span>);</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        this-&gt;attach_initial_condition(</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>          std::shared_ptr&lt;dealii::Function&lt;dim, number&gt;&gt;(</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>            std::make_shared&lt;dealii::Functions::ZeroFunction&lt;dim, number&gt;&gt;(dim)),</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>          <span class="stringliteral">&quot;navier_stokes_u&quot;</span>);</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>      }</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>  }</div>
 </div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>} <span class="comment">// namespace MeltPoolDG::Simulation::MeltFrontPropagation</span></div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>} <span class="comment">// namespace MeltPoolDG::Simulation::MeltFrontPropagation</span></div>
 <div class="ttc" id="acharacteristic__functions_8hpp_html"><div class="ttname"><a href="characteristic__functions_8hpp.html">characteristic_functions.hpp</a></div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1MeltFrontPropagation_1_1InitialLevelSet_html"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1MeltFrontPropagation_1_1InitialLevelSet.html">MeltPoolDG::Simulation::MeltFrontPropagation::InitialLevelSet</a></div><div class="ttdef"><b>Definition</b> melt_front_propagation.templates.hpp:32</div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1Simulation_1_1MeltFrontPropagation_1_1InitialLevelSet_html_a195bb22a9a3fd0c30ba5872cd1faf10b"><div class="ttname"><a href="classMeltPoolDG_1_1Simulation_1_1MeltFrontPropagation_1_1InitialLevelSet.html#a195bb22a9a3fd0c30ba5872cd1faf10b">MeltPoolDG::Simulation::MeltFrontPropagation::InitialLevelSet::level_set_type</a></div><div class="ttdeci">const LevelSet::LevelSetType level_set_type</div><div class="ttdef"><b>Definition</b> melt_front_propagation.templates.hpp:65</div></div>

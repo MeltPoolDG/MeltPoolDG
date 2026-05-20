@@ -355,17 +355,17 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>      {</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <span class="comment">// create a temporary reinit data instance since reinit data is not available for the heat</span></div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        <span class="comment">// problem</span></div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        LevelSet::ReinitializationData&lt;number&gt; reinit_data;</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        reinit_data.interface_thickness_parameter.type =</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        <a class="code hl_struct" href="structMeltPoolDG_1_1LevelSet_1_1ReinitializationData.html">LevelSet::ReinitializationData&lt;number&gt;</a> reinit_data;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        reinit_data.<a class="code hl_variable" href="structMeltPoolDG_1_1LevelSet_1_1ReinitializationData.html#a2f023d3fcd03a8d31487a5fe72aaf4ba">hyperbolic</a>.interface_thickness_parameter.type =</div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>          LevelSet::InterfaceThicknessParameterType::proportional_to_cell_size;</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        reinit_data.interface_thickness_parameter.value = 1.5;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        reinit_data.<a class="code hl_variable" href="structMeltPoolDG_1_1LevelSet_1_1ReinitializationData.html#a2f023d3fcd03a8d31487a5fe72aaf4ba">hyperbolic</a>.interface_thickness_parameter.value = 1.5;</div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        <span class="comment">// attach prescribed heaviside</span></div>
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        this-&gt;attach_initial_condition(</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>          std::make_shared&lt;<a class="code hl_class" href="classMeltPoolDG_1_1MeltPool_1_1PowderBedLevelSet.html">MeltPool::PowderBedLevelSet&lt;dim, double&gt;</a>&gt;(</div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>            powder_bed_data,</div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>            LevelSet::LevelSetType::smoothed_heaviside,</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            reinit_data.compute_interface_thickness_parameter_epsilon(</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            reinit_data.<a class="code hl_variable" href="structMeltPoolDG_1_1LevelSet_1_1ReinitializationData.html#a2f023d3fcd03a8d31487a5fe72aaf4ba">hyperbolic</a>.compute_interface_thickness_parameter_epsilon(</div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>              dealii::GridTools::minimal_cell_diameter(*this-&gt;triangulation) / std::sqrt(dim))),</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>          <span class="stringliteral">&quot;prescribed_heaviside&quot;</span>);</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      }</div>
@@ -379,7 +379,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>          std::make_shared&lt;<a class="code hl_class" href="classMeltPoolDG_1_1MeltPool_1_1PowderBedLevelSet.html">MeltPool::PowderBedLevelSet&lt;dim, double&gt;</a>&gt;(</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>            powder_bed_data,</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>            LevelSet::LevelSetType::signed_distance,</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>            mp_case-&gt;parameters.ls.reinit.compute_interface_thickness_parameter_epsilon(</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>            mp_case-&gt;parameters.ls.reinit.hyperbolic.compute_interface_thickness_parameter_epsilon(</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>              dealii::GridTools::minimal_cell_diameter(*this-&gt;triangulation) / std::sqrt(dim))),</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>          <span class="stringliteral">&quot;signed_distance&quot;</span>);</div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
@@ -412,6 +412,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="alevel__set__type_8hpp_html"><div class="ttname"><a href="level__set__type_8hpp.html">level_set_type.hpp</a></div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1Simulation_1_1PowderBed_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Simulation_1_1PowderBed.html">MeltPoolDG::Simulation::PowderBed</a></div><div class="ttdef"><b>Definition</b> powder_bed.cpp:9</div></div>
 <div class="ttc" id="areinitialization__data_8hpp_html"><div class="ttname"><a href="reinitialization__data_8hpp.html">reinitialization_data.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1LevelSet_1_1ReinitializationData_html"><div class="ttname"><a href="structMeltPoolDG_1_1LevelSet_1_1ReinitializationData.html">MeltPoolDG::LevelSet::ReinitializationData</a></div><div class="ttdef"><b>Definition</b> reinitialization_data.hpp:130</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1LevelSet_1_1ReinitializationData_html_a2f023d3fcd03a8d31487a5fe72aaf4ba"><div class="ttname"><a href="structMeltPoolDG_1_1LevelSet_1_1ReinitializationData.html#a2f023d3fcd03a8d31487a5fe72aaf4ba">MeltPoolDG::LevelSet::ReinitializationData::hyperbolic</a></div><div class="ttdeci">ReinitializationHyperbolicData&lt; number &gt; hyperbolic</div><div class="ttdef"><b>Definition</b> reinitialization_data.hpp:145</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
