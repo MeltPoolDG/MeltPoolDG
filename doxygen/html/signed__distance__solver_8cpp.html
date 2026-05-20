@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: source/level_set/signed_distance_solver.cpp File Reference &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/parameters/index.html">📦 Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: source/level_set/signed_distance_solver.cpp File Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/signed__distance__solver_8cpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="source-level-set-signed-distance-solver-cpp-file-reference">
+<h1>source/level_set/signed_distance_solver.cpp File Reference<a class="headerlink" href="#source-level-set-signed-distance-solver-cpp-file-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: source/level_set/signed_distance_solver.cpp File Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_33bc0ca9384ff5f29fbff97acb744799.html">level_set</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">signed_distance_solver.cpp File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;deal.II/base/exception_macros.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="signed__distance__solver_8hpp_source.html">meltpooldg/level_set/signed_distance_solver.hpp</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for signed_distance_solver.cpp:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="signed__distance__solver_8cpp__incl.svg" width="100%" height="470"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceMeltPoolDG" id="r_namespaceMeltPoolDG"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html">MeltPoolDG</a></td></tr>
+<tr class="memdesc:namespaceMeltPoolDG"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for a general preconditioner. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceMeltPoolDG_1_1LevelSet" id="r_namespaceMeltPoolDG_1_1LevelSet"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html">MeltPoolDG::LevelSet</a></td></tr>
+<tr class="memdesc:namespaceMeltPoolDG_1_1LevelSet"><td class="mdescLeft">&#160;</td><td class="mdescRight">This operation solves the reinitialization problem for a CG- or DG-FEM-based discrete level-set field by solving an elliptic problem. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a03e4c289142c62ae920deeb8d6be3d48" id="r_a03e4c289142c62ae920deeb8d6be3d48"><td class="memTemplParams" colspan="2">template&lt;int dim&gt; </td></tr>
+<tr class="memitem:a03e4c289142c62ae920deeb8d6be3d48"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html#a03e4c289142c62ae920deeb8d6be3d48">MeltPoolDG::LevelSet::compute_cell_wise_volume</a> (FEPointEvaluation&lt; 1, dim &gt; &amp;fe_point_evaluation, const typename DoFHandler&lt; dim &gt;::active_cell_iterator &amp;cell, Vector&lt; double &gt; cell_dof_level_set_values, const double corr, const unsigned int n_quad_points)</td></tr>
+<tr class="memdesc:a03e4c289142c62ae920deeb8d6be3d48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the volume enclosed by the zero level of a level-set field inside a cell.  <br /></td></tr>
+<tr class="separator:a03e4c289142c62ae920deeb8d6be3d48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad32e6140d47aea20f8a311ce27cd2510" id="r_ad32e6140d47aea20f8a311ce27cd2510"><td class="memTemplParams" colspan="2">template&lt;int dim, typename VectorType &gt; </td></tr>
+<tr class="memitem:ad32e6140d47aea20f8a311ce27cd2510"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; double, double &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html#ad32e6140d47aea20f8a311ce27cd2510">MeltPoolDG::LevelSet::integrate_volume_and_surface</a> (const DoFHandler&lt; dim &gt; &amp;dof_handler, const FiniteElement&lt; dim &gt; &amp;fe, const VectorType &amp;level_set_vector_relevant_copy)</td></tr>
+<tr class="memdesc:ad32e6140d47aea20f8a311ce27cd2510"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integrate the surface area of the zero level of a level-set field and the volume enclosed by it.  <br /></td></tr>
+<tr class="separator:ad32e6140d47aea20f8a311ce27cd2510"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a974ecebeb365447562958d5f8110031e" id="r_a974ecebeb365447562958d5f8110031e"><td class="memTemplParams" colspan="2">template&lt;int dim, typename VectorType &gt; </td></tr>
+<tr class="memitem:a974ecebeb365447562958d5f8110031e"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; double, double &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html#a974ecebeb365447562958d5f8110031e">MeltPoolDG::LevelSet::integrate_volume_and_surface</a> (const DoFHandler&lt; dim &gt; &amp;dof_handler, const FiniteElement&lt; dim &gt; &amp;fe, const VectorType &amp;level_set_vector, const double iso_level)</td></tr>
+<tr class="memdesc:a974ecebeb365447562958d5f8110031e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integrate the surface area of a given level of a level-set field and the volume enclosed by it.  <br /></td></tr>
+<tr class="separator:a974ecebeb365447562958d5f8110031e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb8445ce329c917b71805fc1a28bb77f" id="r_abb8445ce329c917b71805fc1a28bb77f"><td class="memTemplParams" colspan="2">template&lt;int dim, typename VectorType &gt; </td></tr>
+<tr class="memitem:abb8445ce329c917b71805fc1a28bb77f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html#abb8445ce329c917b71805fc1a28bb77f">MeltPoolDG::LevelSet::reconstruct_interface</a> (const Mapping&lt; dim &gt; &amp;mapping, const DoFHandler&lt; dim &gt; &amp;dof_handler, const FiniteElement&lt; dim &gt; &amp;fe, const VectorType &amp;level_set_vector, const double iso_level, std::map&lt; types::global_cell_index, std::vector&lt; Point&lt; dim &gt; &gt; &gt; &amp;interface_reconstruction_vertices, std::map&lt; types::global_cell_index, std::vector&lt; CellData&lt; dim==1 ? 1 :dim - 1 &gt; &gt; &gt; &amp;interface_reconstruction_cells, std::set&lt; types::global_dof_index &gt; &amp;intersected_dofs)</td></tr>
+<tr class="memdesc:abb8445ce329c917b71805fc1a28bb77f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstruct the interface defined by a given level of a level-set field in the domain.  <br /></td></tr>
+<tr class="separator:abb8445ce329c917b71805fc1a28bb77f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e28ec1b6d343563f38edf4861601bf8" id="r_a7e28ec1b6d343563f38edf4861601bf8"><td class="memItemLeft" align="right" valign="top">template std::pair&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html#a7e28ec1b6d343563f38edf4861601bf8">MeltPoolDG::LevelSet::integrate_volume_and_surface</a> (const DoFHandler&lt; 2 &gt; &amp;, const FiniteElement&lt; 2 &gt; &amp;, const LinearAlgebra::distributed::Vector&lt; double &gt; &amp;)</td></tr>
+<tr class="separator:a7e28ec1b6d343563f38edf4861601bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0cd6e22f06781e2d9e4c744328e5411" id="r_ab0cd6e22f06781e2d9e4c744328e5411"><td class="memItemLeft" align="right" valign="top">template std::pair&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html#ab0cd6e22f06781e2d9e4c744328e5411">MeltPoolDG::LevelSet::integrate_volume_and_surface</a> (const DoFHandler&lt; 3 &gt; &amp;, const FiniteElement&lt; 3 &gt; &amp;, const LinearAlgebra::distributed::Vector&lt; double &gt; &amp;)</td></tr>
+<tr class="separator:ab0cd6e22f06781e2d9e4c744328e5411"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05c2581086b0a335368035b76a27e990" id="r_a05c2581086b0a335368035b76a27e990"><td class="memItemLeft" align="right" valign="top">template std::pair&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html#a05c2581086b0a335368035b76a27e990">MeltPoolDG::LevelSet::integrate_volume_and_surface</a> (const DoFHandler&lt; 2 &gt; &amp;, const FiniteElement&lt; 2 &gt; &amp;, const LinearAlgebra::distributed::Vector&lt; double &gt; &amp;, const double)</td></tr>
+<tr class="separator:a05c2581086b0a335368035b76a27e990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ec9c240ac49a665dc997aa2647e2016" id="r_a9ec9c240ac49a665dc997aa2647e2016"><td class="memItemLeft" align="right" valign="top">template std::pair&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html#a9ec9c240ac49a665dc997aa2647e2016">MeltPoolDG::LevelSet::integrate_volume_and_surface</a> (const DoFHandler&lt; 3 &gt; &amp;, const FiniteElement&lt; 3 &gt; &amp;, const LinearAlgebra::distributed::Vector&lt; double &gt; &amp;, const double)</td></tr>
+<tr class="separator:a9ec9c240ac49a665dc997aa2647e2016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b7ebc4a2b90b20468705aeb41f5921d" id="r_a0b7ebc4a2b90b20468705aeb41f5921d"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html#a0b7ebc4a2b90b20468705aeb41f5921d">MeltPoolDG::LevelSet::reconstruct_interface</a> (const Mapping&lt; 2 &gt; &amp;, const DoFHandler&lt; 2 &gt; &amp;, const FiniteElement&lt; 2 &gt; &amp;, const LinearAlgebra::distributed::Vector&lt; double &gt; &amp;, const double, std::map&lt; types::global_cell_index, std::vector&lt; Point&lt; 2 &gt; &gt; &gt; &amp;, std::map&lt; types::global_cell_index, std::vector&lt; CellData&lt; 1 &gt; &gt; &gt; &amp;, std::set&lt; types::global_dof_index &gt; &amp;)</td></tr>
+<tr class="separator:a0b7ebc4a2b90b20468705aeb41f5921d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8dcc2bde246f92f7b69c56d97df1d8f" id="r_aa8dcc2bde246f92f7b69c56d97df1d8f"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html#aa8dcc2bde246f92f7b69c56d97df1d8f">MeltPoolDG::LevelSet::reconstruct_interface</a> (const Mapping&lt; 3 &gt; &amp;, const DoFHandler&lt; 3 &gt; &amp;, const FiniteElement&lt; 3 &gt; &amp;, const LinearAlgebra::distributed::Vector&lt; double &gt; &amp;, const double, std::map&lt; types::global_cell_index, std::vector&lt; Point&lt; 3 &gt; &gt; &gt; &amp;, std::map&lt; types::global_cell_index, std::vector&lt; CellData&lt; 2 &gt; &gt; &gt; &amp;, std::set&lt; types::global_dof_index &gt; &amp;)</td></tr>
+<tr class="separator:aa8dcc2bde246f92f7b69c56d97df1d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f2bf07b5e4f8514cb0b6a82dad23e0f" id="r_a7f2bf07b5e4f8514cb0b6a82dad23e0f"><td class="memItemLeft" align="right" valign="top">template double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html#a7f2bf07b5e4f8514cb0b6a82dad23e0f">MeltPoolDG::LevelSet::compute_cell_wise_volume&lt; 2 &gt;</a> (FEPointEvaluation&lt; 1, 2 &gt; &amp;, const DoFHandler&lt; 2 &gt;::active_cell_iterator &amp;, Vector&lt; double &gt;, const double, const unsigned int)</td></tr>
+<tr class="separator:a7f2bf07b5e4f8514cb0b6a82dad23e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a880aed710c9b8a168d26e16a68670ef7" id="r_a880aed710c9b8a168d26e16a68670ef7"><td class="memItemLeft" align="right" valign="top">template double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html#a880aed710c9b8a168d26e16a68670ef7">MeltPoolDG::LevelSet::compute_cell_wise_volume&lt; 3 &gt;</a> (FEPointEvaluation&lt; 1, 3 &gt; &amp;, const DoFHandler&lt; 3 &gt;::active_cell_iterator &amp;, Vector&lt; double &gt;, const double, const unsigned int)</td></tr>
+<tr class="separator:a880aed710c9b8a168d26e16a68670ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

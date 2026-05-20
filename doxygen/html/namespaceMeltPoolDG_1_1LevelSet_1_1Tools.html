@@ -168,6 +168,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a54d1bdc02f9d5f5d2dd7dc61947bdeb8" id="r_a54d1bdc02f9d5f5d2dd7dc61947bdeb8"><td class="memTemplParams" colspan="2">template&lt;typename value_type1 , typename value_type2 , typename value_type3 &gt; </td></tr>
 <tr class="memitem:a54d1bdc02f9d5f5d2dd7dc61947bdeb8"><td class="memTemplItemLeft" align="right" valign="top">value_type1&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#a54d1bdc02f9d5f5d2dd7dc61947bdeb8">interpolate_cubic_derivative</a> (const value_type1 &amp;ls, const value_type2 &amp;val1, const value_type3 &amp;val2)</td></tr>
 <tr class="separator:a54d1bdc02f9d5f5d2dd7dc61947bdeb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c08be52c7fb1f123d0fa2ce39669c4e" id="r_a9c08be52c7fb1f123d0fa2ce39669c4e"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
+<tr class="memitem:a9c08be52c7fb1f123d0fa2ce39669c4e"><td class="memTemplItemLeft" align="right" valign="top">number&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#a9c08be52c7fb1f123d0fa2ce39669c4e">approximate_distance_from_tanh_level_set</a> (const number phi, const number eps, const number cutoff)</td></tr>
+<tr class="memdesc:a9c08be52c7fb1f123d0fa2ce39669c4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes an approximate signed distance from a hyperbolic tangent level-set value.  <br /></td></tr>
+<tr class="separator:a9c08be52c7fb1f123d0fa2ce39669c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6556ca6bfbaba7e2cafa33b3a47aaab5" id="r_a6556ca6bfbaba7e2cafa33b3a47aaab5"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
 <tr class="memitem:a6556ca6bfbaba7e2cafa33b3a47aaab5"><td class="memTemplItemLeft" align="right" valign="top">dealii::LinearAlgebra::distributed::Vector&lt; number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#a6556ca6bfbaba7e2cafa33b3a47aaab5">merge_two_indicator_fields</a> (const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;indicator_1, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;indicator_2, <a class="el" href="namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#ae6484ce096ed3147846d4f663cd3bea6">BooleanType</a> type=<a class="el" href="namespaceMeltPoolDG_1_1LevelSet_1_1Tools.html#ae6484ce096ed3147846d4f663cd3bea6ae136a04758bd8f32f262ee4c619e8887">BooleanType::Union</a>, const number indicator_value_interior=1.0, const number indicator_value_exterior=-1.0)</td></tr>
 <tr class="separator:a6556ca6bfbaba7e2cafa33b3a47aaab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,6 +248,74 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a9c08be52c7fb1f123d0fa2ce39669c4e" name="a9c08be52c7fb1f123d0fa2ce39669c4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c08be52c7fb1f123d0fa2ce39669c4e">&#9670;&#160;</a></span>approximate_distance_from_tanh_level_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">number MeltPoolDG::LevelSet::Tools::approximate_distance_from_tanh_level_set </td>
+          <td>(</td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>phi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>eps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>cutoff</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes an approximate signed distance from a hyperbolic tangent level-set value. </p>
+<p>This function converts a phase-field value <code>phi</code>, typically originating from a hyperbolic tangent profile, into an approximate signed distance. The relation is based on the inverse transformation  </p><p class="formulaDsp">
+\[
+d = \varepsilon \log\left(\frac{1+\phi}{1-\phi}\right),
+\]
+</p>
+<p> where \(\varepsilon\) controls the interface thickness.</p>
+<p>To avoid numerical instability near \(\phi = \pm 1\), the value is clamped using the parameter <code>cutoff</code>. For values outside the interval \((-\text{cutoff}, \text{cutoff})\), the returned distance is saturated at the corresponding cutoff distance.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">number</td><td>Numeric type used for computations (e.g., float, double).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>Level-set value, typically in the range [-1,1]. </td></tr>
+    <tr><td class="paramname">eps</td><td>Interface thickness parameter \(\varepsilon\). </td></tr>
+    <tr><td class="paramname">cutoff</td><td>Cutoff value used to limit the logarithm argument away from singularities at \(\phi = \pm 1\).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Approximate signed distance corresponding to the phase-field value. </dd></dl>
+
+</div>
+</div>
 <a id="ae8bd7aacd013a4f54d7814bf80009c97" name="ae8bd7aacd013a4f54d7814bf80009c97"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8bd7aacd013a4f54d7814bf80009c97">&#9670;&#160;</a></span>collect_interface_cells_and_intersection_points() <span class="overload">[1/4]</span></h2>
 

@@ -311,9 +311,10 @@
 | [`predictor`](#level-set-reinitialization-predictor) | `object` |  | [See table](#level-set-reinitialization-predictor) |
 | [`linear solver`](#level-set-reinitialization-linear-solver) | `object` |  | [See table](#level-set-reinitialization-linear-solver) |
 | `enable` | `boolean` | `True` | Set to true to activate reinitialization. |
-| `type` | `string` | `olsson2007` | Sets the type of reinitialization model that should be used.<br><br>Allowed values:<br>- `olsson2007`<br>- `elliptic` |
-| [`hyperbolic`](#level-set-reinitialization-hyperbolic) | `object` |  | [See table](#level-set-reinitialization-hyperbolic) |
+| `type` | `string` | `olsson2007` | Sets the type of reinitialization model that should be used.<br><br>Allowed values:<br>- `olsson2007`<br>- `elliptic`<br>- `geometric` |
 | [`elliptic`](#level-set-reinitialization-elliptic) | `object` |  | [See table](#level-set-reinitialization-elliptic) |
+| [`geometric`](#level-set-reinitialization-geometric) | `object` |  | [See table](#level-set-reinitialization-geometric) |
+| [`hyperbolic`](#level-set-reinitialization-hyperbolic) | `object` |  | [See table](#level-set-reinitialization-hyperbolic) |
 
 <a id="level-set-reinitialization-fe"></a>
 #### `level set: reinitialization: fe`
@@ -343,6 +344,30 @@
 | `abs tolerance` | `number` | `1e-20` | Set the absolute tolerance for a successful solution of the linear system of equations. |
 | `do matrix free` | `boolean` | `True` | Set this parameter if a matrix free solution procedure should be performed. |
 | `monitor type` | `string` | `none` | Set the monitor type of the linear solver.<br><br>Allowed values:<br>- `none`<br>- `reduced`<br>- `all` |
+
+<a id="level-set-reinitialization-elliptic"></a>
+#### `level set: reinitialization: elliptic`
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `penalty parameter` | `number` | `0.0` | Penalty parameter for the enforcement of the initial position of the zero level-set iso-surface during the elliptic reinitialization. |
+
+<a id="level-set-reinitialization-geometric"></a>
+#### `level set: reinitialization: geometric`
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| [`interface thickness parameter`](#level-set-reinitialization-geometric-interface-thickness-parameter) | `object` |  | [See table](#level-set-reinitialization-geometric-interface-thickness-parameter) |
+| `verbosity` | `integer` | `0` | Choose the verbosity level. 0 means silent, 1 means verbose. |
+| `max distance` | `number` | `1.79769e+308` | Maximum distance from the zero-level-set where the signeddistance function is reconstructed. |
+
+<a id="level-set-reinitialization-geometric-interface-thickness-parameter"></a>
+##### `level set: reinitialization: geometric: interface thickness parameter`
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `type` | `string` | `proportional_to_cell_size` | Choose the value type of the interface thickness parameter.<br><br>Allowed values:<br>- `proportional_to_cell_size`<br>- `absolute_value`<br>- `number_of_cells_across_interface` |
+| `val` | `number` | `0.5` | Defines the value of the chosen interface thickness parameter type. |
 
 <a id="level-set-reinitialization-hyperbolic"></a>
 #### `level set: reinitialization: hyperbolic`
@@ -400,13 +425,6 @@
 | `use spatially constant diffusion` | `boolean` | `True` | Sets a flag if a spatially constant diffusion should be used for reinitialization. |
 | `use interface movement penalization` | `boolean` | `False` | Sets a flag if a penalization of the interface movement should be used. |
 | `gradient error time derivative threshold` | `number` | `1e-16` | Sets the threshold in the time derivative when a reinitialization procedure reaches a stationary point. |
-
-<a id="level-set-reinitialization-elliptic"></a>
-#### `level set: reinitialization: elliptic`
-
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `penalty parameter` | `number` | `0.0` | Penalty parameter for the enforcement of the initial position of the zero level-set iso-surface during the elliptic reinitialization. |
 
 
 ---
