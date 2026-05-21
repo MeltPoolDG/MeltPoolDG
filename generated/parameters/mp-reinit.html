@@ -318,17 +318,22 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">olsson2007</span></code></p></td>
 <td><p>Sets the type of reinitialization model that should be used.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">olsson2007</span></code><br>- <code class="docutils literal notranslate"><span class="pre">elliptic</span></code><br>- <code class="docutils literal notranslate"><span class="pre">geometric</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#reinitialization-elliptic"><span class="std std-ref">elliptic</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#reinitialization-interface-thickness-parameter"><span class="std std-ref">interface thickness parameter</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p></p></td>
+<td><p><a class="reference internal" href="#reinitialization-interface-thickness-parameter"><span class="std std-ref">See table</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#reinitialization-elliptic"><span class="std std-ref">elliptic</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
 <td><p></p></td>
 <td><p><a class="reference internal" href="#reinitialization-elliptic"><span class="std std-ref">See table</span></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#reinitialization-geometric"><span class="std std-ref">geometric</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#reinitialization-geometric"><span class="std std-ref">geometric</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
 <td><p></p></td>
 <td><p><a class="reference internal" href="#reinitialization-geometric"><span class="std std-ref">See table</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#reinitialization-hyperbolic"><span class="std std-ref">hyperbolic</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#reinitialization-hyperbolic"><span class="std std-ref">hyperbolic</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
 <td><p></p></td>
 <td><p><a class="reference internal" href="#reinitialization-hyperbolic"><span class="std std-ref">See table</span></a></p></td>
@@ -434,6 +439,31 @@
 </tr>
 </tbody>
 </table>
+<p><a id="reinitialization-interface-thickness-parameter"></a></p>
+</section>
+<section id="reinitialization-interface-thickness-parameter">
+<h3><code class="docutils literal notranslate"><span class="pre">reinitialization:</span> <span class="pre">interface</span> <span class="pre">thickness</span> <span class="pre">parameter</span></code><a class="headerlink" href="#reinitialization-interface-thickness-parameter" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">proportional_to_cell_size</span></code></p></td>
+<td><p>Choose the value type of the interface thickness parameter.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">proportional_to_cell_size</span></code><br>- <code class="docutils literal notranslate"><span class="pre">absolute_value</span></code><br>- <code class="docutils literal notranslate"><span class="pre">number_of_cells_across_interface</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">val</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.5</span></code></p></td>
+<td><p>Defines the value of the chosen interface thickness parameter type.</p></td>
+</tr>
+</tbody>
+</table>
 <p><a id="reinitialization-elliptic"></a></p>
 </section>
 <section id="reinitialization-elliptic">
@@ -467,49 +497,19 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="#reinitialization-geometric-interface-thickness-parameter"><span class="std std-ref">interface thickness parameter</span></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
-<td><p></p></td>
-<td><p><a class="reference internal" href="#reinitialization-geometric-interface-thickness-parameter"><span class="std std-ref">See table</span></a></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">verbosity</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">verbosity</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
 <td><p>Choose the verbosity level. 0 means silent, 1 means verbose.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">distance</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">distance</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">1.79769e+308</span></code></p></td>
 <td><p>Maximum distance from the zero-level-set where the signeddistance function is reconstructed.</p></td>
 </tr>
 </tbody>
 </table>
-<p><a id="reinitialization-geometric-interface-thickness-parameter"></a></p>
-<section id="reinitialization-geometric-interface-thickness-parameter">
-<h4><code class="docutils literal notranslate"><span class="pre">reinitialization:</span> <span class="pre">geometric:</span> <span class="pre">interface</span> <span class="pre">thickness</span> <span class="pre">parameter</span></code><a class="headerlink" href="#reinitialization-geometric-interface-thickness-parameter" title="Link to this heading"></a></h4>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Parameter</p></th>
-<th class="head"><p>Type</p></th>
-<th class="head"><p>Default</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">proportional_to_cell_size</span></code></p></td>
-<td><p>Choose the value type of the interface thickness parameter.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">proportional_to_cell_size</span></code><br>- <code class="docutils literal notranslate"><span class="pre">absolute_value</span></code><br>- <code class="docutils literal notranslate"><span class="pre">number_of_cells_across_interface</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">val</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0.5</span></code></p></td>
-<td><p>Defines the value of the chosen interface thickness parameter type.</p></td>
-</tr>
-</tbody>
-</table>
 <p><a id="reinitialization-hyperbolic"></a></p>
-</section>
 </section>
 <section id="reinitialization-hyperbolic">
 <h3><code class="docutils literal notranslate"><span class="pre">reinitialization:</span> <span class="pre">hyperbolic</span></code><a class="headerlink" href="#reinitialization-hyperbolic" title="Link to this heading"></a></h3>
@@ -522,54 +522,24 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="#reinitialization-hyperbolic-interface-thickness-parameter"><span class="std std-ref">interface thickness parameter</span></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
-<td><p></p></td>
-<td><p><a class="reference internal" href="#reinitialization-hyperbolic-interface-thickness-parameter"><span class="std std-ref">See table</span></a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#reinitialization-hyperbolic-pseudo-time-stepping"><span class="std std-ref">pseudo time stepping</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#reinitialization-hyperbolic-pseudo-time-stepping"><span class="std std-ref">pseudo time stepping</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
 <td><p></p></td>
 <td><p><a class="reference internal" href="#reinitialization-hyperbolic-pseudo-time-stepping"><span class="std std-ref">See table</span></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#reinitialization-hyperbolic-continuous-galerkin"><span class="std std-ref">Continuous Galerkin</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#reinitialization-hyperbolic-continuous-galerkin"><span class="std std-ref">Continuous Galerkin</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
 <td><p></p></td>
 <td><p><a class="reference internal" href="#reinitialization-hyperbolic-continuous-galerkin"><span class="std std-ref">See table</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#reinitialization-hyperbolic-discontinuous-galerkin"><span class="std std-ref">Discontinuous Galerkin</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#reinitialization-hyperbolic-discontinuous-galerkin"><span class="std std-ref">Discontinuous Galerkin</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
 <td><p></p></td>
 <td><p><a class="reference internal" href="#reinitialization-hyperbolic-discontinuous-galerkin"><span class="std std-ref">See table</span></a></p></td>
 </tr>
 </tbody>
 </table>
-<p><a id="reinitialization-hyperbolic-interface-thickness-parameter"></a></p>
-<section id="reinitialization-hyperbolic-interface-thickness-parameter">
-<h4><code class="docutils literal notranslate"><span class="pre">reinitialization:</span> <span class="pre">hyperbolic:</span> <span class="pre">interface</span> <span class="pre">thickness</span> <span class="pre">parameter</span></code><a class="headerlink" href="#reinitialization-hyperbolic-interface-thickness-parameter" title="Link to this heading"></a></h4>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Parameter</p></th>
-<th class="head"><p>Type</p></th>
-<th class="head"><p>Default</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">proportional_to_cell_size</span></code></p></td>
-<td><p>Choose the value type of the interface thickness parameter.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">proportional_to_cell_size</span></code><br>- <code class="docutils literal notranslate"><span class="pre">absolute_value</span></code><br>- <code class="docutils literal notranslate"><span class="pre">number_of_cells_across_interface</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">val</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0.5</span></code></p></td>
-<td><p>Defines the value of the chosen interface thickness parameter type.</p></td>
-</tr>
-</tbody>
-</table>
 <p><a id="reinitialization-hyperbolic-pseudo-time-stepping"></a></p>
-</section>
 <section id="reinitialization-hyperbolic-pseudo-time-stepping">
 <h4><code class="docutils literal notranslate"><span class="pre">reinitialization:</span> <span class="pre">hyperbolic:</span> <span class="pre">pseudo</span> <span class="pre">time</span> <span class="pre">stepping</span></code><a class="headerlink" href="#reinitialization-hyperbolic-pseudo-time-stepping" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
