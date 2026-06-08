@@ -209,6 +209,10 @@ Functions</h2></td></tr>
 <tr class="memitem:ab3a31181077a4737c5fdb60b2e308fa3"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#ab3a31181077a4737c5fdb60b2e308fa3">compute_intersected_quadrature</a> (<a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a2f7423e0844ee248df7ba907faaccba1">MappingInfoVectorType</a>&lt; dim, number &gt; mapping_info_cells, <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a65482f1d63bf468a14abfe61d4a6278a">MappingInfoType</a>&lt; dim, number &gt; &amp;mapping_info_surface, const dealii::DoFHandler&lt; dim &gt; &amp;level_set_dof_handler, const VectorType &amp;level_set, const dealii::MatrixFree&lt; dim, number, dealii::VectorizedArray&lt; number &gt; &gt; &amp;matrix_free, const int fe_degree, const bool is_two_phase, const bool is_dg=false, <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a2f7423e0844ee248df7ba907faaccba1">MappingInfoVectorType</a>&lt; dim, number &gt; mapping_info_faces={})</td></tr>
 <tr class="memdesc:ab3a31181077a4737c5fdb60b2e308fa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function generates the immersed quadrature rules in the case that the domain is described by a discrete level-set function.  <br /></td></tr>
 <tr class="separator:ab3a31181077a4737c5fdb60b2e308fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e44ef5697ac1ce6f2e18a90bbd7a079" id="r_a4e44ef5697ac1ce6f2e18a90bbd7a079"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename VectorType &gt; </td></tr>
+<tr class="memitem:a4e44ef5697ac1ce6f2e18a90bbd7a079"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a4e44ef5697ac1ce6f2e18a90bbd7a079">compute_immersed_surface_quadrature</a> (<a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a65482f1d63bf468a14abfe61d4a6278a">MappingInfoType</a>&lt; dim, number &gt; &amp;mapping_info_surface, const dealii::DoFHandler&lt; dim &gt; &amp;level_set_dof_handler, const VectorType &amp;level_set, const dealii::MatrixFree&lt; dim, number, dealii::VectorizedArray&lt; number &gt; &gt; &amp;matrix_free, const int fe_degree)</td></tr>
+<tr class="memdesc:a4e44ef5697ac1ce6f2e18a90bbd7a079"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function generates the immersed quadrature rules in the case that the domain is described by a discrete level-set function.  <br /></td></tr>
+<tr class="separator:a4e44ef5697ac1ce6f2e18a90bbd7a079"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83a61644cd5fea6ca6de8b2bdf32de33" id="r_a83a61644cd5fea6ca6de8b2bdf32de33"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , int n_components = 1&gt; </td></tr>
 <tr class="memitem:a83a61644cd5fea6ca6de8b2bdf32de33"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a83a61644cd5fea6ca6de8b2bdf32de33">evaluate_intersected_domain</a> (dealii::FEPointEvaluation&lt; n_components, dim, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;point_eval, const <a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, n_components, number &gt; &amp;cell_eval, const dealii::EvaluationFlags::EvaluationFlags evaluation_flags, const unsigned int cell_batch, const unsigned int cell_lane, const unsigned int n_dofs_per_cell)</td></tr>
 <tr class="memdesc:a83a61644cd5fea6ca6de8b2bdf32de33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates solution values in the intersected domain for a specific SIMD lane within a cell batch.  <br /></td></tr>
@@ -257,6 +261,12 @@ Functions</h2></td></tr>
 <tr class="separator:a5fd2e3187dd83c8f024516b83f35819b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba8134692d4734ab0a3467110fcbe779" id="r_aba8134692d4734ab0a3467110fcbe779"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#aba8134692d4734ab0a3467110fcbe779">compute_intersected_quadrature</a> (std::vector&lt; std::shared_ptr&lt; dealii::NonMatching::MappingInfo&lt; 3, 3, dealii::VectorizedArray&lt; double &gt; &gt; &gt; &gt;, dealii::NonMatching::MappingInfo&lt; 3, 3, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const dealii::DoFHandler&lt; 3 &gt; &amp;, const dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &amp;, const dealii::MatrixFree&lt; 3, double, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const int, const bool, const bool, std::vector&lt; std::shared_ptr&lt; dealii::NonMatching::MappingInfo&lt; 3, 3, dealii::VectorizedArray&lt; double &gt; &gt; &gt; &gt;)</td></tr>
 <tr class="separator:aba8134692d4734ab0a3467110fcbe779"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abddea83f8a64bf3a0c45d7756ecf1c98" id="r_abddea83f8a64bf3a0c45d7756ecf1c98"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#abddea83f8a64bf3a0c45d7756ecf1c98">compute_immersed_surface_quadrature</a> (dealii::NonMatching::MappingInfo&lt; 1, 1, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const dealii::DoFHandler&lt; 1 &gt; &amp;, const dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &amp;, const dealii::MatrixFree&lt; 1, double, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const int)</td></tr>
+<tr class="separator:abddea83f8a64bf3a0c45d7756ecf1c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac7844c20d0ee490a98a73aef458421" id="r_a7ac7844c20d0ee490a98a73aef458421"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a7ac7844c20d0ee490a98a73aef458421">compute_immersed_surface_quadrature</a> (dealii::NonMatching::MappingInfo&lt; 2, 2, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const dealii::DoFHandler&lt; 2 &gt; &amp;, const dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &amp;, const dealii::MatrixFree&lt; 2, double, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const int)</td></tr>
+<tr class="separator:a7ac7844c20d0ee490a98a73aef458421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77641b571135efd636dbf4e364ff9658" id="r_a77641b571135efd636dbf4e364ff9658"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a77641b571135efd636dbf4e364ff9658">compute_immersed_surface_quadrature</a> (dealii::NonMatching::MappingInfo&lt; 3, 3, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const dealii::DoFHandler&lt; 3 &gt; &amp;, const dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &amp;, const dealii::MatrixFree&lt; 3, double, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const int)</td></tr>
+<tr class="separator:a77641b571135efd636dbf4e364ff9658"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a65482f1d63bf468a14abfe61d4a6278a" name="a65482f1d63bf468a14abfe61d4a6278a"></a>
@@ -630,6 +640,217 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
+<a id="abddea83f8a64bf3a0c45d7756ecf1c98" name="abddea83f8a64bf3a0c45d7756ecf1c98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abddea83f8a64bf3a0c45d7756ecf1c98">&#9670;&#160;</a></span>compute_immersed_surface_quadrature() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">template void MeltPoolDG::CutUtil::compute_immersed_surface_quadrature </td>
+          <td>(</td>
+          <td class="paramtype">dealii::NonMatching::MappingInfo&lt; 1, 1, dealii::VectorizedArray&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::DoFHandler&lt; 1 &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::MatrixFree&lt; 1, double, dealii::VectorizedArray&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ac7844c20d0ee490a98a73aef458421" name="a7ac7844c20d0ee490a98a73aef458421"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ac7844c20d0ee490a98a73aef458421">&#9670;&#160;</a></span>compute_immersed_surface_quadrature() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">template void MeltPoolDG::CutUtil::compute_immersed_surface_quadrature </td>
+          <td>(</td>
+          <td class="paramtype">dealii::NonMatching::MappingInfo&lt; 2, 2, dealii::VectorizedArray&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::DoFHandler&lt; 2 &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::MatrixFree&lt; 2, double, dealii::VectorizedArray&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a77641b571135efd636dbf4e364ff9658" name="a77641b571135efd636dbf4e364ff9658"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77641b571135efd636dbf4e364ff9658">&#9670;&#160;</a></span>compute_immersed_surface_quadrature() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">template void MeltPoolDG::CutUtil::compute_immersed_surface_quadrature </td>
+          <td>(</td>
+          <td class="paramtype">dealii::NonMatching::MappingInfo&lt; 3, 3, dealii::VectorizedArray&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::DoFHandler&lt; 3 &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::MatrixFree&lt; 3, double, dealii::VectorizedArray&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e44ef5697ac1ce6f2e18a90bbd7a079" name="a4e44ef5697ac1ce6f2e18a90bbd7a079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e44ef5697ac1ce6f2e18a90bbd7a079">&#9670;&#160;</a></span>compute_immersed_surface_quadrature() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename VectorType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void MeltPoolDG::CutUtil::compute_immersed_surface_quadrature </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a65482f1d63bf468a14abfe61d4a6278a">MappingInfoType</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mapping_info_surface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::DoFHandler&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>level_set_dof_handler</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const VectorType &amp;&#160;</td>
+          <td class="paramname"><em>level_set</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::MatrixFree&lt; dim, number, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_free</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>fe_degree</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function generates the immersed quadrature rules in the case that the domain is described by a discrete level-set function. </p>
+<p>It is an overload of the above function, which is used when the cut quadrature rules are only needed for the surface integrals.</p>
+<p>The class NonMatching::DiscreteQuadratureGenerator&lt;dim&gt; is used to generate the immersed quadrature rules, for the immersed geometry described by discrete level-set function via a (<code>level_set_dof_handler</code>, <code>level_set</code>) pair.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">dim</td><td>Dimension in which this function is to be used. </td></tr>
+    <tr><td class="paramname">number</td><td>Floating-point value type used for this function. </td></tr>
+    <tr><td class="paramname">VectorType</td><td>Vector type used for this function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mapping_info_surface</td><td>dealii::NonMatching::MappingInfo object, provides the mapping information computation and mapping data storage of the surface. </td></tr>
+    <tr><td class="paramname">level_set_dof_handler</td><td>DoFHandler object of the discrete level-set. </td></tr>
+    <tr><td class="paramname">level_set</td><td>Discrete level-set vector. </td></tr>
+    <tr><td class="paramname">matrix_free</td><td>Matrix free object, provides the iterators. </td></tr>
+    <tr><td class="paramname">fe_degree</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Currently, the <code>fe_degree</code> has to be the same for both subdomains in the case of a two-domain problem. </dd>
+<dd>
+Keep attention of the definition of the level-set field orientation. Currently, the single-phase region is assigned to the positive level-set region. </dd></dl>
+
+</div>
+</div>
 <a id="ab3a31181077a4737c5fdb60b2e308fa3" name="ab3a31181077a4737c5fdb60b2e308fa3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab3a31181077a4737c5fdb60b2e308fa3">&#9670;&#160;</a></span>compute_intersected_quadrature() <span class="overload">[1/4]</span></h2>
 
@@ -701,7 +922,7 @@ template&lt;int dim, typename number , typename VectorType &gt; </div>
 </div><div class="memdoc">
 
 <p>This function generates the immersed quadrature rules in the case that the domain is described by a discrete level-set function. </p>
-<p>The classes NonMatching::DiscreteQuadratureGenerator&lt;dim&gt; and NonMatching::DiscreteFaceQuadratureGenerator&lt;dim&gt; are used to generate the immersed quadrature rules, for the immersed geometry described by discrete level-set function via a (<code>level_set_dof_handler</code>, <code>level_set</code>) pair.</p>
+<p>The class NonMatching::DiscreteQuadratureGenerator&lt;dim&gt; is used to generate the immersed quadrature rules, for the immersed geometry described by discrete level-set function via a (<code>level_set_dof_handler</code>, <code>level_set</code>) pair.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">dim</td><td>Dimension in which this function is to be used. </td></tr>

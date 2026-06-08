@@ -135,48 +135,168 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">MeltPoolDG::LevelSet::ReinitializationEllipticOperator&lt; dim, number &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Operator for the matrix-free evaluation of a compressible single-phase flow cutDG formulation for explicit time integration.  
+<p>Operator for the matrix-free evaluation of diffusive reinitialization of the level set function.  
  <a href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="reinitialization__elliptic__operator_8hpp_source.html">reinitialization_elliptic_operator.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for MeltPoolDG::LevelSet::ReinitializationEllipticOperator&lt; dim, number &gt;:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator__inherit__graph.svg" width="240" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for MeltPoolDG::LevelSet::ReinitializationEllipticOperator&lt; dim, number &gt;:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator__coll__graph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:ae4a571cc78fa58fb07ed59262a69820d" id="r_ae4a571cc78fa58fb07ed59262a69820d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ae4a571cc78fa58fb07ed59262a69820d">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt; number &gt;</td></tr>
 <tr class="separator:ae4a571cc78fa58fb07ed59262a69820d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa3ea4ef3624584b9a1266db99af4ffc" id="r_afa3ea4ef3624584b9a1266db99af4ffc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#afa3ea4ef3624584b9a1266db99af4ffc">BlockVectorType</a> = dealii::LinearAlgebra::distributed::BlockVector&lt; number &gt;</td></tr>
-<tr class="separator:afa3ea4ef3624584b9a1266db99af4ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a423adc1b1393aa7575437f187b914682" id="r_a423adc1b1393aa7575437f187b914682"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a423adc1b1393aa7575437f187b914682">VectorizedArrayType</a> = dealii::VectorizedArray&lt; number &gt;</td></tr>
+<tr class="separator:a423adc1b1393aa7575437f187b914682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabac3d29d815477e5a9ef451598aab42" id="r_aabac3d29d815477e5a9ef451598aab42"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#aabac3d29d815477e5a9ef451598aab42">MappingInfoType</a> = <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a65482f1d63bf468a14abfe61d4a6278a">CutUtil::MappingInfoType</a>&lt; dim, number &gt;</td></tr>
+<tr class="separator:aabac3d29d815477e5a9ef451598aab42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a924aaa2571eb431abf3e39cb2777892b" id="r_a924aaa2571eb431abf3e39cb2777892b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a924aaa2571eb431abf3e39cb2777892b">PointEvaluationType</a> = dealii::FEPointEvaluation&lt; 1, dim, dim, <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a423adc1b1393aa7575437f187b914682">VectorizedArrayType</a> &gt;</td></tr>
+<tr class="separator:a924aaa2571eb431abf3e39cb2777892b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_types_classMeltPoolDG_1_1OperatorMatrixFree"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMeltPoolDG_1_1OperatorMatrixFree')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html">MeltPoolDG::OperatorMatrixFree&lt; dim, number &gt;</a></td></tr>
+<tr class="memitem:a793d863f1a2d14f290c050fd27c55541 inherit pub_types_classMeltPoolDG_1_1OperatorMatrixFree" id="r_a793d863f1a2d14f290c050fd27c55541"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a793d863f1a2d14f290c050fd27c55541">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt; number &gt;</td></tr>
+<tr class="separator:a793d863f1a2d14f290c050fd27c55541 inherit pub_types_classMeltPoolDG_1_1OperatorMatrixFree"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56c5e640e318eba3904bfd5cc2b01cb3 inherit pub_types_classMeltPoolDG_1_1OperatorMatrixFree" id="r_a56c5e640e318eba3904bfd5cc2b01cb3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a56c5e640e318eba3904bfd5cc2b01cb3">BlockVectorType</a> = dealii::LinearAlgebra::distributed::BlockVector&lt; number &gt;</td></tr>
+<tr class="separator:a56c5e640e318eba3904bfd5cc2b01cb3 inherit pub_types_classMeltPoolDG_1_1OperatorMatrixFree"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25017ec452d297063530d7ddd2520a7e inherit pub_types_classMeltPoolDG_1_1OperatorMatrixFree" id="r_a25017ec452d297063530d7ddd2520a7e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a25017ec452d297063530d7ddd2520a7e">SparseMatrixType</a> = dealii::TrilinosWrappers::SparseMatrix</td></tr>
+<tr class="separator:a25017ec452d297063530d7ddd2520a7e inherit pub_types_classMeltPoolDG_1_1OperatorMatrixFree"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a741653ef075770cc352bb2d98259a935" id="r_a741653ef075770cc352bb2d98259a935"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a741653ef075770cc352bb2d98259a935">ReinitializationEllipticOperator</a> (const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a>&lt; dim, dim, number &gt; &amp;scratch_data_in, const <a class="el" href="structMeltPoolDG_1_1LevelSet_1_1ReinitializationData.html">ReinitializationData</a>&lt; number &gt; &amp;reinit_data_in, const unsigned int reinit_dof_idx_in, const unsigned int reinit_quad_idx_in, const <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#afa3ea4ef3624584b9a1266db99af4ffc">BlockVectorType</a> &amp;normal_vector_in, const bool is_dg_in)</td></tr>
-<tr class="memdesc:a741653ef075770cc352bb2d98259a935"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
-<tr class="separator:a741653ef075770cc352bb2d98259a935"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28b85154614e00fccd58100768bf186a" id="r_a28b85154614e00fccd58100768bf186a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a28b85154614e00fccd58100768bf186a">ReinitializationEllipticOperator</a> (const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">MeltPoolDG::ScratchData</a>&lt; dim, dim, number &gt; &amp;scratch_data_in, const <a class="el" href="structMeltPoolDG_1_1LevelSet_1_1ReinitializationData.html">ReinitializationData</a>&lt; number &gt; &amp;reinit_data_in, const unsigned int reinit_dof_idx_in, const unsigned int reinit_quad_idx_in, const <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#aabac3d29d815477e5a9ef451598aab42">MappingInfoType</a> &amp;mapping_info_surface_in, const unsigned int ls_dof_idx_in, const std::shared_ptr&lt; dealii::NonMatching::MeshClassifier&lt; dim &gt; &gt; mesh_classifier_in)</td></tr>
+<tr class="memdesc:a28b85154614e00fccd58100768bf186a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="separator:a28b85154614e00fccd58100768bf186a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26009969cc712db5af220abf13d9e409" id="r_a26009969cc712db5af220abf13d9e409"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a26009969cc712db5af220abf13d9e409">vmult</a> (<a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ae4a571cc78fa58fb07ed59262a69820d">VectorType</a> &amp;dst, const <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ae4a571cc78fa58fb07ed59262a69820d">VectorType</a> &amp;src) const final</td></tr>
+<tr class="memdesc:a26009969cc712db5af220abf13d9e409"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the operator in a matrix-free fashion. Top-level function for the evaluation of the left-hand side.  <br /></td></tr>
+<tr class="separator:a26009969cc712db5af220abf13d9e409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c540eda2043e784e0111900382cb56" id="r_ae4c540eda2043e784e0111900382cb56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ae4c540eda2043e784e0111900382cb56">create_rhs</a> (<a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ae4a571cc78fa58fb07ed59262a69820d">VectorType</a> &amp;rhs, const <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ae4a571cc78fa58fb07ed59262a69820d">VectorType</a> &amp;old_level_set) const final</td></tr>
+<tr class="memdesc:ae4c540eda2043e784e0111900382cb56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the right-hand side vector using a matrix-free evaluation. Top-level function.  <br /></td></tr>
+<tr class="separator:ae4c540eda2043e784e0111900382cb56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aead993ae643b4513c90b8bac292c5905" id="r_aead993ae643b4513c90b8bac292c5905"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#aead993ae643b4513c90b8bac292c5905">reinit</a> () final</td></tr>
+<tr class="memdesc:aead993ae643b4513c90b8bac292c5905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinitialize internal data structures, typically after mesh changes.  <br /></td></tr>
+<tr class="separator:aead993ae643b4513c90b8bac292c5905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4ac8842057d1920efe17697401b3922" id="r_aa4ac8842057d1920efe17697401b3922"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#aa4ac8842057d1920efe17697401b3922">rhs_cell_operation</a> (<a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, 1, number &gt; &amp;cell_eval, const <a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, 1, number &gt; &amp;psi_old) const</td></tr>
+<tr class="memdesc:aa4ac8842057d1920efe17697401b3922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the contribution of a single cell integral to the right-hand side. First-level function for the evaluation of the volume integrals.  <br /></td></tr>
+<tr class="separator:aa4ac8842057d1920efe17697401b3922"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ee75bade24e0c3b3e499beb9ca65b05" id="r_a4ee75bade24e0c3b3e499beb9ca65b05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a4ee75bade24e0c3b3e499beb9ca65b05">interface_penalty_cell_operation</a> (<a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a924aaa2571eb431abf3e39cb2777892b">PointEvaluationType</a> &amp;interface_penalty_surface, <a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, 1, number &gt; &amp;interface_penalty, const unsigned int lane, const number penalty_coefficient) const</td></tr>
+<tr class="memdesc:a4ee75bade24e0c3b3e499beb9ca65b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the contribution of a single cell surface integral to the penalty term for the weak imposition of interface Dirichlet boundary condition.  <br /></td></tr>
+<tr class="separator:a4ee75bade24e0c3b3e499beb9ca65b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMeltPoolDG_1_1OperatorMatrixFree')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html">MeltPoolDG::OperatorMatrixFree&lt; dim, number &gt;</a></td></tr>
+<tr class="memitem:afdb66fd1fd3ee6265dfac1ae1454c3a4 inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree" id="r_afdb66fd1fd3ee6265dfac1ae1454c3a4"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#afdb66fd1fd3ee6265dfac1ae1454c3a4">~OperatorMatrixFree</a> ()=default</td></tr>
+<tr class="separator:afdb66fd1fd3ee6265dfac1ae1454c3a4 inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4d3dabc2d93d67d202e5c963a3e976f inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree" id="r_ae4d3dabc2d93d67d202e5c963a3e976f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#ae4d3dabc2d93d67d202e5c963a3e976f">create_rhs</a> (<a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a56c5e640e318eba3904bfd5cc2b01cb3">BlockVectorType</a> &amp;, const <a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a793d863f1a2d14f290c050fd27c55541">VectorType</a> &amp;) const</td></tr>
+<tr class="memdesc:ae4d3dabc2d93d67d202e5c963a3e976f inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the right-hand side vector for block vectors <code>dst</code>.  <br /></td></tr>
+<tr class="separator:ae4d3dabc2d93d67d202e5c963a3e976f inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a95f806705bf542db2646636502d7fb inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree" id="r_a1a95f806705bf542db2646636502d7fb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a1a95f806705bf542db2646636502d7fb">create_rhs</a> (<a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a793d863f1a2d14f290c050fd27c55541">VectorType</a> &amp;, const <a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a56c5e640e318eba3904bfd5cc2b01cb3">BlockVectorType</a> &amp;) const</td></tr>
+<tr class="memdesc:a1a95f806705bf542db2646636502d7fb inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the right-hand side vector for block vectors <code>src</code>.  <br /></td></tr>
+<tr class="separator:a1a95f806705bf542db2646636502d7fb inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af81a30b1b1e9ccd319d84e485a39558e inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree" id="r_af81a30b1b1e9ccd319d84e485a39558e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#af81a30b1b1e9ccd319d84e485a39558e">vmult</a> (<a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a56c5e640e318eba3904bfd5cc2b01cb3">BlockVectorType</a> &amp;, const <a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a56c5e640e318eba3904bfd5cc2b01cb3">BlockVectorType</a> &amp;) const</td></tr>
+<tr class="separator:af81a30b1b1e9ccd319d84e485a39558e inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43ce77c9a43449ea9b22d1d71391763b inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree" id="r_a43ce77c9a43449ea9b22d1d71391763b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a43ce77c9a43449ea9b22d1d71391763b">compute_system_matrix_from_matrixfree</a> (dealii::TrilinosWrappers::SparseMatrix &amp;) const</td></tr>
+<tr class="memdesc:a43ce77c9a43449ea9b22d1d71391763b inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute a sparse matrix using matrix-free techniques.  <br /></td></tr>
+<tr class="separator:a43ce77c9a43449ea9b22d1d71391763b inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af44b04f8a1975e7aa91629fcf76f032c inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree" id="r_af44b04f8a1975e7aa91629fcf76f032c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#af44b04f8a1975e7aa91629fcf76f032c">compute_inverse_diagonal_from_matrixfree</a> (<a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a793d863f1a2d14f290c050fd27c55541">VectorType</a> &amp;) const</td></tr>
+<tr class="memdesc:af44b04f8a1975e7aa91629fcf76f032c inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the inverse diagonal using matrix-free techniques.  <br /></td></tr>
+<tr class="separator:af44b04f8a1975e7aa91629fcf76f032c inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a271355a243611f5bd7bd6b53af63ab08 inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree" id="r_a271355a243611f5bd7bd6b53af63ab08"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a271355a243611f5bd7bd6b53af63ab08">compute_inverse_diagonal_from_matrixfree</a> (<a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a56c5e640e318eba3904bfd5cc2b01cb3">BlockVectorType</a> &amp;) const</td></tr>
+<tr class="memdesc:a271355a243611f5bd7bd6b53af63ab08 inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the inverse diagonal using matrix-free techniques for block vectors.  <br /></td></tr>
+<tr class="separator:a271355a243611f5bd7bd6b53af63ab08 inherit pub_methods_classMeltPoolDG_1_1OperatorMatrixFree"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classMeltPoolDG_1_1OperatorBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMeltPoolDG_1_1OperatorBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMeltPoolDG_1_1OperatorBase.html">MeltPoolDG::OperatorBase&lt; number &gt;</a></td></tr>
+<tr class="memitem:addd95ab4b7f3cefb06679f967a7b68cd inherit pub_methods_classMeltPoolDG_1_1OperatorBase" id="r_addd95ab4b7f3cefb06679f967a7b68cd"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorBase.html#addd95ab4b7f3cefb06679f967a7b68cd">~OperatorBase</a> ()=default</td></tr>
+<tr class="separator:addd95ab4b7f3cefb06679f967a7b68cd inherit pub_methods_classMeltPoolDG_1_1OperatorBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a379bea6e62495b5cbd26c14ce2138618 inherit pub_methods_classMeltPoolDG_1_1OperatorBase" id="r_a379bea6e62495b5cbd26c14ce2138618"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorBase.html#a379bea6e62495b5cbd26c14ce2138618">reset_dof_index</a> (const unsigned int dof_idx_in)</td></tr>
+<tr class="memdesc:a379bea6e62495b5cbd26c14ce2138618 inherit pub_methods_classMeltPoolDG_1_1OperatorBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the index for the current degrees of freedom (DoF).  <br /></td></tr>
+<tr class="separator:a379bea6e62495b5cbd26c14ce2138618 inherit pub_methods_classMeltPoolDG_1_1OperatorBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd83ce17c1ccaea5dca6c23dabef0f7 inherit pub_methods_classMeltPoolDG_1_1OperatorBase" id="r_a9dd83ce17c1ccaea5dca6c23dabef0f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorBase.html#a9dd83ce17c1ccaea5dca6c23dabef0f7">reset_time_increment</a> (const number dt)</td></tr>
+<tr class="memdesc:a9dd83ce17c1ccaea5dca6c23dabef0f7 inherit pub_methods_classMeltPoolDG_1_1OperatorBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the time increment for the operator.  <br /></td></tr>
+<tr class="separator:a9dd83ce17c1ccaea5dca6c23dabef0f7 inherit pub_methods_classMeltPoolDG_1_1OperatorBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a187079234f6a4445a94525698c0cb172 inherit pub_methods_classMeltPoolDG_1_1OperatorBase" id="r_a187079234f6a4445a94525698c0cb172"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorBase.html#a187079234f6a4445a94525698c0cb172">pre</a> ()</td></tr>
+<tr class="memdesc:a187079234f6a4445a94525698c0cb172 inherit pub_methods_classMeltPoolDG_1_1OperatorBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare for computations (e.g. update ghost values). Can be overridden by derived classes.  <br /></td></tr>
+<tr class="separator:a187079234f6a4445a94525698c0cb172 inherit pub_methods_classMeltPoolDG_1_1OperatorBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f41dcf6670aae529aa63e5bd951c9dd inherit pub_methods_classMeltPoolDG_1_1OperatorBase" id="r_a8f41dcf6670aae529aa63e5bd951c9dd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorBase.html#a8f41dcf6670aae529aa63e5bd951c9dd">post</a> ()</td></tr>
+<tr class="memdesc:a8f41dcf6670aae529aa63e5bd951c9dd inherit pub_methods_classMeltPoolDG_1_1OperatorBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize for computations (e.g. zero out ghost values). Can be overridden by derived classes.  <br /></td></tr>
+<tr class="separator:a8f41dcf6670aae529aa63e5bd951c9dd inherit pub_methods_classMeltPoolDG_1_1OperatorBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aeadf9908817a82bd8ebdd75e97314e1c" id="r_aeadf9908817a82bd8ebdd75e97314e1c"><td class="memTemplParams" colspan="2">template&lt;int n_components&gt; </td></tr>
+<tr class="memitem:aeadf9908817a82bd8ebdd75e97314e1c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a423adc1b1393aa7575437f187b914682">VectorizedArrayType</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#aeadf9908817a82bd8ebdd75e97314e1c">evaluate_rhs_coefficient</a> (const <a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, n_components, number &gt; &amp;psi_old, const unsigned int q_index) const</td></tr>
+<tr class="memdesc:aeadf9908817a82bd8ebdd75e97314e1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This evaluates the coefficient for the rhs integral.  <br /></td></tr>
+<tr class="separator:aeadf9908817a82bd8ebdd75e97314e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a5063a0ee6021ecb42bc527268fe8f1" id="r_a0a5063a0ee6021ecb42bc527268fe8f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a0a5063a0ee6021ecb42bc527268fe8f1">laplace_cell_operation</a> (<a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, 1, number &gt; &amp;cell_eval) const</td></tr>
+<tr class="memdesc:a0a5063a0ee6021ecb42bc527268fe8f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the contribution of the laplace operator of a cell to the lhs.  <br /></td></tr>
+<tr class="separator:a0a5063a0ee6021ecb42bc527268fe8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a4206fc666f169a71315e2dcb33a5f6d6" id="r_a4206fc666f169a71315e2dcb33a5f6d6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a4206fc666f169a71315e2dcb33a5f6d6">is_dg</a></td></tr>
-<tr class="separator:a4206fc666f169a71315e2dcb33a5f6d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d080272dab3dafba84c344c241fd1b" id="r_a49d080272dab3dafba84c344c241fd1b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; dealii::NonMatching::MeshClassifier&lt; dim &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a49d080272dab3dafba84c344c241fd1b">mesh_classifier</a></td></tr>
+<tr class="separator:a49d080272dab3dafba84c344c241fd1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedc21308a3157b0c72aa49f67a83deae" id="r_aedc21308a3157b0c72aa49f67a83deae"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#aedc21308a3157b0c72aa49f67a83deae">scratch_data</a></td></tr>
+<tr class="memdesc:aedc21308a3157b0c72aa49f67a83deae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to scratch data containing mesh, geometry, and FE evaluation utilities.  <br /></td></tr>
+<tr class="separator:aedc21308a3157b0c72aa49f67a83deae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad09510585d50c23ba61cc8f82fb2ec0" id="r_aad09510585d50c23ba61cc8f82fb2ec0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structMeltPoolDG_1_1LevelSet_1_1ReinitializationData.html">ReinitializationData</a>&lt; number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#aad09510585d50c23ba61cc8f82fb2ec0">reinit_data</a></td></tr>
+<tr class="memdesc:aad09510585d50c23ba61cc8f82fb2ec0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the reinitialization parameters and coefficients.  <br /></td></tr>
+<tr class="separator:aad09510585d50c23ba61cc8f82fb2ec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d78fa42c2047718c3177dc6dcdbf5c5" id="r_a7d78fa42c2047718c3177dc6dcdbf5c5"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a7d78fa42c2047718c3177dc6dcdbf5c5">reinit_quad_idx</a></td></tr>
+<tr class="memdesc:a7d78fa42c2047718c3177dc6dcdbf5c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quadrature index for evaluating terms during reinitialization.  <br /></td></tr>
+<tr class="separator:a7d78fa42c2047718c3177dc6dcdbf5c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b1be006b2bb28ecc0fa6f18b8f455b3" id="r_a9b1be006b2bb28ecc0fa6f18b8f455b3"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#aabac3d29d815477e5a9ef451598aab42">MappingInfoType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a9b1be006b2bb28ecc0fa6f18b8f455b3">mapping_info_surface</a></td></tr>
+<tr class="memdesc:a9b1be006b2bb28ecc0fa6f18b8f455b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapping information for integration over the interface.  <br /></td></tr>
+<tr class="separator:a9b1be006b2bb28ecc0fa6f18b8f455b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a085e85ff32ac652b9366e51ea585a7" id="r_a7a085e85ff32ac652b9366e51ea585a7"><td class="memItemLeft" align="right" valign="top">dealii::FE_Q&lt; dim &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a7a085e85ff32ac652b9366e51ea585a7">fe_point_level_set</a></td></tr>
+<tr class="memdesc:a7a085e85ff32ac652b9366e51ea585a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temporary FE object required by FEPointEvaluation.  <br /></td></tr>
+<tr class="separator:a7a085e85ff32ac652b9366e51ea585a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcad43e160abafc9b851dab6e0ece63e" id="r_abcad43e160abafc9b851dab6e0ece63e"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#abcad43e160abafc9b851dab6e0ece63e">n_dofs_per_cell</a></td></tr>
+<tr class="memdesc:abcad43e160abafc9b851dab6e0ece63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of DoFs per cell of the temporary FE.  <br /></td></tr>
+<tr class="separator:abcad43e160abafc9b851dab6e0ece63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09873b374b90fdeee62d5e9e1a82c692" id="r_a09873b374b90fdeee62d5e9e1a82c692"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a09873b374b90fdeee62d5e9e1a82c692">ls_dof_idx</a></td></tr>
+<tr class="memdesc:a09873b374b90fdeee62d5e9e1a82c692"><td class="mdescLeft">&#160;</td><td class="mdescRight">DOF handler index for the level set field.  <br /></td></tr>
+<tr class="separator:a09873b374b90fdeee62d5e9e1a82c692"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c9147b9083999b669b6bedf00cd861" id="r_ac3c9147b9083999b669b6bedf00cd861"><td class="memItemLeft" align="right" valign="top">dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ac3c9147b9083999b669b6bedf00cd861">solution_old</a></td></tr>
+<tr class="separator:ac3c9147b9083999b669b6bedf00cd861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8ab7b5aafc10cfb4a8162203d6cc730" id="r_aa8ab7b5aafc10cfb4a8162203d6cc730"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ae4a571cc78fa58fb07ed59262a69820d">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#aa8ab7b5aafc10cfb4a8162203d6cc730">zero_interface</a></td></tr>
+<tr class="separator:aa8ab7b5aafc10cfb4a8162203d6cc730"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_classMeltPoolDG_1_1OperatorBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMeltPoolDG_1_1OperatorBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMeltPoolDG_1_1OperatorBase.html">MeltPoolDG::OperatorBase&lt; number &gt;</a></td></tr>
+<tr class="memitem:a6f2dd213402487f734613167a615339d inherit pro_attribs_classMeltPoolDG_1_1OperatorBase" id="r_a6f2dd213402487f734613167a615339d"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorBase.html#a6f2dd213402487f734613167a615339d">dof_idx</a> = dealii::numbers::invalid_unsigned_int</td></tr>
+<tr class="separator:a6f2dd213402487f734613167a615339d inherit pro_attribs_classMeltPoolDG_1_1OperatorBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1463db265eea6c16e719bd8f12db69af inherit pro_attribs_classMeltPoolDG_1_1OperatorBase" id="r_a1463db265eea6c16e719bd8f12db69af"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorBase.html#a1463db265eea6c16e719bd8f12db69af">time_increment</a> = <a class="el" href="namespaceMeltPoolDG_1_1numbers.html#af7a6ff02e31d3a6fcc22fb9d6b962c3d">numbers::invalid_double</a></td></tr>
+<tr class="separator:a1463db265eea6c16e719bd8f12db69af inherit pro_attribs_classMeltPoolDG_1_1OperatorBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0840c129ea6afae28949a8b5d11f1b7b inherit pro_attribs_classMeltPoolDG_1_1OperatorBase" id="r_a0840c129ea6afae28949a8b5d11f1b7b"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1OperatorBase.html#a0840c129ea6afae28949a8b5d11f1b7b">time_increment_inv</a> = <a class="el" href="namespaceMeltPoolDG_1_1numbers.html#af7a6ff02e31d3a6fcc22fb9d6b962c3d">numbers::invalid_double</a></td></tr>
+<tr class="separator:a0840c129ea6afae28949a8b5d11f1b7b inherit pro_attribs_classMeltPoolDG_1_1OperatorBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number&gt;<br />
-class MeltPoolDG::LevelSet::ReinitializationEllipticOperator&lt; dim, number &gt;</div><p>Operator for the matrix-free evaluation of a compressible single-phase flow cutDG formulation for explicit time integration. </p>
+class MeltPoolDG::LevelSet::ReinitializationEllipticOperator&lt; dim, number &gt;</div><p>Operator for the matrix-free evaluation of diffusive reinitialization of the level set function. </p>
+<p>The implementation is based on the elliptic level set reinitialization method described in:</p>
+<p>T. Adams, S. Giani, and W. M. Coombs, "A high-order elliptic PDE based level set
+reinitialisation method using a discontinuous Galerkin discretisation," <a class="el" href="namespaceMeltPoolDG_1_1Journal.html">Journal</a> of Computational Physics, vol. 379, pp. 373–391, 2019. <a href="https://doi.org/10.1016/j.jcp.2018.12.003">https://doi.org/10.1016/j.jcp.2018.12.003</a></p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">dim</td><td>Dimension of the considered simulation case. </td></tr>
-    <tr><td class="paramname">number</td><td>Floating point format type. </td></tr>
+    <tr><td class="paramname">dim</td><td>Spatial dimension. </td></tr>
+    <tr><td class="paramname">number</td><td>Scalar number type (e.g., double or float). </td></tr>
   </table>
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="afa3ea4ef3624584b9a1266db99af4ffc" name="afa3ea4ef3624584b9a1266db99af4ffc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa3ea4ef3624584b9a1266db99af4ffc">&#9670;&#160;</a></span>BlockVectorType</h2>
+<a id="aabac3d29d815477e5a9ef451598aab42" name="aabac3d29d815477e5a9ef451598aab42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabac3d29d815477e5a9ef451598aab42">&#9670;&#160;</a></span>MappingInfoType</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -184,7 +304,39 @@ class MeltPoolDG::LevelSet::ReinitializationEllipticOperator&lt; dim, number &gt
 template&lt;int dim, typename number &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::BlockVectorType =  dealii::LinearAlgebra::distributed::BlockVector&lt;number&gt;</td>
+          <td class="memname">using <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::MappingInfoType =  <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a65482f1d63bf468a14abfe61d4a6278a">CutUtil::MappingInfoType</a>&lt;dim, number&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a924aaa2571eb431abf3e39cb2777892b" name="a924aaa2571eb431abf3e39cb2777892b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a924aaa2571eb431abf3e39cb2777892b">&#9670;&#160;</a></span>PointEvaluationType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::PointEvaluationType =  dealii::FEPointEvaluation&lt;1, dim, dim, <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a423adc1b1393aa7575437f187b914682">VectorizedArrayType</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a423adc1b1393aa7575437f187b914682" name="a423adc1b1393aa7575437f187b914682"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a423adc1b1393aa7575437f187b914682">&#9670;&#160;</a></span>VectorizedArrayType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::VectorizedArrayType =  dealii::VectorizedArray&lt;number&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -208,8 +360,8 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a741653ef075770cc352bb2d98259a935" name="a741653ef075770cc352bb2d98259a935"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a741653ef075770cc352bb2d98259a935">&#9670;&#160;</a></span>ReinitializationEllipticOperator()</h2>
+<a id="a28b85154614e00fccd58100768bf186a" name="a28b85154614e00fccd58100768bf186a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28b85154614e00fccd58100768bf186a">&#9670;&#160;</a></span>ReinitializationEllipticOperator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,14 +395,20 @@ template&lt;int dim, typename number &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#afa3ea4ef3624584b9a1266db99af4ffc">BlockVectorType</a> &amp;&#160;</td>
-          <td class="paramname"><em>normal_vector_in</em>, </td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#aabac3d29d815477e5a9ef451598aab42">MappingInfoType</a> &amp;&#160;</td>
+          <td class="paramname"><em>mapping_info_surface_in</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>is_dg_in</em>&#160;</td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>ls_dof_idx_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::shared_ptr&lt; dealii::NonMatching::MeshClassifier&lt; dim &gt; &gt;&#160;</td>
+          <td class="paramname"><em>mesh_classifier_in</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -268,17 +426,18 @@ template&lt;int dim, typename number &gt; </div>
     <tr><td class="paramname">reinit_data_in</td><td>Reference to the object for reinitialization-specific data. </td></tr>
     <tr><td class="paramname">reinit_dof_idx_in</td><td>Index of the used dof-handler object in <code>scratch_data_in</code>. </td></tr>
     <tr><td class="paramname">reinit_quad_idx_in</td><td>Index of the used quadrature object in <code>scratch_data_in</code>. </td></tr>
-    <tr><td class="paramname">normal_vector_in</td><td>Reference to the collection of normal vectors for the individual space dimensions. </td></tr>
-    <tr><td class="paramname">is_dg_in</td><td>Boolean indicator whether DG-FEM or CG-FEM is used. </td></tr>
+    <tr><td class="paramname">mapping_info_surface_in</td><td>Mapping information for the interface surface. </td></tr>
+    <tr><td class="paramname">ls_dof_idx_in</td><td>DOF handler index for the level set function. </td></tr>
+    <tr><td class="paramname">mesh_classifier_in</td><td>Shared pointer to the mesh classifier object containing information about cut cells. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a4206fc666f169a71315e2dcb33a5f6d6" name="a4206fc666f169a71315e2dcb33a5f6d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4206fc666f169a71315e2dcb33a5f6d6">&#9670;&#160;</a></span>is_dg</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae4c540eda2043e784e0111900382cb56" name="ae4c540eda2043e784e0111900382cb56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4c540eda2043e784e0111900382cb56">&#9670;&#160;</a></span>create_rhs()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -289,7 +448,72 @@ template&lt;int dim, typename number &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::is_dg</td>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::create_rhs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ae4a571cc78fa58fb07ed59262a69820d">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ae4a571cc78fa58fb07ed59262a69820d">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>old_level_set</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create the right-hand side vector using a matrix-free evaluation. Top-level function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td>Right-hand side vector. </td></tr>
+    <tr><td class="paramname">old_level_set</td><td>The level set vector where the signed distance property needs to be restored. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a0f0a703312a1320307d00fd7579999a1">MeltPoolDG::OperatorMatrixFree&lt; dim, number &gt;</a>.</p>
+
+</div>
+</div>
+<a id="aeadf9908817a82bd8ebdd75e97314e1c" name="aeadf9908817a82bd8ebdd75e97314e1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeadf9908817a82bd8ebdd75e97314e1c">&#9670;&#160;</a></span>evaluate_rhs_coefficient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;int n_components&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">ReinitializationEllipticOperator</a>&lt; dim, number &gt;<a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a423adc1b1393aa7575437f187b914682">::VectorizedArrayType</a> <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::evaluate_rhs_coefficient </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, n_components, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>psi_old</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>q_index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -298,7 +522,482 @@ template&lt;int dim, typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Boolean indicator whether DG-FEM or CG-FEM is used. This indicator is used to evaluate the correct terms in the cell and face loops. </p>
+
+<p>This evaluates the coefficient for the rhs integral. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">psi_old</td><td>Cell integrator for the old level set values. </td></tr>
+    <tr><td class="paramname">q_index</td><td>Index of the quadrature point. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Value of the source term. </dd></dl>
+
+</div>
+</div>
+<a id="a4ee75bade24e0c3b3e499beb9ca65b05" name="a4ee75bade24e0c3b3e499beb9ca65b05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ee75bade24e0c3b3e499beb9ca65b05">&#9670;&#160;</a></span>interface_penalty_cell_operation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::interface_penalty_cell_operation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#a924aaa2571eb431abf3e39cb2777892b">PointEvaluationType</a> &amp;&#160;</td>
+          <td class="paramname"><em>interface_penalty_surface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, 1, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>interface_penalty</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>lane</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>penalty_coefficient</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculate the contribution of a single cell surface integral to the penalty term for the weak imposition of interface Dirichlet boundary condition. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">interface_penalty_surface</td><td>Point evaluation object for the surface integral. </td></tr>
+    <tr><td class="paramname">interface_penalty</td><td>Cell integrator for the penalty term. </td></tr>
+    <tr><td class="paramname">lane</td><td>The SIMD lane for which the operation is performed. Corresponds to one cell in the cell batch. </td></tr>
+    <tr><td class="paramname">penalty_coefficient</td><td>Penalty coefficient for the interface penalty term. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0a5063a0ee6021ecb42bc527268fe8f1" name="a0a5063a0ee6021ecb42bc527268fe8f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a5063a0ee6021ecb42bc527268fe8f1">&#9670;&#160;</a></span>laplace_cell_operation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::laplace_cell_operation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, 1, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>cell_eval</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculate the contribution of the laplace operator of a cell to the lhs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cell_eval</td><td>Cell integrator. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aead993ae643b4513c90b8bac292c5905" name="aead993ae643b4513c90b8bac292c5905"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aead993ae643b4513c90b8bac292c5905">&#9670;&#160;</a></span>reinit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::reinit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reinitialize internal data structures, typically after mesh changes. </p>
+
+<p>Reimplemented from <a class="el" href="classMeltPoolDG_1_1OperatorBase.html#ac1bb0387918814bb140dba1c4e991803">MeltPoolDG::OperatorBase&lt; number &gt;</a>.</p>
+
+</div>
+</div>
+<a id="aa4ac8842057d1920efe17697401b3922" name="aa4ac8842057d1920efe17697401b3922"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4ac8842057d1920efe17697401b3922">&#9670;&#160;</a></span>rhs_cell_operation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::rhs_cell_operation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, 1, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>cell_eval</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, 1, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>psi_old</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the contribution of a single cell integral to the right-hand side. First-level function for the evaluation of the volume integrals. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cell_eval</td><td>Cell integrator for the right-hand side. </td></tr>
+    <tr><td class="paramname">psi_old</td><td>Cell integrator for the old level set values. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a26009969cc712db5af220abf13d9e409" name="a26009969cc712db5af220abf13d9e409"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26009969cc712db5af220abf13d9e409">&#9670;&#160;</a></span>vmult()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::vmult </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ae4a571cc78fa58fb07ed59262a69820d">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ae4a571cc78fa58fb07ed59262a69820d">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Apply the operator in a matrix-free fashion. Top-level function for the evaluation of the left-hand side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dst</td><td>Output vector. </td></tr>
+    <tr><td class="paramname">src</td><td>Input vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classMeltPoolDG_1_1OperatorMatrixFree.html#a3ce40e39e23f5d3d74b22742c8b1e3db">MeltPoolDG::OperatorMatrixFree&lt; dim, number &gt;</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7a085e85ff32ac652b9366e51ea585a7" name="a7a085e85ff32ac652b9366e51ea585a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a085e85ff32ac652b9366e51ea585a7">&#9670;&#160;</a></span>fe_point_level_set</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::FE_Q&lt;dim&gt; <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::fe_point_level_set</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Temporary FE object required by FEPointEvaluation. </p>
+
+</div>
+</div>
+<a id="a09873b374b90fdeee62d5e9e1a82c692" name="a09873b374b90fdeee62d5e9e1a82c692"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09873b374b90fdeee62d5e9e1a82c692">&#9670;&#160;</a></span>ls_dof_idx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned int <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::ls_dof_idx</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>DOF handler index for the level set field. </p>
+
+</div>
+</div>
+<a id="a9b1be006b2bb28ecc0fa6f18b8f455b3" name="a9b1be006b2bb28ecc0fa6f18b8f455b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b1be006b2bb28ecc0fa6f18b8f455b3">&#9670;&#160;</a></span>mapping_info_surface</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#aabac3d29d815477e5a9ef451598aab42">MappingInfoType</a>&amp; <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::mapping_info_surface</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Mapping information for integration over the interface. </p>
+
+</div>
+</div>
+<a id="a49d080272dab3dafba84c344c241fd1b" name="a49d080272dab3dafba84c344c241fd1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49d080272dab3dafba84c344c241fd1b">&#9670;&#160;</a></span>mesh_classifier</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;dealii::NonMatching::MeshClassifier&lt;dim&gt; &gt; <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::mesh_classifier</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Mesh classifier, which contains information if a cell is inside or outside the physically relevant region, or cut by the immersed boundary. It corresponds to the current level set position. </p>
+
+</div>
+</div>
+<a id="abcad43e160abafc9b851dab6e0ece63e" name="abcad43e160abafc9b851dab6e0ece63e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcad43e160abafc9b851dab6e0ece63e">&#9670;&#160;</a></span>n_dofs_per_cell</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned int <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::n_dofs_per_cell</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of DoFs per cell of the temporary FE. </p>
+
+</div>
+</div>
+<a id="aad09510585d50c23ba61cc8f82fb2ec0" name="aad09510585d50c23ba61cc8f82fb2ec0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad09510585d50c23ba61cc8f82fb2ec0">&#9670;&#160;</a></span>reinit_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structMeltPoolDG_1_1LevelSet_1_1ReinitializationData.html">ReinitializationData</a>&lt;number&gt;&amp; <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::reinit_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference to the reinitialization parameters and coefficients. </p>
+
+</div>
+</div>
+<a id="a7d78fa42c2047718c3177dc6dcdbf5c5" name="a7d78fa42c2047718c3177dc6dcdbf5c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d78fa42c2047718c3177dc6dcdbf5c5">&#9670;&#160;</a></span>reinit_quad_idx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned int <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::reinit_quad_idx</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Quadrature index for evaluating terms during reinitialization. </p>
+
+</div>
+</div>
+<a id="aedc21308a3157b0c72aa49f67a83deae" name="aedc21308a3157b0c72aa49f67a83deae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedc21308a3157b0c72aa49f67a83deae">&#9670;&#160;</a></span>scratch_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt;dim, dim, number&gt;&amp; <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::scratch_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference to scratch data containing mesh, geometry, and FE evaluation utilities. </p>
+
+</div>
+</div>
+<a id="ac3c9147b9083999b669b6bedf00cd861" name="ac3c9147b9083999b669b6bedf00cd861"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3c9147b9083999b669b6bedf00cd861">&#9670;&#160;</a></span>solution_old</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::AlignedVector&lt;dealii::VectorizedArray&lt;number&gt; &gt; <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::solution_old</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Solution vector from the previous iteration or time step (used in matrix-free mode). </p><dl class="section note"><dt>Note</dt><dd>Marked as mutable to allow updates in const functions. </dd></dl>
+
+</div>
+</div>
+<a id="aa8ab7b5aafc10cfb4a8162203d6cc730" name="aa8ab7b5aafc10cfb4a8162203d6cc730"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8ab7b5aafc10cfb4a8162203d6cc730">&#9670;&#160;</a></span>zero_interface</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#ae4a571cc78fa58fb07ed59262a69820d">VectorType</a> <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html">MeltPoolDG::LevelSet::ReinitializationEllipticOperator</a>&lt; dim, number &gt;::zero_interface</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This vector is used to create an empty cell integrator buffer for cut cells. The buffer accumulates penalty contribution. This vector is initialized to zero every <a class="el" href="classMeltPoolDG_1_1LevelSet_1_1ReinitializationEllipticOperator.html#aead993ae643b4513c90b8bac292c5905" title="Reinitialize internal data structures, typically after mesh changes.">reinit()</a> operation. </p>
 
 </div>
 </div>
