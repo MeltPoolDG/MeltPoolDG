@@ -888,6 +888,7 @@
 | Parameter | Type | Default | Description |
 |---|---|---|---|
 | `enable` | `boolean` | `False` | Set this parameter to true to consider evaporative cooling in the heat equation |
+| `enable linear activation ramp` | `boolean` | `True` | Enable a linear activation ramp for evaporative cooling between the activation temperature and the boiling temperature. If enabled, the mass flux increases smoothly and linearly within this temperature range. Otherwise, the mass flux is computed directly without applying a ramp. |
 | `consider enthalpy transport vapor mass flux` | `string` | `default` | Set this parameter to true to account for the enthalpy transported by the vapor mass flux in the heat equation. This is only recommended if the vapor mass flux is not considered in the Navier-Stokes equations.<br><br>Allowed values:<br>- `default`<br>- `true`<br>- `false` |
 | `activation temperature` | `number` | `-1e+100` | Activation temperature for the evaporative cooling. It must be smaller than or equal to the boiling temperature. By default, it will be chosen such that the transition from the linear activation ramp is kink-free. |
 | `model` | `string` | `regularized` | Select how the additional source term due to evaporation in the heat equation (evaporative cooling) is computed.<br><br>Allowed values:<br>- `none`<br>- `regularized`<br>- `sharp`<br>- `sharp_conforming` |
@@ -911,6 +912,8 @@
 | Parameter | Type | Default | Description |
 |---|---|---|---|
 | `enable` | `boolean` | `False` | Set this parameter to true to prescribe the evaporation-induced jump in the pressure field (i.e. recoil pressure), considered as an interfacial force in the momentum balance equation.If 'evaporative dilation rate' is enabled, this pressure jump will be added to the one resulting from the discontinuous normal velocity field. |
+| `enable linear activation ramp` | `boolean` | `True` | Enable a linear activation ramp for recoil pressure between the activation temperature and the boiling temperature. If enabled, the recoil pressure increases smoothly and linearly within this temperature range. Otherwise, the recoil pressure is computed directly without applying a ramp. |
+| `subtract ambient pressure` | `boolean` | `False` | Subtract ambient pressure from the recoil pressure. This can be used to ensure that the recoil pressure is zero at the boiling temperature. |
 | `ambient gas pressure` | `number` | `101300.0` | Ambient gas pressure for the recoil pressure model. |
 | `pressure coefficient` | `number` | `0.55` | Pressure coefficient for the recoil pressure model. |
 | `temperature constant` | `number` | `-1.0` | Temperature constant for the recoil pressure model. If this parameter is not set, the value is computed by latent_heat_evaporation * molar_mass / universal_gas_constant; |

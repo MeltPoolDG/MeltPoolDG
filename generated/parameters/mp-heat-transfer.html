@@ -1548,22 +1548,27 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 <td><p>Set this parameter to true to consider evaporative cooling in the heat equation</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">consider</span> <span class="pre">enthalpy</span> <span class="pre">transport</span> <span class="pre">vapor</span> <span class="pre">mass</span> <span class="pre">flux</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">enable</span> <span class="pre">linear</span> <span class="pre">activation</span> <span class="pre">ramp</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Enable a linear activation ramp for evaporative cooling between the activation temperature and the boiling temperature. If enabled, the mass flux increases smoothly and linearly within this temperature range. Otherwise, the mass flux is computed directly without applying a ramp.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">consider</span> <span class="pre">enthalpy</span> <span class="pre">transport</span> <span class="pre">vapor</span> <span class="pre">mass</span> <span class="pre">flux</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">default</span></code></p></td>
 <td><p>Set this parameter to true to account for the enthalpy transported by the vapor mass flux in the heat equation. This is only recommended if the vapor mass flux is not considered in the Navier-Stokes equations.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">default</span></code><br>- <code class="docutils literal notranslate"><span class="pre">true</span></code><br>- <code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">activation</span> <span class="pre">temperature</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">activation</span> <span class="pre">temperature</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">-1e+100</span></code></p></td>
 <td><p>Activation temperature for the evaporative cooling. It must be smaller than or equal to the boiling temperature. By default, it will be chosen such that the transition from the linear activation ramp is kink-free.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">model</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">regularized</span></code></p></td>
 <td><p>Select how the additional source term due to evaporation in the heat equation (evaporative cooling) is computed.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">none</span></code><br>- <code class="docutils literal notranslate"><span class="pre">regularized</span></code><br>- <code class="docutils literal notranslate"><span class="pre">sharp</span></code><br>- <code class="docutils literal notranslate"><span class="pre">sharp_conforming</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#evaporation-evaporative-cooling-dirac-delta-function-approximation"><span class="std std-ref">dirac delta function approximation</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#evaporation-evaporative-cooling-dirac-delta-function-approximation"><span class="std std-ref">dirac delta function approximation</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
 <td><p></p></td>
 <td><p><a class="reference internal" href="#evaporation-evaporative-cooling-dirac-delta-function-approximation"><span class="std std-ref">See table</span></a></p></td>
@@ -1632,6 +1637,16 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
 <td><p>Set this parameter to true to prescribe the evaporation-induced jump in the pressure field (i.e. recoil pressure), considered as an interfacial force in the momentum balance equation.If ‘evaporative dilation rate’ is enabled, this pressure jump will be added to the one resulting from the discontinuous normal velocity field.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">enable</span> <span class="pre">linear</span> <span class="pre">activation</span> <span class="pre">ramp</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Enable a linear activation ramp for recoil pressure between the activation temperature and the boiling temperature. If enabled, the recoil pressure increases smoothly and linearly within this temperature range. Otherwise, the recoil pressure is computed directly without applying a ramp.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">subtract</span> <span class="pre">ambient</span> <span class="pre">pressure</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Subtract ambient pressure from the recoil pressure. This can be used to ensure that the recoil pressure is zero at the boiling temperature.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ambient</span> <span class="pre">gas</span> <span class="pre">pressure</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
