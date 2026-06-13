@@ -55,6 +55,7 @@
 | `gravity constant` | `number` | `0.0` | Gravity constant. |
 | `domain representation type` | `string` | `fitted` | Domain representation type. Choose between 'fitted' and 'cut'.<br><br>Allowed values:<br>- `fitted`<br>- `cut` |
 | `verbosity level` | `integer` | `-1` | Verbosity level for output. |
+| [`limiter`](#compressible-navier-stokes-limiter) | `object` |  | [See table](#compressible-navier-stokes-limiter) |
 
 <a id="compressible-navier-stokes-fe"></a>
 ### `compressible navier stokes: fe`
@@ -99,6 +100,15 @@
 | `abs tolerance` | `number` | `1e-20` | Set the absolute tolerance for a successful solution of the linear system of equations. |
 | `do matrix free` | `boolean` | `True` | Set this parameter if a matrix free solution procedure should be performed. |
 | `monitor type` | `string` | `none` | Set the monitor type of the linear solver.<br><br>Allowed values:<br>- `none`<br>- `reduced`<br>- `all` |
+
+<a id="compressible-navier-stokes-limiter"></a>
+### `compressible navier stokes: limiter`
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `apply` | `boolean` | `False` | Whether to apply a limiter. |
+| `tvb constant` | `array` | `[]` | The TVB constant used in the TVB minmod limiter. The constant has the dimension of a second derivative. |
+| `type` | `string` | `tvd_minmod` | The type of limiter to apply.<br><br>Allowed values:<br>- `tvd_minmod`<br>- `tvb_minmod` |
 
 
 ---

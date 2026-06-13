@@ -133,7 +133,9 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">MeltPoolDG::Utilities Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -142,7 +144,226 @@ $(function() {
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1Utilities_1_1MatrixFree" id="r_namespaceMeltPoolDG_1_1Utilities_1_1MatrixFree"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Utilities_1_1MatrixFree.html">MatrixFree</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Utilities_1_1LimiterData.html">LimiterData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aa83f6d5b58c74b61b2c2347f2e5e64de" id="r_aa83f6d5b58c74b61b2c2347f2e5e64de"><td class="memTemplParams" colspan="2">template&lt;int n_components, typename TensorType , typename Container &gt; </td></tr>
+<tr class="memitem:aa83f6d5b58c74b61b2c2347f2e5e64de"><td class="memTemplItemLeft" align="right" valign="top">TensorType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Utilities.html#aa83f6d5b58c74b61b2c2347f2e5e64de">tvd_minmod</a> (const Container &amp;values)</td></tr>
+<tr class="separator:aa83f6d5b58c74b61b2c2347f2e5e64de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cf5284fb7b7d5cac3618486fdeca01c" id="r_a8cf5284fb7b7d5cac3618486fdeca01c"><td class="memTemplParams" colspan="2">template&lt;typename number , int n_components, typename TensorType , typename Container &gt; </td></tr>
+<tr class="memitem:a8cf5284fb7b7d5cac3618486fdeca01c"><td class="memTemplItemLeft" align="right" valign="top">TensorType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Utilities.html#a8cf5284fb7b7d5cac3618486fdeca01c">tvb_minmod</a> (const Container &amp;values, const std::vector&lt; number &gt; &amp;tvb_constant, const number cell_size)</td></tr>
+<tr class="separator:a8cf5284fb7b7d5cac3618486fdeca01c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17709e23477fb7e48a9f85bb19348587" id="r_a17709e23477fb7e48a9f85bb19348587"><td class="memTemplParams" colspan="2">template&lt;int dim, int n_components, typename number &gt; </td></tr>
+<tr class="memitem:a17709e23477fb7e48a9f85bb19348587"><td class="memTemplItemLeft" align="right" valign="top">std::array&lt; dealii::Tensor&lt; 1, n_components, number &gt;, dim &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Utilities.html#a17709e23477fb7e48a9f85bb19348587">compute_minmod_type_limited_slopes</a> (const std::vector&lt; dealii::Tensor&lt; 1, n_components, number &gt; &gt; &amp;cell_average_values, const typename dealii::Triangulation&lt; dim &gt;::active_cell_iterator &amp;cell, const dealii::Tensor&lt; 1, n_components, dealii::Tensor&lt; 1, dim, number &gt; &gt; &amp;average_cell_gradient, const <a class="el" href="structMeltPoolDG_1_1Utilities_1_1LimiterData.html">LimiterData</a>&lt; number &gt; &amp;limiter_data)</td></tr>
+<tr class="separator:a17709e23477fb7e48a9f85bb19348587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3be1c80c2acd281663d6991c7b90b1d" id="r_aa3be1c80c2acd281663d6991c7b90b1d"><td class="memTemplParams" colspan="2">template&lt;int dim, int n_components, typename number , typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;, typename VectorType  = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;&gt; </td></tr>
+<tr class="memitem:aa3be1c80c2acd281663d6991c7b90b1d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Utilities.html#aa3be1c80c2acd281663d6991c7b90b1d">apply_minmod_type_limiter</a> (const <a class="el" href="structMeltPoolDG_1_1MatrixFreeContext.html">MatrixFreeContext</a>&lt; dim, number &gt; &amp;mf_context, VectorType &amp;dst, const VectorType &amp;src, const <a class="el" href="structMeltPoolDG_1_1Utilities_1_1LimiterData.html">LimiterData</a>&lt; number &gt; &amp;limiter_data)</td></tr>
+<tr class="separator:aa3be1c80c2acd281663d6991c7b90b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="aa3be1c80c2acd281663d6991c7b90b1d" name="aa3be1c80c2acd281663d6991c7b90b1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3be1c80c2acd281663d6991c7b90b1d">&#9670;&#160;</a></span>apply_minmod_type_limiter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, int n_components, typename number , typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;, typename VectorType  = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void MeltPoolDG::Utilities::apply_minmod_type_limiter </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1MatrixFreeContext.html">MatrixFreeContext</a>&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mf_context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VectorType &amp;&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const VectorType &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Utilities_1_1LimiterData.html">LimiterData</a>&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>limiter_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function applies a minmod-type limiter to the solution vector in a cell-wise manner using the provided matrix-free context. It basically iterates over each cell to compute the limited solution based on the specified limiter type in the limiter data struct. For more details see Cockburn and Shu, "The Runge-Kutta Discontinuous Galerkin Method for
+Conservation Laws V: Multidimensional Systems", <a class="el" href="namespaceMeltPoolDG_1_1Journal.html">Journal</a> of Computational Physics, 141(2):199–224, 1998.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mf_context</td><td>Context containing a reference to the matrix-free object and relevant indices for dofs and quadrature. </td></tr>
+    <tr><td class="paramname">dst</td><td>The destination vector where the limited solution will be stored. </td></tr>
+    <tr><td class="paramname">src</td><td>The source vector containing the current solution values to be limited. </td></tr>
+    <tr><td class="paramname">limiter_data</td><td>Struct containing the limiter type and relevant parameters for the limiter. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a17709e23477fb7e48a9f85bb19348587" name="a17709e23477fb7e48a9f85bb19348587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17709e23477fb7e48a9f85bb19348587">&#9670;&#160;</a></span>compute_minmod_type_limited_slopes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, int n_components, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt; dealii::Tensor&lt; 1, n_components, number &gt;, dim &gt; MeltPoolDG::Utilities::compute_minmod_type_limited_slopes </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; dealii::Tensor&lt; 1, n_components, number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>cell_average_values</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename dealii::Triangulation&lt; dim &gt;::active_cell_iterator &amp;&#160;</td>
+          <td class="paramname"><em>cell</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, n_components, dealii::Tensor&lt; 1, dim, number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>average_cell_gradient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1Utilities_1_1LimiterData.html">LimiterData</a>&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>limiter_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function computes the limited slopes for a given cell using a minmod-type limiter. It computes the finite difference slopes with respect to the cell averages of the current cell and its neighbors in all direction separately and passes them together with the average cell gradient to the appropriate minmod-type limiter function (TVD or TVB) based on the specified limiter type in the limiter data struct. The resulting limited slopes are returned as an array of tensors, where each tensor corresponds to a spatial direction.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cell_average_values</td><td>A vector containing the cell average values for all cells in the domain. </td></tr>
+    <tr><td class="paramname">cell</td><td>The active cell iterator for the current cell for which the limited slopes are being computed. </td></tr>
+    <tr><td class="paramname">average_cell_gradient</td><td>The average cell gradient for the current cell, i.e. a linearized representation of the solution gradient in the cell. </td></tr>
+    <tr><td class="paramname">limiter_data</td><td>Struct containing the limiter type and relevant parameters for the limiter.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An array of tensors containing the limited slopes for each spatial direction. </dd></dl>
+
+</div>
+</div>
+<a id="a8cf5284fb7b7d5cac3618486fdeca01c" name="a8cf5284fb7b7d5cac3618486fdeca01c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cf5284fb7b7d5cac3618486fdeca01c">&#9670;&#160;</a></span>tvb_minmod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename number , int n_components, typename TensorType , typename Container &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">TensorType MeltPoolDG::Utilities::tvb_minmod </td>
+          <td>(</td>
+          <td class="paramtype">const Container &amp;&#160;</td>
+          <td class="paramname"><em>values</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tvb_constant</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>cell_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Computes the Total Variation Bounded (TVB) modified minmod of a container of tensors. The TVB minmod variant relaxes the strict TVD minmod criteria near smooth extrema to avoid unnecessary clipping of physical peaks. For each component, if the initial candidate slope (<code>values[0]</code>) is bounded by the threshold $M \cdot \Delta x^2$ (where $M$ is <code>tvb_constant</code> and $\Delta x$ is <code>cell_size</code>), the slope is considered smooth and left entirely unmodified. If it exceeds this threshold, the function falls back to the standard <code>tvd_minmod</code> routine for that component.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">number</td><td>The numeric type used int the computations. </td></tr>
+    <tr><td class="paramname">n_components</td><td>The number of components in the solution vector which are being limited. </td></tr>
+    <tr><td class="paramname">TensorType</td><td>The type of the tensor representing the solution values. This should be a dealii::Tensor type with the first template parameter equal to 1 and the second template parameter equal to <code>n_components</code>. </td></tr>
+    <tr><td class="paramname">Container</td><td>The type of the container holding the values. This can be any standard container (e.g., <code>std::vector</code>, <code>std::array</code>, <code>boost::container::small_vector</code>) that supports iterating over it and contains elements of type <code>TensorType</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">values</td><td>The container of tensors to evaluate. The first element (<code>values[0]</code>) represents the current cell slope on the cell of interest. </td></tr>
+    <tr><td class="paramname">tvb_constant</td><td>The tuning constant $M &gt; 0$ determining the strictness of the bound. </td></tr>
+    <tr><td class="paramname">cell_size</td><td>The characteristic mesh size of the local cell block, e.g. the mesh size in the direction of the slope being limited.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A tensor containing the component-wise TVB limited slopes. </dd></dl>
+
+</div>
+</div>
+<a id="aa83f6d5b58c74b61b2c2347f2e5e64de" name="aa83f6d5b58c74b61b2c2347f2e5e64de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa83f6d5b58c74b61b2c2347f2e5e64de">&#9670;&#160;</a></span>tvd_minmod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int n_components, typename TensorType , typename Container &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">TensorType MeltPoolDG::Utilities::tvd_minmod </td>
+          <td>(</td>
+          <td class="paramtype">const Container &amp;&#160;</td>
+          <td class="paramname"><em>values</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function computes the component-wise minmod operator over all tensors in the given container. The standard minmod calculation for each component index $i$ is:</p><ul>
+<li>If all candidate values share the same sign, it returns the value with the smallest absolute magnitude.</li>
+<li>If there is any sign change (indicating a local extremum), it returns zero to damp oscillations.</li>
+</ul>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Container</td><td>The type of the container holding the values. This can be any standard container (e.g., <code>std::vector</code>, <code>std::array</code>, <code>boost::container::small_vector</code>) that supports iterating over it and contains elements of type <code>TensorType</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">values</td><td>The container of values for which to compute the minmod.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The minmod of the given values. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

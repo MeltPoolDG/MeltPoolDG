@@ -141,14 +141,18 @@ $(function() {
   <div class="headertitle"><div class="title">matrix_free_util.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;deal.II/matrix_free/fe_evaluation.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;deal.II/base/tensor.h&gt;</code><br />
+<code>#include &lt;deal.II/grid/grid_tools.h&gt;</code><br />
+<code>#include &lt;deal.II/grid/tria.h&gt;</code><br />
+<code>#include &lt;deal.II/matrix_free/fe_evaluation.h&gt;</code><br />
 <code>#include &lt;deal.II/matrix_free/matrix_free.h&gt;</code><br />
 <code>#include &lt;deal.II/matrix_free/tools.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="fe__integrator_8hpp_source.html">meltpooldg/utilities/fe_integrator.hpp</a>&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for matrix_free_util.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="matrix__free__util_8hpp__incl.svg" width="539" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="matrix__free__util_8hpp__incl.svg" width="100%" height="481"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -192,6 +196,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ab23838164fc366b7dfb8d524e7d843f6" id="r_ab23838164fc366b7dfb8d524e7d843f6"><td class="memTemplParams" colspan="2">template&lt;int dim, int n_components, typename number , HasJacobianQuadraturePointKernels&lt; dim, number &gt; OperatorType&gt; </td></tr>
 <tr class="memitem:ab23838164fc366b7dfb8d524e7d843f6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ab23838164fc366b7dfb8d524e7d843f6">MeltPoolDG::compute_jacobian_matrix_representation</a> (const OperatorType &amp;implicit_operator, std::variant&lt; dealii::LinearAlgebra::distributed::Vector&lt; number &gt; *, dealii::TrilinosWrappers::SparseMatrix * &gt; dst, const <a class="el" href="namespaceMeltPoolDG.html#ae8ccc6771a919d5f9ff2de6a9c24e307">MatrixRepresentationType</a> type, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;current_solution, const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, const unsigned int dof_idx, const unsigned int quad_idx)</td></tr>
 <tr class="separator:ab23838164fc366b7dfb8d524e7d843f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5cdafb21dd90dcb847964f747401deb" id="r_af5cdafb21dd90dcb847964f747401deb"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , int n_components&gt; </td></tr>
+<tr class="memitem:af5cdafb21dd90dcb847964f747401deb"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; dealii::Tensor&lt; 1, n_components, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#af5cdafb21dd90dcb847964f747401deb">MeltPoolDG::compute_cell_average_quantities</a> (const <a class="el" href="structMeltPoolDG_1_1MatrixFreeContext.html">MatrixFreeContext</a>&lt; dim, number &gt; &amp;mf_context, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;solution)</td></tr>
+<tr class="separator:af5cdafb21dd90dcb847964f747401deb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
