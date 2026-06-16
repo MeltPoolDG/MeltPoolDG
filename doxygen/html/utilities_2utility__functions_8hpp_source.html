@@ -323,7 +323,21 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordflow">return</span> weight_a * term_a + weight_b * term_b;</div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  }</div>
 </div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>} <span class="comment">// namespace MeltPoolDG::UtilityFunctions</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  [[nodiscard]] dealii::VectorizedArray&lt;number&gt;</div>
+<div class="foldopen" id="foldopen00185" data-start="{" data-end="}">
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#adfa093c35f8aa3e01d011ef7286021d4">  185</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1UtilityFunctions.html#adfa093c35f8aa3e01d011ef7286021d4">calculate_complementary_error_function_vec</a>(<span class="keyword">const</span> dealii::VectorizedArray&lt;number&gt; &amp;x)</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  {</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    dealii::VectorizedArray&lt;number&gt; result;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; dealii::VectorizedArray&lt;number&gt;::size(); ++i)</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>      result[i] = std::erfc(x[i]);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>  }</div>
+</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>} <span class="comment">// namespace MeltPoolDG::UtilityFunctions</span></div>
 </div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1UtilityFunctions_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1UtilityFunctions.html">MeltPoolDG::UtilityFunctions</a></div><div class="ttdef"><b>Definition</b> utility_functions.hpp:23</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1UtilityFunctions_html_a004ba1cb4c59eff82f2c38806e242f6e"><div class="ttname"><a href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a004ba1cb4c59eff82f2c38806e242f6e">MeltPoolDG::UtilityFunctions::to_point</a></div><div class="ttdeci">dealii::Point&lt; dim &gt; to_point(const ForwardIterator begin, const ForwardIterator end)</div><div class="ttdef"><b>Definition</b> utility_functions.hpp:147</div></div>
@@ -335,6 +349,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="anamespaceMeltPoolDG_1_1UtilityFunctions_html_a9912384f58c919ca11575ca21ca1bb8e"><div class="ttname"><a href="namespaceMeltPoolDG_1_1UtilityFunctions.html#a9912384f58c919ca11575ca21ca1bb8e">MeltPoolDG::UtilityFunctions::integrate_over_line</a></div><div class="ttdeci">number integrate_over_line(const std::vector&lt; number &gt; &amp;vals, const std::vector&lt; dealii::Point&lt; dim &gt; &gt; &amp;points)</div><div class="ttdef"><b>Definition</b> utility_functions.hpp:121</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1UtilityFunctions_html_ab0fadc670b12330495bc398509cc14dc"><div class="ttname"><a href="namespaceMeltPoolDG_1_1UtilityFunctions.html#ab0fadc670b12330495bc398509cc14dc">MeltPoolDG::UtilityFunctions::remove_duplicates</a></div><div class="ttdeci">void remove_duplicates(std::vector&lt; number1 &gt; &amp;a, std::vector&lt; number2 &gt; &amp;b)</div><div class="ttdef"><b>Definition</b> utility_functions.hpp:26</div></div>
 <div class="ttc" id="anamespaceMeltPoolDG_1_1UtilityFunctions_html_abb4295e78aae388df687d6081b309ddb"><div class="ttname"><a href="namespaceMeltPoolDG_1_1UtilityFunctions.html#abb4295e78aae388df687d6081b309ddb">MeltPoolDG::UtilityFunctions::limit_to_bounds</a></div><div class="ttdeci">dealii::VectorizedArray&lt; number &gt; limit_to_bounds(const dealii::VectorizedArray&lt; number &gt; &amp;in, const number lower_limit, const number upper_limit)</div><div class="ttdef"><b>Definition</b> utility_functions.hpp:62</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1UtilityFunctions_html_adfa093c35f8aa3e01d011ef7286021d4"><div class="ttname"><a href="namespaceMeltPoolDG_1_1UtilityFunctions.html#adfa093c35f8aa3e01d011ef7286021d4">MeltPoolDG::UtilityFunctions::calculate_complementary_error_function_vec</a></div><div class="ttdeci">dealii::VectorizedArray&lt; number &gt; calculate_complementary_error_function_vec(const dealii::VectorizedArray&lt; number &gt; &amp;x)</div><div class="ttdoc">Helper function for the element-wise computation of the complementary error function of a vectorized ...</div><div class="ttdef"><b>Definition</b> utility_functions.hpp:185</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
