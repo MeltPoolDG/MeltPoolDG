@@ -146,6 +146,8 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac52d6bc64a3297f3a28c48d6e53066f6" id="r_ac52d6bc64a3297f3a28c48d6e53066f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html#ac52d6bc64a3297f3a28c48d6e53066f6">DEMParticleAccessor</a> (dealii::Particles::ParticleAccessor&lt; dim &gt; &amp;particle)</td></tr>
 <tr class="separator:ac52d6bc64a3297f3a28c48d6e53066f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a492a904d7c23ded9f1aa6640cbf881af" id="r_a492a904d7c23ded9f1aa6640cbf881af"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html#a492a904d7c23ded9f1aa6640cbf881af">DEMParticleAccessor</a> (dealii::Point&lt; dim, number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html#ad39615077e37788085d1adcaa1b2b30b">location</a>, dealii::ArrayView&lt; number &gt; <a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html#a60b97c1be51346ad68a1e466ab7067a2">properties</a>)</td></tr>
+<tr class="separator:a492a904d7c23ded9f1aa6640cbf881af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4b4fd322fe6fec36576a5fc85218d33" id="r_ab4b4fd322fe6fec36576a5fc85218d33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html#ab4b4fd322fe6fec36576a5fc85218d33">DEMParticleAccessor</a> (dealii::Particles::PropertyPool&lt; dim &gt; &amp;property_pool, const typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle handle) noexcept</td></tr>
 <tr class="memdesc:ab4b4fd322fe6fec36576a5fc85218d33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct accessor from a PropertyPool handle.  <br /></td></tr>
 <tr class="separator:ab4b4fd322fe6fec36576a5fc85218d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,7 +196,7 @@ Private Attributes</h2></td></tr>
 class MeltPoolDG::DEMParticleAccessor&lt; dim, number &gt;</div><p>This class acts as a lightweight wrapper around deal.II's ParticleAccessor or PropertyPool handles. It allows read/write access to particle properties (velocity, angular velocity, forces, etc.) and to the particle's spatial location. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac52d6bc64a3297f3a28c48d6e53066f6" name="ac52d6bc64a3297f3a28c48d6e53066f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac52d6bc64a3297f3a28c48d6e53066f6">&#9670;&#160;</a></span>DEMParticleAccessor() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac52d6bc64a3297f3a28c48d6e53066f6">&#9670;&#160;</a></span>DEMParticleAccessor() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -220,8 +222,46 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
+<a id="a492a904d7c23ded9f1aa6640cbf881af" name="a492a904d7c23ded9f1aa6640cbf881af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a492a904d7c23ded9f1aa6640cbf881af">&#9670;&#160;</a></span>DEMParticleAccessor() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html">MeltPoolDG::DEMParticleAccessor</a>&lt; dim, number &gt;::DEMParticleAccessor </td>
+          <td>(</td>
+          <td class="paramtype">dealii::Point&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>location</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dealii::ArrayView&lt; number &gt;&#160;</td>
+          <td class="paramname"><em>properties</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Construct accessor from a location and properties view.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">location</td><td>Reference to the particle location. </td></tr>
+    <tr><td class="paramname">properties</td><td>View to the particle properties. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ab4b4fd322fe6fec36576a5fc85218d33" name="ab4b4fd322fe6fec36576a5fc85218d33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4b4fd322fe6fec36576a5fc85218d33">&#9670;&#160;</a></span>DEMParticleAccessor() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4b4fd322fe6fec36576a5fc85218d33">&#9670;&#160;</a></span>DEMParticleAccessor() <span class="overload">[3/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,7 +308,7 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <a id="a3cb9ae639fdaad4ec8939b6198dfa448" name="a3cb9ae639fdaad4ec8939b6198dfa448"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3cb9ae639fdaad4ec8939b6198dfa448">&#9670;&#160;</a></span>DEMParticleAccessor() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cb9ae639fdaad4ec8939b6198dfa448">&#9670;&#160;</a></span>DEMParticleAccessor() <span class="overload">[4/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -297,7 +337,7 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <a id="af716f5b182efe55e219a365b3d307923" name="af716f5b182efe55e219a365b3d307923"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af716f5b182efe55e219a365b3d307923">&#9670;&#160;</a></span>DEMParticleAccessor() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af716f5b182efe55e219a365b3d307923">&#9670;&#160;</a></span>DEMParticleAccessor() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

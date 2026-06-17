@@ -183,9 +183,6 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a0666a4b2d5d029885ae3eb0cecc27c8b" id="r_a0666a4b2d5d029885ae3eb0cecc27c8b"><td class="memItemLeft" align="right" valign="top">static std::pair&lt; std::vector&lt; std::string &gt;, std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a0666a4b2d5d029885ae3eb0cecc27c8b">get_property_names_and_component_interpretation</a> ()</td></tr>
 <tr class="memdesc:a0666a4b2d5d029885ae3eb0cecc27c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the names and component interpretations of particle properties for output.  <br /></td></tr>
 <tr class="separator:a0666a4b2d5d029885ae3eb0cecc27c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca48d7c3f947608c97de199a272d5e39" id="r_aca48d7c3f947608c97de199a272d5e39"><td class="memItemLeft" align="right" valign="top">static std::pair&lt; std::vector&lt; number &gt;, dealii::Point&lt; dim, number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#aca48d7c3f947608c97de199a272d5e39">read_state_input</a> (const std::string &amp;input_data)</td></tr>
-<tr class="memdesc:aca48d7c3f947608c97de199a272d5e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses particle properties and location from a single CSV-formatted line. This function reads a single line of CSV-formatted text containing data for one particle. It extracts the particle's properties and its location, and returns them as a pair.  <br /></td></tr>
-<tr class="separator:aca48d7c3f947608c97de199a272d5e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62a118a6385325109adbb2dc2d9ae38f" id="r_a62a118a6385325109adbb2dc2d9ae38f"><td class="memTemplParams" colspan="2">template&lt;typename VectorizedArrayType &gt; </td></tr>
 <tr class="memitem:a62a118a6385325109adbb2dc2d9ae38f"><td class="memTemplItemLeft" align="right" valign="top">static dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1SphericalParticle.html#a62a118a6385325109adbb2dc2d9ae38f">vector_to_center_of_gravity</a> (const dealii::Point&lt; dim, VectorizedArrayType &gt; &amp;loc, dealii::Particles::PropertyPool&lt; dim &gt; &amp;property_pool, const typename dealii::Particles::PropertyPool&lt; dim &gt;::Handle handle)</td></tr>
 <tr class="separator:a62a118a6385325109adbb2dc2d9ae38f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1370,43 +1367,6 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
-<a id="aca48d7c3f947608c97de199a272d5e39" name="aca48d7c3f947608c97de199a272d5e39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca48d7c3f947608c97de199a272d5e39">&#9670;&#160;</a></span>read_state_input()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::pair&lt; std::vector&lt; number &gt;, dealii::Point&lt; dim, number &gt; &gt; <a class="el" href="classMeltPoolDG_1_1SphericalParticle.html">MeltPoolDG::SphericalParticle</a>&lt; dim, number &gt;::read_state_input </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>input_data</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Parses particle properties and location from a single CSV-formatted line. This function reads a single line of CSV-formatted text containing data for one particle. It extracts the particle's properties and its location, and returns them as a pair. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">input_data</td><td>A string containing one CSV-formatted line representing a single particle's data. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A pair consisting of a std::vector containing the particle's properties and a dealii::Point representing the particle's location. </dd></dl>
-
-</div>
-</div>
 <a id="aef6ac91a6e48e0c40f1834ba618d65bb" name="aef6ac91a6e48e0c40f1834ba618d65bb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aef6ac91a6e48e0c40f1834ba618d65bb">&#9670;&#160;</a></span>set_acceleration()</h2>
 
@@ -1923,7 +1883,7 @@ template&lt;int dim, typename number &gt; </div>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">      2 * <a class="code hl_variable" href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">size_angular_velocity</a> + 2 * dim + dim + <a class="code hl_variable" href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">size_angular_velocity</a> + 6</div>
-<div class="ttc" id="aclassMeltPoolDG_1_1SphericalParticle_html_aadd3ce37070b3fca88e5e99dd61bd4dc"><div class="ttname"><a href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">MeltPoolDG::SphericalParticle::size_angular_velocity</a></div><div class="ttdeci">static constexpr unsigned int size_angular_velocity</div><div class="ttdef"><b>Definition</b> particle.hpp:37</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SphericalParticle_html_aadd3ce37070b3fca88e5e99dd61bd4dc"><div class="ttname"><a href="classMeltPoolDG_1_1SphericalParticle.html#aadd3ce37070b3fca88e5e99dd61bd4dc">MeltPoolDG::SphericalParticle::size_angular_velocity</a></div><div class="ttdeci">static constexpr unsigned int size_angular_velocity</div><div class="ttdef"><b>Definition</b> particle.hpp:38</div></div>
 </div><!-- fragment -->
 </div>
 </div>
