@@ -138,12 +138,17 @@ $(function() {
   <div class="headertitle"><div class="title">dem_time_integrators.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="solution__history_8hpp_source.html">meltpooldg/time_integration/solution_history.hpp</a>&gt;</code><br />
-<code>#include &lt;functional&gt;</code><br />
+<div class="textblock"><code>#include &lt;deal.II/base/timer.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="dem__util_8hpp_source.html">meltpooldg/particles/dem_util.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="particle__accessor_8hpp_source.html">meltpooldg/particles/particle_accessor.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="particle__iterator_8hpp_source.html">meltpooldg/particles/particle_iterator.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="solution__history_8hpp_source.html">meltpooldg/time_integration/solution_history.hpp</a>&gt;</code><br />
+<code>#include &lt;concepts&gt;</code><br />
+<code>#include &lt;ranges&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for dem_time_integrators.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dem__time__integrators_8hpp__incl.svg" width="495" height="227"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="dem__time__integrators_8hpp__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -161,10 +166,11 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad8569cb6fb76cd34cc663cf0b748e5eb" id="r_ad8569cb6fb76cd34cc663cf0b748e5eb"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename BlockVectorType &gt; </td></tr>
-<tr class="memitem:ad8569cb6fb76cd34cc663cf0b748e5eb"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ad8569cb6fb76cd34cc663cf0b748e5eb">MeltPoolDG::symplectic_euler_advance_time_step</a> (const number current_time, const number time_step, <a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory</a>&lt; BlockVectorType &gt; &amp;location, <a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory</a>&lt; BlockVectorType &gt; &amp;translational_velocity, <a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory</a>&lt; BlockVectorType &gt; &amp;translational_acceleration, <a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory</a>&lt; BlockVectorType &gt; &amp;angular_velocity, <a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1SolutionHistory.html">TimeIntegration::SolutionHistory</a>&lt; BlockVectorType &gt; &amp;angular_acceleration, const std::function&lt; void(number time, BlockVectorType &amp;dst)&gt; &amp;compute_translational_acceleration, const std::function&lt; void(number time, BlockVectorType &amp;dst)&gt; &amp;compute_angular_acceleration, const std::function&lt; void()&gt; &amp;update_ghost_values=std::function&lt; void()&gt;())</td></tr>
-<tr class="memdesc:ad8569cb6fb76cd34cc663cf0b748e5eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances particle states by one time step using the symplectic Euler scheme.  <br /></td></tr>
-<tr class="separator:ad8569cb6fb76cd34cc663cf0b748e5eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6937a9b9c0c146f3ee4bbccaa766fb1c" id="r_a6937a9b9c0c146f3ee4bbccaa766fb1c"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ObstacleType , typename ContainerType &gt; <br />
+requires std::ranges::range&lt;ContainerType&gt;</td></tr>
+<tr class="memitem:a6937a9b9c0c146f3ee4bbccaa766fb1c"><td class="memTemplItemLeft" align="right" valign="top">and std::same_as&lt; std::ranges::range_value_t&lt; ContainerType &gt;, <a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html">DEMParticleAccessor</a>&lt; dim, number &gt; &gt; void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a6937a9b9c0c146f3ee4bbccaa766fb1c">MeltPoolDG::symplectic_euler_advance_time_step</a> (const number time_step, ContainerType particle_range)</td></tr>
+<tr class="memdesc:a6937a9b9c0c146f3ee4bbccaa766fb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances particle states by one time step using the symplectic Euler scheme.  <br /></td></tr>
+<tr class="separator:a6937a9b9c0c146f3ee4bbccaa766fb1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
