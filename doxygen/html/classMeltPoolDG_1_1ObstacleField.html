@@ -150,9 +150,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2c998afc47c92308cadea99eeadabd61" id="r_a2c998afc47c92308cadea99eeadabd61"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a2c998afc47c92308cadea99eeadabd61">ObstacleField</a> (const <a class="el" href="structMeltPoolDG_1_1ObstacleData.html">ObstacleData</a>&lt; number &gt; &amp;<a class="el" href="classMeltPoolDG_1_1ObstacleField.html#ac5878dd50473759ebfff655b9e53fefb">data</a>, const dealii::Triangulation&lt; dim &gt; &amp;triangulation, const dealii::Mapping&lt; dim &gt; &amp;mapping, const std::vector&lt; dealii::Point&lt; dim, number &gt; &gt; &amp;obstacle_locations, const std::vector&lt; std::vector&lt; number &gt; &gt; &amp;obstacle_properties)</td></tr>
 <tr class="memdesc:a2c998afc47c92308cadea99eeadabd61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Initializes the obstacle field and supporting data structures.  <br /></td></tr>
 <tr class="separator:a2c998afc47c92308cadea99eeadabd61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ebaca980954087f99ea1233c4e4486a" id="r_a2ebaca980954087f99ea1233c4e4486a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a2ebaca980954087f99ea1233c4e4486a">advance_time</a> (const number current_time, const number time_step)</td></tr>
-<tr class="memdesc:a2ebaca980954087f99ea1233c4e4486a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances the state of all obstacles in time by a single time step.  <br /></td></tr>
-<tr class="separator:a2ebaca980954087f99ea1233c4e4486a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7911624195f713f28dd08f9300319b51" id="r_a7911624195f713f28dd08f9300319b51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a7911624195f713f28dd08f9300319b51">advance_time</a> (const number time_step)</td></tr>
+<tr class="memdesc:a7911624195f713f28dd08f9300319b51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances the state of all obstacles in time by a single time step.  <br /></td></tr>
+<tr class="separator:a7911624195f713f28dd08f9300319b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97efb05dcba8037a0960a721a5d7487b" id="r_a97efb05dcba8037a0960a721a5d7487b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a97efb05dcba8037a0960a721a5d7487b">compute_loads_on_obstacles</a> ()</td></tr>
 <tr class="memdesc:a97efb05dcba8037a0960a721a5d7487b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes and applies the total load acting on each obstacle in the field. This includes both forces and torques.  <br /></td></tr>
 <tr class="separator:a97efb05dcba8037a0960a721a5d7487b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -364,8 +364,8 @@ requires (!std::is_lvalue_reference_v&lt;ObstacleLoadType&gt;)</div>
 
 </div>
 </div>
-<a id="a2ebaca980954087f99ea1233c4e4486a" name="a2ebaca980954087f99ea1233c4e4486a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ebaca980954087f99ea1233c4e4486a">&#9670;&#160;</a></span>advance_time()</h2>
+<a id="a7911624195f713f28dd08f9300319b51" name="a7911624195f713f28dd08f9300319b51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7911624195f713f28dd08f9300319b51">&#9670;&#160;</a></span>advance_time()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -376,18 +376,8 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
           <td class="memname">void <a class="el" href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a>&lt; dim, number, ObstacleType &gt;::advance_time </td>
           <td>(</td>
           <td class="paramtype">const number&#160;</td>
-          <td class="paramname"><em>current_time</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>time_step</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">const number&#160;</td>
-          <td class="paramname"><em>time_step</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -395,9 +385,7 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 <p>Advances the state of all obstacles in time by a single time step. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">current_time</td><td>The current simulation time after the time step. </td></tr>
     <tr><td class="paramname">time_step</td><td>The size of the time step to advance. </td></tr>
-    <tr><td class="paramname">n_time_step</td><td>The current time step number in the simulation. </td></tr>
   </table>
   </dd>
 </dl>
