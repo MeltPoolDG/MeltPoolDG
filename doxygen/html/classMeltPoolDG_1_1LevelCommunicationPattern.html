@@ -175,8 +175,8 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a078b95cc7d05ecde412d89440d18d1c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeae6b3ea2f84f4162796def4363efe0c" id="r_aeae6b3ea2f84f4162796def4363efe0c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; unsigned, std::vector&lt; dealii::CellId &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelCommunicationPattern.html#aeae6b3ea2f84f4162796def4363efe0c">gather_ancestors</a> (const std::vector&lt; dealii::CellId &gt; &amp;local_ancestor_cells) const</td></tr>
 <tr class="separator:aeae6b3ea2f84f4162796def4363efe0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae12ac341dc56b0c58610e799ae9b11ce" id="r_ae12ac341dc56b0c58610e799ae9b11ce"><td class="memItemLeft" align="right" valign="top">std::vector&lt; dealii::CellId &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelCommunicationPattern.html#ae12ac341dc56b0c58610e799ae9b11ce">adjacent_relevant_cells</a> (const dealii::CellId &amp;cell_id, const std::vector&lt; dealii::CellId &gt; &amp;owned_active_cell_ancestors) const</td></tr>
-<tr class="separator:ae12ac341dc56b0c58610e799ae9b11ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae76996ded3328ff9d7817ae071435721" id="r_ae76996ded3328ff9d7817ae071435721"><td class="memItemLeft" align="right" valign="top">std::vector&lt; dealii::CellId &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelCommunicationPattern.html#ae76996ded3328ff9d7817ae071435721">adjacent_relevant_cells</a> (const dealii::CellId &amp;cell_id, const std::vector&lt; dealii::CellId &gt; &amp;owned_active_cell_ancestors, const <a class="el" href="classMeltPoolDG_1_1LevelAdjacentCellsCache.html">LevelAdjacentCellsCache</a>&lt; dim &gt; &amp;adjacent_cells_cache) const</td></tr>
+<tr class="separator:ae76996ded3328ff9d7817ae071435721"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1918e8e4e213c84083153abee118aa49" id="r_a1918e8e4e213c84083153abee118aa49"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; unsigned, std::vector&lt; dealii::CellId &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelCommunicationPattern.html#a1918e8e4e213c84083153abee118aa49">relevant_cells_for_ranks</a> (const std::vector&lt; std::pair&lt; unsigned, std::vector&lt; dealii::CellId &gt; &gt; &gt; &amp;requested_cells_by_rank, const std::vector&lt; dealii::CellId &gt; &amp;owned_active_cell_ancestors) const</td></tr>
 <tr class="separator:a1918e8e4e213c84083153abee118aa49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ecefbb4df91f4ef33806ab10c67cfbe" id="r_a3ecefbb4df91f4ef33806ab10c67cfbe"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; unsigned, std::vector&lt; dealii::CellId &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1LevelCommunicationPattern.html#a3ecefbb4df91f4ef33806ab10c67cfbe">exchange_relevant_cells</a> (const std::vector&lt; std::pair&lt; unsigned, std::vector&lt; dealii::CellId &gt; &gt; &gt; &amp;<a class="el" href="classMeltPoolDG_1_1LevelCommunicationPattern.html#a328def3a8c9410f9fcac28b673b1a9e8">cells_to_send</a>) const</td></tr>
@@ -242,8 +242,8 @@ template&lt;int dim&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae12ac341dc56b0c58610e799ae9b11ce" name="ae12ac341dc56b0c58610e799ae9b11ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae12ac341dc56b0c58610e799ae9b11ce">&#9670;&#160;</a></span>adjacent_relevant_cells()</h2>
+<a id="ae76996ded3328ff9d7817ae071435721" name="ae76996ded3328ff9d7817ae071435721"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae76996ded3328ff9d7817ae071435721">&#9670;&#160;</a></span>adjacent_relevant_cells()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -263,7 +263,13 @@ template&lt;int dim&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::vector&lt; dealii::CellId &gt; &amp;&#160;</td>
-          <td class="paramname"><em>owned_active_cell_ancestors</em>&#160;</td>
+          <td class="paramname"><em>owned_active_cell_ancestors</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1LevelAdjacentCellsCache.html">LevelAdjacentCellsCache</a>&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>adjacent_cells_cache</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -280,8 +286,9 @@ template&lt;int dim&gt; </div>
 <p>Given a partition-level cell, determine all adjacent cells which are a rank local ancestor cell.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cell_id</td><td>Cell id of the partition-level cell whose adjacent relevant cells should be determined.</td></tr>
-    <tr><td class="paramname">owned_active_cell_ancestors</td><td>Cell ids of the partition-level cells containing locally owned active descendant cells.</td></tr>
+    <tr><td class="paramname">cell_id</td><td>Cell id of the partition-level cell whose adjacent relevant cells should be determined. </td></tr>
+    <tr><td class="paramname">owned_active_cell_ancestors</td><td>Cell ids of the partition-level cells containing locally owned active descendant cells. </td></tr>
+    <tr><td class="paramname">adjacent_cells_cache</td><td>The cache of adjacent cells for the partition-level cells to allow for efficient lookup of adjacent cells.</td></tr>
   </table>
   </dd>
 </dl>
@@ -313,6 +320,7 @@ template&lt;int dim&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Assert that the communication pattern has been built before accessing it. If the pattern has not been built, an exception is thrown. </p>
 
 </div>
 </div>
