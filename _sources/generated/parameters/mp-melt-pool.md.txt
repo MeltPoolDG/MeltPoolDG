@@ -760,11 +760,11 @@
 |---|---|---|---|
 | `dimension` | `integer` | `0` | Defines the dimension of the problem. Not essential to the Navier-Stokes class, but useful in many applications. |
 | `global refinements` | `integer` | `1` | Defines the number of initial global refinements. Not used in the Navier-Stokes class, but useful in many applications. |
-| `anisotropic refinement` | `string` | `0` | defines whether the mesh should be refined anisotropically in normal direction to the interface, 0 means no anisotropy<br><br>Allowed values:<br>- `0`<br>- `1` |
-| `simplex mesh` | `string` | `0` | defines whether a simplex mesh has been provided, 0 means mesh with only quadrilaterals (2D) and hexahedra (3D) has been provided<br><br>Allowed values:<br>- `0`<br>- `1` |
+| `anisotropic refinement` | `boolean` | `False` | defines whether the mesh should be refined anisotropically in normal direction to the interface, 0 means no anisotropy |
+| `simplex mesh` | `boolean` | `False` | defines whether a simplex mesh has been provided, 0 means mesh with only quadrilaterals (2D) and hexahedra (3D) has been provided |
 | `adaptive refinements` | `integer` | `0` | Defines the number of adaptive refinements. Not used in the Navier-Stokes class, but useful in many applications. |
 | `velocity degree` | `integer` | `2` | Sets the degree for velocity. Pressure degree is velocity degree minus one. Currently implemented for orders 2 to 6 |
-| `augmented Taylor-Hood elements` | `string` | `0` | Option to choose the pressure space FE_Q_DG0(p_degree) instead of the standard space FE_Q(p_degree). This adds a constant discontinuous part to the pressure basis and gives element-wise divergence-free solutions. It produces solutions that are in general better but also a bit more expensive to compute.<br><br>Allowed values:<br>- `0`<br>- `1` |
+| `augmented Taylor-Hood elements` | `boolean` | `False` | Option to choose the pressure space FE_Q_DG0(p_degree) instead of the standard space FE_Q(p_degree). This adds a constant discontinuous part to the pressure basis and gives element-wise divergence-free solutions. It produces solutions that are in general better but also a bit more expensive to compute. |
 | `viscosity` | `number` | `1.0` | Defines the fluid dynamic viscosity |
 | `density` | `number` | `1.0` | Defines the fluid density |
 | `damping` | `number` | `0.0` | Defines the fluid damping |
@@ -784,7 +784,7 @@
 | `tau grad div` | `number` | `0.0` | Adds the term (div(v), tau div(u))to the weak form the momentum equation, which is consistent with the Navier-Stokes equations but penalizes the divergence more. This term is usually referred to as grad-div stabilization. It simplifies the solution of linear systems if tau is on the order of unity but not too large (as the added term is singular). |
 | `lin max iterations` | `integer` | `500` | Maximum number of linear iterations |
 | `lin tolerance` | `number` | `0.001` | Tolerance for the linear solver |
-| `lin relative tolerance` | `string` | `1` | Sets whether the residual for the linear solver should be measured relative to the nonlinear residual (recommended option).<br><br>Allowed values:<br>- `0`<br>- `1` |
+| `lin relative tolerance` | `boolean` | `True` | Sets whether the residual for the linear solver should be measured relative to the nonlinear residual (recommended option). |
 | `lin velocity preconditioner` | `string` | `amg linear` | Sets the preconditioner for approximating the inverse of the velocity matrix in the Schur complement preconditioner. 'amg linear' uses a matrix based on subdividing FE_Q into several linear elements to create a matrix hierarchy. This might decrease interpolation quality, but AMG is typically much better for linears, so it is recommended for more complex problems with relatively large time steps or large viscosities, otherwise ILU. The method 'ilu scalar' is a simplified ILU that only constructs the ILU for one velocity block and applies the same operator to all components. It is cheaper to apply but approximates somewhat worse.<br><br>Allowed values:<br>- `ilu`<br>- `ilu scalar`<br>- `amg linear`<br>- `amg` |
 | `lin pressure mass preconditioner` | `string` | `ilu` | Sets whether the pressure mass matrix in the Schur complement should be represented by the diagonal only or by an ILU based on the full pressure mass matrix.<br><br>Allowed values:<br>- `ilu`<br>- `diagonal` |
 | `lin its before inner solvers` | `integer` | `50` | The linear solver comes in two flavors. A simple solver which uses only AMG V-cycles or ILUs as preconditioner components in the Schur complement, or a stronger solver with inner iterations. The variant with inner solves is less efficient when only a few iterations are needed, but much more robust and more efficient for many iterations. This option sets how many linear iterations with the cheap preconditioners should be made before the stronger version with more iterations starts. |
@@ -798,8 +798,8 @@
 | `output verbosity` | `integer` | `2` | Sets the amount of information from the Navier-Stokes solver that is printed to screen. 0 means no output at all, and larger numbers mean an increasing amount of output (maximum value: 3). A value of 3 not only includes solver iterations but also details on solution time and some memory statistics. |
 | `output frequency` | `number` | `1.0` | defines at with time interface the solution should be written to file (in supported routines) |
 | `output vtk files` | `integer` | `0` | defines whether to output vtk files with the whole solution field or just collected point data |
-| `output wall times` | `string` | `0` | Defines whether to output wall times. 0 means no output.<br><br>Allowed values:<br>- `0`<br>- `1` |
-| `output memory` | `string` | `0` | Defines whether to output memory. 0 means no output.<br><br>Allowed values:<br>- `0`<br>- `1` |
+| `output wall times` | `boolean` | `False` | Defines whether to output wall times. 0 means no output. |
+| `output memory` | `boolean` | `False` | Defines whether to output memory. 0 means no output. |
 
 <a id="flow-adaflo-two-phase"></a>
 #### `flow: adaflo: Two phase`
@@ -815,17 +815,17 @@
 | `gravity` | `number` | `0.0` | Gravity. |
 | `diffusion length` | `number` | `0.1` | Diffusion length scale in Cahn-Hilliard. Its square equals the mobility and inverse Peclet number. |
 | `contact angle` | `number` | `0.0` | defines the contact angle at solid interfaces, at boundaries with indicator 0 or 2 |
-| `pressure constraint` | `string` | `1` | Fixes value of pressure in one point to zero<br><br>Allowed values:<br>- `0`<br>- `1` |
+| `pressure constraint` | `boolean` | `True` | Fixes value of pressure in one point to zero |
 | `concentration subdivisions` | `integer` | `2` | Number of subdivision of Q1 elements in smaller elements to generate higher accuracy in level set/phase field |
 | `curvature correction` | `integer` | `0` | if 1, extend the curvature to the value at the interface in normal direction |
-| `grad pressure compatible` | `string` | `0` | if 1, the gradient in the surface tension force is interpolated from the pressure gradient<br><br>Allowed values:<br>- `0`<br>- `1` |
-| `localize surface tension` | `string` | `1` | if 1, the surface tension is computed from a gradient that is localized around the interface (from a reconstructed distance function), otherwise it is computed from the tanh profile (i.e., nonzero everywhere)<br><br>Allowed values:<br>- `0`<br>- `1` |
-| `approximate projections` | `string` | `0` | if 0, the normal and curvature in the level set method are computed by proper projection (full mass matrix and little diffusion), otherwise with diagonal mass matrix and time-dependent diffusion<br><br>Allowed values:<br>- `0`<br>- `1` |
-| `Cahn-Hilliard do Newton` | `string` | `1` | Sets whether a Newton iteration should be done on the Cahn-Hilliard equation (if on that model). If 0 is selected, use a convexity splitting as proposed by Eyre.<br><br>Allowed values:<br>- `0`<br>- `1` |
-| `full nonlinear iteration` | `string` | `0` | iterates between Navier-Stokes and concentration if enabled<br><br>Allowed values:<br>- `0`<br>- `1` |
+| `grad pressure compatible` | `boolean` | `False` | if 1, the gradient in the surface tension force is interpolated from the pressure gradient |
+| `localize surface tension` | `boolean` | `True` | if 1, the surface tension is computed from a gradient that is localized around the interface (from a reconstructed distance function), otherwise it is computed from the tanh profile (i.e., nonzero everywhere) |
+| `approximate projections` | `boolean` | `False` | if 0, the normal and curvature in the level set method are computed by proper projection (full mass matrix and little diffusion), otherwise with diagonal mass matrix and time-dependent diffusion |
+| `Cahn-Hilliard do Newton` | `boolean` | `True` | Sets whether a Newton iteration should be done on the Cahn-Hilliard equation (if on that model). If 0 is selected, use a convexity splitting as proposed by Eyre. |
+| `full nonlinear iteration` | `boolean` | `False` | iterates between Navier-Stokes and concentration if enabled |
 | `number reinit steps` | `integer` | `2` | number of iterations in reinitialization |
 | `number initial reinit steps` | `integer` | `0` | reinitialization steps before starting the time loop (for bad initial profiles) |
-| `convection stabilization` | `string` | `0` | add stabilization terms to advection equation if set to 1 (typically not necessary)<br><br>Allowed values:<br>- `0`<br>- `1` |
+| `convection stabilization` | `boolean` | `False` | add stabilization terms to advection equation if set to 1 (typically not necessary) |
 
 <a id="flow-adaflo-time-stepping"></a>
 #### `flow: adaflo: Time stepping`

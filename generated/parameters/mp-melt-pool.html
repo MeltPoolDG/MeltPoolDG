@@ -2697,14 +2697,14 @@
 <td><p>Defines the number of initial global refinements. Not used in the Navier-Stokes class, but useful in many applications.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">anisotropic</span> <span class="pre">refinement</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
-<td><p>defines whether the mesh should be refined anisotropically in normal direction to the interface, 0 means no anisotropy<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>defines whether the mesh should be refined anisotropically in normal direction to the interface, 0 means no anisotropy</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">simplex</span> <span class="pre">mesh</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
-<td><p>defines whether a simplex mesh has been provided, 0 means mesh with only quadrilaterals (2D) and hexahedra (3D) has been provided<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>defines whether a simplex mesh has been provided, 0 means mesh with only quadrilaterals (2D) and hexahedra (3D) has been provided</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">adaptive</span> <span class="pre">refinements</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
@@ -2717,9 +2717,9 @@
 <td><p>Sets the degree for velocity. Pressure degree is velocity degree minus one. Currently implemented for orders 2 to 6</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">augmented</span> <span class="pre">Taylor-Hood</span> <span class="pre">elements</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
-<td><p>Option to choose the pressure space FE_Q_DG0(p_degree) instead of the standard space FE_Q(p_degree). This adds a constant discontinuous part to the pressure basis and gives element-wise divergence-free solutions. It produces solutions that are in general better but also a bit more expensive to compute.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Option to choose the pressure space FE_Q_DG0(p_degree) instead of the standard space FE_Q(p_degree). This adds a constant discontinuous part to the pressure basis and gives element-wise divergence-free solutions. It produces solutions that are in general better but also a bit more expensive to compute.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">viscosity</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
@@ -2801,9 +2801,9 @@
 <td><p>Tolerance for the linear solver</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lin</span> <span class="pre">relative</span> <span class="pre">tolerance</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
-<td><p>Sets whether the residual for the linear solver should be measured relative to the nonlinear residual (recommended option).<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Sets whether the residual for the linear solver should be measured relative to the nonlinear residual (recommended option).</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lin</span> <span class="pre">velocity</span> <span class="pre">preconditioner</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
@@ -2857,14 +2857,14 @@
 <td><p>defines whether to output vtk files with the whole solution field or just collected point data</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">wall</span> <span class="pre">times</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
-<td><p>Defines whether to output wall times. 0 means no output.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Defines whether to output wall times. 0 means no output.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">memory</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
-<td><p>Defines whether to output memory. 0 means no output.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Defines whether to output memory. 0 means no output.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2927,9 +2927,9 @@
 <td><p>defines the contact angle at solid interfaces, at boundaries with indicator 0 or 2</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pressure</span> <span class="pre">constraint</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
-<td><p>Fixes value of pressure in one point to zero<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Fixes value of pressure in one point to zero</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">concentration</span> <span class="pre">subdivisions</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
@@ -2942,29 +2942,29 @@
 <td><p>if 1, extend the curvature to the value at the interface in normal direction</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">grad</span> <span class="pre">pressure</span> <span class="pre">compatible</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
-<td><p>if 1, the gradient in the surface tension force is interpolated from the pressure gradient<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>if 1, the gradient in the surface tension force is interpolated from the pressure gradient</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">localize</span> <span class="pre">surface</span> <span class="pre">tension</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
-<td><p>if 1, the surface tension is computed from a gradient that is localized around the interface (from a reconstructed distance function), otherwise it is computed from the tanh profile (i.e., nonzero everywhere)<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>if 1, the surface tension is computed from a gradient that is localized around the interface (from a reconstructed distance function), otherwise it is computed from the tanh profile (i.e., nonzero everywhere)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">approximate</span> <span class="pre">projections</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
-<td><p>if 0, the normal and curvature in the level set method are computed by proper projection (full mass matrix and little diffusion), otherwise with diagonal mass matrix and time-dependent diffusion<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>if 0, the normal and curvature in the level set method are computed by proper projection (full mass matrix and little diffusion), otherwise with diagonal mass matrix and time-dependent diffusion</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Cahn-Hilliard</span> <span class="pre">do</span> <span class="pre">Newton</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
-<td><p>Sets whether a Newton iteration should be done on the Cahn-Hilliard equation (if on that model). If 0 is selected, use a convexity splitting as proposed by Eyre.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Sets whether a Newton iteration should be done on the Cahn-Hilliard equation (if on that model). If 0 is selected, use a convexity splitting as proposed by Eyre.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">full</span> <span class="pre">nonlinear</span> <span class="pre">iteration</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
-<td><p>iterates between Navier-Stokes and concentration if enabled<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>iterates between Navier-Stokes and concentration if enabled</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">number</span> <span class="pre">reinit</span> <span class="pre">steps</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
@@ -2977,9 +2977,9 @@
 <td><p>reinitialization steps before starting the time loop (for bad initial profiles)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">convection</span> <span class="pre">stabilization</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
-<td><p>add stabilization terms to advection equation if set to 1 (typically not necessary)<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">0</span></code><br>- <code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>add stabilization terms to advection equation if set to 1 (typically not necessary)</p></td>
 </tr>
 </tbody>
 </table>
