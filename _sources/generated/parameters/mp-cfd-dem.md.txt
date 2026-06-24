@@ -147,7 +147,7 @@
 | Parameter | Type | Default | Description |
 |---|---|---|---|
 | `apply` | `boolean` | `False` | Whether to apply a limiter. |
-| `tvb constant` | `array` | `[]` | The TVB constant used in the TVB minmod limiter. The constant has the dimension of a second derivative. |
+| `tvb constant` | `string` | `` | The TVB constant used in the TVB minmod limiter. The constant has the dimension of a second derivative. |
 | `type` | `string` | `tvd_minmod` | The type of limiter to apply.<br><br>Allowed values:<br>- `tvd_minmod`<br>- `tvb_minmod` |
 
 
@@ -162,7 +162,7 @@
 | `directory` | `string` | `./` | Sets the base directory for all output. |
 | `write frequency` | `integer` | `1` | Every n timestep that should be written |
 | `write time step size` | `number` | `1.79769e+308` | Write output output every given time step. If this parameter is set, the output write frequency is deactivated. |
-| `output variables` | `array` | `['all']` | Specify variables that you request to output. |
+| `output variables` | `string` | `all` | Specify variables that you request to output. |
 | `do user defined postprocessing` | `boolean` | `False` | Set this parameter to true to enable user defined postprocessing. |
 | [`particles`](#output-particles) | `object` |  | [See table](#output-particles) |
 
@@ -171,7 +171,7 @@
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `compressible output types` | `array` | `['conserved_variables']` | Type of the variables added to the output. |
+| `compressible output types` | `string` | `conserved_variables` | Type of the variables added to the output. |
 | `enable` | `boolean` | `False` | Set this parameter to true to activate paraview output. |
 | `filename` | `string` | `solution` | Sets the base name for paraview output files. |
 | `n digits timestep` | `integer` | `4` | Number of digits for the frame number of the vtu-file. |
@@ -391,7 +391,7 @@
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `amr strategies` | `array` | `[]` | List of comma separated AMR strategies used to determine whether cells should be refined or coarsened. This parameter is only relevant when AMR is enabled. |
+| `amr strategies` | `string` | `` | List of comma separated AMR strategies used to determine whether cells should be refined or coarsened. This parameter is only relevant when AMR is enabled. |
 
 
 ---

@@ -255,11 +255,11 @@
 | `power end time` | `number` | `1.79769e+308` | In case of time-dependent laser power: end time of |
 | `absorptivity gas` | `number` | `1.0` | Laser energy absorptivity of the gaseous part of the domain. |
 | `absorptivity liquid` | `number` | `1.0` | Laser energy absorptivity of the liquid part of the domain. |
-| `starting position` | `array` | `[]` | Center coordinates of the laser beam starting position on the interface melt/gas. |
+| `starting position` | `string` | `` | Center coordinates of the laser beam starting position on the interface melt/gas. |
 | `scan speed` | `number` | `0.0` | Scan speed of the laser |
-| `scan direction` | `array` | `[]` | Direction of laser motion as a vector |
-| `beam direction` | `array` | `[]` | Laser beam direction. |
-| `beam rotation axis` | `array` | `[]` | Axis around which the initial laser beam direction will be rotated. Relevant only in 3D. |
+| `scan direction` | `string` | `` | Direction of laser motion as a vector |
+| `beam direction` | `string` | `` | Laser beam direction. |
+| `beam rotation axis` | `string` | `` | Axis around which the initial laser beam direction will be rotated. Relevant only in 3D. |
 | `beam rotation angle` | `number` | `0.0` | Rotation angle applied to the laser beam direction (in 3D about 'beam rotation axis' following the right-hand rule; in 2D: as defined by the 2D rotation matrix |
 | `radius` | `number` | `0.0` | Laser beam radius. |
 | [`gusarov`](#laser-gusarov) | `object` |  | [See table](#laser-gusarov) |
@@ -417,7 +417,7 @@
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `Km` | `array` | `[]` | Fitting parameters for the evaporative mass flux function with pressure-aware boundary conditions. |
+| `Km` | `string` | `` | Fitting parameters for the evaporative mass flux function with pressure-aware boundary conditions. |
 | `ambient gas pressure` | `number` | `0.0` | Ambient gas pressure for the pressure-aware model. |
 
 <a id="evaporation-evaporative-dilation-rate"></a>
@@ -487,7 +487,7 @@
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `Kp` | `array` | `[]` | Fitting parameters for the recoil pressure calculation with pressure-aware boundary conditions. |
+| `Kp` | `string` | `` | Fitting parameters for the recoil pressure calculation with pressure-aware boundary conditions. |
 | `ambient gas pressure` | `number` | `0.0` | Ambient gas pressure for the pressure-aware model. |
 
 
@@ -501,7 +501,7 @@
 | `directory` | `string` | `./` | Sets the base directory for all output. |
 | `write frequency` | `integer` | `1` | Every n timestep that should be written |
 | `write time step size` | `number` | `1.79769e+308` | Write output output every given time step. If this parameter is set, the output write frequency is deactivated. |
-| `output variables` | `array` | `['all']` | Specify variables that you request to output. |
+| `output variables` | `string` | `all` | Specify variables that you request to output. |
 | `do user defined postprocessing` | `boolean` | `False` | Set this parameter to true to enable user defined postprocessing. |
 | [`paraview`](#output-paraview) | `object` |  | [See table](#output-paraview) |
 | [`particles`](#output-particles) | `object` |  | [See table](#output-particles) |
