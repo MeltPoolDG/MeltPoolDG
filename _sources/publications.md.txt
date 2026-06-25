@@ -1,6 +1,8 @@
 
 # 📚 Publications
 
+- **Much, N., Koch, A., Meier, C., and Schreter-Fleischhacker, M., 2026.** A hybrid sharp–diffuse interface approach to accurately model melt pool dynamics with rapid evaporation in laser-based processing of metals. *Computer Methods in Applied Mechanics and Engineering*, 457(119023). Available at: [https://doi.org/10.1016/j.cma.2026.119023](https://doi.org/10.1016/j.cma.2026.119023).
+
 - **Schreter-Fleischhacker, M., Much, N., Munch, P., Kronbichler, M., Wall, W.A. and Meier, C., 2025.** A consistent diffuse-interface finite element approach to rapid melt–vapor dynamics in metal additive manufacturing. *arXiv preprint arXiv:2501.18781*. Available at: [https://doi.org/10.48550/arXiv.2501.18781](https://doi.org/10.48550/arXiv.2501.18781).
 
 - **Bangerth, W., Blais, B., Fehling, M., Gassmöller, R., et al., 2024.** The deal.II library, Version 9.6. *Journal of Numerical Mathematics*, 32(4), pp.369-380. Available at: [https://doi.org/10.1515/jnma-2024-0137](https://doi.org/10.1515/jnma-2024-0137).
