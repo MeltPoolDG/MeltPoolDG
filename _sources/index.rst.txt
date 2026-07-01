@@ -46,6 +46,10 @@ Principal Developers
 - `Julian Brotz <https://www.epc.ed.tum.de/sam/team/julian-brotz/>`_
 - `Andreas Koch <https://www.epc.ed.tum.de/sam/team/andreas-koch/>`_
 
+Scientific Mentors
+-------
+- Christoph Meier
+
 Former Principal Developers
 -------
 - `Nils Much <https://www.epc.ed.tum.de/sam/team/nils-much/>`_
