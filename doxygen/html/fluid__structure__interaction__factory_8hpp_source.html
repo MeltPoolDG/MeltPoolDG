@@ -188,34 +188,31 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                obstacle_field, fsi_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FluidStructureInteractionData.html#a96c849af112a86a98cb7ac7a42041d74">brinkman_penalization_data</a>);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            fsi_obstacle_load = std::make_unique&lt;ObstacleLoad&lt;dim, number, ObstacleType&gt;&gt;(</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>              <a class="code hl_struct" href="structMeltPoolDG_1_1BrinkmanObstacleForce.html">BrinkmanObstacleForce&lt;dim, number, ObstacleType&gt;</a>(</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                obstacle_field,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                flow_solution,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                flow_mf_context,</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                fsi_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FluidStructureInteractionData.html#a96c849af112a86a98cb7ac7a42041d74">brinkman_penalization_data</a>));</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>          }</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>          <span class="keywordflow">case</span> FSICouplingMethod::stokes_law: {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            fsi_fluid_force_residual =</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>              std::make_shared&lt;StokesLawFluidForce&lt;dim, number, ObstacleType&gt;&gt;(</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                flow_solution, obstacle_field, flow_mf_context, flow_material.<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html#a6fb3a4806b393643334c8afe456fd8ec">dynamic_viscosity</a>);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <span class="comment">// TODO: The Stokes law coupling currently only works for explicit methods</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            fsi_fluid_force_jacobian =</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>              std::make_shared&lt;BrinkmanPenalizationJacobianContribution&lt;dim, number, ObstacleType&gt;&gt;(</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                obstacle_field, fsi_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FluidStructureInteractionData.html#a96c849af112a86a98cb7ac7a42041d74">brinkman_penalization_data</a>);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            fsi_obstacle_load = std::make_unique&lt;ObstacleLoad&lt;dim, number, ObstacleType&gt;&gt;(</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>              <a class="code hl_struct" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html">StokesLawSphericalParticleForce&lt;dim, number, ObstacleType&gt;</a>(</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                flow_solution, flow_mf_context, flow_material.<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html#a6fb3a4806b393643334c8afe456fd8ec">dynamic_viscosity</a>));</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>          }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>          AssertThrow(<span class="keyword">false</span>,</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                      dealii::ExcMessage(<span class="stringliteral">&quot;The provided FSI coupling method is not supported.&quot;</span>));</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      }</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">return</span> {fsi_fluid_force_residual, fsi_fluid_force_jacobian, std::move(fsi_obstacle_load)};</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                flow_solution, flow_mf_context, fsi_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FluidStructureInteractionData.html#a96c849af112a86a98cb7ac7a42041d74">brinkman_penalization_data</a>));</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>          }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>          <span class="keywordflow">case</span> FSICouplingMethod::stokes_law: {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            fsi_fluid_force_residual =</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>              std::make_shared&lt;StokesLawFluidForce&lt;dim, number, ObstacleType&gt;&gt;(</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                flow_solution, obstacle_field, flow_mf_context, flow_material.<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html#a6fb3a4806b393643334c8afe456fd8ec">dynamic_viscosity</a>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <span class="comment">// TODO: The Stokes law coupling currently only works for explicit methods</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            fsi_fluid_force_jacobian =</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>              std::make_shared&lt;BrinkmanPenalizationJacobianContribution&lt;dim, number, ObstacleType&gt;&gt;(</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                obstacle_field, fsi_data.<a class="code hl_variable" href="structMeltPoolDG_1_1FluidStructureInteractionData.html#a96c849af112a86a98cb7ac7a42041d74">brinkman_penalization_data</a>);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            fsi_obstacle_load = std::make_unique&lt;ObstacleLoad&lt;dim, number, ObstacleType&gt;&gt;(</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>              <a class="code hl_struct" href="structMeltPoolDG_1_1StokesLawSphericalParticleForce.html">StokesLawSphericalParticleForce&lt;dim, number, ObstacleType&gt;</a>(</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                flow_solution, flow_mf_context, flow_material.<a class="code hl_variable" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html#a6fb3a4806b393643334c8afe456fd8ec">dynamic_viscosity</a>));</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>          }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>          AssertThrow(<span class="keyword">false</span>,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                      dealii::ExcMessage(<span class="stringliteral">&quot;The provided FSI coupling method is not supported.&quot;</span>));</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">return</span> {fsi_fluid_force_residual, fsi_fluid_force_jacobian, std::move(fsi_obstacle_load)};</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  }</div>
 </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>} <span class="comment">// namespace MeltPoolDG</span></div>
 <div class="ttc" id="abrinkman__penalization_8hpp_html"><div class="ttname"><a href="brinkman__penalization_8hpp.html">brinkman_penalization.hpp</a></div></div>
 <div class="ttc" id="aclassMeltPoolDG_1_1ObstacleField_html"><div class="ttname"><a href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a></div><div class="ttdef"><b>Definition</b> obstacle_field.hpp:32</div></div>
 <div class="ttc" id="acompressible__flow_2material_8hpp_html"><div class="ttname"><a href="compressible__flow_2material_8hpp.html">material.hpp</a></div></div>

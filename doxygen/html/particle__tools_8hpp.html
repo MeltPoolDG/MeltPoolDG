@@ -140,6 +140,8 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;deal.II/base/mpi.h&gt;</code><br />
 <code>#include &lt;deal.II/base/point.h&gt;</code><br />
+<code>#include &lt;deal.II/base/tensor.h&gt;</code><br />
+<code>#include &lt;deal.II/base/types.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="exceptions_8hpp_source.html">meltpooldg/core/exceptions.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="particle_8hpp_source.html">meltpooldg/particles/particle.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="particle__accessor_8hpp_source.html">meltpooldg/particles/particle_accessor.hpp</a>&gt;</code><br />
@@ -157,7 +159,7 @@ Include dependency graph for particle_tools.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="particle__tools_8hpp__dep__incl.svg" width="195" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="particle__tools_8hpp__dep__incl.svg" width="384" height="168"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="particle__tools_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -179,6 +181,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a7a9e01fbe725a2a665f84dab1b558e6d" id="r_a7a9e01fbe725a2a665f84dab1b558e6d"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
 <tr class="memitem:a7a9e01fbe725a2a665f84dab1b558e6d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a7a9e01fbe725a2a665f84dab1b558e6d">MeltPoolDG::compute_and_set_spherical_particle_properties</a> (<a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html">DEMParticleAccessor</a>&lt; dim, number &gt; accessor, const number radius, const number density)</td></tr>
 <tr class="separator:a7a9e01fbe725a2a665f84dab1b558e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe71879c3ea9561661e4cb91dae3d90e" id="r_abe71879c3ea9561661e4cb91dae3d90e"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename VectorizedArrayType &gt; </td></tr>
+<tr class="memitem:abe71879c3ea9561661e4cb91dae3d90e"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#abe71879c3ea9561661e4cb91dae3d90e">MeltPoolDG::vector_to_center_of_gravity</a> (const <a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html">DEMParticleAccessor</a>&lt; dim, number &gt; &amp;particle, const dealii::Point&lt; dim, VectorizedArrayType &gt; &amp;location)</td></tr>
+<tr class="separator:abe71879c3ea9561661e4cb91dae3d90e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5d8ca9c8c3fc316dcad2d3881bab84f" id="r_ac5d8ca9c8c3fc316dcad2d3881bab84f"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename VectorizedArrayType &gt; </td></tr>
+<tr class="memitem:ac5d8ca9c8c3fc316dcad2d3881bab84f"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ac5d8ca9c8c3fc316dcad2d3881bab84f">MeltPoolDG::local_particle_velocity</a> (const <a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html">DEMParticleAccessor</a>&lt; dim, number &gt; &amp;particle, const dealii::Point&lt; dim, VectorizedArrayType &gt; &amp;location)</td></tr>
+<tr class="separator:ac5d8ca9c8c3fc316dcad2d3881bab84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab29ad08327fcfb19f08629e488f8da1d" id="r_ab29ad08327fcfb19f08629e488f8da1d"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
 <tr class="memitem:ab29ad08327fcfb19f08629e488f8da1d"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; std::vector&lt; dealii::Point&lt; dim, number &gt; &gt;, std::vector&lt; std::vector&lt; number &gt; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ab29ad08327fcfb19f08629e488f8da1d">MeltPoolDG::read_particle_state_input_file</a> (const std::string &amp;filename, const MPI_Comm &amp;mpi_communicator)</td></tr>
 <tr class="separator:ab29ad08327fcfb19f08629e488f8da1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
