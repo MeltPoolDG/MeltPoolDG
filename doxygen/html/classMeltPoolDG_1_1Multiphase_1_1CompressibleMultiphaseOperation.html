@@ -175,6 +175,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a45dc21be7f126b0c3c50864bbcbf70c5" id="r_a45dc21be7f126b0c3c50864bbcbf70c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a45dc21be7f126b0c3c50864bbcbf70c5">set_body_force</a> (std::unique_ptr&lt; dealii::Function&lt; dim &gt; &gt; body_force_in)</td></tr>
 <tr class="memdesc:a45dc21be7f126b0c3c50864bbcbf70c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a body force, e.g. gravity, specified by the passed function.  <br /></td></tr>
 <tr class="separator:a45dc21be7f126b0c3c50864bbcbf70c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa34a5b81f5f3452d5749766b9127689f" id="r_aa34a5b81f5f3452d5749766b9127689f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#aa34a5b81f5f3452d5749766b9127689f">add_external_force</a> (std::shared_ptr&lt; <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForce.html">CompressibleFlow::ExternalFlowForce</a>&lt; dim, number &gt; &gt; external_force)</td></tr>
+<tr class="memdesc:aa34a5b81f5f3452d5749766b9127689f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add external fluid forces (e.g. gravity, ...).  <br /></td></tr>
+<tr class="separator:aa34a5b81f5f3452d5749766b9127689f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86560b466664436c03e666db9fe07bc3" id="r_a86560b466664436c03e666db9fe07bc3"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a86560b466664436c03e666db9fe07bc3">compute_time_step_size</a> (bool do_print=false) const</td></tr>
 <tr class="memdesc:a86560b466664436c03e666db9fe07bc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the maximum time step size.  <br /></td></tr>
 <tr class="separator:a86560b466664436c03e666db9fe07bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -516,6 +519,34 @@ template&lt;int dim, typename number &gt; </div>
 <li>compute quadrature rules for intersected cells, intersected faces and the phase surface</li>
 <li>reinit matrix-free object, rhs and solution vectors </li>
 </ul>
+
+</div>
+</div>
+<a id="aa34a5b81f5f3452d5749766b9127689f" name="aa34a5b81f5f3452d5749766b9127689f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa34a5b81f5f3452d5749766b9127689f">&#9670;&#160;</a></span>add_external_force()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperation</a>&lt; dim, number &gt;::add_external_force </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForce.html">CompressibleFlow::ExternalFlowForce</a>&lt; dim, number &gt; &gt;&#160;</td>
+          <td class="paramname"><em>external_force</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add external fluid forces (e.g. gravity, ...). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">external_force</td><td>A provided shared pointer to an external force definition. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

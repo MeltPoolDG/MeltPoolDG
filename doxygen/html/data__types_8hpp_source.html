@@ -316,10 +316,24 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    };</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  };</div>
 </div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>} <span class="comment">// namespace MeltPoolDG::CompressibleFlow</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> StateType, <span class="keyword">typename</span> FluxType&gt;</div>
+<div class="foldopen" id="foldopen00196" data-start="{" data-end="}">
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsFluxKernel.html">  196</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsFluxKernel.html">IsFluxKernel</a> = <span class="keyword">requires</span>(<span class="keyword">const</span> T &amp;kernel, <span class="keyword">const</span> StateType &amp;u) {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    {</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>      kernel.flux(u)</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    } -&gt; std::same_as&lt;FluxType&gt;;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  } || <span class="keyword">requires</span>(<span class="keyword">const</span> T &amp;kernel, <span class="keyword">const</span> StateType &amp;u, <span class="keyword">const</span> StateType &amp;grad_u) {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>      kernel.flux(u, grad_u)</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    } -&gt; std::same_as&lt;FluxType&gt;;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  };</div>
+</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>} <span class="comment">// namespace MeltPoolDG::CompressibleFlow</span></div>
 <div class="ttc" id="aconceptMeltPoolDG_1_1CompressibleFlow_1_1IsConservedGradientCompatible_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsConservedGradientCompatible.html">MeltPoolDG::CompressibleFlow::IsConservedGradientCompatible</a></div><div class="ttdef"><b>Definition</b> data_types.hpp:89</div></div>
 <div class="ttc" id="aconceptMeltPoolDG_1_1CompressibleFlow_1_1IsConservedStateCompatible_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsConservedStateCompatible.html">MeltPoolDG::CompressibleFlow::IsConservedStateCompatible</a></div><div class="ttdef"><b>Definition</b> data_types.hpp:79</div></div>
 <div class="ttc" id="aconceptMeltPoolDG_1_1CompressibleFlow_1_1IsConservedView_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsConservedView.html">MeltPoolDG::CompressibleFlow::IsConservedView</a></div><div class="ttdef"><b>Definition</b> data_types.hpp:95</div></div>
+<div class="ttc" id="aconceptMeltPoolDG_1_1CompressibleFlow_1_1IsFluxKernel_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsFluxKernel.html">MeltPoolDG::CompressibleFlow::IsFluxKernel</a></div><div class="ttdef"><b>Definition</b> data_types.hpp:196</div></div>
 <div class="ttc" id="aconceptMeltPoolDG_1_1CompressibleFlow_1_1IsGradientView_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsGradientView.html">MeltPoolDG::CompressibleFlow::IsGradientView</a></div><div class="ttdef"><b>Definition</b> data_types.hpp:167</div></div>
 <div class="ttc" id="aconceptMeltPoolDG_1_1CompressibleFlow_1_1IsMaterialView_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsMaterialView.html">MeltPoolDG::CompressibleFlow::IsMaterialView</a></div><div class="ttdef"><b>Definition</b> data_types.hpp:121</div></div>
 <div class="ttc" id="aconceptMeltPoolDG_1_1CompressibleFlow_1_1IsPrimitiveView_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1CompressibleFlow_1_1IsPrimitiveView.html">MeltPoolDG::CompressibleFlow::IsPrimitiveView</a></div><div class="ttdef"><b>Definition</b> data_types.hpp:108</div></div>

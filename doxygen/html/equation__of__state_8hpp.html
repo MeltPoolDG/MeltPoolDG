@@ -166,6 +166,10 @@ This graph shows which files directly or indirectly include this file:</div>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1IdealGasEOS.html">MeltPoolDG::Flow::IdealGasEOS</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1StiffenedGasEOS.html">MeltPoolDG::Flow::StiffenedGasEOS</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1NobleAbelStiffenedGasEOS.html">MeltPoolDG::Flow::NobleAbelStiffenedGasEOS</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1EOSValueMixin.html">MeltPoolDG::Flow::EOSValueMixin&lt; dim, ValueType, Derived &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Flow_1_1EOSGradientMixin.html">MeltPoolDG::Flow::EOSGradientMixin&lt; dim, Derived &gt;</a></td></tr>
@@ -187,12 +191,23 @@ Concepts</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptMeltPoolDG_1_1Flow_1_1IdealGasIsMaterialView.html">MeltPoolDG::Flow::IdealGasIsMaterialView</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptMeltPoolDG_1_1Flow_1_1StiffenedGasIsMaterialView.html">MeltPoolDG::Flow::StiffenedGasIsMaterialView</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptMeltPoolDG_1_1Flow_1_1NobleAbelStiffenedGasIsMaterialView.html">MeltPoolDG::Flow::NobleAbelStiffenedGasIsMaterialView</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptMeltPoolDG_1_1Flow_1_1HasSupportedEOS.html">MeltPoolDG::Flow::HasSupportedEOS</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept ensuring a type defines a specific, compatible <code>supported_eos</code> array. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a012e26517346319e9530b73f39c972d3" id="r_a012e26517346319e9530b73f39c972d3"><td class="memTemplParams" colspan="2">template&lt;typename F &gt; </td></tr>
-<tr class="memitem:a012e26517346319e9530b73f39c972d3"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a012e26517346319e9530b73f39c972d3">MeltPoolDG::Flow::dispatch_eos</a> (CompressibleFlow::EquationOfState eos_type, F &amp;&amp;f)</td></tr>
-<tr class="separator:a012e26517346319e9530b73f39c972d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2ebc75408ae9daa837adf5a52633278" id="r_aa2ebc75408ae9daa837adf5a52633278"><td class="memTemplParams" colspan="2">template&lt;typename Derived , CompressibleFlow::EquationOfState EOS&gt; </td></tr>
+<tr class="memitem:aa2ebc75408ae9daa837adf5a52633278"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#aa2ebc75408ae9daa837adf5a52633278">MeltPoolDG::Flow::supports_eos</a> ()</td></tr>
+<tr class="memdesc:aa2ebc75408ae9daa837adf5a52633278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatch helper function that checks at compile-time whether an equation of state is supported.  <br /></td></tr>
+<tr class="separator:aa2ebc75408ae9daa837adf5a52633278"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a758ce9c6a1e084b58f87b2faa19b5ed1" id="r_a758ce9c6a1e084b58f87b2faa19b5ed1"><td class="memTemplParams" colspan="2">template&lt;typename Derived , typename F &gt; </td></tr>
+<tr class="memitem:a758ce9c6a1e084b58f87b2faa19b5ed1"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Flow.html#a758ce9c6a1e084b58f87b2faa19b5ed1">MeltPoolDG::Flow::dispatch_eos</a> (CompressibleFlow::EquationOfState eos_type, F &amp;&amp;f)</td></tr>
+<tr class="separator:a758ce9c6a1e084b58f87b2faa19b5ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
