@@ -28,7 +28,8 @@
 
 #include "../advection_diffusion_case.hpp"
 
-namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
+
+namespace MeltPoolDG::Simulation::AdvectionDiffusionSineInflow
 {
   static bool inflow_outflow_bc = false;
 
@@ -116,10 +117,10 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
    *      This class collects all relevant input data for the level set simulation
    */
   template <int dim, typename number>
-  class SimulationAdvecDG : public LevelSet::AdvectionDiffusionCase<dim, number>
+  class SimulationAdvecSineInflow : public LevelSet::AdvectionDiffusionCase<dim, number>
   {
   public:
-    SimulationAdvecDG(std::string parameter_file, const MPI_Comm mpi_communicator)
+    SimulationAdvecSineInflow(std::string parameter_file, const MPI_Comm mpi_communicator)
       : LevelSet::AdvectionDiffusionCase<dim, number>(parameter_file, mpi_communicator)
     {}
 
@@ -279,4 +280,4 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
     const number right_domain = 0.5;
   };
 
-} // namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
+} // namespace MeltPoolDG::Simulation::AdvectionDiffusionSineInflow

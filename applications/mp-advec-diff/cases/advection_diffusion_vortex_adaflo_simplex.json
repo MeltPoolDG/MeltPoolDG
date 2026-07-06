@@ -1,28 +1,23 @@
 {
-  "$schema": "../../parameters.schema.json",
+  "$schema": "../parameters.schema.json",
   "base": {
-    "case name": "advection_diffusion",
+    "case name": "advection_diffusion_vortex",
     "dimension": 2,
     "global refinements": 5,
     "do print parameters": false,
     "fe": {
+      "type": "FE_SimplexP",
       "degree": 1
     }
   },
   "time stepping": {
     "start time": 0.0,
-    "end time": 0.06,
+    "end time": 1.5707963267948966,
     "time step size": 0.01
-  },
-  "adaptive meshing": {
-    "do amr": true,
-    "upper perc to refine": 0.1,
-    "lower perc to coarsen": 0.0,
-    "max grid refinement level": 8
   },
   "output": {
     "paraview": {
-      "enable": false
+      "enable": true
     }
   },
   "advection diffusion": {
@@ -30,6 +25,9 @@
       "do matrix free": true
     },
     "diffusivity": 0.0,
-    "implementation": "meltpooldg"
+    "implementation": "adaflo",
+    "time integration": {
+      "type": "crank_nicolson"
+    }
   }
 }

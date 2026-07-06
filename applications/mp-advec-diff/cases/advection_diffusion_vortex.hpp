@@ -27,7 +27,7 @@
 
 #include "../advection_diffusion_case.hpp"
 
-namespace MeltPoolDG::Simulation::AdvectionDiffusion
+namespace MeltPoolDG::Simulation::AdvectionDiffusionVortex
 {
   static bool inflow_outflow_bc = false;
 
@@ -105,10 +105,10 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusion
    */
 
   template <int dim, typename number>
-  class SimulationAdvec : public LevelSet::AdvectionDiffusionCase<dim, number>
+  class SimulationAdvecVortex : public LevelSet::AdvectionDiffusionCase<dim, number>
   {
   public:
-    SimulationAdvec(std::string parameter_file, const MPI_Comm mpi_communicator)
+    SimulationAdvecVortex(std::string parameter_file, const MPI_Comm mpi_communicator)
       : LevelSet::AdvectionDiffusionCase<dim, number>(parameter_file, mpi_communicator)
     {}
 
@@ -267,4 +267,4 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusion
     const number           right_domain   = 1.0;
     LevelSet::LevelSetType level_set_type = LevelSet::LevelSetType::tanh;
   };
-} // namespace MeltPoolDG::Simulation::AdvectionDiffusion
+} // namespace MeltPoolDG::Simulation::AdvectionDiffusionVortex

@@ -1,9 +1,9 @@
 {
   "$schema": "../../parameters.schema.json",
   "base": {
-    "case name": "advection_diffusion",
-    "dimension": 3,
-    "global refinements": 3,
+    "case name": "advection_diffusion_vortex",
+    "dimension": 2,
+    "global refinements": 5,
     "do print parameters": false,
     "fe": {
       "degree": 1
@@ -22,9 +22,8 @@
   "advection diffusion": {
     "linear solver": {
       "do matrix free": true
-    }
-  },
-  "case specific": {
-    "inflow outflow bc": true
+    },
+    "diffusivity": 0.0,
+    "implementation": "meltpooldg"
   }
 }

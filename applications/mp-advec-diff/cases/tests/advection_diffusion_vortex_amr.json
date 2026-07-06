@@ -1,7 +1,7 @@
 {
   "$schema": "../../parameters.schema.json",
   "base": {
-    "case name": "advection_diffusion",
+    "case name": "advection_diffusion_vortex",
     "dimension": 2,
     "global refinements": 5,
     "do print parameters": false,
@@ -11,8 +11,14 @@
   },
   "time stepping": {
     "start time": 0.0,
-    "end time": 0.05,
+    "end time": 0.06,
     "time step size": 0.01
+  },
+  "adaptive meshing": {
+    "do amr": true,
+    "upper perc to refine": 0.1,
+    "lower perc to coarsen": 0.0,
+    "max grid refinement level": 8
   },
   "output": {
     "paraview": {
