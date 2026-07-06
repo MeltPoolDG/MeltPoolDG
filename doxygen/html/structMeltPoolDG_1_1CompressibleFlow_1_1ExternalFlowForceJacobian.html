@@ -150,8 +150,8 @@ Inheritance diagram for MeltPoolDG::CompressibleFlow::ExternalFlowForceJacobian&
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a047582513b5d82a4b2eb96ccc6ca8555" id="r_a047582513b5d82a4b2eb96ccc6ca8555"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForceJacobian.html#a047582513b5d82a4b2eb96ccc6ca8555">~ExternalFlowForceJacobian</a> ()=default</td></tr>
 <tr class="separator:a047582513b5d82a4b2eb96ccc6ca8555"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec3209dfdf1e3312c61a3ce8af4afaba" id="r_aec3209dfdf1e3312c61a3ce8af4afaba"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForceJacobian.html#aec3209dfdf1e3312c61a3ce8af4afaba">value</a> (number time_step_size, const std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt; &amp;cells, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;points, const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;w, const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;delta_w)=0</td></tr>
-<tr class="separator:aec3209dfdf1e3312c61a3ce8af4afaba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b2d2025dc96e680fbcea11605405530" id="r_a3b2d2025dc96e680fbcea11605405530"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForceJacobian.html#a3b2d2025dc96e680fbcea11605405530">value</a> (number time_step_size, unsigned int cell_batch_id, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;points, const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;w, const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;delta_w)=0</td></tr>
+<tr class="separator:a3b2d2025dc96e680fbcea11605405530"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a047582513b5d82a4b2eb96ccc6ca8555" name="a047582513b5d82a4b2eb96ccc6ca8555"></a>
@@ -182,8 +182,8 @@ template&lt;int dim, typename number , int n_species = 1&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aec3209dfdf1e3312c61a3ce8af4afaba" name="aec3209dfdf1e3312c61a3ce8af4afaba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec3209dfdf1e3312c61a3ce8af4afaba">&#9670;&#160;</a></span>value()</h2>
+<a id="a3b2d2025dc96e680fbcea11605405530" name="a3b2d2025dc96e680fbcea11605405530"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b2d2025dc96e680fbcea11605405530">&#9670;&#160;</a></span>value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -202,8 +202,8 @@ template&lt;int dim, typename number , int n_species = 1&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>cells</em>, </td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>cell_batch_id</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -239,7 +239,7 @@ template&lt;int dim, typename number , int n_species = 1&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">time_step_size</td><td>Size of the current time step. </td></tr>
-    <tr><td class="paramname">cells</td><td>Container holding an iterator to the cells associated with the provided points. If required this can also include an iterator with invalid state. </td></tr>
+    <tr><td class="paramname">cell_batch_id</td><td>The ID of the cell batch for which to compute the external force. </td></tr>
     <tr><td class="paramname">points</td><td>Coordinates of the points at which the external force is evaluated. </td></tr>
     <tr><td class="paramname">w</td><td>Conserved variables at the corresponding points. </td></tr>
     <tr><td class="paramname">delta_w</td><td>Increment in conserved variables at the corresponding points.</td></tr>

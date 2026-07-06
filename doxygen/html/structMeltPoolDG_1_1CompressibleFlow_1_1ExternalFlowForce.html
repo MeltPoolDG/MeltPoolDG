@@ -153,13 +153,13 @@ Inheritance diagram for MeltPoolDG::CompressibleFlow::ExternalFlowForce&lt; dim,
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0e2ab7ace355208d22a5310bc923f0ba" id="r_a0e2ab7ace355208d22a5310bc923f0ba"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForce.html#a0e2ab7ace355208d22a5310bc923f0ba">~ExternalFlowForce</a> ()=default</td></tr>
 <tr class="separator:a0e2ab7ace355208d22a5310bc923f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae351c87c825638733376554175a0fb0" id="r_aae351c87c825638733376554175a0fb0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForce.html#aae351c87c825638733376554175a0fb0">value</a> (number time_step_size, const std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt; &amp;cells, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;points, const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;w)=0</td></tr>
-<tr class="separator:aae351c87c825638733376554175a0fb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae931ba3c06f29488ab7d26366e2033b4" id="r_ae931ba3c06f29488ab7d26366e2033b4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForce.html#ae931ba3c06f29488ab7d26366e2033b4">value</a> (number time_step_size, unsigned int cell_batch_id, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;points, const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;w)=0</td></tr>
+<tr class="separator:ae931ba3c06f29488ab7d26366e2033b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number, int n_species = 1&gt;<br />
 struct MeltPoolDG::CompressibleFlow::ExternalFlowForce&lt; dim, number, n_species &gt;</div><p>An abstract interface for defining external forces acting on the fluid that must be evaluated and incorporated during the cell loop of an explicit time integration scheme. </p>
-<p>This struct serves as a base for user-defined external fluid force models. Any derived class must implement the core functions: <code><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForce.html#aae351c87c825638733376554175a0fb0">value()</a></code>: Invoked at each quadrature point to compute the contribution of the external force. </p>
+<p>This struct serves as a base for user-defined external fluid force models. Any derived class must implement the core functions: <code><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForce.html#ae931ba3c06f29488ab7d26366e2033b4">value()</a></code>: Invoked at each quadrature point to compute the contribution of the external force. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0e2ab7ace355208d22a5310bc923f0ba" name="a0e2ab7ace355208d22a5310bc923f0ba"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0e2ab7ace355208d22a5310bc923f0ba">&#9670;&#160;</a></span>~ExternalFlowForce()</h2>
@@ -189,8 +189,8 @@ template&lt;int dim, typename number , int n_species = 1&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aae351c87c825638733376554175a0fb0" name="aae351c87c825638733376554175a0fb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae351c87c825638733376554175a0fb0">&#9670;&#160;</a></span>value()</h2>
+<a id="ae931ba3c06f29488ab7d26366e2033b4" name="ae931ba3c06f29488ab7d26366e2033b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae931ba3c06f29488ab7d26366e2033b4">&#9670;&#160;</a></span>value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -209,8 +209,8 @@ template&lt;int dim, typename number , int n_species = 1&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>cells</em>, </td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>cell_batch_id</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -240,7 +240,7 @@ template&lt;int dim, typename number , int n_species = 1&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">time_step_size</td><td>Size of the current time step. </td></tr>
-    <tr><td class="paramname">cells</td><td>Container holding an iterator to the cells associated with the provided points. </td></tr>
+    <tr><td class="paramname">cell_batch_id</td><td>The ID of the cell batch for which to compute the external force. </td></tr>
     <tr><td class="paramname">points</td><td>Coordinates of the points at which the external force is evaluated. </td></tr>
     <tr><td class="paramname">w</td><td>Conserved variables at the corresponding points.</td></tr>
   </table>
