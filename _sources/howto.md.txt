@@ -103,7 +103,7 @@ Follow the Doxygen format when documenting functions, classes, and variables in 
 
 ## How to add new parameters
 
-When adding new parameters to a data structure using `ParameterHandler::add_parameters()`, follow these conventions. A best-practice example can be found [here](https://github.com/MeltPoolDG/MeltPoolDG-dev/blob/master/source/level_set/advection_diffusion_data.cpp).
+When adding new parameters to a data structure using `ParameterHandler::add_parameters()`, follow these conventions. A best-practice example can be found [here](https://github.com/MeltPoolDG/MeltPoolDG/blob/master/source/level_set/advection_diffusion_data.cpp).
 - Use meaningful variable names that are self-explanatory, avoiding abbreviations.
 - Carefully decide whether to provide useful default values or require users to explicitly set a value by initializing it to an invalid state.
 - Use `BetterEnum` over `std::string`. This allows for faster comparisons and reduces the risk of errors by automatically triggering an assertion for invalid types.

@@ -17,15 +17,15 @@
 Before making any changes, you need to fork the repository to your own GitHub account. You can do this by clicking the Fork button at the top right corner of the repository page on GitHub. Once forked, clone your forked repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/MeltPoolDG-dev.git
+git clone https://github.com/your-username/MeltPoolDG.git
 ```
 Then, navigate into the repository directory:
 ```bash
-cd MeltPoolDG-dev
+cd MeltPoolDG
 ```
 Add the original repository as an upstream remote to stay updated with changes:
 ```bash
-git remote add upstream https://github.com/MeltPoolDG/MeltPoolDG-dev.git
+git remote add upstream https://github.com/MeltPoolDG/MeltPoolDG.git
 ```
 Now, you are ready to start contributing!
 
@@ -155,7 +155,7 @@ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON #...
 ```
 Navigate to the root directory of `MeltPoolDG`, then run `clang-tidy` on the library with:
 ```bash
-cd MeltPoolDG-dev
+cd MeltPoolDG
 bash scripts/utilities/run_clang_tidy.sh <build_directory> <number_of_processes>
 ```
 providing the `<build_directory>` e.g. `build_release` and the `<number_of_processes>` for the check e.g. 4. The output will be written to `./<build_directory>/clang-tidy-detailed.log` and `./<build_directory>/clang-tidy.log`. Make sure that you don't produce any warnings.
