@@ -100,7 +100,7 @@
 <section id="download-the-repository">
 <h3>Download the repository<a class="headerlink" href="#download-the-repository" title="Link to this heading"></a></h3>
 <p>Clone the repository via:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:MeltPoolDG/MeltPoolDG.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:MeltPoolDG/MeltPoolDG-dev.git
 </pre></div>
 </div>
 </section>
@@ -130,7 +130,7 @@
 <section id="full-installation-of-meltpooldg-including-dependencies-recommended">
 <h2>Full installation of MeltPoolDG including dependencies (recommended)<a class="headerlink" href="#full-installation-of-meltpooldg-including-dependencies-recommended" title="Link to this heading"></a></h2>
 <p>To install MeltPoolDG along with its dependencies, simply run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>MeltPoolDG
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>MeltPoolDG-dev
 bash<span class="w"> </span>scripts/config/install.sh
 </pre></div>
 </div>
@@ -143,12 +143,12 @@ bash<span class="w"> </span>scripts/config/install.sh
 │<span class="w">  </span>├─<span class="w"> </span>build_release/
 │<span class="w">  </span>├─<span class="w"> </span>build_debug/
 │<span class="w">  </span>├─<span class="w"> </span>include/
-MeltPoolDG/
+MeltPoolDG-dev/
 ├─<span class="w"> </span>build_debug/
 ├─<span class="w"> </span>build_release/
 </pre></div>
 </div>
-<p>MeltPoolDG is compiled in release mode in <code class="docutils literal notranslate"><span class="pre">MeltPoolDG/build_release</span></code> and in debug mode in <code class="docutils literal notranslate"><span class="pre">MeltPoolDG/build_debug</span></code>.</p>
+<p>MeltPoolDG is compiled in release mode in <code class="docutils literal notranslate"><span class="pre">MeltPoolDG-dev/build_release</span></code> and in debug mode in <code class="docutils literal notranslate"><span class="pre">MeltPoolDG-dev/build_debug</span></code>.</p>
 </section>
 <section id="manual-installation">
 <h2>Manual installation<a class="headerlink" href="#manual-installation" title="Link to this heading"></a></h2>
@@ -162,7 +162,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>external_libs
 </div>
 <p>Then, run the installation script with the desired number of processes and build configuration (<code class="docutils literal notranslate"><span class="pre">Debug</span></code>, <code class="docutils literal notranslate"><span class="pre">Release</span></code> or <code class="docutils literal notranslate"><span class="pre">DebugRelease</span></code> [default]):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install the dependencies with 8 processes and DebugRelease configuration</span>
-bash<span class="w"> </span>path_to_meltpooldg/MeltPoolDG/scripts/config/download_and_install_dependencies.sh<span class="w"> </span><span class="m">8</span><span class="w"> </span>DebugRelease
+bash<span class="w"> </span>path_to_meltpooldg/MeltPoolDG-dev/scripts/config/download_and_install_dependencies.sh<span class="w"> </span><span class="m">8</span><span class="w"> </span>DebugRelease
 </pre></div>
 </div>
 </section>
@@ -170,13 +170,13 @@ bash<span class="w"> </span>path_to_meltpooldg/MeltPoolDG/scripts/config/downloa
 <h3>Building MeltPoolDG<a class="headerlink" href="#building-meltpooldg" title="Link to this heading"></a></h3>
 <p>Once all dependencies are installed (e.g. in <code class="docutils literal notranslate"><span class="pre">external_libs</span></code>), MeltPoolDG can be built in DebugRelease mode using:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># build MeltPoolDG with 8 processes in DebugRelease configuration and create the build folders insource, indicated by the last argument</span>
-<span class="nb">cd</span><span class="w"> </span>path_to_meltpooldg/MeltPoolDG
+<span class="nb">cd</span><span class="w"> </span>path_to_meltpooldg/MeltPoolDG-dev
 scripts/config/install_meltpooldg.sh<span class="w"> </span><span class="m">8</span><span class="w"> </span>external_libs/dealii-build<span class="w"> </span>external_libs/adaflo/include<span class="w"> </span>external_libs/adaflo/build_release<span class="w"> </span>DebugRelease<span class="w"> </span>.
 </pre></div>
 </div>
 <p>Alternatively, you can manually configure and build the project using CMake.
 Create a build directory and configure CMake:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path_to_meltpooldg/MeltPoolDG
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path_to_meltpooldg/MeltPoolDG-dev
 mkdir<span class="w"> </span>build
 <span class="nb">cd</span><span class="w"> </span>build
 cmake<span class="w"> </span><span class="se">\</span>
