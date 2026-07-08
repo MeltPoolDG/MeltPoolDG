@@ -17,26 +17,26 @@
 Before making any changes, you need to fork the repository to your own GitHub account. You can do this by clicking the Fork button at the top right corner of the repository page on GitHub. Once forked, clone your forked repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/MeltPoolDG-dev.git
+git clone https://github.com/your-username/MeltPoolDG.git
 ```
 Then, navigate into the repository directory:
 ```bash
-cd MeltPoolDG-dev
+cd MeltPoolDG
 ```
 Add the original repository as an upstream remote to stay updated with changes:
 ```bash
-git remote add upstream https://github.com/MeltPoolDG/MeltPoolDG-dev.git
+git remote add upstream https://github.com/MeltPoolDG/MeltPoolDG.git
 ```
 Now, you are ready to start contributing!
 
 ## Making Changes and Pushing to the Repository
 
-### Get the Latest `master` Branch
+### Get the Latest `main` Branch
 
 Before making changes, ensure your local branch is up to date with the original repository (see **[Useful GIT commands](#-useful-git-commands)** section):
 ```bash
 git fetch upstream
-git rebase upstream/master
+git rebase upstream/main
 ```
 ### Create a New Branch
 
@@ -155,7 +155,7 @@ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON #...
 ```
 Navigate to the root directory of `MeltPoolDG`, then run `clang-tidy` on the library with:
 ```bash
-cd MeltPoolDG-dev
+cd MeltPoolDG
 bash scripts/utilities/run_clang_tidy.sh <build_directory> <number_of_processes>
 ```
 providing the `<build_directory>` e.g. `build_release` and the `<number_of_processes>` for the check e.g. 4. The output will be written to `./<build_directory>/clang-tidy-detailed.log` and `./<build_directory>/clang-tidy.log`. Make sure that you don't produce any warnings.
@@ -171,9 +171,9 @@ pre-commit install
 
 ---
 ## Useful GIT commands
-### Rebasing Your Branch onto the Latest `master`
+### Rebasing Your Branch onto the Latest `main`
 
-If you're working on `my_branch` and need to update it with the latest `master`, follow these steps.
+If you're working on `my_branch` and need to update it with the latest `main`, follow these steps.
 
 ⚠ **Warning:** If you are unfamiliar with rebasing, create a backup before proceeding.
 
@@ -192,7 +192,7 @@ If you're working on `my_branch` and need to update it with the latest `master`,
    ```
 4. Start the rebase process:
    ```bash
-   git rebase -i origin/master
+   git rebase -i origin/main
    ```
 5. If there are **no conflicts**, force-push the rebased branch:
    ```bash

@@ -56,7 +56,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#forking-the-repository">Forking the repository</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#making-changes-and-pushing-to-the-repository">Making Changes and Pushing to the Repository</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#get-the-latest-master-branch">Get the Latest <code class="docutils literal notranslate"><span class="pre">master</span></code> Branch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-the-latest-main-branch">Get the Latest <code class="docutils literal notranslate"><span class="pre">main</span></code> Branch</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#create-a-new-branch">Create a New Branch</a></li>
 </ul>
 </li>
@@ -71,7 +71,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#how-to-use-clang-tidy-to-check-your-code">How to use <code class="docutils literal notranslate"><span class="pre">clang-tidy</span></code> to check your code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installing-pre-commit-hooks">Installing Pre-commit Hooks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#useful-git-commands">Useful GIT commands</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#rebasing-your-branch-onto-the-latest-master">Rebasing Your Branch onto the Latest <code class="docutils literal notranslate"><span class="pre">master</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rebasing-your-branch-onto-the-latest-main">Rebasing Your Branch onto the Latest <code class="docutils literal notranslate"><span class="pre">main</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#squashing-commits-into-one">Squashing Commits into One</a></li>
 </ul>
 </li>
@@ -126,26 +126,26 @@
 <section id="forking-the-repository">
 <h2>Forking the repository<a class="headerlink" href="#forking-the-repository" title="Link to this heading"></a></h2>
 <p>Before making any changes, you need to fork the repository to your own GitHub account. You can do this by clicking the Fork button at the top right corner of the repository page on GitHub. Once forked, clone your forked repository to your local machine:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/MeltPoolDG-dev.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/MeltPoolDG.git
 </pre></div>
 </div>
 <p>Then, navigate into the repository directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>MeltPoolDG-dev
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>MeltPoolDG
 </pre></div>
 </div>
 <p>Add the original repository as an upstream remote to stay updated with changes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/MeltPoolDG/MeltPoolDG-dev.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/MeltPoolDG/MeltPoolDG.git
 </pre></div>
 </div>
 <p>Now, you are ready to start contributing!</p>
 </section>
 <section id="making-changes-and-pushing-to-the-repository">
 <h2>Making Changes and Pushing to the Repository<a class="headerlink" href="#making-changes-and-pushing-to-the-repository" title="Link to this heading"></a></h2>
-<section id="get-the-latest-master-branch">
-<h3>Get the Latest <code class="docutils literal notranslate"><span class="pre">master</span></code> Branch<a class="headerlink" href="#get-the-latest-master-branch" title="Link to this heading"></a></h3>
+<section id="get-the-latest-main-branch">
+<h3>Get the Latest <code class="docutils literal notranslate"><span class="pre">main</span></code> Branch<a class="headerlink" href="#get-the-latest-main-branch" title="Link to this heading"></a></h3>
 <p>Before making changes, ensure your local branch is up to date with the original repository (see <strong>Useful GIT commands</strong> section):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>upstream
-git<span class="w"> </span>rebase<span class="w"> </span>upstream/master
+git<span class="w"> </span>rebase<span class="w"> </span>upstream/main
 </pre></div>
 </div>
 </section>
@@ -262,7 +262,7 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
 </pre></div>
 </div>
 <p>Navigate to the root directory of <code class="docutils literal notranslate"><span class="pre">MeltPoolDG</span></code>, then run <code class="docutils literal notranslate"><span class="pre">clang-tidy</span></code> on the library with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>MeltPoolDG-dev
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>MeltPoolDG
 bash<span class="w"> </span>scripts/utilities/run_clang_tidy.sh<span class="w"> </span>&lt;build_directory&gt;<span class="w"> </span>&lt;number_of_processes&gt;
 </pre></div>
 </div>
@@ -279,9 +279,9 @@ bash<span class="w"> </span>scripts/utilities/run_clang_tidy.sh<span class="w"> 
 <hr class="docutils" />
 <section id="useful-git-commands">
 <h2>Useful GIT commands<a class="headerlink" href="#useful-git-commands" title="Link to this heading"></a></h2>
-<section id="rebasing-your-branch-onto-the-latest-master">
-<h3>Rebasing Your Branch onto the Latest <code class="docutils literal notranslate"><span class="pre">master</span></code><a class="headerlink" href="#rebasing-your-branch-onto-the-latest-master" title="Link to this heading"></a></h3>
-<p>If you’re working on <code class="docutils literal notranslate"><span class="pre">my_branch</span></code> and need to update it with the latest <code class="docutils literal notranslate"><span class="pre">master</span></code>, follow these steps.</p>
+<section id="rebasing-your-branch-onto-the-latest-main">
+<h3>Rebasing Your Branch onto the Latest <code class="docutils literal notranslate"><span class="pre">main</span></code><a class="headerlink" href="#rebasing-your-branch-onto-the-latest-main" title="Link to this heading"></a></h3>
+<p>If you’re working on <code class="docutils literal notranslate"><span class="pre">my_branch</span></code> and need to update it with the latest <code class="docutils literal notranslate"><span class="pre">main</span></code>, follow these steps.</p>
 <p>⚠ <strong>Warning:</strong> If you are unfamiliar with rebasing, create a backup before proceeding.</p>
 <ol class="arabic">
 <li><p>Ensure you are on the correct branch:</p>
@@ -301,7 +301,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 </div>
 </li>
 <li><p>Start the rebase process:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>origin/master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>origin/main
 </pre></div>
 </div>
 </li>
