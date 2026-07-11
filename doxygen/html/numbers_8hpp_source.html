@@ -142,44 +142,47 @@ $(document).ready(function() { init_codefold(0); });
 <div class="contents">
 <a href="numbers_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="foldopen" id="foldopen00003" data-start="{" data-end="}">
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1numbers.html">    3</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1numbers.html">MeltPoolDG::numbers</a></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>{</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>  <span class="comment">// @note We did not use std::numeric_limits&lt;double&gt;::lowest() on purpose.</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>  <span class="comment">// @p invalid_double should serve as a default value for an optional parameter.</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>  <span class="comment">// During parsing, the ParameterHandler converts the default value (e.g.</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>  <span class="comment">// set to invalid_double) to a string via Patterns::Tools::to_string&lt;double&gt;()</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  <span class="comment">// and then back to a double value. This entails a loss in the number of decimal</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <span class="comment">// places and thus round-off errors.</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1numbers.html#af7a6ff02e31d3a6fcc22fb9d6b962c3d">   11</a></span>  <span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceMeltPoolDG_1_1numbers.html#af7a6ff02e31d3a6fcc22fb9d6b962c3d">invalid_double</a> = -1e100;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="comment">// Check if a @p number is invalid, if @p number is smaller or equal to</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="comment">// numbers::invalid_double.</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keyword">inline</span> <span class="keywordtype">bool</span></div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1numbers.html#a3ca0a05c056144b05b166265bc1bd513">   16</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1numbers.html#a3ca0a05c056144b05b166265bc1bd513">is_invalid</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;number)</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">return</span> number &lt;= <a class="code hl_variable" href="namespaceMeltPoolDG_1_1numbers.html#af7a6ff02e31d3a6fcc22fb9d6b962c3d">invalid_double</a>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  }</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;numbers&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="foldopen" id="foldopen00006" data-start="{" data-end="}">
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1numbers.html">    6</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1numbers.html">MeltPoolDG::numbers</a></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>  <span class="comment">// @note We did not use std::numeric_limits&lt;double&gt;::lowest() on purpose.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  <span class="comment">// @p invalid_double should serve as a default value for an optional parameter.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <span class="comment">// During parsing, the ParameterHandler converts the default value (e.g.</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="comment">// set to invalid_double) to a string via Patterns::Tools::to_string&lt;double&gt;()</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  <span class="comment">// and then back to a double value. This entails a loss in the number of decimal</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="comment">// places and thus round-off errors.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1numbers.html#af7a6ff02e31d3a6fcc22fb9d6b962c3d">   14</a></span>  <span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceMeltPoolDG_1_1numbers.html#af7a6ff02e31d3a6fcc22fb9d6b962c3d">invalid_double</a> = -1e100;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="comment">// Check if a @p number is invalid, if @p number is smaller or equal to</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="comment">// numbers::invalid_double.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">inline</span> <span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1numbers.html#a3ca0a05c056144b05b166265bc1bd513">   19</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1numbers.html#a3ca0a05c056144b05b166265bc1bd513">is_invalid</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;number)</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordflow">return</span> number &lt;= <a class="code hl_variable" href="namespaceMeltPoolDG_1_1numbers.html#af7a6ff02e31d3a6fcc22fb9d6b962c3d">invalid_double</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  }</div>
 </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number&gt;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  number</div>
-<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1numbers.html#a165c70e6677f1db834d348bd423c74fb">   34</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1numbers.html#a165c70e6677f1db834d348bd423c74fb">compute_angle_in_radians</a>(<span class="keyword">const</span> number angle_deg)</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span> angle_deg * number(dealii::numbers::PI / 180.0);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  }</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  number</div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1numbers.html#a165c70e6677f1db834d348bd423c74fb">   37</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1numbers.html#a165c70e6677f1db834d348bd423c74fb">compute_angle_in_radians</a>(<span class="keyword">const</span> number angle_deg)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">return</span> angle_deg * number(std::numbers::pi_v&lt;number&gt; / 180.0);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  }</div>
 </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1numbers.html#a7ef84293c3337437a05c28aa1c893f27">   40</a></span>  <span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceMeltPoolDG_1_1numbers.html#a7ef84293c3337437a05c28aa1c893f27">sqrt_pi</a> = std::sqrt(dealii::numbers::PI);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>} <span class="comment">// namespace MeltPoolDG::numbers</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1numbers.html#a7ef84293c3337437a05c28aa1c893f27">   43</a></span>  <span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceMeltPoolDG_1_1numbers.html#a7ef84293c3337437a05c28aa1c893f27">sqrt_pi</a> = std::numbers::pi_v&lt;double&gt; * std::numbers::inv_sqrtpi_v&lt;double&gt;;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>} <span class="comment">// namespace MeltPoolDG::numbers</span></div>
 </div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1numbers_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1numbers.html">MeltPoolDG::numbers</a></div><div class="ttdef"><b>Definition</b> numbers.hpp:4</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1numbers_html_a165c70e6677f1db834d348bd423c74fb"><div class="ttname"><a href="namespaceMeltPoolDG_1_1numbers.html#a165c70e6677f1db834d348bd423c74fb">MeltPoolDG::numbers::compute_angle_in_radians</a></div><div class="ttdeci">number compute_angle_in_radians(const number angle_deg)</div><div class="ttdoc">Convert an angle from degrees to radians.</div><div class="ttdef"><b>Definition</b> numbers.hpp:34</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1numbers_html_a3ca0a05c056144b05b166265bc1bd513"><div class="ttname"><a href="namespaceMeltPoolDG_1_1numbers.html#a3ca0a05c056144b05b166265bc1bd513">MeltPoolDG::numbers::is_invalid</a></div><div class="ttdeci">bool is_invalid(const double &amp;number)</div><div class="ttdef"><b>Definition</b> numbers.hpp:16</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1numbers_html_a7ef84293c3337437a05c28aa1c893f27"><div class="ttname"><a href="namespaceMeltPoolDG_1_1numbers.html#a7ef84293c3337437a05c28aa1c893f27">MeltPoolDG::numbers::sqrt_pi</a></div><div class="ttdeci">constexpr double sqrt_pi</div><div class="ttdoc">Square root of pi.</div><div class="ttdef"><b>Definition</b> numbers.hpp:40</div></div>
-<div class="ttc" id="anamespaceMeltPoolDG_1_1numbers_html_af7a6ff02e31d3a6fcc22fb9d6b962c3d"><div class="ttname"><a href="namespaceMeltPoolDG_1_1numbers.html#af7a6ff02e31d3a6fcc22fb9d6b962c3d">MeltPoolDG::numbers::invalid_double</a></div><div class="ttdeci">constexpr double invalid_double</div><div class="ttdef"><b>Definition</b> numbers.hpp:11</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1numbers_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1numbers.html">MeltPoolDG::numbers</a></div><div class="ttdef"><b>Definition</b> numbers.hpp:7</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1numbers_html_a165c70e6677f1db834d348bd423c74fb"><div class="ttname"><a href="namespaceMeltPoolDG_1_1numbers.html#a165c70e6677f1db834d348bd423c74fb">MeltPoolDG::numbers::compute_angle_in_radians</a></div><div class="ttdeci">number compute_angle_in_radians(const number angle_deg)</div><div class="ttdoc">Convert an angle from degrees to radians.</div><div class="ttdef"><b>Definition</b> numbers.hpp:37</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1numbers_html_a3ca0a05c056144b05b166265bc1bd513"><div class="ttname"><a href="namespaceMeltPoolDG_1_1numbers.html#a3ca0a05c056144b05b166265bc1bd513">MeltPoolDG::numbers::is_invalid</a></div><div class="ttdeci">bool is_invalid(const double &amp;number)</div><div class="ttdef"><b>Definition</b> numbers.hpp:19</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1numbers_html_a7ef84293c3337437a05c28aa1c893f27"><div class="ttname"><a href="namespaceMeltPoolDG_1_1numbers.html#a7ef84293c3337437a05c28aa1c893f27">MeltPoolDG::numbers::sqrt_pi</a></div><div class="ttdeci">constexpr double sqrt_pi</div><div class="ttdoc">Square root of pi.</div><div class="ttdef"><b>Definition</b> numbers.hpp:43</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1numbers_html_af7a6ff02e31d3a6fcc22fb9d6b962c3d"><div class="ttname"><a href="namespaceMeltPoolDG_1_1numbers.html#af7a6ff02e31d3a6fcc22fb9d6b962c3d">MeltPoolDG::numbers::invalid_double</a></div><div class="ttdeci">constexpr double invalid_double</div><div class="ttdef"><b>Definition</b> numbers.hpp:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
