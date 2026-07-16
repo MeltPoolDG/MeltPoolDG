@@ -187,10 +187,6 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of cut-related solver parameters required by the cut single-phase and multiphase compressible Navier-Stokes operators.  <a href="structMeltPoolDG_1_1CompressibleFlow_1_1CutSolverData.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperation.html">DGOperation</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operation that performs a full time step for the compressible Navier-Stokes.  <a href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperation.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorBase.html">DGOperatorBase</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface of the compressible flow operator interacting with the compressible flow operation.  <a href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorBase.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">DGOperatorExplicit</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator for the matrix-free evaluation of a compressible single-phase flow cutDG formulation for explicit time integration.  <a href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#details">More...</a><br /></td></tr>
@@ -440,7 +436,6 @@ Variables</h2></td></tr>
 <div class="textblock"><p>This file contains various functions that can be used to set and evaluate boundary conditions for the compressible flow solver. The functions can be directly used with the <code><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html" title="Helper class taking care of all boundary condition related computations for the compressible flow sol...">BoundaryConditions</a></code> class, which provides an interface to manage and evaluate the different boundary conditions in the solver. </p>
 <p>Type definitions and helper functions for the compressible flow implementations.</p>
 <p>A collection of helper functions that might be useful when solving the compressible Navier-Stokes equations with an explicit time stepping strategy.</p>
-<p>This operation solves the compressible Navier-Stokes equations, comprising the primary variables.</p>
 <p>This operator solves the compressible Navier-Stokes equations, comprising the primary variables.</p>
 <p>Collection of convective term computations for the compressible Navier-Stokes equations.</p>
 <ul>
@@ -452,13 +447,6 @@ Variables</h2></td></tr>
 <p>Fehn, N., Wall, W. A., &amp; Kronbichler, M. (2019). A matrix‐free high‐order discontinuous Galerkin compressible Navier‐Stokes solver: A performance comparison of compressible and incompressible formulations for turbulent incompressible flows. International <a class="el" href="namespaceMeltPoolDG_1_1Journal.html">Journal</a> for Numerical Methods in Fluids, 89(3), 71-102.</p>
 <p>and</p>
 <p>Ritthaler, A. (2024). A matrix-free cutDG formulation for complex flows, Master's Thesis.</p>
-<ul>
-<li>density (ρ)</li>
-<li>momentum (ρ u)</li>
-<li>volume-specific energy (ρ E)</li>
-</ul>
-<p>It is an extension of deal.II step-67 and is based on the paper</p>
-<p>Fehn, N., Wall, W. A., &amp; Kronbichler, M. (2019). A matrix‐free high‐order discontinuous Galerkin compressible Navier‐Stokes solver: A performance comparison of compressible and incompressible formulations for turbulent incompressible flows. International <a class="el" href="namespaceMeltPoolDG_1_1Journal.html">Journal</a> for Numerical Methods in Fluids, 89(3), 71-102.</p>
 <p>This file contains type aliases for the kernels used in the multi- and single-species compressible flow solver. The main purpose is that the type aliases automatically resolve to the correct kernel type depending on the number of species in the simulation. For example, for single-species simulations, the kernels resolve to the standard <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ConvectiveFlux.html">ConvectiveFlux</a> and <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1DiffusiveFlux.html">DiffusiveFlux</a>, while for multi-species simulations, they resolve to the corresponding <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportConvectiveFlux.html">SpeciesTransportConvectiveFlux</a> and <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1SpeciesTransportDiffusiveFlux.html">SpeciesTransportDiffusiveFlux</a>.</p>
 <p>This file contains type aliases for the state views used in the multi- and single-species compressible flow solver. The main purpose is that the type aliases automatically resolve to the correct state view type depending on the number of species in the simulation. For example, for single-species simulations, the state views resolve to the standard <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1DofStateView.html">DofStateView</a> and <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1DofValueAndGradientStateView.html">DofValueAndGradientStateView</a>, while for multi-species simulations, they resolve to the corresponding <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiSpeciesDofStateView.html">MultiSpeciesDofStateView</a> and <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiSpeciesDofValueAndGradientStateView.html">MultiSpeciesDofValueAndGradientStateView</a>. </p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
