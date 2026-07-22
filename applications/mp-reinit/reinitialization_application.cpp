@@ -111,16 +111,12 @@ namespace MeltPoolDG::LevelSet
       {
         auto *elliptic_reinit =
           dynamic_cast<ReinitializationEllipticOperation<dim, number> *>(reinit_operation.get());
-        time_iterator->reset_max_n_time_steps(
-          param.reinit.elliptic.fix_point_iteration.max_n_steps);
 
-        while (elliptic_reinit->get_relative_change_level_set() >
-                 param.reinit.elliptic.fix_point_iteration.tolerance and
-               !time_iterator->is_finished())
+        while (!time_iterator->is_finished())
           {
-            time_iterator->print_me(scratch_data->get_pcout(1));
-            elliptic_reinit->solve_one_iter();
             time_iterator->compute_next_time_increment();
+            time_iterator->print_me(scratch_data->get_pcout(1));
+            elliptic_reinit->solve();
 
             output_results(time_iterator->get_current_time_step_number(),
                            time_iterator->get_current_time());
