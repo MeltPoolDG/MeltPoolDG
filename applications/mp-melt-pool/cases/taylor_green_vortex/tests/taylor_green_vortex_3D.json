@@ -1,0 +1,65 @@
+{
+  "$schema": "../../parameters.schema.json",
+  "base": {
+    "case name": "taylor_green_vortex",
+    "dimension": 3,
+    "global refinements": 5,
+    "do print parameters": false,
+    "fe": {
+      "degree": 2
+    }
+  },
+  "time stepping": {
+    "start time": 0.0,
+    "end time": 0.25,
+    "time step size": 0.05
+  },
+  "output": {
+    "paraview": {
+      "enable": false
+    }
+  },
+  "material": {
+    "gas": {
+      "density": 1.0,
+      "dynamic viscosity": 0.000625
+    },
+    "liquid": {
+      "density": 1.0,
+      "dynamic viscosity": 0.000625
+    }
+  },
+  "level set": {
+    "advection diffusion": {
+      "linear solver": {
+        "do matrix free": true
+      }
+    }
+  },
+  "flow": {
+    "adaflo": {
+      "Navier-Stokes": {
+        "physical type": "incompressible",
+        "dimension": 3,
+        "global refinements": 0,
+        "velocity degree": 2,
+        "Solver": {
+          "linearization scheme": "coupled implicit Newton",
+          "NL max iterations": 10,
+          "NL tolerance": 0.001,
+          "lin max iterations": 30,
+          "lin tolerance": 1e-05,
+          "lin relative tolerance": true,
+          "lin velocity preconditioner": "ilu",
+          "lin its before inner solvers": 30
+        }
+      },
+      "Output options": {
+        "output verbosity": 0
+      },
+      "Time stepping": {
+        "scheme": "bdf_2"
+      }
+    }
+  }
+}
