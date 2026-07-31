@@ -81,8 +81,9 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionVortex
   class PrescribedVelocityField : public dealii::Function<dim, number>
   {
   public:
-    PrescribedVelocityField()
+    PrescribedVelocityField(const number velocity_scale)
       : dealii::Function<dim>(dim)
+      , velocity_scale(velocity_scale)
     {}
 
     number
@@ -93,11 +94,14 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionVortex
       const number x = p[0];
       const number y = p[dim - 1];
 
-      value_[0]       = 4 * y;
-      value_[dim - 1] = -4 * x;
+      value_[0]       = velocity_scale * y;
+      value_[dim - 1] = -velocity_scale * x;
 
       return value_[component];
     }
+
+  private:
+    const number velocity_scale;
   };
 
   /*
@@ -215,7 +219,8 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionVortex
           level_set_type,
           0.5 * dealii::GridTools::minimal_cell_diameter(*this->triangulation) / std::sqrt(dim)),
         "advection_diffusion");
-      this->attach_field_function(std::make_shared<PrescribedVelocityField<dim, number>>(),
+      this->attach_field_function(std::make_shared<PrescribedVelocityField<dim, number>>(
+                                    velocity_scale),
                                   "prescribed_velocity",
                                   "advection_diffusion");
     }
@@ -234,6 +239,11 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionVortex
         "smooth_heaviside: smooth heaviside function, eps is controlled by reinit data"
         "heaviside: jump from 0 to 1 at the interface; "
         "signed_distance: signed distance level set.");
+
+      prm.add_parameter("velocity scale",
+                        velocity_scale,
+                        "Set scaling factor for prescribed velocity field. "
+                        "For vortex flow, this parameter represents the angular velocity.");
 
       return this->parameters.base.do_print_parameters;
     }
@@ -266,5 +276,6 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionVortex
     const number           left_domain    = -1.0;
     const number           right_domain   = 1.0;
     LevelSet::LevelSetType level_set_type = LevelSet::LevelSetType::tanh;
+    number                 velocity_scale = 4.0;
   };
 } // namespace MeltPoolDG::Simulation::AdvectionDiffusionVortex
