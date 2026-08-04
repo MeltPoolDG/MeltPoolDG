@@ -129,7 +129,8 @@ public:
           this->matrix_free.get_mg_level() != numbers::invalid_unsigned_int ?
             dof_handler.locally_owned_mg_dofs(this->matrix_free.get_mg_level()) :
             dof_handler.locally_owned_dofs(),
-          matrix_free.get_task_info().communicator);
+          matrix_free.get_task_info().communicator,
+          0);
 
         if (this->matrix_free.get_mg_level() != numbers::invalid_unsigned_int)
           MGTools::make_sparsity_pattern(dof_handler,

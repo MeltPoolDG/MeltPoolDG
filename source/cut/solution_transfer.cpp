@@ -623,7 +623,8 @@ namespace MeltPoolDG::CutUtil
     dsp.reinit(cut_dof_handler.locally_owned_dofs(),
                cut_dof_handler.locally_owned_dofs(),
                dealii::DoFTools::extract_locally_relevant_dofs(cut_dof_handler),
-               cut_dof_handler.get_mpi_communicator());
+               cut_dof_handler.get_mpi_communicator(),
+               0);
 
     dealii::DoFTools::make_flux_sparsity_pattern(cut_dof_handler, dsp, constraints_gp, false);
 

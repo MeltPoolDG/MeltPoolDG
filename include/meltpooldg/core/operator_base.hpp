@@ -146,7 +146,8 @@ namespace MeltPoolDG
       dsp.reinit(scratch_data.get_locally_owned_dofs(this->dof_idx),
                  scratch_data.get_locally_owned_dofs(this->dof_idx),
                  scratch_data.get_locally_relevant_dofs(this->dof_idx),
-                 mpi_communicator);
+                 mpi_communicator,
+                 0);
 
       dealii::DoFTools::make_sparsity_pattern(scratch_data.get_dof_handler(this->dof_idx),
                                               this->dsp,
