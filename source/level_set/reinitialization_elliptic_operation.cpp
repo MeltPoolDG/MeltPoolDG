@@ -36,6 +36,11 @@ namespace MeltPoolDG::LevelSet
     const unsigned int max_iterations = reinit_data.elliptic.fix_point_iteration.max_n_steps;
     number             tolerance      = reinit_data.elliptic.fix_point_iteration.tolerance;
     unsigned int       iter           = 0;
+    relative_change_level_set         = std::numeric_limits<number>::max();
+
+    // necessary here for mp-reinit
+    mesh_classifier->reclassify();
+    compute_intersected_quadrature();
 
     while (iter < max_iterations && relative_change_level_set > tolerance)
       {
@@ -157,8 +162,6 @@ namespace MeltPoolDG::LevelSet
 
     reinit_operator->reinit();
     preconditioner.reinit();
-
-    relative_change_level_set = std::numeric_limits<number>::max();
   }
 
   template <int dim, typename number>
