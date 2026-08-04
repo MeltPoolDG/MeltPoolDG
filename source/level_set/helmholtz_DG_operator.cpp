@@ -343,7 +343,8 @@ namespace MeltPoolDG::LevelSet
     dsp.reinit(scratch_data.get_dof_handler(dof_idx).locally_owned_dofs(),
                scratch_data.get_dof_handler(dof_idx).locally_owned_dofs(),
                DoFTools::extract_locally_relevant_dofs(scratch_data.get_dof_handler(dof_idx)),
-               scratch_data.get_dof_handler(dof_idx).get_mpi_communicator());
+               scratch_data.get_dof_handler(dof_idx).get_mpi_communicator(),
+               0);
 
     DoFTools::make_flux_sparsity_pattern(scratch_data.get_dof_handler(dof_idx),
                                          dsp,
