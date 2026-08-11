@@ -2,8 +2,12 @@ name: Pull request run of GitHub CI
 
 on:
   pull_request:
-    branches: [ main ]
-    types: [ opened, synchronize, reopened, labeled ]
+    branches: [main]
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+  pull-requests: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref || github.run_id }}
@@ -15,10 +19,113 @@ env:
   CTEST_COMMAND: ctest
 
 jobs:
+
+  # ---------------------------------------------------------------------------
+  # Fetch CURRENT labels from GitHub
+  # ---------------------------------------------------------------------------
+  labels:
+    name: Determine current PR labels
+    runs-on: ubuntu-latest
+
+    outputs:
+      ready_to_test: ${{ steps.labels.outputs.ready_to_test }}
+      no_adaflo: ${{ steps.labels.outputs.no_adaflo }}
+      ctest_command: ${{ steps.labels.outputs.ctest_command }}
+      make_targets: ${{ steps.labels.outputs.make_targets }}
+
+    steps:
+      - name: Get current PR labels
+        id: labels
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+
+          LABELS=$(
+            gh api \
+              "repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/labels?per_page=100" \
+              --jq '.[].name'
+          )
+
+          echo "=== Current labels ==="
+          printf '%s\n' "$LABELS"
+          echo "======================"
+
+          # -------------------------------------------------------------------
+          # Check whether CI should run
+          # -------------------------------------------------------------------
+          READY_TO_TEST=false
+
+          if printf '%s\n' "$LABELS" | grep -Fxq "ready to test"; then
+            READY_TO_TEST=true
+          fi
+
+          # -------------------------------------------------------------------
+          # Check whether adaflo should be skipped
+          # -------------------------------------------------------------------
+          NO_ADAFLO=false
+
+          if printf '%s\n' "$LABELS" | grep -Fxq "no_adaflo"; then
+            NO_ADAFLO=true
+          fi
+
+          # -------------------------------------------------------------------
+          # Every mp-* label becomes a make target
+          # -------------------------------------------------------------------
+          MAKE_TARGETS=$(
+            printf '%s\n' "$LABELS" \
+              | grep '^mp-' \
+              | paste -sd ' ' - || true
+          )
+
+          # -------------------------------------------------------------------
+          # Selected labels become CTest filters
+          # -------------------------------------------------------------------
+          TEST_FILTER=$(
+            printf '%s\n' "$LABELS" \
+              | grep -E '^(mp-advec-diff|mp-heat-transfer|mp-radiative-transport|mp-reinit|mp-level-set|mp-melt-pool|unit_tests)$' \
+              | paste -sd '|' - || true
+          )
+
+          if [[ -z "$TEST_FILTER" ]]; then
+            FINAL_CTEST_COMMAND="${{ env.CTEST_COMMAND }}"
+          else
+            FINAL_CTEST_COMMAND="${{ env.CTEST_COMMAND }} -R ${TEST_FILTER}"
+          fi
+
+          echo
+          echo "=== CI configuration ==="
+          echo "ready to test : $READY_TO_TEST"
+          echo "no_adaflo     : $NO_ADAFLO"
+          echo "make targets  : '$MAKE_TARGETS'"
+          echo "ctest command : $FINAL_CTEST_COMMAND"
+          echo "========================"
+
+          # -------------------------------------------------------------------
+          # Export values as job outputs
+          # -------------------------------------------------------------------
+          echo "ready_to_test=$READY_TO_TEST" >> "$GITHUB_OUTPUT"
+          echo "no_adaflo=$NO_ADAFLO" >> "$GITHUB_OUTPUT"
+          echo "make_targets=$MAKE_TARGETS" >> "$GITHUB_OUTPUT"
+          echo "ctest_command=$FINAL_CTEST_COMMAND" >> "$GITHUB_OUTPUT"
+
+
+  # ---------------------------------------------------------------------------
+  # Build and test
+  # ---------------------------------------------------------------------------
   build:
-    if: ${{ contains(github.event.pull_request.labels.*.name, 'ready to test') }}
+    needs: labels
+
+    if: ${{ needs.labels.outputs.ready_to_test == 'true' }}
+
     name: Build ${{ matrix.build_type }}-dealii:${{ matrix.dealii_version }}
     runs-on: self-hosted
+
+    env:
+      CTEST_COMMAND: ${{ needs.labels.outputs.ctest_command }}
+      MAKE_TARGETS: ${{ needs.labels.outputs.make_targets }}
 
     strategy:
       fail-fast: false
@@ -33,70 +140,85 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Determine filters for ctest
-        id: test_command
+      # -----------------------------------------------------------------------
+      # Show what has been passed from the labels job
+      # -----------------------------------------------------------------------
+      - name: Show CI configuration
+        shell: bash
         run: |
-          LABELS_JSON=$(cat <<'EOF'
-          ${{ toJson(github.event.pull_request.labels) }}
-          EOF
-          )
+          echo "Job output make_targets: '${{ needs.labels.outputs.make_targets }}'"
+          echo "Environment MAKE_TARGETS: '${MAKE_TARGETS}'"
+          echo "CTest command: '${CTEST_COMMAND}'"
 
-          LABELS=$(echo "$LABELS_JSON" | grep -o '"name": "[^"]*"' | cut -d':' -f2 | tr -d '" ')
-          echo "Labels found: $LABELS"
-
-          TEST_FILTER=""
-          for LABEL in mp-advec-diff mp-heat-transfer mp-radiative-transport mp-reinit mp-level-set mp-melt-pool unit_tests; do
-            if echo "$LABELS" | grep -qx "$LABEL"; then
-              TEST_FILTER="${TEST_FILTER}${LABEL}|"
-            fi
-          done
-
-          TEST_FILTER=${TEST_FILTER%|}
-
-          if [ -z "$TEST_FILTER" ]; then
-            FINAL_CTEST_COMMAND="${{ env.CTEST_COMMAND }}"
-          else
-            FINAL_CTEST_COMMAND="${{ env.CTEST_COMMAND }} -R ${TEST_FILTER}"
-          fi
-
-          echo "CTest command: $FINAL_CTEST_COMMAND"
-          echo "CTEST_COMMAND=$FINAL_CTEST_COMMAND" >> "$GITHUB_ENV"
-
+      # -----------------------------------------------------------------------
+      # Compile adaflo
+      # -----------------------------------------------------------------------
       - name: Compile adaflo
-        if: ${{ !contains(github.event.pull_request.labels.*.name, 'no_adaflo') }}
+        if: ${{ needs.labels.outputs.no_adaflo != 'true' }}
+        shell: bash
         run: |
           git clone https://github.com/MeltPoolDG/adaflo.git
+
           mkdir adaflo-build
           cd adaflo-build
+
           cmake \
             -D CMAKE_CXX_STANDARD=20 \
             -D BUILD_SHARED_LIBS=ON \
             -D CMAKE_BUILD_TYPE=${{ matrix.build_type }} \
             ../adaflo
+
           make -j${{ env.COMPILE_JOBS }} adaflo
 
+      # -----------------------------------------------------------------------
+      # Compile MeltPoolDG
+      # -----------------------------------------------------------------------
       - name: Compile MeltPoolDG
+        shell: bash
         run: |
           mkdir build
           cd build
+
           cmake \
             -D CMAKE_CXX_STANDARD=20 \
             -D CMAKE_CXX_FLAGS="-Werror" \
             -D CMAKE_BUILD_TYPE=${{ matrix.build_type }} \
             -D ADAFLO_LIB=/__w/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}/adaflo-build/ \
             -D ADAFLO_INCLUDE=/__w/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}/adaflo/include/ \
-            -D MPDG_ENABLE_BENCHMARKING=ON \
+            -D MPDG_ENABLE_BENCHMARKING=OFF \
             ..
-          make -j${{ env.COMPILE_JOBS }}
 
+          echo
+          echo "Make command:"
+          echo "make -j${{ env.COMPILE_JOBS }} ${MAKE_TARGETS}"
+          echo
+
+          make -j${{ env.COMPILE_JOBS }} ${MAKE_TARGETS}
+
+      # -----------------------------------------------------------------------
+      # Run tests
+      # -----------------------------------------------------------------------
       - name: Test
+        shell: bash
         run: |
           export HWLOC_HIDE_ERRORS=2
           export OMPI_ALLOW_RUN_AS_ROOT=1
           export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
-          cd build
-          $CTEST_COMMAND -j${{ env.COMPILE_JOBS }} --output-on-failure
 
+          cd build
+
+          echo
+          echo "CTest command:"
+          echo "$CTEST_COMMAND -j${{ env.COMPILE_JOBS }} --output-on-failure"
+          echo
+
+          $CTEST_COMMAND \
+            -j${{ env.COMPILE_JOBS }} \
+            --output-on-failure
+
+      # -----------------------------------------------------------------------
+      # Upload output from failed tests
+      # -----------------------------------------------------------------------
       - name: Failed test log
         if: ${{ failure() }}
         uses: actions/upload-artifact@v4
@@ -105,13 +227,23 @@ jobs:
           path: |
             build/**/{tests,unit_tests}/**/*{stdout,output}*
 
+
+  # ---------------------------------------------------------------------------
+  # Cleanup
+  # ---------------------------------------------------------------------------
   clean:
-    if: ${{ contains(github.event.pull_request.labels.*.name, 'ready to test') }}
+    needs: [labels, build]
+
+    if: ${{ always() && needs.labels.outputs.ready_to_test == 'true' }}
+
     runs-on: self-hosted
+
     env:
       ACTIONS_RUNNER_DEBUG: true
       ACTIONS_STEP_DEBUG: true
+
     steps:
       - name: Prune Docker system
+        shell: bash
         run: |
           docker system prune -af
