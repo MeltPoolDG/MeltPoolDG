@@ -8,6 +8,7 @@ on:
 permissions:
   contents: read
   pull-requests: read
+  packages: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref || github.run_id }}
@@ -23,6 +24,7 @@ jobs:
   # ---------------------------------------------------------------------------
   # Fetch CURRENT labels from GitHub
   # ---------------------------------------------------------------------------
+
   labels:
     name: Determine current PR labels
     runs-on: ubuntu-latest
@@ -63,7 +65,7 @@ jobs:
           fi
 
           # -------------------------------------------------------------------
-          # Check whether adaflo should be skipped
+          # Check whether adaflo should be disabled
           # -------------------------------------------------------------------
           NO_ADAFLO=false
 
@@ -103,9 +105,6 @@ jobs:
           echo "ctest command : $FINAL_CTEST_COMMAND"
           echo "========================"
 
-          # -------------------------------------------------------------------
-          # Export values as job outputs
-          # -------------------------------------------------------------------
           echo "ready_to_test=$READY_TO_TEST" >> "$GITHUB_OUTPUT"
           echo "no_adaflo=$NO_ADAFLO" >> "$GITHUB_OUTPUT"
           echo "make_targets=$MAKE_TARGETS" >> "$GITHUB_OUTPUT"
@@ -115,6 +114,7 @@ jobs:
   # ---------------------------------------------------------------------------
   # Build and test
   # ---------------------------------------------------------------------------
+
   build:
     needs: labels
 
@@ -126,6 +126,7 @@ jobs:
     env:
       CTEST_COMMAND: ${{ needs.labels.outputs.ctest_command }}
       MAKE_TARGETS: ${{ needs.labels.outputs.make_targets }}
+      NO_ADAFLO: ${{ needs.labels.outputs.no_adaflo }}
 
     strategy:
       fail-fast: false
@@ -133,42 +134,37 @@ jobs:
         build_type: ["Release"]
         dealii_version: ["master"]
 
+    # -------------------------------------------------------------------------
+    # With adaflo:
+    #   ghcr.io/meltpooldg/adaflo:latest
+    #
+    # With label "no_adaflo":
+    #   dealii/dealii:master-noble
+    # -------------------------------------------------------------------------
     container:
-      image: dealii/dealii:${{ matrix.dealii_version }}-noble
+      image: ${{ needs.labels.outputs.no_adaflo == 'true' && 'dealii/dealii:master-noble' || 'ghcr.io/meltpooldg/adaflo:latest' }}
       options: --user root
 
     steps:
       - uses: actions/checkout@v4
 
       # -----------------------------------------------------------------------
-      # Show what has been passed from the labels job
+      # Show CI configuration
       # -----------------------------------------------------------------------
       - name: Show CI configuration
         shell: bash
         run: |
-          echo "Job output make_targets: '${{ needs.labels.outputs.make_targets }}'"
-          echo "Environment MAKE_TARGETS: '${MAKE_TARGETS}'"
+          echo "no_adaflo   : '${NO_ADAFLO}'"
+          echo "Make targets: '${MAKE_TARGETS}'"
           echo "CTest command: '${CTEST_COMMAND}'"
 
-      # -----------------------------------------------------------------------
-      # Compile adaflo
-      # -----------------------------------------------------------------------
-      - name: Compile adaflo
-        if: ${{ needs.labels.outputs.no_adaflo != 'true' }}
-        shell: bash
-        run: |
-          git clone https://github.com/MeltPoolDG/adaflo.git
-
-          mkdir adaflo-build
-          cd adaflo-build
-
-          cmake \
-            -D CMAKE_CXX_STANDARD=20 \
-            -D BUILD_SHARED_LIBS=ON \
-            -D CMAKE_BUILD_TYPE=${{ matrix.build_type }} \
-            ../adaflo
-
-          make -j${{ env.COMPILE_JOBS }} adaflo
+          if [[ "$NO_ADAFLO" == "true" ]]; then
+            echo "Docker image: dealii/dealii:master-noble"
+          else
+            echo "Docker image: ghcr.io/meltpooldg/adaflo:latest"
+            echo "ADAFLO_LIB: '${ADAFLO_LIB}'"
+            echo "ADAFLO_INCLUDE: '${ADAFLO_INCLUDE}'"
+          fi
 
       # -----------------------------------------------------------------------
       # Compile MeltPoolDG
@@ -179,14 +175,26 @@ jobs:
           mkdir build
           cd build
 
-          cmake \
-            -D CMAKE_CXX_STANDARD=20 \
-            -D CMAKE_CXX_FLAGS="-Werror" \
-            -D CMAKE_BUILD_TYPE=${{ matrix.build_type }} \
-            -D ADAFLO_LIB=/__w/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}/adaflo-build/ \
-            -D ADAFLO_INCLUDE=/__w/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}/adaflo/include/ \
-            -D MPDG_ENABLE_BENCHMARKING=OFF \
-            ..
+          CMAKE_ARGS=(
+            -D CMAKE_CXX_STANDARD=20
+            -D CMAKE_CXX_FLAGS="-Werror"
+            -D CMAKE_BUILD_TYPE=${{ matrix.build_type }}
+            -D MPDG_ENABLE_BENCHMARKING=OFF
+          )
+
+          if [[ "$NO_ADAFLO" != "true" ]]; then
+            CMAKE_ARGS+=(
+              -D ADAFLO_LIB="${ADAFLO_LIB}"
+              -D ADAFLO_INCLUDE="${ADAFLO_INCLUDE}"
+            )
+          fi
+
+          echo
+          echo "CMake configuration:"
+          printf '  %q\n' "${CMAKE_ARGS[@]}"
+          echo
+
+          cmake "${CMAKE_ARGS[@]}" ..
 
           echo
           echo "Make command:"
@@ -231,6 +239,7 @@ jobs:
   # ---------------------------------------------------------------------------
   # Cleanup
   # ---------------------------------------------------------------------------
+
   clean:
     needs: [labels, build]
 
