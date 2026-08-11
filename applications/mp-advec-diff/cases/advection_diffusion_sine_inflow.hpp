@@ -28,7 +28,8 @@
 
 #include "../advection_diffusion_case.hpp"
 
-namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
+
+namespace MeltPoolDG::Simulation::AdvectionDiffusionSineInflow
 {
   static bool inflow_outflow_bc = false;
 
@@ -36,8 +37,9 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
   class ExactSolution : public dealii::Function<dim, number>
   {
   public:
-    ExactSolution()
+    ExactSolution(const number velocity_scale)
       : dealii::Function<dim, number>()
+      , velocity_scale(velocity_scale)
 
     {}
 
@@ -45,10 +47,11 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
     value(const dealii::Point<dim, number> &p, const unsigned int /*component*/) const override
     {
       const number t = this->get_time();
-      return std::sin(4.0 * dealii::numbers::PI * (p[0] - 1.1 * t));
+      return std::sin(4.0 * dealii::numbers::PI * (p[0] - velocity_scale * t));
     }
 
   private:
+    const number velocity_scale;
   };
 
   /*
@@ -80,8 +83,9 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
   class AdvectionField : public dealii::Function<dim, number>
   {
   public:
-    AdvectionField()
+    AdvectionField(const number velocity_scale)
       : dealii::Function<dim, number>(dim)
+      , velocity_scale(velocity_scale)
     {}
 
     number
@@ -89,18 +93,22 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
           const unsigned int                                 component) const override
     {
       if (component == 0)
-        return 1.1;
+        return velocity_scale;
       else
         return 0.0;
     }
+
+  private:
+    const number velocity_scale;
   };
 
   template <int dim, typename number>
   class DirichletConditions : public dealii::Function<dim, number>
   {
   public:
-    DirichletConditions()
+    DirichletConditions(const number velocity_scale)
       : dealii::Function<dim, number>(dim)
+      , velocity_scale(velocity_scale)
     {}
 
     number
@@ -108,18 +116,21 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
           [[maybe_unused]] const unsigned int                component) const override
     {
       const number t = this->get_time();
-      return std::sin(4.0 * dealii::numbers::PI * (p[0] - 1.1 * t));
+      return std::sin(4.0 * dealii::numbers::PI * (p[0] - velocity_scale * t));
     }
+
+  private:
+    const number velocity_scale;
   };
 
   /*
    *      This class collects all relevant input data for the level set simulation
    */
   template <int dim, typename number>
-  class SimulationAdvecDG : public LevelSet::AdvectionDiffusionCase<dim, number>
+  class SimulationAdvecSineInflow : public LevelSet::AdvectionDiffusionCase<dim, number>
   {
   public:
-    SimulationAdvecDG(std::string parameter_file, const MPI_Comm mpi_communicator)
+    SimulationAdvecSineInflow(std::string parameter_file, const MPI_Comm mpi_communicator)
       : LevelSet::AdvectionDiffusionCase<dim, number>(parameter_file, mpi_communicator)
     {}
 
@@ -161,7 +172,7 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
       constexpr dealii::types::boundary_id inflow_bc  = 42;
       constexpr dealii::types::boundary_id do_nothing = 0;
 
-      auto dirichlet = std::make_shared<DirichletConditions<dim, number>>();
+      auto dirichlet = std::make_shared<DirichletConditions<dim, number>>(velocity_scale);
 
       if (inflow_outflow_bc)
         {
@@ -203,7 +214,7 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
     {
       this->attach_initial_condition(std::make_shared<InitializePhi<dim, number>>(),
                                      "advection_diffusion");
-      this->attach_field_function(std::make_shared<AdvectionField<dim, number>>(),
+      this->attach_field_function(std::make_shared<AdvectionField<dim, number>>(velocity_scale),
                                   "prescribed_velocity",
                                   "advection_diffusion");
     }
@@ -215,6 +226,10 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
                         inflow_outflow_bc,
                         "Set if the inflow/outflow boundary condition should be enabled.");
 
+      prm.add_parameter("velocity scale",
+                        velocity_scale,
+                        "Set magnitude of the prescribed transport velocity in x-direction. ");
+
       return this->parameters.base.do_print_parameters;
     }
 
@@ -225,7 +240,7 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
         std::cout, dealii::Utilities::MPI::this_mpi_process(this->mpi_communicator) == 0);
 
       /*Error Calculation*/
-      ExactSolution<dim, number> exact_solution;
+      ExactSolution<dim, number> exact_solution(velocity_scale);
       exact_solution.set_time(generic_data_out.get_time());
 
       const auto n_q_points = 50; // Number is high to get accurate error even on a coarse mesh
@@ -275,8 +290,9 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
     }
 
   private:
-    const number left_domain  = -0.5;
-    const number right_domain = 0.5;
+    const number left_domain    = -0.5;
+    const number right_domain   = 0.5;
+    number       velocity_scale = 1.1;
   };
 
-} // namespace MeltPoolDG::Simulation::AdvectionDiffusionDG
+} // namespace MeltPoolDG::Simulation::AdvectionDiffusionSineInflow

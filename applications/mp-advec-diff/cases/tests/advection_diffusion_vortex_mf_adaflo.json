@@ -1,7 +1,7 @@
 {
   "$schema": "../../parameters.schema.json",
   "base": {
-    "case name": "advection_diffusion",
+    "case name": "advection_diffusion_vortex",
     "dimension": 2,
     "global refinements": 5,
     "do print parameters": false,
@@ -15,17 +15,15 @@
     "time step size": 0.01
   },
   "output": {
-    "do user defined postprocessing": true,
     "paraview": {
       "enable": false
     }
   },
   "advection diffusion": {
     "linear solver": {
-      "preconditioner type": "ILU",
-      "do matrix free": false
+      "do matrix free": true
     },
     "diffusivity": 0.0,
-    "implementation": "meltpooldg"
+    "implementation": "adaflo"
   }
 }
