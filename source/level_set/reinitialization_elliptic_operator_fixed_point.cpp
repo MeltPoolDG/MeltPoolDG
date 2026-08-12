@@ -1,5 +1,5 @@
 #include "meltpooldg/utilities/fe_integrator.hpp"
-#include <meltpooldg/level_set/reinitialization_elliptic_operator.hpp>
+#include <meltpooldg/level_set/reinitialization_elliptic_operator_fixed_point.hpp>
 #include <meltpooldg/linear_algebra/utilities_matrixfree.hpp>
 #include <meltpooldg/time_integration/time_integrator_util.hpp>
 #include <meltpooldg/utilities/utility_functions.hpp>
@@ -36,10 +36,6 @@ namespace MeltPoolDG::LevelSet
   void
   ReinitializationEllipticOperator<dim, number>::reinit()
   {
-    const auto &matrix_free = scratch_data.get_matrix_free();
-    const std::shared_ptr<const dealii::MatrixFree<dim, number, VectorizedArrayType>>
-      matrix_free_ptr(&matrix_free, [](const auto *) {});
-
     scratch_data.initialize_dof_vector(zero_interface, this->dof_idx);
     zero_interface = 0.0;
     zero_interface.update_ghost_values();
@@ -66,7 +62,7 @@ namespace MeltPoolDG::LevelSet
             cell_eval.reinit(cell_batch);
             cell_eval.read_dof_values(src);
 
-            lhs_cell_operation(interface_penalty, cell_eval, interface_penalty_surface, cell_batch);
+            lhs_cell_operation(interface_penalty, cell_eval, interface_penalty_surface);
 
             interface_penalty.distribute_local_to_global(dst);
             cell_eval.distribute_local_to_global(dst);
@@ -136,9 +132,10 @@ namespace MeltPoolDG::LevelSet
     const auto grad_norm = phi_old.get_gradient(q_index).norm();
 
     const VectorizedArrayType one(1.0);
-    const VectorizedArrayType eps(1e-8);
-    return compare_and_apply_mask<dealii::SIMDComparison::greater_than>(
-      grad_norm, one, one - one / (grad_norm + eps), grad_norm - one);
+    return compare_and_apply_mask<dealii::SIMDComparison::greater_than>(grad_norm,
+                                                                        one,
+                                                                        one - one / (grad_norm),
+                                                                        grad_norm - one);
   }
 
   template <int dim, typename number>
@@ -189,8 +186,6 @@ namespace MeltPoolDG::LevelSet
       scratch_data.get_constraint(this->dof_idx),
       system_matrix,
       [&](auto &cell_eval) {
-        const unsigned int cell_batch = cell_eval.get_current_cell_index();
-
         FECellIntegrator<dim, 1, number> interface_penalty(matrix_free,
                                                            this->dof_idx,
                                                            reinit_quad_idx);
@@ -199,7 +194,7 @@ namespace MeltPoolDG::LevelSet
                                                       0,
                                                       true);
 
-        lhs_cell_operation(interface_penalty, cell_eval, interface_penalty_surface, cell_batch);
+        lhs_cell_operation(interface_penalty, cell_eval, interface_penalty_surface);
 
         for (unsigned int i = 0; i < n_dofs_per_cell; ++i)
           cell_eval.begin_dof_values()[i] += interface_penalty.begin_dof_values()[i];
@@ -220,8 +215,6 @@ namespace MeltPoolDG::LevelSet
       matrix_free,
       diagonal,
       [&](auto &cell_eval) {
-        const unsigned int cell_batch = cell_eval.get_current_cell_index();
-
         FECellIntegrator<dim, 1, number> interface_penalty(matrix_free,
                                                            this->dof_idx,
                                                            reinit_quad_idx);
@@ -230,7 +223,7 @@ namespace MeltPoolDG::LevelSet
                                                       0,
                                                       true);
 
-        lhs_cell_operation(interface_penalty, cell_eval, interface_penalty_surface, cell_batch);
+        lhs_cell_operation(interface_penalty, cell_eval, interface_penalty_surface);
 
         for (unsigned int i = 0; i < n_dofs_per_cell; ++i)
           cell_eval.begin_dof_values()[i] += interface_penalty.begin_dof_values()[i];
@@ -249,12 +242,12 @@ namespace MeltPoolDG::LevelSet
   ReinitializationEllipticOperator<dim, number>::lhs_cell_operation(
     FECellIntegrator<dim, 1, number> &interface_penalty,
     FECellIntegrator<dim, 1, number> &cell_eval,
-    PointEvaluationType              &interface_penalty_surface,
-    const unsigned int                cell_batch) const
+    PointEvaluationType              &interface_penalty_surface) const
   {
     const auto            &matrix_free         = scratch_data.get_matrix_free();
     const number           penalty_coefficient = reinit_data.elliptic.penalty_parameter;
     constexpr unsigned int n_lanes             = VectorizedArray<number>::size();
+    const unsigned int     cell_batch          = cell_eval.get_current_cell_index();
 
     interface_penalty.reinit(cell_batch);
     interface_penalty.read_dof_values_plain(zero_interface);

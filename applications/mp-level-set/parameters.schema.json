@@ -980,18 +980,58 @@
                   "description": "Penalty parameter for the enforcement of the initial position of the zero level-set iso-surface during the elliptic reinitialization.",
                   "default": 0.0
                 },
-                "fixed point iteration": {
+                "nonlinear solver type": {
+                  "type": "string",
+                  "enum": [
+                    "newton",
+                    "fixed point"
+                  ],
+                  "description": "Sets the nonlinear solver used for elliptic reinitialization.",
+                  "default": "fixed point"
+                },
+                "nlsolve": {
                   "type": "object",
                   "properties": {
-                    "max n steps": {
+                    "max nonlinear iterations": {
                       "type": "integer",
-                      "description": "Sets the maximum number of fixed point iterations.",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647,
+                      "description": "Set the number of maximum nonlinear iterations with standard tolerances.",
                       "default": 5
                     },
-                    "tolerance": {
+                    "field correction tolerance": {
                       "type": "number",
-                      "description": "Set the tolerance for reinitialization. If the maximum change of the level set field exceeds the tolerance, reinitialization steps will be performed.",
+                      "description": "Set the tolerance for the maximum allowed correction of the unknown field.",
                       "default": 2.22507e-308
+                    },
+                    "residual tolerance": {
+                      "type": "number",
+                      "description": "Set the tolerance for the maximum allowed residual of the nonlinear system.",
+                      "default": 2.22507e-308
+                    },
+                    "max nonlinear iterations alt": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647,
+                      "description": "Set the number of maximum nonlinear iterations with alternative tolerances.",
+                      "default": 0
+                    },
+                    "field correction tolerance alt": {
+                      "type": "number",
+                      "description": "Set the alternative tolerance for the maximum allowed correction of the unknown field.",
+                      "default": 2.22507e-308
+                    },
+                    "residual tolerance alt": {
+                      "type": "number",
+                      "description": "Set the alternative tolerance for the maximum allowed residual of the nonlinear system.",
+                      "default": 2.22507e-308
+                    },
+                    "verbosity level": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647,
+                      "description": "Set to one for detailed solver output.",
+                      "default": 1
                     }
                   },
                   "additionalProperties": false
