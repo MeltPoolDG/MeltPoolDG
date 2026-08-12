@@ -1,5 +1,5 @@
 #include "meltpooldg/utilities/fe_integrator.hpp"
-#include <meltpooldg/level_set/reinitialization_elliptic_operator.hpp>
+#include <meltpooldg/level_set/reinitialization_elliptic_operator_fixed_point.hpp>
 #include <meltpooldg/linear_algebra/utilities_matrixfree.hpp>
 #include <meltpooldg/time_integration/time_integrator_util.hpp>
 #include <meltpooldg/utilities/utility_functions.hpp>

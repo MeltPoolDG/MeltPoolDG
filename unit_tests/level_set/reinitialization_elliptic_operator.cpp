@@ -15,7 +15,7 @@
 #include <meltpooldg/core/scratch_data.hpp>
 #include <meltpooldg/cut/util.hpp>
 #include <meltpooldg/level_set/reinitialization_data.hpp>
-#include <meltpooldg/level_set/reinitialization_elliptic_operator.hpp>
+#include <meltpooldg/level_set/reinitialization_elliptic_operator_fixed_point.hpp>
 
 #include <mpi.h>
 

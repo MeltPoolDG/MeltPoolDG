@@ -34,12 +34,13 @@ namespace MeltPoolDG::LevelSet
   struct ReinitializationEllipticData
   {
     number penalty_parameter = 0.;
+    bool   non_linear        = false;
 
-    struct FixedPointIterationData
+    struct SolverIterationData
     {
       unsigned int max_n_steps = 5;
       number       tolerance   = std::numeric_limits<number>::min();
-    } fix_point_iteration;
+    } solver_iteration;
 
     void
     add_parameters(dealii::ParameterHandler &prm);
