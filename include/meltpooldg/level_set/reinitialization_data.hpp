@@ -34,8 +34,9 @@ namespace MeltPoolDG::LevelSet
   template <typename number>
   struct ReinitializationEllipticData
   {
-    number      penalty_parameter     = 0.;
-    std::string nonlinear_solver_type = "fixed point";
+    number      penalty_parameter               = 0.;
+    std::string nonlinear_solver_type           = "fixed point";
+    number      interior_penalty_scaling_factor = 10.;
 
     NonlinearSolverData<number> nlsolve{
       .max_nonlinear_iterations       = 5,
