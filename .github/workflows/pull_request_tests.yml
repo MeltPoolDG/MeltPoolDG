@@ -32,6 +32,7 @@ jobs:
     outputs:
       ready_to_test: ${{ steps.labels.outputs.ready_to_test }}
       no_adaflo: ${{ steps.labels.outputs.no_adaflo }}
+      enable_benchmarking: ${{ steps.labels.outputs.enable_benchmarking }}
       ctest_command: ${{ steps.labels.outputs.ctest_command }}
       make_targets: ${{ steps.labels.outputs.make_targets }}
 
@@ -74,6 +75,15 @@ jobs:
           fi
 
           # -------------------------------------------------------------------
+          # Check whether benchmarks should be enabled
+          # -------------------------------------------------------------------
+          WITH_BENCHMARKS=false
+
+          if printf '%s\n' "$LABELS" | grep -Fxq "enable_benchmarking"; then
+            WITH_BENCHMARKS=true
+          fi
+
+          # -------------------------------------------------------------------
           # Every mp-* label becomes a make target
           # -------------------------------------------------------------------
           MAKE_TARGETS=$(
@@ -99,14 +109,16 @@ jobs:
 
           echo
           echo "=== CI configuration ==="
-          echo "ready to test : $READY_TO_TEST"
-          echo "no_adaflo     : $NO_ADAFLO"
-          echo "make targets  : '$MAKE_TARGETS'"
-          echo "ctest command : $FINAL_CTEST_COMMAND"
+          echo "ready to test  : $READY_TO_TEST"
+          echo "no_adaflo      : $NO_ADAFLO"
+          echo "make targets   : '$MAKE_TARGETS'"
+          echo "enable_benchmarking: $WITH_BENCHMARKS"
+          echo "ctest command  : $FINAL_CTEST_COMMAND"
           echo "========================"
 
           echo "ready_to_test=$READY_TO_TEST" >> "$GITHUB_OUTPUT"
           echo "no_adaflo=$NO_ADAFLO" >> "$GITHUB_OUTPUT"
+          echo "enable_benchmarking=$WITH_BENCHMARKS" >> "$GITHUB_OUTPUT"
           echo "make_targets=$MAKE_TARGETS" >> "$GITHUB_OUTPUT"
           echo "ctest_command=$FINAL_CTEST_COMMAND" >> "$GITHUB_OUTPUT"
 
@@ -127,6 +139,7 @@ jobs:
       CTEST_COMMAND: ${{ needs.labels.outputs.ctest_command }}
       MAKE_TARGETS: ${{ needs.labels.outputs.make_targets }}
       NO_ADAFLO: ${{ needs.labels.outputs.no_adaflo }}
+      MPDG_ENABLE_BENCHMARKING: ${{ needs.labels.outputs.enable_benchmarking == 'true' && 'ON' || 'OFF' }}
 
     strategy:
       fail-fast: false
@@ -179,7 +192,7 @@ jobs:
             -D CMAKE_CXX_STANDARD=20
             -D CMAKE_CXX_FLAGS="-Werror"
             -D CMAKE_BUILD_TYPE=${{ matrix.build_type }}
-            -D MPDG_ENABLE_BENCHMARKING=OFF
+            -D MPDG_ENABLE_BENCHMARKING=${MPDG_ENABLE_BENCHMARKING} \
           )
 
           if [[ "$NO_ADAFLO" != "true" ]]; then
