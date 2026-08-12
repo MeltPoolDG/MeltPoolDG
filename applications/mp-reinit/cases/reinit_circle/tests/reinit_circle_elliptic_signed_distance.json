@@ -3,7 +3,7 @@
   "base": {
     "case name": "reinit_circle",
     "dimension": 2,
-    "global refinements": 7,
+    "global refinements": 5,
     "do print parameters": false,
     "fe": {
       "degree": 1
@@ -34,11 +34,15 @@
     },
     "type": "elliptic",
     "elliptic": {
-      "penalty parameter": 1000.0,
+      "penalty parameter": 10000.0,
       "nlsolve": {
-        "max nonlinear iterations": 3,
-        "residual tolerance": 1e-05,
-        "verbosity": 1
+        "max nonlinear iterations": 5,
+        "max nonlinear iterations alt": 1,
+        "residual tolerance": 0.001,
+        "residual tolerance alt": 0.01,
+        "field correction tolerance": 0.001,
+        "field correction tolerance alt": 0.01,
+        "verbosity level": 2
       }
     }
   },
