@@ -283,7 +283,8 @@ namespace MeltPoolDG::LevelSet
 
     reinit_operation->set_initial_condition(*simulation_case->get_initial_condition("level_set"));
 
-    if (param.reinit.fe.type == FiniteElementType::FE_DGQ)
+    if (param.reinit.fe.type == FiniteElementType::FE_DGQ and
+        param.reinit.modeltype == ModelType::olsson2007)
       {
         // For a pure reinit problem this could be done inside reinit_operation, but we want to be
         // able to set it from an external field in a coupled advection/reinit problem
@@ -370,10 +371,17 @@ namespace MeltPoolDG::LevelSet
     const bool wetting_enabled =
       not simulation_case->get_boundary_condition("nx", "normal_vector").empty();
 
-    scratch_data->build(param.reinit.fe.type == FiniteElementType::FE_DGQ or
-                          wetting_enabled /*boundary_face_integrals*/,
-                        param.reinit.fe.type == FiniteElementType::FE_DGQ /*inner face integrals*/,
-                        wetting_enabled /*normal_vectors*/);
+    const bool elliptic_DG = param.reinit.modeltype == ModelType::elliptic and
+                             param.reinit.fe.type == FiniteElementType::FE_DGQ;
+
+    scratch_data->build((param.reinit.fe.type == FiniteElementType::FE_DGQ or wetting_enabled) and
+                          not elliptic_DG /*boundary_face_integrals*/,
+                        param.reinit.fe.type ==
+                          FiniteElementType::FE_DGQ /*inner face
+  integrals*/,
+                        wetting_enabled or elliptic_DG /*normal_vectors*/);
+
+    // scratch_data->build(false, false, false);
 
     if (reinit_operation)
       reinit_operation->reinit();

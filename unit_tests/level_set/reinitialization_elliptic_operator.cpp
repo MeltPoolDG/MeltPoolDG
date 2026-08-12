@@ -97,7 +97,7 @@ namespace MeltPoolDG::LevelSet
       make_operator()
       {
         return ReinitializationEllipticOperator<dim, number>(
-          scratch_data, reinit_data, 0, 0, mapping_info_surface, 0, mesh_classifier);
+          scratch_data, reinit_data, 0, 0, mapping_info_surface, 0);
       }
     };
 

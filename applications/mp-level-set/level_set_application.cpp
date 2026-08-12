@@ -311,6 +311,7 @@ namespace MeltPoolDG::LevelSet
 
     // create the matrix-free object
     scratch_data->build(simulation_case->parameters.ls.fe.type == FiniteElementType::FE_DGQ,
+                        simulation_case->parameters.ls.fe.type == FiniteElementType::FE_DGQ,
                         simulation_case->parameters.ls.fe.type == FiniteElementType::FE_DGQ);
 
     if (do_reinit)

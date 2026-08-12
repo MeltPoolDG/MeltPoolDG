@@ -39,7 +39,6 @@ namespace MeltPoolDG::LevelSet
     relative_change_level_set         = std::numeric_limits<number>::max();
 
     // necessary here for mp-reinit
-    mesh_classifier->reclassify();
     compute_intersected_quadrature();
 
     while (iter < max_iterations && relative_change_level_set > tolerance)
@@ -74,6 +73,9 @@ namespace MeltPoolDG::LevelSet
 
     reinit_operator->create_rhs(rhs, level_set_old);
 
+    preconditioner.set_do_update_preconditioner(true);
+    preconditioner.update();
+
     int iter = LinearSolver::solve<VectorType>(*reinit_operator,
                                                solution_level_set,
                                                rhs,
@@ -81,7 +83,8 @@ namespace MeltPoolDG::LevelSet
                                                preconditioner,
                                                "reinitialization_operation");
 
-    scratch_data.get_constraint(reinit_dof_idx).distribute(solution_level_set);
+    if (reinit_data.fe.type != FiniteElementType::FE_DGQ)
+      scratch_data.get_constraint(reinit_dof_idx).distribute(solution_level_set);
 
     solution_level_set.update_ghost_values();
 
@@ -133,9 +136,6 @@ namespace MeltPoolDG::LevelSet
 
     level_set_old.copy_locally_owned_data_from(solution_level_set);
     level_set_old.update_ghost_values();
-
-    level_set_old_locally_owned.copy_locally_owned_data_from(level_set_old);
-    level_set_old_locally_owned.update_ghost_values();
   }
 
   template <int dim, typename number>
@@ -145,17 +145,6 @@ namespace MeltPoolDG::LevelSet
     scratch_data.initialize_dof_vector(solution_level_set, ls_dof_idx);
     scratch_data.initialize_dof_vector(rhs, reinit_dof_idx);
     scratch_data.initialize_dof_vector(level_set_old, ls_dof_idx);
-
-    level_set_old_locally_owned.reinit(
-      scratch_data.get_dof_handler(ls_dof_idx).locally_owned_dofs(),
-      dealii::DoFTools::extract_locally_relevant_dofs(scratch_data.get_dof_handler(ls_dof_idx)),
-      scratch_data.get_mpi_comm(ls_dof_idx));
-
-    // here the mesh classifier placeholder is created, since the level_set_old is empty
-    // the mesh classifier is populated in the solve iteration
-    if (not mesh_classifier)
-      mesh_classifier = std::make_shared<dealii::NonMatching::MeshClassifier<dim>>(
-        scratch_data.get_dof_handler(ls_dof_idx), level_set_old_locally_owned);
 
     if (not reinit_operator)
       create_operator();
@@ -173,16 +162,11 @@ namespace MeltPoolDG::LevelSet
     level_set_old.copy_locally_owned_data_from(solution_level_set_in);
     level_set_old.update_ghost_values();
 
-    level_set_old_locally_owned.zero_out_ghost_values();
-    level_set_old_locally_owned.copy_locally_owned_data_from(level_set_old);
-    level_set_old_locally_owned.update_ghost_values();
-
     solution_level_set.zero_out_ghost_values();
     solution_level_set.copy_locally_owned_data_from(solution_level_set_in);
     solution_level_set.update_ghost_values();
 
     preconditioner.set_do_update_preconditioner(true);
-    mesh_classifier->reclassify();
     compute_intersected_quadrature();
     preconditioner.update();
   }
@@ -199,19 +183,16 @@ namespace MeltPoolDG::LevelSet
                                      initial_field_function,
                                      level_set_old);
 
-    scratch_data.get_constraint(ls_dof_idx).distribute(level_set_old);
-    level_set_old.update_ghost_values();
+    if (reinit_data.fe.type != FiniteElementType::FE_DGQ)
+      scratch_data.get_constraint(ls_dof_idx).distribute(level_set_old);
 
-    level_set_old_locally_owned.zero_out_ghost_values();
-    level_set_old_locally_owned.copy_locally_owned_data_from(level_set_old);
-    level_set_old_locally_owned.update_ghost_values();
+    level_set_old.update_ghost_values();
 
     solution_level_set.zero_out_ghost_values();
     solution_level_set.copy_locally_owned_data_from(level_set_old);
     solution_level_set.update_ghost_values();
 
     preconditioner.set_do_update_preconditioner(true);
-    mesh_classifier->reclassify();
     compute_intersected_quadrature();
     preconditioner.update();
   }
@@ -259,14 +240,8 @@ namespace MeltPoolDG::LevelSet
   void
   ReinitializationEllipticOperation<dim, number>::create_operator()
   {
-    reinit_operator =
-      std::make_unique<ReinitializationEllipticOperator<dim, number>>(scratch_data,
-                                                                      reinit_data,
-                                                                      reinit_dof_idx,
-                                                                      reinit_quad_idx,
-                                                                      mapping_info_surface,
-                                                                      ls_dof_idx,
-                                                                      mesh_classifier);
+    reinit_operator = std::make_unique<ReinitializationEllipticOperator<dim, number>>(
+      scratch_data, reinit_data, reinit_dof_idx, reinit_quad_idx, mapping_info_surface, ls_dof_idx);
 
     preconditioner =
       make_preconditioner<dim, number, ReinitializationEllipticOperator<dim, number>, VectorType>(

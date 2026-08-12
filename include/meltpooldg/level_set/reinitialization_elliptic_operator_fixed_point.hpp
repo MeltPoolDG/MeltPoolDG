@@ -11,8 +11,6 @@
 #include <deal.II/matrix_free/matrix_free.h>
 #include <deal.II/matrix_free/operators.h>
 
-#include <deal.II/non_matching/mesh_classifier.h>
-
 #include <meltpooldg/core/operator_base.hpp>
 #include <meltpooldg/core/scratch_data.hpp>
 #include <meltpooldg/level_set/reinitialization_data.hpp>
@@ -61,16 +59,14 @@ namespace MeltPoolDG::LevelSet
      * @param reinit_quad_idx_in Index of the used quadrature object in @p scratch_data_in.
      * @param mapping_info_surface_in Mapping information for the interface surface.
      * @param ls_dof_idx_in       DOF handler index for the level set function.
-     * @param mesh_classifier_in  Shared pointer to the mesh classifier object containing information about cut cells.
      */
     ReinitializationEllipticOperator(
-      const MeltPoolDG::ScratchData<dim, dim, number>                &scratch_data_in,
-      const ReinitializationData<number>                             &reinit_data_in,
-      const unsigned int                                              reinit_dof_idx_in,
-      const unsigned int                                              reinit_quad_idx_in,
-      const MappingInfoType                                          &mapping_info_surface_in,
-      const unsigned int                                              ls_dof_idx_in,
-      const std::shared_ptr<dealii::NonMatching::MeshClassifier<dim>> mesh_classifier_in);
+      const MeltPoolDG::ScratchData<dim, dim, number> &scratch_data_in,
+      const ReinitializationData<number>              &reinit_data_in,
+      const unsigned int                               reinit_dof_idx_in,
+      const unsigned int                               reinit_quad_idx_in,
+      const MappingInfoType                           &mapping_info_surface_in,
+      const unsigned int                               ls_dof_idx_in);
 
 
     /**
@@ -100,6 +96,27 @@ namespace MeltPoolDG::LevelSet
     reinit() final;
 
     /**
+     * @brief Compute and assemble the system matrix from matrix-free operator evaluations.
+     *      Used by the preconditioner.
+     *
+     * @param system_matrix  Output sparse matrix.
+     */
+    void
+    compute_system_matrix_from_matrixfree(
+      dealii::TrilinosWrappers::SparseMatrix &system_matrix) const final;
+
+    /**
+     * @brief Compute the inverse diagonal of the system matrix.
+     *      Used by the preconditioner.
+     *
+     * @param diagonal  Output vector containing the diagonal inverse values.
+     */
+    void
+    compute_inverse_diagonal_from_matrixfree(VectorType &diagonal) const final;
+
+
+  private:
+    /**
      * @brief Compute the contribution of a single cell integral to the right-hand side.
      *        First-level function for the evaluation of the volume integrals.
      *
@@ -127,42 +144,15 @@ namespace MeltPoolDG::LevelSet
                                      const number                      penalty_coefficient) const;
 
     /**
-     * @brief Compute and assemble the system matrix from matrix-free operator evaluations.
-     *      Used by the preconditioner.
-     *
-     * @param system_matrix  Output sparse matrix.
-     */
-    void
-    compute_system_matrix_from_matrixfree(
-      dealii::TrilinosWrappers::SparseMatrix &system_matrix) const final;
-
-    /**
-     * @brief Compute the inverse diagonal of the system matrix.
-     *      Used by the preconditioner.
-     *
-     * @param diagonal  Output vector containing the diagonal inverse values.
-     */
-    void
-    compute_inverse_diagonal_from_matrixfree(VectorType &diagonal) const final;
-
-
-  private:
-    /// Mesh classifier, which contains information if a cell is inside or outside the physically
-    /// relevant region, or cut by the immersed boundary. It corresponds to the current level set
-    /// position.
-    std::shared_ptr<dealii::NonMatching::MeshClassifier<dim>> mesh_classifier;
-
-    /**
      * @brief This evaluates the coefficient for the rhs integral.
      *
      * @param psi_old Cell integrator for the old level set values.
      * @param q_index Index of the quadrature point.
      * @return Value of the source term.
      */
-    template <int n_components>
+    template <typename EvaluatorType>
     VectorizedArrayType
-    evaluate_rhs_coefficient(const FECellIntegrator<dim, n_components, number> &psi_old,
-                             const unsigned int                                 q_index) const;
+    evaluate_rhs_coefficient(const EvaluatorType &phi_old, const unsigned int q_index) const;
 
     /**
      * @brief Calculate the contribution of a single cell integral to the left-hand side.
@@ -185,6 +175,16 @@ namespace MeltPoolDG::LevelSet
      */
     void
     laplace_cell_operation(FECellIntegrator<dim, 1, number> &cell_eval) const;
+
+    /**
+     * @brief Calculate the contribution of an interior face integral to the left-hand side.
+     *
+     * @param eval_minus Face integrator for the cell on the minus side of the face.
+     * @param eval_plus Face integrator for the cell on the plus side of the face.
+     */
+    void
+    lhs_inner_face_operation(FEFaceIntegrator<dim, 1, number> &eval_minus,
+                             FEFaceIntegrator<dim, 1, number> &eval_plus) const;
 
     /// Reference to scratch data containing mesh, geometry, and FE evaluation utilities.
     const ScratchData<dim, dim, number> &scratch_data;
@@ -214,5 +214,8 @@ namespace MeltPoolDG::LevelSet
     /// The buffer accumulates penalty contribution.
     /// This vector is initialized to zero every reinit() operation.
     VectorType zero_interface;
+
+    /// Discontinuity penalization parameter for DG.
+    number discontinuity_penalty = 0.0;
   };
 } // namespace MeltPoolDG::LevelSet

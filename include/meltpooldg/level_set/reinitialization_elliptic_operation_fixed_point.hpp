@@ -1,7 +1,5 @@
 #pragma once
 
-#include <deal.II/non_matching/mesh_classifier.h>
-
 #include <meltpooldg/core/scratch_data.hpp>
 #include <meltpooldg/cut/util.hpp>
 #include <meltpooldg/level_set/normal_vector_operation.hpp>
@@ -147,11 +145,6 @@ namespace MeltPoolDG::LevelSet
     /// Mapping information for integration over immersed boundaries
     MappingInfoType mapping_info_surface;
 
-    /// Mesh classifier, which contains information if a cell is inside or outside the physically
-    /// relevant region, or cut by the immersed boundary. It corresponds to the current level set
-    /// position.
-    std::shared_ptr<dealii::NonMatching::MeshClassifier<dim>> mesh_classifier;
-
     /**
      * @brief Create the elliptic reinitialization operator.
      */
@@ -187,8 +180,5 @@ namespace MeltPoolDG::LevelSet
 
     /// Relative change of the level L2 norm between the current and previous fix point iteration.
     number relative_change_level_set = std::numeric_limits<number>::max();
-
-    /// Locally relevant DoF vector. It is required by the mesh classifier.
-    VectorType level_set_old_locally_owned;
   };
 } // namespace MeltPoolDG::LevelSet
