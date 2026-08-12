@@ -35,7 +35,7 @@ namespace MeltPoolDG::LevelSet
    * @tparam number Scalar number type (e.g., double or float).
    */
   template <int dim, typename number>
-  class ReinitializationEllipticOperator : public OperatorMatrixFree<dim, number>
+  class ReinitializationEllipticOperatorFixedPoint : public OperatorMatrixFree<dim, number>
   {
     using OperatorMatrixFree<dim, number>::vmult;
     using OperatorMatrixFree<dim, number>::create_rhs;
@@ -60,7 +60,7 @@ namespace MeltPoolDG::LevelSet
      * @param mapping_info_surface_in Mapping information for the interface surface.
      * @param ls_dof_idx_in       DOF handler index for the level set function.
      */
-    ReinitializationEllipticOperator(
+    ReinitializationEllipticOperatorFixedPoint(
       const MeltPoolDG::ScratchData<dim, dim, number> &scratch_data_in,
       const ReinitializationData<number>              &reinit_data_in,
       const unsigned int                               reinit_dof_idx_in,

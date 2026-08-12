@@ -11,9 +11,8 @@
 #include <deal.II/numerics/error_estimator.h>
 #include <deal.II/numerics/vector_tools_interpolate.h>
 
-#include <meltpooldg/level_set/reinitialization_data.hpp>
-#include <meltpooldg/level_set/reinitialization_elliptic_operation_CG_newton.hpp>
-#include <meltpooldg/level_set/reinitialization_elliptic_operation_fixed_point.hpp>
+#include "meltpooldg/level_set/reinitialization_data.hpp"
+#include <meltpooldg/level_set/reinitialization_elliptic_operation.hpp>
 #include <meltpooldg/level_set/reinitialization_geometric_operation.hpp>
 #include <meltpooldg/level_set/reinitialization_hyperbolic_CG_operation.hpp>
 #include <meltpooldg/level_set/reinitialization_hyperbolic_DG_operation.hpp>
@@ -241,28 +240,12 @@ namespace MeltPoolDG::LevelSet
           }
         else if (param.reinit.modeltype == ModelType::elliptic)
           {
-            if (param.reinit.elliptic.nonlinear_solver_type == "newton")
-              {
-                if (param.reinit.fe.type == FiniteElementType::FE_DGQ)
-                  {
-                    AssertThrow(false, ExcNotImplemented());
-                  }
-                else
-                  {
-                    reinit_operation =
-                      std::make_unique<ReinitializationEllipticOperationNewton<dim, number>>(
-                        *scratch_data,
-                        param.reinit,
-                        reinit_dof_idx,
-                        reinit_quad_idx,
-                        reinit_dof_idx);
-                  }
-              }
-            else
-              {
-                reinit_operation = std::make_unique<ReinitializationEllipticOperation<dim, number>>(
-                  *scratch_data, param.reinit, reinit_dof_idx, reinit_quad_idx, reinit_dof_idx);
-              }
+            if (param.reinit.elliptic.nonlinear_solver_type == "newton" and
+                param.reinit.fe.type == FiniteElementType::FE_DGQ)
+              AssertThrow(false, ExcNotImplemented());
+
+            reinit_operation = std::make_unique<ReinitializationEllipticOperation<dim, number>>(
+              *scratch_data, param.reinit, reinit_dof_idx, reinit_quad_idx, reinit_dof_idx);
           }
         else if (param.reinit.modeltype == ModelType::geometric)
           {
@@ -299,8 +282,8 @@ namespace MeltPoolDG::LevelSet
       {
         if (param.reinit.fe.type == FiniteElementType::FE_DGQ)
           {
-            // For a pure reinit problem this could be done inside reinit_operation, but we want to
-            // be able to set it from an external field in a coupled advection/reinit problem
+            // For a pure reinit problem this could be done inside reinit_operation, but we want
+            // to be able to set it from an external field in a coupled advection/reinit problem
             reinit_operation->get_sign_indicator_function()->copy_locally_owned_data_from(
               reinit_operation->get_level_set());
           }

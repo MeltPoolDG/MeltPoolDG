@@ -3,8 +3,11 @@
 #include <meltpooldg/core/scratch_data.hpp>
 #include <meltpooldg/cut/util.hpp>
 #include <meltpooldg/level_set/normal_vector_operation.hpp>
+#include <meltpooldg/level_set/reinitialization_elliptic_operator_CG_newton.hpp>
 #include <meltpooldg/level_set/reinitialization_elliptic_operator_fixed_point.hpp>
 #include <meltpooldg/level_set/reinitialization_operation_base.hpp>
+#include <meltpooldg/linear_algebra/fixed_point_solver.hpp>
+#include <meltpooldg/linear_algebra/newton_raphson_solver.hpp>
 #include <meltpooldg/linear_algebra/preconditioner.hpp>
 
 /**
@@ -55,12 +58,6 @@ namespace MeltPoolDG::LevelSet
      */
     void
     solve() override;
-
-    /**
-     * @brief Solve one step of the fix point iteration for the elliptic reinitialization problem.
-     */
-    void
-    solve_one_iter();
 
     /**
      * @brief Resizes the vectors to the right size of the underlying DoF handler and initializes
@@ -127,14 +124,6 @@ namespace MeltPoolDG::LevelSet
     void
     attach_output_vectors(GenericDataOut<dim, number> &data_out) const override;
 
-    /**
-     * @brief Get the relative change of the level set L2 norm between the current and previous fix point iteration.
-     *
-     * @return Relative change of the level set norm.
-     */
-    number
-    get_relative_change_level_set() const;
-
   private:
     /**
      * @brief Compute the quadrature rules for the immersed phase boundaries.
@@ -174,11 +163,26 @@ namespace MeltPoolDG::LevelSet
     VectorType level_set_old;
 
     /// Pointer to the elliptic reinitialization operator object
-    std::unique_ptr<ReinitializationEllipticOperator<dim, number>> reinit_operator;
+    std::unique_ptr<ReinitializationEllipticOperatorFixedPoint<dim, number>> fixed_point_operator;
+    std::unique_ptr<ReinitializationEllipticOperatorNewton<dim, number>>     newton_operator;
+
     /// Preconditioner for the linear solver
     Preconditioner<dim, VectorType, number> preconditioner;
 
-    /// Relative change of the level L2 norm between the current and previous fix point iteration.
-    number relative_change_level_set = std::numeric_limits<number>::max();
+    /// Solver class for iterative solution of the non-linear system
+    std::optional<NewtonRaphsonSolver<number, VectorType>> newton;
+    std::optional<FixedPointSolver<number, VectorType>>    fixed_point;
+
+    /**
+     * @brief Set up and solve the system using fixed opint iteration.
+     */
+    void
+    setup_fixed_point();
+
+    /**
+     * @brief Set up and solve the system using Newton-Raphson solver.
+     */
+    void
+    setup_newton();
   };
 } // namespace MeltPoolDG::LevelSet
