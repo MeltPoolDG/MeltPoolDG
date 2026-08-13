@@ -18,6 +18,8 @@ namespace MeltPoolDG::LevelSet
 
     bool do_localized_heaviside = true;
 
+    number heaviside_thickness_coefficient = 3.0;
+
     NearestPointData<number> nearest_point;
 
     AdvectionDiffusionData<number> advec_diff;

@@ -1,0 +1,106 @@
+{
+  "$schema": "../../../parameters.schema.json",
+  "base": {
+    "case name": "rising_bubble",
+    "do print parameters": false,
+    "global refinements": 3,
+    "dimension": 2,
+    "fe": {
+      "degree": 1
+    }
+  },
+  "time stepping": {
+    "start time": 0.0,
+    "end time": 0.1,
+    "time step size": 0.02
+  },
+  "adaptive meshing": {
+    "do amr": true,
+    "upper perc to refine": 0.1,
+    "lower perc to coarsen": 0.0,
+    "max grid refinement level": 5,
+    "n initial refinement cycles": 0
+  },
+  "material": {
+    "gas": {
+      "density": 1,
+      "dynamic viscosity": 0.01
+    },
+    "liquid": {
+      "density": 0.1,
+      "dynamic viscosity": 0.001
+    },
+    "two phase fluid properties transition type": "smooth"
+  },
+  "output": {
+    "paraview": {
+      "enable": false
+    }
+  },
+  "level set": {
+    "heaviside thickness coefficient": 1.5,
+    "reinitialization": {
+      "linear solver": {
+        "do matrix free": true
+      },
+      "enable": true,
+      "type": "olsson2007",
+      "hyperbolic": {
+        "pseudo time stepping": {
+          "max n steps": 2
+        }
+      },
+      "interface thickness parameter": {
+        "type": "absolute_value",
+        "val": 0.03
+      }
+    },
+    "curvature": {
+      "linear solver": {
+        "do matrix free": true
+      },
+      "filter parameter": 4
+    },
+    "normal vector": {
+      "linear solver": {
+        "do matrix free": true
+      },
+      "filter parameter": 4
+    },
+    "advection diffusion": {
+      "linear solver": {
+        "do matrix free": true
+      }
+    }
+  },
+  "flow": {
+    "adaflo": {
+      "Time stepping": {
+        "scheme": "bdf_2"
+      },
+      "Navier-Stokes": {
+        "physical type": "incompressible",
+        "dimension": 2,
+        "global refinements": 0,
+        "velocity degree": 2,
+        "Solver": {
+          "linearization scheme": "coupled implicit Newton",
+          "NL max iterations": 10,
+          "NL tolerance": 1e-10,
+          "lin max iterations": 30,
+          "lin tolerance": 1e-10,
+          "lin velocity preconditioner": "ilu",
+          "lin its before inner solvers": 30
+        }
+      },
+      "Output options": {
+        "output verbosity": 0,
+        "output wall times": false
+      }
+    },
+    "gravity": 0.98,
+    "surface tension": {
+      "surface tension coefficient": 0.0245
+    }
+  }
+}
