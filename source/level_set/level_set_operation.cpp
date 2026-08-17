@@ -708,7 +708,8 @@ namespace MeltPoolDG::LevelSet
                   {
                     level_set_as_heaviside(local_dof_indices[i]) =
                       smooth_heaviside_from_distance_value(
-                        2 * get_level_set()[local_dof_indices[i]] / (3 * epsilon_cell));
+                        2 * get_level_set()[local_dof_indices[i]] /
+                        (level_set_data.heaviside_thickness_coefficient * epsilon_cell));
                   }
                 else
                   AssertThrow(
@@ -748,7 +749,9 @@ namespace MeltPoolDG::LevelSet
                         std::tanh(2) /*cut off value*/);
 
                     level_set_as_heaviside(local_dof_indices[i]) =
-                      smooth_heaviside_from_distance_value(2 * distance / (3 * epsilon_cell));
+                      smooth_heaviside_from_distance_value(
+                        2 * distance /
+                        (level_set_data.heaviside_thickness_coefficient * epsilon_cell));
                   }
                 else
                   level_set_as_heaviside(local_dof_indices[i]) =

@@ -20,6 +20,14 @@ namespace MeltPoolDG::LevelSet
                         "the interface region.");
 
       prm.add_parameter(
+        "heaviside thickness coefficient ",
+        heaviside_thickness_coefficient,
+        "Parameter C_h that determines the interface region thickness of the smoothed heaviside,"
+        " which is also used for regularized delta functions. The resulting interface thickness is obtained from "
+        "2 * C_h * eps_phi, where eps_phi is the interface thickness parameter from the tanh level set field."
+        "In the default case the thickness is 6 * eps_phi.");
+
+      prm.add_parameter(
         "gradient error evaluation distance cell proportion",
         level_set_DG_specific_data.gradient_error_evaluation_distance_cell_proportion,
         "Factor how many cell diameters away the gradient error should be evaluated");
