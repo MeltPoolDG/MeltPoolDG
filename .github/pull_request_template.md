@@ -36,7 +36,7 @@
 
 # Checklist (should be removed by the person who merges this PR)
 
-- [ ] The branch is rebased onto master
+- [ ] The branch is rebased onto main
 - [ ] Code is formatted with format-all
 - [ ] Prefer a single commit with a meaningful commit message; if multiple commits are necessary, explain why in the PR description
 - [ ] Labels are applied
