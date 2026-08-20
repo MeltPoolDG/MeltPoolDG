@@ -52,7 +52,7 @@ git checkout -b "my_branch"
 
 Make your changes. Once ready to commit, follow these steps:
 
-1. Format your code (see **[Code Formatting](#code-formatting)** section). Alternatively, precommit hooks may help to not forget about formatting upon pushing the code (see **[Installing Pre-commit Hooks](#installing-pre-commit-hooks)** section). Make sure that all corresponding tests are passing (see **[Testing](#testing)** section)
+1. Format your code (see **[Code Formatting](#code-formatting)** section). Alternatively, pre-commit hooks may help to not forget about formatting upon pushing the code (see **[Installing Pre-commit Hooks](#installing-pre-commit-hooks)** section). Make sure that all corresponding tests are passing (see **[Testing](#testing)** section)
 2. Verify your changes:
 
    ```bash
