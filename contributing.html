@@ -143,7 +143,7 @@
 <h2>Making Changes and Pushing to the Repository<a class="headerlink" href="#making-changes-and-pushing-to-the-repository" title="Link to this heading"></a></h2>
 <section id="get-the-latest-main-branch">
 <h3>Get the Latest <code class="docutils literal notranslate"><span class="pre">main</span></code> Branch<a class="headerlink" href="#get-the-latest-main-branch" title="Link to this heading"></a></h3>
-<p>Before making changes, ensure your local branch is up to date with the original repository (see <strong>Useful GIT commands</strong> section):</p>
+<p>Before making changes, ensure your local branch is up to date with the original repository (see <strong><a class="reference internal" href="#useful-git-commands"><span class="std std-ref">Useful GIT commands</span></a></strong> section):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>upstream
 git<span class="w"> </span>rebase<span class="w"> </span>upstream/main
 </pre></div>
@@ -151,12 +151,12 @@ git<span class="w"> </span>rebase<span class="w"> </span>upstream/main
 </section>
 <section id="create-a-new-branch">
 <h3>Create a New Branch<a class="headerlink" href="#create-a-new-branch" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="s2">&quot;my_branch&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="s2">"my_branch"</span>
 </pre></div>
 </div>
 <p>Make your changes. Once ready to commit, follow these steps:</p>
 <ol class="arabic">
-<li><p>Format your code (see <strong>Code Formatting</strong> section). Alternatively, precommit hooks may help to not forget about formatting upon pushing the code (see <strong>Installing Pre-commit Hooks</strong> section). Make sure that all corresponding tests are passing (see <strong>Testing</strong> section)</p></li>
+<li><p>Format your code (see <strong><a class="reference internal" href="#code-formatting"><span class="std std-ref">Code Formatting</span></a></strong> section). Alternatively, pre-commit hooks may help to not forget about formatting upon pushing the code (see <strong><a class="reference internal" href="#installing-pre-commit-hooks"><span class="std std-ref">Installing Pre-commit Hooks</span></a></strong> section). Make sure that all corresponding tests are passing (see <strong><a class="reference internal" href="#testing"><span class="std std-ref">Testing</span></a></strong> section)</p></li>
 <li><p>Verify your changes:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>diff
 git<span class="w"> </span>status
@@ -183,7 +183,7 @@ git<span class="w"> </span>status
 </div>
 </li>
 <li><p>Commit and push your changes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add a useful description&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Add a useful description"</span>
 git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>my_branch
 </pre></div>
 </div>
@@ -291,22 +291,22 @@ bash<span class="w"> </span>scripts/utilities/run_clang_tidy.sh<span class="w"> 
 </li>
 <li><p>Commit any local changes:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>-u
-git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Save local changes&quot;</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Save local changes"</span>
 </pre></div>
 </div>
 </li>
 <li><p>Fetch the latest changes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>origin
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>upstream
 </pre></div>
 </div>
 </li>
 <li><p>Start the rebase process:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>origin/main
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>upstream/main
 </pre></div>
 </div>
 </li>
 <li><p>If there are <strong>no conflicts</strong>, force-push the rebased branch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>origin<span class="w"> </span>my_branch
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>--force-with-lease<span class="w"> </span>origin<span class="w"> </span>my_branch
 </pre></div>
 </div>
 </li>
@@ -328,7 +328,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 </li>
 <li><p>Repeat as needed until the rebase completes successfully.</p></li>
 <li><p>Force-push your changes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>origin<span class="w"> </span>my_branch
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>--force-with-lease<span class="w"> </span>origin<span class="w"> </span>my_branch
 </pre></div>
 </div>
 </li>
@@ -338,8 +338,25 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 <hr class="docutils" />
 <section id="squashing-commits-into-one">
 <h3>Squashing Commits into One<a class="headerlink" href="#squashing-commits-into-one" title="Link to this heading"></a></h3>
-<p>To squash multiple commits into a single commit:</p>
-<p>🔗 <a class="reference external" href="https://www.redswitches.com/blog/squash-commits/#step-1-switch-to-the-branch">Follow this guide</a>.</p>
+<p>To combine all commits made on your branch since it diverged from <code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>upstream
+git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>upstream/main
+</pre></div>
+</div>
+<p>In the editor, leave the first commit as <code class="docutils literal notranslate"><span class="pre">pick</span></code> and change the remaining
+commits to <code class="docutils literal notranslate"><span class="pre">squash</span></code>. Save and close the editor, then edit the combined
+commit message if prompted.</p>
+<p>You can set your preferred editor with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.editor<span class="w"> </span><span class="s2">"code --wait"</span>
+</pre></div>
+</div>
+<p>to use VS Code, for example.</p>
+<p>If the branch has already been pushed, update it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>--force-with-lease<span class="w"> </span>origin<span class="w"> </span>my_branch
+</pre></div>
+</div>
+<p>For details, read the official docs on <a class="reference external" href="https://git-scm.com/docs/git-rebase#_interactive_mode">interactive rebasing</a>
+and the chapter on <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#_changing_multiple">rewriting history</a>.</p>
 <p>⚠ <strong>Warning:</strong> Squashing rewrites commit history. If unsure, create a backup before proceeding.</p>
 <hr class="docutils" />
 <p>Happy coding! 🎉</p>
