@@ -1,4 +1,5 @@
 #include <deal.II/base/conditional_ostream.h>
+#include <deal.II/base/enable_observer_pointer.h>
 #include <deal.II/base/function_signed_distance.h>
 #include <deal.II/base/logstream.h>
 #include <deal.II/base/mpi.h>
@@ -43,7 +44,7 @@
 using namespace dealii;
 
 template <int dim, typename Number, typename VectorizedArrayType = VectorizedArray<Number>>
-class ScreenedPoissonOperator : public Subscriptor
+class ScreenedPoissonOperator : public EnableObserverPointer
 {
 public:
   using FECellIntegrator = FEEvaluation<dim, -1, 0, 1, Number, VectorizedArrayType>;
