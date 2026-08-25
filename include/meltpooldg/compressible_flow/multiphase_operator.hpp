@@ -7,6 +7,7 @@
 #include <meltpooldg/compressible_flow/kernels.hpp>
 #include <meltpooldg/compressible_flow/multiphase_level_set_advection.hpp>
 #include <meltpooldg/cut/util.hpp>
+#include <meltpooldg/flow/darcy_damping_model.hpp>
 #include <meltpooldg/phase_change/evaporation_model_knight.hpp>
 #include <meltpooldg/utilities/dg_generic_convection_diffusion_worker.hpp>
 #include <meltpooldg/utilities/vector_tools.hpp>
@@ -238,6 +239,9 @@ namespace MeltPoolDG::Multiphase
 
     /// Pointer to the object for the evaluation of the Knight evaporation model
     std::unique_ptr<Evaporation::EvaporationModelKnight<number>> evaporation_model_knight;
+
+    /// Darcy damping model for the computation of the damping coefficient
+    Flow::DarcyDampingModel<number> darcy_damping_model;
 
     /**
      * @brief Wrapper for the generation of a FECellIntegrator object.

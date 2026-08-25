@@ -34,6 +34,7 @@ namespace MeltPoolDG::Multiphase
     , fe_point_temp(FE_DGQ<dim>(multiphase_scratch_data.flow_data.fe.degree),
                     CompressibleFlow::n_conserved_variables<dim>)
     , n_dofs_per_cell(fe_point_temp.dofs_per_cell)
+    , darcy_damping_model(multiphase_scratch_data.darcy_damping)
   {
     const auto &l     = multiphase_scratch_data.material_liquid.data;
     const auto &g     = multiphase_scratch_data.material_gas.data;
@@ -179,22 +180,17 @@ namespace MeltPoolDG::Multiphase
               const VectorizedArray<number> T_solidus_vec(
                 multiphase_scratch_data.phase_change.solid_liquid.solidus_temperature);
 
-              VectorizedArray<number> liquid_fraction =
-                (temperature - T_solidus_vec) / (T_liquidus_vec - T_solidus_vec);
+              VectorizedArray<number> solid_fraction =
+                (T_liquidus_vec - temperature) / (T_liquidus_vec - T_solidus_vec);
 
-              // liquid fraction is bounded [0;1]
-              liquid_fraction =
-                std::min(std::max(liquid_fraction,
+              // solid fraction is bounded [0;1]
+              solid_fraction =
+                std::min(std::max(solid_fraction,
                                   dealii::make_vectorized_array<VectorizedArray<number>>(0.)),
                          dealii::make_vectorized_array<VectorizedArray<number>>(1.));
 
-              const VectorizedArray<number> solid_fraction = 1. - liquid_fraction;
-
               const VectorizedArray<number> darcy_damping_coefficient =
-                -multiphase_scratch_data.darcy_damping.mushy_zone_morphology * solid_fraction *
-                solid_fraction /
-                (liquid_fraction * liquid_fraction * liquid_fraction +
-                 multiphase_scratch_data.darcy_damping.avoid_div_zero_constant);
+                darcy_damping_model.compute_darcy_damping_coefficient(solid_fraction);
 
               // contribution to momentum equation
               darcy_damping[1] = darcy_damping_coefficient * velocity[0];
