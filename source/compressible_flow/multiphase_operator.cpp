@@ -730,17 +730,23 @@ namespace MeltPoolDG::Multiphase
 
               for (const unsigned int q : eval_point_m.quadrature_point_indices())
                 {
+                  const auto w_m      = eval_point_m.get_value(q);
+                  const auto w_p      = eval_point_p.get_value(q);
+                  const auto grad_w_m = eval_point_m.get_gradient(q);
+                  const auto grad_w_p = eval_point_p.get_gradient(q);
+                  const auto normal   = eval_point_m.normal_vector(q);
+
                   CompressibleFlow::FaceFluxType<dim, number> flux_m;
                   CompressibleFlow::FaceFluxType<dim, number> flux_p;
 
                   if (is_viscous)
                     {
                       const auto flux =
-                        ConvectionDiffusionOperator::face(eval_m_int.get_value(q),
-                                                          eval_p_int.get_value(q),
-                                                          eval_m_int.get_gradient(q),
-                                                          eval_p_int.get_gradient(q),
-                                                          eval_m_int.normal_vector(q),
+                        ConvectionDiffusionOperator::face(w_m,
+                                                          w_p,
+                                                          grad_w_m,
+                                                          grad_w_p,
+                                                          normal,
                                                           interior_penalty_parameter,
                                                           ConvectiveKernel(material.data),
                                                           DiffusiveKernel(material.data));
@@ -748,22 +754,20 @@ namespace MeltPoolDG::Multiphase
                       flux_m = flux.inner_face_value;
                       flux_p = flux.outer_face_value;
 
-                      eval_m_int.submit_gradient(flux.inner_face_gradient, q);
-                      eval_p_int.submit_gradient(flux.outer_face_gradient, q);
+                      eval_point_m.submit_gradient(flux.inner_face_gradient, q);
+                      eval_point_p.submit_gradient(flux.outer_face_gradient, q);
                     }
                   else
                     {
-                      const auto flux = ConvectionOperator::face(eval_m_int.get_value(q),
-                                                                 eval_p_int.get_value(q),
-                                                                 eval_m_int.normal_vector(q),
-                                                                 ConvectiveKernel(material.data));
+                      const auto flux =
+                        ConvectionOperator::face(w_m, w_p, normal, ConvectiveKernel(material.data));
 
                       flux_m = flux.inner_face_value;
                       flux_p = flux.outer_face_value;
                     }
 
-                  eval_m_int.submit_value(flux_m, q);
-                  eval_p_int.submit_value(flux_p, q);
+                  eval_point_m.submit_value(flux_m, q);
+                  eval_point_p.submit_value(flux_p, q);
                 }
 
               eval_point_m.integrate_in_face(&eval_m_int.get_scratch_data().begin()[0][lane],
@@ -945,100 +949,97 @@ namespace MeltPoolDG::Multiphase
         }
     };
 
-    auto process_intersected_face_range =
-      [&]<bool is_viscous, bool is_gas_phase>(auto              &eval_m_int,
-                                              const unsigned int mapping_idx,
-                                              auto              &material) {
-        FEFacePointEvaluation<CompressibleFlow::n_conserved_variables<dim>,
-                              dim,
-                              dim,
-                              VectorizedArray<number>>
-          eval_point_m_int(*mapping_info_faces[mapping_idx], fe_point_temp);
+    auto process_intersected_face_range = [&]<bool is_viscous, bool is_gas_phase>(
+                                            auto              &eval_m_int,
+                                            const unsigned int mapping_idx,
+                                            auto              &material) {
+      FEFacePointEvaluation<CompressibleFlow::n_conserved_variables<dim>,
+                            dim,
+                            dim,
+                            VectorizedArray<number>>
+        eval_point_m(*mapping_info_faces[mapping_idx], fe_point_temp);
 
-        for (unsigned int face = face_range.first; face < face_range.second; ++face)
-          {
-            eval_m_int.reinit(face);
-            eval_m_int.read_dof_values(src);
+      for (unsigned int face = face_range.first; face < face_range.second; ++face)
+        {
+          eval_m_int.reinit(face);
+          eval_m_int.read_dof_values(src);
 
-            eval_m_int.project_to_face(EvaluationFlags::values | EvaluationFlags::gradients);
+          eval_m_int.project_to_face(EvaluationFlags::values | EvaluationFlags::gradients);
 
-            const auto face_info =
-              multiphase_scratch_data.scratch_data.get_matrix_free().get_face_info(face);
+          const auto face_info =
+            multiphase_scratch_data.scratch_data.get_matrix_free().get_face_info(face);
 
-            for (unsigned int lane = 0;
-                 lane < multiphase_scratch_data.scratch_data.get_matrix_free()
-                          .n_active_entries_per_face_batch(face);
-                 ++lane)
-              {
-                eval_point_m_int.reinit(face_info.cells_interior[lane],
-                                        static_cast<int>(face_info.interior_face_no));
+          for (unsigned int lane = 0; lane < multiphase_scratch_data.scratch_data.get_matrix_free()
+                                               .n_active_entries_per_face_batch(face);
+               ++lane)
+            {
+              eval_point_m.reinit(face_info.cells_interior[lane],
+                                  static_cast<int>(face_info.interior_face_no));
 
-                eval_point_m_int.evaluate_in_face(&eval_m_int.get_scratch_data().begin()[0][lane],
-                                                  EvaluationFlags::values |
-                                                    EvaluationFlags::gradients);
+              eval_point_m.evaluate_in_face(&eval_m_int.get_scratch_data().begin()[0][lane],
+                                            EvaluationFlags::values | EvaluationFlags::gradients);
 
-                const dealii::VectorizedArray<number> interior_penalty_parameter =
-                  is_viscous ?
-                    eval_m_int.read_cell_data(multiphase_scratch_data.interior_penalty_parameter) :
-                    0.;
+              const dealii::VectorizedArray<number> interior_penalty_parameter =
+                is_viscous ?
+                  eval_m_int.read_cell_data(multiphase_scratch_data.interior_penalty_parameter) :
+                  0.;
 
-                for (const unsigned int q : eval_point_m_int.quadrature_point_indices())
-                  {
-                    const auto w_m      = eval_m_int.get_value(q);
-                    const auto grad_w_m = eval_m_int.get_gradient(q);
+              for (const unsigned int q : eval_point_m.quadrature_point_indices())
+                {
+                  const auto w_m      = eval_point_m.get_value(q);
+                  const auto grad_w_m = eval_point_m.get_gradient(q);
+                  const auto normal   = eval_point_m.normal_vector(q);
 
-                    const auto [w_p, grad_w_p] =
-                      multiphase_scratch_data.boundary_conditions
-                        .get_boundary_face_value_and_gradient(eval_m_int.quadrature_point(q),
-                                                              eval_m_int.normal_vector(q),
-                                                              eval_m_int.boundary_id(),
-                                                              w_m,
-                                                              grad_w_m,
-                                                              material,
-                                                              is_gas_phase);
+                  const auto [w_p, grad_w_p] =
+                    multiphase_scratch_data.boundary_conditions
+                      .get_boundary_face_value_and_gradient(eval_point_m.quadrature_point(q),
+                                                            normal,
+                                                            eval_m_int.boundary_id(),
+                                                            w_m,
+                                                            grad_w_m,
+                                                            material,
+                                                            is_gas_phase);
 
-                    CompressibleFlow::FaceFluxType<dim, number> flux_m;
-                    if (is_viscous)
-                      {
-                        const auto flux =
-                          ConvectionDiffusionOperator::face(eval_m_int.get_value(q),
-                                                            w_p,
-                                                            eval_m_int.get_gradient(q),
-                                                            grad_w_p,
-                                                            eval_m_int.normal_vector(q),
-                                                            interior_penalty_parameter,
-                                                            ConvectiveKernel(material.data),
-                                                            DiffusiveKernel(material.data));
+                  CompressibleFlow::FaceFluxType<dim, number> flux_m;
+                  if (is_viscous)
+                    {
+                      const auto flux =
+                        ConvectionDiffusionOperator::face(w_m,
+                                                          w_p,
+                                                          grad_w_m,
+                                                          grad_w_p,
+                                                          normal,
+                                                          interior_penalty_parameter,
+                                                          ConvectiveKernel(material.data),
+                                                          DiffusiveKernel(material.data));
 
-                        flux_m = flux.inner_face_value;
+                      flux_m = flux.inner_face_value;
 
-                        eval_m_int.submit_gradient(flux.inner_face_gradient, q);
-                      }
-                    else
-                      {
-                        const auto flux = ConvectionOperator::face(eval_m_int.get_value(q),
-                                                                   w_p,
-                                                                   eval_m_int.normal_vector(q),
-                                                                   ConvectiveKernel(material.data));
+                      eval_point_m.submit_gradient(flux.inner_face_gradient, q);
+                    }
+                  else
+                    {
+                      const auto flux =
+                        ConvectionOperator::face(w_m, w_p, normal, ConvectiveKernel(material.data));
 
-                        flux_m = flux.inner_face_value;
-                      }
+                      flux_m = flux.inner_face_value;
+                    }
 
-                    eval_m_int.submit_value(flux_m, q);
-                  }
+                  eval_point_m.submit_value(flux_m, q);
+                }
 
-                eval_point_m_int.integrate_in_face(&eval_m_int.get_scratch_data().begin()[0][lane],
-                                                   dealii::EvaluationFlags::values |
-                                                     dealii::EvaluationFlags::gradients);
-              }
+              eval_point_m.integrate_in_face(&eval_m_int.get_scratch_data().begin()[0][lane],
+                                             dealii::EvaluationFlags::values |
+                                               dealii::EvaluationFlags::gradients);
+            }
 
-            eval_m_int.collect_from_face(dealii::EvaluationFlags::values |
-                                           dealii::EvaluationFlags::gradients,
-                                         eval_m_int.begin_dof_values());
+          eval_m_int.collect_from_face(dealii::EvaluationFlags::values |
+                                         dealii::EvaluationFlags::gradients,
+                                       eval_m_int.begin_dof_values());
 
-            eval_m_int.distribute_local_to_global(dst);
-          }
-      };
+          eval_m_int.distribute_local_to_global(dst);
+        }
+    };
 
     switch (face_category.first)
       {
