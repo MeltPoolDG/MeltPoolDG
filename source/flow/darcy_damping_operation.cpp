@@ -23,17 +23,11 @@ namespace MeltPoolDG::Flow
     const ScratchData<dim, dim, number> &scratch_data,
     const unsigned int                   flow_vel_hanging_nodes_dof_idx,
     const unsigned int                   flow_quad_idx)
-    : mushy_zone_morphology(data_in.mushy_zone_morphology)
-    , avoid_div_zero_constant(data_in.avoid_div_zero_constant)
-    , scratch_data(scratch_data)
+    : scratch_data(scratch_data)
     , flow_vel_hanging_nodes_dof_idx(flow_vel_hanging_nodes_dof_idx)
     , flow_quad_idx(flow_quad_idx)
-  {
-    AssertThrow(mushy_zone_morphology == 0.0 or avoid_div_zero_constant > 0.0,
-                dealii::ExcMessage(
-                  "When using the Darcy damping force, the parameter \"mp solid "
-                  "darcy damping avoid div zero constant\" must be greater than zero! Abort.."));
-  }
+    , darcy_damping_model(data_in)
+  {}
 
   template <int dim, typename number>
   void
@@ -213,25 +207,13 @@ namespace MeltPoolDG::Flow
                           .solid_fraction;
                     }
                 }
-                get_damping(cell, q) = compute_darcy_damping_coefficient(solid_fraction);
+                get_damping(cell, q) =
+                  darcy_damping_model.compute_darcy_damping_coefficient(solid_fraction);
               }
           }
       },
       dummy,
       ls_as_heaviside);
-  }
-
-  template <int dim, typename number>
-  dealii::VectorizedArray<number>
-  DarcyDampingOperation<dim, number>::compute_darcy_damping_coefficient(
-    const dealii::VectorizedArray<number> &solid_fraction) const
-  {
-    // K = -C * fs² / ( (1-fs)³ + b )
-    // K := permeability,  C := morphology
-    // b := avoid div zero constant, fs := solid fraction
-    const auto non_solid = 1.0 - solid_fraction;
-    return -mushy_zone_morphology * solid_fraction * solid_fraction /
-           (non_solid * non_solid * non_solid + avoid_div_zero_constant);
   }
 
   template <int dim, typename number>

@@ -10,29 +10,23 @@
 #include <meltpooldg/core/material.hpp>
 #include <meltpooldg/core/scratch_data.hpp>
 #include <meltpooldg/flow/darcy_damping_data.hpp>
+#include <meltpooldg/flow/darcy_damping_model.hpp>
 #include <meltpooldg/post_processing/generic_data_out.hpp>
 
 
 namespace MeltPoolDG::Flow
 {
   /**
-   * @brief This class computes the Darcy damping force (or Darcy source term).
+   * @brief This class computes the Darcy damping force (or Darcy source term)
    *
-   *         /              \
-   *  f_d =  | N_a, K N_b u |
-   *         \              /
-   *                         Ω
+   * \f$ f_d = \left( N_a, K N_b u \right)_\Omega \f$
    *
-   * with the isotropic permeability of the mushy zone K given by the Kozeny-Carman equation:
+   * with the isotropic permeability of the mushy zone \f$ K \f$ given by the Kozeny-Carman equation
    *
-   *                 fs²
-   *  K = - C ----------------
-   *           ( 1- fs )³ + b
+   * \f$ K= -C \frac{f_s^2}{(1-f_s)^3 + b} \f$
    *
-   * with the solid fraction fs \in [0, 1], the morphology of the mushy zone C and the parameter b
-   * to avoid division by zero.
-   *
-   * @note The regularization constant b must be greater than zero.
+   * with the solid fraction \f$ f_s \in [0, 1] \f$, the morphology of the mushy zone \f$ C \f$ and
+   * the parameter \f$ b \f$ to avoid division by zero.
    *
    * Voller, V. R., & Prakash, C. (1987). A fixed grid numerical modelling methodology for
    * convection-diffusion mushy region phase-change problems. International Journal of Heat and Mass
@@ -157,12 +151,6 @@ namespace MeltPoolDG::Flow
     get_damping(const unsigned int cell, const unsigned int q) const;
 
   private:
-    /// Morphological constant C.
-    const number mushy_zone_morphology;
-
-    /// Small constant b to avoid division by zero.
-    const number avoid_div_zero_constant;
-
     /// Reference to scratch data used for assembling.
     const ScratchData<dim, dim, number> &scratch_data;
 
@@ -181,15 +169,8 @@ namespace MeltPoolDG::Flow
     /// Element-wise output vector of damping coefficient.
     mutable dealii::Vector<number> damping_output;
 
-    /**
-     * @brief Compute the Darcy damping coefficient based on a given @p solid_fraction.
-     *
-     * @param solid_fraction Volume fraction of solid phase between 0 and 1.
-     *
-     * @return Darcy damping coefficient.
-     */
-    dealii::VectorizedArray<number>
-    compute_darcy_damping_coefficient(const dealii::VectorizedArray<number> &solid_fraction) const;
+    /// Darcy damping model for the computation of the damping coefficient
+    DarcyDampingModel<number> darcy_damping_model;
 
     /**
      * @brief Getter function for the vector of damping coefficients, holding the values at each cell and
