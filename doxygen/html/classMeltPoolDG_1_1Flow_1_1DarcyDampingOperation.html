@@ -142,7 +142,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>This class computes the Darcy damping force (or Darcy source term).  
+<p>This class computes the Darcy damping force (or Darcy source term)  
  <a href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="darcy__damping__operation_8hpp_source.html">darcy_damping_operation.hpp</a>&gt;</code></p>
@@ -186,21 +186,12 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a4fcf5ed379f298faefc3790cab4dac9d" id="r_a4fcf5ed379f298faefc3790cab4dac9d"><td class="memItemLeft" align="right" valign="top">dealii::VectorizedArray&lt; number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a4fcf5ed379f298faefc3790cab4dac9d">compute_darcy_damping_coefficient</a> (const dealii::VectorizedArray&lt; number &gt; &amp;solid_fraction) const</td></tr>
-<tr class="memdesc:a4fcf5ed379f298faefc3790cab4dac9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Darcy damping coefficient based on a given <code>solid_fraction</code>.  <br /></td></tr>
-<tr class="separator:a4fcf5ed379f298faefc3790cab4dac9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20d6466bc7255ed645728a682e2fa5dd" id="r_a20d6466bc7255ed645728a682e2fa5dd"><td class="memItemLeft" align="right" valign="top">dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a20d6466bc7255ed645728a682e2fa5dd">get_damping_at_q</a> ()</td></tr>
 <tr class="memdesc:a20d6466bc7255ed645728a682e2fa5dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter function for the vector of damping coefficients, holding the values at each cell and at each quadrature point.  <br /></td></tr>
 <tr class="separator:a20d6466bc7255ed645728a682e2fa5dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a5e9383c4b1b32efb4437b4bb2d1e341a" id="r_a5e9383c4b1b32efb4437b4bb2d1e341a"><td class="memItemLeft" align="right" valign="top">const number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a5e9383c4b1b32efb4437b4bb2d1e341a">mushy_zone_morphology</a></td></tr>
-<tr class="memdesc:a5e9383c4b1b32efb4437b4bb2d1e341a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Morphological constant C.  <br /></td></tr>
-<tr class="separator:a5e9383c4b1b32efb4437b4bb2d1e341a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5037d9dc5a7837c347900376a23e5d3e" id="r_a5037d9dc5a7837c347900376a23e5d3e"><td class="memItemLeft" align="right" valign="top">const number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a5037d9dc5a7837c347900376a23e5d3e">avoid_div_zero_constant</a></td></tr>
-<tr class="memdesc:a5037d9dc5a7837c347900376a23e5d3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Small constant b to avoid division by zero.  <br /></td></tr>
-<tr class="separator:a5037d9dc5a7837c347900376a23e5d3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3b7e18264919ad9c48f44deb8351379" id="r_ae3b7e18264919ad9c48f44deb8351379"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#ae3b7e18264919ad9c48f44deb8351379">scratch_data</a></td></tr>
 <tr class="memdesc:ae3b7e18264919ad9c48f44deb8351379"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to scratch data used for assembling.  <br /></td></tr>
 <tr class="separator:ae3b7e18264919ad9c48f44deb8351379"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,16 +210,17 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:af444826cf40dda91578cc5c4bb11cd1a" id="r_af444826cf40dda91578cc5c4bb11cd1a"><td class="memItemLeft" align="right" valign="top">dealii::Vector&lt; number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#af444826cf40dda91578cc5c4bb11cd1a">damping_output</a></td></tr>
 <tr class="memdesc:af444826cf40dda91578cc5c4bb11cd1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element-wise output vector of damping coefficient.  <br /></td></tr>
 <tr class="separator:af444826cf40dda91578cc5c4bb11cd1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a987324fad3124ac7d47b962a5afbb114" id="r_a987324fad3124ac7d47b962a5afbb114"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingModel.html">DarcyDampingModel</a>&lt; number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html#a987324fad3124ac7d47b962a5afbb114">darcy_damping_model</a></td></tr>
+<tr class="memdesc:a987324fad3124ac7d47b962a5afbb114"><td class="mdescLeft">&#160;</td><td class="mdescRight">Darcy damping model for the computation of the damping coefficient.  <br /></td></tr>
+<tr class="separator:a987324fad3124ac7d47b962a5afbb114"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number&gt;<br />
-class MeltPoolDG::Flow::DarcyDampingOperation&lt; dim, number &gt;</div><p>This class computes the Darcy damping force (or Darcy source term). </p>
-<pre class="fragment">    /              \
-</pre><p> f_d = | N_a, K N_b u | \ / Ω</p>
-<p>with the isotropic permeability of the mushy zone K given by the Kozeny-Carman equation: </p><pre class="fragment">            fs²
-</pre><p> K = - C -------------&mdash; ( 1- fs )³ + b</p>
-<p>with the solid fraction fs \in [0, 1], the morphology of the mushy zone C and the parameter b to avoid division by zero.</p>
-<dl class="section note"><dt>Note</dt><dd>The regularization constant b must be greater than zero.</dd></dl>
+class MeltPoolDG::Flow::DarcyDampingOperation&lt; dim, number &gt;</div><p>This class computes the Darcy damping force (or Darcy source term) </p>
+<p>\( f_d = \left( N_a, K N_b u \right)_\Omega \)</p>
+<p>with the isotropic permeability of the mushy zone \( K \) given by the Kozeny-Carman equation</p>
+<p>\( K= -C \frac{f_s^2}{(1-f_s)^3 + b} \)</p>
+<p>with the solid fraction \( f_s \in [0, 1] \), the morphology of the mushy zone \( C \) and the parameter \( b \) to avoid division by zero.</p>
 <p>Voller, V. R., &amp; Prakash, C. (1987). A fixed grid numerical modelling methodology for convection-diffusion mushy region phase-change problems. International <a class="el" href="namespaceMeltPoolDG_1_1Journal.html">Journal</a> of <a class="el" href="namespaceMeltPoolDG_1_1Heat.html">Heat</a> and Mass Transfer, 30(8), 1709–1719. <a href="https://doi.org/10.1016/0017-9310(87)90317-6">https://doi.org/10.1016/0017-9310(87)90317-6</a></p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
@@ -392,43 +384,6 @@ template&lt;int dim, typename number &gt; </div>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a4fcf5ed379f298faefc3790cab4dac9d" name="a4fcf5ed379f298faefc3790cab4dac9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fcf5ed379f298faefc3790cab4dac9d">&#9670;&#160;</a></span>compute_darcy_damping_coefficient()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">dealii::VectorizedArray&lt; number &gt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html">MeltPoolDG::Flow::DarcyDampingOperation</a>&lt; dim, number &gt;::compute_darcy_damping_coefficient </td>
-          <td>(</td>
-          <td class="paramtype">const dealii::VectorizedArray&lt; number &gt; &amp;&#160;</td>
-          <td class="paramname"><em>solid_fraction</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Compute the Darcy damping coefficient based on a given <code>solid_fraction</code>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">solid_fraction</td><td>Volume fraction of solid phase between 0 and 1.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Darcy damping coefficient. </dd></dl>
 
 </div>
 </div>
@@ -699,32 +654,6 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a5037d9dc5a7837c347900376a23e5d3e" name="a5037d9dc5a7837c347900376a23e5d3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5037d9dc5a7837c347900376a23e5d3e">&#9670;&#160;</a></span>avoid_div_zero_constant</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const number <a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html">MeltPoolDG::Flow::DarcyDampingOperation</a>&lt; dim, number &gt;::avoid_div_zero_constant</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Small constant b to avoid division by zero. </p>
-
-</div>
-</div>
 <a id="a58a1ac93272765e0aa5050a57ebf6552" name="a58a1ac93272765e0aa5050a57ebf6552"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a58a1ac93272765e0aa5050a57ebf6552">&#9670;&#160;</a></span>damping</h2>
 
@@ -803,6 +732,32 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
+<a id="a987324fad3124ac7d47b962a5afbb114" name="a987324fad3124ac7d47b962a5afbb114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a987324fad3124ac7d47b962a5afbb114">&#9670;&#160;</a></span>darcy_damping_model</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingModel.html">DarcyDampingModel</a>&lt;number&gt; <a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html">MeltPoolDG::Flow::DarcyDampingOperation</a>&lt; dim, number &gt;::darcy_damping_model</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Darcy damping model for the computation of the damping coefficient. </p>
+
+</div>
+</div>
 <a id="a49639814e7f233c0a8d51478f2ca3152" name="a49639814e7f233c0a8d51478f2ca3152"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a49639814e7f233c0a8d51478f2ca3152">&#9670;&#160;</a></span>flow_quad_idx</h2>
 
@@ -852,32 +807,6 @@ template&lt;int dim, typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>Index for velocity DoF in scratch data. </p>
-
-</div>
-</div>
-<a id="a5e9383c4b1b32efb4437b4bb2d1e341a" name="a5e9383c4b1b32efb4437b4bb2d1e341a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e9383c4b1b32efb4437b4bb2d1e341a">&#9670;&#160;</a></span>mushy_zone_morphology</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const number <a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingOperation.html">MeltPoolDG::Flow::DarcyDampingOperation</a>&lt; dim, number &gt;::mushy_zone_morphology</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Morphological constant C. </p>
 
 </div>
 </div>
