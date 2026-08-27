@@ -20,7 +20,7 @@ namespace MeltPoolDG::LevelSet
                         "the interface region.");
 
       prm.add_parameter(
-        "heaviside thickness coefficient ",
+        "heaviside thickness coefficient",
         heaviside_thickness_coefficient,
         "Parameter C_h that determines the interface region thickness of the smoothed heaviside,"
         " which is also used for regularized delta functions. The resulting interface thickness is obtained from "
