@@ -449,8 +449,8 @@ namespace MeltPoolDG::Flow
       return (thermodynamic_pressure(value_view, material_view) +
               material_view.stiffening_pressure()) *
              (1. / value_view.density() - material_view.covolume()) *
-             material_view.heat_capacity_ratio() / (material_view.heat_capacity_ratio() - 1.) *
-             material_view.specific_isobaric_heat();
+             material_view.heat_capacity_ratio() /
+             ((material_view.heat_capacity_ratio() - 1.) * material_view.specific_isobaric_heat());
     }
 
     /**
