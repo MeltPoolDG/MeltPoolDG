@@ -174,8 +174,7 @@ namespace MeltPoolDG::CompressibleFlow
     using WritableFluxViewType = FluxView<dim, PhysicalFluxType>;
 
     /**
-     * Constructor, storing references to the EOS utilities and material data needed for flux
-     * calculations.
+     * Constructor, storing references to the material data needed for flux calculations.
      */
     explicit DiffusiveFlux(const MaterialPhaseData<number> &material)
       : material(material)

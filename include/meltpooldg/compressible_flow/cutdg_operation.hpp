@@ -70,7 +70,7 @@ namespace MeltPoolDG::CompressibleFlow
      *
      * @param scratch_data_in Reference to the used ScratchData object.
      * @param comp_flow_data_in Reference to the compressible flow data struct used.
-     * @param material_data_in Reference to the material class.
+     * @param material_data_in Reference to the material data struct.
      * @param cut_data_in Reference to the class with cut-related parameters.
      * @param time_iterator_in Reference to the used time stepping.
      * @param setup_dof_system_in Reinit_matrix_free function, which is registered.

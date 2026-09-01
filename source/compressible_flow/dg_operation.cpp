@@ -67,7 +67,7 @@ namespace MeltPoolDG::CompressibleFlow
         std::vector<std::string> species_names;
         species_names.reserve(n_species);
         for (unsigned int species = 0; species < n_species; ++species)
-          species_names.emplace_back(flow_scratch_data.material.data.species_data[species].name);
+          species_names.emplace_back(flow_scratch_data.material.species_data[species].name);
 
         output_manager.add_conserved_variables_post_processor(
           std::make_unique<
@@ -275,7 +275,7 @@ namespace MeltPoolDG::CompressibleFlow
                                  n_species,
                                  number,
                                  const ConservedVariablesType<dim, number, n_species>>
-              w_view(w_q, flow_scratch_data.material.data);
+              w_view(w_q, flow_scratch_data.material);
 
             const auto              inverse_jacobian = phi.inverse_jacobian(q);
             const auto              convective_speed = inverse_jacobian * w_view.velocity();
@@ -330,11 +330,11 @@ namespace MeltPoolDG::CompressibleFlow
     AssertThrow(min_density > 0, ExcMessage("Minimum density must not be zero."));
 
     const number viscous_time_step_limit =
-      (flow_scratch_data.material.data.dynamic_viscosity > 0) ?
+      (flow_scratch_data.material.dynamic_viscosity > 0) ?
         flow_scratch_data.flow_data.viscous_courant_number /
           std::pow(flow_scratch_data.scratch_data.get_degree(flow_scratch_data.dof_idx), 3) *
           std::pow(flow_scratch_data.scratch_data.get_min_cell_size(), 2) * min_density /
-          flow_scratch_data.material.data.dynamic_viscosity :
+          flow_scratch_data.material.dynamic_viscosity :
         std::numeric_limits<number>::max();
 
     const number convective_time_step_limit = compute_convective_time_step_limit();

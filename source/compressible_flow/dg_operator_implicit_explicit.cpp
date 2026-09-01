@@ -25,7 +25,7 @@ namespace MeltPoolDG::CompressibleFlow
     , convective_terms(flow_scratch_data.flow_data, flow_scratch_data.material)
     , viscous_terms(flow_scratch_data.material)
   {
-    const bool is_viscous = is_viscous_flow<number, 1>(flow_scratch_data.material.data);
+    const bool is_viscous = is_viscous_flow<number, 1>(flow_scratch_data.material);
 
     AssertThrow(
       is_viscous,
@@ -214,7 +214,7 @@ namespace MeltPoolDG::CompressibleFlow
         delta_w_m,
         grad_w_m,
         grad_delta_w_m,
-        flow_scratch_data.material.data.gamma);
+        flow_scratch_data.material.gamma);
 
     ConservedVariablesGradient numerical_flux =
       viscous_terms.calculate_jacobian_viscous_numerical_flux(

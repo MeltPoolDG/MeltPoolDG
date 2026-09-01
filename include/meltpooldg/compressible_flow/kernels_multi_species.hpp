@@ -82,8 +82,7 @@ namespace MeltPoolDG::CompressibleFlow
     using SpeciesWritableFluxView = MultiSpeciesFluxView<dim, n_species, PhysicalFluxType>;
 
     /**
-     * Constructor, storing references to the EOS utilities and material data needed for flux
-     * calculations.
+     * Constructor, storing a reference to the material data needed for flux calculations.
      */
     explicit SpeciesTransportDiffusiveFlux(const MaterialPhaseData<number> &material)
       : material(material)

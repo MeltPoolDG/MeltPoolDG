@@ -88,7 +88,7 @@ namespace MeltPoolDG::CompressibleFlow
         phi.reinit(cell);
         phi.gather_evaluate(src,
                             EvaluationFlags::values |
-                              (is_viscous_flow<number, n_species>(flow_scratch_data.material.data) ?
+                              (is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
                                  EvaluationFlags::gradients :
                                  EvaluationFlags::nothing));
 
@@ -97,15 +97,14 @@ namespace MeltPoolDG::CompressibleFlow
             FlowSourceType source;
             FlowFluxType   flux;
 
-            if (is_viscous_flow<number, n_species>(flow_scratch_data.material.data))
-              flux =
-                ConvectionDiffusionOperator::cell(phi.get_value(q),
-                                                  phi.get_gradient(q),
-                                                  ConvectiveKernel(flow_scratch_data.material.data),
-                                                  DiffusiveKernel(flow_scratch_data.material.data));
+            if (is_viscous_flow<number, n_species>(flow_scratch_data.material))
+              flux = ConvectionDiffusionOperator::cell(phi.get_value(q),
+                                                       phi.get_gradient(q),
+                                                       ConvectiveKernel(flow_scratch_data.material),
+                                                       DiffusiveKernel(flow_scratch_data.material));
             else
               flux = ConvectionOperator::cell(phi.get_value(q),
-                                              ConvectiveKernel(flow_scratch_data.material.data));
+                                              ConvectiveKernel(flow_scratch_data.material));
 
             for (auto &external_force : external_forces)
               source += external_force->value(current_time_step,
@@ -142,22 +141,22 @@ namespace MeltPoolDG::CompressibleFlow
       {
         phi_p.reinit(face);
         phi_p.gather_evaluate(src,
-                              EvaluationFlags::values | (is_viscous_flow<number, n_species>(
-                                                           flow_scratch_data.material.data) ?
-                                                           EvaluationFlags::gradients :
-                                                           EvaluationFlags::nothing));
+                              EvaluationFlags::values |
+                                (is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
+                                   EvaluationFlags::gradients :
+                                   EvaluationFlags::nothing));
 
         phi_m.reinit(face);
         phi_m.gather_evaluate(src,
-                              EvaluationFlags::values | ((is_viscous_flow<number, n_species>(
-                                                            flow_scratch_data.material.data) ?
-                                                            EvaluationFlags::gradients :
-                                                            EvaluationFlags::nothing)));
+                              EvaluationFlags::values |
+                                ((is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
+                                    EvaluationFlags::gradients :
+                                    EvaluationFlags::nothing)));
 
         const VectorizedArray<number> interior_penalty_parameter =
-          is_viscous_flow<number, n_species>(flow_scratch_data.material.data) ?
-            flow_scratch_data.material.data.reference_dynamic_viscosity /
-              flow_scratch_data.material.data.reference_density *
+          is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
+            flow_scratch_data.material.reference_dynamic_viscosity /
+              flow_scratch_data.material.reference_density *
               std::max(phi_m.read_cell_data(flow_scratch_data.interior_penalty_parameter),
                        phi_p.read_cell_data(flow_scratch_data.interior_penalty_parameter)) :
             0.;
@@ -167,17 +166,17 @@ namespace MeltPoolDG::CompressibleFlow
             FaceFluxType<dim, number, n_species> flux_m;
             FaceFluxType<dim, number, n_species> flux_p;
 
-            if (is_viscous_flow<number, n_species>(flow_scratch_data.material.data))
+            if (is_viscous_flow<number, n_species>(flow_scratch_data.material))
               {
-                const auto flux = ConvectionDiffusionOperator::face(
-                  phi_m.get_value(q),
-                  phi_p.get_value(q),
-                  phi_m.get_gradient(q),
-                  phi_p.get_gradient(q),
-                  phi_m.normal_vector(q),
-                  interior_penalty_parameter,
-                  ConvectiveKernel(flow_scratch_data.material.data),
-                  DiffusiveKernel(flow_scratch_data.material.data));
+                const auto flux =
+                  ConvectionDiffusionOperator::face(phi_m.get_value(q),
+                                                    phi_p.get_value(q),
+                                                    phi_m.get_gradient(q),
+                                                    phi_p.get_gradient(q),
+                                                    phi_m.normal_vector(q),
+                                                    interior_penalty_parameter,
+                                                    ConvectiveKernel(flow_scratch_data.material),
+                                                    DiffusiveKernel(flow_scratch_data.material));
 
                 flux_m = flux.inner_face_value;
                 flux_p = flux.outer_face_value;
@@ -191,7 +190,7 @@ namespace MeltPoolDG::CompressibleFlow
                   ConvectionOperator::face(phi_m.get_value(q),
                                            phi_p.get_value(q),
                                            phi_m.normal_vector(q),
-                                           ConvectiveKernel(flow_scratch_data.material.data));
+                                           ConvectiveKernel(flow_scratch_data.material));
 
                 flux_m = flux.inner_face_value;
                 flux_p = flux.outer_face_value;
@@ -201,15 +200,15 @@ namespace MeltPoolDG::CompressibleFlow
             phi_p.submit_value(flux_p, q);
           }
 
-        phi_p.integrate_scatter(EvaluationFlags::values | (is_viscous_flow<number, n_species>(
-                                                             flow_scratch_data.material.data) ?
-                                                             EvaluationFlags::gradients :
-                                                             EvaluationFlags::nothing),
+        phi_p.integrate_scatter(EvaluationFlags::values |
+                                  (is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
+                                     EvaluationFlags::gradients :
+                                     EvaluationFlags::nothing),
                                 dst);
-        phi_m.integrate_scatter(EvaluationFlags::values | (is_viscous_flow<number, n_species>(
-                                                             flow_scratch_data.material.data) ?
-                                                             EvaluationFlags::gradients :
-                                                             EvaluationFlags::nothing),
+        phi_m.integrate_scatter(EvaluationFlags::values |
+                                  (is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
+                                     EvaluationFlags::gradients :
+                                     EvaluationFlags::nothing),
                                 dst);
       }
   }
@@ -246,9 +245,9 @@ namespace MeltPoolDG::CompressibleFlow
         phi_m.gather_evaluate(src, EvaluationFlags::values | EvaluationFlags::gradients);
 
         const VectorizedArray<number> interior_penalty_parameter =
-          is_viscous_flow<number, n_species>(flow_scratch_data.material.data) ?
-            flow_scratch_data.material.data.reference_dynamic_viscosity /
-              flow_scratch_data.material.data.reference_density *
+          is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
+            flow_scratch_data.material.reference_dynamic_viscosity /
+              flow_scratch_data.material.reference_density *
               phi_m.read_cell_data(flow_scratch_data.interior_penalty_parameter) :
             0.;
 
@@ -265,8 +264,8 @@ namespace MeltPoolDG::CompressibleFlow
                 phi_m.quadrature_point(q),
                 phi_m.normal_vector(q),
                 phi_m.boundary_id(),
-                DofReaderType(w_m, grad_w_m, flow_scratch_data.material.data),
-                DofWriteType(w_p, grad_w_p, flow_scratch_data.material.data));
+                DofReaderType(w_m, grad_w_m, flow_scratch_data.material),
+                DofWriteType(w_p, grad_w_p, flow_scratch_data.material));
 
             if constexpr (n_species > 1)
               {
@@ -276,22 +275,22 @@ namespace MeltPoolDG::CompressibleFlow
                                                                             DofWriteType>(
                     phi_m.quadrature_point(q),
                     phi_m.boundary_id(),
-                    DofReaderType(w_m, grad_w_m, flow_scratch_data.material.data),
-                    DofWriteType(w_p, grad_w_p, flow_scratch_data.material.data));
+                    DofReaderType(w_m, grad_w_m, flow_scratch_data.material),
+                    DofWriteType(w_p, grad_w_p, flow_scratch_data.material));
               }
 
             FaceFluxType<dim, number, n_species> flux_m;
-            if (is_viscous_flow<number, n_species>(flow_scratch_data.material.data))
+            if (is_viscous_flow<number, n_species>(flow_scratch_data.material))
               {
-                const auto flux = ConvectionDiffusionOperator::face(
-                  phi_m.get_value(q),
-                  w_p,
-                  phi_m.get_gradient(q),
-                  grad_w_p,
-                  phi_m.normal_vector(q),
-                  interior_penalty_parameter,
-                  ConvectiveKernel(flow_scratch_data.material.data),
-                  DiffusiveKernel(flow_scratch_data.material.data));
+                const auto flux =
+                  ConvectionDiffusionOperator::face(phi_m.get_value(q),
+                                                    w_p,
+                                                    phi_m.get_gradient(q),
+                                                    grad_w_p,
+                                                    phi_m.normal_vector(q),
+                                                    interior_penalty_parameter,
+                                                    ConvectiveKernel(flow_scratch_data.material),
+                                                    DiffusiveKernel(flow_scratch_data.material));
 
                 flux_m = flux.inner_face_value;
 
@@ -303,7 +302,7 @@ namespace MeltPoolDG::CompressibleFlow
                   ConvectionOperator::face(phi_m.get_value(q),
                                            w_p,
                                            phi_m.normal_vector(q),
-                                           ConvectiveKernel(flow_scratch_data.material.data));
+                                           ConvectiveKernel(flow_scratch_data.material));
 
                 flux_m = flux.inner_face_value;
               }
@@ -311,10 +310,10 @@ namespace MeltPoolDG::CompressibleFlow
             phi_m.submit_value(flux_m, q);
           }
 
-        phi_m.integrate_scatter(EvaluationFlags::values | (is_viscous_flow<number, n_species>(
-                                                             flow_scratch_data.material.data) ?
-                                                             EvaluationFlags::gradients :
-                                                             EvaluationFlags::nothing),
+        phi_m.integrate_scatter(EvaluationFlags::values |
+                                  (is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
+                                     EvaluationFlags::gradients :
+                                     EvaluationFlags::nothing),
                                 dst);
       }
   }
