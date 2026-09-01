@@ -57,6 +57,16 @@ namespace MeltPoolDG
             const number                                              time = -1.0);
 
     /**
+     * This function performs the relevant output steps related to particles, i.e. writing particle
+     * output files and printing boundary ids if requested.
+     *
+     * @param n_time_step Current time step number.
+     * @param time Current simulation time.
+     */
+    void
+    process_particles(const int n_time_step, const number time);
+
+    /**
      * Determines whether postprocessing should be performed now.
      */
     inline bool
