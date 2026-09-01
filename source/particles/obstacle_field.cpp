@@ -15,6 +15,7 @@
 #include <meltpooldg/utilities/amr_regions.hpp>
 #include <meltpooldg/utilities/journal.hpp>
 
+#include <numbers>
 #include <vector>
 
 
@@ -230,6 +231,31 @@ MeltPoolDG::ObstacleField<dim, number, ObstacleType>::n_global_particles() const
 }
 
 template <int dim, typename number, typename ObstacleType>
+number
+MeltPoolDG::ObstacleField<dim, number, ObstacleType>::compute_rayleigh_time_step(
+  const number safety_factor) const
+{
+  number local_radius_sum  = 0.;
+  number local_max_density = 0.;
+
+  for (const auto &particle : locally_owned_particle_range())
+    {
+      local_radius_sum += particle.radius();
+      local_max_density = std::max(local_max_density, particle.density());
+    }
+
+  const number radius_sum = dealii::Utilities::MPI::sum(local_radius_sum, mpi_communicator);
+  const number density    = dealii::Utilities::MPI::max(local_max_density, mpi_communicator);
+  const number r_avg      = radius_sum / n_global_particles();
+
+  const number &poisson_ratio  = data.contact_forces.particle.poisson_ratio;
+  const number &youngs_modulus = data.contact_forces.particle.youngs_modulus;
+
+  return safety_factor * (std::numbers::pi_v<number> * r_avg / (0.8766 + 0.1631 * poisson_ratio)) *
+         std::sqrt(2.0 * density * (1.0 + poisson_ratio) / youngs_modulus);
+}
+
+template <int dim, typename number, typename ObstacleType>
 void
 MeltPoolDG::ObstacleField<dim, number, ObstacleType>::subscribe_to_data_structure(
   std::function<void(
@@ -238,7 +264,6 @@ MeltPoolDG::ObstacleField<dim, number, ObstacleType>::subscribe_to_data_structur
 {
   obstacle_data_structure.subscribe(callback);
 }
-
 
 template class MeltPoolDG::ObstacleField<1, double, MeltPoolDG::SphericalParticle<1, double>>;
 template class MeltPoolDG::ObstacleField<2, double, MeltPoolDG::SphericalParticle<2, double>>;
