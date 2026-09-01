@@ -25,6 +25,16 @@ namespace MeltPoolDG::CompressibleFlow
     constexpr static unsigned int energy   = dim + 1;
   };
 
+  /// Compile-time indices for accessing individual primitive variables within a `dealii::Tensor`
+  /// storing the state of the compressible flow solver.
+  template <int dim>
+  struct PrimitiveVariableIndex
+  {
+    static constexpr unsigned int pressure    = 0;
+    static constexpr unsigned int velocity    = 1;
+    static constexpr unsigned int temperature = dim + 1;
+  };
+
   /// Type alias for the conserved variables in the compressible flow solver given at a vectorized
   /// set of coordinates.
   template <int dim,
@@ -77,6 +87,19 @@ namespace MeltPoolDG::CompressibleFlow
   /// enforce this assumption in the concept definition itself.
   template <typename T, int dim>
   concept IsConservedStateCompatible = is_dealii_tensor<std::remove_cvref_t<T>>::value and
+                                       T::rank == 1 and T::dimension >= n_conserved_variables<dim>;
+
+  /// Concept ensuring compatibility of a type with the primitive variables of the compressible
+  /// flow solver in `dim` dimensions.
+  ///
+  /// This concept is similar to `IsConservedStateCompatible` and was created for convenience
+  /// reasons.
+  ///
+  /// @note If this concept is used in the code base it is also assumed that the data stored in
+  /// the type is indexed according to `PrimitiveVariableIndex<dim>`. However, it is not possible to
+  /// enforce this assumption in the concept definition itself.
+  template <typename T, int dim>
+  concept IsPrimitiveStateCompatible = is_dealii_tensor<std::remove_cvref_t<T>>::value and
                                        T::rank == 1 and T::dimension >= n_conserved_variables<dim>;
 
   /// Concept ensuring compatibility of a type with the gradient of the conserved variables of the

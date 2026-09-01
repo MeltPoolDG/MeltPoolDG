@@ -29,6 +29,7 @@
 #include <deal.II/non_matching/mesh_classifier.h>
 
 #include <meltpooldg/compressible_flow/cutdg_operator.hpp>
+#include <meltpooldg/compressible_flow/data_types.hpp>
 #include <meltpooldg/compressible_flow/material.hpp>
 #include <meltpooldg/compressible_flow/operation_data.hpp>
 #include <meltpooldg/compressible_flow/output_post_processor.hpp>
@@ -56,6 +57,8 @@ namespace MeltPoolDG::CompressibleFlow
     using VectorType            = dealii::LinearAlgebra::distributed::Vector<number>;
     using MappingInfoType       = CutUtil::MappingInfoType<dim, number>;
     using MappingInfoVectorType = CutUtil::MappingInfoVectorType<dim, number>;
+
+    using ConservedVariables = ConservedVariablesType<dim, number>;
 
     using CutFlowOperatorVariant =
       std::variant<CutDGOperator<dim, number, true>, CutDGOperator<dim, number, false>>;

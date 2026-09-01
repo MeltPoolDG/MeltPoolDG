@@ -1,7 +1,6 @@
 
 #include "meltpooldg/compressible_flow/data_types.hpp"
 #include <meltpooldg/compressible_flow/boundary_conditions.hpp>
-#include <meltpooldg/compressible_flow/eos_utils.hpp>
 #include <meltpooldg/compressible_flow/state_views.hpp>
 #include <meltpooldg/utilities/dealii_tensor.hpp>
 #include <meltpooldg/utilities/vector_tools.templates.hpp>
@@ -155,8 +154,11 @@ namespace MeltPoolDG::CompressibleFlow
           boundary_id, BoundaryType::subsonic_outflow_fixed_pressure, q_point, component_offset);
 
         // consider equation of state for computation of inner energy from given pressure
+        using StateView = DofStateView<dim, number, const ConservedVariables>;
+        StateView state_view(w_p, material.data);
+
         const VectorizedArray<number> inner_energy =
-          material.eos_utils->compute_inner_energy_from_pressure(pressure, w_p[0]);
+          state_view.inner_energy_from_pressure(pressure);
 
         w_p[dim + 1]      = inner_energy + p_dyn;
         grad_w_p[dim + 1] = grad_w_m[dim + 1];
