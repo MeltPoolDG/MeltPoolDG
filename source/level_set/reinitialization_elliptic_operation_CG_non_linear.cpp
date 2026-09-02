@@ -61,7 +61,7 @@ namespace MeltPoolDG::LevelSet
                                           "reinitialization",
                                           8 /*precision*/,
                                           "L2 ",
-                                          2 /*extra_size*/);
+                                          3 /*extra_size*/);
 
     Journal::print_line(scratch_data.get_pcout(1),
                         "Reinitialization completed in " + std::to_string(iter) + " iterations.",
@@ -131,7 +131,7 @@ namespace MeltPoolDG::LevelSet
                                           "reinitialization",
                                           8 /*precision*/,
                                           "L2 ",
-                                          2 /*extra_size*/);
+                                          3 /*extra_size*/);
 
     Journal::print_line(scratch_data.get_pcout(2),
                         "LinearSolver completed in " + std::to_string(iter) + " iterations.",

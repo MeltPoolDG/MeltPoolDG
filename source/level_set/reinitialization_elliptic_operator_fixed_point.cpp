@@ -36,10 +36,6 @@ namespace MeltPoolDG::LevelSet
   void
   ReinitializationEllipticOperator<dim, number>::reinit()
   {
-    const auto &matrix_free = scratch_data.get_matrix_free();
-    const std::shared_ptr<const dealii::MatrixFree<dim, number, VectorizedArrayType>>
-      matrix_free_ptr(&matrix_free, [](const auto *) {});
-
     scratch_data.initialize_dof_vector(zero_interface, this->dof_idx);
     zero_interface = 0.0;
     zero_interface.update_ghost_values();

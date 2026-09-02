@@ -4,7 +4,6 @@
 #include <deal.II/fe/fe_system.h>
 
 #include <deal.II/lac/generic_linear_algebra.h>
-#include <deal.II/lac/la_parallel_block_vector.h>
 
 #include <deal.II/matrix_free/fe_evaluation.h>
 #include <deal.II/matrix_free/fe_point_evaluation.h>
@@ -99,56 +98,6 @@ namespace MeltPoolDG::LevelSet
     void
     reinit() final;
 
-    /**
-     * @brief Compute the contribution of a single cell integral to the right-hand side.
-     *        First-level function for the evaluation of the volume integrals.
-     *
-     * @param interface_penalty Cell integrator for the penalty term.
-     * @param cell_eval Cell integrator for the laplace operator (plus, provides function values for the penalty term).
-     * @param interface_penalty_surface Point evaluation object for the surface integral.
-     * @param cell_batch Batch index for the current cell.
-     */
-    void
-    rhs_cell_operation(FECellIntegrator<dim, 1, number> &interface_penalty,
-                       FECellIntegrator<dim, 1, number> &cell_eval,
-                       PointEvaluationType              &interface_penalty_surface,
-                       const unsigned int                cell_batch) const;
-
-    /**
-     * @brief Calculate the contribution of a single cell surface integral
-     *         to the penalty term for the weak imposition of interface Dirichlet boundary
-     * condition.
-     *
-     * @param interface_penalty_surface Point evaluation object for the surface integral.
-     * @param interface_penalty Cell integrator for the penalty term.
-     * @param lane The SIMD lane for which the operation is performed. Corresponds to one cell in the cell batch.
-     * @param penalty_coefficient Penalty coefficient for the interface penalty term.
-     */
-    void
-    interface_penalty_cell_operation(PointEvaluationType              &interface_penalty_surface,
-                                     FECellIntegrator<dim, 1, number> &interface_penalty,
-                                     const unsigned int                lane,
-                                     const number                      penalty_coefficient) const;
-
-    /**
-     * @brief Compute and assemble the system matrix from matrix-free operator evaluations.
-     *      Used by the preconditioner.
-     *
-     * @param system_matrix  Output sparse matrix.
-     */
-    void
-    compute_system_matrix_from_matrixfree(
-      dealii::TrilinosWrappers::SparseMatrix &system_matrix) const final;
-
-    /**
-     * @brief Compute the inverse diagonal of the system matrix.
-     *      Used by the preconditioner.
-     *
-     * @param diagonal  Output vector containing the diagonal inverse values.
-     */
-    void
-    compute_inverse_diagonal_from_matrixfree(VectorType &diagonal) const final;
-
     /// Solution vector from the previous iteration or time step (used in matrix-free mode).
     VectorType solution_old;
 
@@ -189,28 +138,28 @@ namespace MeltPoolDG::LevelSet
 
     /**
      * @brief Calculate the contribution of a single cell integral to the left-hand side.
-     *      First-level function for the evaluation of the laplace operator and the surface
+     *      First-level function for the evaluation of the Laplace operator and the surface
      * penalty term.
      *
      * @param interface_penalty Cell integrator for the penalty term.
-     * @param cell_eval Cell integrator for the laplace operator (plus, provides function values for the penalty term).
+     * @param cell_eval Cell integrator for the Laplace operator (plus, provides function values for the penalty term).
      * @param interface_penalty_surface Point evaluation object for the surface integral.
      * @param cell_batch Batch index for the current cell.
      */
     void
-    lhs_cell_operation(FECellIntegrator<dim, 1, number> &interface_penalty,
-                       FECellIntegrator<dim, 1, number> &cell_eval,
-                       PointEvaluationType              &interface_penalty_surface,
-                       const unsigned int                cell_batch,
-                       FECellIntegrator<dim, 1, number> &phi_old) const;
+    tangent_cell_operation(FECellIntegrator<dim, 1, number> &interface_penalty,
+                           FECellIntegrator<dim, 1, number> &cell_eval,
+                           PointEvaluationType              &interface_penalty_surface,
+                           const unsigned int                cell_batch,
+                           FECellIntegrator<dim, 1, number> &phi_old) const;
 
     /**
-     * @brief Calculate the contribution of the weigted laplace operator of a cell to the rhs.
+     * @brief Calculate the contribution of the weigted Laplace operator of a cell to the rhs.
      *
      * @param cell_eval Cell integrator.
      */
     void
-    laplace_rhs_operation(FECellIntegrator<dim, 1, number> &cell_eval) const;
+    residual_laplace_operation(FECellIntegrator<dim, 1, number> &cell_eval) const;
 
     /**
      * @brief Calculate the contribution of a single face integral to the left-hand side.
@@ -218,17 +167,81 @@ namespace MeltPoolDG::LevelSet
      * @param cell_eval Cell integrator.
      */
     void
-    lhs_face_operation(FEFaceIntegrator<dim, 1, number> &face_eval,
-                       FEFaceIntegrator<dim, 1, number> &phi_old) const;
+    tangent_face_operation(FEFaceIntegrator<dim, 1, number> &face_eval,
+                           FEFaceIntegrator<dim, 1, number> &phi_old) const;
 
     /**
-     * @brief Calculate the contribution of the weighted laplace operator to the lhs.
+     * @brief Calculate the contribution of the weighted Laplace operator to the lhs.
      *
      * @param cell_eval Cell integrator.
      */
     void
-    laplace_lhs_operation(FECellIntegrator<dim, 1, number> &cell_eval,
-                          FECellIntegrator<dim, 1, number> &phi_old) const;
+    tangent_laplace_operation(FECellIntegrator<dim, 1, number> &cell_eval,
+                              FECellIntegrator<dim, 1, number> &phi_old) const;
+
+    /**
+     * @brief Compute the contribution of a single cell integral to the right-hand side.
+     *        First-level function for the evaluation of the volume integrals.
+     *
+     * @param interface_penalty Cell integrator for the penalty term.
+     * @param cell_eval Cell integrator for the Laplace operator (plus, provides function values for the penalty term).
+     * @param interface_penalty_surface Point evaluation object for the surface integral.
+     * @param cell_batch Batch index for the current cell.
+     */
+    void
+    residual_cell_operation(FECellIntegrator<dim, 1, number> &interface_penalty,
+                            FECellIntegrator<dim, 1, number> &cell_eval,
+                            PointEvaluationType              &interface_penalty_surface,
+                            const unsigned int                cell_batch) const;
+
+    /**
+     * @brief Compute the contribution of a single cell integral to the right-hand side.
+     *        First-level function for the evaluation of the volume integrals.
+     *
+     * @param interface_penalty Cell integrator for the penalty term.
+     * @param cell_eval Cell integrator for the Laplace operator (plus, provides function values for the penalty term).
+     * @param interface_penalty_surface Point evaluation object for the surface integral.
+     * @param cell_batch Batch index for the current cell.
+     */
+    void
+    cell_operation(FECellIntegrator<dim, 1, number> &interface_penalty,
+                   FECellIntegrator<dim, 1, number> &cell_eval,
+                   PointEvaluationType              &interface_penalty_surface,
+                   const unsigned int                cell_batch) const;
+    /**
+     * @brief Calculate the contribution of a single cell surface integral
+     *         to the penalty term for the weak imposition of interface Dirichlet boundary
+     * condition.
+     *
+     * @param interface_penalty_surface Point evaluation object for the surface integral.
+     * @param interface_penalty Cell integrator for the penalty term.
+     * @param lane The SIMD lane for which the operation is performed. Corresponds to one cell in the cell batch.
+     * @param penalty_coefficient Penalty coefficient for the interface penalty term.
+     */
+    void
+    interface_penalty_cell_operation(PointEvaluationType              &interface_penalty_surface,
+                                     FECellIntegrator<dim, 1, number> &interface_penalty,
+                                     const unsigned int                lane,
+                                     const number                      penalty_coefficient) const;
+
+    /**
+     * @brief Compute and assemble the system matrix from matrix-free operator evaluations.
+     *      Used by the preconditioner.
+     *
+     * @param system_matrix  Output sparse matrix.
+     */
+    void
+    compute_system_matrix_from_matrixfree(
+      dealii::TrilinosWrappers::SparseMatrix &system_matrix) const final;
+
+    /**
+     * @brief Compute the inverse diagonal of the system matrix.
+     *      Used by the preconditioner.
+     *
+     * @param diagonal  Output vector containing the diagonal inverse values.
+     */
+    void
+    compute_inverse_diagonal_from_matrixfree(VectorType &diagonal) const final;
 
     /// Reference to scratch data containing mesh, geometry, and FE evaluation utilities.
     const ScratchData<dim, dim, number> &scratch_data;

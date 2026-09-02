@@ -38,10 +38,6 @@ namespace MeltPoolDG::LevelSet
   void
   ReinitializationEllipticOperatorNonLinear<dim, number>::reinit()
   {
-    const auto &matrix_free = scratch_data.get_matrix_free();
-    const std::shared_ptr<const dealii::MatrixFree<dim, number, VectorizedArrayType>>
-      matrix_free_ptr(&matrix_free, [](const auto *) {});
-
     scratch_data.initialize_dof_vector(zero_interface, this->dof_idx);
     zero_interface = 0.0;
     zero_interface.update_ghost_values();
@@ -73,8 +69,8 @@ namespace MeltPoolDG::LevelSet
             phi_old.reinit(cell_batch);
             phi_old.read_dof_values_plain(solution_old);
 
-            lhs_cell_operation(
-              interface_penalty, cell_eval, interface_penalty_surface, cell_batch, phi_old);
+            cell_operation(interface_penalty, cell_eval, interface_penalty_surface, cell_batch);
+            tangent_laplace_operation(cell_eval, phi_old);
 
             interface_penalty.distribute_local_to_global(dst);
             cell_eval.distribute_local_to_global(dst);
@@ -97,7 +93,7 @@ namespace MeltPoolDG::LevelSet
             phi_old.reinit(face_batch);
             phi_old.read_dof_values_plain(solution_old);
 
-            lhs_face_operation(face_eval, phi_old);
+            tangent_face_operation(face_eval, phi_old);
 
             face_eval.distribute_local_to_global(dst);
           }
@@ -119,7 +115,10 @@ namespace MeltPoolDG::LevelSet
     const VectorizedArrayType one(1.0);
     const VectorizedArrayType eps(1e-8);
     return compare_and_apply_mask<dealii::SIMDComparison::greater_than>(
-      grad_norm, one, one / pow(grad_norm + eps, 3.0), one / (grad_norm + eps));
+      grad_norm,
+      one,
+      one / dealii::Utilities::fixed_power<3>(grad_norm + eps),
+      one / (grad_norm + eps));
   }
 
   template <int dim, typename number>
@@ -134,12 +133,15 @@ namespace MeltPoolDG::LevelSet
     const VectorizedArrayType one(1.0);
     const VectorizedArrayType eps(1e-8);
     return compare_and_apply_mask<dealii::SIMDComparison::greater_than>(
-      grad_norm, one, one / pow(grad_norm + eps, 3.0), one / (grad_norm + eps));
+      grad_norm,
+      one,
+      one / dealii::Utilities::fixed_power<3>(grad_norm + eps),
+      one / (grad_norm + eps));
   }
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperatorNonLinear<dim, number>::laplace_rhs_operation(
+  ReinitializationEllipticOperatorNonLinear<dim, number>::residual_laplace_operation(
     FECellIntegrator<dim, 1, number> &cell_eval) const
   {
     cell_eval.evaluate(EvaluationFlags::gradients);
@@ -155,7 +157,7 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperatorNonLinear<dim, number>::laplace_lhs_operation(
+  ReinitializationEllipticOperatorNonLinear<dim, number>::tangent_laplace_operation(
     FECellIntegrator<dim, 1, number> &cell_eval,
     FECellIntegrator<dim, 1, number> &phi_old) const
   {
@@ -203,7 +205,8 @@ namespace MeltPoolDG::LevelSet
             phi_old.reinit(cell_batch);
             phi_old.read_dof_values(solution_old);
 
-            rhs_cell_operation(interface_penalty, cell_eval, interface_penalty_surface, cell_batch);
+            cell_operation(interface_penalty, cell_eval, interface_penalty_surface, cell_batch);
+            residual_laplace_operation(cell_eval);
 
             interface_penalty.distribute_local_to_global(dst);
             cell_eval.distribute_local_to_global(dst);
@@ -252,7 +255,7 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperatorNonLinear<dim, number>::rhs_cell_operation(
+  ReinitializationEllipticOperatorNonLinear<dim, number>::cell_operation(
     FECellIntegrator<dim, 1, number> &interface_penalty,
     FECellIntegrator<dim, 1, number> &cell_eval,
     PointEvaluationType              &interface_penalty_surface,
@@ -286,8 +289,6 @@ namespace MeltPoolDG::LevelSet
                                              penalty_coefficient);
           }
       }
-
-    laplace_rhs_operation(cell_eval);
   }
 
   template <int dim, typename number>
@@ -317,8 +318,8 @@ namespace MeltPoolDG::LevelSet
         phi_old.reinit(cell_batch);
         phi_old.read_dof_values_plain(solution_old);
 
-        lhs_cell_operation(
-          interface_penalty, cell_eval, interface_penalty_surface, cell_batch, phi_old);
+        cell_operation(interface_penalty, cell_eval, interface_penalty_surface, cell_batch);
+        tangent_laplace_operation(cell_eval, phi_old);
 
         for (unsigned int i = 0; i < n_dofs_per_cell; ++i)
           cell_eval.begin_dof_values()[i] += interface_penalty.begin_dof_values()[i];
@@ -331,7 +332,7 @@ namespace MeltPoolDG::LevelSet
         phi_old.reinit(cell_batch);
         phi_old.read_dof_values_plain(solution_old);
 
-        lhs_face_operation(face_eval, phi_old);
+        tangent_face_operation(face_eval, phi_old);
       },
       this->dof_idx,
       reinit_quad_idx);
@@ -363,8 +364,8 @@ namespace MeltPoolDG::LevelSet
         phi_old.reinit(cell_batch);
         phi_old.read_dof_values_plain(solution_old);
 
-        lhs_cell_operation(
-          interface_penalty, cell_eval, interface_penalty_surface, cell_batch, phi_old);
+        cell_operation(interface_penalty, cell_eval, interface_penalty_surface, cell_batch);
+        tangent_laplace_operation(cell_eval, phi_old);
 
         for (unsigned int i = 0; i < n_dofs_per_cell; ++i)
           cell_eval.begin_dof_values()[i] += interface_penalty.begin_dof_values()[i];
@@ -377,7 +378,7 @@ namespace MeltPoolDG::LevelSet
         phi_old.reinit(cell_batch);
         phi_old.read_dof_values_plain(solution_old);
 
-        lhs_face_operation(face_eval, phi_old);
+        tangent_face_operation(face_eval, phi_old);
       },
       this->dof_idx,
       reinit_quad_idx);
@@ -390,48 +391,7 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperatorNonLinear<dim, number>::lhs_cell_operation(
-    FECellIntegrator<dim, 1, number> &interface_penalty,
-    FECellIntegrator<dim, 1, number> &cell_eval,
-    PointEvaluationType              &interface_penalty_surface,
-    const unsigned int                cell_batch,
-    FECellIntegrator<dim, 1, number> &phi_old) const
-  {
-    const auto            &matrix_free         = scratch_data.get_matrix_free();
-    const number           penalty_coefficient = reinit_data.elliptic.penalty_parameter;
-    constexpr unsigned int n_lanes             = VectorizedArray<number>::size();
-
-    interface_penalty.reinit(cell_batch);
-    interface_penalty.read_dof_values_plain(zero_interface);
-
-    for (unsigned int lane = 0; lane < matrix_free.n_active_entries_per_cell_batch(cell_batch);
-         ++lane)
-      {
-        const auto active_cell_iterator = matrix_free.get_cell_iterator(cell_batch, lane);
-
-        if (mesh_classifier->location_to_level_set(active_cell_iterator) ==
-            dealii::NonMatching::LocationToLevelSet::intersected)
-          {
-            interface_penalty_surface.reinit(cell_batch * n_lanes + lane);
-
-            interface_penalty_surface.evaluate(
-              StridedArrayView<const number, n_lanes>(&cell_eval.begin_dof_values()[0][lane],
-                                                      n_dofs_per_cell),
-              EvaluationFlags::values);
-
-            interface_penalty_cell_operation(interface_penalty_surface,
-                                             interface_penalty,
-                                             lane,
-                                             penalty_coefficient);
-          }
-      }
-
-    laplace_lhs_operation(cell_eval, phi_old);
-  }
-
-  template <int dim, typename number>
-  void
-  ReinitializationEllipticOperatorNonLinear<dim, number>::lhs_face_operation(
+  ReinitializationEllipticOperatorNonLinear<dim, number>::tangent_face_operation(
     FEFaceIntegrator<dim, 1, number> &face_eval,
     FEFaceIntegrator<dim, 1, number> &phi_old) const
   {
