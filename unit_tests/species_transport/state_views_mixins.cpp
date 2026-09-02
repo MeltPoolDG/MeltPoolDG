@@ -69,7 +69,7 @@ namespace
     }
 
     double
-    specific_inner_energy() const
+    specific_internal_energy() const
     {
       return 100.0;
     }

@@ -156,7 +156,7 @@ namespace MeltPoolDG::SpeciesTransport
     typename ValueType::value_type
     partial_inner_energy(const unsigned species_component) const
     {
-      return derived().specific_inner_energy() * derived().mass_fraction(species_component);
+      return derived().specific_internal_energy() * derived().mass_fraction(species_component);
     }
 
   private:
