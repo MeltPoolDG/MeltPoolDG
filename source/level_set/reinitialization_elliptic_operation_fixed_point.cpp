@@ -2,7 +2,7 @@
 
 #include <deal.II/numerics/vector_tools_interpolate.h>
 
-#include <meltpooldg/level_set/reinitialization_elliptic_operation.hpp>
+#include <meltpooldg/level_set/reinitialization_elliptic_operation_fixed_point.hpp>
 #include <meltpooldg/linear_algebra/preconditioner_factory.hpp>
 #include <meltpooldg/utilities/iteration_monitor.hpp>
 #include <meltpooldg/utilities/journal.hpp>
@@ -33,8 +33,8 @@ namespace MeltPoolDG::LevelSet
   void
   ReinitializationEllipticOperation<dim, number>::solve()
   {
-    const unsigned int max_iterations = reinit_data.elliptic.fix_point_iteration.max_n_steps;
-    number             tolerance      = reinit_data.elliptic.fix_point_iteration.tolerance;
+    const unsigned int max_iterations = reinit_data.elliptic.solver_iteration.max_n_steps;
+    number             tolerance      = reinit_data.elliptic.solver_iteration.tolerance;
     unsigned int       iter           = 0;
     relative_change_level_set         = std::numeric_limits<number>::max();
 

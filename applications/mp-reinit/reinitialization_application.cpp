@@ -12,7 +12,8 @@
 #include <deal.II/numerics/vector_tools_interpolate.h>
 
 #include "meltpooldg/level_set/reinitialization_data.hpp"
-#include <meltpooldg/level_set/reinitialization_elliptic_operation.hpp>
+#include <meltpooldg/level_set/reinitialization_elliptic_operation_CG_non_linear.hpp>
+#include <meltpooldg/level_set/reinitialization_elliptic_operation_fixed_point.hpp>
 #include <meltpooldg/level_set/reinitialization_geometric_operation.hpp>
 #include <meltpooldg/level_set/reinitialization_hyperbolic_CG_operation.hpp>
 #include <meltpooldg/level_set/reinitialization_hyperbolic_DG_operation.hpp>
@@ -109,14 +110,11 @@ namespace MeltPoolDG::LevelSet
       }
     else if (param.reinit.modeltype == ModelType::elliptic)
       {
-        auto *elliptic_reinit =
-          dynamic_cast<ReinitializationEllipticOperation<dim, number> *>(reinit_operation.get());
-
         while (!time_iterator->is_finished())
           {
             time_iterator->compute_next_time_increment();
             time_iterator->print_me(scratch_data->get_pcout(1));
-            elliptic_reinit->solve();
+            reinit_operation->solve();
 
             output_results(time_iterator->get_current_time_step_number(),
                            time_iterator->get_current_time());
@@ -242,8 +240,17 @@ namespace MeltPoolDG::LevelSet
           }
         else if (param.reinit.modeltype == ModelType::elliptic)
           {
-            reinit_operation = std::make_unique<ReinitializationEllipticOperation<dim, number>>(
-              *scratch_data, param.reinit, reinit_dof_idx, reinit_quad_idx, reinit_dof_idx);
+            if (param.reinit.elliptic.non_linear)
+              {
+                reinit_operation =
+                  std::make_unique<ReinitializationEllipticOperationNonLinear<dim, number>>(
+                    *scratch_data, param.reinit, reinit_dof_idx, reinit_quad_idx, reinit_dof_idx);
+              }
+            else
+              {
+                reinit_operation = std::make_unique<ReinitializationEllipticOperation<dim, number>>(
+                  *scratch_data, param.reinit, reinit_dof_idx, reinit_quad_idx, reinit_dof_idx);
+              }
           }
         else if (param.reinit.modeltype == ModelType::geometric)
           {
@@ -362,10 +369,13 @@ namespace MeltPoolDG::LevelSet
 
     const bool wetting_enabled =
       not simulation_case->get_boundary_condition("nx", "normal_vector").empty();
-    scratch_data->build(param.reinit.fe.type == FiniteElementType::FE_DGQ or
-                          wetting_enabled /*boundary_face_integrals*/,
+    const bool elliptic_non_linear =
+      param.reinit.modeltype == ModelType::elliptic and param.reinit.elliptic.non_linear;
+
+    scratch_data->build(param.reinit.fe.type == FiniteElementType::FE_DGQ or wetting_enabled or
+                          elliptic_non_linear /*boundary_face_integrals*/,
                         param.reinit.fe.type == FiniteElementType::FE_DGQ /*inner face integrals*/,
-                        wetting_enabled /*normal_vectors*/);
+                        wetting_enabled or elliptic_non_linear /*normal_vectors*/);
 
     if (reinit_operation)
       reinit_operation->reinit();
