@@ -104,6 +104,23 @@ namespace MeltPoolDG
 
   template <int dim, typename number>
   void
+  Postprocessor<dim, number>::process_particles(const int n_time_step, const number time)
+  {
+    if (not is_output_timestep(n_time_step, time) or not output_data.particle.enable)
+      return;
+
+    if (obstacle_output.particle_handler != nullptr)
+      write_particle_paraview_files(n_time_step, time);
+
+    if (output_data.paraview.print_boundary_id)
+      print_boundary_ids();
+
+    // record written output time
+    time_at_last_output = time;
+  }
+
+  template <int dim, typename number>
+  void
   Postprocessor<dim, number>::write_paraview_files(
     const unsigned int                 n_time_step,
     const number                       time,

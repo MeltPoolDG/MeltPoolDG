@@ -290,6 +290,21 @@ namespace MeltPoolDG
     n_global_particles() const;
 
     /**
+     * @brief Computes the Rayleigh time step, scaled by a safety factor.
+     *
+     * The time step is derived from the average particle radius and density of the obstacles in
+     * the field, together with the Young's modulus and Poisson's ratio.
+     *
+     * @param safety_factor Additional safety factor applied to the estimated critical time step.
+     *
+     * @note The particle density is assumed to be identical for all obstacles.
+     *
+     * @return The estimated Rayleigh time step, scaled by a safety factor.
+     */
+    number
+    compute_rayleigh_time_step(const number safety_factor) const;
+
+    /**
      * Registers a callback function to be notified whenever the obstacle data structure is updated.
      *
      * @param callback A callable that takes a reference to the obstacle data structure and the

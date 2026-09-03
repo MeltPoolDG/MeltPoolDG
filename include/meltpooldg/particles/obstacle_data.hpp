@@ -38,6 +38,15 @@ namespace MeltPoolDG
     /// Contact force data defining the material and contact properties for all particles.
     SphericalParticleContactData<number> contact_forces;
 
+    /// Gravity constant data defining the gravitational acceleration acting on all particles.
+    number gravity_constant;
+
+    /// Determine the time step size from the critical Rayleigh time step.
+    bool do_rayleigh_time_stepping = false;
+
+    /// Fraction of the critical Rayleigh time step used as time step size.
+    number rayleigh_time_stepping_safety_factor = 0.2;
+
     void
     add_parameters(dealii::ParameterHandler &prm)
     {
@@ -49,6 +58,17 @@ namespace MeltPoolDG
         prm.add_parameter("obstacle state input file",
                           obstacle_state_input_file,
                           "File in which the obstacle initial state data is stored.");
+        prm.add_parameter(
+          "gravity constant",
+          gravity_constant,
+          "Gravity constant data defining the gravitational acceleration acting on all particles.");
+        prm.add_parameter(
+          "rayleigh time stepping",
+          do_rayleigh_time_stepping,
+          "If true, the time step size is determined from the critical Rayleigh time step.");
+        prm.add_parameter("rayleigh time stepping safety factor",
+                          rayleigh_time_stepping_safety_factor,
+                          "Fraction of the critical Rayleigh time step used as time step size.");
         prm.enter_subsection("amr");
         {
           prm.add_parameter(
