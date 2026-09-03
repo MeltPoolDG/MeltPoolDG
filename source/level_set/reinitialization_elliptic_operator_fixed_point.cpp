@@ -132,9 +132,10 @@ namespace MeltPoolDG::LevelSet
     const auto grad_norm = phi_old.get_gradient(q_index).norm();
 
     const VectorizedArrayType one(1.0);
-    const VectorizedArrayType eps(1e-8);
-    return compare_and_apply_mask<dealii::SIMDComparison::greater_than>(
-      grad_norm, one, one - one / (grad_norm + eps), grad_norm - one);
+    return compare_and_apply_mask<dealii::SIMDComparison::greater_than>(grad_norm,
+                                                                        one,
+                                                                        one - one / (grad_norm),
+                                                                        grad_norm - one);
   }
 
   template <int dim, typename number>

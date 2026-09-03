@@ -16,10 +16,10 @@ namespace MeltPoolDG::LevelSet
                         "Penalty parameter for the enforcement of the initial position of the zero "
                         "level-set iso-surface during the elliptic reinitialization.",
                         dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
-      prm.add_parameter(
-        "non_linear",
-        non_linear,
-        "Sets a flag if the elliptic reinitialization should be solved with analytical Newton-Raphson method.");
+      prm.add_parameter("nonlinear solver type",
+                        solver_type,
+                        "Sets the nonlinear solver used for elliptic reinitialization.",
+                        dealii::Patterns::Selection("newton|fixed point"));
     }
     prm.enter_subsection("solver iteration");
     {

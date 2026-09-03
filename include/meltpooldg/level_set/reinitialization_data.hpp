@@ -34,7 +34,7 @@ namespace MeltPoolDG::LevelSet
   struct ReinitializationEllipticData
   {
     number penalty_parameter = 0.;
-    bool   non_linear        = false;
+    bool   solver_type       = "fixed point";
 
     struct SolverIterationData
     {
