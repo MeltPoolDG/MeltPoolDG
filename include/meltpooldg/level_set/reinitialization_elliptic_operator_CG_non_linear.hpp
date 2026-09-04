@@ -101,6 +101,25 @@ namespace MeltPoolDG::LevelSet
     /// Solution vector from the previous iteration or time step (used in matrix-free mode).
     VectorType solution_old;
 
+    /**
+     * @brief Compute and assemble the system matrix from matrix-free operator evaluations.
+     *      Used by the preconditioner.
+     *
+     * @param system_matrix  Output sparse matrix.
+     */
+    void
+    compute_system_matrix_from_matrixfree(
+      dealii::TrilinosWrappers::SparseMatrix &system_matrix) const final;
+
+    /**
+     * @brief Compute the inverse diagonal of the system matrix.
+     *      Used by the preconditioner.
+     *
+     * @param diagonal  Output vector containing the diagonal inverse values.
+     */
+    void
+    compute_inverse_diagonal_from_matrixfree(VectorType &diagonal) const final;
+
   private:
     /// Mesh classifier, which contains information if a cell is inside or outside the physically
     /// relevant region, or cut by the immersed boundary. It corresponds to the current level set
@@ -223,25 +242,6 @@ namespace MeltPoolDG::LevelSet
                                      FECellIntegrator<dim, 1, number> &interface_penalty,
                                      const unsigned int                lane,
                                      const number                      penalty_coefficient) const;
-
-    /**
-     * @brief Compute and assemble the system matrix from matrix-free operator evaluations.
-     *      Used by the preconditioner.
-     *
-     * @param system_matrix  Output sparse matrix.
-     */
-    void
-    compute_system_matrix_from_matrixfree(
-      dealii::TrilinosWrappers::SparseMatrix &system_matrix) const final;
-
-    /**
-     * @brief Compute the inverse diagonal of the system matrix.
-     *      Used by the preconditioner.
-     *
-     * @param diagonal  Output vector containing the diagonal inverse values.
-     */
-    void
-    compute_inverse_diagonal_from_matrixfree(VectorType &diagonal) const final;
 
     /// Reference to scratch data containing mesh, geometry, and FE evaluation utilities.
     const ScratchData<dim, dim, number> &scratch_data;

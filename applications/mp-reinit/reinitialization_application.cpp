@@ -240,7 +240,7 @@ namespace MeltPoolDG::LevelSet
           }
         else if (param.reinit.modeltype == ModelType::elliptic)
           {
-            if (param.reinit.elliptic.non_linear)
+            if (param.reinit.elliptic.solver_type == "newton")
               {
                 reinit_operation =
                   std::make_unique<ReinitializationEllipticOperationNonLinear<dim, number>>(
@@ -369,13 +369,13 @@ namespace MeltPoolDG::LevelSet
 
     const bool wetting_enabled =
       not simulation_case->get_boundary_condition("nx", "normal_vector").empty();
-    const bool elliptic_non_linear =
-      param.reinit.modeltype == ModelType::elliptic and param.reinit.elliptic.non_linear;
+    const bool elliptic_newton = param.reinit.modeltype == ModelType::elliptic and
+                                 param.reinit.elliptic.solver_type == "newton";
 
     scratch_data->build(param.reinit.fe.type == FiniteElementType::FE_DGQ or wetting_enabled or
-                          elliptic_non_linear /*boundary_face_integrals*/,
+                          elliptic_newton /*boundary_face_integrals*/,
                         param.reinit.fe.type == FiniteElementType::FE_DGQ /*inner face integrals*/,
-                        wetting_enabled or elliptic_non_linear /*normal_vectors*/);
+                        wetting_enabled or elliptic_newton /*normal_vectors*/);
 
     if (reinit_operation)
       reinit_operation->reinit();

@@ -20,6 +20,7 @@ namespace MeltPoolDG::LevelSet
                         solver_type,
                         "Sets the nonlinear solver used for elliptic reinitialization.",
                         dealii::Patterns::Selection("newton|fixed point"));
+      nlsolve.add_parameters(prm);
     }
     prm.enter_subsection("solver iteration");
     {

@@ -33,8 +33,51 @@ namespace MeltPoolDG::LevelSet
     , reinit_dof_idx(reinit_dof_idx_in)
     , reinit_quad_idx(reinit_quad_idx_in)
     , ls_dof_idx(ls_dof_idx_in)
+    , newton(reinit_data.elliptic.nlsolve)
 
-  {}
+  {
+    setup_newton();
+  }
+
+  template <int dim, typename number>
+  void
+  ReinitializationEllipticOperationNonLinear<dim, number>::setup_newton()
+  {
+    newton.residual = [&](const VectorType &evaluation_point, VectorType &rhs) {
+      reinit_operator->create_residual(rhs, evaluation_point);
+      rhs *= -1.0;
+
+      std::cout << "Newton rhs l2 = " << rhs.l2_norm() << std::endl;
+    };
+
+    newton.solve_with_jacobian = [&](const VectorType &rhs, VectorType &solution_update) -> int {
+      preconditioner.set_do_update_preconditioner(true);
+      preconditioner.update();
+
+      return LinearSolver::solve<VectorType, OperatorMatrixFree<dim, number>>(
+        *reinit_operator,
+        solution_update,
+        rhs,
+        reinit_data.linear_solver,
+        preconditioner,
+        "reinitialization_operation");
+    };
+
+    newton.reinit_vector = [&](VectorType &vec) {
+      scratch_data.initialize_dof_vector(vec, reinit_dof_idx);
+    };
+
+    newton.distribute_constraints = [&](VectorType &vec) {
+      scratch_data.get_constraint(reinit_dof_idx).distribute(vec);
+    };
+
+    newton.norm_of_solution_vector = [this]() -> number {
+      return VectorTools::compute_norm<dim, number>(solution_level_set,
+                                                    scratch_data,
+                                                    reinit_dof_idx,
+                                                    reinit_quad_idx);
+    };
+  }
 
   template <int dim, typename number>
   void
@@ -49,23 +92,33 @@ namespace MeltPoolDG::LevelSet
     mesh_classifier->reclassify();
     compute_intersected_quadrature();
 
-    while (iter < max_iterations && relative_change_level_set > tolerance)
-      {
-        solve_one_iter();
-        ++iter;
-      }
+    newton.solve(solution_level_set);
 
-    Journal::print_formatted_norm<number>(scratch_data.get_pcout(1),
-                                          relative_change_level_set,
-                                          "|Δψ|/|ψ^n|",
-                                          "reinitialization",
-                                          8 /*precision*/,
-                                          "L2 ",
-                                          3 /*extra_size*/);
+    solution_level_set.update_ghost_values();
 
-    Journal::print_line(scratch_data.get_pcout(1),
-                        "Reinitialization completed in " + std::to_string(iter) + " iterations.",
-                        "reinitialization");
+    level_set_old.copy_locally_owned_data_from(solution_level_set);
+    level_set_old.update_ghost_values();
+
+    level_set_old_locally_owned.copy_locally_owned_data_from(level_set_old);
+    level_set_old_locally_owned.update_ghost_values();
+
+    // while (iter < max_iterations && relative_change_level_set > tolerance)
+    //   {
+    //     solve_one_iter();
+    //     ++iter;
+    //   }
+
+    // Journal::print_formatted_norm<number>(scratch_data.get_pcout(1),
+    //                                       relative_change_level_set,
+    //                                       "|Δψ|/|ψ^n|",
+    //                                       "reinitialization",
+    //                                       8 /*precision*/,
+    //                                       "L2 ",
+    //                                       3 /*extra_size*/);
+
+    // Journal::print_line(scratch_data.get_pcout(1),
+    //                     "Reinitialization completed in " + std::to_string(iter) + " iterations.",
+    //                     "reinitialization");
   }
 
   template <int dim, typename number>

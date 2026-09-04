@@ -7,6 +7,7 @@
 #include <meltpooldg/level_set/normal_vector_operation.hpp>
 #include <meltpooldg/level_set/reinitialization_elliptic_operator_CG_non_linear.hpp>
 #include <meltpooldg/level_set/reinitialization_operation_base.hpp>
+#include <meltpooldg/linear_algebra/newton_raphson_solver.hpp>
 #include <meltpooldg/linear_algebra/preconditioner.hpp>
 
 #include <limits>
@@ -197,5 +198,11 @@ namespace MeltPoolDG::LevelSet
 
     /// Locally relevant DoF vector. It is required by the mesh classifier.
     VectorType level_set_old_locally_owned;
+
+
+    NewtonRaphsonSolver<number, VectorType> newton;
+
+    void
+    setup_newton();
   };
 } // namespace MeltPoolDG::LevelSet

@@ -33,8 +33,18 @@ namespace MeltPoolDG::LevelSet
   template <typename number>
   struct ReinitializationEllipticData
   {
-    number penalty_parameter = 0.;
-    bool   solver_type       = "fixed point";
+    number      penalty_parameter = 0.;
+    std::string solver_type       = "fixed point";
+
+    NonlinearSolverData<number> nlsolve{
+      .max_nonlinear_iterations       = 5,
+      .field_correction_tolerance     = std::numeric_limits<number>::min(),
+      .residual_tolerance             = std::numeric_limits<number>::min(),
+      .max_nonlinear_iterations_alt   = 0,
+      .field_correction_tolerance_alt = std::numeric_limits<number>::min(),
+      .residual_tolerance_alt         = std::numeric_limits<number>::min(),
+      .verbosity_level                = -1,
+    };
 
     struct SolverIterationData
     {
