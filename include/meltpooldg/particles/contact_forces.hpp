@@ -30,21 +30,20 @@ namespace MeltPoolDG
 
 
     /**
-     * This function adds a wall defined by a signed distance function to the contact force
-     * computation. The wall is represented by a function that returns the signed distance from
-     * any point in space to the wall surface. The normal vector at any point on the wall is
-     * obtained from the gradient of this function and must point outward from the wall surface.
+     * This function adds a wall defined by a distance function to the contact force
+     * computation. The wall is represented by a function that returns the distance from
+     * any point in space to the wall surface. The contact normal is obtained from the gradient of
+     * this function.
      *
-     * @param wall_signed_distance_function A unique pointer to a function representing the signed
+     * @param wall_distance_function A unique pointer to a function representing the
      * distance to the wall.
      *
-     * @note The wall function should return negative values inside the wall and positive values
-     * outside the wall. It is not possible to use a single wall function for a two-sided wall; if
-     * both sides of the wall should be considered, two separate wall functions must be added with
-     * different normal orientations.
+     * @note The value of the wall function is the distance to the closest point on the wall, and
+     * its gradient points from that point towards the evaluation point. Hence, a single wall
+     * function acts on both sides of the wall.
      */
     void
-    attach_wall(std::unique_ptr<dealii::Function<dim>> &&wall_signed_distance_function);
+    attach_wall(std::unique_ptr<dealii::Function<dim, number>> &&wall_distance_function);
 
     /**
      * Compute the contact forces and add them to the obstacles in the given obstacle field. This
@@ -86,9 +85,9 @@ namespace MeltPoolDG
     /// step size.
     const MeltPoolDG::TimeIntegration::TimeIterator<number> &time_iterator;
 
-    /// Map of wall signed distance functions added to the contact model. The key is a unique wall
+    /// Map of wall distance functions added to the contact model. The key is a unique wall
     /// id to identify each wall.
-    std::map<int, std::unique_ptr<dealii::Function<dim>>> wall_signed_distance_functions;
+    std::map<int, std::unique_ptr<dealii::Function<dim, number>>> wall_distance_functions;
 
     /**
      * Struct describing the contact configuration between two particles, i.e., it computes and
@@ -116,7 +115,7 @@ namespace MeltPoolDG
        * is assumed to have infinite mass and stiffness.
        *
        * @param particle The particle involved in the contact.
-       * @param wall Pointer to the signed distance function representing the wall.
+       * @param wall Pointer to the distance function representing the wall.
        * @param youngs_modulus The Young's modulus of the particle material.
        * @param poisson_ratio The Poisson's ratio of the particle material.
        */
