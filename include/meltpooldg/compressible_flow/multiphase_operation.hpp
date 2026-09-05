@@ -32,6 +32,7 @@
 #include <meltpooldg/compressible_flow/multiphase_operation.hpp>
 #include <meltpooldg/compressible_flow/multiphase_operator.hpp>
 #include <meltpooldg/compressible_flow/operation_scratch_data.hpp>
+#include <meltpooldg/compressible_flow/state_views.hpp>
 #include <meltpooldg/compressible_flow/utils.hpp>
 #include <meltpooldg/core/scratch_data.hpp>
 #include <meltpooldg/core/simulation_case_base.hpp>
@@ -57,6 +58,10 @@ namespace MeltPoolDG::Multiphase
     using VectorType            = dealii::LinearAlgebra::distributed::Vector<number>;
     using MappingInfoType       = CutUtil::MappingInfoType<dim, number>;
     using MappingInfoVectorType = CutUtil::MappingInfoVectorType<dim, number>;
+
+    using ConservedVariablesType = CompressibleFlow::ConservedVariablesType<dim, number>;
+
+    using DofStateView = CompressibleFlow::DofStateView<dim, number, const ConservedVariablesType>;
 
     using CompMultiphaseOperatorVariant =
       std::variant<CompressibleMultiphaseOperator<dim, number, true, true>,
@@ -388,13 +393,14 @@ namespace MeltPoolDG::Multiphase
   dealii::LinearAlgebra::distributed::Vector<number> &
   CompressibleMultiphaseOperation<dim, number>::get_solution_in_primitive_variables() const
   {
-    update_primitive_variables_solution<dim, number>(solution_primitive_variables,
-                                                     get_solution(),
-                                                     multiphase_scratch_data.scratch_data,
-                                                     multiphase_scratch_data.dof_idx,
-                                                     multiphase_scratch_data.quad_idx,
-                                                     &multiphase_scratch_data.material_liquid,
-                                                     &multiphase_scratch_data.material_gas);
+    update_primitive_variables_solution<dim, number, ConservedVariablesType>(
+      solution_primitive_variables,
+      get_solution(),
+      multiphase_scratch_data.scratch_data,
+      multiphase_scratch_data.dof_idx,
+      multiphase_scratch_data.quad_idx,
+      &multiphase_scratch_data.material_liquid,
+      &multiphase_scratch_data.material_gas);
     return solution_primitive_variables;
   }
 
