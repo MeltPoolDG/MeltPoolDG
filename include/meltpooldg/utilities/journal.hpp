@@ -1,4 +1,6 @@
 #pragma once
+#include <deal.II/base/table_handler.h>
+
 #include <meltpooldg/utilities/conditional_ostream.hpp>
 
 #include <functional>
@@ -48,6 +50,40 @@ namespace MeltPoolDG::Journal
                              const std::string        &text           = "",
                              const std::string        &operation_name = "",
                              const unsigned int        extra_size     = 0);
+
+  /**
+   * @brief Print a multi-line preconfigured table inside a single bordered box with a title row.
+   *
+   * The box width grows to fit the widest table row, but never shrinks below max_text_width, so
+   * short tables still line up with the rest of the decorated output.
+   *
+   * The function requires a preconfigured dealii::TableHandler object, which is printed inside the
+   * box. From the table handler object the labels as well as the corresponding values are
+   * extracted. The title is printed in the top row, left-aligned, and the table is printed below
+   * it. An example output is shown below:
+   *
+   * @verbatim
+   * +-----------------------------------------------------------------------+
+   * | Cell statistics                                                       |
+   * |                                                                       |
+   * | label           | no. calls | n_cells avg | n_cells min | n_cells max |
+   * +-----------------+-----------+-------------+-------------+-------------+
+   * | flow_field      | 747       | 73.74       | 26          | 112         |
+   * | level_set       | 380       | 37.47       | 21          | 42          |
+   * +-----------------+-----------+-------------+-------------+-------------+
+   * @endverbatim
+   *
+   * @note The function does not provide a separate interface for labels of row. If desired, the
+   *       labels can be added to the table handler object before calling this function.
+   *
+   * @param pcout ConditionalOStream to print the text.
+   * @param title Title of the table, printed left-aligned in the top row.
+   * @param table The configured table which is printed inside the box.
+   */
+  void
+  print_table(const ConditionalOStream   &pcout,
+              const std::string          &title,
+              const dealii::TableHandler &table);
 
   /**
    * @brief Prints a formatted header consisting of a centered text surrounded
