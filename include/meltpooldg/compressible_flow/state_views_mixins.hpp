@@ -93,6 +93,65 @@ namespace MeltPoolDG::CompressibleFlow
   };
 
   /**
+   * CRTP mixin providing semantic access to primitive variables.
+   *
+   * This mixin assumes that the derived class exposes:
+   *
+   *   auto value();
+   *
+   * returning a tensor-like container indexed according to TensorStorageIndex<dim>.
+   *
+   * It provides direct access to primitive variables (pressure, velocity, temperature).
+   *
+   * All accessors are thin inline wrappers around the underlying storage. No additional data
+   * members are introduced and no quantities are cached.
+   *
+   * @tparam ValueType Type of a single value in the underlying storage container obtained
+   * when using [] on value() of the derived class.
+   */
+  template <int dim, ArithmeticType ValueType, typename Derived>
+  struct DofPrimitiveValueMixin
+  {
+    using Idx = PrimitiveVariableIndex<dim>;
+
+    decltype(auto)
+    pressure() const
+    {
+      return this->value()[Idx::pressure];
+    }
+
+    decltype(auto)
+    velocity(const unsigned int component) const
+    {
+      AssertIndexRange(component, dim);
+      return this->value()[Idx::velocity + component];
+    }
+
+    auto
+    velocity() const
+    {
+      dealii::Tensor<1, dim, ValueType> velocity;
+      for (unsigned int d = 0; d < dim; ++d)
+        velocity[d] = this->velocity(d);
+
+      return velocity;
+    }
+
+    decltype(auto)
+    temperature() const
+    {
+      return this->value()[Idx::temperature];
+    }
+
+  private:
+    decltype(auto)
+    value() const
+    {
+      return static_cast<const Derived &>(*this).value();
+    }
+  };
+
+  /**
    * CRTP mixin providing semantic access to gradients of conserved variables.
    *
    * The derived type must satisfy HasIndexableGradient and provide a gradient_value() member

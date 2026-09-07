@@ -167,13 +167,14 @@ namespace MeltPoolDG::Multiphase
 
           ConservedVariablesType darcy_damping{};
 
-          // TODO: use DarcyDampingOperation
           if (!is_gas_phase and multiphase_scratch_data.phase_change.solid_liquid.use_darcy_damping)
             {
-              const auto w        = eval.get_value(q);
-              const auto velocity = CompressibleFlow::calculate_velocity<dim, number>(w);
-              const auto temperature =
-                multiphase_scratch_data.material_liquid.eos_utils->calculate_temperature(w);
+              const auto w = eval.get_value(q);
+
+              DofStateView liquid_state(w, multiphase_scratch_data.material_liquid.data);
+
+              const auto velocity    = liquid_state.velocity();
+              const auto temperature = liquid_state.temperature();
 
               const VectorizedArray<number> T_liquidus_vec(
                 multiphase_scratch_data.phase_change.solid_liquid.liquidus_temperature);
@@ -368,10 +369,24 @@ namespace MeltPoolDG::Multiphase
                             // Outwards pointing normal vector with respect to the liquid domain
                             const auto normal = -eval_point_interface_liquid.normal_vector(q);
 
+                            DofStateView liquid_state(w_liquid,
+                                                      multiphase_scratch_data.material_liquid.data);
+                            DofStateView gas_state(w_gas,
+                                                   multiphase_scratch_data.material_gas.data);
+
+                            DofValueAndGradientStateView liquid_value_and_gradient_state(
+                              w_liquid,
+                              grad_w_liquid,
+                              multiphase_scratch_data.material_liquid.data);
+                            DofValueAndGradientStateView gas_value_and_gradient_state(
+                              w_gas, grad_w_gas, multiphase_scratch_data.material_gas.data);
+
                             const auto [m_dot_evap, delta_T] =
-                              update_evaporative_mass_flux_and_temperature_jump<dim, number>(
-                                w_liquid,
-                                w_gas,
+                              update_evaporative_mass_flux_and_temperature_jump<dim,
+                                                                                number,
+                                                                                DofStateView>(
+                                liquid_state,
+                                gas_state,
                                 normal,
                                 multiphase_scratch_data,
                                 evaporation_model_knight.get());
@@ -380,14 +395,11 @@ namespace MeltPoolDG::Multiphase
                               calculate_convective_and_viscous_interface_flux_penalty<
                                 dim,
                                 number,
-                                ConservedVariablesType,
-                                ConservedVariablesGradType>(w_liquid,
-                                                            w_gas,
-                                                            grad_w_liquid,
-                                                            grad_w_gas,
-                                                            multiphase_scratch_data,
-                                                            m_dot_evap,
-                                                            laser_heat_source);
+                                ConservedVariablesType>(liquid_value_and_gradient_state,
+                                                        gas_value_and_gradient_state,
+                                                        multiphase_scratch_data,
+                                                        m_dot_evap,
+                                                        laser_heat_source);
 
                             // Compute the velocity at the interface using the difference in
                             // momentum and density between the liquid and gas phases
@@ -426,10 +438,24 @@ namespace MeltPoolDG::Multiphase
                             // a positive level-set for the liquid phase.)
                             const auto normal = -eval_point_interface_liquid.normal_vector(q);
 
+                            DofStateView liquid_state(w_liquid,
+                                                      multiphase_scratch_data.material_liquid.data);
+                            DofStateView gas_state(w_gas,
+                                                   multiphase_scratch_data.material_gas.data);
+
+                            DofValueAndGradientStateView liquid_value_and_gradient_state(
+                              w_liquid,
+                              grad_w_liquid,
+                              multiphase_scratch_data.material_liquid.data);
+                            DofValueAndGradientStateView gas_value_and_gradient_state(
+                              w_gas, grad_w_gas, multiphase_scratch_data.material_gas.data);
+
                             const auto [m_dot_evap, delta_T] =
-                              update_evaporative_mass_flux_and_temperature_jump<dim, number>(
-                                w_liquid,
-                                w_gas,
+                              update_evaporative_mass_flux_and_temperature_jump<dim,
+                                                                                number,
+                                                                                DofStateView>(
+                                liquid_state,
+                                gas_state,
                                 normal,
                                 multiphase_scratch_data,
                                 evaporation_model_knight.get());
@@ -440,13 +466,13 @@ namespace MeltPoolDG::Multiphase
                               calculate_convective_interface_flux_HLLP0<dim,
                                                                         number,
                                                                         ConservedVariablesType,
-                                                                        ConservedVariablesGradType>(
-                                w_liquid,
-                                w_gas,
+                                                                        ConservedVariablesGradType,
+                                                                        DofStateView>(
+                                liquid_state,
+                                gas_state,
                                 normal,
                                 ConvectiveKernel(multiphase_scratch_data.material_liquid.data),
                                 ConvectiveKernel(multiphase_scratch_data.material_gas.data),
-                                multiphase_scratch_data,
                                 m_dot_evap);
 
                             ConservedVariablesType flux_liquid = contract_tensor_with_vector<
@@ -474,11 +500,13 @@ namespace MeltPoolDG::Multiphase
                                       calculate_viscous_interface_flux<dim,
                                                                        number,
                                                                        ConservedVariablesType,
-                                                                       ConservedVariablesGradType>(
-                                        w_liquid,
-                                        w_gas,
-                                        grad_w_liquid,
-                                        grad_w_gas,
+                                                                       ConservedVariablesGradType,
+                                                                       DofValueAndGradientStateView,
+                                                                       DofValueView,
+                                                                       DofPrimitiveValueView,
+                                                                       DofPrimitiveStateView>(
+                                        liquid_value_and_gradient_state,
+                                        gas_value_and_gradient_state,
                                         normal,
                                         visc_ave_weight_phase_liquid,
                                         visc_ave_weight_phase_gas,
@@ -506,11 +534,10 @@ namespace MeltPoolDG::Multiphase
                                         dim,
                                         number,
                                         ConservedVariablesType,
-                                        ConservedVariablesGradType>(
-                                        w_liquid,
-                                        w_gas,
-                                        grad_w_liquid,
-                                        grad_w_gas,
+                                        ConservedVariablesGradType,
+                                        DofValueAndGradientStateView>(
+                                        liquid_value_and_gradient_state,
+                                        gas_value_and_gradient_state,
                                         normal,
                                         visc_ave_weight_phase_liquid,
                                         visc_ave_weight_phase_gas,
@@ -541,9 +568,13 @@ namespace MeltPoolDG::Multiphase
                                     dim,
                                     number,
                                     ConservedVariablesType,
-                                    ConservedVariablesGradType>(
-                                    w_liquid,
-                                    w_gas,
+                                    ConservedVariablesGradType,
+                                    DofStateView,
+                                    DofValueView,
+                                    DofPrimitiveValueView,
+                                    DofPrimitiveStateView>(
+                                    liquid_state,
+                                    gas_state,
                                     normal,
                                     visc_ave_weight_phase_liquid,
                                     visc_ave_weight_phase_gas,

@@ -47,6 +47,18 @@ namespace MeltPoolDG::Multiphase
 
     using ConvectionOperator = Utils::DGConvectionOperator<dim, number, ConvectiveKernel>;
 
+    using DofValueView = CompressibleFlow::DofValueView<dim, ConservedVariablesType>;
+    using DofPrimitiveValueView =
+      CompressibleFlow::DofPrimitiveValueView<dim, ConservedVariablesType>;
+    using DofPrimitiveStateView =
+      CompressibleFlow::DofPrimitiveStateView<dim, number, const ConservedVariablesType>;
+    using DofStateView = CompressibleFlow::DofStateView<dim, number, const ConservedVariablesType>;
+    using DofValueAndGradientStateView =
+      CompressibleFlow::DofValueAndGradientStateView<dim,
+                                                     number,
+                                                     const ConservedVariablesType,
+                                                     const ConservedVariablesGradType>;
+
     /**
      * @brief Constructor.
      *

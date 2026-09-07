@@ -553,8 +553,12 @@ namespace MeltPoolDG::Multiphase
     auto compute_convective_time_step_limit_at_q =
       [&]<bool is_gas_phase>(auto &evaluator, unsigned int q, VectorizedArray<number> &local_max) {
         const auto conserved_variables = evaluator.get_value(q);
-        const auto velocity =
-          MeltPoolDG::CompressibleFlow::calculate_velocity<dim, number>(conserved_variables);
+
+        const auto  &material = is_gas_phase ? multiphase_scratch_data.material_gas :
+                                               multiphase_scratch_data.material_liquid;
+        DofStateView state_view(conserved_variables, material.data);
+
+        const auto velocity = state_view.velocity();
 
         const Tensor<2, dim, VectorizedArray<number>> inverse_jacobian =
           evaluator.inverse_jacobian(q);
@@ -563,12 +567,7 @@ namespace MeltPoolDG::Multiphase
         for (unsigned int d = 0; d < dim; ++d)
           convective_limit = std::max(convective_limit, std::abs(convective_speed[d]));
 
-        const auto speed_of_sound =
-          is_gas_phase ?
-            multiphase_scratch_data.material_gas.eos_utils->calculate_speed_of_sound(
-              conserved_variables) :
-            multiphase_scratch_data.material_liquid.eos_utils->calculate_speed_of_sound(
-              conserved_variables);
+        const auto speed_of_sound = state_view.speed_of_sound();
 
         Tensor<1, dim, VectorizedArray<number>> eigenvector;
         for (unsigned int d = 0; d < dim; ++d)

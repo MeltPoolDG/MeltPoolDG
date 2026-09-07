@@ -7,6 +7,7 @@
 #include <deal.II/lac/la_parallel_vector.h>
 
 #include <meltpooldg/compressible_flow/boundary_conditions.hpp>
+#include <meltpooldg/compressible_flow/utils.hpp>
 
 #include <memory>
 #include <utility>

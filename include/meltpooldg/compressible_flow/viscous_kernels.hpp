@@ -6,8 +6,8 @@
 #include <deal.II/base/vectorization.h>
 
 #include <meltpooldg/compressible_flow/data_types.hpp>
-#include <meltpooldg/compressible_flow/eos_utils.hpp>
 #include <meltpooldg/compressible_flow/operation_data.hpp>
+#include <meltpooldg/compressible_flow/state_views.hpp>
 #include <meltpooldg/compressible_flow/utils.hpp>
 #include <meltpooldg/utilities/dealii_tensor.hpp>
 
@@ -31,6 +31,12 @@ namespace MeltPoolDG::CompressibleFlow
   {
     using ConservedVariables         = ConservedVariablesType<dim, number>;
     using ConservedVariablesGradient = ConservedVariablesGradientType<dim, number>;
+
+    using ValueAndGradientStateView =
+      DofValueAndGradientStateView<dim,
+                                   number,
+                                   const ConservedVariables,
+                                   const ConservedVariablesGradient>;
 
     explicit ViscousKernels(const Material<dim, number> &material_in);
     /**
@@ -206,17 +212,19 @@ namespace MeltPoolDG::CompressibleFlow
       const ConservedVariablesGradient &grad_conserved_variables) const
     -> ConservedVariablesGradient
   {
-    const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> velocity =
-      calculate_velocity<dim, number>(conserved_variables);
+    ValueAndGradientStateView state_view(conserved_variables,
+                                         grad_conserved_variables,
+                                         material.data);
 
-    const auto grad_u = calculate_grad_velocity(conserved_variables, grad_conserved_variables);
+    const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> velocity = state_view.velocity();
+
+    const auto grad_u = state_view.grad_velocity();
 
     const dealii::Tensor<2, dim, dealii::VectorizedArray<number>> viscous_stress =
       calculate_viscous_stress_tensor(grad_u);
 
     const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> neg_heat_flux =
-      material.data.thermal_conductivity *
-      material.eos_utils->calculate_grad_T(conserved_variables, grad_conserved_variables);
+      state_view.thermal_conductivity() * state_view.grad_temperature();
 
     ConservedVariablesGradient flux;
     for (unsigned int d = 0; d < dim; ++d)
@@ -323,6 +331,7 @@ namespace MeltPoolDG::CompressibleFlow
       const ConservedVariablesGradient &grad_delta_w_q) const -> ConservedVariablesGradient
   {
     ConservedVariablesGradient viscous_differential_change;
+    ValueAndGradientStateView  state_view(w_q, grad_w_q, material.data);
 
     // precompute values
     dealii::VectorizedArray<number>                         rho_inv = 1.0 / w_q[0];
@@ -345,8 +354,8 @@ namespace MeltPoolDG::CompressibleFlow
     for (unsigned int i = 0; i < dim; ++i)
       grad_delta_m_q[i] = grad_delta_w_q[i + 1];
 
-    auto       v_q           = calculate_velocity<dim, number>(w_q);
-    const auto grad_v_q_temp = calculate_grad_velocity(w_q, grad_w_q);
+    auto       v_q           = state_view.velocity();
+    const auto grad_v_q_temp = state_view.grad_velocity();
     dealii::Tensor<1, dim, dealii::Tensor<1, dim, dealii::VectorizedArray<number>>> grad_v_q;
     for (unsigned int i = 0; i < dim; ++i)
       for (unsigned int j = 0; j < dim; ++j)

@@ -99,6 +99,41 @@ namespace MeltPoolDG::CompressibleFlow
   };
 
   /**
+   * View providing access to the primitive variables stored in the underlying data structure.
+   *
+   * The underlying `StateType` must store the conserved variables in a tensor-like container
+   * indexed according to `TensorStorageIndex<dim>`.
+   *
+   * @tparam StateType  Type of the data structure storing the conserved variables.
+   */
+  template <int dim, IsPrimitiveStateCompatible<dim> StateType>
+  struct DofPrimitiveValueView
+    : public DofPrimitiveValueMixin<dim,
+                                    typename StateType::value_type,
+                                    DofPrimitiveValueView<dim, StateType>>
+  {
+    using state_type = std::remove_cvref_t<StateType>;
+
+    DofPrimitiveValueView(StateType &state)
+      : flow_state(&state)
+    {}
+
+    operator DofPrimitiveValueView<dim, const StateType>()
+    {
+      return DofPrimitiveValueView<dim, const StateType>(*flow_state);
+    }
+
+    StateType &
+    value() const
+    {
+      return *flow_state;
+    }
+
+  private:
+    mutable StateType *flow_state;
+  };
+
+  /**
    * View providing access to the gradients of the conserved variables stored in the underlying data
    * structure. Besides direct access to the conserved variables, it enables computation of directly
    * derived quantities (e.g., gradient of the velocity) via the corresponding mixin.
@@ -159,6 +194,59 @@ namespace MeltPoolDG::CompressibleFlow
     operator DofStateView<dim, number, const Value>()
     {
       return DofStateView<dim, number, const Value>(*flow_state, material_data);
+    }
+
+    EquationOfState
+    eos_type() const
+    {
+      return material_data.eos_type;
+    }
+
+    Value &
+    value() const
+    {
+      return *flow_state;
+    }
+
+    const MaterialPhaseData<number> &
+    material() const
+    {
+      return material_data;
+    }
+
+  private:
+    mutable Value                   *flow_state;
+    const MaterialPhaseData<number> &material_data;
+  };
+
+  /**
+   * View providing access to primitive variables stored in the underlying data structure.
+   * Further, the view provides access to the associated material data.
+   *
+   * The underlying `Value` must provide a `value_type` and be compatible with the primitive
+   * variable access expected by `PrimitiveDofValueMixin`.
+   *
+   * @tparam dim     Spatial dimension.
+   * @tparam number  Scalar floating point type.
+   * @tparam Value   Type of the data structure storing the primitive variables.
+   */
+  template <int dim, typename number, IsPrimitiveStateCompatible<dim> Value>
+  struct DofPrimitiveStateView
+    : public DofPrimitiveValueMixin<dim,
+                                    typename Value::value_type,
+                                    DofPrimitiveStateView<dim, number, Value>>,
+      public MaterialMixin<DofPrimitiveStateView<dim, number, Value>>
+  {
+    using state_type = std::remove_cvref_t<Value>;
+
+    DofPrimitiveStateView(Value &value_state, const MaterialPhaseData<number> &material_data)
+      : flow_state(&value_state)
+      , material_data(material_data)
+    {}
+
+    operator DofPrimitiveStateView<dim, number, const Value>()
+    {
+      return DofPrimitiveStateView<dim, number, const Value>(*flow_state, material_data);
     }
 
     EquationOfState

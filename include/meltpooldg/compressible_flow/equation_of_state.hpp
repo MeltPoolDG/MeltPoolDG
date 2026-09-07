@@ -6,6 +6,7 @@
 #include <deal.II/base/tensor.h>
 #include <deal.II/base/vectorization.h>
 
+#include <meltpooldg/compressible_flow/data_types.hpp>
 #include <meltpooldg/compressible_flow/material.hpp>
 #include <meltpooldg/utilities/concepts.hpp>
 #include <meltpooldg/utilities/dealii_tensor.hpp>
@@ -16,11 +17,11 @@
 namespace MeltPoolDG::Flow
 {
   /**
-   * Concept defining the specific requirements for a value view to be used with any equation of
-   * state.
+   * Concept defining the specific requirements for a value view with conservative variables to be
+   * used with any equation of state.
    */
   template <typename T>
-  concept EOSIsValueView = requires(const T v) {
+  concept EOSIsConservativeValueView = requires(const T v) {
     {
       v.density()
     };
@@ -29,6 +30,57 @@ namespace MeltPoolDG::Flow
     };
     {
       v.total_energy()
+    };
+  };
+
+  /**
+   * Concept defining the specific requirements for a value view with primitive variables to be used
+   * with any equation of state.
+   */
+  template <typename T>
+  concept EOSIsPrimitiveValueView = requires(const T v) {
+    {
+      v.pressure()
+    };
+    {
+      v.velocity()
+    };
+    {
+      v.temperature()
+    };
+  };
+
+  /**
+   * Concept defining the specific requirements for a value view with writable conservative
+   * variables to be used with any equation of state.
+   */
+  template <typename T>
+  concept EOSIsWritableConservativeValueView = requires(T v) {
+    {
+      v.density() = v.density()
+    };
+    {
+      v.momentum(0) = v.momentum(0)
+    };
+    {
+      v.total_energy() = v.total_energy()
+    };
+  };
+
+  /**
+   * Concept defining the specific requirements for a value view with writable primitive variables
+   * to be used with any equation of state.
+   */
+  template <typename T>
+  concept EOSIsWritablePrimitiveValueView = requires(T v) {
+    {
+      v.pressure() = v.pressure()
+    };
+    {
+      v.velocity(0) = v.velocity(0)
+    };
+    {
+      v.temperature() = v.temperature()
     };
   };
 
@@ -113,7 +165,7 @@ namespace MeltPoolDG::Flow
      *
      * @return Pressure resulting from the given flow state and material properties.
      */
-    template <EOSIsValueView ValueView, IdealGasIsMaterialView MaterialView>
+    template <EOSIsConservativeValueView ValueView, IdealGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
       thermodynamic_pressure(const ValueView &value_view, const MaterialView &material_view)
@@ -134,9 +186,9 @@ namespace MeltPoolDG::Flow
      *
      * @return Gradient of the temperature resulting from the given flow state and material properties.
      */
-    template <EOSIsValueView         ValueView,
-              EOSIsGradientView      GradientView,
-              IdealGasIsMaterialView MaterialView>
+    template <EOSIsConservativeValueView ValueView,
+              EOSIsGradientView          GradientView,
+              IdealGasIsMaterialView     MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
       grad_temperature(const ValueView    &value_view,
@@ -161,7 +213,7 @@ namespace MeltPoolDG::Flow
      *
      * @return Speed of sound resulting from the given flow state and material properties.
      */
-    template <EOSIsValueView ValueView, IdealGasIsMaterialView MaterialView>
+    template <EOSIsConservativeValueView ValueView, IdealGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
       speed_of_sound(const ValueView &value_view, const MaterialView &material_view)
@@ -178,7 +230,7 @@ namespace MeltPoolDG::Flow
      *
      * @return Temperature resulting from the given flow state and material properties.
      */
-    template <EOSIsValueView ValueView, IdealGasIsMaterialView MaterialView>
+    template <EOSIsConservativeValueView ValueView, IdealGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
       temperature(const ValueView &value_view, const MaterialView &material_view)
@@ -196,7 +248,9 @@ namespace MeltPoolDG::Flow
      *
      * @return Inner energy resulting from the given pressure and material properties.
      */
-    template <typename ValueType, EOSIsValueView ValueView, IdealGasIsMaterialView MaterialView>
+    template <typename ValueType,
+              EOSIsConservativeValueView ValueView,
+              IdealGasIsMaterialView     MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
       inner_energy_from_pressure(const ValueType &pressure,
@@ -221,6 +275,46 @@ namespace MeltPoolDG::Flow
       return thermodynamic_pressure(value_view, material_view) /
              (value_view.density() * (material_view.heat_capacity_ratio() - 1.));
     }
+
+    /**
+     * Compute the set of conserved variables (density, momentum, total energy) from the given state
+     * of primitive variables (pressure, velocity, temperature) for an ideal gas.
+     *
+     * @param conservative_value_view View providing writable access to the flow state in conservative variables, which is computed.
+     * @param primitive_value_view View providing access to the flow state in primitive variables.
+     * @param material_view View providing access to the material properties.
+     *
+     * @return View representation of the conserved variable state.
+     */
+    template <int                                dim,
+              EOSIsWritableConservativeValueView WritableConservativeValueView,
+              EOSIsPrimitiveValueView            PrimitiveValueView,
+              IdealGasIsMaterialView             MaterialView>
+    static inline DEAL_II_ALWAYS_INLINE //
+      void
+      conservative_from_primitive(WritableConservativeValueView &conservative_value_view,
+                                  const PrimitiveValueView      &primitive_value_view,
+                                  const MaterialView            &material_view)
+    {
+      const auto pressure    = primitive_value_view.pressure();
+      const auto temperature = primitive_value_view.temperature();
+      const auto velocity    = primitive_value_view.velocity();
+
+      const auto density = pressure / (material_view.specific_gas_constant() * temperature);
+
+      // density
+      conservative_value_view.density() = density;
+
+      // momentum
+      for (unsigned int d = 0; d < dim; ++d)
+        conservative_value_view.momentum(d) = density * velocity[d];
+
+      // total energy
+      conservative_value_view.total_energy() =
+        density * (material_view.specific_gas_constant() /
+                     (material_view.heat_capacity_ratio() - 1.) * temperature +
+                   0.5 * scalar_product(velocity, velocity));
+    }
   };
 
   struct StiffenedGasEOS
@@ -233,7 +327,7 @@ namespace MeltPoolDG::Flow
      *
      * @return Pressure resulting from the given flow state and material properties.
      */
-    template <EOSIsValueView ValueView, StiffenedGasIsMaterialView MaterialView>
+    template <EOSIsConservativeValueView ValueView, StiffenedGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
       thermodynamic_pressure(const ValueView &value_view, const MaterialView &material_view)
@@ -255,7 +349,7 @@ namespace MeltPoolDG::Flow
      *
      * @return Gradient of the temperature resulting from the given flow state and material properties.
      */
-    template <EOSIsValueView             ValueView,
+    template <EOSIsConservativeValueView ValueView,
               EOSIsGradientView          GradientView,
               StiffenedGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
@@ -285,7 +379,7 @@ namespace MeltPoolDG::Flow
      *
      * @return Speed of sound resulting from the given flow state and material properties.
      */
-    template <EOSIsValueView ValueView, StiffenedGasIsMaterialView MaterialView>
+    template <EOSIsConservativeValueView ValueView, StiffenedGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
       speed_of_sound(const ValueView &value_view, const MaterialView &material_view)
@@ -305,7 +399,7 @@ namespace MeltPoolDG::Flow
      *
      * @return Temperature resulting from the given flow state and material properties.
      */
-    template <EOSIsValueView ValueView, StiffenedGasIsMaterialView MaterialView>
+    template <EOSIsConservativeValueView ValueView, StiffenedGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
       temperature(const ValueView &value_view, const MaterialView &material_view)
@@ -326,7 +420,9 @@ namespace MeltPoolDG::Flow
      *
      * @return Inner energy resulting from the given pressure and material properties.
      */
-    template <typename ValueType, EOSIsValueView ValueView, StiffenedGasIsMaterialView MaterialView>
+    template <typename ValueType,
+              EOSIsConservativeValueView ValueView,
+              StiffenedGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
       inner_energy_from_pressure(const ValueType &pressure,
@@ -354,6 +450,46 @@ namespace MeltPoolDG::Flow
               material_view.heat_capacity_ratio() * material_view.stiffening_pressure()) /
              (value_view.density() * (material_view.heat_capacity_ratio() - 1.));
     }
+
+    /**
+     * Compute the set of conserved variables (density, momentum, total energy) from the given state
+     * of primitive variables (pressure, velocity, temperature) for a stiffened gas.
+     *
+     * @param conservative_value_view View providing writable access to the flow state in conservative variables, which is computed.
+     * @param primitive_value_view View providing access to the flow state in primitive variables.
+     * @param material_view View providing access to the material properties.
+     */
+    template <int                                dim,
+              EOSIsWritableConservativeValueView WritableConservativeValueView,
+              EOSIsPrimitiveValueView            PrimitiveValueView,
+              StiffenedGasIsMaterialView         MaterialView>
+    static inline DEAL_II_ALWAYS_INLINE //
+      void
+      conservative_from_primitive(WritableConservativeValueView &conservative_value_view,
+                                  const PrimitiveValueView      &primitive_value_view,
+                                  const MaterialView            &material_view)
+    {
+      const auto density =
+        (primitive_value_view.pressure() + material_view.stiffening_pressure()) *
+        material_view.heat_capacity_ratio() /
+        (material_view.specific_isobaric_heat() * primitive_value_view.temperature() *
+         (material_view.heat_capacity_ratio() - 1.));
+
+      // density
+      conservative_value_view.density() = density;
+
+      // momentum
+      for (unsigned int d = 0; d < dim; ++d)
+        conservative_value_view.momentum(d) = density * primitive_value_view.velocity(d);
+
+      // total energy
+      conservative_value_view.total_energy() =
+        density *
+        (material_view.specific_isobaric_heat() / material_view.heat_capacity_ratio() *
+           primitive_value_view.temperature() +
+         material_view.stiffening_pressure() / density +
+         0.5 * scalar_product(primitive_value_view.velocity(), primitive_value_view.velocity()));
+    }
   };
 
   struct NobleAbelStiffenedGasEOS
@@ -366,7 +502,8 @@ namespace MeltPoolDG::Flow
      *
      * @return Pressure resulting from the given flow state and material properties.
      */
-    template <EOSIsValueView ValueView, NobleAbelStiffenedGasIsMaterialView MaterialView>
+    template <EOSIsConservativeValueView          ValueView,
+              NobleAbelStiffenedGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
       thermodynamic_pressure(const ValueView &value_view, const MaterialView &material_view)
@@ -391,7 +528,7 @@ namespace MeltPoolDG::Flow
      *
      * @return Gradient of the temperature resulting from the given flow state and material properties.
      */
-    template <EOSIsValueView                      ValueView,
+    template <EOSIsConservativeValueView          ValueView,
               EOSIsGradientView                   GradientView,
               NobleAbelStiffenedGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
@@ -421,7 +558,8 @@ namespace MeltPoolDG::Flow
      *
      * @return Speed of sound resulting from the given flow state and material properties.
      */
-    template <EOSIsValueView ValueView, NobleAbelStiffenedGasIsMaterialView MaterialView>
+    template <EOSIsConservativeValueView          ValueView,
+              NobleAbelStiffenedGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
       speed_of_sound(const ValueView &value_view, const MaterialView &material_view)
@@ -441,7 +579,8 @@ namespace MeltPoolDG::Flow
      *
      * @return Temperature resulting from the given flow state and material properties.
      */
-    template <EOSIsValueView ValueView, NobleAbelStiffenedGasIsMaterialView MaterialView>
+    template <EOSIsConservativeValueView          ValueView,
+              NobleAbelStiffenedGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
       temperature(const ValueView &value_view, const MaterialView &material_view)
@@ -464,7 +603,7 @@ namespace MeltPoolDG::Flow
      * @return Inner energy resulting from the given pressure and material properties.
      */
     template <typename ValueType,
-              EOSIsValueView                      ValueView,
+              EOSIsConservativeValueView          ValueView,
               NobleAbelStiffenedGasIsMaterialView MaterialView>
     static inline DEAL_II_ALWAYS_INLINE //
       auto
@@ -496,6 +635,50 @@ namespace MeltPoolDG::Flow
                (material_view.heat_capacity_ratio() - 1.) *
                (1. / value_view.density() - material_view.covolume()) +
              material_view.heat_bound();
+    }
+
+    /**
+     * Compute the set of conserved variables (density, momentum, total energy) from the given state
+     * of primitive variables (pressure, velocity, temperature) for a Noble-Abel stiffened gas.
+     *
+     * @param conservative_value_view View providing writable access to the flow state in conservative variables, which is computed.
+     * @param primitive_value_view View providing access to the flow state in primitive variables.
+     * @param material_view View providing access to the material properties.
+     */
+    template <int                                 dim,
+              EOSIsWritableConservativeValueView  WritableConservativeValueView,
+              EOSIsPrimitiveValueView             PrimitiveValueView,
+              NobleAbelStiffenedGasIsMaterialView MaterialView>
+    static inline DEAL_II_ALWAYS_INLINE //
+      void
+      conservative_from_primitive(WritableConservativeValueView &conservative_value_view,
+                                  const PrimitiveValueView      &primitive_value_view,
+                                  const MaterialView            &material_view)
+    {
+      const auto pressure    = primitive_value_view.pressure();
+      const auto temperature = primitive_value_view.temperature();
+
+      const auto density =
+        (pressure + material_view.stiffening_pressure()) /
+        (material_view.specific_isobaric_heat() * temperature *
+           (material_view.heat_capacity_ratio() - 1.) / material_view.heat_capacity_ratio() +
+         material_view.covolume() * (pressure + material_view.stiffening_pressure()));
+
+      // density
+      conservative_value_view.density() = density;
+
+      // momentum
+      for (unsigned int d = 0; d < dim; ++d)
+        conservative_value_view.momentum(d) = density * primitive_value_view.velocity(d);
+
+      // total energy
+      conservative_value_view.total_energy() =
+        density *
+        (material_view.specific_isobaric_heat() / material_view.heat_capacity_ratio() *
+           temperature +
+         material_view.stiffening_pressure() * (1. / density - material_view.covolume()) +
+         material_view.heat_bound() +
+         0.5 * scalar_product(primitive_value_view.velocity(), primitive_value_view.velocity()));
     }
   };
 
