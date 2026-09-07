@@ -25,10 +25,6 @@
 
 namespace MeltPoolDG::CompressibleFlow
 {
-  // Forward declaration
-  template <int dim, typename number>
-  class Material;
-
   /// Index sets for the components of the compressible Navier-Stokes equations.
   BETTER_ENUM(Idx1D, char, density, momentum_x, energy);
   BETTER_ENUM(Idx2D, char, density, momentum_x, momentum_y, energy);
@@ -74,8 +70,8 @@ namespace MeltPoolDG::CompressibleFlow
     const ScratchData<dim, dim, number>                      &scratch_data,
     const unsigned int                                        dof_idx,
     const unsigned int                                        quad_idx,
-    const Material<dim, number>                              *material_liquid,
-    const Material<dim, number>                              *material_gas = nullptr);
+    const MaterialPhaseData<number>                          *material_liquid,
+    const MaterialPhaseData<number>                          *material_gas = nullptr);
 
   /**
    * @brief Convert a state from conservative (density, momentum, total energy) to primitive
@@ -333,8 +329,8 @@ namespace MeltPoolDG::CompressibleFlow
     const ScratchData<dim, dim, number>                      &scratch_data,
     const unsigned int                                        dof_idx,
     const unsigned int                                        quad_idx,
-    const Material<dim, number>                              *material_liquid,
-    const Material<dim, number>                              *material_gas)
+    const MaterialPhaseData<number>                          *material_liquid,
+    const MaterialPhaseData<number>                          *material_gas)
   {
     using StateView          = DofStateView<dim, number, const ConservedVariablesType>;
     using PrimitiveValueView = DofPrimitiveValueView<dim, ConservedVariablesType>;
@@ -343,10 +339,10 @@ namespace MeltPoolDG::CompressibleFlow
       scratch_data.get_matrix_free();
     unsigned int n_support_points_per_cell = scratch_data.get_n_dofs_per_cell(dof_idx) / (dim + 2);
 
-    auto process_cell = [&](CutUtil::CellCategory        category,
-                            unsigned int                 first_component,
-                            const Material<dim, number> *material,
-                            const unsigned int           cell_batch) {
+    auto process_cell = [&](CutUtil::CellCategory            category,
+                            unsigned int                     first_component,
+                            const MaterialPhaseData<number> *material,
+                            const unsigned int               cell_batch) {
       if (!material)
         return;
       auto eval = FECellIntegrator<dim, dim + 2, number>(
@@ -357,7 +353,7 @@ namespace MeltPoolDG::CompressibleFlow
       for (unsigned int i = 0; i < n_support_points_per_cell; ++i)
         {
           const auto            &u_cons = eval.get_dof_value(i);
-          StateView              u_cons_view(u_cons, material->data);
+          StateView              u_cons_view(u_cons, *material);
           ConservedVariablesType u_prim_data;
           PrimitiveValueView     u_prim_view(u_prim_data);
           conservative_to_primitive<dim, StateView, PrimitiveValueView>(u_cons_view, u_prim_view);

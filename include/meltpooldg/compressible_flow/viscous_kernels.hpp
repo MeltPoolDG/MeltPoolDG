@@ -38,7 +38,7 @@ namespace MeltPoolDG::CompressibleFlow
                                    const ConservedVariables,
                                    const ConservedVariablesGradient>;
 
-    explicit ViscousKernels(const Material<dim, number> &material_in);
+    explicit ViscousKernels(const MaterialPhaseData<number> &material_in);
     /**
      * @brief Calculate the viscous stress tensor.
      *
@@ -168,7 +168,7 @@ namespace MeltPoolDG::CompressibleFlow
 
   private:
     /// Object which provides all relevant material properties for a specific phase
-    const Material<dim, number> &material;
+    const MaterialPhaseData<number> &material;
 
     /// precomputed constant
     number lambda_div_c;
@@ -178,11 +178,11 @@ namespace MeltPoolDG::CompressibleFlow
    * Inlined function definitions
    * *************************************************************************************+****/
   template <int dim, typename number>
-  ViscousKernels<dim, number>::ViscousKernels(const Material<dim, number> &material_in)
+  ViscousKernels<dim, number>::ViscousKernels(const MaterialPhaseData<number> &material_in)
     : material(material_in)
   {
-    lambda_div_c = material.data.thermal_conductivity / material.data.specific_gas_constant *
-                   (material.data.gamma - 1.0);
+    lambda_div_c =
+      material.thermal_conductivity / material.specific_gas_constant * (material.gamma - 1.0);
   }
 
   template <int dim, typename number>
@@ -197,8 +197,8 @@ namespace MeltPoolDG::CompressibleFlow
     for (unsigned int d = 0; d < dim; ++d)
       {
         for (unsigned int e = 0; e < dim; ++e)
-          out[d][e] = material.data.dynamic_viscosity * (grad_u[d][e] + grad_u[e][d]);
-        out[d][d] -= material.data.dynamic_viscosity * div_u;
+          out[d][e] = material.dynamic_viscosity * (grad_u[d][e] + grad_u[e][d]);
+        out[d][d] -= material.dynamic_viscosity * div_u;
       }
 
     return out;
@@ -212,9 +212,7 @@ namespace MeltPoolDG::CompressibleFlow
       const ConservedVariablesGradient &grad_conserved_variables) const
     -> ConservedVariablesGradient
   {
-    ValueAndGradientStateView state_view(conserved_variables,
-                                         grad_conserved_variables,
-                                         material.data);
+    ValueAndGradientStateView state_view(conserved_variables, grad_conserved_variables, material);
 
     const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> velocity = state_view.velocity();
 
@@ -266,7 +264,7 @@ namespace MeltPoolDG::CompressibleFlow
                                                dealii::VectorizedArray<number>>(flux_m,
                                                                                 flux_p,
                                                                                 normal) -
-           penalty_parameter * material.data.dynamic_viscosity / material.data.reference_density *
+           penalty_parameter * material.dynamic_viscosity / material.reference_density *
              (u_m - u_p);
   }
 
@@ -331,7 +329,7 @@ namespace MeltPoolDG::CompressibleFlow
       const ConservedVariablesGradient &grad_delta_w_q) const -> ConservedVariablesGradient
   {
     ConservedVariablesGradient viscous_differential_change;
-    ValueAndGradientStateView  state_view(w_q, grad_w_q, material.data);
+    ValueAndGradientStateView  state_view(w_q, grad_w_q, material);
 
     // precompute values
     dealii::VectorizedArray<number>                         rho_inv = 1.0 / w_q[0];
@@ -370,7 +368,7 @@ namespace MeltPoolDG::CompressibleFlow
       param_a;
     param_c += transpose(param_a);
     param_c -= 2. / 3. * trace(param_a) * identity<dim, dealii::VectorizedArray<number>>();
-    param_c *= material.data.dynamic_viscosity;
+    param_c *= material.dynamic_viscosity;
 
     dealii::Tensor<1, dim, dealii::Tensor<1, dim, dealii::VectorizedArray<number>>> param_b =
       rho_inv * grad_delta_m_q;
@@ -380,7 +378,7 @@ namespace MeltPoolDG::CompressibleFlow
       param_b;
     param_d += transpose(param_b);
     param_d -= 2. / 3. * trace(param_b) * identity<dim, dealii::VectorizedArray<number>>();
-    param_d *= material.data.dynamic_viscosity;
+    param_d *= material.dynamic_viscosity;
 
 
     for (unsigned int i = 0; i < dim; ++i)
@@ -450,7 +448,7 @@ namespace MeltPoolDG::CompressibleFlow
       dealii::VectorizedArray<number> penalty_parameter) const -> ConservedVariablesGradient
   {
     return matrix_matrix_product(
-      penalty_parameter * material.data.dynamic_viscosity / material.data.reference_density *
+      penalty_parameter * material.dynamic_viscosity / material.reference_density *
         identity<n_conserved_variables<dim>, dealii::VectorizedArray<number>>(),
       dyadic_product(delta_w_q.first - delta_w_q.second, normal));
   }

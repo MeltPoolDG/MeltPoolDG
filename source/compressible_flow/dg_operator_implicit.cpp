@@ -17,7 +17,7 @@ namespace MeltPoolDG::CompressibleFlow
     : flow_scratch_data(flow_scratch_data)
     , convective_terms(flow_scratch_data.flow_data, flow_scratch_data.material)
     , viscous_terms(flow_scratch_data.material)
-    , is_viscous(is_viscous_flow<number, 1>(flow_scratch_data.material.data))
+    , is_viscous(is_viscous_flow<number, 1>(flow_scratch_data.material))
   {}
 
   template <int dim, typename number>
@@ -640,7 +640,7 @@ namespace MeltPoolDG::CompressibleFlow
         delta_w_m,
         grad_w_m,
         grad_delta_w_m,
-        flow_scratch_data.material.data.gamma);
+        flow_scratch_data.material.gamma);
 
     ConservedVariablesGradient numerical_flux =
       convective_terms.calculate_jacobian_convective_numerical_flux({w_m, w_p},

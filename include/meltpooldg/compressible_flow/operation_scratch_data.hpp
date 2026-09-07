@@ -11,7 +11,6 @@
 
 #include <meltpooldg/compressible_flow/boundary_conditions.hpp>
 #include <meltpooldg/compressible_flow/material.hpp>
-#include <meltpooldg/compressible_flow/material_data.hpp>
 #include <meltpooldg/compressible_flow/operation_data.hpp>
 #include <meltpooldg/compressible_flow/phase_coupling_data.hpp>
 #include <meltpooldg/compressible_flow/utils.hpp>
@@ -59,15 +58,15 @@ namespace MeltPoolDG::CompressibleFlow
       , dof_idx(dof_idx_in)
       , quad_idx(quad_idx_in)
     {
-      if (material.data.number_of_species == 1)
+      if (material.number_of_species == 1)
         {
-          is_viscous = material.data.dynamic_viscosity > 0.;
+          is_viscous = material.dynamic_viscosity > 0.;
         }
       else
         {
-          for (unsigned int species = 0; species < material.data.number_of_species; ++species)
+          for (unsigned int species = 0; species < material.number_of_species; ++species)
             {
-              if (material.data.species_data[species].dynamic_viscosity > 0.)
+              if (material.species_data[species].dynamic_viscosity > 0.)
                 {
                   is_viscous = true;
                   break;
@@ -89,8 +88,8 @@ namespace MeltPoolDG::CompressibleFlow
     /// Mapping-, finite-element-, and quadrature-related parameters
     const ScratchData<dim, dim, number> &scratch_data;
 
-    /// Material parameters and thermodynamic relations
-    const Material<dim, number> material;
+    /// Material parameters
+    const MaterialPhaseData<number> material;
 
     /// Cut-related parameters (only relevant for cut applications)
     const CutSolverData<number> *cut = nullptr;
@@ -190,8 +189,7 @@ namespace MeltPoolDG::CompressibleFlow
       , dof_idx(dof_idx_in)
       , quad_idx(quad_idx_in)
     {
-      is_viscous =
-        material_gas.data.dynamic_viscosity > 0. or material_liquid.data.dynamic_viscosity > 0.;
+      is_viscous = material_gas.dynamic_viscosity > 0. or material_liquid.dynamic_viscosity > 0.;
     }
 
     /// General parameters for the compressible Navier-Stokes operators
@@ -200,11 +198,11 @@ namespace MeltPoolDG::CompressibleFlow
     /// Mapping-, finite-element-, and quadrature-related parameters
     const ScratchData<dim, dim, number> &scratch_data;
 
-    /// Material parameters and thermodynamic relations for the gas phase
-    const Material<dim, number> material_gas;
+    /// Material parameters for the gas phase
+    const MaterialPhaseData<number> material_gas;
 
-    /// Material parameters and thermodynamic relations for the liquid phase
-    const Material<dim, number> material_liquid;
+    /// Material parameters for the liquid phase
+    const MaterialPhaseData<number> material_liquid;
 
     /// Parameters related to liquid-gas and solid-liquid phase transitions
     const Multiphase::PhaseChangeData<number> phase_change;

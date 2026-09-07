@@ -86,7 +86,7 @@ namespace MeltPoolDG::CompressibleFlow
     const dealii::types::boundary_id                               boundary_id,
     const ConservedVariables                                      &w_m,
     const ConservedVariablesGradient                              &grad_w_m,
-    const Material<dim, number>                                   &material,
+    const MaterialPhaseData<number>                               &material,
     const bool is_gas_phase) const -> std::tuple<ConservedVariables, ConservedVariablesGradient>
   {
     using namespace dealii;
@@ -155,7 +155,7 @@ namespace MeltPoolDG::CompressibleFlow
 
         // consider equation of state for computation of inner energy from given pressure
         using StateView = DofStateView<dim, number, const ConservedVariables>;
-        StateView state_view(w_p, material.data);
+        StateView state_view(w_p, material);
 
         const VectorizedArray<number> inner_energy =
           state_view.inner_energy_from_pressure(pressure);

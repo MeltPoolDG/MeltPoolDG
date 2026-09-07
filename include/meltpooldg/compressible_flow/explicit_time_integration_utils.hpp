@@ -221,7 +221,7 @@ namespace MeltPoolDG::CompressibleFlow
    * @param penalty_parameter Value of the symmetric interior penalty parameter on the face.
    * @param convective_terms Collection of convective term computations for the compressible Navier-Stokes equations.
    * @param viscous_terms Collection of viscous term computations for the compressible Navier-Stokes equations.
-   * @param material Class providing material data and calculations of thermodynamic relations.
+   * @param material Struct providing material data.
    * @param boundary_conditions Class providing boundary condition related computations for the
    * compressible flow solver
    * @param is_viscous Boolean flag indicating whether the flow is viscous or not.
@@ -242,7 +242,7 @@ namespace MeltPoolDG::CompressibleFlow
                                       const dealii::VectorizedArray<number>  penalty_parameter,
                                       const ConvectiveKernels<dim, number>  &convective_terms,
                                       const ViscousKernels<dim, number>     &viscous_terms,
-                                      const Material<dim, number>           &material,
+                                      const MaterialPhaseData<number>       &material,
                                       const BoundaryConditions<dim, number> &boundary_conditions,
                                       const bool                             is_viscous)
   {

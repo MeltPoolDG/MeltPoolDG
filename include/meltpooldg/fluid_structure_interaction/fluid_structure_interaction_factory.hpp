@@ -4,7 +4,6 @@
 #include <deal.II/lac/la_parallel_vector.h>
 
 #include <meltpooldg/compressible_flow/material.hpp>
-#include <meltpooldg/compressible_flow/material_data.hpp>
 #include <meltpooldg/compressible_flow/utils.hpp>
 #include <meltpooldg/fluid_structure_interaction/brinkman_penalization.hpp>
 #include <meltpooldg/fluid_structure_interaction/fluid_structure_interaction_data.hpp>

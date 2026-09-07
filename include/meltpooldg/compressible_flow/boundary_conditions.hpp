@@ -8,7 +8,6 @@
 
 #include <meltpooldg/compressible_flow/data_types.hpp>
 #include <meltpooldg/compressible_flow/material.hpp>
-#include <meltpooldg/compressible_flow/material_data.hpp>
 #include <meltpooldg/compressible_flow/operation_data.hpp>
 #include <meltpooldg/compressible_flow/state_views.hpp>
 #include <meltpooldg/core/simulation_case_base.hpp>
@@ -228,8 +227,7 @@ namespace MeltPoolDG::CompressibleFlow
      * @param boundary_id ID of the boundary.
      * @param w_m Conserved variables on the inner face.
      * @param grad_w_m Gradient of the conserved variables on the inner face.
-     * @param material Material class, which contains the material parameters and helper functions
-     * for thermodynamic relations.
+     * @param material Material struct, which contains the material parameters.
      * @param is_gas_phase Boolean variable to indicate if the gas phase (default for single-phase
      * case) or the liquid phase is considered.
      *
@@ -243,7 +241,7 @@ namespace MeltPoolDG::CompressibleFlow
       dealii::types::boundary_id                                     boundary_id,
       const ConservedVariables                                      &w_m,
       const ConservedVariablesGradient                              &grad_w_m,
-      const Material<dim, number>                                   &material,
+      const MaterialPhaseData<number>                               &material,
       bool                                                           is_gas_phase = true) const;
 
     /**

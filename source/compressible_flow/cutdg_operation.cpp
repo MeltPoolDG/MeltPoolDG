@@ -144,11 +144,11 @@ namespace MeltPoolDG::CompressibleFlow
     AssertThrow(min_density > 0, ExcMessage("Minimum density must not be zero."));
 
     const number viscous_time_step_limit =
-      (flow_scratch_data.material.data.dynamic_viscosity > 0) ?
+      (flow_scratch_data.material.dynamic_viscosity > 0) ?
         flow_scratch_data.flow_data.viscous_courant_number /
           std::pow(flow_scratch_data.scratch_data.get_degree(flow_scratch_data.dof_idx), 3) *
           std::pow(flow_scratch_data.scratch_data.get_min_cell_size(), 2) * min_density /
-          flow_scratch_data.material.data.dynamic_viscosity :
+          flow_scratch_data.material.dynamic_viscosity :
         std::numeric_limits<number>::max();
 
     const number convective_time_step_limit = compute_convective_time_step_limit();
@@ -457,7 +457,7 @@ namespace MeltPoolDG::CompressibleFlow
             for (const unsigned int q : phi.quadrature_point_indices())
               {
                 const auto conserved_variables = phi.get_value(q);
-                StateView  state_view(conserved_variables, flow_scratch_data.material.data);
+                StateView  state_view(conserved_variables, flow_scratch_data.material);
 
                 const auto velocity = state_view.velocity();
 
@@ -522,7 +522,7 @@ namespace MeltPoolDG::CompressibleFlow
                 for (const unsigned int q : fe_point_eval.quadrature_point_indices())
                   {
                     const auto conserved_variables = fe_point_eval.get_value(q);
-                    StateView  state_view(conserved_variables, flow_scratch_data.material.data);
+                    StateView  state_view(conserved_variables, flow_scratch_data.material);
 
                     const auto velocity = state_view.velocity();
 

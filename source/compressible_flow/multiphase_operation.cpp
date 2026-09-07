@@ -249,11 +249,12 @@ namespace MeltPoolDG::Multiphase
     };
 
     const number viscous_time_step_limit_liquid =
-      compute_viscous_time_step_limit(multiphase_scratch_data.material_gas.data.dynamic_viscosity,
+      compute_viscous_time_step_limit(multiphase_scratch_data.material_liquid.dynamic_viscosity,
                                       min_density.first);
 
-    const number viscous_time_step_limit_gas = compute_viscous_time_step_limit(
-      multiphase_scratch_data.material_liquid.data.dynamic_viscosity, min_density.second);
+    const number viscous_time_step_limit_gas =
+      compute_viscous_time_step_limit(multiphase_scratch_data.material_gas.dynamic_viscosity,
+                                      min_density.second);
 
     const number viscous_time_step_limit =
       std::min(viscous_time_step_limit_liquid, viscous_time_step_limit_gas);
@@ -556,7 +557,7 @@ namespace MeltPoolDG::Multiphase
 
         const auto  &material = is_gas_phase ? multiphase_scratch_data.material_gas :
                                                multiphase_scratch_data.material_liquid;
-        DofStateView state_view(conserved_variables, material.data);
+        DofStateView state_view(conserved_variables, material);
 
         const auto velocity = state_view.velocity();
 
