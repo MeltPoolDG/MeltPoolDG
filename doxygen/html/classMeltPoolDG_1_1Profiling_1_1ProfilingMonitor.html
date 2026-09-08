@@ -160,12 +160,16 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a8b4b03bf59dbab6975044408353d6d91" id="r_a8b4b03bf59dbab6975044408353d6d91"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structMeltPoolDG_1_1Profiling_1_1ProfilingData.html">ProfilingData</a>&lt; number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html#a8b4b03bf59dbab6975044408353d6d91">data</a></td></tr>
+<tr class="memdesc:a8b4b03bf59dbab6975044408353d6d91"><td class="mdescLeft">&#160;</td><td class="mdescRight">The profiling data struct which contains the relevant information for profiling.  <br /></td></tr>
 <tr class="separator:a8b4b03bf59dbab6975044408353d6d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab81f6de402fa7d525c2518395df07e6b" id="r_ab81f6de402fa7d525c2518395df07e6b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1TimeIterator.html">TimeIntegration::TimeIterator</a>&lt; number &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html#ab81f6de402fa7d525c2518395df07e6b">time</a></td></tr>
+<tr class="memdesc:ab81f6de402fa7d525c2518395df07e6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time iterator which is used to compute the current time.  <br /></td></tr>
 <tr class="separator:ab81f6de402fa7d525c2518395df07e6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a2ddbbf53c2be18f21ea1ce8eaec650" id="r_a1a2ddbbf53c2be18f21ea1ce8eaec650"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html#a1a2ddbbf53c2be18f21ea1ce8eaec650">last_written_time</a> = 0.0</td></tr>
+<tr class="memdesc:a1a2ddbbf53c2be18f21ea1ce8eaec650"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time at which the last profiling output was written.  <br /></td></tr>
 <tr class="separator:a1a2ddbbf53c2be18f21ea1ce8eaec650"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c81c9ecace004292819960785c81f9b" id="r_a3c81c9ecace004292819960785c81f9b"><td class="memItemLeft" align="right" valign="top">std::chrono::time_point&lt; std::chrono::system_clock &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html#a3c81c9ecace004292819960785c81f9b">real_time_start</a></td></tr>
+<tr class="memdesc:a3c81c9ecace004292819960785c81f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Real time at object construction.  <br /></td></tr>
 <tr class="separator:a3c81c9ecace004292819960785c81f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -243,6 +247,7 @@ template&lt;typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns true if according to the data set in the profiling data struct, profiling outout should be performed. Otherwise, returns false. </p>
 
 </div>
 </div>
@@ -279,6 +284,15 @@ template&lt;typename number &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Print profiling summary as obtained by the TimerOutput class and statistics summary of all available monitors.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pcout</td><td><a class="el" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a> to print the text. </td></tr>
+    <tr><td class="paramname">timer</td><td>TimerOutput object which contains the profiling information. </td></tr>
+    <tr><td class="paramname">mpi_communicator</td><td>MPI communicator relevant for the timer. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -305,6 +319,8 @@ template&lt;typename number &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>The profiling data struct which contains the relevant information for profiling. </p>
+
 </div>
 </div>
 <a id="a1a2ddbbf53c2be18f21ea1ce8eaec650" name="a1a2ddbbf53c2be18f21ea1ce8eaec650"></a>
@@ -328,6 +344,8 @@ template&lt;typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The time at which the last profiling output was written. </p>
 
 </div>
 </div>
@@ -353,6 +371,8 @@ template&lt;typename number &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Real time at object construction. </p>
+
 </div>
 </div>
 <a id="ab81f6de402fa7d525c2518395df07e6b" name="ab81f6de402fa7d525c2518395df07e6b"></a>
@@ -376,6 +396,8 @@ template&lt;typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The time iterator which is used to compute the current time. </p>
 
 </div>
 </div>
