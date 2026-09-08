@@ -1,6 +1,8 @@
 #pragma once
 
-#include <deal.II/base/convergence_table.h>
+#include <deal.II/base/table_handler.h>
+
+#include <meltpooldg/utilities/journal.hpp>
 
 namespace MeltPoolDG
 {
@@ -44,9 +46,9 @@ namespace MeltPoolDG
 
     template <typename StreamType>
     static void
-    print(StreamType &ss)
+    print(StreamType &ss, const std::string &title)
     {
-      dealii::ConvergenceTable table;
+      dealii::TableHandler table;
 
       for (const auto &entry : stat_dofs)
         {
@@ -61,7 +63,13 @@ namespace MeltPoolDG
         }
 
       if (ss.is_active())
-        table.write_text(ss.get_stream(), dealii::TableHandler::TextOutputFormat::org_mode_table);
+        Journal::print_table(ss, title, table);
+    }
+
+    static bool
+    has_statistics()
+    {
+      return not stat_dofs.empty();
     }
 
 

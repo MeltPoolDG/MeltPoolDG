@@ -43,22 +43,45 @@ namespace MeltPoolDG::Profiling
                                   const dealii::TimerOutput &timer,
                                   const MPI_Comm            &mpi_communicator) const
   {
+    // print profiling summary as obtained by the TimerOutput class
+    pcout << std::endl;
+    Journal::print_header(pcout, "Profiling summary");
+
     timer.print_wall_time_statistics(mpi_communicator);
-    pcout << std::endl;
 
-    Journal::print_decoration_line(pcout);
-    Journal::print_line(pcout, "Iteration statistics", "iteration_monitor");
-    IterationMonitor<number>::print(pcout);
-    pcout << std::endl;
+    timer.print_summary();
 
-    Journal::print_decoration_line(pcout);
-    Journal::print_line(pcout, "DoF statistics", "dof_monitor");
-    DoFMonitor<number>::print(pcout);
-    pcout << std::endl;
+    Journal::print_header(pcout, "End of profiling summary");
+    pcout << std::endl << std::endl;
 
-    Journal::print_decoration_line(pcout);
-    Journal::print_line(pcout, "Cell statistics", "cell_monitor");
-    CellMonitor<number>::print(pcout);
+    // print statistics summary of all available monitors
+    Journal::print_header(pcout, "Statistics summary");
+    pcout << std::endl;
+    int section_number = 1;
+    if (IterationMonitor<number>::has_statistics())
+      {
+        IterationMonitor<number>::print(pcout,
+                                        std::to_string(section_number) + ". Iteration statistics");
+        pcout << std::endl;
+        ++section_number;
+      }
+
+    if (DoFMonitor<number>::has_statistics())
+      {
+        DoFMonitor<number>::print(pcout, std::to_string(section_number) + ". DoF statistics");
+        pcout << std::endl;
+        ++section_number;
+      }
+
+    if (CellMonitor<number>::has_statistics())
+      {
+        CellMonitor<number>::print(pcout, std::to_string(section_number) + ". Cell statistics");
+        pcout << std::endl;
+        ++section_number;
+      }
+
+    Journal::print_header(pcout, "End of statistics summary");
+    pcout << std::endl;
   }
 
   template <typename number>
