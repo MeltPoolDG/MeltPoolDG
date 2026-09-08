@@ -40,6 +40,25 @@ MeltPoolDG::CompressibleFlow::EOSData<number>::add_parameters(dealii::ParameterH
       "latent heat,.... The variable is required for the Noble-Abel stiffened gas EOS. The "
       "maximum value is 0.",
       dealii::Patterns::Double(std::numeric_limits<number>::min(), 0.));
+    prm.enter_subsection("weakly compressible");
+    {
+      prm.add_parameter(
+        "reference-state pressure",
+        weakly_compressible.reference_state_pressure,
+        "Numerical EOS parameter for the pressure at the reference point required for the weakly compressible EOS. The minimum value is 0.",
+        dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
+      prm.add_parameter(
+        "reference-state density",
+        weakly_compressible.reference_state_density,
+        "Numerical EOS parameter for the density at the reference point required for the weakly compressible EOS. The minimum value is 0.",
+        dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
+      prm.add_parameter(
+        "reference-state sound speed",
+        weakly_compressible.reference_state_sound_speed,
+        "Numerical EOS parameter for the sound speed at the reference point required for the weakly compressible EOS. The minimum value is 0.",
+        dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
+    }
+    prm.leave_subsection();
   }
   prm.leave_subsection();
 }
@@ -60,6 +79,15 @@ MeltPoolDG::CompressibleFlow::EOSData<number>::post(const EquationOfState eos_ty
                 dealii::ExcMessage(
                   "The parameters stiffening_pressure, covolume and heat_bound are required for "
                   "the Noble-Abel stiffened gas EOS."));
+  else if (eos_type == EquationOfState::weakly_compressible)
+    AssertThrow(
+      weakly_compressible.reference_state_pressure != std::numeric_limits<number>::max() and
+        weakly_compressible.reference_state_density != std::numeric_limits<number>::max() and
+        weakly_compressible.reference_state_sound_speed != std::numeric_limits<number>::max() and
+        weakly_compressible.reference_state_sound_speed > 0.,
+      dealii::ExcMessage(
+        "The parameters reference_state_pressure, reference_state_density and reference_state_sound_speed are required for "
+        "the weakly compressible EOS, and the reference_state_sound_speed must be > 0."));
 }
 
 template <typename number>
@@ -92,6 +120,10 @@ MeltPoolDG::CompressibleFlow::MaterialSpeciesData<number>::add_parameters(
   prm.add_parameter("specific isobaric heat",
                     specific_isobaric_heat,
                     "Specific isobaric heat.",
+                    dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
+  prm.add_parameter("specific isochoric heat",
+                    specific_isochoric_heat,
+                    "Specific isochoric heat.",
                     dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
   prm.add_parameter("dynamic viscosity",
                     dynamic_viscosity,
@@ -132,8 +164,9 @@ MeltPoolDG::CompressibleFlow::MaterialPhaseData<number>::add_parameters(
       "eos type",
       eos_type,
       "Type of equation of state. "
-      "The options are \"ideal_gas\", \"stiffened_gas\" and \"noble_abel_stiffened_gas\".",
-      dealii::Patterns::Selection("ideal_gas|stiffened_gas|noble_abel_stiffened_gas"));
+      "The options are \"ideal_gas\", \"stiffened_gas\", \"noble_abel_stiffened_gas\" and \"weakly_compressible\".",
+      dealii::Patterns::Selection(
+        "ideal_gas|stiffened_gas|noble_abel_stiffened_gas|weakly_compressible"));
     prm.add_parameter("reference density",
                       reference_density,
                       "Reference density for computing the interior penalty factor. "
@@ -254,21 +287,23 @@ MeltPoolDG::CompressibleFlow::MaterialPhaseData<number>::post(const bool is_gas)
   // should be accessed through the species data.
   if (number_of_species == 1)
     {
-      specific_isobaric_heat = species_data[0].specific_isobaric_heat;
-      dynamic_viscosity      = species_data[0].dynamic_viscosity;
-      gamma                  = species_data[0].gamma;
-      specific_gas_constant  = species_data[0].specific_gas_constant;
-      thermal_conductivity   = species_data[0].thermal_conductivity;
-      eos_data               = species_data[0].eos_data;
+      specific_isobaric_heat  = species_data[0].specific_isobaric_heat;
+      specific_isochoric_heat = species_data[0].specific_isochoric_heat;
+      dynamic_viscosity       = species_data[0].dynamic_viscosity;
+      gamma                   = species_data[0].gamma;
+      specific_gas_constant   = species_data[0].specific_gas_constant;
+      thermal_conductivity    = species_data[0].thermal_conductivity;
+      eos_data                = species_data[0].eos_data;
     }
   else
     {
-      specific_isobaric_heat = dealii::numbers::signaling_nan<number>();
-      dynamic_viscosity      = dealii::numbers::signaling_nan<number>();
-      gamma                  = dealii::numbers::signaling_nan<number>();
-      specific_gas_constant  = dealii::numbers::signaling_nan<number>();
-      thermal_conductivity   = dealii::numbers::signaling_nan<number>();
-      eos_data               = EOSData<number>();
+      specific_isobaric_heat  = dealii::numbers::signaling_nan<number>();
+      specific_isochoric_heat = dealii::numbers::signaling_nan<number>();
+      dynamic_viscosity       = dealii::numbers::signaling_nan<number>();
+      gamma                   = dealii::numbers::signaling_nan<number>();
+      specific_gas_constant   = dealii::numbers::signaling_nan<number>();
+      thermal_conductivity    = dealii::numbers::signaling_nan<number>();
+      eos_data                = EOSData<number>();
     }
 }
 

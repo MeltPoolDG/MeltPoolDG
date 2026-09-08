@@ -13,7 +13,12 @@ namespace MeltPoolDG::CompressibleFlow
 {
   /// Enumeration for the currently supported equations of state to model compressible or (nearly)
   /// incompressible fluids
-  BETTER_ENUM(EquationOfState, char, ideal_gas, stiffened_gas, noble_abel_stiffened_gas)
+  BETTER_ENUM(EquationOfState,
+              char,
+              ideal_gas,
+              stiffened_gas,
+              noble_abel_stiffened_gas,
+              weakly_compressible)
 
   /**
    * @brief Collection of parameters related to the equation of state for a compressible or nearly
@@ -35,6 +40,19 @@ namespace MeltPoolDG::CompressibleFlow
     /// hydrogen bondings, latent heat,...
     /// (required for noble_abel_stiffened_gas)
     number heat_bound = std::numeric_limits<number>::min();
+
+    /// Parameters for the weakly compressible equation of state
+    struct WeaklyCompressibleSpecificData
+    {
+      /// Parameter for the pressure at the reference point
+      number reference_state_pressure = std::numeric_limits<number>::max();
+
+      /// Parameter for the density at the reference point
+      number reference_state_density = std::numeric_limits<number>::max();
+
+      /// Parameter for the sound speed at the reference point
+      number reference_state_sound_speed = std::numeric_limits<number>::max();
+    } weakly_compressible;
 
     /**
      * @brief Add EOS-specific material parameters in the parameter handler.
@@ -63,6 +81,9 @@ namespace MeltPoolDG::CompressibleFlow
   {
     /// Specific isobaric heat (SI: J/(kg K))
     number specific_isobaric_heat = 1000.0;
+
+    /// Specific isochoric heat (SI: J/(kg K))
+    number specific_isochoric_heat = 1000.0;
 
     /// Dynamic viscosity (SI: kg/(m s))
     number dynamic_viscosity = 1. / 1600.;
@@ -149,6 +170,7 @@ namespace MeltPoolDG::CompressibleFlow
     /// multi-component materials, they are set to invalid numbers. This is done by the post
     /// function.
     number          specific_isobaric_heat;
+    number          specific_isochoric_heat;
     number          dynamic_viscosity;
     number          gamma;
     number          specific_gas_constant;

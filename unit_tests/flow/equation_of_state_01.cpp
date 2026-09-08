@@ -181,6 +181,61 @@ namespace
     }
   };
 
+  struct WeaklyCompressibleValueView
+  {
+    double                         rho = 3500.;
+    dealii::Tensor<1, dim, double> v{{10.1, 1.3}};
+    double                         E = 1.035e10;
+
+    double &
+    density()
+    {
+      return rho;
+    }
+
+    const double &
+    density() const
+    {
+      return rho;
+    }
+
+    auto &
+    velocity()
+    {
+      return v;
+    }
+
+    const auto &
+    velocity() const
+    {
+      return v;
+    }
+
+    double &
+    momentum(const unsigned int d)
+    {
+      return v[d];
+    }
+
+    const double &
+    momentum(const unsigned int d) const
+    {
+      return v[d];
+    }
+
+    double &
+    total_energy()
+    {
+      return E;
+    }
+
+    const double &
+    total_energy() const
+    {
+      return E;
+    }
+  };
+
   struct IdealGasMaterialView
   {
     double gamma = 1.4;
@@ -260,6 +315,38 @@ namespace
     covolume() const
     {
       return b;
+    }
+  };
+
+  struct WeaklyCompressibleMaterialView
+  {
+    double p_0   = 1.e5;
+    double rho_0 = 3500.;
+    double c_0   = 500.;
+    double c_v   = 1000.;
+
+    double
+    reference_state_pressure() const
+    {
+      return p_0;
+    }
+
+    double
+    reference_state_density() const
+    {
+      return rho_0;
+    }
+
+    double
+    reference_state_sound_speed() const
+    {
+      return c_0;
+    }
+
+    double
+    specific_isochoric_heat() const
+    {
+      return c_v;
     }
   };
 
@@ -384,7 +471,7 @@ namespace
 
     const double expected = 180380.10131578948;
 
-    MeltPoolDG::TestUtils::expect_near(IdealGasEOS::specific_inner_energy(value, material),
+    MeltPoolDG::TestUtils::expect_near(IdealGasEOS::specific_internal_energy(value, material),
                                        expected,
                                        1.e-14);
   }
@@ -484,7 +571,7 @@ namespace
 
     const double expected = 1179772.3463625866;
 
-    MeltPoolDG::TestUtils::expect_near(StiffenedGasEOS::specific_inner_energy(value, material),
+    MeltPoolDG::TestUtils::expect_near(StiffenedGasEOS::specific_internal_energy(value, material),
                                        expected,
                                        1.e-14);
   }
@@ -589,7 +676,7 @@ namespace
     const double expected = -2024871.6301347816;
 
     MeltPoolDG::TestUtils::expect_near(
-      NobleAbelStiffenedGasEOS::specific_inner_energy(value, material), expected, 1.e-14);
+      NobleAbelStiffenedGasEOS::specific_internal_energy(value, material), expected, 1.e-14);
   }
 
   TEST(NobleAbelStiffenedGasEOS, GradientTemperature)
@@ -627,6 +714,106 @@ namespace
     MeltPoolDG::TestUtils::expect_near(conservative.total_energy(), expected[3], 1.e-14);
   }
 
+  // Weakly compressible gas
+
+  TEST(WeaklyCompressibleEOS, ThermodynamicPressure)
+  {
+    WeaklyCompressibleValueView value;
+
+    const auto material = WeaklyCompressibleMaterialView{};
+
+    const double expected = 1.e5;
+
+    MeltPoolDG::TestUtils::expect_double_eq(WeaklyCompressibleEOS::thermodynamic_pressure(value,
+                                                                                          material),
+                                            expected);
+  }
+
+  TEST(WeaklyCompressibleEOS, Temperature)
+  {
+    WeaklyCompressibleValueView value;
+
+    const auto material = WeaklyCompressibleMaterialView{};
+
+    const double expected = 2957.0910071428571;
+
+    MeltPoolDG::TestUtils::expect_near(WeaklyCompressibleEOS::temperature(value, material),
+                                       expected,
+                                       1.e-14);
+  }
+
+  TEST(WeaklyCompressibleEOS, SpeedOfSound)
+  {
+    WeaklyCompressibleValueView value;
+
+    const auto material = WeaklyCompressibleMaterialView{};
+
+    const double expected = 500.;
+
+    MeltPoolDG::TestUtils::expect_double_eq(WeaklyCompressibleEOS::speed_of_sound(value, material),
+                                            expected);
+  }
+
+  TEST(WeaklyCompressibleEOS, InnerEnergyFromPressure)
+  {
+    WeaklyCompressibleValueView value;
+
+    const double pressure = 1.e5;
+
+    const auto material = WeaklyCompressibleMaterialView{};
+
+    // For the weakly compressible EoS, the inner energy is independent of the pressure. Thus,
+    // calling this function throws an assert.
+    EXPECT_THROW(WeaklyCompressibleEOS::inner_energy_from_pressure(pressure, value, material),
+                 dealii::ExceptionBase);
+  }
+
+  TEST(WeaklyCompressibleEOS, SpecificInnerEnergy)
+  {
+    WeaklyCompressibleValueView value;
+
+    const auto material = WeaklyCompressibleMaterialView{};
+
+    const double expected = 2957091.0071428572;
+
+    MeltPoolDG::TestUtils::expect_near(
+      WeaklyCompressibleEOS::specific_internal_energy(value, material), expected, 1.e-14);
+  }
+
+  TEST(WeaklyCompressibleEOS, GradientTemperature)
+  {
+    WeaklyCompressibleValueView value;
+
+    const auto material = WeaklyCompressibleMaterialView{};
+    const auto gradient = GradientView();
+
+    const auto result = WeaklyCompressibleEOS::grad_temperature(value, gradient, material);
+
+    const dealii::Tensor<1, dim, double> expected{{-1.061207412244898, -0.66744903673469402}};
+
+    MeltPoolDG::TestUtils::expect_near(result[0], expected[0], 1.e-14);
+    MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-14);
+  }
+
+  TEST(WeaklyCompressibleEOS, ConservativeFromPrimitive)
+  {
+    PrimitiveVariableView primitive;
+    primitive.v[0] *= 1.e-3;
+    primitive.v[1] *= 1.e-3;
+
+    const auto material = WeaklyCompressibleMaterialView{};
+
+    WeaklyCompressibleValueView conservative;
+    WeaklyCompressibleEOS::conservative_from_primitive<dim>(conservative, primitive, material);
+
+    const dealii::Tensor<1, dim + 2, double> expected{{3500., 35., 7., 1050000000.1819999}};
+
+    MeltPoolDG::TestUtils::expect_double_eq(conservative.density(), expected[0]);
+    MeltPoolDG::TestUtils::expect_double_eq(conservative.momentum(0), expected[1]);
+    MeltPoolDG::TestUtils::expect_double_eq(conservative.momentum(1), expected[2]);
+    MeltPoolDG::TestUtils::expect_near(conservative.total_energy(), expected[3], 1.e-14);
+  }
+
   // supports_eos / dispatch_eos
 
   struct IdealGasDerived
@@ -636,10 +823,11 @@ namespace
 
   struct AllEOSDerived
   {
-    static constexpr std::array<EquationOfState, 3> supported_eos = {
+    static constexpr std::array<EquationOfState, 4> supported_eos = {
       {EquationOfState::ideal_gas,
        EquationOfState::stiffened_gas,
-       EquationOfState::noble_abel_stiffened_gas}};
+       EquationOfState::noble_abel_stiffened_gas,
+       EquationOfState::weakly_compressible}};
   };
 
   TEST(DispatchEOSTest, SupportsEOS)
@@ -647,10 +835,12 @@ namespace
     EXPECT_TRUE((supports_eos<IdealGasDerived, EquationOfState::ideal_gas>()));
     EXPECT_FALSE((supports_eos<IdealGasDerived, EquationOfState::stiffened_gas>()));
     EXPECT_FALSE((supports_eos<IdealGasDerived, EquationOfState::noble_abel_stiffened_gas>()));
+    EXPECT_FALSE((supports_eos<IdealGasDerived, EquationOfState::weakly_compressible>()));
 
     EXPECT_TRUE((supports_eos<AllEOSDerived, EquationOfState::ideal_gas>()));
     EXPECT_TRUE((supports_eos<AllEOSDerived, EquationOfState::stiffened_gas>()));
     EXPECT_TRUE((supports_eos<AllEOSDerived, EquationOfState::noble_abel_stiffened_gas>()));
+    EXPECT_TRUE((supports_eos<AllEOSDerived, EquationOfState::weakly_compressible>()));
   }
 
   TEST(DispatchEOS, DispatchesIdealGas)
@@ -676,6 +866,16 @@ namespace
     const auto result =
       dispatch_eos<AllEOSDerived>(EquationOfState::noble_abel_stiffened_gas, [](auto eos) {
         return std::is_same_v<decltype(eos), NobleAbelStiffenedGasEOS>;
+      });
+
+    EXPECT_TRUE(result);
+  }
+
+  TEST(DispatchEOS, DispatchesWeaklyCompressible)
+  {
+    const auto result =
+      dispatch_eos<AllEOSDerived>(EquationOfState::weakly_compressible, [](auto eos) {
+        return std::is_same_v<decltype(eos), WeaklyCompressibleEOS>;
       });
 
     EXPECT_TRUE(result);
