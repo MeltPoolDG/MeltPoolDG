@@ -15,8 +15,10 @@
 #include <meltpooldg/utilities/amr_regions.hpp>
 #include <meltpooldg/utilities/journal.hpp>
 
+#include <algorithm>
+#include <cmath>
+#include <numbers>
 #include <vector>
-
 
 template <int dim, typename number, typename ObstacleType>
 MeltPoolDG::ObstacleField<dim, number, ObstacleType>::ObstacleField(
@@ -230,6 +232,35 @@ MeltPoolDG::ObstacleField<dim, number, ObstacleType>::n_global_particles() const
 }
 
 template <int dim, typename number, typename ObstacleType>
+number
+MeltPoolDG::ObstacleField<dim, number, ObstacleType>::compute_rayleigh_time_step() const
+{
+  number local_radius_sum  = 0.;
+  number local_min_density = 0.;
+
+  for (const auto &particle : locally_owned_particle_range())
+    {
+      local_radius_sum += particle.radius();
+      local_min_density = std::min(local_min_density, particle.density());
+    }
+
+  const number radius_sum = dealii::Utilities::MPI::sum(local_radius_sum, mpi_communicator);
+  const number density    = dealii::Utilities::MPI::min(local_min_density, mpi_communicator);
+  const number r_avg      = radius_sum / n_global_particles();
+
+  const number &poisson_ratio  = data.contact_forces.particle.poisson_ratio;
+  const number &youngs_modulus = data.contact_forces.particle.youngs_modulus;
+
+  // The formula stems from equation (37) out of the paper: Blais, Vidal, Bertrand, Patience,
+  // Chaouki, 2019: 'Experimental Methods in Chemical Engineering: Discrete Element Method—DEM.'
+  // (https://onlinelibrary.wiley.com/doi/abs/10.1002/cjce.23501)
+
+  return data.rayleigh_time_stepping_safety_factor *
+         (std::numbers::pi_v<number> * r_avg / (0.8766 + 0.1631 * poisson_ratio)) *
+         std::sqrt(2.0 * density * (1.0 + poisson_ratio) / youngs_modulus);
+}
+
+template <int dim, typename number, typename ObstacleType>
 void
 MeltPoolDG::ObstacleField<dim, number, ObstacleType>::subscribe_to_data_structure(
   std::function<void(
@@ -238,7 +269,6 @@ MeltPoolDG::ObstacleField<dim, number, ObstacleType>::subscribe_to_data_structur
 {
   obstacle_data_structure.subscribe(callback);
 }
-
 
 template class MeltPoolDG::ObstacleField<1, double, MeltPoolDG::SphericalParticle<1, double>>;
 template class MeltPoolDG::ObstacleField<2, double, MeltPoolDG::SphericalParticle<2, double>>;
