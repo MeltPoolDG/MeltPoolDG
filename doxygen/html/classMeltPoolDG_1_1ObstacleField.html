@@ -200,6 +200,9 @@ requires (!std::is_lvalue_reference_v&lt;ObstacleLoadType&gt;)</td></tr>
 <tr class="separator:a9d2c9d1b65c922c897bb21f6f12883b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdeeebe6ba20e8ec87bfb17a9327ff55" id="r_abdeeebe6ba20e8ec87bfb17a9327ff55"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#abdeeebe6ba20e8ec87bfb17a9327ff55">n_global_particles</a> () const</td></tr>
 <tr class="separator:abdeeebe6ba20e8ec87bfb17a9327ff55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74069a7a2d8eca44462ddaa0a460f8be" id="r_a74069a7a2d8eca44462ddaa0a460f8be"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a74069a7a2d8eca44462ddaa0a460f8be">compute_rayleigh_time_step</a> () const</td></tr>
+<tr class="memdesc:a74069a7a2d8eca44462ddaa0a460f8be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Rayleigh time step, scaled by a safety factor.  <br /></td></tr>
+<tr class="separator:a74069a7a2d8eca44462ddaa0a460f8be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28893185b904de04f10870260f75264f" id="r_a28893185b904de04f10870260f75264f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a28893185b904de04f10870260f75264f">subscribe_to_data_structure</a> (std::function&lt; void(<a class="el" href="structMeltPoolDG_1_1CellListParticleHandler.html">CellListParticleHandler</a>&lt; dim, number, ObstacleType &gt; &amp;, const typename <a class="el" href="structMeltPoolDG_1_1CellListParticleHandler.html">CellListParticleHandler</a>&lt; dim, number, ObstacleType &gt;::NotifyEvent &amp;)&gt; callback)</td></tr>
 <tr class="separator:a28893185b904de04f10870260f75264f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -437,6 +440,30 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 
 <p>Computes and applies the total load acting on each obstacle in the field. This includes both forces and torques. </p>
 <p>This method iterates over all registered loads in the <code>loads</code> vector and computes the cumulative load for each obstacle by summing the contributions of all individual load models. The resulting total load (force and torque) is then stored in the obstacle’s properties using the appropriate setter defined by <code>ObstacleType</code>. </p>
+
+</div>
+</div>
+<a id="a74069a7a2d8eca44462ddaa0a460f8be" name="a74069a7a2d8eca44462ddaa0a460f8be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74069a7a2d8eca44462ddaa0a460f8be">&#9670;&#160;</a></span>compute_rayleigh_time_step()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">number <a class="el" href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a>&lt; dim, number, ObstacleType &gt;::compute_rayleigh_time_step </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the Rayleigh time step, scaled by a safety factor. </p>
+<p>The time step is derived from the average particle radius and density of the obstacles in the field, together with the Young's modulus and Poisson's ratio.</p>
+<dl class="section note"><dt>Note</dt><dd>If particle densities differ, the minimum density across all obstacles is used.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The estimated Rayleigh time step, scaled by a safety factor. </dd></dl>
 
 </div>
 </div>
