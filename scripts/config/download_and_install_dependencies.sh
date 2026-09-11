@@ -57,7 +57,7 @@ fi
 # install Arborx
 #############################################################
 if [[ "$install_arborx" == "y" ]]; then
-    VERSION=2.0.1
+    VERSION=2.1
     #VERSION=1.7
     wget https://github.com/arborx/ArborX/archive/refs/tags/v${VERSION}.tar.gz
     mv v${VERSION}.tar.gz v${VERSION}.tar
