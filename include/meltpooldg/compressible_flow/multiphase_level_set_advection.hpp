@@ -10,9 +10,13 @@
 #pragma once
 
 #include <deal.II/base/function.h>
+#include <deal.II/base/mpi.h>
 #include <deal.II/base/point.h>
+#include <deal.II/base/utilities.h>
 
 #include <deal.II/numerics/vector_tools_interpolate.h>
+
+#include <numeric>
 
 namespace MeltPoolDG::Multiphase
 {
@@ -122,8 +126,26 @@ namespace MeltPoolDG::Multiphase
       else if (case_name == "two_phase")
         {
           // one phase boundary
+
+          // TODO: This is a current work-around, since the level-set advection is not yet fully
+          // implemented. The mean value of the interface velocity is used to advect the level-set
+          // field. In the future, a full level-set advection should be implemented, which uses the
+          // full velocity field to advect the level-set field.
+          const number local_sum =
+            std::accumulate(interface_velocity.begin(), interface_velocity.end(), 0.);
+
+          const unsigned int local_size = interface_velocity.size();
+
+          const number global_sum =
+            dealii::Utilities::MPI::sum(local_sum, scratch_data->get_mpi_comm(level_set_dof_idx));
+
+          const unsigned int global_size =
+            dealii::Utilities::MPI::sum(local_size, scratch_data->get_mpi_comm(level_set_dof_idx));
+
+          const number velocity = global_sum / global_size;
+
           for (unsigned int i = 0; i < level_set.size(); i++)
-            level_set[i] += time_step * interface_velocity[0];
+            level_set[i] += time_step * velocity;
         }
       else
         AssertThrow(false,
