@@ -980,12 +980,17 @@
                   "description": "Penalty parameter for the enforcement of the initial position of the zero level-set iso-surface during the elliptic reinitialization.",
                   "default": 0.0
                 },
-                "fixed point iteration": {
+                "non_linear": {
+                  "type": "boolean",
+                  "description": "Sets a flag if the elliptic reinitialization should be solved with analytical Newton-Raphson method.",
+                  "default": false
+                },
+                "solver iteration": {
                   "type": "object",
                   "properties": {
                     "max n steps": {
                       "type": "integer",
-                      "description": "Sets the maximum number of fixed point iterations.",
+                      "description": "Sets the maximum number of solver iterations.",
                       "default": 5
                     },
                     "tolerance": {

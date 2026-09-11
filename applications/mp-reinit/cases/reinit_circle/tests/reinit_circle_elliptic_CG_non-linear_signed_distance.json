@@ -1,9 +1,8 @@
 {
-  "$schema": "../../../parameters.schema.json",
   "base": {
     "case name": "reinit_circle",
     "dimension": 2,
-    "global refinements": 7,
+    "global refinements": 5,
     "do print parameters": false,
     "fe": {
       "degree": 1
@@ -26,7 +25,7 @@
     "linear solver": {
       "solver type": "CG",
       "preconditioner type": "AMG",
-      "max iterations": 1000,
+      "max iterations": 10000,
       "rel tolerance": 1e-08,
       "abs tolerance": 1e-20,
       "monitor type": "none",
@@ -35,6 +34,7 @@
     "type": "elliptic",
     "elliptic": {
       "penalty parameter": 1000.0,
+      "implicit": true,
       "solver iteration": {
         "max n steps": 3,
         "tolerance": 1e-05

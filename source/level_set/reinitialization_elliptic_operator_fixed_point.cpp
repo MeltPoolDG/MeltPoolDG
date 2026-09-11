@@ -1,5 +1,5 @@
 #include "meltpooldg/utilities/fe_integrator.hpp"
-#include <meltpooldg/level_set/reinitialization_elliptic_operator.hpp>
+#include <meltpooldg/level_set/reinitialization_elliptic_operator_fixed_point.hpp>
 #include <meltpooldg/linear_algebra/utilities_matrixfree.hpp>
 #include <meltpooldg/time_integration/time_integrator_util.hpp>
 #include <meltpooldg/utilities/utility_functions.hpp>
@@ -36,10 +36,6 @@ namespace MeltPoolDG::LevelSet
   void
   ReinitializationEllipticOperator<dim, number>::reinit()
   {
-    const auto &matrix_free = scratch_data.get_matrix_free();
-    const std::shared_ptr<const dealii::MatrixFree<dim, number, VectorizedArrayType>>
-      matrix_free_ptr(&matrix_free, [](const auto *) {});
-
     scratch_data.initialize_dof_vector(zero_interface, this->dof_idx);
     zero_interface = 0.0;
     zero_interface.update_ghost_values();
@@ -136,9 +132,10 @@ namespace MeltPoolDG::LevelSet
     const auto grad_norm = phi_old.get_gradient(q_index).norm();
 
     const VectorizedArrayType one(1.0);
-    const VectorizedArrayType eps(1e-8);
-    return compare_and_apply_mask<dealii::SIMDComparison::greater_than>(
-      grad_norm, one, one - one / (grad_norm + eps), grad_norm - one);
+    return compare_and_apply_mask<dealii::SIMDComparison::greater_than>(grad_norm,
+                                                                        one,
+                                                                        one - one / (grad_norm),
+                                                                        grad_norm - one);
   }
 
   template <int dim, typename number>
