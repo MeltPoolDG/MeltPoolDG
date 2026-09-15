@@ -192,11 +192,16 @@ namespace MeltPoolDG::Multiphase
               const VectorizedArray<number> darcy_damping_coefficient =
                 darcy_damping_model.compute_darcy_damping_coefficient(solid_fraction);
 
+              using Idx = CompressibleFlow::ConservedVariableIndex<dim>;
+
               // contribution to momentum equation
-              darcy_damping[1] = darcy_damping_coefficient * velocity[0];
+              for (unsigned int i = 0; i < dim; ++i)
+                darcy_damping[Idx::momentum + i] = darcy_damping_coefficient * velocity[i];
 
               // contribution to energy equation
-              darcy_damping[2] = darcy_damping[1] * velocity[0];
+              darcy_damping[Idx::energy] = 0.0;
+              for (unsigned int i = 0; i < dim; ++i)
+                darcy_damping[Idx::energy] += darcy_damping[Idx::momentum + i] * velocity[i];
 
               flux += darcy_damping;
             }
@@ -481,7 +486,7 @@ namespace MeltPoolDG::Multiphase
                             // returns velocity with respect to the outward liquid phase pointing
                             // normal!
                             level_set_advection_operator.set_interface_velocity(
-                              velocity_interface_vec[0] * normal[0][0]);
+                              velocity_interface_vec[q]);
 
                             if (is_viscous_liquid or is_viscous_gas)
                               {
@@ -1203,6 +1208,7 @@ namespace MeltPoolDG::Multiphase
       multiphase_scratch_data.scratch_data.get_face_range_category(face_range);
     const CutUtil::FaceType face_type = CutUtil::get_face_type(face_category);
 
+    // TODO: use local face size and not globally minimum cell size for ghost penalty scaling
     const number cell_side_length       = multiphase_scratch_data.scratch_data.get_min_cell_size();
     const number cell_side_length_pow_3 = dealii::Utilities::fixed_power<3>(cell_side_length);
     const number cell_side_length_pow_5 = (multiphase_scratch_data.flow_data.fe.degree == 2) ?

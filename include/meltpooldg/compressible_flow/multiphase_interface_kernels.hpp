@@ -442,7 +442,7 @@ namespace MeltPoolDG::Multiphase
       {
         u_star[i][Idx::density] = m_hat[i] / (vel_n_star[i] - shock_speed[i]);
         for (unsigned int j = 1; j < dim + 1; j++)
-          u_star[i][j] = u_star[i][Idx::density] * vel_star_cartesian[i][0][j - 1];
+          u_star[i][j] = u_star[i][Idx::density] * vel_star_cartesian[i][j - 1];
         u_star[i][Idx::energy] =
           (E_hat[i] - pressure_star[i] * vel_n_star[i]) / (vel_n_star[i] - shock_speed[i]) -
           0.5 * u_star[i][Idx::density] * vel_n_star[i] * vel_n_star[i] +
