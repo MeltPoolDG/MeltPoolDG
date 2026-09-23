@@ -9,11 +9,15 @@
 #include <meltpooldg/cut/util.hpp>
 #include <meltpooldg/flow/darcy_damping_model.hpp>
 #include <meltpooldg/phase_change/evaporation_model_knight.hpp>
+#include <meltpooldg/utilities/better_enum.hpp>
 #include <meltpooldg/utilities/dg_generic_convection_diffusion_worker.hpp>
 #include <meltpooldg/utilities/vector_tools.hpp>
 
 namespace MeltPoolDG::Multiphase
 {
+  /// Helper enum to distinguish between the liquid and gas phase in the multiphase operator
+  BETTER_ENUM(Phase, int, liquid, gas);
+
   /**
    * @brief Operator for the matrix-free of a compressible multiphase flow cutDG formulation.
    *
@@ -58,6 +62,20 @@ namespace MeltPoolDG::Multiphase
                                                      number,
                                                      const ConservedVariablesType,
                                                      const ConservedVariablesGradType>;
+
+    template <int n_components = CompressibleFlow::n_conserved_variables<dim>>
+    using DomainEval = FECellIntegrator<dim, n_components, number>;
+
+    template <int n_components = CompressibleFlow::n_conserved_variables<dim>>
+    using FaceEval = FEFaceIntegrator<dim, n_components, number>;
+
+    template <int n_components = CompressibleFlow::n_conserved_variables<dim>>
+    using DomainPointEval =
+      dealii::FEPointEvaluation<n_components, dim, dim, dealii::VectorizedArray<number>>;
+
+    template <int n_components = CompressibleFlow::n_conserved_variables<dim>>
+    using FacePointEval =
+      dealii::FEFacePointEvaluation<n_components, dim, dim, dealii::VectorizedArray<number>>;
 
     /**
      * @brief Constructor.
@@ -210,6 +228,49 @@ namespace MeltPoolDG::Multiphase
     add_external_force(
       std::shared_ptr<CompressibleFlow::ExternalFlowForce<dim, number>> external_force);
 
+    /**
+     * @brief Evaluates the face-based ghost penalty stabilization at quadrature point @p q.
+     *
+     * Penalizes jumps of the solution and its normal derivatives across a ghost-penalty face.
+     *
+     * @tparam EvaluatorType Face evaluator type (e.g. FEFaceEvaluation) that
+     *         provides values, normal derivatives and normal Hessians (for FE degree = 2).
+     *
+     * @param eval_m                  Evaluator on the interior ("minus") side of the face.
+     * @param eval_p                  Evaluator on the exterior ("plus") side of the face.
+     * @param q                       Index of the face quadrature point.
+     * @param cell_side_length        Characteristic cell size @f$h@f$.
+     * @param cell_side_length_pow_3  Precomputed @f$h^3@f$.
+     * @param cell_side_length_pow_5  Precomputed @f$h^5@f$.
+     */
+    template <typename EvaluatorType>
+    inline void
+    ghost_penalty_face_integral(EvaluatorType     &eval_m,
+                                EvaluatorType     &eval_p,
+                                const unsigned int q,
+                                const number       cell_side_length,
+                                const number       cell_side_length_pow_3,
+                                const number       cell_side_length_pow_5) const;
+
+    /**
+     * @brief Compute the inverse diagonal of the system matrix.
+     * Used by the diagonal preconditioner.
+     *
+     * @param diagonal Output vector containing the diagonal inverse values.
+     */
+    void
+    compute_inverse_diagonal_from_matrixfree(VectorType &diagonal) const;
+
+    /**
+     * @brief Assemble the system matrix explicitly from the matrix-free operator.
+     * Used by matrix-based preconditioners.
+     *
+     * @param system_matrix Output sparse matrix holding the assembled system matrix.
+     */
+    void
+    compute_system_matrix_from_matrixfree(
+      dealii::TrilinosWrappers::SparseMatrix &system_matrix) const;
+
   private:
     /// Scratch data for multiphase case
     CompressibleFlow::MultiphaseOperationScratchData<dim, number> &multiphase_scratch_data;
@@ -254,6 +315,13 @@ namespace MeltPoolDG::Multiphase
 
     /// Darcy damping model for the computation of the damping coefficient
     Flow::DarcyDampingModel<number> darcy_damping_model;
+
+    /// Helper for the selection of the first component index of the liquid and gas phases in a
+    /// FESystem. The ordering corresponds to the order of the Phase enum.
+    static constexpr std::array<unsigned int, 2> first_component = {{
+      0 /*liquid phase*/,
+      CompressibleFlow::n_conserved_variables<dim> /*gas phase*/
+    }};
 
     /**
      * @brief Wrapper for the generation of a FECellIntegrator object.
@@ -321,5 +389,29 @@ namespace MeltPoolDG::Multiphase
       return {create_face_integrator(true, category, offset),
               create_face_integrator(false, category, offset)};
     };
+
+    /**
+     * @brief Shared implementation of the matrix-free diagonal and system matrix assembly.
+     *
+     * The setup for dealii::MatrixFreeTools::internal::compute_diagonal and
+     * dealii::MatrixFreeTools::internal::compute_matrix is identical. To avoid duplicate code this
+     * internal function can handle both operations. Choose which operation to perform using
+     * @param do_diagonal: `true` for compute_diagonal and `false` for compute_matrix.
+     *
+     * @param diagonal       Vector that receives the diagonal of the system
+     *                            matrix (not its inverse). Used only if
+     *                            @p do_diagonal is `true`.
+     * @param system_matrix  Sparse matrix that receives the assembled
+     *                            system matrix. Used only if
+     *                            @p do_diagonal is `false`. It must already be
+     *                            initialized with a suitable sparsity pattern.
+     * @param do_diagonal    `true` computes the diagonal; `false` assembles
+     *                            the full system matrix.
+     */
+    void
+    internal_compute_diagonal_or_system_matrix(
+      VectorType                             &diagonal,
+      dealii::TrilinosWrappers::SparseMatrix &system_matrix,
+      const bool                              do_diagonal) const;
   };
 } // namespace MeltPoolDG::Multiphase

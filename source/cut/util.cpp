@@ -121,6 +121,25 @@ namespace MeltPoolDG::CutUtil
       }
   }
 
+  template <int dim>
+  bool
+  cell_classifications_changed(const dealii::Triangulation<dim>               &tria,
+                               const dealii::NonMatching::MeshClassifier<dim> &mesh_classifier_old,
+                               const dealii::NonMatching::MeshClassifier<dim> &mesh_classifier,
+                               const MPI_Comm                                  mpi_comm)
+  {
+    bool changed = false;
+    for (const auto &cell : tria.active_cell_iterators())
+      if (cell->is_locally_owned() and mesh_classifier.location_to_level_set(cell) !=
+                                         mesh_classifier_old.location_to_level_set(cell))
+        {
+          changed = true;
+          break;
+        }
+
+    return dealii::Utilities::MPI::logical_or(changed, mpi_comm);
+  }
+
   template <int dim, typename number, typename VectorType>
   void
   compute_intersected_quadrature(
@@ -238,6 +257,22 @@ namespace MeltPoolDG::CutUtil
   set_fe_index<3>(const dealii::DoFHandler<3> &,
                   const dealii::NonMatching::MeshClassifier<3> &,
                   const bool);
+
+  template bool
+  cell_classifications_changed(const dealii::Triangulation<1> &,
+                               const dealii::NonMatching::MeshClassifier<1> &,
+                               const dealii::NonMatching::MeshClassifier<1> &,
+                               const MPI_Comm);
+  template bool
+  cell_classifications_changed(const dealii::Triangulation<2> &,
+                               const dealii::NonMatching::MeshClassifier<2> &,
+                               const dealii::NonMatching::MeshClassifier<2> &,
+                               const MPI_Comm);
+  template bool
+  cell_classifications_changed(const dealii::Triangulation<3> &,
+                               const dealii::NonMatching::MeshClassifier<3> &,
+                               const dealii::NonMatching::MeshClassifier<3> &,
+                               const MPI_Comm);
 
   template <int dim, typename number, typename VectorType>
   void

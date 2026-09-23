@@ -330,16 +330,35 @@ namespace MeltPoolDG::Multiphase
     /// Compressible multiphase operator object
     CompMultiphaseOperatorVariant cmp_operator;
 
+    /// Preconditioner for the linear solver
+    Preconditioner<dim, VectorType, number> preconditioner;
+
+    /// Boolean indicator whether the preconditioner needs to be updated before the next solve
+    bool preconditioner_update_flag = false;
+
+    /// Counter variable for the number of performed time steps, used to determine when to update
+    /// the preconditioner
+    unsigned int n_steps_performed = 0;
+
     /**
-     * @brief Adapt the dof layout and solution vector to a new interface position, which is defined
+     * @brief Adapt the dof layout, solution vector, and discretization to a new interface position, which is defined
      * by the zero-level-set-isosurface.
      *
-     * The function contains following steps:
-     * - classify cells according to current interface position
+     * The function first classifies the cells according to the current interface position and
+     * checks whether any cell changed its location with respect to the level set. The new
+     * non-matching quadrature rules for intersected cells, intersected faces and the phase
+     * interface are computed in all cases.
+     *
+     * If the DoF layout is unchanged, i.e. no cell changed its location with respect to the level
+     * set, the existing DoF numbering and partitioning, MatrixFree object, solution vector and
+     * preconditioner data structures remain valid and are reused. Only the cut geometry-dependent
+     * quadrature rules are recomputed.
+     *
+     * If the DoF layout changed, the following additional steps are performed:
      * - adapt DoFHandler and solution vectors according to new interface position, extrapolate new
      * DoF values via ghost-penalty extrapolation
-     * - compute quadrature rules for intersected cells, intersected faces and the phase surface
      * - reinit matrix-free object, rhs and solution vectors
+     * - reinitialize the preconditioner's data structures
      */
     void
     adapt_to_new_interface_position();
