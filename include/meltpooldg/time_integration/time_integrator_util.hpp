@@ -7,6 +7,7 @@
 #include <meltpooldg/linear_algebra/preconditioner_factory.hpp>
 #include <meltpooldg/time_integration/bdf_time_integration.hpp>
 #include <meltpooldg/time_integration/explicit_low_storage_runge_kutta_integrator.hpp>
+#include <meltpooldg/time_integration/explicit_runge_kutta_chebyshev_integrator.hpp>
 #include <meltpooldg/time_integration/one_step_theta.hpp>
 #include <meltpooldg/time_integration/time_integrator_base.hpp>
 #include <meltpooldg/time_integration/time_integrator_data.hpp>
@@ -29,6 +30,8 @@ namespace MeltPoolDG::TimeIntegration
   time_integrator_scheme_is_explicit(const TimeIntegratorSchemes scheme)
   {
     if (Utils::contains(explicit_lsrk_supported_schemes, scheme))
+      return true;
+    else if (Utils::contains(explicit_rkc_supported_schemes, scheme))
       return true;
     return false;
   }
@@ -70,6 +73,19 @@ namespace MeltPoolDG::TimeIntegration
       {
         auto integrator = new LowStorageExplicitRungeKuttaIntegrator<number>(
           params, std::bind_front(&PDEOperator::apply_operator, &pde_operator));
+        return integrator;
+      }
+    else if (Utils::contains(explicit_rkc_supported_schemes, params.integrator_type))
+      {
+        auto integrator = new ExplicitRungeKuttaChebyshevIntegrator<number>(params);
+        integrator->configure_rhs(
+          [&pde_operator](number time,
+                          number,
+                          dealii::LinearAlgebra::distributed::Vector<number>       &dst,
+                          const dealii::LinearAlgebra::distributed::Vector<number> &src,
+                          std::function<void(unsigned, unsigned)>                   post) {
+            pde_operator.apply_operator(time, dst, src, post);
+          });
         return integrator;
       }
     return nullptr;
@@ -149,6 +165,19 @@ namespace MeltPoolDG::TimeIntegration
       {
         auto integrator = new LowStorageExplicitRungeKuttaIntegrator<number>(
           params,
+          [&pde_operator](number time,
+                          number,
+                          dealii::LinearAlgebra::distributed::Vector<number>       &dst,
+                          const dealii::LinearAlgebra::distributed::Vector<number> &src,
+                          std::function<void(unsigned, unsigned)>                   post) {
+            pde_operator.apply_operator(time, dst, src, post);
+          });
+        return integrator;
+      }
+    else if (Utils::contains(explicit_rkc_supported_schemes, params.integrator_type))
+      {
+        auto integrator = new ExplicitRungeKuttaChebyshevIntegrator<number>(params);
+        integrator->configure_rhs(
           [&pde_operator](number time,
                           number,
                           dealii::LinearAlgebra::distributed::Vector<number>       &dst,

@@ -19,6 +19,7 @@ namespace MeltPoolDG::TimeIntegration
               LSRK_stage_5_order_4, /* Kennedy, Carpenter, Lewis, 2000 */
               LSRK_stage_7_order_4, /* Tselios, Simos, 2007 */
               LSRK_stage_9_order_5, /* Kennedy, Carpenter, Lewis, 2000 */
+              RKC_n_stages,         /* Sommeijer, Shampine, Verwer, 1997*/
               implicit_euler,
               explicit_euler,
               crank_nicolson,
@@ -57,6 +58,7 @@ namespace MeltPoolDG::TimeIntegration
     /**
      * Number of time steps after which thre preconditioner gets updated.
      */
+    unsigned int                rkc_n_stages                    = 0;
     unsigned int                preconditioner_update_frequency = 100;
     NonlinearSolverData<number> nlsolver_data;
     LinearSolverData<number>    linear_solver_data;
@@ -70,6 +72,7 @@ namespace MeltPoolDG::TimeIntegration
         prm.add_parameter("preconditioner update frequency",
                           preconditioner_update_frequency,
                           "Frequency at which the preconditioner gets updated.");
+        prm.add_parameter("RKC n stages", rkc_n_stages, "Number of stages for the RKC scheme.");
         nlsolver_data.add_parameters(prm);
         linear_solver_data.add_parameters(prm);
       }
