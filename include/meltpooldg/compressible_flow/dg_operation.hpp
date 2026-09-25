@@ -146,6 +146,16 @@ namespace MeltPoolDG::CompressibleFlow
     compute_time_step_size(bool do_print = false) const;
 
     /**
+     * @brief Estimate the eigenvalues of the Jacobian matrix.
+     *
+     * @param time_step The current time step size.
+     *
+     * @return A vector of complex eigenvalues.
+     */
+    std::vector<std::complex<number>>
+    estimate_jacobian_eigenvalues(const number time_step) const;
+
+    /**
      * @brief Set the solution vector to the passed initial flow field state.
      *
      * @param function Initial condition of the flow field.

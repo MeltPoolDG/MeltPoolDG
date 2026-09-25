@@ -33,17 +33,19 @@ namespace MeltPoolDG
    * though, even zero, because we can only get as many eigenvalues as GRMES
    * iterations are performed. It is therefore recommended to check the size of
    * the returned vector before any other operations.
+   *
+   * @note This function is copied from MacroAM.
    */
-  template <typename VectorType, typename Operator>
-  std::vector<std::complex<double>>
+  template <typename number, typename VectorType, typename Operator>
+  std::vector<std::complex<number>>
   estimate_eigenvalues_gmres(const Operator   &op,
                              const VectorType &b,
                              const unsigned    max_eigenvalues = 100);
 
   // --- template and inline functions --- //
 
-  template <typename VectorType, typename Operator>
-  std::vector<std::complex<double>>
+  template <typename number, typename VectorType, typename Operator>
+  std::vector<std::complex<number>>
   estimate_eigenvalues_gmres(const Operator    &op,
                              const VectorType  &b,
                              const unsigned int max_eigenvalues)
@@ -64,10 +66,10 @@ namespace MeltPoolDG
       dealii::LinearAlgebra::OrthogonalizationStrategy::modified_gram_schmidt;
 
     dealii::SolverGMRES<VectorType>   eigen_solver(control_eigen, data);
-    std::vector<std::complex<double>> eigen_values;
+    std::vector<std::complex<number>> eigen_values;
 
     eigen_solver.connect_eigenvalues_slot(
-      [&eigen_values](const std::vector<std::complex<double>> &evs) { eigen_values = evs; }, true);
+      [&eigen_values](const std::vector<std::complex<number>> &evs) { eigen_values = evs; }, true);
 
     try
       {

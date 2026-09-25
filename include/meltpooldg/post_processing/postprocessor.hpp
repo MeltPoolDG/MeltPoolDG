@@ -18,6 +18,7 @@
 #include <meltpooldg/time_integration/time_stepping_data.hpp>
 #include <meltpooldg/utilities/conditional_ostream.hpp>
 
+#include <complex>
 #include <string>
 #include <utility>
 #include <vector>
@@ -100,6 +101,26 @@ namespace MeltPoolDG
         property_data_component_interpretation;
     }
 
+    /**
+     * Stores the passed complex valued vector in a csv file with the given name. The output is only
+     * performed if the current time is an output time step.
+     *
+     * @param n_time_step Current time step number.
+     * @param time Current simulation time.
+     * @param output_vector The complex valued vector to be written to file.
+     * @param filename The name of the output file. The directory in which the file is stored is the
+     * output directory specified in the output data struct.
+     * @param force_output If true, the output is performed regardless of whether the current time
+     * step is an output time step or not.
+     */
+    template <typename ComplexVectorType>
+    void
+    output_complex_valued_vector_to_csv(const int                n_time_step,
+                                        const number             time,
+                                        const ComplexVectorType &output_vector,
+                                        const std::string       &filename,
+                                        const bool               force_output = false) const;
+
   private:
     const MPI_Comm                    mpi_communicator;
     const OutputData<number>         &output_data;
@@ -159,4 +180,42 @@ namespace MeltPoolDG
     void
     print_boundary_ids();
   };
+
+  // templated function definitions
+  template <int dim, typename number>
+  template <typename ComplexVectorType>
+  void
+  MeltPoolDG::Postprocessor<dim, number>::output_complex_valued_vector_to_csv(
+    const int                n_time_step,
+    const number             time,
+    const ComplexVectorType &output_vector,
+    const std::string       &filename,
+    const bool               force_output) const
+  {
+    if (not(is_output_timestep(n_time_step, time) or force_output))
+      return;
+
+    static int file_count = 0;
+
+    // Only rank 0 writes the output file to avoid multiple processes writing to the same file in
+    // parallel
+    if (dealii::Utilities::MPI::this_mpi_process(mpi_communicator) == 0)
+      {
+        std::string full_filename =
+          output_data.directory + '/' + filename + "_" + std::to_string(file_count) + ".csv";
+
+        std::ofstream file(full_filename, std::ios::out | std::ios::trunc);
+        AssertThrow(file, dealii::ExcMessage("Can not open the file: " + full_filename));
+
+        file << "Time: " << time << '\n';
+        file << "N time step: " << n_time_step << '\n';
+        file << '\n';
+        file << "Real part;Imaginary part\n";
+
+        for (const auto &v : output_vector)
+          file << v.real() << ';' << v.imag() << '\n';
+      }
+
+    ++file_count;
+  }
 } // namespace MeltPoolDG
