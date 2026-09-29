@@ -367,15 +367,21 @@
 | Parameter | Type | Default | Description |
 |---|---|---|---|
 | `penalty parameter` | `number` | `0.0` | Penalty parameter for the enforcement of the initial position of the zero level-set iso-surface during the elliptic reinitialization. |
-| [`fixed point iteration`](#level-set-reinitialization-elliptic-fixed-point-iteration) | `object` |  | [See table](#level-set-reinitialization-elliptic-fixed-point-iteration) |
+| `nonlinear solver type` | `string` | `fixed point` | Sets the nonlinear solver used for elliptic reinitialization.<br><br>Allowed values:<br>- `newton`<br>- `fixed point` |
+| [`nlsolve`](#level-set-reinitialization-elliptic-nlsolve) | `object` |  | [See table](#level-set-reinitialization-elliptic-nlsolve) |
 
-<a id="level-set-reinitialization-elliptic-fixed-point-iteration"></a>
-##### `level set: reinitialization: elliptic: fixed point iteration`
+<a id="level-set-reinitialization-elliptic-nlsolve"></a>
+##### `level set: reinitialization: elliptic: nlsolve`
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `max n steps` | `integer` | `5` | Sets the maximum number of fixed point iterations. |
-| `tolerance` | `number` | `2.22507e-308` | Set the tolerance for reinitialization. If the maximum change of the level set field exceeds the tolerance, reinitialization steps will be performed. |
+| `max nonlinear iterations` | `integer` | `5` | Set the number of maximum nonlinear iterations with standard tolerances. |
+| `field correction tolerance` | `number` | `2.22507e-308` | Set the tolerance for the maximum allowed correction of the unknown field. |
+| `residual tolerance` | `number` | `2.22507e-308` | Set the tolerance for the maximum allowed residual of the nonlinear system. |
+| `max nonlinear iterations alt` | `integer` | `0` | Set the number of maximum nonlinear iterations with alternative tolerances. |
+| `field correction tolerance alt` | `number` | `2.22507e-308` | Set the alternative tolerance for the maximum allowed correction of the unknown field. |
+| `residual tolerance alt` | `number` | `2.22507e-308` | Set the alternative tolerance for the maximum allowed residual of the nonlinear system. |
+| `verbosity level` | `integer` | `1` | Set to one for detailed solver output. |
 
 <a id="level-set-reinitialization-geometric"></a>
 #### `level set: reinitialization: geometric`
