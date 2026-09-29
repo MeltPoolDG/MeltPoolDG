@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/utilities/distance_functions.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/parameters/index.html">📦 Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/utilities/distance_functions.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/distance__functions_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-utilities-distance-functions-hpp-source-file">
+<h1>include/meltpooldg/utilities/distance_functions.hpp Source File<a class="headerlink" href="#include-meltpooldg-utilities-distance-functions-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/utilities/distance_functions.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_33f297a483115a9e2addf470c6b064fb.html">utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">distance_functions.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="distance__functions_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/exceptions.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;deal.II/base/function.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;deal.II/base/point.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;deal.II/base/symmetric_tensor.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;deal.II/base/tensor.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1Functions.html">   18</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1Functions_1_1Distance.html">MeltPoolDG::Functions::Distance</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html">   29</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html">Plane</a> : <span class="keyword">public</span> dealii::Function&lt;dim, number&gt;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a6ce52db7e09fe53413c514215d81e7cd">   41</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a6ce52db7e09fe53413c514215d81e7cd">Plane</a>(<span class="keyword">const</span> dealii::Point&lt;dim, number&gt;     &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ab081eda139e8867c539b99cbd17c9bc7">center_of_wall</a>,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>          <span class="keyword">const</span> dealii::Tensor&lt;1, dim, number&gt; &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">normal</a>,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>          <span class="keyword">const</span> std::array&lt;number, dim - 1&gt;    &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#af551ffa0dcf12cd5f8d717d2befbcd7d">half_extents</a>,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>          <span class="keyword">const</span> dealii::Tensor&lt;1, dim, number&gt; &amp;first_tangent_direction =</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            dealii::Tensor&lt;1, dim, number&gt;())</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      : <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ab081eda139e8867c539b99cbd17c9bc7">center_of_wall</a>(<a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ab081eda139e8867c539b99cbd17c9bc7">center_of_wall</a>)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      , <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">normal</a>(<a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">normal</a>)</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      , <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#af551ffa0dcf12cd5f8d717d2befbcd7d">half_extents</a>(<a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#af551ffa0dcf12cd5f8d717d2befbcd7d">half_extents</a>)</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      AssertThrow(std::abs(<a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">normal</a>.norm() - 1.) &lt; <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ac73942f93dc0f60f21d6d8ba11bec2ee">tolerance</a>,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                  dealii::ExcMessage(<span class="stringliteral">&quot;The normal of the wall plane must be a unit vector.&quot;</span>));</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      <span class="comment">// Building  tangent basis</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (dim == 2)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>          <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9129b98fa6f347e5fca173416bec66e8">tangents</a>[0][0] = -<a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">normal</a>[1];</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>          <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9129b98fa6f347e5fca173416bec66e8">tangents</a>[0][1] = <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">normal</a>[0];</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (dim == 3)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>          <span class="keyword">const</span> number first_tangent_norm = first_tangent_direction.norm();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>          AssertThrow(first_tangent_norm &gt; <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ac73942f93dc0f60f21d6d8ba11bec2ee">tolerance</a>,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                      dealii::ExcMessage(<span class="stringliteral">&quot;The first tangent direction must be nonzero in 3D.&quot;</span>));</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>          <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9129b98fa6f347e5fca173416bec66e8">tangents</a>[0] = first_tangent_direction / first_tangent_norm;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>          <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9129b98fa6f347e5fca173416bec66e8">tangents</a>[1] = dealii::cross_product_3d(<a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">normal</a>, <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9129b98fa6f347e5fca173416bec66e8">tangents</a>[0]);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>          AssertThrow(std::abs(<a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">normal</a> * <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9129b98fa6f347e5fca173416bec66e8">tangents</a>[0]) &lt; <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ac73942f93dc0f60f21d6d8ba11bec2ee">tolerance</a>,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                      dealii::ExcMessage(</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                        <span class="stringliteral">&quot;The first tangent direction must be perpendicular to the normal.&quot;</span>));</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    dealii::Tensor&lt;1, dim, number&gt;</div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ad1d9781ef63d8df9e846c186008503f2">   77</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ad1d9781ef63d8df9e846c186008503f2">gradient</a>(<span class="keyword">const</span> dealii::Point&lt;dim, number&gt; &amp;x, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> component = 0)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      <span class="keyword">const</span> dealii::Tensor&lt;1, dim, number&gt; r      = <a class="code hl_function" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#afbdc1c0b5bc2a4cd4ac1ef06c0f2693b">offset_from_wall</a>(x);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      <span class="keyword">const</span> number                         r_norm = r.norm();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      <span class="comment">// At the wall surface, r vanishes and r/r_norm is undefined. Fall back to the wall&#39;s unit</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      <span class="comment">// normal as the gradient direction.</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      <span class="keywordflow">if</span> (r_norm &lt; <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ac73942f93dc0f60f21d6d8ba11bec2ee">tolerance</a>)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">normal</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      <span class="keywordflow">return</span> r / r_norm;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    number</div>
+<div class="foldopen" id="foldopen00098" data-start="{" data-end="}">
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a26566b52632fcbcf7d9dbbf180bb2b10">   98</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a26566b52632fcbcf7d9dbbf180bb2b10">value</a>(<span class="keyword">const</span> dealii::Point&lt;dim, number&gt; &amp;x, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> component = 0)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      Assert(component == 0,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>             dealii::ExcMessage(<span class="stringliteral">&quot;The distance function is scalar; component must be 0.&quot;</span>));</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#afbdc1c0b5bc2a4cd4ac1ef06c0f2693b">offset_from_wall</a>(x).norm();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }</div>
+</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    dealii::Tensor&lt;1, dim, number&gt;</div>
+<div class="foldopen" id="foldopen00111" data-start="{" data-end="}">
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#afbdc1c0b5bc2a4cd4ac1ef06c0f2693b">  111</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#afbdc1c0b5bc2a4cd4ac1ef06c0f2693b">offset_from_wall</a>(<span class="keyword">const</span> dealii::Point&lt;dim, number&gt; &amp;x)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>      <span class="keyword">const</span> dealii::Tensor&lt;1, dim, number&gt; position_relative_to_center = x - <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ab081eda139e8867c539b99cbd17c9bc7">center_of_wall</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      <span class="keyword">const</span> number                         normal_coord = position_relative_to_center * <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">normal</a>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      dealii::Tensor&lt;1, dim, number&gt; offset = normal_coord * <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">normal</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; dim - 1; ++i)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>          <span class="keyword">const</span> number tangential_coord = position_relative_to_center * <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9129b98fa6f347e5fca173416bec66e8">tangents</a>[i];</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>          <span class="keyword">const</span> number clamped_tangential_coord =</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            std::clamp(tangential_coord, -<a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#af551ffa0dcf12cd5f8d717d2befbcd7d">half_extents</a>[i], <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#af551ffa0dcf12cd5f8d717d2befbcd7d">half_extents</a>[i]);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>          offset += (tangential_coord - clamped_tangential_coord) * <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9129b98fa6f347e5fca173416bec66e8">tangents</a>[i];</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      <span class="keywordflow">return</span> offset;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    }</div>
+</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ab081eda139e8867c539b99cbd17c9bc7">  129</a></span>    dealii::Point&lt;dim, number&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ab081eda139e8867c539b99cbd17c9bc7">center_of_wall</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">  132</a></span>    dealii::Tensor&lt;1, dim, number&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">normal</a>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9129b98fa6f347e5fca173416bec66e8">  135</a></span>    std::array&lt;dealii::Tensor&lt;1, dim, number&gt;, dim - 1&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9129b98fa6f347e5fca173416bec66e8">tangents</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#af551ffa0dcf12cd5f8d717d2befbcd7d">  138</a></span>    std::array&lt;number, dim - 1&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#af551ffa0dcf12cd5f8d717d2befbcd7d">half_extents</a>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ac73942f93dc0f60f21d6d8ba11bec2ee">  141</a></span>    <span class="keyword">const</span> number <a class="code hl_variable" href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ac73942f93dc0f60f21d6d8ba11bec2ee">tolerance</a> = 1e-12;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>  };</div>
+</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>} <span class="comment">// namespace MeltPoolDG::Functions::Distance</span></div>
+</div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Functions_1_1Distance_1_1Plane_html"><div class="ttname"><a href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html">MeltPoolDG::Functions::Distance::Plane</a></div><div class="ttdef"><b>Definition</b> distance_functions.hpp:30</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Functions_1_1Distance_1_1Plane_html_a26566b52632fcbcf7d9dbbf180bb2b10"><div class="ttname"><a href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a26566b52632fcbcf7d9dbbf180bb2b10">MeltPoolDG::Functions::Distance::Plane::value</a></div><div class="ttdeci">number value(const dealii::Point&lt; dim, number &gt; &amp;x, const unsigned int component=0) const override</div><div class="ttdef"><b>Definition</b> distance_functions.hpp:98</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Functions_1_1Distance_1_1Plane_html_a6ce52db7e09fe53413c514215d81e7cd"><div class="ttname"><a href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a6ce52db7e09fe53413c514215d81e7cd">MeltPoolDG::Functions::Distance::Plane::Plane</a></div><div class="ttdeci">Plane(const dealii::Point&lt; dim, number &gt; &amp;center_of_wall, const dealii::Tensor&lt; 1, dim, number &gt; &amp;normal, const std::array&lt; number, dim - 1 &gt; &amp;half_extents, const dealii::Tensor&lt; 1, dim, number &gt; &amp;first_tangent_direction=dealii::Tensor&lt; 1, dim, number &gt;())</div><div class="ttdef"><b>Definition</b> distance_functions.hpp:41</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Functions_1_1Distance_1_1Plane_html_a9129b98fa6f347e5fca173416bec66e8"><div class="ttname"><a href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9129b98fa6f347e5fca173416bec66e8">MeltPoolDG::Functions::Distance::Plane::tangents</a></div><div class="ttdeci">std::array&lt; dealii::Tensor&lt; 1, dim, number &gt;, dim - 1 &gt; tangents</div><div class="ttdoc">The unit tangent directions spanning the wall plane (one in 2D, two in 3D).</div><div class="ttdef"><b>Definition</b> distance_functions.hpp:135</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Functions_1_1Distance_1_1Plane_html_a9374eb6f8591c84eb65d45ca16cd6c53"><div class="ttname"><a href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#a9374eb6f8591c84eb65d45ca16cd6c53">MeltPoolDG::Functions::Distance::Plane::normal</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim, number &gt; normal</div><div class="ttdoc">The normal of the wall plane.</div><div class="ttdef"><b>Definition</b> distance_functions.hpp:132</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Functions_1_1Distance_1_1Plane_html_ab081eda139e8867c539b99cbd17c9bc7"><div class="ttname"><a href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ab081eda139e8867c539b99cbd17c9bc7">MeltPoolDG::Functions::Distance::Plane::center_of_wall</a></div><div class="ttdeci">dealii::Point&lt; dim, number &gt; center_of_wall</div><div class="ttdoc">The center of the rectangular wall plane.</div><div class="ttdef"><b>Definition</b> distance_functions.hpp:129</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Functions_1_1Distance_1_1Plane_html_ac73942f93dc0f60f21d6d8ba11bec2ee"><div class="ttname"><a href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ac73942f93dc0f60f21d6d8ba11bec2ee">MeltPoolDG::Functions::Distance::Plane::tolerance</a></div><div class="ttdeci">const number tolerance</div><div class="ttdoc">Tolerance for the geometric consistency checks and for detecting points on the wall.</div><div class="ttdef"><b>Definition</b> distance_functions.hpp:141</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Functions_1_1Distance_1_1Plane_html_ad1d9781ef63d8df9e846c186008503f2"><div class="ttname"><a href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#ad1d9781ef63d8df9e846c186008503f2">MeltPoolDG::Functions::Distance::Plane::gradient</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim, number &gt; gradient(const dealii::Point&lt; dim, number &gt; &amp;x, const unsigned int component=0) const override</div><div class="ttdef"><b>Definition</b> distance_functions.hpp:77</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Functions_1_1Distance_1_1Plane_html_af551ffa0dcf12cd5f8d717d2befbcd7d"><div class="ttname"><a href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#af551ffa0dcf12cd5f8d717d2befbcd7d">MeltPoolDG::Functions::Distance::Plane::half_extents</a></div><div class="ttdeci">std::array&lt; number, dim - 1 &gt; half_extents</div><div class="ttdoc">The half-widths of the wall along each tangent direction.</div><div class="ttdef"><b>Definition</b> distance_functions.hpp:138</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Functions_1_1Distance_1_1Plane_html_afbdc1c0b5bc2a4cd4ac1ef06c0f2693b"><div class="ttname"><a href="classMeltPoolDG_1_1Functions_1_1Distance_1_1Plane.html#afbdc1c0b5bc2a4cd4ac1ef06c0f2693b">MeltPoolDG::Functions::Distance::Plane::offset_from_wall</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim, number &gt; offset_from_wall(const dealii::Point&lt; dim, number &gt; &amp;x) const</div><div class="ttdef"><b>Definition</b> distance_functions.hpp:111</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Functions_1_1Distance_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Functions_1_1Distance.html">MeltPoolDG::Functions::Distance</a></div><div class="ttdef"><b>Definition</b> distance_functions.hpp:19</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
