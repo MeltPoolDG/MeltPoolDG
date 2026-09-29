@@ -16,7 +16,7 @@
 #include <meltpooldg/level_set/curvature_operation_adaflo_wrapper.hpp>
 #include <meltpooldg/level_set/level_set_tools.hpp>
 #include <meltpooldg/level_set/nearest_point.hpp>
-#include <meltpooldg/level_set/reinitialization_elliptic_operation.hpp>
+#include <meltpooldg/level_set/reinitialization_elliptic_operation_fixed_point.hpp>
 #include <meltpooldg/level_set/reinitialization_geometric_operation.hpp>
 #include <meltpooldg/level_set/reinitialization_hyperbolic_CG_operation.hpp>
 #include <meltpooldg/level_set/reinitialization_olsson_operation_adaflo_wrapper.hpp>

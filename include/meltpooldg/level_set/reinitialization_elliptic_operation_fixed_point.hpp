@@ -5,7 +5,7 @@
 #include <meltpooldg/core/scratch_data.hpp>
 #include <meltpooldg/cut/util.hpp>
 #include <meltpooldg/level_set/normal_vector_operation.hpp>
-#include <meltpooldg/level_set/reinitialization_elliptic_operator.hpp>
+#include <meltpooldg/level_set/reinitialization_elliptic_operator_fixed_point.hpp>
 #include <meltpooldg/level_set/reinitialization_operation_base.hpp>
 #include <meltpooldg/linear_algebra/preconditioner.hpp>
 
@@ -18,8 +18,6 @@
  * Adams, T., Giani, S., & Coombs, W. M. (2019). A high-order elliptic PDE based level set
  * reinitialisation method using a discontinuous Galerkin discretisation. Journal of Computational
  * Physics, 379, 373-391.
- *
- * @warning This operation is under development and not ready for use!
  */
 
 namespace MeltPoolDG::LevelSet
