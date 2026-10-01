@@ -7,8 +7,15 @@ mpdg_setup_serial_unit_tests(
 )
 
 mpdg_setup_mpi_unit_tests(
-   N_MPI_PROCESSES
-   4
-   TEST_SOURCE_FILES
-   triangulation_utils.cpp
+    N_MPI_PROCESSES
+    1
+    TEST_SOURCE_FILES
+    fe_subcell_evaluation_01.cpp
+)
+
+mpdg_setup_mpi_unit_tests(
+    N_MPI_PROCESSES
+    4
+    TEST_SOURCE_FILES
+    triangulation_utils.cpp
 )
