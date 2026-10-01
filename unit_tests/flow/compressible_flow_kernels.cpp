@@ -141,7 +141,10 @@ TEST(CompressibleFlowKernelsTest, ViscousKernel)
     // As we expect to substract two values resulting in almost zero and therefore absorption can be
     // observed here, we use a near comparison with a tight tolerance instead of an expect double
     // comparison.
-    MeltPoolDG::TestUtils::expect_near(flux[2], expected_momentum_y_flux, 1e-18);
+    MeltPoolDG::TestUtils::expect_near(flux[2],
+                                       expected_momentum_y_flux,
+                                       VectorizedArrayType::size(),
+                                       1e-18);
   }
 
   {

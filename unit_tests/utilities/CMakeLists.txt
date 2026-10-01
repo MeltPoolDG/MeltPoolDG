@@ -4,11 +4,12 @@ mpdg_setup_serial_unit_tests(
     limiters.cpp
     cell_monitor_01.cpp
     functions_01.cpp
+    fe_subcell_evaluation_01.cpp
 )
 
 mpdg_setup_mpi_unit_tests(
-   N_MPI_PROCESSES
-   4
-   TEST_SOURCE_FILES
-   triangulation_utils.cpp
+    N_MPI_PROCESSES
+    4
+    TEST_SOURCE_FILES
+    triangulation_utils.cpp
 )
