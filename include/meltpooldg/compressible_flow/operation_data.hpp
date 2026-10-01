@@ -74,6 +74,23 @@ namespace MeltPoolDG::CompressibleFlow
     /// Type of the variables added to the output
     std::vector<OutputType> output_variables = {OutputType::conserved_variables};
 
+    struct
+    {
+      /// Boolean flag indicating whether to output the eigenvalues of Jacobian should be performed
+      bool do_output = false;
+
+      /// Boolean flag indicating whether eigenvalue summary is printed to the console on output
+      /// time steps
+      bool print_summary = false;
+
+      /// Name of the file to which the eigenvalues should be written (if output_eigenvalues is
+      /// true)
+      std::string output_filename = "eigenvalues";
+
+      /// Number of eigenvalues to compute
+      unsigned int n_eigenvalues_to_compute = 100;
+    } eigenvalues_data;
+
     /**
      * @brief Add compressible flow parameters in the parameter handler.
      *
@@ -127,6 +144,24 @@ namespace MeltPoolDG::CompressibleFlow
           prm.add_parameter("compressible output types",
                             output_variables,
                             "Type of the variables added to the output.");
+        }
+        prm.leave_subsection();
+        prm.enter_subsection("eigenvalues");
+        {
+          prm.add_parameter("enable",
+                            eigenvalues_data.do_output,
+                            "Whether to output eigenvalues of the Jacobian.");
+          prm.add_parameter(
+            "file name",
+            eigenvalues_data.output_filename,
+            "Name of the file to which eigenvalues are written. A file ending is not required and will be added automatically.");
+          prm.add_parameter(
+            "print summary",
+            eigenvalues_data.print_summary,
+            "Whether to print a summary of the eigenvalues to the console on output time steps.");
+          prm.add_parameter("number of eigenvalues",
+                            eigenvalues_data.n_eigenvalues_to_compute,
+                            "Number of eigenvalues to compute if output_eigenvalues is true.");
         }
         prm.leave_subsection();
       }
