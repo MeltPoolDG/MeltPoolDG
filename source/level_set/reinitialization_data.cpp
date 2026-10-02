@@ -20,6 +20,11 @@ namespace MeltPoolDG::LevelSet
                         nonlinear_solver_type,
                         "Sets the nonlinear solver used for elliptic reinitialization.",
                         dealii::Patterns::Selection("newton|fixed point"));
+      prm.add_parameter("interior penalty scaling factor",
+                        interior_penalty_scaling_factor,
+                        "Scaling factor for the interior penalty term in the elliptic "
+                        "reinitialization operator.",
+                        dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
       nlsolve.add_parameters(prm);
     }
     prm.leave_subsection();

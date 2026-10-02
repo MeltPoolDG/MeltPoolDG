@@ -242,9 +242,20 @@ namespace MeltPoolDG::LevelSet
           {
             if (param.reinit.elliptic.nonlinear_solver_type == "newton")
               {
-                reinit_operation =
-                  std::make_unique<ReinitializationEllipticOperationNewton<dim, number>>(
-                    *scratch_data, param.reinit, reinit_dof_idx, reinit_quad_idx, reinit_dof_idx);
+                if (param.reinit.fe.type == FiniteElementType::FE_DGQ)
+                  {
+                    AssertThrow(false, ExcNotImplemented());
+                  }
+                else
+                  {
+                    reinit_operation =
+                      std::make_unique<ReinitializationEllipticOperationNewton<dim, number>>(
+                        *scratch_data,
+                        param.reinit,
+                        reinit_dof_idx,
+                        reinit_quad_idx,
+                        reinit_dof_idx);
+                  }
               }
             else
               {
@@ -283,23 +294,26 @@ namespace MeltPoolDG::LevelSet
 
     reinit_operation->set_initial_condition(*simulation_case->get_initial_condition("level_set"));
 
-    if (param.reinit.fe.type == FiniteElementType::FE_DGQ)
+    if (param.reinit.modeltype == ModelType::olsson2007)
       {
-        // For a pure reinit problem this could be done inside reinit_operation, but we want to be
-        // able to set it from an external field in a coupled advection/reinit problem
-        reinit_operation->get_sign_indicator_function()->copy_locally_owned_data_from(
-          reinit_operation->get_level_set());
-      }
-    else
-      {
-        // set wetting boundary ids
-        if (not simulation_case->get_boundary_condition("nx", "normal_vector").empty())
+        if (param.reinit.fe.type == FiniteElementType::FE_DGQ)
           {
-            std::vector<dealii::types::boundary_id> wetting_bc_ids =
-              simulation_case->get_boundary_condition_manager("normal_vector")
-                ->get_indices_of_type("nx");
+            // For a pure reinit problem this could be done inside reinit_operation, but we want to
+            // be able to set it from an external field in a coupled advection/reinit problem
+            reinit_operation->get_sign_indicator_function()->copy_locally_owned_data_from(
+              reinit_operation->get_level_set());
+          }
+        else
+          {
+            // set wetting boundary ids
+            if (not simulation_case->get_boundary_condition("nx", "normal_vector").empty())
+              {
+                std::vector<dealii::types::boundary_id> wetting_bc_ids =
+                  simulation_case->get_boundary_condition_manager("normal_vector")
+                    ->get_indices_of_type("nx");
 
-            reinit_operation->set_wetting_boundary_condition_ids(std::move(wetting_bc_ids));
+                reinit_operation->set_wetting_boundary_condition_ids(std::move(wetting_bc_ids));
+              }
           }
       }
 
@@ -370,10 +384,15 @@ namespace MeltPoolDG::LevelSet
     const bool wetting_enabled =
       not simulation_case->get_boundary_condition("nx", "normal_vector").empty();
 
-    scratch_data->build(param.reinit.fe.type == FiniteElementType::FE_DGQ or
-                          wetting_enabled /*boundary_face_integrals*/,
-                        param.reinit.fe.type == FiniteElementType::FE_DGQ /*inner face integrals*/,
-                        wetting_enabled /*normal_vectors*/);
+    const bool elliptic_DG = param.reinit.modeltype == ModelType::elliptic and
+                             param.reinit.fe.type == FiniteElementType::FE_DGQ;
+
+    scratch_data->build((param.reinit.fe.type == FiniteElementType::FE_DGQ or wetting_enabled) and
+                          not elliptic_DG /*boundary_face_integrals*/,
+                        param.reinit.fe.type ==
+                          FiniteElementType::FE_DGQ /*inner face
+  integrals*/,
+                        wetting_enabled or elliptic_DG /*normal_vectors*/);
 
     if (reinit_operation)
       reinit_operation->reinit();

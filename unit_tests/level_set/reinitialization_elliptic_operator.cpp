@@ -49,18 +49,17 @@ namespace MeltPoolDG::LevelSet
       using BlockVectorType = dealii::LinearAlgebra::distributed::BlockVector<number>;
       using MappingInfoType = CutUtil::MappingInfoType<dim, number>;
 
-      dealii::Triangulation<dim>                                triangulation;
-      dealii::FE_Q<dim>                                         fe{2};
-      dealii::DoFHandler<dim>                                   dof_handler{triangulation};
-      dealii::AffineConstraints<number>                         constraints;
-      dealii::MappingQ1<dim>                                    mapping;
-      MappingInfoType                                           mapping_info_surface;
-      dealii::QGauss<dim>                                       quadrature{fe.degree + 1};
-      MeltPoolDG::ScratchData<dim, dim, number>                 scratch_data;
-      ReinitializationData<number>                              reinit_data;
-      BlockVectorType                                           normal_vector;
-      VectorType                                                level_set;
-      std::shared_ptr<dealii::NonMatching::MeshClassifier<dim>> mesh_classifier;
+      dealii::Triangulation<dim>                triangulation;
+      dealii::FE_Q<dim>                         fe{2};
+      dealii::DoFHandler<dim>                   dof_handler{triangulation};
+      dealii::AffineConstraints<number>         constraints;
+      dealii::MappingQ1<dim>                    mapping;
+      MappingInfoType                           mapping_info_surface;
+      dealii::QGauss<dim>                       quadrature{fe.degree + 1};
+      MeltPoolDG::ScratchData<dim, dim, number> scratch_data;
+      ReinitializationData<number>              reinit_data;
+      BlockVectorType                           normal_vector;
+      VectorType                                level_set;
 
       EllipticOperatorFixture()
         : mapping_info_surface(mapping,
@@ -88,16 +87,13 @@ namespace MeltPoolDG::LevelSet
         scratch_data.initialize_dof_vector(normal_vector, 0);
         scratch_data.initialize_dof_vector(level_set, 0);
         level_set = 1.0;
-
-        mesh_classifier =
-          std::make_shared<dealii::NonMatching::MeshClassifier<dim>>(dof_handler, level_set);
       }
 
       ReinitializationEllipticOperator<dim, number>
       make_operator()
       {
         return ReinitializationEllipticOperator<dim, number>(
-          scratch_data, reinit_data, 0, 0, mapping_info_surface, 0, mesh_classifier);
+          scratch_data, reinit_data, 0, 0, mapping_info_surface, 0);
       }
     };
 
