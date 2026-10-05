@@ -3064,10 +3064,15 @@
     "profiling": {
       "type": "object",
       "properties": {
-        "enable": {
-          "type": "boolean",
-          "description": "Set this parameter to true if profiling should be enabled. It will be automaticallyenabled for verbosity level >=1.",
-          "default": false
+        "verbosity": {
+          "type": "string",
+          "enum": [
+            "none",
+            "basic",
+            "detailed"
+          ],
+          "description": "Sets the verbosity of the profiling information to be collected. If set to 'none', no profiling information is collected. If set to 'basic', only data which is cheap to collect is recorded. If set to 'detailed', also data which is expensive to collect is recorded. It is recommended to enable detailed profiling only when necessary for in-depth analysis or debugging purposes.",
+          "default": "none"
         },
         "write time step size": {
           "type": "number",

@@ -24,6 +24,7 @@
 #include <meltpooldg/utilities/constraints.hpp>
 #include <meltpooldg/utilities/fe_util.hpp>
 #include <meltpooldg/utilities/journal.hpp>
+#include <meltpooldg/utilities/profiling_data.hpp>
 #include <meltpooldg/utilities/scoped_name.hpp>
 #include <meltpooldg/utilities/vector_tools.hpp>
 
@@ -237,10 +238,12 @@ namespace MeltPoolDG::LevelSet
                                                    scratch_data->get_mapping(),
                                                    scratch_data->get_triangulation(ls_dof_idx),
                                                    scratch_data->get_pcout(2));
-    if (simulation_case->parameters.profiling.enable)
-      profiling_monitor =
-        std::make_unique<Profiling::ProfilingMonitor<number>>(simulation_case->parameters.profiling,
-                                                              *time_iterator);
+    if (simulation_case->parameters.profiling.verbosity != Profiling::ProfilingVerbosity::none)
+      {
+        profiling_monitor = std::make_unique<Profiling::ProfilingMonitor<number>>(
+          simulation_case->parameters.profiling, *time_iterator);
+      }
+
     // Do initial refinement steps if requested
     if (simulation_case->parameters.amr.do_amr &&
         simulation_case->parameters.amr.n_initial_refinement_cycles > 0)

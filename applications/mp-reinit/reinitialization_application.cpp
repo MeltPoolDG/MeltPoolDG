@@ -11,7 +11,7 @@
 #include <deal.II/numerics/error_estimator.h>
 #include <deal.II/numerics/vector_tools_interpolate.h>
 
-#include "meltpooldg/level_set/reinitialization_data.hpp"
+#include <meltpooldg/level_set/reinitialization_data.hpp>
 #include <meltpooldg/level_set/reinitialization_elliptic_operation_CG_newton.hpp>
 #include <meltpooldg/level_set/reinitialization_elliptic_operation_fixed_point.hpp>
 #include <meltpooldg/level_set/reinitialization_geometric_operation.hpp>
@@ -22,6 +22,7 @@
 #include <meltpooldg/utilities/constraints.hpp>
 #include <meltpooldg/utilities/fe_util.hpp>
 #include <meltpooldg/utilities/journal.hpp>
+#include <meltpooldg/utilities/profiling_data.hpp>
 
 namespace MeltPoolDG::LevelSet
 {
@@ -321,10 +322,11 @@ namespace MeltPoolDG::LevelSet
     output_results(0, simulation_case->parameters.time_stepping.start_time);
 
     // Initialize profiling
-    if (simulation_case->parameters.profiling.enable)
-      profiling_monitor =
-        std::make_unique<Profiling::ProfilingMonitor<number>>(simulation_case->parameters.profiling,
-                                                              *time_iterator);
+    if (simulation_case->parameters.profiling.verbosity != Profiling::ProfilingVerbosity::none)
+      {
+        profiling_monitor = std::make_unique<Profiling::ProfilingMonitor<number>>(
+          simulation_case->parameters.profiling, *time_iterator);
+      }
   }
 
   template <int dim, typename number>

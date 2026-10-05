@@ -56,6 +56,7 @@
 #include <meltpooldg/utilities/fe_integrator.hpp>
 #include <meltpooldg/utilities/fe_util.hpp>
 #include <meltpooldg/utilities/journal.hpp>
+#include <meltpooldg/utilities/profiling_data.hpp>
 #include <meltpooldg/utilities/restart.hpp>
 #include <meltpooldg/utilities/scoped_name.hpp>
 #include <meltpooldg/utilities/utility_functions.hpp>
@@ -1181,7 +1182,7 @@ namespace MeltPoolDG
          Evaporation::EvaporationLevelSetSourceTermType::interface_velocity_sharp_heavy);
 
     // initialize profiling
-    if (param.profiling.enable)
+    if (param.profiling.verbosity != Profiling::ProfilingVerbosity::none)
       profiling_monitor =
         std::make_unique<Profiling::ProfilingMonitor<number>>(param.profiling, *time_iterator);
 

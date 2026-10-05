@@ -24,7 +24,7 @@ namespace MeltPoolDG::Profiling
   bool
   ProfilingMonitor<number>::now() const
   {
-    if (not data.enable)
+    if (data.verbosity == ProfilingVerbosity::none)
       return false;
 
     const number current_time = compute_current_time();
@@ -80,8 +80,18 @@ namespace MeltPoolDG::Profiling
         ++section_number;
       }
 
+    notify_signal(pcout);
+
     Journal::print_header(pcout, "End of statistics summary");
     pcout << std::endl;
+  }
+
+  template <typename number>
+  void
+  ProfilingMonitor<number>::subscribe(
+    const std::function<void(const ConditionalOStream &)> &callback)
+  {
+    notify_signal.connect(callback);
   }
 
   template <typename number>

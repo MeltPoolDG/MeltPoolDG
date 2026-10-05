@@ -14,6 +14,7 @@
 #include <meltpooldg/utilities/constraints.hpp>
 #include <meltpooldg/utilities/fe_util.hpp>
 #include <meltpooldg/utilities/journal.hpp>
+#include <meltpooldg/utilities/profiling_data.hpp>
 
 #include "advection_diffusion_case.hpp"
 
@@ -241,7 +242,7 @@ namespace MeltPoolDG::LevelSet
                                                      advec_diff_dof_idx),
                                                    scratch_data->get_pcout(2));
     // initialize profiling
-    if (simulation_case->parameters.profiling.enable)
+    if (simulation_case->parameters.profiling.verbosity != Profiling::ProfilingVerbosity::none)
       profiling_monitor =
         std::make_unique<Profiling::ProfilingMonitor<number>>(simulation_case->parameters.profiling,
                                                               *time_iterator);

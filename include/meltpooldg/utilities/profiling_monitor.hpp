@@ -7,6 +7,8 @@
 #include <meltpooldg/utilities/conditional_ostream.hpp>
 #include <meltpooldg/utilities/profiling_data.hpp>
 
+#include <boost/signals2/signal.hpp>
+
 #include <chrono>
 
 
@@ -39,6 +41,18 @@ namespace MeltPoolDG::Profiling
           const dealii::TimerOutput &timer,
           const MPI_Comm            &mpi_communicator) const;
 
+    /**
+     * Subscribe to the profiling monitor. The subscribed callback function will be called whenever
+     * profiling output is generated. The idea is to allow other parts of the code to react to
+     * profiling output and write there own information to the output stream. The callback function
+     * should take a single argument of type ConditionalOStream, which is the output stream to which
+     * profiling information is written.
+     *
+     * @param callback The callback function to be called when profiling output is generated.
+     */
+    void
+    subscribe(const std::function<void(const ConditionalOStream &)> &callback);
+
   private:
     /// The profiling data struct which contains the relevant information for profiling.
     const ProfilingData<number> &data;
@@ -51,6 +65,9 @@ namespace MeltPoolDG::Profiling
 
     /// Real time at object construction
     std::chrono::time_point<std::chrono::system_clock> real_time_start;
+
+    /// Signal to notify subscribers when profiling output is generated.
+    boost::signals2::signal<void(const ConditionalOStream &pcout)> notify_signal;
 
     number
     compute_current_time() const;

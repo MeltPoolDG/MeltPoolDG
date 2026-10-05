@@ -864,6 +864,13 @@ CellListParticleHandler<dim, number, ObstacleType>::get_mpi_communicator() const
 }
 
 template <int dim, typename number, typename ObstacleType>
+const dealii::Triangulation<dim> &
+CellListParticleHandler<dim, number, ObstacleType>::get_triangulation() const
+{
+  return obstacle_handler.get_triangulation();
+}
+
+template <int dim, typename number, typename ObstacleType>
 unsigned int
 CellListParticleHandler<dim, number, ObstacleType>::n_ghost_particles() const
 {
