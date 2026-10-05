@@ -86,6 +86,9 @@ namespace MeltPoolDG::Multiphase
 
       /// Temperature jump (T_liquid - T_gas)
       number delta_T = 0.;
+
+      /// Penalty parameter for tangential velocity jump constraint (no-slip condition)
+      number penalty_parameter_tangential_no_slip = 1.;
     } hllp0_and_penalty;
 
     /**
@@ -180,6 +183,11 @@ namespace MeltPoolDG::Multiphase
                           hllp0_and_penalty.delta_T,
                           "Temperature jump at the interface.",
                           dealii::Patterns::Double());
+        prm.add_parameter(
+          "penalty parameter tangential no slip",
+          hllp0_and_penalty.penalty_parameter_tangential_no_slip,
+          "Penalty parameter for tangential velocity jump constraint (no-slip condition).",
+          dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
         prm.leave_subsection();
       }
       prm.leave_subsection();
