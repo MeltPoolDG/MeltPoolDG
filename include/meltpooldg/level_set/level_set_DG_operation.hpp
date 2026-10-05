@@ -46,8 +46,8 @@ namespace MeltPoolDG::LevelSet
      *  The following objects are the operations, which are performed for solving the
      *  level set equation.
      */
-    std::shared_ptr<AdvectionDGOperation<dim, number>>                  advec_operation;
-    std::shared_ptr<ReinitializationHyperbolicDGOperation<dim, number>> reinit_operation;
+    std::shared_ptr<AdvectionDGOperation<dim, number>>          advec_operation;
+    std::shared_ptr<ReinitializationOperationBase<dim, number>> reinit_operation;
 
     // Is used to track the unreinitialized interface movement
     std::shared_ptr<AdvectionDGOperation<dim, number>> advec_smoothed_signum_operation;
