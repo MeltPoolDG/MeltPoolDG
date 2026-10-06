@@ -257,6 +257,14 @@ namespace MeltPoolDG
     initialize();
 
     /**
+     * Returns the minimal vertex distance of the cells on the level used for caching particles.
+     *
+     * @param max_particle_radius The maximum radius of any particle in the global domain.
+     */
+    static number
+    minimal_cell_vertex_distance(const number max_particle_radius);
+
+    /**
      * Identify obstacles that likely at least partially occupy the specified cell. Note, that the
      * returned particles are not guaranteed to be located within the cell, but they are guaranteed
      * to include all particles that are located within the cell.
