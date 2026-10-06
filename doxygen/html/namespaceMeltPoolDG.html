@@ -247,6 +247,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1DoFMonitor.html">DoFMonitor</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1FESubcellEvaluation.html">FESubcellEvaluation</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1FiniteElementData.html">FiniteElementData</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1FluidStructureInteractionData.html">FluidStructureInteractionData</a></td></tr>
@@ -571,6 +573,12 @@ requires std::ranges::range&lt;ContainerType&gt;</td></tr>
 <tr class="memitem:aa4f563dbab6a56ee8385f3cf26e65ea0" id="r_aa4f563dbab6a56ee8385f3cf26e65ea0"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
 <tr class="memitem:aa4f563dbab6a56ee8385f3cf26e65ea0"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; dealii::TriaIterator&lt; dealii::CellAccessor&lt; dim &gt; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#aa4f563dbab6a56ee8385f3cf26e65ea0">cells_in_cell_batch</a> (const dealii::MatrixFree&lt; dim, number &gt; &amp;mf, const unsigned int cell_batch_id)</td></tr>
 <tr class="separator:aa4f563dbab6a56ee8385f3cf26e65ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8b8fc121952576671ac2e8d4b3e06ec" id="r_ab8b8fc121952576671ac2e8d4b3e06ec"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
+<tr class="memitem:ab8b8fc121952576671ac2e8d4b3e06ec"><td class="memTemplItemLeft" align="right" valign="top">dealii::VectorizedArray&lt; number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ab8b8fc121952576671ac2e8d4b3e06ec">cell_batch_measure</a> (const dealii::MatrixFree&lt; dim, number &gt; &amp;mf, const unsigned int cell_batch_id, const unsigned int dof_handler_index=0)</td></tr>
+<tr class="separator:ab8b8fc121952576671ac2e8d4b3e06ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b01feba302d2f6bfc78702564a1251a" id="r_a0b01feba302d2f6bfc78702564a1251a"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
+<tr class="memitem:a0b01feba302d2f6bfc78702564a1251a"><td class="memTemplItemLeft" align="right" valign="top">dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a0b01feba302d2f6bfc78702564a1251a">cell_batch_center</a> (const dealii::MatrixFree&lt; dim, number &gt; &amp;mf, const unsigned int cell_batch_id, const unsigned int dof_handler_index=0)</td></tr>
+<tr class="separator:a0b01feba302d2f6bfc78702564a1251a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab23838164fc366b7dfb8d524e7d843f6" id="r_ab23838164fc366b7dfb8d524e7d843f6"><td class="memTemplParams" colspan="2">template&lt;int dim, int n_components, typename number , HasJacobianQuadraturePointKernels&lt; dim, number &gt; OperatorType&gt; </td></tr>
 <tr class="memitem:ab23838164fc366b7dfb8d524e7d843f6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ab23838164fc366b7dfb8d524e7d843f6">compute_jacobian_matrix_representation</a> (const OperatorType &amp;implicit_operator, std::variant&lt; dealii::LinearAlgebra::distributed::Vector&lt; number &gt; *, dealii::TrilinosWrappers::SparseMatrix * &gt; dst, const <a class="el" href="namespaceMeltPoolDG.html#ae8ccc6771a919d5f9ff2de6a9c24e307">MatrixRepresentationType</a> type, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;current_solution, const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, const unsigned int dof_idx, const unsigned int quad_idx)</td></tr>
 <tr class="separator:ab23838164fc366b7dfb8d524e7d843f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1089,6 +1097,96 @@ template&lt;int dim, int n_components, typename number , typename VectorizedArra
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b01feba302d2f6bfc78702564a1251a" name="a0b01feba302d2f6bfc78702564a1251a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b01feba302d2f6bfc78702564a1251a">&#9670;&#160;</a></span>cell_batch_center()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; MeltPoolDG::cell_batch_center </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::MatrixFree&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>cell_batch_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>dof_handler_index</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function returns the centers of the cells in the specified cell batch, i.e. the center of the cell of each active SIMD lane. Inactive lanes are set to zero.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mf</td><td>The matrix-free object defining the cell batch of interest. </td></tr>
+    <tr><td class="paramname">cell_batch_id</td><td>Index of the cell batch. </td></tr>
+    <tr><td class="paramname">dof_handler_index</td><td>Index of the DoF handler used to access the cells. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab8b8fc121952576671ac2e8d4b3e06ec" name="ab8b8fc121952576671ac2e8d4b3e06ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8b8fc121952576671ac2e8d4b3e06ec">&#9670;&#160;</a></span>cell_batch_measure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::VectorizedArray&lt; number &gt; MeltPoolDG::cell_batch_measure </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::MatrixFree&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>cell_batch_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>dof_handler_index</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function returns the measures (area in 2D/volume in 3D) of the cells in the specified cell batch, i.e. the measure of the cell of each active SIMD lane. Inactive lanes are set to zero.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mf</td><td>The matrix-free object defining the cell batch of interest. </td></tr>
+    <tr><td class="paramname">cell_batch_id</td><td>Index of the cell batch. </td></tr>
+    <tr><td class="paramname">dof_handler_index</td><td>Index of the DoF handler used to access the cells. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

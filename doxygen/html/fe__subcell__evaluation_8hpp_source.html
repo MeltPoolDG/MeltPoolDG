@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/utilities/fe_subcell_evaluation.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/parameters/index.html">📦 Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/utilities/fe_subcell_evaluation.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/fe__subcell__evaluation_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-utilities-fe-subcell-evaluation-hpp-source-file">
+<h1>include/meltpooldg/utilities/fe_subcell_evaluation.hpp Source File<a class="headerlink" href="#include-meltpooldg-utilities-fe-subcell-evaluation-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/utilities/fe_subcell_evaluation.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_33f297a483115a9e2addf470c6b064fb.html">utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">fe_subcell_evaluation.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="fe__subcell__evaluation_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/std_cxx20/iota_view.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;deal.II/base/tensor.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;deal.II/base/vectorization.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;deal.II/lac/la_parallel_vector.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;deal.II/matrix_free/fe_evaluation.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;deal.II/matrix_free/matrix_free.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;meltpooldg/utilities/better_enum.hpp&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="fe__integrator_8hpp.html">meltpooldg/utilities/fe_integrator.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="matrix__free__util_8hpp.html">meltpooldg/utilities/matrix_free_util.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG.html">MeltPoolDG</a></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keywordtype">int</span> n_components, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html">   63</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1FESubcellEvaluation.html">FESubcellEvaluation</a></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ad36805d32f3bb27eb536860144231b45">   65</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ad36805d32f3bb27eb536860144231b45">VectorizedArrayType</a> = dealii::VectorizedArray&lt;number&gt;;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a0396bf2cfb5707265bf61caf42099fc3">   67</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a0396bf2cfb5707265bf61caf42099fc3">value_type</a> =</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      dealii::FEEvaluation&lt;dim, -1, 0, n_components, number, <a class="code hl_typedef" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ad36805d32f3bb27eb536860144231b45">VectorizedArrayType</a>&gt;<a class="code hl_typedef" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a0396bf2cfb5707265bf61caf42099fc3">::value_type</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a7c5a3d71a7a99fdcc9f6d672b3be8667">   70</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a7c5a3d71a7a99fdcc9f6d672b3be8667">gradient_type</a> =</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      dealii::FEEvaluation&lt;dim, -1, 0, n_components, number, <a class="code hl_typedef" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ad36805d32f3bb27eb536860144231b45">VectorizedArrayType</a>&gt;<a class="code hl_typedef" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a7c5a3d71a7a99fdcc9f6d672b3be8667">::gradient_type</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a088075dd62317e5df6ab8b495718b19b">   73</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a088075dd62317e5df6ab8b495718b19b">n_lanes</a> = VectorizedArrayType::size();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_class" href="classMeltPoolDG_1_1FESubcellEvaluation.html">FESubcellEvaluation</a>(<span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt; &amp;matrix_free,</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                     dof_no,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                     quad_no);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <a class="code hl_class" href="classMeltPoolDG_1_1FESubcellEvaluation.html">FESubcellEvaluation</a>(</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      <span class="keyword">const</span> dealii::FEEvaluation&lt;dim, -1, 0, n_components, number, VectorizedArrayType&gt;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        &amp;fe_evaluation);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a880cdf12da16deb24de40b9124686d29">reinit</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ac6762a616be4b82d168f0a671925dbef">cell_batch_index</a>);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a66aa744642254d3af6995f45e0e14332">read_dof_values</a>(<span class="keyword">const</span> dealii::LinearAlgebra::distributed::Vector&lt;number&gt; &amp;src_vector,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                    <span class="keyword">const</span> std::bitset&lt;n_lanes&gt; &amp;mask = std::bitset&lt;n_lanes&gt;().flip());</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a5718b98dc7739c625861bf75a297a5db">evaluate</a>(<span class="keyword">const</span> dealii::EvaluationFlags::EvaluationFlags evaluation_flags);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a3318e0602447541d98bff1b46cba1af9">gather_evaluate</a>(<span class="keyword">const</span> dealii::LinearAlgebra::distributed::Vector&lt;number&gt; &amp;input_vector,</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                    <span class="keyword">const</span> dealii::EvaluationFlags::EvaluationFlags            evaluation_flags,</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                    <span class="keyword">const</span> std::bitset&lt;n_lanes&gt; &amp;mask = std::bitset&lt;n_lanes&gt;().flip());</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a0396bf2cfb5707265bf61caf42099fc3">value_type</a></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a0afef9c1211abf906a4a7aae06375fb3">get_value</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> subcell_index) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a7c5a3d71a7a99fdcc9f6d672b3be8667">gradient_type</a></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a69b3abb58c498a5fcca4853a0966c11f">get_gradient</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> subcell_index) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a0534fef1601e6b6817fef373f56a956f">submit_value</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> subcell_index, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a0396bf2cfb5707265bf61caf42099fc3">value_type</a> &amp;value);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ac468c37a89b73092588b1f3fda691a48">apply_subcell_values</a>();</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a5f7af4eccc29268bdffaef08c249bbd4">distribute_local_to_global</a>(dealii::LinearAlgebra::distributed::Vector&lt;number&gt; &amp;dst_vector,</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                               <span class="keyword">const</span> std::bitset&lt;n_lanes&gt; &amp;mask = std::bitset&lt;n_lanes&gt;().flip());</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#af20d80f484c1aba942ddf993a10792b2">set_dof_values</a>(dealii::LinearAlgebra::distributed::Vector&lt;number&gt; &amp;dst,</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                   <span class="keyword">const</span> std::bitset&lt;n_lanes&gt; &amp;mask = std::bitset&lt;n_lanes&gt;().flip());</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    dealii::std_cxx20::ranges::iota_view&lt;unsigned int, unsigned int&gt;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a554009b8c5f0b1e5d28d67e65a37f52d">subcell_indices</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    T</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a6c376d6b5661a63d0f9144572009138a">read_cell_data</a>(<span class="keyword">const</span> dealii::AlignedVector&lt;T&gt; &amp;data) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab86022ab56e13559de3ae48adc718601">set_cell_data</a>(dealii::AlignedVector&lt;T&gt; &amp;data, <span class="keyword">const</span> T &amp;value) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <a class="code hl_typedef" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ad36805d32f3bb27eb536860144231b45">VectorizedArrayType</a></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab8601af3645beebb246af350be2a7689">subcell_size</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> subcell_index) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    dealii::Point&lt;dim, VectorizedArrayType&gt;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab4cd9a97cd1ad358bb4d31f1be2ad8a6">subcell_location</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> subcell_index) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keywordtype">unsigned</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#afd72d90072b192d7372558736f224b4f">n_subcells</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ac6762a616be4b82d168f0a671925dbef">  269</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ac6762a616be4b82d168f0a671925dbef">cell_batch_index</a>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a88a710e70e849a99807a0e36a4a56a11">  273</a></span>    dealii::FEEvaluation&lt;dim, -1, 0, n_components, number, <a class="code hl_typedef" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ad36805d32f3bb27eb536860144231b45">VectorizedArrayType</a>&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a88a710e70e849a99807a0e36a4a56a11">fe_cell_evaluator</a>;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a34c1c56452cf9b622a2f14f5a71c96ab">  279</a></span>    std::vector&lt;value_type&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a34c1c56452cf9b622a2f14f5a71c96ab">subcell_values</a>;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#afe1700482be52536301aa72fd4bea4cf">  285</a></span>    std::vector&lt;gradient_type&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#afe1700482be52536301aa72fd4bea4cf">subcell_gradients</a>;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a43c031089405a795defd6b3bc81247ae">  291</a></span>    std::vector&lt;value_type&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a43c031089405a795defd6b3bc81247ae">submitted_subcell_values</a>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a714fb9ef42a0a9764f5ed27326aa2279">  295</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a714fb9ef42a0a9764f5ed27326aa2279">n_subcells_1d</a>;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#aa94b1ed036a1b94021da8e7aa742b85e">  298</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#aa94b1ed036a1b94021da8e7aa742b85e">n_subcells_total</a>;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab570f5c403b060b18d5c4d6b4d9e0fca">  302</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab570f5c403b060b18d5c4d6b4d9e0fca">is_reinitialized</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a443f2861fede9d4cbbd889d2fb9eb698">  305</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a443f2861fede9d4cbbd889d2fb9eb698">dof_values_initialized</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab3e6f0081209b8d674af6df51dabf211">  308</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab3e6f0081209b8d674af6df51dabf211">subcell_values_initialized</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#abc2a46efa512d11cd608069703e587e9">  311</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#abc2a46efa512d11cd608069703e587e9">subcell_gradients_initialized</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#aed52613a75a1d66ee490fc36e9e59f90">  315</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FESubcellEvaluation.html#aed52613a75a1d66ee490fc36e9e59f90">subcell_values_submitted</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#afa238a6c7eff9b9b99023f4a1bf9a1cd">setup_internal_data_structures</a>();</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ad28fb2fa829953d2b51ecfa3b293b5e4">project_dof_values_to_subcell_values</a>(</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>      <span class="keyword">const</span> dealii::EvaluationFlags::EvaluationFlags evaluation_flags);</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a683a3bf3309ec73fb76581b90a5b4502">project_subcell_values_to_dof_values</a>();</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>  };</div>
+</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keywordtype">int</span> n_components, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>  T</div>
+<div class="foldopen" id="foldopen00359" data-start="{" data-end="}">
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a6c376d6b5661a63d0f9144572009138a">  359</a></span>  <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a6c376d6b5661a63d0f9144572009138a">FESubcellEvaluation&lt;dim, n_components, number&gt;::read_cell_data</a>(</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    <span class="keyword">const</span> dealii::AlignedVector&lt;T&gt; &amp;data)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="keyword">  </span>{</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    <span class="keywordflow">return</span> fe_cell_evaluator.read_cell_data(data);</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>  }</div>
+</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keywordtype">int</span> n_components, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>  <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00368" data-start="{" data-end="}">
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab86022ab56e13559de3ae48adc718601">  368</a></span>  <a class="code hl_function" href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab86022ab56e13559de3ae48adc718601">FESubcellEvaluation&lt;dim, n_components, number&gt;::set_cell_data</a>(dealii::AlignedVector&lt;T&gt; &amp;data,</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>                                                                <span class="keyword">const</span> T &amp;value)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="keyword">  </span>{</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    fe_cell_evaluator.set_cell_data(data, value);</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>  }</div>
+</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html">MeltPoolDG::FESubcellEvaluation</a></div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:64</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a0396bf2cfb5707265bf61caf42099fc3"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a0396bf2cfb5707265bf61caf42099fc3">MeltPoolDG::FESubcellEvaluation::value_type</a></div><div class="ttdeci">dealii::FEEvaluation&lt; dim, -1, 0, n_components, number, VectorizedArrayType &gt;::value_type value_type</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:68</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a0534fef1601e6b6817fef373f56a956f"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a0534fef1601e6b6817fef373f56a956f">MeltPoolDG::FESubcellEvaluation::submit_value</a></div><div class="ttdeci">void submit_value(const unsigned int subcell_index, const value_type &amp;value)</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:112</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a088075dd62317e5df6ab8b495718b19b"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a088075dd62317e5df6ab8b495718b19b">MeltPoolDG::FESubcellEvaluation::n_lanes</a></div><div class="ttdeci">static constexpr unsigned int n_lanes</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:73</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a0afef9c1211abf906a4a7aae06375fb3"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a0afef9c1211abf906a4a7aae06375fb3">MeltPoolDG::FESubcellEvaluation::get_value</a></div><div class="ttdeci">value_type get_value(const unsigned int subcell_index) const</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:87</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a3318e0602447541d98bff1b46cba1af9"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a3318e0602447541d98bff1b46cba1af9">MeltPoolDG::FESubcellEvaluation::gather_evaluate</a></div><div class="ttdeci">void gather_evaluate(const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;input_vector, const dealii::EvaluationFlags::EvaluationFlags evaluation_flags, const std::bitset&lt; n_lanes &gt; &amp;mask=std::bitset&lt; n_lanes &gt;().flip())</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:75</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a34c1c56452cf9b622a2f14f5a71c96ab"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a34c1c56452cf9b622a2f14f5a71c96ab">MeltPoolDG::FESubcellEvaluation::subcell_values</a></div><div class="ttdeci">std::vector&lt; value_type &gt; subcell_values</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:279</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a43c031089405a795defd6b3bc81247ae"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a43c031089405a795defd6b3bc81247ae">MeltPoolDG::FESubcellEvaluation::submitted_subcell_values</a></div><div class="ttdeci">std::vector&lt; value_type &gt; submitted_subcell_values</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:291</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a443f2861fede9d4cbbd889d2fb9eb698"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a443f2861fede9d4cbbd889d2fb9eb698">MeltPoolDG::FESubcellEvaluation::dof_values_initialized</a></div><div class="ttdeci">bool dof_values_initialized</div><div class="ttdoc">A flag indicating whether the DoF values have been set. Used for debug information.</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:305</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a554009b8c5f0b1e5d28d67e65a37f52d"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a554009b8c5f0b1e5d28d67e65a37f52d">MeltPoolDG::FESubcellEvaluation::subcell_indices</a></div><div class="ttdeci">dealii::std_cxx20::ranges::iota_view&lt; unsigned int, unsigned int &gt; subcell_indices() const</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:152</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a5718b98dc7739c625861bf75a297a5db"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a5718b98dc7739c625861bf75a297a5db">MeltPoolDG::FESubcellEvaluation::evaluate</a></div><div class="ttdeci">void evaluate(const dealii::EvaluationFlags::EvaluationFlags evaluation_flags)</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:63</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a5f7af4eccc29268bdffaef08c249bbd4"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a5f7af4eccc29268bdffaef08c249bbd4">MeltPoolDG::FESubcellEvaluation::distribute_local_to_global</a></div><div class="ttdeci">void distribute_local_to_global(dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;dst_vector, const std::bitset&lt; n_lanes &gt; &amp;mask=std::bitset&lt; n_lanes &gt;().flip())</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:134</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a66aa744642254d3af6995f45e0e14332"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a66aa744642254d3af6995f45e0e14332">MeltPoolDG::FESubcellEvaluation::read_dof_values</a></div><div class="ttdeci">void read_dof_values(const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;src_vector, const std::bitset&lt; n_lanes &gt; &amp;mask=std::bitset&lt; n_lanes &gt;().flip())</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:49</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a683a3bf3309ec73fb76581b90a5b4502"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a683a3bf3309ec73fb76581b90a5b4502">MeltPoolDG::FESubcellEvaluation::project_subcell_values_to_dof_values</a></div><div class="ttdeci">void project_subcell_values_to_dof_values()</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:226</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a69b3abb58c498a5fcca4853a0966c11f"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a69b3abb58c498a5fcca4853a0966c11f">MeltPoolDG::FESubcellEvaluation::get_gradient</a></div><div class="ttdeci">gradient_type get_gradient(const unsigned int subcell_index) const</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:99</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a6c376d6b5661a63d0f9144572009138a"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a6c376d6b5661a63d0f9144572009138a">MeltPoolDG::FESubcellEvaluation::read_cell_data</a></div><div class="ttdeci">T read_cell_data(const dealii::AlignedVector&lt; T &gt; &amp;data) const</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:359</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a714fb9ef42a0a9764f5ed27326aa2279"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a714fb9ef42a0a9764f5ed27326aa2279">MeltPoolDG::FESubcellEvaluation::n_subcells_1d</a></div><div class="ttdeci">unsigned int n_subcells_1d</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:295</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a7c5a3d71a7a99fdcc9f6d672b3be8667"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a7c5a3d71a7a99fdcc9f6d672b3be8667">MeltPoolDG::FESubcellEvaluation::gradient_type</a></div><div class="ttdeci">dealii::FEEvaluation&lt; dim, -1, 0, n_components, number, VectorizedArrayType &gt;::gradient_type gradient_type</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:71</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a880cdf12da16deb24de40b9124686d29"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a880cdf12da16deb24de40b9124686d29">MeltPoolDG::FESubcellEvaluation::reinit</a></div><div class="ttdeci">void reinit(const unsigned int cell_batch_index)</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:39</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_a88a710e70e849a99807a0e36a4a56a11"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#a88a710e70e849a99807a0e36a4a56a11">MeltPoolDG::FESubcellEvaluation::fe_cell_evaluator</a></div><div class="ttdeci">dealii::FEEvaluation&lt; dim, -1, 0, n_components, number, VectorizedArrayType &gt; fe_cell_evaluator</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:273</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_aa94b1ed036a1b94021da8e7aa742b85e"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#aa94b1ed036a1b94021da8e7aa742b85e">MeltPoolDG::FESubcellEvaluation::n_subcells_total</a></div><div class="ttdeci">unsigned int n_subcells_total</div><div class="ttdoc">The total number of subcells on the current cell.</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:298</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_ab3e6f0081209b8d674af6df51dabf211"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab3e6f0081209b8d674af6df51dabf211">MeltPoolDG::FESubcellEvaluation::subcell_values_initialized</a></div><div class="ttdeci">bool subcell_values_initialized</div><div class="ttdoc">A flag indicating whether the subcell values have been set. Used for debug information.</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:308</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_ab4cd9a97cd1ad358bb4d31f1be2ad8a6"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab4cd9a97cd1ad358bb4d31f1be2ad8a6">MeltPoolDG::FESubcellEvaluation::subcell_location</a></div><div class="ttdeci">dealii::Point&lt; dim, VectorizedArrayType &gt; subcell_location(const unsigned int subcell_index) const</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:171</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_ab570f5c403b060b18d5c4d6b4d9e0fca"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab570f5c403b060b18d5c4d6b4d9e0fca">MeltPoolDG::FESubcellEvaluation::is_reinitialized</a></div><div class="ttdeci">bool is_reinitialized</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:302</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_ab8601af3645beebb246af350be2a7689"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab8601af3645beebb246af350be2a7689">MeltPoolDG::FESubcellEvaluation::subcell_size</a></div><div class="ttdeci">VectorizedArrayType subcell_size(const unsigned int subcell_index) const</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:159</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_ab86022ab56e13559de3ae48adc718601"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#ab86022ab56e13559de3ae48adc718601">MeltPoolDG::FESubcellEvaluation::set_cell_data</a></div><div class="ttdeci">void set_cell_data(dealii::AlignedVector&lt; T &gt; &amp;data, const T &amp;value) const</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:368</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_abc2a46efa512d11cd608069703e587e9"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#abc2a46efa512d11cd608069703e587e9">MeltPoolDG::FESubcellEvaluation::subcell_gradients_initialized</a></div><div class="ttdeci">bool subcell_gradients_initialized</div><div class="ttdoc">A flag indicating whether the subcell gradients have been set. Used for debug information.</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:311</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_ac468c37a89b73092588b1f3fda691a48"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#ac468c37a89b73092588b1f3fda691a48">MeltPoolDG::FESubcellEvaluation::apply_subcell_values</a></div><div class="ttdeci">void apply_subcell_values()</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:122</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_ac6762a616be4b82d168f0a671925dbef"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#ac6762a616be4b82d168f0a671925dbef">MeltPoolDG::FESubcellEvaluation::cell_batch_index</a></div><div class="ttdeci">unsigned int cell_batch_index</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:269</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_ad28fb2fa829953d2b51ecfa3b293b5e4"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#ad28fb2fa829953d2b51ecfa3b293b5e4">MeltPoolDG::FESubcellEvaluation::project_dof_values_to_subcell_values</a></div><div class="ttdeci">void project_dof_values_to_subcell_values(const dealii::EvaluationFlags::EvaluationFlags evaluation_flags)</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:203</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_ad36805d32f3bb27eb536860144231b45"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#ad36805d32f3bb27eb536860144231b45">MeltPoolDG::FESubcellEvaluation::VectorizedArrayType</a></div><div class="ttdeci">dealii::VectorizedArray&lt; number &gt; VectorizedArrayType</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:65</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_aed52613a75a1d66ee490fc36e9e59f90"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#aed52613a75a1d66ee490fc36e9e59f90">MeltPoolDG::FESubcellEvaluation::subcell_values_submitted</a></div><div class="ttdeci">bool subcell_values_submitted</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:315</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_af20d80f484c1aba942ddf993a10792b2"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#af20d80f484c1aba942ddf993a10792b2">MeltPoolDG::FESubcellEvaluation::set_dof_values</a></div><div class="ttdeci">void set_dof_values(dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;dst, const std::bitset&lt; n_lanes &gt; &amp;mask=std::bitset&lt; n_lanes &gt;().flip())</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:143</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_afa238a6c7eff9b9b99023f4a1bf9a1cd"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#afa238a6c7eff9b9b99023f4a1bf9a1cd">MeltPoolDG::FESubcellEvaluation::setup_internal_data_structures</a></div><div class="ttdeci">void setup_internal_data_structures()</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:191</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_afd72d90072b192d7372558736f224b4f"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#afd72d90072b192d7372558736f224b4f">MeltPoolDG::FESubcellEvaluation::n_subcells</a></div><div class="ttdeci">unsigned n_subcells() const</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.templates.hpp:184</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FESubcellEvaluation_html_afe1700482be52536301aa72fd4bea4cf"><div class="ttname"><a href="classMeltPoolDG_1_1FESubcellEvaluation.html#afe1700482be52536301aa72fd4bea4cf">MeltPoolDG::FESubcellEvaluation::subcell_gradients</a></div><div class="ttdeci">std::vector&lt; gradient_type &gt; subcell_gradients</div><div class="ttdef"><b>Definition</b> fe_subcell_evaluation.hpp:285</div></div>
+<div class="ttc" id="afe__integrator_8hpp_html"><div class="ttname"><a href="fe__integrator_8hpp.html">fe_integrator.hpp</a></div></div>
+<div class="ttc" id="amatrix__free__util_8hpp_html"><div class="ttname"><a href="matrix__free__util_8hpp.html">matrix_free_util.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> boundary_condition_functions.hpp:17</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
