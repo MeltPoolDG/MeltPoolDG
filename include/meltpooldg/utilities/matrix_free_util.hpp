@@ -79,6 +79,55 @@ namespace MeltPoolDG
     return cells;
   }
 
+  /**
+   * This function returns the measures (area in 2D/volume in 3D) of the cells in the specified cell
+   * batch, i.e. the measure of the cell of each active SIMD lane. Inactive lanes are set to zero.
+   *
+   * @param mf The matrix-free object defining the cell batch of interest.
+   * @param cell_batch_id Index of the cell batch.
+   * @param dof_handler_index Index of the DoF handler used to access the cells.
+   */
+  template <int dim, typename number>
+  dealii::VectorizedArray<number>
+  cell_batch_measure(const dealii::MatrixFree<dim, number> &mf,
+                     const unsigned int                     cell_batch_id,
+                     const unsigned int                     dof_handler_index = 0)
+  {
+    dealii::VectorizedArray<number> measures = 0.;
+    for (unsigned int lane = 0; lane < mf.n_active_entries_per_cell_batch(cell_batch_id); ++lane)
+      {
+        measures[lane] = mf.get_cell_iterator(cell_batch_id, lane, dof_handler_index)->measure();
+      }
+    return measures;
+  }
+
+  /**
+   * This function returns the centers of the cells in the specified cell batch, i.e. the center
+   * of the cell of each active SIMD lane. Inactive lanes are set to zero.
+   *
+   * @param mf The matrix-free object defining the cell batch of interest.
+   * @param cell_batch_id Index of the cell batch.
+   * @param dof_handler_index Index of the DoF handler used to access the cells.
+   */
+  template <int dim, typename number>
+  dealii::Point<dim, dealii::VectorizedArray<number>>
+  cell_batch_center(const dealii::MatrixFree<dim, number> &mf,
+                    const unsigned int                     cell_batch_id,
+                    const unsigned int                     dof_handler_index = 0)
+  {
+    dealii::Point<dim, dealii::VectorizedArray<number>> centers;
+    for (unsigned int lane = 0; lane < mf.n_active_entries_per_cell_batch(cell_batch_id); ++lane)
+      {
+        const auto center =
+          mf.get_cell_iterator(cell_batch_id, lane, dof_handler_index)->barycenter();
+        for (unsigned int d = 0; d < dim; ++d)
+          {
+            centers[d][lane] = center[d];
+          }
+      }
+    return centers;
+  }
+
   /// An enum of possible matrix representation types that can be computed from a matrix free
   /// object with the below defined functions.
   enum MatrixRepresentationType
