@@ -166,6 +166,8 @@ namespace MeltPoolDG::CompressibleFlow
      * @param scratch_data_in Reference to the scratch data object.
      * @param dof_idx_in Relevant dof index of the flow solver in the scratch data object.
      * @param quad_idx_in Relevant quadrature index of the flow solver in the scratch data object.
+     * @param band_dof_idx_in DoF index of the flow solver with band constraints in the scratch
+     * data object (only required for the band solver).
      */
     explicit MultiphaseOperationScratchData(
       const OperationData<number>                                 &flow_data_in,
@@ -177,7 +179,8 @@ namespace MeltPoolDG::CompressibleFlow
       const Flow::DarcyDampingData<number>                        &darcy_damping_data_in,
       const ScratchData<dim, dim, number>                         &scratch_data_in,
       const unsigned int                                           dof_idx_in,
-      const unsigned int                                           quad_idx_in)
+      const unsigned int                                           quad_idx_in,
+      const unsigned int band_dof_idx_in = dealii::numbers::invalid_unsigned_int)
       : flow_data(flow_data_in)
       , scratch_data(scratch_data_in)
       , material_gas(material_data_gas_in)
@@ -188,6 +191,7 @@ namespace MeltPoolDG::CompressibleFlow
       , darcy_damping(darcy_damping_data_in)
       , dof_idx(dof_idx_in)
       , quad_idx(quad_idx_in)
+      , band_dof_idx(band_dof_idx_in)
     {
       is_viscous = material_gas.dynamic_viscosity > 0. or material_liquid.dynamic_viscosity > 0.;
     }
@@ -221,6 +225,10 @@ namespace MeltPoolDG::CompressibleFlow
 
     /// Quadrature index within the matrix-free object
     const unsigned int quad_idx = 0;
+
+    /// DoF index within the matrix-free object for the same DoFHandler as @p dof_idx, in which all
+    /// DoFs outside the band are constrained (only required for the band solver)
+    const unsigned int band_dof_idx = dealii::numbers::invalid_unsigned_int;
 
     /// Boolean variable indicating whether viscosity is present
     bool is_viscous = false;

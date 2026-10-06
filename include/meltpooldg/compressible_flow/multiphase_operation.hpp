@@ -29,6 +29,7 @@
 #include <deal.II/non_matching/mesh_classifier.h>
 
 #include <meltpooldg/compressible_flow/boundary_conditions.hpp>
+#include <meltpooldg/compressible_flow/multiphase_band_solver.hpp>
 #include <meltpooldg/compressible_flow/multiphase_operation.hpp>
 #include <meltpooldg/compressible_flow/multiphase_operator.hpp>
 #include <meltpooldg/compressible_flow/operation_scratch_data.hpp>
@@ -92,6 +93,8 @@ namespace MeltPoolDG::Multiphase
      * @param comp_flow_dof_idx_in Index of the used dof handler for solution in @p scratch_data_in.
      * @param level_set_dof_idx_in Index of the used dof handler for level-set in @p scratch_data_in.
      * @param comp_flow_quad_idx_in Index of the used quadrature object in @p scratch_data_in.
+     * @param comp_flow_band_dof_idx_in Index of the dof handler for the solution with band
+     * constraints. (Only required for the band solver.)
      *
      * @note This constructor assumes that explicit time stepping is used. Only one solution is
      * stored in the history, and ghost-penalty stabilization is enabled.
@@ -108,9 +111,10 @@ namespace MeltPoolDG::Multiphase
       const TimeIntegration::TimeIterator<number>       &time_iterator_in,
       const std::function<void()>                       &setup_dof_system_in,
       const VectorType                                  &level_set_in,
-      unsigned int comp_flow_dof_idx_in  = dealii::numbers::invalid_unsigned_int,
-      unsigned int level_set_dof_idx_in  = dealii::numbers::invalid_unsigned_int,
-      unsigned int comp_flow_quad_idx_in = dealii::numbers::invalid_unsigned_int);
+      unsigned int comp_flow_dof_idx_in      = dealii::numbers::invalid_unsigned_int,
+      unsigned int level_set_dof_idx_in      = dealii::numbers::invalid_unsigned_int,
+      unsigned int comp_flow_quad_idx_in     = dealii::numbers::invalid_unsigned_int,
+      unsigned int comp_flow_band_dof_idx_in = dealii::numbers::invalid_unsigned_int);
 
     /**
      * @brief Set up the required internal data structures.
@@ -390,6 +394,11 @@ namespace MeltPoolDG::Multiphase
     /// Boolean indicator whether the preconditioner needs to be updated before the next solve
     bool preconditioner_update_flag = false;
 
+    /// Specialized efficient solver for the ghost-penalty stabilized mass matrix system: exact
+    /// cell-wise inverse for all cells away from the interface and a linear solver for the band of
+    /// intersected cells and their ghost-penalty neighbors
+    BandSolver<number, VectorType> band_solver;
+
     /// Counter variable for the number of performed time steps, used to determine when to update
     /// the preconditioner
     unsigned int n_steps_performed = 0;
@@ -416,7 +425,7 @@ namespace MeltPoolDG::Multiphase
      * - adapt DoFHandler and solution vectors according to new interface position, extrapolate new
      * DoF values via ghost-penalty extrapolation
      * - reinit matrix-free object, rhs and solution vectors
-     * - reinitialize the preconditioner's data structures
+     * - reinitialize the preconditioner's and the band solver's data structures
      */
     void
     adapt_to_new_interface_position();

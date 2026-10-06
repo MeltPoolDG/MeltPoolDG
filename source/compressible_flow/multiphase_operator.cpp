@@ -15,6 +15,9 @@
 #include <meltpooldg/utilities/preprocessor_directives.hpp>
 #include <meltpooldg/utilities/scoped_name.hpp>
 
+#include <bitset>
+#include <vector>
+
 
 namespace MeltPoolDG::Multiphase
 {
@@ -277,8 +280,9 @@ namespace MeltPoolDG::Multiphase
     switch (cell_category)
       {
           case CutUtil::CellCategory::liquid: {
-            auto eval_liquid =
-              create_cell_integrator(CutUtil::CellCategory::liquid, first_component[Phase::liquid]);
+            auto eval_liquid = create_cell_integrator(CutUtil::CellCategory::liquid,
+                                                      multiphase_scratch_data.dof_idx,
+                                                      first_component[CutUtil::Phase::liquid]);
             for (unsigned int cell = cell_range.first; cell < cell_range.second; ++cell)
               {
                 eval_liquid.reinit(cell);
@@ -294,8 +298,9 @@ namespace MeltPoolDG::Multiphase
             break;
           }
           case CutUtil::CellCategory::gas: {
-            auto eval_gas =
-              create_cell_integrator(CutUtil::CellCategory::gas, first_component[Phase::gas]);
+            auto eval_gas = create_cell_integrator(CutUtil::CellCategory::gas,
+                                                   multiphase_scratch_data.dof_idx,
+                                                   first_component[CutUtil::Phase::gas]);
             for (unsigned int cell = cell_range.first; cell < cell_range.second; ++cell)
               {
                 eval_gas.reinit(cell);
@@ -315,13 +320,17 @@ namespace MeltPoolDG::Multiphase
 
             auto eval_liquid_intersected =
               create_cell_integrator(CutUtil::CellCategory::intersected,
-                                     first_component[Phase::liquid]);
-            auto eval_gas_intersected = create_cell_integrator(CutUtil::CellCategory::intersected,
-                                                               first_component[Phase::gas]);
+                                     multiphase_scratch_data.dof_idx,
+                                     first_component[CutUtil::Phase::liquid]);
+            auto eval_gas_intersected =
+              create_cell_integrator(CutUtil::CellCategory::intersected,
+                                     multiphase_scratch_data.dof_idx,
+                                     first_component[CutUtil::Phase::gas]);
 
-            DomainPointEval eval_point_liquid(*mapping_info_cells[Phase::liquid], fe_point_temp);
+            DomainPointEval eval_point_liquid(*mapping_info_cells[CutUtil::Phase::liquid],
+                                              fe_point_temp);
             DomainPointEval eval_point_interface_liquid(mapping_info_interface, fe_point_temp);
-            DomainPointEval eval_point_gas(*mapping_info_cells[Phase::gas], fe_point_temp);
+            DomainPointEval eval_point_gas(*mapping_info_cells[CutUtil::Phase::gas], fe_point_temp);
             DomainPointEval eval_point_interface_gas(mapping_info_interface, fe_point_temp);
 
             // update current laser heat source
@@ -872,7 +881,8 @@ namespace MeltPoolDG::Multiphase
           case CutUtil::FaceType::inside_face_liquid: {
             auto [eval_liquid_m, eval_liquid_p] =
               create_face_integrators(CutUtil::CellCategory::liquid,
-                                      first_component[Phase::liquid]);
+                                      multiphase_scratch_data.dof_idx,
+                                      first_component[CutUtil::Phase::liquid]);
             process_bulk_face_range.template operator()<is_viscous_liquid>(
               eval_liquid_m, eval_liquid_p, multiphase_scratch_data.material_liquid);
           }
@@ -882,10 +892,12 @@ namespace MeltPoolDG::Multiphase
             auto eval_liquid_p_intersected =
               create_face_integrator(false,
                                      CutUtil::CellCategory::intersected,
-                                     first_component[Phase::liquid]);
+                                     multiphase_scratch_data.dof_idx,
+                                     first_component[CutUtil::Phase::liquid]);
             auto                             eval_liquid_m = create_face_integrator(true,
                                                         CutUtil::CellCategory::liquid,
-                                                        first_component[Phase::liquid]);
+                                                        multiphase_scratch_data.dof_idx,
+                                                        first_component[CutUtil::Phase::liquid]);
             process_bulk_face_range.template operator()<is_viscous_liquid>(
               eval_liquid_m, eval_liquid_p_intersected, multiphase_scratch_data.material_liquid);
           }
@@ -895,10 +907,12 @@ namespace MeltPoolDG::Multiphase
             auto eval_liquid_m_intersected =
               create_face_integrator(true,
                                      CutUtil::CellCategory::intersected,
-                                     first_component[Phase::liquid]);
+                                     multiphase_scratch_data.dof_idx,
+                                     first_component[CutUtil::Phase::liquid]);
             auto                             eval_liquid_p = create_face_integrator(false,
                                                         CutUtil::CellCategory::liquid,
-                                                        first_component[Phase::liquid]);
+                                                        multiphase_scratch_data.dof_idx,
+                                                        first_component[CutUtil::Phase::liquid]);
             process_bulk_face_range.template operator()<is_viscous_liquid>(
               eval_liquid_m_intersected, eval_liquid_p, multiphase_scratch_data.material_liquid);
           }
@@ -906,30 +920,39 @@ namespace MeltPoolDG::Multiphase
 
           case CutUtil::FaceType::inside_face_gas: {
             auto [eval_gas_m, eval_gas_p] =
-              create_face_integrators(CutUtil::CellCategory::gas, first_component[Phase::gas]);
+              create_face_integrators(CutUtil::CellCategory::gas,
+                                      multiphase_scratch_data.dof_idx,
+                                      first_component[CutUtil::Phase::gas]);
             process_bulk_face_range.template operator()<is_viscous_gas>(
               eval_gas_m, eval_gas_p, multiphase_scratch_data.material_gas);
           }
           break;
 
           case CutUtil::FaceType::mixed_face_gas_intersected: {
-            auto eval_gas_m =
-              create_face_integrator(true, CutUtil::CellCategory::gas, first_component[Phase::gas]);
-            auto                             eval_gas_p_intersected = create_face_integrator(false,
-                                                                 CutUtil::CellCategory::intersected,
-                                                                 first_component[Phase::gas]);
+            auto eval_gas_m = create_face_integrator(true,
+                                                     CutUtil::CellCategory::gas,
+                                                     multiphase_scratch_data.dof_idx,
+                                                     first_component[CutUtil::Phase::gas]);
+            auto eval_gas_p_intersected =
+              create_face_integrator(false,
+                                     CutUtil::CellCategory::intersected,
+                                     multiphase_scratch_data.dof_idx,
+                                     first_component[CutUtil::Phase::gas]);
             process_bulk_face_range.template operator()<is_viscous_gas>(
               eval_gas_m, eval_gas_p_intersected, multiphase_scratch_data.material_gas);
           }
           break;
 
           case CutUtil::FaceType::mixed_face_intersected_gas: {
-            auto                             eval_gas_p             = create_face_integrator(false,
+            auto eval_gas_p = create_face_integrator(false,
                                                      CutUtil::CellCategory::gas,
-                                                     first_component[Phase::gas]);
-            auto                             eval_gas_m_intersected = create_face_integrator(true,
-                                                                 CutUtil::CellCategory::intersected,
-                                                                 first_component[Phase::gas]);
+                                                     multiphase_scratch_data.dof_idx,
+                                                     first_component[CutUtil::Phase::gas]);
+            auto eval_gas_m_intersected =
+              create_face_integrator(true,
+                                     CutUtil::CellCategory::intersected,
+                                     multiphase_scratch_data.dof_idx,
+                                     first_component[CutUtil::Phase::gas]);
             process_bulk_face_range.template operator()<is_viscous_gas>(
               eval_gas_m_intersected, eval_gas_p, multiphase_scratch_data.material_gas);
           }
@@ -938,19 +961,21 @@ namespace MeltPoolDG::Multiphase
           case CutUtil::FaceType::intersected_face: {
             auto [eval_liquid_m_intersected, eval_liquid_p_intersected] =
               create_face_integrators(CutUtil::CellCategory::intersected,
-                                      first_component[Phase::liquid]);
+                                      multiphase_scratch_data.dof_idx,
+                                      first_component[CutUtil::Phase::liquid]);
             auto [eval_gas_m_intersected, eval_gas_p_intersected] =
               create_face_integrators(CutUtil::CellCategory::intersected,
-                                      first_component[Phase::gas]);
+                                      multiphase_scratch_data.dof_idx,
+                                      first_component[CutUtil::Phase::gas]);
             process_intersected_face_range.template operator()<is_viscous_liquid>(
               eval_liquid_m_intersected,
               eval_liquid_p_intersected,
-              Phase::liquid,
+              CutUtil::Phase::liquid,
               multiphase_scratch_data.material_liquid);
             process_intersected_face_range.template operator()<is_viscous_gas>(
               eval_gas_m_intersected,
               eval_gas_p_intersected,
-              Phase::gas,
+              CutUtil::Phase::gas,
               multiphase_scratch_data.material_gas);
             break;
           }
@@ -1145,14 +1170,17 @@ namespace MeltPoolDG::Multiphase
           case CutUtil::CellCategory::liquid: {
             auto                             eval_liquid_m = create_face_integrator(true,
                                                         CutUtil::CellCategory::liquid,
-                                                        first_component[Phase::liquid]);
+                                                        multiphase_scratch_data.dof_idx,
+                                                        first_component[CutUtil::Phase::liquid]);
             process_bulk_face_range.template operator()<is_viscous_liquid, false /*is_gas_phase*/>(
               eval_liquid_m, multiphase_scratch_data.material_liquid);
             break;
           }
           case CutUtil::CellCategory::gas: {
-            auto eval_gas_m =
-              create_face_integrator(true, CutUtil::CellCategory::gas, first_component[Phase::gas]);
+            auto                             eval_gas_m = create_face_integrator(true,
+                                                     CutUtil::CellCategory::gas,
+                                                     multiphase_scratch_data.dof_idx,
+                                                     first_component[CutUtil::Phase::gas]);
             process_bulk_face_range.template operator()<is_viscous_gas, true /*is_gas_phase*/>(
               eval_gas_m, multiphase_scratch_data.material_gas);
             break;
@@ -1161,16 +1189,21 @@ namespace MeltPoolDG::Multiphase
             auto eval_liquid_m_intersected =
               create_face_integrator(true,
                                      CutUtil::CellCategory::intersected,
-                                     first_component[Phase::liquid]);
-            auto eval_gas_m_intersected = create_face_integrator(true,
-                                                                 CutUtil::CellCategory::intersected,
-                                                                 first_component[Phase::gas]);
+                                     multiphase_scratch_data.dof_idx,
+                                     first_component[CutUtil::Phase::liquid]);
+            auto eval_gas_m_intersected =
+              create_face_integrator(true,
+                                     CutUtil::CellCategory::intersected,
+                                     multiphase_scratch_data.dof_idx,
+                                     first_component[CutUtil::Phase::gas]);
             process_intersected_face_range
               .template operator()<is_viscous_liquid, false /*is_gas_phase*/>(
-                eval_liquid_m_intersected, Phase::liquid, multiphase_scratch_data.material_liquid);
+                eval_liquid_m_intersected,
+                CutUtil::Phase::liquid,
+                multiphase_scratch_data.material_liquid);
             process_intersected_face_range
               .template operator()<is_viscous_gas, true /*is_gas_phase*/>(
-                eval_gas_m_intersected, Phase::gas, multiphase_scratch_data.material_gas);
+                eval_gas_m_intersected, CutUtil::Phase::gas, multiphase_scratch_data.material_gas);
             break;
           }
         default:
@@ -1189,6 +1222,17 @@ namespace MeltPoolDG::Multiphase
     ScopedName         scope_apply_cell_lhs("local_apply_cell_lhs");
     TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_apply_cell_lhs);
 
+    apply_cell_lhs(dst, src, cell_range, multiphase_scratch_data.dof_idx);
+  }
+
+  template <int dim, typename number, bool is_viscous_gas, bool is_viscous_liquid>
+  void
+  CompressibleMultiphaseOperator<dim, number, is_viscous_gas, is_viscous_liquid>::apply_cell_lhs(
+    VectorType                                  &dst,
+    const VectorType                            &src,
+    const std::pair<unsigned int, unsigned int> &cell_range,
+    const unsigned int                           dof_idx) const
+  {
     const auto cell_category =
       multiphase_scratch_data.scratch_data.get_cell_range_category(cell_range);
 
@@ -1237,15 +1281,17 @@ namespace MeltPoolDG::Multiphase
     switch (cell_category)
       {
           case CutUtil::CellCategory::liquid: {
-            auto eval_liquid =
-              create_cell_integrator(CutUtil::CellCategory::liquid, first_component[Phase::liquid]);
+            auto eval_liquid = create_cell_integrator(CutUtil::CellCategory::liquid,
+                                                      dof_idx,
+                                                      first_component[CutUtil::Phase::liquid]);
             process_bulk_cell_range(eval_liquid);
           }
           break;
 
           case CutUtil::CellCategory::gas: {
-            auto eval_gas =
-              create_cell_integrator(CutUtil::CellCategory::gas, first_component[Phase::gas]);
+            auto eval_gas = create_cell_integrator(CutUtil::CellCategory::gas,
+                                                   dof_idx,
+                                                   first_component[CutUtil::Phase::gas]);
             process_bulk_cell_range(eval_gas);
           }
           break;
@@ -1253,12 +1299,16 @@ namespace MeltPoolDG::Multiphase
           case CutUtil::CellCategory::intersected: {
             auto eval_liquid_intersected =
               create_cell_integrator(CutUtil::CellCategory::intersected,
-                                     first_component[Phase::liquid]);
-            auto eval_gas_intersected = create_cell_integrator(CutUtil::CellCategory::intersected,
-                                                               first_component[Phase::gas]);
+                                     dof_idx,
+                                     first_component[CutUtil::Phase::liquid]);
+            auto eval_gas_intersected =
+              create_cell_integrator(CutUtil::CellCategory::intersected,
+                                     dof_idx,
+                                     first_component[CutUtil::Phase::gas]);
 
-            DomainPointEval eval_point_liquid(*mapping_info_cells[Phase::liquid], fe_point_temp);
-            DomainPointEval eval_point_gas(*mapping_info_cells[Phase::gas], fe_point_temp);
+            DomainPointEval eval_point_liquid(*mapping_info_cells[CutUtil::Phase::liquid],
+                                              fe_point_temp);
+            DomainPointEval eval_point_gas(*mapping_info_cells[CutUtil::Phase::gas], fe_point_temp);
 
             process_intersected_cell_range(eval_liquid_intersected, eval_point_liquid);
             process_intersected_cell_range(eval_gas_intersected, eval_point_gas);
@@ -1281,6 +1331,17 @@ namespace MeltPoolDG::Multiphase
     ScopedName         scope_apply_face_lhs("local_apply_face_lhs");
     TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_apply_face_lhs);
 
+    apply_face_lhs(dst, src, face_range, multiphase_scratch_data.dof_idx);
+  }
+
+  template <int dim, typename number, bool is_viscous_gas, bool is_viscous_liquid>
+  void
+  CompressibleMultiphaseOperator<dim, number, is_viscous_gas, is_viscous_liquid>::apply_face_lhs(
+    VectorType                                  &dst,
+    const VectorType                            &src,
+    const std::pair<unsigned int, unsigned int> &face_range,
+    const unsigned int                           dof_idx) const
+  {
     const auto face_category =
       multiphase_scratch_data.scratch_data.get_face_range_category(face_range);
     const CutUtil::FaceType face_type = CutUtil::get_face_type(face_category);
@@ -1300,8 +1361,8 @@ namespace MeltPoolDG::Multiphase
         ((multiphase_scratch_data.flow_data.fe.degree == 2) ? dealii::EvaluationFlags::hessians :
                                                               dealii::EvaluationFlags::nothing);
 
-      auto eval_m = create_face_integrator(true, category_m, component);
-      auto eval_p = create_face_integrator(false, category_p, component);
+      auto eval_m = create_face_integrator(true, category_m, dof_idx, component);
+      auto eval_p = create_face_integrator(false, category_p, dof_idx, component);
 
       for (unsigned int face = face_range.first; face < face_range.second; ++face)
         {
@@ -1325,35 +1386,35 @@ namespace MeltPoolDG::Multiphase
         case CutUtil::FaceType::mixed_face_liquid_intersected:
           apply_ghost_penalty(CutUtil::CellCategory::liquid,
                               CutUtil::CellCategory::intersected,
-                              first_component[Phase::liquid]);
+                              first_component[CutUtil::Phase::liquid]);
           break;
 
         case CutUtil::FaceType::mixed_face_intersected_liquid:
           apply_ghost_penalty(CutUtil::CellCategory::intersected,
                               CutUtil::CellCategory::liquid,
-                              first_component[Phase::liquid]);
+                              first_component[CutUtil::Phase::liquid]);
           break;
 
         case CutUtil::FaceType::mixed_face_gas_intersected:
           apply_ghost_penalty(CutUtil::CellCategory::gas,
                               CutUtil::CellCategory::intersected,
-                              first_component[Phase::gas]);
+                              first_component[CutUtil::Phase::gas]);
           break;
 
         case CutUtil::FaceType::mixed_face_intersected_gas:
           apply_ghost_penalty(CutUtil::CellCategory::intersected,
                               CutUtil::CellCategory::gas,
-                              first_component[Phase::gas]);
+                              first_component[CutUtil::Phase::gas]);
           break;
 
         case CutUtil::FaceType::intersected_face:
           apply_ghost_penalty(CutUtil::CellCategory::intersected,
                               CutUtil::CellCategory::intersected,
-                              first_component[Phase::liquid]);
+                              first_component[CutUtil::Phase::liquid]);
 
           apply_ghost_penalty(CutUtil::CellCategory::intersected,
                               CutUtil::CellCategory::intersected,
-                              first_component[Phase::gas]);
+                              first_component[CutUtil::Phase::gas]);
           break;
 
         default:
@@ -1430,10 +1491,11 @@ namespace MeltPoolDG::Multiphase
                                             0.;
 
     // assemble each phase separately
-    for (const auto phase : Phase::_values())
+    for (const auto phase : CutUtil::Phase::_values())
       {
-        const unsigned int bulk_category =
-          phase == Phase::liquid ? CutUtil::CellCategory::liquid : CutUtil::CellCategory::gas;
+        const unsigned int bulk_category = phase == CutUtil::Phase::liquid ?
+                                             CutUtil::CellCategory::liquid :
+                                             CutUtil::CellCategory::gas;
 
         // cells: (cut) mass matrix
         dealii::MatrixFreeTools::internal::
@@ -1524,7 +1586,7 @@ namespace MeltPoolDG::Multiphase
           const auto              face_category = matrix_free.get_face_range_category(face_range);
           const CutUtil::FaceType face_type     = CutUtil::get_face_type(face_category);
 
-          if (face_type_has_ghost_penalty(face_type, phase == Phase::liquid))
+          if (face_type_has_ghost_penalty(face_type, phase == CutUtil::Phase::liquid))
             {
               eval_data.emplace_back(std::make_unique<FaceEval<>>(matrix_free,
                                                                   face_range,
@@ -1591,6 +1653,180 @@ namespace MeltPoolDG::Multiphase
               system_matrix);
           }
       }
+  }
+
+  template <int dim, typename number, bool is_viscous_gas, bool is_viscous_liquid>
+  void
+  CompressibleMultiphaseOperator<dim, number, is_viscous_gas, is_viscous_liquid>::compute_band(
+    BandData &band) const
+  {
+    const auto        &matrix_free  = multiphase_scratch_data.scratch_data.get_matrix_free();
+    const unsigned int band_dof_idx = multiphase_scratch_data.band_dof_idx;
+
+    Assert(band_dof_idx != dealii::numbers::invalid_unsigned_int,
+           dealii::ExcMessage("The band solver requires a DoF index with band constraints."));
+
+    // 1) band cells: intersected cells and bulk cells sharing a ghost-penalty face with an
+    // intersected cell
+    band.reinit(matrix_free.n_cell_batches(), VectorizedArray<number>::size());
+
+    for (unsigned int cell_batch = 0; cell_batch < matrix_free.n_cell_batches(); ++cell_batch)
+      for (unsigned int lane = 0; lane < matrix_free.n_active_entries_per_cell_batch(cell_batch);
+           ++lane)
+        if (is_band_cell<dim>(matrix_free.get_cell_iterator(cell_batch, lane, band_dof_idx)))
+          band.add(cell_batch, lane);
+
+    // 2) DoFs of the band: all locally owned DoFs that are not constrained by the band constraints
+    const unsigned int n_locally_owned_dofs =
+      matrix_free.get_vector_partitioner(band_dof_idx)->locally_owned_size();
+
+    std::vector<bool> is_band_dof(n_locally_owned_dofs, true);
+    for (const unsigned int i : matrix_free.get_constrained_dofs(band_dof_idx))
+      is_band_dof[i] = false;
+
+    std::vector<unsigned int> band_dof_indices;
+    for (unsigned int i = 0; i < n_locally_owned_dofs; ++i)
+      if (is_band_dof[i])
+        band_dof_indices.push_back(i);
+
+    band.set_dof_indices(std::move(band_dof_indices));
+  }
+
+  template <int dim, typename number, bool is_viscous_gas, bool is_viscous_liquid>
+  void
+  CompressibleMultiphaseOperator<dim, number, is_viscous_gas, is_viscous_liquid>::
+    apply_inverse_mass_matrix_outside_band(const BandData   &band,
+                                           VectorType       &dst,
+                                           const VectorType &src) const
+  {
+    using InverseMassType = MatrixFreeOperators::
+      CellwiseInverseMassMatrix<dim, -1, CompressibleFlow::n_conserved_variables<dim>, number>;
+
+    auto eval_liquid = create_cell_integrator(CutUtil::CellCategory::liquid,
+                                              multiphase_scratch_data.dof_idx,
+                                              first_component[CutUtil::Phase::liquid]);
+    auto eval_gas    = create_cell_integrator(CutUtil::CellCategory::gas,
+                                           multiphase_scratch_data.dof_idx,
+                                           first_component[CutUtil::Phase::gas]);
+
+    const InverseMassType inverse_mass_liquid(eval_liquid);
+    const InverseMassType inverse_mass_gas(eval_gas);
+
+    const auto process_cell_batch =
+      [&](auto &eval, const InverseMassType &inverse_mass, const unsigned int cell_batch) {
+        // Create mask and mark lanes (cells) that are outside the band
+        std::bitset<VectorizedArray<number>::size()> lanes_outside_band;
+        for (unsigned int lane = 0;
+             lane <
+             multiphase_scratch_data.scratch_data.get_matrix_free().n_active_entries_per_cell_batch(
+               cell_batch);
+             ++lane)
+          lanes_outside_band[lane] = !band.contains(cell_batch, lane);
+
+        // Skip cell batches that are fully contained in the band
+        if (lanes_outside_band.none())
+          return;
+
+        eval.reinit(cell_batch);
+        eval.read_dof_values(src);
+        inverse_mass.apply(eval.begin_dof_values(), eval.begin_dof_values());
+
+        eval.set_dof_values(dst, 0, lanes_outside_band);
+      };
+
+    for (unsigned int cell_batch = 0;
+         cell_batch < multiphase_scratch_data.scratch_data.get_matrix_free().n_cell_batches();
+         ++cell_batch)
+      switch (multiphase_scratch_data.scratch_data.get_matrix_free().get_cell_category(cell_batch))
+        {
+          case CutUtil::CellCategory::liquid:
+            process_cell_batch(eval_liquid, inverse_mass_liquid, cell_batch);
+            break;
+          case CutUtil::CellCategory::intersected:
+            // intersected cells always belong to the band
+            break;
+          case CutUtil::CellCategory::gas:
+            process_cell_batch(eval_gas, inverse_mass_gas, cell_batch);
+            break;
+          default:
+            DEAL_II_NOT_IMPLEMENTED();
+        }
+  }
+
+  template <int dim, typename number, bool is_viscous_gas, bool is_viscous_liquid>
+  void
+  CompressibleMultiphaseOperator<dim, number, is_viscous_gas, is_viscous_liquid>::vmult_band(
+    const BandData   &band,
+    VectorType       &dst,
+    const VectorType &src) const
+  {
+    using local_applier_type = std::function<void(const dealii::MatrixFree<dim, number> &,
+                                                  VectorType &,
+                                                  const VectorType &,
+                                                  const std::pair<unsigned int, unsigned int> &)>;
+
+    local_applier_type cell = [&](const dealii::MatrixFree<dim, number> &,
+                                  VectorType                                  &cell_dst,
+                                  const VectorType                            &cell_src,
+                                  const std::pair<unsigned int, unsigned int> &cell_range) {
+      unsigned int first = cell_range.first;
+      while (first < cell_range.second)
+        {
+          // Check if the current cell batch contains any band cells, otherwise skip to the next
+          // batch.
+          if (!band.contains_cell_batch(first))
+            {
+              ++first;
+              continue;
+            }
+
+          // Contiguous band batches are processed together.
+          unsigned int last = first + 1;
+          while (last < cell_range.second && band.contains_cell_batch(last))
+            ++last;
+
+          // Apply the local operator to the contiguous range of band batches.
+          // A band batch can also hold lanes with bulk cells far from the interface. Those lanes
+          // are computed along with the rest, but their DoFs are constrained and
+          // integrate_scatter() will not write to them.
+          this->apply_cell_lhs(cell_dst,
+                               cell_src,
+                               std::make_pair(first, last),
+                               multiphase_scratch_data.band_dof_idx);
+          first = last;
+        }
+    };
+
+    local_applier_type face = [&](const dealii::MatrixFree<dim, number> &,
+                                  VectorType                                  &face_dst,
+                                  const VectorType                            &face_src,
+                                  const std::pair<unsigned int, unsigned int> &face_range) {
+      this->apply_face_lhs(face_dst, face_src, face_range, multiphase_scratch_data.band_dof_idx);
+    };
+    local_applier_type boundary_face = MPDG_LAMBDA_WRAPPER(this->local_apply_boundary_face_lhs);
+
+    multiphase_scratch_data.scratch_data.get_matrix_free().loop(
+      cell,
+      face,
+      boundary_face,
+      dst,
+      src,
+      false /*zero_dst_vector*/,
+      MatrixFree<dim, number>::DataAccessOnFaces::gradients,
+      MatrixFree<dim, number>::DataAccessOnFaces::gradients);
+  }
+
+  template <int dim, typename number, bool is_viscous_gas, bool is_viscous_liquid>
+  void
+  CompressibleMultiphaseOperator<dim, number, is_viscous_gas, is_viscous_liquid>::
+    initialize_band_dof_vector(VectorType &vec) const
+  {
+    // check that the band DoF index is set
+    Assert(multiphase_scratch_data.band_dof_idx != dealii::numbers::invalid_unsigned_int,
+           dealii::ExcMessage("The band solver requires a DoF index with band constraints."));
+
+    multiphase_scratch_data.scratch_data.initialize_dof_vector(
+      vec, multiphase_scratch_data.band_dof_idx);
   }
 
 
