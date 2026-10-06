@@ -299,6 +299,77 @@ namespace MeltPoolDG::CutUtil
       mapping_info_faces[1]->reinit_faces(vector_cell_iterators, quad_vec_faces_gas_domain);
   }
 
+  template <int dim>
+  bool
+  cell_has_ghost_penalty_face(const typename dealii::DoFHandler<dim>::cell_iterator &cell,
+                              const Phase                                            phase)
+  {
+    const auto is_ghost_penalty_face = [&](const unsigned int neighbor_category) {
+      return category_has_phase(neighbor_category, phase) &&
+             (cell->active_fe_index() == CutUtil::CellCategory::intersected or
+              neighbor_category == CutUtil::CellCategory::intersected);
+    };
+
+    for (const unsigned int f : cell->face_indices())
+      {
+        const bool is_periodic = cell->has_periodic_neighbor(f);
+
+        // skip boundary faces if the boundary is not periodic, since the ghost penalty is only
+        // applied to interior faces
+        if (cell->at_boundary(f) and !is_periodic)
+          continue;
+
+        const auto neighbor = cell->neighbor_or_periodic_neighbor(f);
+
+        if (!neighbor->has_children())
+          {
+            // neighbor on the same level or coarser
+            if (is_ghost_penalty_face(neighbor->active_fe_index()))
+              return true;
+          }
+        else if constexpr (dim == 1)
+          {
+            // a face is a point: only the category of the adjacent active child matters
+            auto child = neighbor;
+            while (child->has_children())
+              {
+                // Child numbering in 1D: a cell is an interval with face 0 on the left and face 1
+                // on the right. When it is refined, child(0) is the left half and child(1) is the
+                // right half.
+                // The child element touching the shared point is always the one on the opposite
+                // side of the face index, so it is child(1 - f).
+                child = child->child(1 - f);
+              }
+
+            if (is_ghost_penalty_face(child->active_fe_index()))
+              return true;
+          }
+        else
+          {
+            // finer neighbor: check the subfaces
+            // (in 2D and 3D deal.II allows neighbours across a face to differ by at most one
+            // refinement level)
+            const unsigned int n_subfaces = is_periodic ?
+                                              dealii::GeometryInfo<dim>::max_children_per_face
+                                              /*2 in 2D and 4 in 3D*/ :
+                                              cell->face(f)->n_children();
+            for (unsigned int subface = 0; subface < n_subfaces; ++subface)
+              {
+                const auto child =
+                  is_periodic ?
+                    cell->periodic_neighbor_child_on_subface(
+                      f, subface) /*looks up the periodic neighbor and then the child*/ :
+                    cell->neighbor_child_on_subface(f, subface);
+
+                if (is_ghost_penalty_face(child->active_fe_index()))
+                  return true;
+              }
+          }
+      }
+
+    return false;
+  }
+
   template CutPhaseType
   get_cut_type(const dealii::DoFHandler<1> &dof_handler);
   template CutPhaseType
@@ -334,6 +405,13 @@ namespace MeltPoolDG::CutUtil
                                const dealii::NonMatching::MeshClassifier<3> &,
                                const dealii::NonMatching::MeshClassifier<3> &,
                                const MPI_Comm);
+
+  template bool
+  cell_has_ghost_penalty_face<1>(const dealii::DoFHandler<1>::cell_iterator &, const Phase);
+  template bool
+  cell_has_ghost_penalty_face<2>(const dealii::DoFHandler<2>::cell_iterator &, const Phase);
+  template bool
+  cell_has_ghost_penalty_face<3>(const dealii::DoFHandler<3>::cell_iterator &, const Phase);
 
   template <int dim, typename number, typename VectorType>
   void

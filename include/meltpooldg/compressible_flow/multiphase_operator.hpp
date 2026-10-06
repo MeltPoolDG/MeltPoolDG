@@ -5,6 +5,7 @@
 #include <meltpooldg/compressible_flow/convective_kernels.hpp>
 #include <meltpooldg/compressible_flow/data_types.hpp>
 #include <meltpooldg/compressible_flow/kernels.hpp>
+#include <meltpooldg/compressible_flow/multiphase_band_solver.hpp>
 #include <meltpooldg/compressible_flow/multiphase_level_set_advection.hpp>
 #include <meltpooldg/cut/util.hpp>
 #include <meltpooldg/flow/darcy_damping_model.hpp>
@@ -15,9 +16,6 @@
 
 namespace MeltPoolDG::Multiphase
 {
-  /// Helper enum to distinguish between the liquid and gas phase in the multiphase operator
-  BETTER_ENUM(Phase, int, liquid, gas);
-
   /**
    * @brief Operator for the matrix-free of a compressible multiphase flow cutDG formulation.
    *
@@ -270,6 +268,56 @@ namespace MeltPoolDG::Multiphase
     void
     compute_system_matrix_from_matrixfree(
       dealii::TrilinosWrappers::SparseMatrix &system_matrix) const;
+
+    /**
+     * @brief Determine the band of the system matrix for the band solver.
+     *
+     * The band consists of all cells whose DoFs are coupled to other cells, i.e., intersected cells
+     * (both phases) and bulk cells sharing a ghost-penalty face of their phase with an intersected
+     * cell.
+     *
+     * In addition to the band cells, the local indices of all DoFs of the band are stored.
+     *
+     * @param band Object describing the band data structure information.
+     */
+    void
+    compute_band(BandData &band) const;
+
+    /**
+     * @brief Apply the (decoupled) inverse element mass matrices to all cells outside the band.
+     *
+     * @note This function is only relevant for the band solver.
+     *
+     * @param band Object describing the band data structure information.
+     * @param dst Vector receiving the result.
+     * @param src Vector the inverse mass matrix is applied to.
+     */
+    void
+    apply_inverse_mass_matrix_outside_band(const BandData   &band,
+                                           VectorType       &dst,
+                                           const VectorType &src) const;
+
+    /**
+     * @brief Function for the matrix-free matrix-vector product restricted to the band.
+     *
+     * Only the cell batches containing band cells and the ghost-penalty faces are evaluated. Since
+     * the system matrix does not couple band cells with cells outside the band (the mass matrix is
+     * cell-local and all ghost-penalty faces lie within the band), the band entries of @p dst only
+     * depend on the band entries of @p src. However, a cell batch with band cells can also contain
+     * cells outside the band. These are evaluated together with the band cells (SIMD), so their
+     * entries of @p dst are changed as well. Thus, only the band entries of @p dst hold the result.
+     * The entries outside the band are undefined and must not be used.
+     *
+     * @note In the InterfaceBandSolver, the entries of @p src outside the band are zero, since only
+     * the band entries of its work vectors are filled. The cells outside the band then only add
+     * zeros to @p dst, i.e., the entries of @p dst outside the band stay zero.
+     *
+     * @param band Object describing the band data structure information.
+     * @param dst Vector to which the result is added.
+     * @param src Source vector.
+     */
+    void
+    vmult_band(const BandData &band, VectorType &dst, const VectorType &src) const;
 
   private:
     /// Scratch data for multiphase case
