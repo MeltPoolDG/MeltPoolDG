@@ -17,6 +17,7 @@ mpdg_setup_mpi_unit_tests(
    material_data.cpp
 )
 
+add_subdirectory(cut)
 add_subdirectory(flow)
 add_subdirectory(heat)
 add_subdirectory(particles)

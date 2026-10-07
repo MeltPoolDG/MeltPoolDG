@@ -42,6 +42,46 @@ namespace MeltPoolDG
     prm.leave_subsection();
   }
 
+  void
+  CutRepartitionData::add_parameters(dealii::ParameterHandler &prm)
+  {
+    prm.enter_subsection("repartitioning");
+    {
+      prm.add_parameter(
+        "enable",
+        enable,
+        "Set this parameter to true to repartition the triangulation with cell weights "
+        "according to the location of the cells with respect to the level set.",
+        dealii::Patterns::Bool());
+      prm.add_parameter("every n step",
+                        every_n_step,
+                        "Repartition the triangulation every n-th time step.",
+                        dealii::Patterns::Integer(1));
+      prm.enter_subsection("weights");
+      {
+        prm.add_parameter(
+          "inside",
+          weights.inside,
+          "Partitioning weight of cells located completely inside, i.e. with a negative level "
+          "set.",
+          dealii::Patterns::Integer(0));
+        prm.add_parameter(
+          "outside",
+          weights.outside,
+          "Partitioning weight of cells located completely outside, i.e. with a positive level "
+          "set.",
+          dealii::Patterns::Integer(0));
+        prm.add_parameter("intersected",
+                          weights.intersected,
+                          "Partitioning weight of cells intersected by the zero level-set "
+                          "isosurface.",
+                          dealii::Patterns::Integer(0));
+      }
+      prm.leave_subsection();
+    }
+    prm.leave_subsection();
+  }
+
   template struct GhostPenaltyData<double>;
   template struct CutStabilizationData<double>;
 } // namespace MeltPoolDG
