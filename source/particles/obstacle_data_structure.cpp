@@ -122,9 +122,8 @@ CellListParticleHandler<dim, number, ObstacleType>::initialize()
   const auto &tria = obstacle_handler.get_triangulation();
 
   cell_particle_cache.global_max_particle_radius = compute_max_particle_radius();
-  // TODO: The influence tolerance should be a parameter that can be set by the user. For now, we
-  // use a hardcoded value of 1.2, which is a reasonable choice for most cases.
-  constexpr number influence_tolerance = 1.2;
+  const number min_cell_vertex_distance =
+    minimal_cell_vertex_distance(cell_particle_cache.global_max_particle_radius);
 
   int local_cache_level = 0;
   if (cell_particle_cache.global_max_particle_radius == 0)
@@ -148,11 +147,10 @@ CellListParticleHandler<dim, number, ObstacleType>::initialize()
       // an assertion because this would require searching in more than one cell, which is not
       // implemented yet.
       AssertThrow(
-        2 * influence_tolerance * cell_particle_cache.global_max_particle_radius <=
-          tria.begin(0)->minimum_vertex_distance(),
+        min_cell_vertex_distance <= tria.begin(0)->minimum_vertex_distance(),
         dealii::ExcMessage(
           "The influence area of the largest particle (" +
-          std::to_string(2 * influence_tolerance * cell_particle_cache.global_max_particle_radius) +
+          std::to_string(min_cell_vertex_distance) +
           ") is larger than the cell size on the coarsest level of the domain (" +
           std::to_string(tria.begin(0)->minimum_vertex_distance()) +
           "). This means that we need to search in more than one neighboring cell, which is not "
@@ -161,8 +159,7 @@ CellListParticleHandler<dim, number, ObstacleType>::initialize()
 
       for (unsigned int level = 0; level < tria.n_levels(); ++level)
         {
-          if (tria.begin(level)->minimum_vertex_distance() <
-              2 * influence_tolerance * cell_particle_cache.global_max_particle_radius)
+          if (tria.begin(level)->minimum_vertex_distance() < min_cell_vertex_distance)
             {
               local_cache_level = level == 0 ? 0 : level - 1;
               break;
@@ -210,6 +207,17 @@ CellListParticleHandler<dim, number, ObstacleType>::initialize()
     tria.begin(tria.n_levels() - 1)->minimum_vertex_distance();
 
   neighbor_list_update_tracker.reinit_after_update(skin_thickness, max_displacement_before_update);
+}
+
+template <int dim, typename number, typename ObstacleType>
+number
+CellListParticleHandler<dim, number, ObstacleType>::minimal_cell_vertex_distance(
+  const number max_particle_radius)
+{
+  // TODO: The influence tolerance should be a parameter that can be set by the user. For now,
+  // we use a hardcoded value of 1.2, which is a reasonable choice for most cases
+  constexpr number influence_tolerance = 1.2;
+  return 2. * influence_tolerance * max_particle_radius;
 }
 
 template <int dim, typename number, typename ObstacleType>
