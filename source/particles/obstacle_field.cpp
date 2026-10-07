@@ -124,21 +124,35 @@ MeltPoolDG::ObstacleField<dim, number, ObstacleType>::compute_loads_on_obstacles
 
 template <int dim, typename number, typename ObstacleType>
 void
-MeltPoolDG::ObstacleField<dim, number, ObstacleType>::print_accumulated_obstacle_force_norm(
-  const dealii::ConditionalOStream pout) const
+MeltPoolDG::ObstacleField<dim, number, ObstacleType>::print_accumulated_particle_quantities(
+  const dealii::ConditionalOStream &pout) const
 {
-  dealii::Tensor<1, dim, number> accumulated_force;
-  for (DEMParticleAccessor<dim, number> &obstacle :
+  number force_norm_sum            = 0.;
+  number velocity_norm_sum         = 0.;
+  number angular_velocity_norm_sum = 0.;
+  for (const DEMParticleAccessor<dim, number> &obstacle :
        obstacle_data_structure.locally_owned_particle_range())
-    for (unsigned int d = 0; d < dim; ++d)
-      accumulated_force[d] += obstacle.force(d);
+    {
+      force_norm_sum += obstacle.force().norm();
+      velocity_norm_sum += obstacle.linear_velocity().norm();
+      angular_velocity_norm_sum += obstacle.angular_velocity().norm();
+    }
 
-  accumulated_force = dealii::Utilities::MPI::sum(accumulated_force, mpi_communicator);
+  Journal::print_line(pout, " Accumulated particle norms", "obstacle_field");
+  const std::array<std::pair<std::string_view, number>, 3> norms = {
+    {{"force", dealii::Utilities::MPI::sum(force_norm_sum, mpi_communicator)},
+     {"linear velocity", dealii::Utilities::MPI::sum(velocity_norm_sum, mpi_communicator)},
+     {"angular velocity",
+      dealii::Utilities::MPI::sum(angular_velocity_norm_sum, mpi_communicator)}}};
 
-  std::ostringstream output;
-  output << std::scientific << std::setprecision(4)
-         << "accumulated norm: " << accumulated_force.norm();
-  Journal::print_line(pout, output.str(), "obstacle_force");
+  constexpr unsigned int label_width = 18;
+  for (const auto &[label, norm] : norms)
+    {
+      std::ostringstream oss;
+      oss << "   " << std::left << std::setw(label_width) << label << ": " << std::scientific
+          << std::setprecision(4) << norm;
+      Journal::print_line(pout, oss.str());
+    }
 }
 
 template <int dim, typename number, typename ObstacleType>

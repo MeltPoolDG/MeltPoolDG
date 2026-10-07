@@ -158,12 +158,17 @@ namespace MeltPoolDG
     compress();
 
     /**
-     * Computes the sum of all particle forces and prints the corresponding norm to the console.
+     * Computes the sum of the norms of the forces, linear velocities, and angular velocities of all
+     * particles and prints them to the given output stream.
+     *
+     * @param pout The output stream to which the norms are printed.
      *
      * @note This function is intended to be used for testing purposes.
+     * @note This is a collective operation and must be called on all MPI ranks in the MPI
+     * communicator of the obstacle field, also on those on which @p pout is inactive.
      */
     void
-    print_accumulated_obstacle_force_norm(const dealii::ConditionalOStream pout) const;
+    print_accumulated_particle_quantities(const dealii::ConditionalOStream &pout) const;
 
     /**
      * @brief Performs the objects deserialization.
