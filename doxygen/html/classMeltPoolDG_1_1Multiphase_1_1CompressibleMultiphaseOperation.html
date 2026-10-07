@@ -222,7 +222,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:ad484ade45f8be6161acff80d9e32cba5" id="r_ad484ade45f8be6161acff80d9e32cba5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#ad484ade45f8be6161acff80d9e32cba5">adapt_to_new_interface_position</a> ()</td></tr>
-<tr class="memdesc:ad484ade45f8be6161acff80d9e32cba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adapt the dof layout and solution vector to a new interface position, which is defined by the zero-level-set-isosurface.  <br /></td></tr>
+<tr class="memdesc:ad484ade45f8be6161acff80d9e32cba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adapt the dof layout, solution vector, and discretization to a new interface position, which is defined by the zero-level-set-isosurface.  <br /></td></tr>
 <tr class="separator:ad484ade45f8be6161acff80d9e32cba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bd83fe2df0511cb860c37f4f9cd6d6b" id="r_a9bd83fe2df0511cb860c37f4f9cd6d6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a9bd83fe2df0511cb860c37f4f9cd6d6b">classify_cells</a> () const</td></tr>
 <tr class="memdesc:a9bd83fe2df0511cb860c37f4f9cd6d6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classify cells according to the current state of the level-set field.  <br /></td></tr>
@@ -287,6 +287,14 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a62617a35b1c511045d70e516dd81fc30" id="r_a62617a35b1c511045d70e516dd81fc30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a4eaed21fd3048674a120087e5e7e3fd4">CompMultiphaseOperatorVariant</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a62617a35b1c511045d70e516dd81fc30">cmp_operator</a></td></tr>
 <tr class="memdesc:a62617a35b1c511045d70e516dd81fc30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compressible multiphase operator object.  <br /></td></tr>
 <tr class="separator:a62617a35b1c511045d70e516dd81fc30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac14344bd6ea67b91869f6c0c7805217a" id="r_ac14344bd6ea67b91869f6c0c7805217a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Preconditioner.html">Preconditioner</a>&lt; dim, <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a93ea12f6f86ab9a226e53fd503ecad04">VectorType</a>, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#ac14344bd6ea67b91869f6c0c7805217a">preconditioner</a></td></tr>
+<tr class="memdesc:ac14344bd6ea67b91869f6c0c7805217a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classMeltPoolDG_1_1Preconditioner.html">Preconditioner</a> for the linear solver.  <br /></td></tr>
+<tr class="separator:ac14344bd6ea67b91869f6c0c7805217a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d1e84b6f6396ecb84678461be4b0bd2" id="r_a6d1e84b6f6396ecb84678461be4b0bd2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a6d1e84b6f6396ecb84678461be4b0bd2">preconditioner_update_flag</a> = false</td></tr>
+<tr class="memdesc:a6d1e84b6f6396ecb84678461be4b0bd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean indicator whether the preconditioner needs to be updated before the next solve.  <br /></td></tr>
+<tr class="separator:a6d1e84b6f6396ecb84678461be4b0bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0fd691ea8bf1c51753ff0c3ad01bb2a" id="r_ab0fd691ea8bf1c51753ff0c3ad01bb2a"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#ab0fd691ea8bf1c51753ff0c3ad01bb2a">n_steps_performed</a> = 0</td></tr>
+<tr class="separator:ab0fd691ea8bf1c51753ff0c3ad01bb2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number&gt;<br />
@@ -548,12 +556,13 @@ template&lt;int dim, typename number &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Adapt the dof layout and solution vector to a new interface position, which is defined by the zero-level-set-isosurface. </p>
-<p>The function contains following steps:</p><ul>
-<li>classify cells according to current interface position</li>
+<p>Adapt the dof layout, solution vector, and discretization to a new interface position, which is defined by the zero-level-set-isosurface. </p>
+<p>The function first classifies the cells according to the current interface position and checks whether any cell changed its location with respect to the level set. The new non-matching quadrature rules for intersected cells, intersected faces and the phase interface are computed in all cases.</p>
+<p>If the DoF layout is unchanged, i.e. no cell changed its location with respect to the level set, the existing DoF numbering and partitioning, MatrixFree object, solution vector and preconditioner data structures remain valid and are reused. Only the cut geometry-dependent quadrature rules are recomputed.</p>
+<p>If the DoF layout changed, the following additional steps are performed:</p><ul>
 <li>adapt DoFHandler and solution vectors according to new interface position, extrapolate new DoF values via ghost-penalty extrapolation</li>
-<li>compute quadrature rules for intersected cells, intersected faces and the phase surface</li>
-<li>reinit matrix-free object, rhs and solution vectors </li>
+<li>reinit matrix-free object, rhs and solution vectors</li>
+<li>reinitialize the preconditioner's data structures </li>
 </ul>
 
 </div>
@@ -1418,6 +1427,83 @@ template&lt;int dim, typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>Number of DoFs per cell. </p>
+
+</div>
+</div>
+<a id="ab0fd691ea8bf1c51753ff0c3ad01bb2a" name="ab0fd691ea8bf1c51753ff0c3ad01bb2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0fd691ea8bf1c51753ff0c3ad01bb2a">&#9670;&#160;</a></span>n_steps_performed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperation</a>&lt; dim, number &gt;::n_steps_performed = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Counter variable for the number of performed time steps, used to determine when to update the preconditioner </p>
+
+</div>
+</div>
+<a id="ac14344bd6ea67b91869f6c0c7805217a" name="ac14344bd6ea67b91869f6c0c7805217a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac14344bd6ea67b91869f6c0c7805217a">&#9670;&#160;</a></span>preconditioner</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMeltPoolDG_1_1Preconditioner.html">Preconditioner</a>&lt;dim, <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a93ea12f6f86ab9a226e53fd503ecad04">VectorType</a>, number&gt; <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperation</a>&lt; dim, number &gt;::preconditioner</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classMeltPoolDG_1_1Preconditioner.html">Preconditioner</a> for the linear solver. </p>
+
+</div>
+</div>
+<a id="a6d1e84b6f6396ecb84678461be4b0bd2" name="a6d1e84b6f6396ecb84678461be4b0bd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d1e84b6f6396ecb84678461be4b0bd2">&#9670;&#160;</a></span>preconditioner_update_flag</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperation</a>&lt; dim, number &gt;::preconditioner_update_flag = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Boolean indicator whether the preconditioner needs to be updated before the next solve. </p>
 
 </div>
 </div>
