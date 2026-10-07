@@ -16,7 +16,10 @@
 #include <meltpooldg/compressible_flow/operation_scratch_data.hpp>
 #include <meltpooldg/compressible_flow/phase_coupling_data.hpp>
 #include <meltpooldg/linear_algebra/linear_solver.hpp>
+#include <meltpooldg/linear_algebra/preconditioner_factory.hpp>
 #include <meltpooldg/utilities/fe_integrator.hpp>
+#include <meltpooldg/utilities/iteration_monitor.hpp>
+#include <meltpooldg/utilities/scoped_name.hpp>
 #include <meltpooldg/utilities/vector_tools.hpp>
 
 #include <boost/math/constants/constants.hpp>
@@ -121,6 +124,20 @@ namespace MeltPoolDG::Multiphase
     mapping_info_faces.push_back(
       std::make_shared<NonMatching::MappingInfo<dim, dim, VectorizedArray<number>>>(
         this->multiphase_scratch_data.scratch_data.get_mapping(), update_flags_faces));
+
+    std::visit(
+      [&](auto &op) {
+        using OperatorType = std::decay_t<decltype(op)>;
+
+        preconditioner = make_preconditioner<dim, number, OperatorType, VectorType>(
+          multiphase_scratch_data.flow_data.time_integrator.linear_solver_data.preconditioner_type,
+          &op,
+          multiphase_scratch_data.scratch_data,
+          multiphase_scratch_data.dof_idx);
+      },
+      cmp_operator);
+
+    preconditioner_update_flag = true;
   }
 
   template <int dim, typename number>
@@ -302,6 +319,9 @@ namespace MeltPoolDG::Multiphase
                                                                multiphase_scratch_data.dof_idx);
 
     compute_intersected_quadrature();
+
+    preconditioner.reinit();
+    preconditioner_update_flag = true;
   }
 
   template <int dim, typename number>
@@ -333,10 +353,25 @@ namespace MeltPoolDG::Multiphase
   CompressibleMultiphaseOperation<dim, number>::solve(const number current_time,
                                                       const number time_step)
   {
-    // - setup new dof layout, reinit vectors
-    // - compute new quadrature rules for intersected elements, intersected faces and phase surface
-    // - reinit matrix-free object, rhs and solution vectors
+    // - compute new quadrature rules for intersected elements, intersected faces and phase
+    // interface
+    // - additionally, only if the DoF layout changed (i.e. at least one cell changed its location
+    // w.r.t. the
+    //   level set):
+    //   - setup new dof layout, transfer/extrapolate the solution
+    //   - reinit matrix-free object, rhs and solution vectors
+    //   - reinit preconditioner
     adapt_to_new_interface_position();
+
+    // update preconditioner if required
+    if (n_steps_performed % this->multiphase_scratch_data.flow_data.time_integrator
+                              .preconditioner_update_frequency ==
+          0 or
+        preconditioner_update_flag)
+      {
+        preconditioner.update();
+        preconditioner_update_flag = false;
+      }
 
     std::visit(
       [&](auto &op) {
@@ -349,13 +384,23 @@ namespace MeltPoolDG::Multiphase
                       multiphase_scratch_data.solution_history.get_current_solution());
 
         // solve linear and symmetric system of equations with CG
-        LinearSolver::solve<VectorType>(
+        int iter = LinearSolver::solve<VectorType>(
           op,
           multiphase_scratch_data.solution_history.get_current_solution(),
           rhs,
-          multiphase_scratch_data.flow_data.time_integrator.linear_solver_data);
+          multiphase_scratch_data.flow_data.time_integrator.linear_solver_data,
+          preconditioner,
+          "compressible_multiphase_operation");
+
+        Journal::print_line(multiphase_scratch_data.scratch_data.get_pcout(2),
+                            "Linear solver iterations: " + std::to_string(iter),
+                            "linear solve");
+
+        IterationMonitor<number>::add_linear_iterations(ScopedName("linear_solve"), iter);
       },
       cmp_operator);
+
+    ++n_steps_performed;
   }
 
   template <int dim, typename number>
@@ -384,6 +429,22 @@ namespace MeltPoolDG::Multiphase
   {
     std::swap(mesh_classifier_old, mesh_classifier);
     classify_cells();
+
+    // check whether the DoF layout changes due to the new interface position
+    const bool dof_layout_changed = CutUtil::cell_classifications_changed<dim>(
+      multiphase_scratch_data.scratch_data.get_triangulation(),
+      *mesh_classifier_old,
+      *mesh_classifier,
+      multiphase_scratch_data.scratch_data.get_mpi_comm());
+
+    if (not dof_layout_changed)
+      {
+        // compute non-matching quadrature rules
+        compute_intersected_quadrature();
+
+        // early return, nothing else to do if the DoF layout did not change
+        return;
+      }
 
     Assert(setup_dof_system != nullptr,
            dealii::ExcMessage("You must register the setup_dof_system lambda function first!"));
@@ -414,6 +475,9 @@ namespace MeltPoolDG::Multiphase
     // get extrapolated solution
     multiphase_scratch_data.solution_history.get_current_solution().swap(
       cut_solution_transfer.get_updated_solution());
+
+    // reinit the preconditioner's data structures
+    preconditioner.reinit();
   }
 
   template <int dim, typename number>

@@ -111,6 +111,33 @@ namespace MeltPoolDG::CutUtil
                const bool                                      set_future);
 
   /**
+   * Return true if at least one cell (on any MPI rank) changed its location with respect to the
+   * level set between @p mesh_classifier_old and @p mesh_classifier.
+   *
+   * Since the FE index of a cell (liquid / intersected / gas) is determined solely by its
+   * location (see CutUtil::set_fe_index), an unchanged classification on a fixed mesh implies an
+   * unchanged DoF layout, i.e. the same number of DoFs, the same DoF numbering and parallel
+   * partitioning, and the same coupling (sparsity) structure.
+   *
+   * @param tria The triangulation whose cells are checked for changes in their classification.
+   * @param mesh_classifier_old The mesh classifier from the previous state, used as the reference
+   *   classification.
+   * @param mesh_classifier The current mesh classifier against which @p mesh_classifier_old is
+   *   compared.
+   * @param mpi_comm The MPI communicator over which the result is reduced, so that the function
+   *   returns @p true if a change occurred on any MPI rank.
+   *
+   * @return @p true if at least one cell changed its location with respect to the level set;
+   *   @p false otherwise.
+   */
+  template <int dim>
+  bool
+  cell_classifications_changed(const dealii::Triangulation<dim>               &tria,
+                               const dealii::NonMatching::MeshClassifier<dim> &mesh_classifier_old,
+                               const dealii::NonMatching::MeshClassifier<dim> &mesh_classifier,
+                               const MPI_Comm                                  mpi_comm);
+
+  /**
    * @brief This function generates the immersed quadrature rules in the case that the
    * domain is described by a discrete level-set function.
    *
@@ -287,6 +314,38 @@ namespace MeltPoolDG::CutUtil
       return true;
 
     return false;
+  }
+
+  /**
+   * @brief Checks whether the ghost penalty stabilization applies on a face.
+   *
+   * The ghost penalty of a phase is applied on faces where that phase is
+   * present in the cells on both sides and at least one of them is cut:
+   * - intersected faces (both cells cut): `true` for both phases
+   * - liquid phase: also `true` on liquid–intersected faces
+   *   (mixed_face_liquid_intersected, mixed_face_intersected_liquid)
+   * - gas phase: also `true` on gas–intersected faces
+   *   (mixed_face_gas_intersected, mixed_face_intersected_gas)
+   *
+   * For all other face types the function returns `false`.
+   *
+   * @param face_type        Face type, as returned by CutUtil::get_face_type().
+   * @param is_liquid_phase  `true` to query the liquid phase, `false` for the gas phase.
+   *
+   * @return                 `true` if the ghost penalty must be applied for the given phase on this face.
+   */
+  constexpr bool
+  face_type_has_ghost_penalty(const FaceType face_type, const bool is_liquid_phase)
+  {
+    if (face_type == FaceType::intersected_face)
+      return true;
+
+    if (is_liquid_phase)
+      return face_type == FaceType::mixed_face_liquid_intersected or
+             face_type == FaceType::mixed_face_intersected_liquid;
+
+    return face_type == FaceType::mixed_face_gas_intersected or
+           face_type == FaceType::mixed_face_intersected_gas;
   }
 
   /**
