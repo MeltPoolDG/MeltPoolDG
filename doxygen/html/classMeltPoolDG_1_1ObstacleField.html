@@ -168,8 +168,8 @@ requires (!std::is_lvalue_reference_v&lt;ObstacleLoadType&gt;)</td></tr>
 <tr class="separator:aad61eaae4adb58dcdbc82b7477e63982"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a9aad40732d745dd4249242159d6d84" id="r_a7a9aad40732d745dd4249242159d6d84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a7a9aad40732d745dd4249242159d6d84">compress</a> ()</td></tr>
 <tr class="separator:a7a9aad40732d745dd4249242159d6d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a225f8bcc05236375cbfb4ab779d3ef10" id="r_a225f8bcc05236375cbfb4ab779d3ef10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a225f8bcc05236375cbfb4ab779d3ef10">print_accumulated_obstacle_force_norm</a> (const dealii::ConditionalOStream pout) const</td></tr>
-<tr class="separator:a225f8bcc05236375cbfb4ab779d3ef10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe53db20f9b9243fee565b8693dd29ad" id="r_abe53db20f9b9243fee565b8693dd29ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#abe53db20f9b9243fee565b8693dd29ad">print_accumulated_particle_quantities</a> (const dealii::ConditionalOStream &amp;pout) const</td></tr>
+<tr class="separator:abe53db20f9b9243fee565b8693dd29ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacd2962156f0ca8030be54d06479165d" id="r_aacd2962156f0ca8030be54d06479165d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#aacd2962156f0ca8030be54d06479165d">deserialize</a> ()</td></tr>
 <tr class="memdesc:aacd2962156f0ca8030be54d06479165d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the objects deserialization.  <br /></td></tr>
 <tr class="separator:aacd2962156f0ca8030be54d06479165d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -777,8 +777,8 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 
 </div>
 </div>
-<a id="a225f8bcc05236375cbfb4ab779d3ef10" name="a225f8bcc05236375cbfb4ab779d3ef10"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a225f8bcc05236375cbfb4ab779d3ef10">&#9670;&#160;</a></span>print_accumulated_obstacle_force_norm()</h2>
+<a id="abe53db20f9b9243fee565b8693dd29ad" name="abe53db20f9b9243fee565b8693dd29ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe53db20f9b9243fee565b8693dd29ad">&#9670;&#160;</a></span>print_accumulated_particle_quantities()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -786,16 +786,24 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 template&lt;int dim, typename number , typename ObstacleType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a>&lt; dim, number, ObstacleType &gt;::print_accumulated_obstacle_force_norm </td>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a>&lt; dim, number, ObstacleType &gt;::print_accumulated_particle_quantities </td>
           <td>(</td>
-          <td class="paramtype">const dealii::ConditionalOStream&#160;</td>
+          <td class="paramtype">const dealii::ConditionalOStream &amp;&#160;</td>
           <td class="paramname"><em>pout</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Computes the sum of all particle forces and prints the corresponding norm to the console.</p>
-<dl class="section note"><dt>Note</dt><dd>This function is intended to be used for testing purposes. </dd></dl>
+<p>Computes the sum of the norms of the forces, linear velocities, and angular velocities of all particles and prints them to the given output stream.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pout</td><td>The output stream to which the norms are printed.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is intended to be used for testing purposes. </dd>
+<dd>
+This is a collective operation and must be called on all MPI ranks in the MPI communicator of the obstacle field, also on those on which <code>pout</code> is inactive. </dd></dl>
 
 </div>
 </div>

@@ -478,6 +478,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a7d9b15cc93f78a3ee16cac4fc0b28f17" id="r_a7d9b15cc93f78a3ee16cac4fc0b28f17"><td class="memTemplParams" colspan="2">template&lt;typename VectorType , typename number &gt; </td></tr>
 <tr class="memitem:a7d9b15cc93f78a3ee16cac4fc0b28f17"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a7d9b15cc93f78a3ee16cac4fc0b28f17">compute_linear_predictor</a> (const VectorType &amp;old_vec, const VectorType &amp;old_old_vec, VectorType &amp;predictor, const number current_time_increment, const number old_time_increment)</td></tr>
 <tr class="separator:a7d9b15cc93f78a3ee16cac4fc0b28f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3c44ed9c7f89dcfaecbbeeccf966718" id="r_af3c44ed9c7f89dcfaecbbeeccf966718"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ObstacleType &gt; </td></tr>
+<tr class="memitem:af3c44ed9c7f89dcfaecbbeeccf966718"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#af3c44ed9c7f89dcfaecbbeeccf966718">generate_data_structure_optimal_hyper_rectangle</a> (dealii::Triangulation&lt; dim &gt; &amp;triangulation, const dealii::Point&lt; dim, number &gt; &amp;p1, const dealii::Point&lt; dim, number &gt; &amp;p2, const number max_particle_radius)</td></tr>
+<tr class="separator:af3c44ed9c7f89dcfaecbbeeccf966718"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adad2560b622ac73fa542f8eeff795787" id="r_adad2560b622ac73fa542f8eeff795787"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ObstacleType &gt; </td></tr>
+<tr class="memitem:adad2560b622ac73fa542f8eeff795787"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#adad2560b622ac73fa542f8eeff795787">set_particle_count_partitioning_weight</a> (<a class="el" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField</a>&lt; dim, number, ObstacleType &gt; &amp;obstacle_field, dealii::Triangulation&lt; dim &gt; &amp;triangulation)</td></tr>
+<tr class="separator:adad2560b622ac73fa542f8eeff795787"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6937a9b9c0c146f3ee4bbccaa766fb1c" id="r_a6937a9b9c0c146f3ee4bbccaa766fb1c"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ObstacleType , typename ContainerType &gt; <br />
 requires std::ranges::range&lt;ContainerType&gt;</td></tr>
 <tr class="memitem:a6937a9b9c0c146f3ee4bbccaa766fb1c"><td class="memTemplItemLeft" align="right" valign="top">and std::same_as&lt; std::ranges::range_value_t&lt; ContainerType &gt;, <a class="el" href="classMeltPoolDG_1_1DEMParticleAccessor.html">DEMParticleAccessor</a>&lt; dim, number &gt; &gt; void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a6937a9b9c0c146f3ee4bbccaa766fb1c">symplectic_euler_advance_time_step</a> (const number time_step, ContainerType particle_range)</td></tr>
@@ -2315,6 +2321,59 @@ template&lt;typename FeEval &gt; </div>
 
 </div>
 </div>
+<a id="af3c44ed9c7f89dcfaecbbeeccf966718" name="af3c44ed9c7f89dcfaecbbeeccf966718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3c44ed9c7f89dcfaecbbeeccf966718">&#9670;&#160;</a></span>generate_data_structure_optimal_hyper_rectangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void MeltPoolDG::generate_data_structure_optimal_hyper_rectangle </td>
+          <td>(</td>
+          <td class="paramtype">dealii::Triangulation&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>triangulation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Point&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Point&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>max_particle_radius</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Generates a box-shaped background triangulation whose cells are as small as possible while still being suitable for the neighbor search of the <a class="el" href="structMeltPoolDG_1_1CellListParticleHandler.html" title="Forward declaration of the CellListParticleHandler class template.">CellListParticleHandler</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">triangulation</td><td>The triangulation to fill. It must be empty. </td></tr>
+    <tr><td class="paramname">p1</td><td>First corner of the box. </td></tr>
+    <tr><td class="paramname">p2</td><td>Opposite corner of the box. </td></tr>
+    <tr><td class="paramname">max_particle_radius</td><td>Radius of the largest particle in the simulation. In parallel computations, it must be the maximum over all MPI ranks.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The final triangulation consists of two levels, i.e., it is globally refined once after the initial creation. This is required by the <a class="el" href="structMeltPoolDG_1_1CellListParticleHandler.html" title="Forward declaration of the CellListParticleHandler class template.">CellListParticleHandler</a>, which needs at least two levels to work correctly. </dd></dl>
+
+</div>
+</div>
 <a id="a74431bddb6eff125ef89e240b25253a3" name="a74431bddb6eff125ef89e240b25253a3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a74431bddb6eff125ef89e240b25253a3">&#9670;&#160;</a></span>get_colorized_rectangle_boundary_ids()</h2>
 
@@ -2947,6 +3006,45 @@ template&lt;typename number , std::size_t N&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="adad2560b622ac73fa542f8eeff795787" name="adad2560b622ac73fa542f8eeff795787"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adad2560b622ac73fa542f8eeff795787">&#9670;&#160;</a></span>set_particle_count_partitioning_weight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void MeltPoolDG::set_particle_count_partitioning_weight </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField</a>&lt; dim, number, ObstacleType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>obstacle_field</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dealii::Triangulation&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>triangulation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adds a weight function to the weight signal of <code>triangulation</code> which weights each cell by the number of particles of <code>obstacle_field</code> they contain, such that a subsequent repartitioning balances the number of particles between the MPI ranks.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">obstacle_field</td><td>The obstacle field providing the particles. It must live on <code>triangulation</code> and outlive it, or at least any later repartitioning of it. </td></tr>
+    <tr><td class="paramname">triangulation</td><td>The triangulation to which the weight function is attached.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Calling this function more than once adds another weight function each time. deal.II sums up the weights of all connected functions, so the particle counts are counted multiple times. </dd></dl>
 
 </div>
 </div>
