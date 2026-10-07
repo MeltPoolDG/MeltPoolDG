@@ -36,6 +36,8 @@
 #include <meltpooldg/compressible_flow/utils.hpp>
 #include <meltpooldg/core/scratch_data.hpp>
 #include <meltpooldg/core/simulation_case_base.hpp>
+#include <meltpooldg/cut/cut_data.hpp>
+#include <meltpooldg/cut/repartition.hpp>
 #include <meltpooldg/cut/solution_transfer.hpp>
 #include <meltpooldg/cut/util.hpp>
 #include <meltpooldg/phase_change/phase_change_data.hpp>
@@ -177,6 +179,38 @@ namespace MeltPoolDG::Multiphase
      */
     void
     set_initial_condition(const dealii::Function<dim> &function);
+
+    /**
+     * @brief Repartition the triangulation among the MPI processes with cell weights according to
+     * the location of the cells with respect to the level set.
+     *
+     * The weight of each cell (liquid, gas or intersected) is evaluated with the current cell
+     * classification, which corresponds to the current DoF layout.
+     * After the repartitioning, the level set and the solution vector are transferred to the new
+     * partitioning and all DoF-dependent data structures are rebuilt:
+     * - the DoFs of the level-set field are redistributed (@p distribute_level_set_dofs) and the
+     *   level set is transferred,
+     * - the cells are reclassified, the DoFs of the flow field are redistributed and the
+     *   partitioning and the MatrixFree object are recreated (setup_dof_system),
+     * - the solution, rhs and primitive-variable vectors, the penalty parameters, the
+     *   non-matching quadrature rules (MappingInfo objects) and the preconditioner are
+     *   reinitialized (reinit()),
+     * - the solution vector is transferred,
+     * - both mesh classifiers and the cached partitioning weights are updated.
+     *
+     * The cell weights stay connected to the triangulation afterwards, so that the implicit
+     * repartitioning in Triangulation::execute_coarsening_and_refinement(), which is triggered by
+     * the solution transfer for a moved interface, reproduces the current partitioning (see
+     * CutUtil::PartitionWeights).
+     *
+     * @param level_set_in Level-set vector.
+     * @param distribute_level_set_dofs Function that distributes the DoFs of the level-set
+     * DoFHandler and reinitializes @p level_set_in according to the new partitioning.
+     *
+     * @note Repartitioning is skipped when only a single MPI process is used.
+     */
+    bool
+    repartition(VectorType &level_set_in, const std::function<void()> &distribute_level_set_dofs);
 
     /**
      * @brief Set the boundary conditions.
@@ -339,6 +373,10 @@ namespace MeltPoolDG::Multiphase
     /// Counter variable for the number of performed time steps, used to determine when to update
     /// the preconditioner
     unsigned int n_steps_performed = 0;
+
+    /// Cached cell weights for the repartitioning of the triangulation; created at the first
+    /// call of repartition()
+    std::unique_ptr<CutUtil::PartitionWeights<dim>> partition_weights;
 
     /**
      * @brief Adapt the dof layout, solution vector, and discretization to a new interface position, which is defined

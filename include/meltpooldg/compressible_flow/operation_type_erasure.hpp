@@ -8,7 +8,9 @@
 
 #include <meltpooldg/compressible_flow/boundary_conditions.hpp>
 #include <meltpooldg/compressible_flow/utils.hpp>
+#include <meltpooldg/cut/cut_data.hpp>
 
+#include <functional>
 #include <memory>
 #include <utility>
 
@@ -138,6 +140,32 @@ namespace MeltPoolDG::CompressibleFlow
       operation_pimpl->set_body_force(std::move(body_force_in));
     }
 
+    /**
+     * @brief Repartition the triangulation among the MPI processes with cell weights according to
+     * the location of the cells with respect to the level set, and rebuild all data structures
+     * affected by the new partitioning.
+     *
+     * Repartitioning reduces the potential load imbalance between MPI processes in cut
+     * applications caused by the increased complexity of evaluating and integrating over
+     * intersected cells.
+     *
+     * @param level_set Level-set vector, which is transferred to the new partitioning.
+     * @param distribute_level_set_dofs Function that distributes the DoFs of the level-set
+     * DoFHandler and reinitializes @p level_set according to the new partitioning.
+     *
+     * @return True if the triangulation has been repartitioned.
+     *
+     * @note The function simply passes the parameters to the corresponding operation function.
+     *
+     * @throw This function is only available for cut-element applications. An exception is thrown
+     * if the operation does not support repartitioning.
+     */
+    bool
+    repartition(VectorType &level_set, const std::function<void()> &distribute_level_set_dofs)
+    {
+      return operation_pimpl->repartition(level_set, distribute_level_set_dofs);
+    }
+
     void
     add_external_force(
       std::shared_ptr<ExternalFlowForce<dim, number>>         external_force_residuum,
@@ -237,6 +265,10 @@ namespace MeltPoolDG::CompressibleFlow
       virtual void
       set_body_force(std::unique_ptr<dealii::Function<dim>> body_force_in) = 0;
 
+      virtual bool
+      repartition(VectorType                  &level_set,
+                  const std::function<void()> &distribute_level_set_dofs) = 0;
+
       virtual const VectorType &
       get_solution() const = 0;
 
@@ -314,6 +346,25 @@ namespace MeltPoolDG::CompressibleFlow
       set_body_force(std::unique_ptr<dealii::Function<dim>> body_force_in) override
       {
         operation->set_body_force(std::move(body_force_in));
+      }
+
+      bool
+      repartition(VectorType                  &level_set,
+                  const std::function<void()> &distribute_level_set_dofs) override
+      {
+        // repartitioning is only provided by operations implementing it (e.g. the compressible
+        // multiphase operation); further, it does only make sense for cut applications
+        if constexpr (requires { operation->repartition(level_set, distribute_level_set_dofs); })
+          return operation->repartition(level_set, distribute_level_set_dofs);
+        else
+          {
+            (void)level_set;
+            (void)distribute_level_set_dofs;
+            AssertThrow(false,
+                        dealii::ExcMessage(
+                          "Repartitioning is not supported by this compressible flow operation."));
+            return false;
+          }
       }
 
       const VectorType &

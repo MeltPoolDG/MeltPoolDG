@@ -182,6 +182,9 @@ namespace MeltPoolDG::CompressibleFlow
     /// cut-related stabilization parameters
     CutStabilizationData<number> stabilization;
 
+    /// cut-related repartitioning parameters
+    CutRepartitionData repartition;
+
     /**
      * @brief Add cut parameters in the parameter handler.
      *
@@ -197,6 +200,7 @@ namespace MeltPoolDG::CompressibleFlow
                           "Flow boundary condition type at the unfitted boundary. "
                           "Choose between 'no_slip_wall' and 'inflow'.");
         stabilization.add_parameters(prm);
+        repartition.add_parameters(prm);
       }
       prm.leave_subsection();
     }
