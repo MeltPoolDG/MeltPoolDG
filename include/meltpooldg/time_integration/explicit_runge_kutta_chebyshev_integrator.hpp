@@ -1,9 +1,9 @@
 /**
- * @brief Class providing an explicit Runge-Kutta-Chebyshev scheme with a variable number of stages.
+ * @brief Class providing an explicit Runge-Kutta Chebyshev scheme with a variable number of stages.
  * The schemes implemented in this class are presented in
  *
- * Kennedy, C.A., Carpenter, M.H & Lewis, R.M. (2000). Low-storage, explicit Runge-Kutta schemes for
- * the compressible Navier-Stokes equations. Applied Numerical Mathematics, 35(2000), 177-219.
+ * Sommeijer, B.P., Shampine, L.F. & Verwer, J.G. (1998).  RKC: An explicit solver for parabolic
+ * PDEs, J. Comput. Appl. Math. 88(1998), 315-326.
  */
 
 #pragma once
@@ -37,14 +37,16 @@ namespace MeltPoolDG::TimeIntegration
                                                std::function<void(unsigned, unsigned)>)>;
 
     /**
-     * Constructor. Set the coefficients for the low storage explicit Runge-Kutta scheme.
+     * Constructor. Set the coefficients for the Runge-Kutta Chebyshev scheme and store
+     * the function which computes the right-hand side of the ODE system internally.
      *
      * @param time_integrator_data Time integrator data struct setting the scheme of the integrator.
+     * @param compute_rhs Function to compute the right-hand side of the ODE.
      */
 
-    /// WURDE GEÄNDERT HIER, WENN PROBLEM HIER SCHAUEN
     explicit ExplicitRungeKuttaChebyshevIntegrator(
-      const TimeIntegratorData<number> &time_integrator_data);
+      const TimeIntegratorData<number> &time_integrator_data,
+      const RhsFunctionType            &compute_rhs);
 
     /**
      * Returns the number of previous solutions, that is solutions at time step n - x, where x >= 0,
@@ -52,19 +54,6 @@ namespace MeltPoolDG::TimeIntegration
      */
     unsigned int
     required_solution_history_size() const override;
-
-
-    /**
-     * @brief Configure the function used to compute the right-hand side of the ODE.
-     *
-     * Sets the class member @ref compute_rhs to the provided function.
-     * For details on the expected function signature and behavior, see the
-     * documentation of the corresponding class member.
-     *
-     * @param compute_rhs_in Function to compute the right-hand side of the ODE.
-     */
-    void
-    configure_rhs(const RhsFunctionType &compute_rhs_in);
 
     /**
      * Allocate memory for the required vectors used during the integration. This function needs to
@@ -84,20 +73,21 @@ namespace MeltPoolDG::TimeIntegration
     reinit(const SolutionHistory<VectorType> &solution_history) override;
 
     /**
-     * Perform the actual time integration for a single time step using the low storage explicit
-     * Runge-Kutta scheme.
+     * Perform the actual time integration for a single time step using the explicit
+     * Runge-Kutta Chebyshev scheme.
      *
      * @param current_time Current time.
      * @param time_step Current time step size.
      * @param solution_history Solution history object providing the current and all required
      * previous solutions.
      * @param stage_pre_processing Function which is executed at the beginning of each Runge-Kutta
-     * stage. Four variables are passed to the function: the current time, the current time step,
-     * the vector which is later used in the stage computation and the current stage solution.
-     * @param stage_post_processing Function which is executed at the end of each Runge-Kutta stage.
+     * Chebyshev stage. Four variables are passed to the function: the current time, the current
+     * time step, the vector which is later used in the stage computation and the current stage
+     * solution.
+     * @param stage_post_processing Function which is executed at the end of each Runge-Kutta Chebyshev stage.
      * Four variables are passed to the function: the current time after perfoming the stage, the
      * current time step, the vector which is later used in the subsequent computations, and the
-     * solution of the Runge-Kutta stage.
+     * solution of the Runge-Kutta Chebyshev stage.
      */
     void
     perform_time_step(const number                 current_time,
@@ -109,66 +99,46 @@ namespace MeltPoolDG::TimeIntegration
                         &stage_post_processing) override;
 
   private:
-    /// Fixed constants that define the method
+    /// Number of stages of the RKC scheme
+    unsigned int n_stages;
 
-    /// RKC stage independent damping parameter
-    number epsilon;
+    /// Stage-dependent weights of the three-term recurrence of the RKC scheme
+    struct RecurrenceWeights
+    {
+      /// The Y_j-1 recurrence weight
+      std::vector<number> mu_j;
 
-    /// Number of stages of the RKC-scheme
-    unsigned int s;
+      /// The Y_j-2 recurrence weight
+      std::vector<number> nu_j;
 
-    /// Chebyshev-Polynomial shift
-    number w0;
+      /// The F_j-1 recurrence weight
+      std::vector<number> mu_j_tilde;
 
-    /// Chebyshev-based values
+      /// The F_0 recurrence weight
+      std::vector<number> gamma_j_tilde;
 
-    /// Chebyshev-Polynomial values at w0
-    std::vector<number> chebyshev_w0; // vector ranges from 1 to s
+      /// The abscissae for the stage time-steps
+      std::vector<number> cj;
+    };
 
-    /// Chebyshev-Polynomial derivative values at w0
-    std::vector<number> d_chebyshev_w0;
+    /// Registers for intermediate solution storage
+    struct Registers
+    {
+      /// Intermediate storage for F_0 (not updated during the stages)
+      VectorType F0;
 
-    /// Chebyshev-Polynomial second derivative values at w0
-    std::vector<number> d2_chebyshev_w0;
+      /// Intermediate storage for F_j-1
+      VectorType Fj1;
 
-    /// b-values for later computation
-    std::vector<number> bj;
+      /// Intermediate storage for Y_j-1
+      VectorType Yj1;
 
-    /// Chebyshev-Polynomial stretch
-    number w1;
+      /// Intermediate storage for Y_j-2
+      VectorType Yj2;
+    };
 
-    /// Method coefficients that entirely depend on the former
-
-    /// The Y_j-1 recurrance weight
-    std::vector<number> mu_j;
-
-    /// The Y_j-2 recurrance weight
-    std::vector<number> nu_j;
-
-    /// The F_j-1 recurrance weight
-    std::vector<number> mu_j_tilde;
-
-    /// The F_0 recurrance weight
-    std::vector<number> gamma_j_tilde;
-
-    /// The abscissae for the stage time-steps
-    std::vector<number> cj;
-
-    /// Register for non-updated intermediate solution storage
-
-    /// Intermediate storage for F_0
-    dealii::LinearAlgebra::distributed::Vector<number> register_F0;
-
-    /// Register for intermediate solution storage
-
-    /// Intermediate storage for F_j-1
-    dealii::LinearAlgebra::distributed::Vector<number> register_Fj1;
-
-    /// Intermediate storage for Y_j-1
-    dealii::LinearAlgebra::distributed::Vector<number> register_Yj1;
-
-    /// Intermediate storage for Y_j-2
-    dealii::LinearAlgebra::distributed::Vector<number> register_Yj2;
+    RecurrenceWeights weights;
+    Registers         registers;
 
     /// Given an ODE system of the form
     /// \f[

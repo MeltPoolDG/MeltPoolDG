@@ -77,15 +77,8 @@ namespace MeltPoolDG::TimeIntegration
       }
     else if (Utils::contains(explicit_rkc_supported_schemes, params.integrator_type))
       {
-        auto integrator = new ExplicitRungeKuttaChebyshevIntegrator<number>(params);
-        integrator->configure_rhs(
-          [&pde_operator](number time,
-                          number,
-                          dealii::LinearAlgebra::distributed::Vector<number>       &dst,
-                          const dealii::LinearAlgebra::distributed::Vector<number> &src,
-                          std::function<void(unsigned, unsigned)>                   post) {
-            pde_operator.apply_operator(time, dst, src, post);
-          });
+        auto integrator = new ExplicitRungeKuttaChebyshevIntegrator<number>(
+          params, std::bind_front(&PDEOperator::apply_operator, &pde_operator));
         return integrator;
       }
     return nullptr;
@@ -176,8 +169,8 @@ namespace MeltPoolDG::TimeIntegration
       }
     else if (Utils::contains(explicit_rkc_supported_schemes, params.integrator_type))
       {
-        auto integrator = new ExplicitRungeKuttaChebyshevIntegrator<number>(params);
-        integrator->configure_rhs(
+        auto integrator = new ExplicitRungeKuttaChebyshevIntegrator<number>(
+          params,
           [&pde_operator](number time,
                           number,
                           dealii::LinearAlgebra::distributed::Vector<number>       &dst,

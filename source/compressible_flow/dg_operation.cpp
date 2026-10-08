@@ -429,10 +429,7 @@ namespace MeltPoolDG::CompressibleFlow
         if (flow_scratch_data.flow_data.time_integrator.integrator_type ==
             TimeIntegration::TimeIntegratorSchemes::RKC_n_stages)
           {
-            auto rkc = std::make_unique<RKC>(flow_scratch_data.flow_data.time_integrator);
-
-            rkc->configure_rhs(rhs);
-
+            auto rkc = std::make_unique<RKC>(flow_scratch_data.flow_data.time_integrator, rhs);
             time_integrator = std::move(rkc);
           }
         else
