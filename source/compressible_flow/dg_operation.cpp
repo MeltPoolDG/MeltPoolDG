@@ -574,7 +574,22 @@ namespace MeltPoolDG::CompressibleFlow
 
         flow_scratch_data.scratch_data.get_pcout()
           << "Eigenvalues:"
-          << " min = " << min_ev << ", max = " << max_ev << ", avg = " << avg_ev << "\n";
+        Journal::print_line(flow_scratch_data.scratch_data.get_pcout(),
+                    " Eigenvalues",
+                    "compressible_flow");
+
+        std::vector<std::string> labels = {"min (real)", "max (real)", "avg (real)"};
+        std::vector<std::complex<number>> eigenvalues_summary = {min_ev, max_ev, avg_ev};
+        constexpr unsigned int label_width = 14;
+
+        for (std::size_t i = 0; i < labels.size(); ++i)
+          {
+            std::ostringstream oss;
+            oss << "   " << std::left << std::setw(label_width) << labels[i] << ": "
+                << std::scientific << std::setprecision(4) << eigenvalues_summary.at(i).real();
+
+            Journal::print_line(flow_scratch_data.scratch_data.get_pcout(), oss.str());
+          }
       }
 
     return eigenvalues;
