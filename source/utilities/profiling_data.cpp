@@ -11,10 +11,9 @@ namespace MeltPoolDG::Profiling
     prm.enter_subsection("profiling");
     {
       prm.add_parameter(
-        "enable",
-        enable,
-        "Set this parameter to true if profiling should be enabled. It will be automatically"
-        "enabled for verbosity level >=1.");
+        "verbosity",
+        verbosity,
+        "Sets the verbosity of the profiling information to be collected. If set to 'none', no profiling information is collected. If set to 'basic', only data which is cheap to collect is recorded. If set to 'detailed', also data which is expensive to collect is recorded. It is recommended to enable detailed profiling only when necessary for in-depth analysis or debugging purposes.");
       prm.add_parameter("write time step size",
                         write_time_step_size,
                         "Write profiling output every given time step size. If this parameter is "

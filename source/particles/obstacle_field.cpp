@@ -247,6 +247,34 @@ MeltPoolDG::ObstacleField<dim, number, ObstacleType>::n_global_particles() const
 }
 
 template <int dim, typename number, typename ObstacleType>
+unsigned int
+MeltPoolDG::ObstacleField<dim, number, ObstacleType>::n_locally_owned_particles() const
+{
+  return obstacle_data_structure.n_locally_owned_particles();
+}
+
+template <int dim, typename number, typename ObstacleType>
+unsigned int
+MeltPoolDG::ObstacleField<dim, number, ObstacleType>::n_ghost_particles() const
+{
+  return obstacle_data_structure.n_ghost_particles();
+}
+
+template <int dim, typename number, typename ObstacleType>
+MPI_Comm
+MeltPoolDG::ObstacleField<dim, number, ObstacleType>::get_mpi_communicator() const
+{
+  return obstacle_data_structure.get_mpi_communicator();
+}
+
+template <int dim, typename number, typename ObstacleType>
+const dealii::Triangulation<dim> &
+MeltPoolDG::ObstacleField<dim, number, ObstacleType>::get_triangulation() const
+{
+  return obstacle_data_structure.get_triangulation();
+}
+
+template <int dim, typename number, typename ObstacleType>
 number
 MeltPoolDG::ObstacleField<dim, number, ObstacleType>::compute_rayleigh_time_step() const
 {

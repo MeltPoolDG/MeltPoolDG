@@ -521,6 +521,13 @@ namespace MeltPoolDG
     get_mpi_communicator() const;
 
     /**
+     * Return the triangulation used by the obstacle data structure to organize the particles and
+     * provide algorithms like neighbor search etc.
+     */
+    const dealii::Triangulation<dim> &
+    get_triangulation() const;
+
+    /**
      * Subscribes a callback function to be notified whenever the obstacle data structure is
      * updated.
      *

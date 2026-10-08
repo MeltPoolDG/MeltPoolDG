@@ -7,13 +7,14 @@
 namespace MeltPoolDG::Profiling
 {
   BETTER_ENUM(TimeType, char, real, simulation)
+  BETTER_ENUM(ProfilingVerbosity, char, none, basic, detailed)
 
   template <typename number>
   struct ProfilingData
   {
-    bool     enable               = false;
-    number   write_time_step_size = 10.0;
-    TimeType time_type            = TimeType::real;
+    ProfilingVerbosity verbosity            = ProfilingVerbosity::none;
+    number             write_time_step_size = 10.0;
+    TimeType           time_type            = TimeType::real;
 
     void
     add_parameters(dealii::ParameterHandler &prm);

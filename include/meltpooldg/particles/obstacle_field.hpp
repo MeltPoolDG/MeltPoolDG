@@ -295,6 +295,30 @@ namespace MeltPoolDG
     n_global_particles() const;
 
     /**
+     * Return the number of particles owned by the current MPI rank.
+     */
+    unsigned int
+    n_locally_owned_particles() const;
+
+    /**
+     * Return the number of ghost particles which are present on the current MPI rank.
+     */
+    unsigned int
+    n_ghost_particles() const;
+
+    /**
+     * Return the background triangulation on which the obstacles are placed.
+     */
+    const dealii::Triangulation<dim> &
+    get_triangulation() const;
+
+    /**
+     * Return the MPI communicator used throughout the obstacle field.
+     */
+    MPI_Comm
+    get_mpi_communicator() const;
+
+    /**
      * @brief Computes the Rayleigh time step, scaled by a safety factor.
      *
      * The time step is derived from the average particle radius and density of the obstacles in
