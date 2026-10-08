@@ -29,6 +29,7 @@
 
 #include <vector>
 
+#include "../test_utils/test_functions.hpp"
 #include "../test_utils/utils.hpp"
 
 using namespace MeltPoolDG;
@@ -66,91 +67,6 @@ namespace
     std::conditional_t<n_components == 1,
                        dealii::Tensor<1, dim, number>,
                        dealii::Tensor<1, n_components, dealii::Tensor<1, dim, number>>>;
-
-  /**
-   * A helper class representing a linear function with different slopes in each direction and for
-   * each component. The function is used to initialize the DoF values in the test fixture and to
-   * compute the expected subcell values and gradients for comparison.
-   */
-  template <int dim, int n_components>
-  class LinearFunction : public dealii::Function<dim>
-  {
-  public:
-    LinearFunction()
-      : dealii::Function<dim>(n_components)
-    {}
-
-    /**
-     * Return the value of the given @p component at the point @p p. This overload is required by
-     * dealii::VectorTools::interpolate().
-     */
-    double
-    value(const dealii::Point<dim> &p, const unsigned int component) const override
-    {
-      return component_value(p, component);
-    }
-
-    /**
-     * Return the values of all components at the point @p p. The number type can be double or
-     * dealii::VectorizedArray, e.g. to evaluate the function at the quadrature points of a cell
-     * batch.
-     */
-    template <typename number>
-    value_type<n_components, number>
-    value(const dealii::Point<dim, number> &p) const
-    {
-      if constexpr (n_components == 1)
-        return component_value(p, 0);
-      else
-        {
-          value_type<n_components, number> value;
-          for (unsigned int c = 0; c < n_components; ++c)
-            value[c] = component_value(p, c);
-          return value;
-        }
-    }
-
-    /**
-     * Return the gradients of all components at the point @p p. The number type can be double or
-     * dealii::VectorizedArray.
-     */
-    template <typename number>
-    gradient_type<dim, n_components, number>
-    gradient(const dealii::Point<dim, number> &p) const
-    {
-      if constexpr (n_components == 1)
-        return component_gradient(p, 0);
-      else
-        {
-          gradient_type<dim, n_components, number> gradient;
-          for (unsigned int c = 0; c < n_components; ++c)
-            gradient[c] = component_gradient(p, c);
-          return gradient;
-        }
-    }
-
-  private:
-    template <typename number>
-    static number
-    component_value(const dealii::Point<dim, number> &p, const unsigned int component)
-    {
-      number value = 1. + static_cast<number>(component);
-      for (unsigned int d = 0; d < dim; ++d)
-        value += (1. + component + d) * p[d];
-      return value;
-    }
-
-    template <typename number>
-    static dealii::Tensor<1, dim, number>
-    component_gradient(const dealii::Point<dim, number> &, const unsigned int component)
-    {
-      dealii::Tensor<1, dim, number> gradient;
-      for (unsigned int d = 0; d < dim; ++d)
-        gradient[d] = 1. + static_cast<number>(component + d);
-      return gradient;
-    }
-  };
-
 } // namespace
 
 
@@ -200,7 +116,9 @@ protected:
                        additional_data);
 
     matrix_free.initialize_dof_vector(solution);
-    dealii::VectorTools::interpolate(dof_handler, LinearFunction<dim, n_components>(), solution);
+    dealii::VectorTools::interpolate(dof_handler,
+                                     TestUtils::LinearFunction<dim, n_components>(),
+                                     solution);
   }
 
   /**
@@ -333,7 +251,7 @@ TYPED_TEST(FESubcellEvaluationTest, ValuesAndGradientsOfLinearFunction)
   FECellIntegrator<TypeParam::dim, TypeParam::n_components, double>    fe_eval(this->matrix_free,
                                                                             0,
                                                                             0);
-  const LinearFunction<TypeParam::dim, TypeParam::n_components>        linear_function;
+  const TestUtils::LinearFunction<TypeParam::dim, TypeParam::n_components> linear_function;
 
   for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
     {
@@ -406,7 +324,7 @@ TYPED_TEST(FESubcellEvaluationTest, FEToFVIsConservative)
   FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
                                                                                 0,
                                                                                 0);
-  const LinearFunction<TypeParam::dim, TypeParam::n_components>        linear_function;
+  const TestUtils::LinearFunction<TypeParam::dim, TypeParam::n_components> linear_function;
 
   for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
     {
