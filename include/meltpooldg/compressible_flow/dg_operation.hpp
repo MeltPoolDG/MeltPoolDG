@@ -200,6 +200,14 @@ namespace MeltPoolDG::CompressibleFlow
     OutputManager<dim, number> output_manager;
 
     /**
+     * @brief Compute the viscous time step limit for the current mesh and flow field.
+     *
+     * @return Maximum viscous time step size.
+     */
+    number
+    compute_viscous_time_step_limit() const;
+
+    /**
      * @brief Compute the convective time step limit for the current mesh and flow field.
      *
      * @return Maximum convective time step size.

@@ -17,6 +17,7 @@
 #include <meltpooldg/species_transport/output_post_processor.hpp>
 #include <meltpooldg/utilities/fe_integrator.hpp>
 #include <meltpooldg/utilities/fe_util.hpp>
+#include <meltpooldg/utilities/scoped_name.hpp>
 #include <meltpooldg/utilities/vector_tools.templates.hpp>
 
 #include <algorithm>
@@ -101,11 +102,16 @@ namespace MeltPoolDG::CompressibleFlow
   void
   DGOperation<dim, number, n_species>::solve(const number current_time, const number time_step)
   {
+    ScopedName         scope_solve("compressible_flow::solve");
+    TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(), scope_solve);
+
     flow_scratch_data.solution_history.commit_old_solutions();
     flow_scratch_data.solution_history.update_ghost_values();
 
     std::function<void(number, number, VectorType &, const VectorType &)> stage_pre_processing =
       [&](number time, number, VectorType &, const VectorType &) {
+        ScopedName         scope_stage_pre("stage_pre_processing");
+        TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(), scope_stage_pre);
         flow_scratch_data.boundary_conditions.update_boundary_conditions(time);
         std::visit(
           [&](auto &comp_flow_operator) {
@@ -119,6 +125,8 @@ namespace MeltPoolDG::CompressibleFlow
 
     std::function<void(number, number, VectorType &, const VectorType &)> stage_post_processing =
       [&](number, number, VectorType &dst, const VectorType &src) {
+        ScopedName         scope_stage_post("stage_post_processing");
+        TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(), scope_stage_post);
         Utilities::apply_minmod_type_limiter<dim, n_conserved_variables<dim, n_species>, number>(
           {flow_scratch_data.scratch_data.get_matrix_free(),
            flow_scratch_data.dof_idx,
@@ -213,7 +221,6 @@ namespace MeltPoolDG::CompressibleFlow
   number
   DGOperation<dim, number, n_species>::compute_minimum_density() const
   {
-    TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(), "compute transport speed");
     // only read density
     FECellIntegrator<dim, 1, number> phi(flow_scratch_data.scratch_data.get_matrix_free(),
                                          flow_scratch_data.dof_idx,
@@ -249,9 +256,32 @@ namespace MeltPoolDG::CompressibleFlow
 
   template <int dim, typename number, int n_species>
   number
+  DGOperation<dim, number, n_species>::compute_viscous_time_step_limit() const
+  {
+    ScopedName         scope_compute_time_step("viscous_limit");
+    TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(), scope_compute_time_step);
+
+    const number min_density = compute_minimum_density();
+
+    AssertThrow(min_density > 0, ExcMessage("Minimum density must not be zero."));
+
+    const number viscous_time_step_limit =
+      (flow_scratch_data.material.dynamic_viscosity > 0) ?
+        flow_scratch_data.flow_data.viscous_courant_number /
+          std::pow(flow_scratch_data.scratch_data.get_degree(flow_scratch_data.dof_idx), 3) *
+          std::pow(flow_scratch_data.scratch_data.get_min_cell_size(), 2) * min_density /
+          flow_scratch_data.material.dynamic_viscosity :
+        std::numeric_limits<number>::max();
+
+    return viscous_time_step_limit;
+  }
+
+  template <int dim, typename number, int n_species>
+  number
   DGOperation<dim, number, n_species>::compute_convective_time_step_limit() const
   {
-    TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(), "compute transport speed");
+    ScopedName         scope_compute_time_step("convective_limit");
+    TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(), scope_compute_time_step);
     number             max_transport              = 0;
     number             convective_time_step_limit = 0.;
     FECellIntegrator<dim, n_conserved_variables<dim, n_species>, number> phi(
@@ -325,17 +355,10 @@ namespace MeltPoolDG::CompressibleFlow
   number
   DGOperation<dim, number, n_species>::compute_time_step_size(const bool do_print) const
   {
-    const number min_density = compute_minimum_density();
+    ScopedName         scope_compute_time_step("compressible_flow::compute_time_step_size");
+    TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(), scope_compute_time_step);
 
-    AssertThrow(min_density > 0, ExcMessage("Minimum density must not be zero."));
-
-    const number viscous_time_step_limit =
-      (flow_scratch_data.material.dynamic_viscosity > 0) ?
-        flow_scratch_data.flow_data.viscous_courant_number /
-          std::pow(flow_scratch_data.scratch_data.get_degree(flow_scratch_data.dof_idx), 3) *
-          std::pow(flow_scratch_data.scratch_data.get_min_cell_size(), 2) * min_density /
-          flow_scratch_data.material.dynamic_viscosity :
-        std::numeric_limits<number>::max();
+    const number viscous_time_step_limit = compute_viscous_time_step_limit();
 
     const number convective_time_step_limit = compute_convective_time_step_limit();
     const number time_step = std::min(convective_time_step_limit, viscous_time_step_limit);
@@ -346,8 +369,7 @@ namespace MeltPoolDG::CompressibleFlow
           << "Time step size: " << time_step
           << ", convective time step limit: " << convective_time_step_limit
           << ", viscous time step limit: " << viscous_time_step_limit
-          << ",\nminimum h: " << flow_scratch_data.scratch_data.get_min_cell_size()
-          << ", minimum density: " << min_density << std::endl
+          << ",\nminimum h: " << flow_scratch_data.scratch_data.get_min_cell_size() << std::endl
           << std::endl;
       }
 
