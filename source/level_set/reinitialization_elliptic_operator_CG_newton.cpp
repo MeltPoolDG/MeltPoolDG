@@ -35,6 +35,7 @@ namespace MeltPoolDG::LevelSet
   ReinitializationEllipticOperatorNewton<dim, number>::reinit()
   {
     scratch_data.initialize_dof_vector(zero_interface, this->dof_idx);
+    scratch_data.initialize_dof_vector(solution_old, this->dof_idx);
     zero_interface = 0.0;
     zero_interface.update_ghost_values();
   }
