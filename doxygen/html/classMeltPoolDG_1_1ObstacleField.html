@@ -200,6 +200,14 @@ requires (!std::is_lvalue_reference_v&lt;ObstacleLoadType&gt;)</td></tr>
 <tr class="separator:a9d2c9d1b65c922c897bb21f6f12883b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdeeebe6ba20e8ec87bfb17a9327ff55" id="r_abdeeebe6ba20e8ec87bfb17a9327ff55"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#abdeeebe6ba20e8ec87bfb17a9327ff55">n_global_particles</a> () const</td></tr>
 <tr class="separator:abdeeebe6ba20e8ec87bfb17a9327ff55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f4dcf478652ca2fdbe168410c10b249" id="r_a3f4dcf478652ca2fdbe168410c10b249"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a3f4dcf478652ca2fdbe168410c10b249">n_locally_owned_particles</a> () const</td></tr>
+<tr class="separator:a3f4dcf478652ca2fdbe168410c10b249"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae159425553cc6297ff9b5cfd9afce2e9" id="r_ae159425553cc6297ff9b5cfd9afce2e9"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#ae159425553cc6297ff9b5cfd9afce2e9">n_ghost_particles</a> () const</td></tr>
+<tr class="separator:ae159425553cc6297ff9b5cfd9afce2e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa537ea14ce9dd250a3acd07c8fb1f566" id="r_aa537ea14ce9dd250a3acd07c8fb1f566"><td class="memItemLeft" align="right" valign="top">const dealii::Triangulation&lt; dim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#aa537ea14ce9dd250a3acd07c8fb1f566">get_triangulation</a> () const</td></tr>
+<tr class="separator:aa537ea14ce9dd250a3acd07c8fb1f566"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c3d149c7d2008458591273851d8e2e8" id="r_a8c3d149c7d2008458591273851d8e2e8"><td class="memItemLeft" align="right" valign="top">MPI_Comm&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a8c3d149c7d2008458591273851d8e2e8">get_mpi_communicator</a> () const</td></tr>
+<tr class="separator:a8c3d149c7d2008458591273851d8e2e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74069a7a2d8eca44462ddaa0a460f8be" id="r_a74069a7a2d8eca44462ddaa0a460f8be"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ObstacleField.html#a74069a7a2d8eca44462ddaa0a460f8be">compute_rayleigh_time_step</a> () const</td></tr>
 <tr class="memdesc:a74069a7a2d8eca44462ddaa0a460f8be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Rayleigh time step, scaled by a safety factor.  <br /></td></tr>
 <tr class="separator:a74069a7a2d8eca44462ddaa0a460f8be"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -533,6 +541,26 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 
 </div>
 </div>
+<a id="a8c3d149c7d2008458591273851d8e2e8" name="a8c3d149c7d2008458591273851d8e2e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c3d149c7d2008458591273851d8e2e8">&#9670;&#160;</a></span>get_mpi_communicator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">MPI_Comm <a class="el" href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a>&lt; dim, number, ObstacleType &gt;::get_mpi_communicator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Return the MPI communicator used throughout the obstacle field. </p>
+
+</div>
+</div>
 <a id="ab891e7aedc3c7e61bc80a5bcf7bd78d1" name="ab891e7aedc3c7e61bc80a5bcf7bd78d1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab891e7aedc3c7e61bc80a5bcf7bd78d1">&#9670;&#160;</a></span>get_obstacles_in_cell()</h2>
 
@@ -595,6 +623,26 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 <p>This function computes and returns a vector of <a class="el" href="namespaceMeltPoolDG_1_1AMR.html">AMR</a> regions corresponding to all particles in the obstacle field. Each particle contributes a spherical shell region, with the shell size determined by the parameters stored in the obstacle data structure associated with the object's obstacle field.</p>
 <dl class="section return"><dt>Returns</dt><dd>A vector of <a class="el" href="namespaceMeltPoolDG_1_1AMR.html">AMR</a> regions for all particles in the field.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The returned vector contains regions for all <b>global</b> particles, not just those local to the current process or subdomain. </dd></dl>
+
+</div>
+</div>
+<a id="aa537ea14ce9dd250a3acd07c8fb1f566" name="aa537ea14ce9dd250a3acd07c8fb1f566"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa537ea14ce9dd250a3acd07c8fb1f566">&#9670;&#160;</a></span>get_triangulation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const dealii::Triangulation&lt; dim &gt; &amp; <a class="el" href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a>&lt; dim, number, ObstacleType &gt;::get_triangulation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Return the background triangulation on which the obstacles are placed. </p>
 
 </div>
 </div>
@@ -687,6 +735,26 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
 
 </div>
 </div>
+<a id="ae159425553cc6297ff9b5cfd9afce2e9" name="ae159425553cc6297ff9b5cfd9afce2e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae159425553cc6297ff9b5cfd9afce2e9">&#9670;&#160;</a></span>n_ghost_particles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a>&lt; dim, number, ObstacleType &gt;::n_ghost_particles </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Return the number of ghost particles which are present on the current MPI rank. </p>
+
+</div>
+</div>
 <a id="abdeeebe6ba20e8ec87bfb17a9327ff55" name="abdeeebe6ba20e8ec87bfb17a9327ff55"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abdeeebe6ba20e8ec87bfb17a9327ff55">&#9670;&#160;</a></span>n_global_particles()</h2>
 
@@ -704,6 +772,26 @@ template&lt;int dim, typename number , typename ObstacleType &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Return the number of global particles, i.e., the total number of particles across all MPI ranks. </p>
+
+</div>
+</div>
+<a id="a3f4dcf478652ca2fdbe168410c10b249" name="a3f4dcf478652ca2fdbe168410c10b249"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f4dcf478652ca2fdbe168410c10b249">&#9670;&#160;</a></span>n_locally_owned_particles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , typename ObstacleType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a>&lt; dim, number, ObstacleType &gt;::n_locally_owned_particles </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Return the number of particles owned by the current MPI rank. </p>
 
 </div>
 </div>

@@ -151,6 +151,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a531d1e36eb0619a5b69e50e8d90c52cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43b08937aa50a889f2e40bd112546f20" id="r_a43b08937aa50a889f2e40bd112546f20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html#a43b08937aa50a889f2e40bd112546f20">print</a> (const <a class="el" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a> &amp;pcout, const dealii::TimerOutput &amp;timer, const MPI_Comm &amp;mpi_communicator) const</td></tr>
 <tr class="separator:a43b08937aa50a889f2e40bd112546f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ba371384afcea507d6da53e9cd6d32c" id="r_a4ba371384afcea507d6da53e9cd6d32c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html#a4ba371384afcea507d6da53e9cd6d32c">subscribe</a> (const std::function&lt; void(const <a class="el" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a> &amp;)&gt; &amp;callback)</td></tr>
+<tr class="separator:a4ba371384afcea507d6da53e9cd6d32c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -171,6 +173,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a3c81c9ecace004292819960785c81f9b" id="r_a3c81c9ecace004292819960785c81f9b"><td class="memItemLeft" align="right" valign="top">std::chrono::time_point&lt; std::chrono::system_clock &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html#a3c81c9ecace004292819960785c81f9b">real_time_start</a></td></tr>
 <tr class="memdesc:a3c81c9ecace004292819960785c81f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Real time at object construction.  <br /></td></tr>
 <tr class="separator:a3c81c9ecace004292819960785c81f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dac3027889a08b69f58195ad93e980c" id="r_a2dac3027889a08b69f58195ad93e980c"><td class="memItemLeft" align="right" valign="top">boost::signals2::signal&lt; void(const <a class="el" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a> &amp;pcout)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html#a2dac3027889a08b69f58195ad93e980c">notify_signal</a></td></tr>
+<tr class="memdesc:a2dac3027889a08b69f58195ad93e980c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal to notify subscribers when profiling output is generated.  <br /></td></tr>
+<tr class="separator:a2dac3027889a08b69f58195ad93e980c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a224e5c566555d9a3bd2c6486f9c95c14" name="a224e5c566555d9a3bd2c6486f9c95c14"></a>
@@ -296,6 +301,33 @@ template&lt;typename number &gt; </div>
 
 </div>
 </div>
+<a id="a4ba371384afcea507d6da53e9cd6d32c" name="a4ba371384afcea507d6da53e9cd6d32c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ba371384afcea507d6da53e9cd6d32c">&#9670;&#160;</a></span>subscribe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html">MeltPoolDG::Profiling::ProfilingMonitor</a>&lt; number &gt;::subscribe </td>
+          <td>(</td>
+          <td class="paramtype">const std::function&lt; void(const <a class="el" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a> &amp;)&gt; &amp;&#160;</td>
+          <td class="paramname"><em>callback</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Subscribe to the profiling monitor. The subscribed callback function will be called whenever profiling output is generated. The idea is to allow other parts of the code to react to profiling output and write there own information to the output stream. The callback function should take a single argument of type <a class="el" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a>, which is the output stream to which profiling information is written.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callback</td><td>The callback function to be called when profiling output is generated. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a8b4b03bf59dbab6975044408353d6d91" name="a8b4b03bf59dbab6975044408353d6d91"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8b4b03bf59dbab6975044408353d6d91">&#9670;&#160;</a></span>data</h2>
@@ -346,6 +378,32 @@ template&lt;typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>The time at which the last profiling output was written. </p>
+
+</div>
+</div>
+<a id="a2dac3027889a08b69f58195ad93e980c" name="a2dac3027889a08b69f58195ad93e980c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dac3027889a08b69f58195ad93e980c">&#9670;&#160;</a></span>notify_signal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::signals2::signal&lt;void(const <a class="el" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a> &amp;pcout)&gt; <a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html">MeltPoolDG::Profiling::ProfilingMonitor</a>&lt; number &gt;::notify_signal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Signal to notify subscribers when profiling output is generated. </p>
 
 </div>
 </div>

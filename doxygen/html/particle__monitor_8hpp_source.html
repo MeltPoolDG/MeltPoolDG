@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/particles/particle_monitor.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/parameters/index.html">📦 Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/particles/particle_monitor.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/particle__monitor_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-particles-particle-monitor-hpp-source-file">
+<h1>include/meltpooldg/particles/particle_monitor.hpp Source File<a class="headerlink" href="#include-meltpooldg-particles-particle-monitor-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/particles/particle_monitor.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_39446897a1438b7558941c3f21df2e43.html">particles</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">particle_monitor.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="particle__monitor_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/mpi.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="obstacle__field_8hpp.html">meltpooldg/particles/obstacle_field.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="conditional__ostream_8hpp.html">meltpooldg/utilities/conditional_ostream.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="profiling__data_8hpp.html">meltpooldg/utilities/profiling_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG.html">MeltPoolDG</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number, <span class="keyword">typename</span> ObstacleType&gt;</div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleMonitor.html">   24</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1ParticleMonitor.html">ParticleMonitor</a></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classMeltPoolDG_1_1ParticleMonitor.html">ParticleMonitor</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField&lt;dim, number, ObstacleType&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1ParticleMonitor.html#afc6e238be2508addacda4cac4149b6f8">obstacle_field</a>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleMonitor.html#a0443992e7d42d9bceaca57190e6b1dde">add_info</a>(<span class="keyword">const</span> Profiling::ProfilingVerbosity verbosity = Profiling::ProfilingVerbosity::none);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_function" href="classMeltPoolDG_1_1ParticleMonitor.html#a1557c5c459b7a6cfe30cfe3eb49cc899">print</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ConditionalOStream.html">ConditionalOStream</a> &amp;pcout, <span class="keyword">const</span> std::string &amp;title) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keyword">private</span>:</div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="};">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html">   65</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html">Statistics</a></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <span class="keyword">explicit</span> <a class="code hl_struct" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html">Statistics</a>(std::string <a class="code hl_variable" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a240d23d17870344f3cbd2d805459ca77">label</a>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      <a class="code hl_function" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#aef5930947357a975cf51620f95c77dfb">add_info</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> value);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      <a class="code hl_function" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a66486cd9fcd194cd3e51bfcd55204e83">add_info_with_imbalance</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> value, MPI_Comm mpi_communicator);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      number</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <a class="code hl_function" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a9437c025408327c3f7610f1a38b5f50c">average</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      number</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <a class="code hl_function" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a31b497a58c38b2cfdb676338807cc6e0">average_imbalance</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>      <span class="keywordtype">bool</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      <a class="code hl_function" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a1a16fe55574c2b3d95d632bcbcbc0cb2">has_imbalance</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>      <a class="code hl_struct" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html">Statistics</a></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      <a class="code hl_function" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#ab471a3246f16a6690a00e890c3fdb3de">get_statistics_across_mpi_ranks</a>(MPI_Comm mpi_communicator) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a240d23d17870344f3cbd2d805459ca77">  128</a></span>      <span class="keyword">const</span> std::string <a class="code hl_variable" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a240d23d17870344f3cbd2d805459ca77">label</a>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a2c99f6b692dde59ac3a829792268616e">  131</a></span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a2c99f6b692dde59ac3a829792268616e">min</a> = 0;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a8b572eb53a874d77a62b3eeb29fbcb4e">  133</a></span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a8b572eb53a874d77a62b3eeb29fbcb4e">max</a> = 0;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#abf66454f3abb9656ef35a701977aa618">  135</a></span>      number <a class="code hl_variable" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#abf66454f3abb9656ef35a701977aa618">sum</a> = 0.;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#aa71e04ad578ae679957e6f1487efb3f0">  137</a></span>      uint64_t <a class="code hl_variable" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#aa71e04ad578ae679957e6f1487efb3f0">n_samples</a> = 0;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#afcaaae295b5fd8d7403e7906434c179f">  140</a></span>      number <a class="code hl_variable" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#afcaaae295b5fd8d7403e7906434c179f">imbalance_sum</a> = 0.;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a1812083536bb7550b9220eb33a260316">  142</a></span>      uint64_t <a class="code hl_variable" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a1812083536bb7550b9220eb33a260316">n_imbalance_samples</a> = 0;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    };</div>
+</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="foldopen" id="foldopen00148" data-start="{" data-end="};">
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html">  148</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html">ParticleStatisticsBasic</a></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    {</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      <a class="code hl_function" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html#ae78a3d2e88c315c0ff203abcec1f44f2">add_info</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField&lt;dim, number, ObstacleType&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1ParticleMonitor.html#afc6e238be2508addacda4cac4149b6f8">obstacle_field</a>);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html#a682c341a4096bbd76b0b8fbc039e0b01">  162</a></span>      <a class="code hl_struct" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html">Statistics</a> <a class="code hl_variable" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html#a682c341a4096bbd76b0b8fbc039e0b01">n_global_particles</a>{<span class="stringliteral">&quot;# global particles&quot;</span>};</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html#a3b9cd83a897ed96144a14d2ee4acf2b8">  163</a></span>      <a class="code hl_struct" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html">Statistics</a> <a class="code hl_variable" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html#a3b9cd83a897ed96144a14d2ee4acf2b8">n_locally_owned</a>{<span class="stringliteral">&quot;# locally owned particles&quot;</span>};</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html#a8dcfda5e16dee736daa3c58c7967b04c">  164</a></span>      <a class="code hl_struct" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html">Statistics</a> <a class="code hl_variable" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html#a8dcfda5e16dee736daa3c58c7967b04c">n_ghost</a>{<span class="stringliteral">&quot;# ghost particles&quot;</span>};</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    };</div>
+</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="foldopen" id="foldopen00171" data-start="{" data-end="};">
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsDetailed.html">  171</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsDetailed.html">ParticleStatisticsDetailed</a></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>      <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>      <a class="code hl_function" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsDetailed.html#a1e70a401a60e67ea585d8eae2945390c">add_info</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField&lt;dim, number, ObstacleType&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1ParticleMonitor.html#afc6e238be2508addacda4cac4149b6f8">obstacle_field</a>);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsDetailed.html#a07de50d2304f78c293537b90224e9d15">  182</a></span>      <a class="code hl_struct" href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html">Statistics</a> <a class="code hl_variable" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsDetailed.html#a07de50d2304f78c293537b90224e9d15">n_particles_per_cell</a>{<span class="stringliteral">&quot;# particle centers per cell&quot;</span>};</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    };</div>
+</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleMonitor.html#a550d53892a4344d149e12d4d49c4bc3b">  185</a></span>    <a class="code hl_struct" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html">ParticleStatisticsBasic</a>    <a class="code hl_variable" href="classMeltPoolDG_1_1ParticleMonitor.html#a550d53892a4344d149e12d4d49c4bc3b">particle_statistics_basic</a>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleMonitor.html#aef3f9af25f41620c7896940215da052d">  186</a></span>    <a class="code hl_struct" href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsDetailed.html">ParticleStatisticsDetailed</a> <a class="code hl_variable" href="classMeltPoolDG_1_1ParticleMonitor.html#aef3f9af25f41620c7896940215da052d">particle_statistics_detailed</a>;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleMonitor.html#a6e67e3b61ae8af3fbed9637cc6fa4147">  188</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1ParticleMonitor.html#a6e67e3b61ae8af3fbed9637cc6fa4147">n_calls_basic</a>    = 0;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleMonitor.html#ac7b0c9508cd13ef643d94fb853a9f482">  189</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1ParticleMonitor.html#ac7b0c9508cd13ef643d94fb853a9f482">n_calls_detailed</a> = 0;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1ParticleMonitor.html#afc6e238be2508addacda4cac4149b6f8">  191</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1ObstacleField.html">ObstacleField&lt;dim, number, ObstacleType&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1ParticleMonitor.html#afc6e238be2508addacda4cac4149b6f8">obstacle_field</a>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>  };</div>
+</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ConditionalOStream_html"><div class="ttname"><a href="classMeltPoolDG_1_1ConditionalOStream.html">MeltPoolDG::ConditionalOStream</a></div><div class="ttdef"><b>Definition</b> conditional_ostream.hpp:7</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ObstacleField_html"><div class="ttname"><a href="classMeltPoolDG_1_1ObstacleField.html">MeltPoolDG::ObstacleField</a></div><div class="ttdef"><b>Definition</b> obstacle_field.hpp:32</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleMonitor_html"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleMonitor.html">MeltPoolDG::ParticleMonitor</a></div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:25</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleMonitor_html_a0443992e7d42d9bceaca57190e6b1dde"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleMonitor.html#a0443992e7d42d9bceaca57190e6b1dde">MeltPoolDG::ParticleMonitor::add_info</a></div><div class="ttdeci">void add_info(const Profiling::ProfilingVerbosity verbosity=Profiling::ProfilingVerbosity::none)</div><div class="ttdef"><b>Definition</b> particle_monitor.cpp:133</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleMonitor_html_a1557c5c459b7a6cfe30cfe3eb49cc899"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleMonitor.html#a1557c5c459b7a6cfe30cfe3eb49cc899">MeltPoolDG::ParticleMonitor::print</a></div><div class="ttdeci">void print(const ConditionalOStream &amp;pcout, const std::string &amp;title) const</div><div class="ttdef"><b>Definition</b> particle_monitor.cpp:150</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleMonitor_html_a550d53892a4344d149e12d4d49c4bc3b"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleMonitor.html#a550d53892a4344d149e12d4d49c4bc3b">MeltPoolDG::ParticleMonitor::particle_statistics_basic</a></div><div class="ttdeci">ParticleStatisticsBasic particle_statistics_basic</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:185</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleMonitor_html_a6e67e3b61ae8af3fbed9637cc6fa4147"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleMonitor.html#a6e67e3b61ae8af3fbed9637cc6fa4147">MeltPoolDG::ParticleMonitor::n_calls_basic</a></div><div class="ttdeci">unsigned int n_calls_basic</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:188</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleMonitor_html_ac7b0c9508cd13ef643d94fb853a9f482"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleMonitor.html#ac7b0c9508cd13ef643d94fb853a9f482">MeltPoolDG::ParticleMonitor::n_calls_detailed</a></div><div class="ttdeci">unsigned int n_calls_detailed</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:189</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleMonitor_html_aef3f9af25f41620c7896940215da052d"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleMonitor.html#aef3f9af25f41620c7896940215da052d">MeltPoolDG::ParticleMonitor::particle_statistics_detailed</a></div><div class="ttdeci">ParticleStatisticsDetailed particle_statistics_detailed</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:186</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1ParticleMonitor_html_afc6e238be2508addacda4cac4149b6f8"><div class="ttname"><a href="classMeltPoolDG_1_1ParticleMonitor.html#afc6e238be2508addacda4cac4149b6f8">MeltPoolDG::ParticleMonitor::obstacle_field</a></div><div class="ttdeci">const ObstacleField&lt; dim, number, ObstacleType &gt; &amp; obstacle_field</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:191</div></div>
+<div class="ttc" id="aconditional__ostream_8hpp_html"><div class="ttname"><a href="conditional__ostream_8hpp.html">conditional_ostream.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> boundary_condition_functions.hpp:17</div></div>
+<div class="ttc" id="aobstacle__field_8hpp_html"><div class="ttname"><a href="obstacle__field_8hpp.html">obstacle_field.hpp</a></div></div>
+<div class="ttc" id="aprofiling__data_8hpp_html"><div class="ttname"><a href="profiling__data_8hpp.html">profiling_data.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic_html"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html">MeltPoolDG::ParticleMonitor::ParticleStatisticsBasic</a></div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:149</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic_html_a3b9cd83a897ed96144a14d2ee4acf2b8"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html#a3b9cd83a897ed96144a14d2ee4acf2b8">MeltPoolDG::ParticleMonitor::ParticleStatisticsBasic::n_locally_owned</a></div><div class="ttdeci">Statistics n_locally_owned</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:163</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic_html_a682c341a4096bbd76b0b8fbc039e0b01"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html#a682c341a4096bbd76b0b8fbc039e0b01">MeltPoolDG::ParticleMonitor::ParticleStatisticsBasic::n_global_particles</a></div><div class="ttdeci">Statistics n_global_particles</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:162</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic_html_a8dcfda5e16dee736daa3c58c7967b04c"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html#a8dcfda5e16dee736daa3c58c7967b04c">MeltPoolDG::ParticleMonitor::ParticleStatisticsBasic::n_ghost</a></div><div class="ttdeci">Statistics n_ghost</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:164</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic_html_ae78a3d2e88c315c0ff203abcec1f44f2"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsBasic.html#ae78a3d2e88c315c0ff203abcec1f44f2">MeltPoolDG::ParticleMonitor::ParticleStatisticsBasic::add_info</a></div><div class="ttdeci">void add_info(const ObstacleField&lt; dim, number, ObstacleType &gt; &amp;obstacle_field)</div><div class="ttdef"><b>Definition</b> particle_monitor.cpp:107</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsDetailed_html"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsDetailed.html">MeltPoolDG::ParticleMonitor::ParticleStatisticsDetailed</a></div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:172</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsDetailed_html_a07de50d2304f78c293537b90224e9d15"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsDetailed.html#a07de50d2304f78c293537b90224e9d15">MeltPoolDG::ParticleMonitor::ParticleStatisticsDetailed::n_particles_per_cell</a></div><div class="ttdeci">Statistics n_particles_per_cell</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:182</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsDetailed_html_a1e70a401a60e67ea585d8eae2945390c"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1ParticleStatisticsDetailed.html#a1e70a401a60e67ea585d8eae2945390c">MeltPoolDG::ParticleMonitor::ParticleStatisticsDetailed::add_info</a></div><div class="ttdeci">void add_info(const ObstacleField&lt; dim, number, ObstacleType &gt; &amp;obstacle_field)</div><div class="ttdef"><b>Definition</b> particle_monitor.cpp:119</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html">MeltPoolDG::ParticleMonitor::Statistics</a></div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:66</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_a1812083536bb7550b9220eb33a260316"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a1812083536bb7550b9220eb33a260316">MeltPoolDG::ParticleMonitor::Statistics::n_imbalance_samples</a></div><div class="ttdeci">uint64_t n_imbalance_samples</div><div class="ttdoc">Number of samples recorded via add_info_with_imbalance().</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:142</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_a1a16fe55574c2b3d95d632bcbcbc0cb2"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a1a16fe55574c2b3d95d632bcbcbc0cb2">MeltPoolDG::ParticleMonitor::Statistics::has_imbalance</a></div><div class="ttdeci">bool has_imbalance() const</div><div class="ttdef"><b>Definition</b> particle_monitor.cpp:81</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_a240d23d17870344f3cbd2d805459ca77"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a240d23d17870344f3cbd2d805459ca77">MeltPoolDG::ParticleMonitor::Statistics::label</a></div><div class="ttdeci">const std::string label</div><div class="ttdoc">Name of the quantity.</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:128</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_a2c99f6b692dde59ac3a829792268616e"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a2c99f6b692dde59ac3a829792268616e">MeltPoolDG::ParticleMonitor::Statistics::min</a></div><div class="ttdeci">unsigned int min</div><div class="ttdoc">Minimum over all samples.</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:131</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_a31b497a58c38b2cfdb676338807cc6e0"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a31b497a58c38b2cfdb676338807cc6e0">MeltPoolDG::ParticleMonitor::Statistics::average_imbalance</a></div><div class="ttdeci">number average_imbalance() const</div><div class="ttdef"><b>Definition</b> particle_monitor.cpp:74</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_a66486cd9fcd194cd3e51bfcd55204e83"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a66486cd9fcd194cd3e51bfcd55204e83">MeltPoolDG::ParticleMonitor::Statistics::add_info_with_imbalance</a></div><div class="ttdeci">void add_info_with_imbalance(const unsigned int value, MPI_Comm mpi_communicator)</div><div class="ttdef"><b>Definition</b> particle_monitor.cpp:50</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_a8b572eb53a874d77a62b3eeb29fbcb4e"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a8b572eb53a874d77a62b3eeb29fbcb4e">MeltPoolDG::ParticleMonitor::Statistics::max</a></div><div class="ttdeci">unsigned int max</div><div class="ttdoc">Maximum over all samples.</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:133</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_a9437c025408327c3f7610f1a38b5f50c"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#a9437c025408327c3f7610f1a38b5f50c">MeltPoolDG::ParticleMonitor::Statistics::average</a></div><div class="ttdeci">number average() const</div><div class="ttdef"><b>Definition</b> particle_monitor.cpp:67</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_aa71e04ad578ae679957e6f1487efb3f0"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#aa71e04ad578ae679957e6f1487efb3f0">MeltPoolDG::ParticleMonitor::Statistics::n_samples</a></div><div class="ttdeci">uint64_t n_samples</div><div class="ttdoc">Number of recorded samples.</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:137</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_ab471a3246f16a6690a00e890c3fdb3de"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#ab471a3246f16a6690a00e890c3fdb3de">MeltPoolDG::ParticleMonitor::Statistics::get_statistics_across_mpi_ranks</a></div><div class="ttdeci">Statistics get_statistics_across_mpi_ranks(MPI_Comm mpi_communicator) const</div><div class="ttdef"><b>Definition</b> particle_monitor.cpp:88</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_abf66454f3abb9656ef35a701977aa618"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#abf66454f3abb9656ef35a701977aa618">MeltPoolDG::ParticleMonitor::Statistics::sum</a></div><div class="ttdeci">number sum</div><div class="ttdoc">Sum over all samples.</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:135</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_aef5930947357a975cf51620f95c77dfb"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#aef5930947357a975cf51620f95c77dfb">MeltPoolDG::ParticleMonitor::Statistics::add_info</a></div><div class="ttdeci">void add_info(const unsigned int value)</div><div class="ttdef"><b>Definition</b> particle_monitor.cpp:31</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1ParticleMonitor_1_1Statistics_html_afcaaae295b5fd8d7403e7906434c179f"><div class="ttname"><a href="structMeltPoolDG_1_1ParticleMonitor_1_1Statistics.html#afcaaae295b5fd8d7403e7906434c179f">MeltPoolDG::ParticleMonitor::Statistics::imbalance_sum</a></div><div class="ttdeci">number imbalance_sum</div><div class="ttdoc">Sum of the load imbalance over all samples recorded via add_info_with_imbalance().</div><div class="ttdef"><b>Definition</b> particle_monitor.hpp:140</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
