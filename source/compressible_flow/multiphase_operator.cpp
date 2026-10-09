@@ -157,6 +157,9 @@ namespace MeltPoolDG::Multiphase
     inv_time_step = 1. / time_step_in;
     time_step     = time_step_in;
 
+    // reset values for interface velocity
+    level_set_advection_operator.clear_interface_velocity();
+
     using local_applier_type =
       std::function<void(const MatrixFree<dim, number> &,
                          LinearAlgebra::distributed::Vector<number> &,
@@ -310,9 +313,6 @@ namespace MeltPoolDG::Multiphase
             DomainPointEval eval_point_interface_liquid(mapping_info_interface, fe_point_temp);
             DomainPointEval eval_point_gas(*mapping_info_cells[Phase::gas], fe_point_temp);
             DomainPointEval eval_point_interface_gas(mapping_info_interface, fe_point_temp);
-
-            // reset values for interface velocity
-            level_set_advection_operator.clear_interface_velocity();
 
             // update current laser heat source
             const number laser_heat_source =
