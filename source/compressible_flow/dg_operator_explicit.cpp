@@ -9,6 +9,7 @@
 #include <meltpooldg/utilities/dg_generic_convection_diffusion_worker.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
 #include <meltpooldg/utilities/preprocessor_directives.hpp>
+#include <meltpooldg/utilities/scoped_name.hpp>
 #include <meltpooldg/utilities/vector_tools.templates.hpp>
 
 
@@ -36,6 +37,8 @@ namespace MeltPoolDG::CompressibleFlow
     const VectorType                                      &src,
     const std::function<void(unsigned int, unsigned int)> &func) const
   {
+    ScopedName         scope_apply_operator("apply_operator");
+    TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(), scope_apply_operator);
     current_time_step        = time_step;
     using local_applier_type = std::function<void(const dealii::MatrixFree<dim, number> &,
                                                   VectorType       &dst,
