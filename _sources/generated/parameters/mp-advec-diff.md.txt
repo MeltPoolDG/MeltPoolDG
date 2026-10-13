@@ -125,8 +125,10 @@
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `type` | `string` | `crank_nicolson` | Name of the time integration scheme.<br><br>Allowed values:<br>- `not_initialized`<br>- `LSRK_stage_1_order_1`<br>- `LSRK_stage_3_order_3`<br>- `LSRK_stage_5_order_4`<br>- `LSRK_stage_7_order_4`<br>- `LSRK_stage_9_order_5`<br>- `implicit_euler`<br>- `explicit_euler`<br>- `crank_nicolson`<br>- `bdf_1`<br>- `bdf_2`<br>- `bdf_3`<br>- `bdf_4`<br>- `bdf_5`<br>- `bdf_6`<br>- `imex` |
+| `type` | `string` | `crank_nicolson` | Name of the time integration scheme.<br><br>Allowed values:<br>- `not_initialized`<br>- `LSRK_stage_1_order_1`<br>- `LSRK_stage_3_order_3`<br>- `LSRK_stage_5_order_4`<br>- `LSRK_stage_7_order_4`<br>- `LSRK_stage_9_order_5`<br>- `RKC_n_stages`<br>- `implicit_euler`<br>- `explicit_euler`<br>- `crank_nicolson`<br>- `bdf_1`<br>- `bdf_2`<br>- `bdf_3`<br>- `bdf_4`<br>- `bdf_5`<br>- `bdf_6`<br>- `imex` |
 | `preconditioner update frequency` | `integer` | `100` | Frequency at which the preconditioner gets updated. |
+| `RKC n stages` | `integer` | `5` | Number of stages for the RKC scheme. |
+| `epsilon` | `number` | `0.153846` | Damping parameter for the RKC scheme. |
 | [`nlsolve`](#advection-diffusion-time-integration-nlsolve) | `object` |  | [See table](#advection-diffusion-time-integration-nlsolve) |
 | [`linear solver`](#advection-diffusion-time-integration-linear-solver) | `object` |  | [See table](#advection-diffusion-time-integration-linear-solver) |
 
