@@ -152,10 +152,10 @@ jobs:
     #   ghcr.io/meltpooldg/adaflo:latest
     #
     # With label "no_adaflo":
-    #   dealii/dealii:master-noble
+    #   dealii/dealii:master-resolute
     # -------------------------------------------------------------------------
     container:
-      image: ${{ needs.labels.outputs.no_adaflo == 'true' && 'dealii/dealii:master-noble' || 'ghcr.io/meltpooldg/adaflo:latest' }}
+      image: ${{ needs.labels.outputs.no_adaflo == 'true' && 'dealii/dealii:master-resolute' || 'ghcr.io/meltpooldg/adaflo:latest' }}
       options: --user root
 
     steps:
@@ -172,7 +172,7 @@ jobs:
           echo "CTest command: '${CTEST_COMMAND}'"
 
           if [[ "$NO_ADAFLO" == "true" ]]; then
-            echo "Docker image: dealii/dealii:master-noble"
+            echo "Docker image: dealii/dealii:master-resolute"
           else
             echo "Docker image: ghcr.io/meltpooldg/adaflo:latest"
             echo "ADAFLO_LIB: '${ADAFLO_LIB}'"
