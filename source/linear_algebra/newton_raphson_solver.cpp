@@ -41,7 +41,11 @@ namespace MeltPoolDG
     while (i < max_number_of_iterations)
       {
         solve_increment(solution);
-        if (is_converged())
+
+        if (i == 0)
+          initial_residual_norm = rhs.l2_norm();
+
+        if (is_converged(solution))
           {
             if (nlsolve_data.verbosity_level >= 1)
               {
@@ -64,7 +68,7 @@ namespace MeltPoolDG
         ++i;
       }
 
-    AssertThrow(is_converged(), ExcNewtonDidNotConverge());
+    AssertThrow(is_converged(solution), ExcNewtonDidNotConverge());
   }
 
   template <typename number, typename VectorType>
@@ -76,8 +80,10 @@ namespace MeltPoolDG
         Journal::print_line(pcout);
         Journal::print_line(pcout, std::string(10, ' ') + std::string(60, '_'));
         std::ostringstream str;
+        const bool         relative = nlsolve_data.use_relative_tolerances;
         str << std::string(10, ' ') << std::setw(15) << "#lin solve" << std::internal
-            << std::setw(15) << "||residual||" << std::internal << std::setw(15) << "||ddx||";
+            << std::setw(15) << (relative ? "||r||/||r_0||" : "||residual||") << std::internal
+            << std::setw(15) << (relative ? "||ddx||/||x||" : "||ddx||");
         Journal::print_line(pcout, str.str(), "newton_raphson_solver");
         Journal::print_line(pcout, std::string(10, ' ') + std::string(60, '_'));
       }
@@ -101,13 +107,25 @@ namespace MeltPoolDG
 
   template <typename number, typename VectorType>
   bool
-  NewtonRaphsonSolver<number, VectorType>::is_converged()
+  NewtonRaphsonSolver<number, VectorType>::is_converged(const VectorType &solution)
   {
     if (iteration_counter == nlsolve_data.max_nonlinear_iterations)
       set_tolerances_to_alternative_values();
 
-    const number res_norm    = rhs.l2_norm();
-    const number update_norm = solution_update.l2_norm();
+    number res_norm    = rhs.l2_norm();
+    number update_norm = solution_update.l2_norm();
+
+    if (nlsolve_data.use_relative_tolerances)
+      {
+        // scale by the reference norms; if a reference norm is zero, the tolerance is applied as
+        // an absolute value
+        if (initial_residual_norm > 0.0)
+          res_norm /= initial_residual_norm;
+
+        const number solution_norm = solution.l2_norm();
+        if (solution_norm > 0.0)
+          update_norm /= solution_norm;
+      }
 
     const bool residual_converged   = res_norm < residual_tolerance;
     const bool correction_converged = update_norm < field_correction_tolerance;

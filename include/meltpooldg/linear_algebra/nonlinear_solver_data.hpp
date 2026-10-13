@@ -16,6 +16,7 @@ namespace MeltPoolDG
     int    max_nonlinear_iterations_alt   = 0;
     number field_correction_tolerance_alt = 1e-9;
     number residual_tolerance_alt         = 1e-8;
+    bool   use_relative_tolerances        = false;
     int    verbosity_level                = -1;
 
     void
