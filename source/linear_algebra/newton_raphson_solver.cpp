@@ -36,10 +36,18 @@ namespace MeltPoolDG
     reinit_vector(rhs);
     reinit_vector(solution_update);
 
+    // start with the standard tolerances, also if a previous call switched to the alternative ones
+    residual_tolerance         = nlsolve_data.residual_tolerance;
+    field_correction_tolerance = nlsolve_data.field_correction_tolerance;
+
     int i           = 0;
     linear_iter_acc = 0;
     while (i < max_number_of_iterations)
       {
+        // continue with the alternative tolerances if not converged with the standard ones
+        if (i == nlsolve_data.max_nonlinear_iterations)
+          set_tolerances_to_alternative_values();
+
         solve_increment(solution);
 
         if (i == 0)
@@ -68,7 +76,7 @@ namespace MeltPoolDG
         ++i;
       }
 
-    AssertThrow(is_converged(solution), ExcNewtonDidNotConverge());
+    AssertThrow(false, ExcNewtonDidNotConverge());
   }
 
   template <typename number, typename VectorType>
@@ -109,9 +117,6 @@ namespace MeltPoolDG
   bool
   NewtonRaphsonSolver<number, VectorType>::is_converged(const VectorType &solution)
   {
-    if (iteration_counter == nlsolve_data.max_nonlinear_iterations)
-      set_tolerances_to_alternative_values();
-
     number res_norm    = rhs.l2_norm();
     number update_norm = solution_update.l2_norm();
 

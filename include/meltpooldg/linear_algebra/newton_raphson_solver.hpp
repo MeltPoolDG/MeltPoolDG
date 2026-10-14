@@ -42,9 +42,12 @@ namespace MeltPoolDG
    * solve() and \f$x_k\f$ the current iterate. If a reference norm is zero, the respective
    * tolerance is applied as an absolute value.
    *
-   * If the solver does not converge within NonlinearSolverData::max_nonlinear_iterations +
-   * NonlinearSolverData::max_nonlinear_iterations_alt iterations, ExcNewtonDidNotConverge is
-   * thrown.
+   * If the solver does not converge within NonlinearSolverData::max_nonlinear_iterations
+   * iterations, it continues for up to NonlinearSolverData::max_nonlinear_iterations_alt
+   * iterations with the alternative tolerances NonlinearSolverData::residual_tolerance_alt and
+   * NonlinearSolverData::field_correction_tolerance_alt. If it does not converge with those
+   * either, ExcNewtonDidNotConverge is thrown. Each call to solve() starts with the standard
+   * tolerances.
    *
    * @note If a linear solver with an absolute tolerance is used in solve_with_jacobian(), this
    * tolerance limits how far the residual can be reduced: once \f$\|r_k\|\f$ falls below it, the
@@ -123,14 +126,15 @@ namespace MeltPoolDG
     const int max_number_of_iterations;
 
     /**
-     * Currently used residual tolerance. It is initialized with the standard tolerance and
-     * replaced by the alternative one in set_tolerances_to_alternative_values().
+     * Currently used residual tolerance. It is set to the standard tolerance at the beginning of
+     * solve() and replaced by the alternative one in set_tolerances_to_alternative_values().
      */
     number residual_tolerance;
 
     /**
-     * Currently used field correction tolerance. It is initialized with the standard tolerance
-     * and replaced by the alternative one in set_tolerances_to_alternative_values().
+     * Currently used field correction tolerance. It is set to the standard tolerance at the
+     * beginning of solve() and replaced by the alternative one in
+     * set_tolerances_to_alternative_values().
      */
     number field_correction_tolerance;
 
@@ -143,15 +147,6 @@ namespace MeltPoolDG
      * Solution update of the current Newton iteration.
      */
     VectorType solution_update;
-
-    /**
-     * Counter to switch to the alternative tolerances in is_converged().
-     *
-     * @todo This counter is never incremented. Therefore, the alternative tolerances are
-     * currently not used and the solver only performs additional iterations with the standard
-     * tolerances.
-     */
-    int iteration_counter = 0;
 
     /**
      * Accumulated number of linear iterations of the current call to solve().
@@ -231,7 +226,8 @@ namespace MeltPoolDG
 
     /**
      * Replace the standard tolerances by NonlinearSolverData::residual_tolerance_alt and
-     * NonlinearSolverData::field_correction_tolerance_alt.
+     * NonlinearSolverData::field_correction_tolerance_alt. It is called by solve() if the solver
+     * did not converge within NonlinearSolverData::max_nonlinear_iterations iterations.
      */
     void
     set_tolerances_to_alternative_values();

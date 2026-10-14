@@ -104,6 +104,26 @@ namespace
   // tolerance to disable one of the two convergence checks
   constexpr number disabled = std::numeric_limits<number>::max();
 
+  // tolerance that cannot be reached since norms are not negative
+  constexpr number unreachable = 0.0;
+
+  /**
+   * Create solver parameters where the standard tolerances cannot be reached within
+   * @p max_nonlinear_iterations iterations, but the alternative tolerances are reached in the
+   * first iteration that uses them.
+   */
+  MeltPoolDG::NonlinearSolverData<number>
+  create_solver_data_with_alternative_tolerances(const int max_nonlinear_iterations)
+  {
+    MeltPoolDG::NonlinearSolverData<number> data =
+      create_solver_data(unreachable, unreachable, false);
+    data.max_nonlinear_iterations       = max_nonlinear_iterations;
+    data.max_nonlinear_iterations_alt   = 3;
+    data.residual_tolerance_alt         = disabled;
+    data.field_correction_tolerance_alt = disabled;
+    return data;
+  }
+
   const std::vector<number> roots         = {10.0, 20.0, 30.0};
   const std::vector<number> initial_guess = {15.0, 30.0, 45.0};
 } // namespace
@@ -228,8 +248,9 @@ TEST(NewtonRaphsonSolverTest, RelativeTolerancesFallBackToAbsoluteForZeroReferen
 }
 
 /**
- * If the tolerances are not reached within the maximum number of Newton iterations, the solver
- * throws ExcNewtonDidNotConverge.
+ * If neither the standard nor the alternative tolerances are reached within the maximum number of
+ * Newton iterations, i.e. NonlinearSolverData::max_nonlinear_iterations +
+ * NonlinearSolverData::max_nonlinear_iterations_alt, the solver throws ExcNewtonDidNotConverge.
  */
 TEST(NewtonRaphsonSolverTest, ThrowsIfNotConvergedWithinMaxIterations)
 {
@@ -237,11 +258,51 @@ TEST(NewtonRaphsonSolverTest, ThrowsIfNotConvergedWithinMaxIterations)
 
   MeltPoolDG::NonlinearSolverData<number> data = create_solver_data(1e-12, 1e-12, false);
   data.max_nonlinear_iterations                = 2;
+  data.max_nonlinear_iterations_alt            = 1;
+  data.residual_tolerance_alt                  = 1e-12;
+  data.field_correction_tolerance_alt          = 1e-12;
 
   MeltPoolDG::NewtonRaphsonSolver<number> solver(data);
   problem.attach(solver);
 
   VectorType solution = create_vector(initial_guess);
   EXPECT_THROW(solver.solve(solution), MeltPoolDG::ExcNewtonDidNotConverge);
-  EXPECT_EQ(problem.update_norms.size(), 2u);
+  EXPECT_EQ(problem.update_norms.size(), 3u);
+}
+
+/**
+ * If the standard tolerances are not reached within NonlinearSolverData::max_nonlinear_iterations
+ * Newton iterations, the solver continues with the alternative tolerances. Since the standard
+ * tolerances cannot be reached and the alternative ones are disabled, the solver converges in the
+ * first Newton iteration with the alternative tolerances.
+ */
+TEST(NewtonRaphsonSolverTest, AlternativeTolerancesAreUsedAfterMaxNonlinearIterations)
+{
+  QuadraticProblem                        problem(roots);
+  MeltPoolDG::NewtonRaphsonSolver<number> solver(create_solver_data_with_alternative_tolerances(2));
+  problem.attach(solver);
+
+  VectorType solution = create_vector(initial_guess);
+  EXPECT_NO_THROW(solver.solve(solution));
+  EXPECT_EQ(problem.update_norms.size(), 3u);
+}
+
+/**
+ * Each call to solve() starts with the standard tolerances, even if a previous call switched to the
+ * alternative ones. Otherwise, the second call would converge in the first Newton iteration.
+ */
+TEST(NewtonRaphsonSolverTest, EachSolveStartsWithStandardTolerances)
+{
+  MeltPoolDG::NewtonRaphsonSolver<number> solver(create_solver_data_with_alternative_tolerances(2));
+
+  for (unsigned int n = 0; n < 2; ++n)
+    {
+      QuadraticProblem problem(roots);
+      problem.attach(solver);
+
+      VectorType solution = create_vector(initial_guess);
+      solver.solve(solution);
+
+      EXPECT_EQ(problem.update_norms.size(), 3u) << "in call " << n << " of solve()";
+    }
 }
