@@ -331,6 +331,98 @@ namespace MeltPoolDG::CompressibleFlow
         delta_w_p[dim + 1]      = 0.0;
         grad_delta_w_p[dim + 1] = grad_delta_w_m[dim + 1];
       }
+    else if (boundary_type == BoundaryType::combined_inflow_no_slip_wall)
+      {
+        dealii::VectorizedArray<number> is_inflow =
+          get_boundary_value(boundary_id,
+                             BoundaryType::combined_inflow_no_slip_wall,
+                             q_point,
+                             CombinedInflowNoSlipWallValueInterpretation<dim>::inside_flow);
+
+        // apply inflow boundary conditions
+
+        // Dirichlet
+        for (unsigned i = 0; i < n_conserved_variables<dim>; ++i)
+          {
+            w_p[i]       = get_boundary_value(boundary_id,
+                                        BoundaryType::combined_inflow_no_slip_wall,
+                                        q_point,
+                                        i);
+            delta_w_p[i] = 0.;
+          }
+
+        grad_w_p = grad_w_m;
+        // delta_w_p is zero at Dirichlet boundaries. Hence, nothing needs to be done here.
+
+        grad_delta_w_p = grad_delta_w_m;
+
+        // save boundary conditions
+
+        const auto inflow_w_p(w_p);
+        const auto inflow_grad_w_p(grad_w_p);
+        const auto inflow_delta_w_p(delta_w_p);
+        const auto inflow_grad_delta_w_p(grad_delta_w_p);
+
+        // apply no-slip wall boundary conditions
+
+        // homogeneous Neumann
+        w_p[0]            = w_m[0];
+        grad_w_p[0]       = -(grad_w_m[0]);
+        delta_w_p[0]      = delta_w_m[0];
+        grad_delta_w_p[0] = -grad_delta_w_m[0];
+        // Dirichlet
+        for (unsigned int d = 0; d < dim; ++d)
+          {
+            w_p[d + 1]            = 0.;
+            grad_w_p[d + 1]       = grad_w_m[d + 1];
+            delta_w_p[d + 1]      = 0.0;
+            grad_delta_w_p[d + 1] = grad_delta_w_m[d + 1];
+          }
+        // homogeneous Neumann
+        grad_w_p[dim + 1]       = -(grad_w_m[dim + 1]);
+        w_p[dim + 1]            = w_m[dim + 1];
+        delta_w_p[dim + 1]      = delta_w_m[dim + 1];
+        grad_delta_w_p[dim + 1] = -grad_delta_w_m[dim + 1];
+
+        // apply mask to choose correct boundary conditions
+        auto apply_mask = [](auto mask, auto true_value, auto false_value) -> auto {
+          return dealii::compare_and_apply_mask<dealii::SIMDComparison::equal>(
+            mask, dealii::VectorizedArray<number>(1.0), true_value, false_value);
+        };
+
+        w_p[0]       = apply_mask(is_inflow, inflow_w_p[0], w_p[0]);
+        delta_w_p[0] = apply_mask(is_inflow, inflow_delta_w_p[0], delta_w_p[0]);
+        for (unsigned int d = 0; d < dim; ++d)
+          {
+            grad_w_p[0][d] = apply_mask(is_inflow, inflow_grad_w_p[0][d], grad_w_p[0][d]);
+            grad_delta_w_p[0][d] =
+              apply_mask(is_inflow, inflow_grad_delta_w_p[0][d], grad_delta_w_p[0][d]);
+          }
+
+        w_p[dim + 1]       = apply_mask(is_inflow, inflow_w_p[dim + 1], w_p[dim + 1]);
+        delta_w_p[dim + 1] = apply_mask(is_inflow, inflow_delta_w_p[dim + 1], delta_w_p[dim + 1]);
+        for (unsigned int d = 0; d < dim; ++d)
+          {
+            grad_w_p[dim + 1][d] =
+              apply_mask(is_inflow, inflow_grad_w_p[dim + 1][d], grad_w_p[dim + 1][d]);
+            grad_delta_w_p[dim + 1][d] =
+              apply_mask(is_inflow, inflow_grad_delta_w_p[dim + 1][d], grad_delta_w_p[dim + 1][d]);
+          }
+
+        for (unsigned int d = 0; d < dim; ++d)
+          {
+            w_p[d + 1]       = apply_mask(is_inflow, inflow_w_p[d + 1], w_p[d + 1]);
+            delta_w_p[d + 1] = apply_mask(is_inflow, inflow_delta_w_p[d + 1], delta_w_p[d + 1]);
+            for (unsigned int d2 = 0; d2 < dim; ++d2)
+              {
+                grad_w_p[d + 1][d2] =
+                  apply_mask(is_inflow, inflow_grad_w_p[d + 1][d2], grad_w_p[d + 1][d2]);
+                grad_delta_w_p[d + 1][d2] = apply_mask(is_inflow,
+                                                       inflow_grad_delta_w_p[d + 1][d2],
+                                                       grad_delta_w_p[d + 1][d2]);
+              }
+          }
+      }
     else
       AssertThrow(false,
                   ExcMessage("Unknown boundary id, did "
