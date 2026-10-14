@@ -33,12 +33,15 @@ namespace MeltPoolDG
 
     print_header();
 
+    residual_tolerance         = nlsolve_data.residual_tolerance;
+    field_correction_tolerance = nlsolve_data.field_correction_tolerance;
+
     reinit_vector(rhs);
     reinit_vector(solution_update);
 
-    int i           = 0;
-    linear_iter_acc = 0;
-    while (i < max_number_of_iterations)
+    iteration_counter = 0;
+    linear_iter_acc   = 0;
+    while (iteration_counter < max_number_of_iterations)
       {
         solve_increment(solution);
         if (is_converged())
@@ -52,7 +55,8 @@ namespace MeltPoolDG
                 Journal::print_line(pcout, str_sol.str(), "newton_raphson_solver");
               }
 
-            IterationMonitor<number>::add_linear_iterations(ScopedName("nonlinear_solve"), i);
+            IterationMonitor<number>::add_linear_iterations(ScopedName("nonlinear_solve"),
+                                                            iteration_counter);
             IterationMonitor<number>::add_linear_iterations(ScopedName("linear_solve_acc"),
                                                             linear_iter_acc);
 
@@ -61,7 +65,7 @@ namespace MeltPoolDG
 
         solution += solution_update;
         distribute_constraints(solution);
-        ++i;
+        ++iteration_counter;
       }
 
     AssertThrow(is_converged(), ExcNewtonDidNotConverge());

@@ -15,13 +15,14 @@ namespace MeltPoolDG::LevelSet
   using namespace dealii;
 
   template <int dim, typename number>
-  ReinitializationEllipticOperator<dim, number>::ReinitializationEllipticOperator(
-    const MeltPoolDG::ScratchData<dim, dim, number> &scratch_data_in,
-    const ReinitializationData<number>              &reinit_data_in,
-    const unsigned int                               reinit_dof_idx_in,
-    const unsigned int                               reinit_quad_idx_in,
-    const MappingInfoType                           &mapping_info_surface_in,
-    const unsigned int                               ls_dof_idx_in)
+  ReinitializationEllipticOperatorFixedPoint<dim, number>::
+    ReinitializationEllipticOperatorFixedPoint(
+      const MeltPoolDG::ScratchData<dim, dim, number> &scratch_data_in,
+      const ReinitializationData<number>              &reinit_data_in,
+      const unsigned int                               reinit_dof_idx_in,
+      const unsigned int                               reinit_quad_idx_in,
+      const MappingInfoType                           &mapping_info_surface_in,
+      const unsigned int                               ls_dof_idx_in)
     : scratch_data(scratch_data_in)
     , reinit_data(reinit_data_in)
     , reinit_quad_idx(reinit_quad_idx_in)
@@ -35,7 +36,7 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperator<dim, number>::reinit()
+  ReinitializationEllipticOperatorFixedPoint<dim, number>::reinit()
   {
     scratch_data.initialize_dof_vector(zero_interface, this->dof_idx);
     zero_interface = 0.0;
@@ -52,7 +53,8 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperator<dim, number>::vmult(VectorType &dst, const VectorType &src) const
+  ReinitializationEllipticOperatorFixedPoint<dim, number>::vmult(VectorType       &dst,
+                                                                 const VectorType &src) const
   {
     scratch_data.get_matrix_free().template loop<VectorType, VectorType>(
       [&](const auto &matrix_free, auto &dst, const auto &src, auto cell_range) {
@@ -119,7 +121,7 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperator<dim, number>::laplace_cell_operation(
+  ReinitializationEllipticOperatorFixedPoint<dim, number>::laplace_cell_operation(
     FECellIntegrator<dim, 1, number> &cell_eval) const
   {
     cell_eval.evaluate(EvaluationFlags::gradients);
@@ -133,8 +135,9 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperator<dim, number>::create_rhs(VectorType       &dst,
-                                                            const VectorType &level_set_old) const
+  ReinitializationEllipticOperatorFixedPoint<dim, number>::create_rhs(
+    VectorType       &dst,
+    const VectorType &level_set_old) const
   {
     scratch_data.get_matrix_free().template loop<VectorType, VectorType>(
       [&](const auto &matrix_free, auto &dst, const auto &src, auto cell_range) {
@@ -204,8 +207,8 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   template <typename EvaluatorType>
-  typename ReinitializationEllipticOperator<dim, number>::VectorizedArrayType
-  ReinitializationEllipticOperator<dim, number>::evaluate_rhs_coefficient(
+  typename ReinitializationEllipticOperatorFixedPoint<dim, number>::VectorizedArrayType
+  ReinitializationEllipticOperatorFixedPoint<dim, number>::evaluate_rhs_coefficient(
     const EvaluatorType &phi_old,
     const unsigned int   q_index) const
   {
@@ -220,7 +223,7 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperator<dim, number>::interface_penalty_cell_operation(
+  ReinitializationEllipticOperatorFixedPoint<dim, number>::interface_penalty_cell_operation(
     PointEvaluationType              &interface_penalty_surface,
     FECellIntegrator<dim, 1, number> &interface_penalty,
     const unsigned int                lane,
@@ -239,7 +242,7 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperator<dim, number>::rhs_cell_operation(
+  ReinitializationEllipticOperatorFixedPoint<dim, number>::rhs_cell_operation(
     FECellIntegrator<dim, 1, number>       &rhs,
     const FECellIntegrator<dim, 1, number> &phi_old) const
   {
@@ -255,7 +258,7 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperator<dim, number>::compute_system_matrix_from_matrixfree(
+  ReinitializationEllipticOperatorFixedPoint<dim, number>::compute_system_matrix_from_matrixfree(
     TrilinosWrappers::SparseMatrix &system_matrix) const
   {
     system_matrix           = 0.0;
@@ -306,7 +309,7 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperator<dim, number>::compute_inverse_diagonal_from_matrixfree(
+  ReinitializationEllipticOperatorFixedPoint<dim, number>::compute_inverse_diagonal_from_matrixfree(
     VectorType &diagonal) const
   {
     scratch_data.initialize_dof_vector(diagonal, this->dof_idx);
@@ -354,7 +357,7 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperator<dim, number>::lhs_cell_operation(
+  ReinitializationEllipticOperatorFixedPoint<dim, number>::lhs_cell_operation(
     FECellIntegrator<dim, 1, number> &interface_penalty,
     FECellIntegrator<dim, 1, number> &cell_eval,
     PointEvaluationType              &interface_penalty_surface) const
@@ -395,7 +398,7 @@ namespace MeltPoolDG::LevelSet
 
   template <int dim, typename number>
   void
-  ReinitializationEllipticOperator<dim, number>::lhs_inner_face_operation(
+  ReinitializationEllipticOperatorFixedPoint<dim, number>::lhs_inner_face_operation(
     FEFaceIntegrator<dim, 1, number> &eval_minus,
     FEFaceIntegrator<dim, 1, number> &eval_plus) const
   {
@@ -419,7 +422,7 @@ namespace MeltPoolDG::LevelSet
       }
   }
 
-  template class ReinitializationEllipticOperator<1, double>;
-  template class ReinitializationEllipticOperator<2, double>;
-  template class ReinitializationEllipticOperator<3, double>;
+  template class ReinitializationEllipticOperatorFixedPoint<1, double>;
+  template class ReinitializationEllipticOperatorFixedPoint<2, double>;
+  template class ReinitializationEllipticOperatorFixedPoint<3, double>;
 } // namespace MeltPoolDG::LevelSet
