@@ -185,6 +185,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a86560b466664436c03e666db9fe07bc3" id="r_a86560b466664436c03e666db9fe07bc3"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a86560b466664436c03e666db9fe07bc3">compute_time_step_size</a> (bool do_print=false) const</td></tr>
 <tr class="memdesc:a86560b466664436c03e666db9fe07bc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the maximum time step size.  <br /></td></tr>
 <tr class="separator:a86560b466664436c03e666db9fe07bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa37a530fe26c325cb2457a92c68fd916" id="r_aa37a530fe26c325cb2457a92c68fd916"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#aa37a530fe26c325cb2457a92c68fd916">estimate_jacobian_eigenvalues</a> (const number) const</td></tr>
+<tr class="separator:aa37a530fe26c325cb2457a92c68fd916"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab78f4da251aae20821e7b22ac116a90d" id="r_ab78f4da251aae20821e7b22ac116a90d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#ab78f4da251aae20821e7b22ac116a90d">distribute_dofs</a> (dealii::DoFHandler&lt; dim &gt; &amp;dof_handler) const</td></tr>
 <tr class="memdesc:ab78f4da251aae20821e7b22ac116a90d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distribute dofs needed for a finite element type given in <code>CompressibleFlowData</code>.  <br /></td></tr>
 <tr class="separator:ab78f4da251aae20821e7b22ac116a90d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -872,6 +874,48 @@ template&lt;int dim, typename number &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dof_handler</td><td>Reference to the used DoFHandler object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa37a530fe26c325cb2457a92c68fd916" name="aa37a530fe26c325cb2457a92c68fd916"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa37a530fe26c325cb2457a92c68fd916">&#9670;&#160;</a></span>estimate_jacobian_eigenvalues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::complex&lt; number &gt; &gt; <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperation</a>&lt; dim, number &gt;::estimate_jacobian_eigenvalues </td>
+          <td>(</td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Estimate the eigenvalues of the Jacobian matrix.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time_step</td><td>The current time step size.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of complex eigenvalues.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Eigenvalue</td><td>computation is currently not implemented and is only there for compatibility with the type-erased interface in CompressibleFlowOperation. </td></tr>
   </table>
   </dd>
 </dl>

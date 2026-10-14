@@ -171,6 +171,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1a1d0546c8c56e4c77402101111676c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76f83b7cef7339e30dcfa8b9e8f92e02" id="r_a76f83b7cef7339e30dcfa8b9e8f92e02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Postprocessor.html#a76f83b7cef7339e30dcfa8b9e8f92e02">register_obstacle_output</a> (dealii::Particles::ParticleHandler&lt; dim &gt; const *particle_handler, const std::vector&lt; std::string &gt; &amp;property_names, const std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt; &amp;property_data_component_interpretation)</td></tr>
 <tr class="separator:a76f83b7cef7339e30dcfa8b9e8f92e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d0dab15212b313fd47401f35a32b409" id="r_a4d0dab15212b313fd47401f35a32b409"><td class="memTemplParams" colspan="2">template&lt;typename ComplexVectorType &gt; </td></tr>
+<tr class="memitem:a4d0dab15212b313fd47401f35a32b409"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Postprocessor.html#a4d0dab15212b313fd47401f35a32b409">output_complex_valued_vector_to_csv</a> (const int n_time_step, const number time, const ComplexVectorType &amp;output_vector, const std::string &amp;filename, const bool force_output=false) const</td></tr>
+<tr class="separator:a4d0dab15212b313fd47401f35a32b409"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -342,6 +345,67 @@ template&lt;int dim, typename number &gt; </div>
 </table>
 </div><div class="memdoc">
 <p>Determines whether postprocessing should be performed now. </p>
+
+</div>
+</div>
+<a id="a4d0dab15212b313fd47401f35a32b409" name="a4d0dab15212b313fd47401f35a32b409"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d0dab15212b313fd47401f35a32b409">&#9670;&#160;</a></span>output_complex_valued_vector_to_csv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename ComplexVectorType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Postprocessor.html">MeltPoolDG::Postprocessor</a>&lt; dim, number &gt;::output_complex_valued_vector_to_csv </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>n_time_step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>time</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ComplexVectorType &amp;&#160;</td>
+          <td class="paramname"><em>output_vector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>force_output</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Stores the passed complex valued vector in a csv file with the given name. The output is only performed if the current time is an output time step.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n_time_step</td><td>Current time step number. </td></tr>
+    <tr><td class="paramname">time</td><td>Current simulation time. </td></tr>
+    <tr><td class="paramname">output_vector</td><td>The complex valued vector to be written to file. </td></tr>
+    <tr><td class="paramname">filename</td><td>The name of the output file. The directory in which the file is stored is the output directory specified in the output data struct. </td></tr>
+    <tr><td class="paramname">force_output</td><td>If true, the output is performed regardless of whether the current time step is an output time step or not. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

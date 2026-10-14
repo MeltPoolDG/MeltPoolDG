@@ -198,6 +198,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a798c9ad87b4b516bba1064f9e64b7231" id="r_a798c9ad87b4b516bba1064f9e64b7231"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperation.html#a798c9ad87b4b516bba1064f9e64b7231">set_boundary_conditions</a> (const std::shared_ptr&lt; <a class="el" href="classMeltPoolDG_1_1SimulationCaseBase.html">SimulationCaseBase</a>&lt; dim, number &gt; &gt; &amp;simulation_case, const std::string &amp;operation_name)</td></tr>
 <tr class="memdesc:a798c9ad87b4b516bba1064f9e64b7231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the (standard compressible flow, i.e. non-cut specific) boundary conditions.  <br /></td></tr>
 <tr class="separator:a798c9ad87b4b516bba1064f9e64b7231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a216b42f1b1999b0cfffccd20e4ab0970" id="r_a216b42f1b1999b0cfffccd20e4ab0970"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperation.html#a216b42f1b1999b0cfffccd20e4ab0970">estimate_jacobian_eigenvalues</a> (const number) const</td></tr>
+<tr class="separator:a216b42f1b1999b0cfffccd20e4ab0970"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e54d6813323c164f5b21f8dfc3f53cb" id="r_a7e54d6813323c164f5b21f8dfc3f53cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperation.html#a7e54d6813323c164f5b21f8dfc3f53cb">attach_output_vectors</a> (<a class="el" href="classMeltPoolDG_1_1GenericDataOut.html">GenericDataOut</a>&lt; dim, number &gt; &amp;data_out) const</td></tr>
 <tr class="memdesc:a7e54d6813323c164f5b21f8dfc3f53cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attach the solution to the passed data out object.  <br /></td></tr>
 <tr class="separator:a7e54d6813323c164f5b21f8dfc3f53cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -781,6 +783,48 @@ template&lt;int dim, typename number &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dof_handler</td><td>Reference to the used DoFHandler object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a216b42f1b1999b0cfffccd20e4ab0970" name="a216b42f1b1999b0cfffccd20e4ab0970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a216b42f1b1999b0cfffccd20e4ab0970">&#9670;&#160;</a></span>estimate_jacobian_eigenvalues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::complex&lt; number &gt; &gt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1CutDGOperation.html">MeltPoolDG::CompressibleFlow::CutDGOperation</a>&lt; dim, number &gt;::estimate_jacobian_eigenvalues </td>
+          <td>(</td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Estimate the eigenvalues of the Jacobian matrix.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time_step</td><td>The current time step size.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of complex eigenvalues.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Eigenvalue</td><td>computation is currently not implemented and is only there for compatibility with the type-erased interface in CompressibleFlowOperation. </td></tr>
   </table>
   </dd>
 </dl>
