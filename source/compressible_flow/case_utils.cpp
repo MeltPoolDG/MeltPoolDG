@@ -15,6 +15,8 @@
 #include <meltpooldg/compressible_flow/data_types.hpp>
 #include <meltpooldg/utilities/amr_regions.hpp>
 
+#include <format>
+
 namespace MeltPoolDG::CompressibleFlow
 {
   template <int dim, typename number>
@@ -248,6 +250,8 @@ namespace MeltPoolDG::CompressibleFlow
     const MPI_Comm                              &mpi_communicator,
     const unsigned                               n_global_refinements)
   {
+    post();
+
     auto create_point_from_container =
       []<typename T>(const T &container) -> dealii::Point<dim, number> {
       dealii::Point<dim, number> point;
@@ -378,6 +382,76 @@ namespace MeltPoolDG::CompressibleFlow
       prm.leave_subsection();
     }
     prm.leave_subsection();
+  }
+
+  template <int dim, typename number>
+  void
+  InputDefinedSubdividedHyperRectangleDomain<dim, number>::post()
+  {
+    AssertThrow(domain_dimensions.size() == dim,
+                dealii::ExcMessage("Invalid size for domain dimensions vector. "
+                                   "Expected size " +
+                                   std::to_string(dim) + ", but got size " +
+                                   std::to_string(domain_dimensions.size()) + "."));
+    AssertThrow(domain_base_discretization.size() == dim,
+                dealii::ExcMessage("Invalid size for domain base discretization vector. "
+                                   "Expected size " +
+                                   std::to_string(dim) + ", but got size " +
+                                   std::to_string(domain_base_discretization.size()) + "."));
+    for (unsigned int d = 0; d < dim; ++d)
+      {
+        AssertThrow(domain_dimensions[d] > 0.,
+                    dealii::ExcMessage(
+                      std::format("The domain size must be positive in each direction, "
+                                  "but got {} in direction {}.",
+                                  domain_dimensions[d],
+                                  d)));
+        AssertThrow(domain_base_discretization[d] > 0,
+                    dealii::ExcMessage(
+                      std::format("The base grid resolution must be at least one cell in each "
+                                  "direction, but got {} in direction {}.",
+                                  domain_base_discretization[d],
+                                  d)));
+      }
+    // Check that the region of interest corners are valid if additional refinements are specified.
+    // This includes checking that the corners are within the domain and that the first corner is
+    // less than the second corner in all dimensions.
+    if (region_of_interest_refinement_times > 0)
+      {
+        AssertThrow(region_of_interest_corner[0].size() == dim and
+                      region_of_interest_corner[1].size() == dim,
+                    dealii::ExcMessage("Invalid size for region-of-interest corner points. "
+                                       "Both points must have size " +
+                                       std::to_string(dim) + ", but got sizes " +
+                                       std::to_string(region_of_interest_corner[0].size()) +
+                                       " and " +
+                                       std::to_string(region_of_interest_corner[1].size()) + "."));
+        for (unsigned int d = 0; d < dim; ++d)
+          {
+            AssertThrow(region_of_interest_corner[0][d] < region_of_interest_corner[1][d],
+                        dealii::ExcMessage(std::format(
+                          "The first corner of the region of interest must be smaller than the "
+                          "second corner in each direction, but got {} and {} in direction {}.",
+                          region_of_interest_corner[0][d],
+                          region_of_interest_corner[1][d],
+                          d)));
+            // The domain spans from the origin to the point given by the domain dimensions.
+            AssertThrow(region_of_interest_corner[0][d] >= 0. and
+                          region_of_interest_corner[1][d] <= domain_dimensions[d],
+                        dealii::ExcMessage(std::format(
+                          "The region of interest must lie within the domain [0, {}] in direction "
+                          "{}, but got the corners {} and {}.",
+                          domain_dimensions[d],
+                          d,
+                          region_of_interest_corner[0][d],
+                          region_of_interest_corner[1][d])));
+          }
+      }
+    AssertThrow(periodic_boundaries.size() == dim,
+                dealii::ExcMessage("Invalid size for periodic boundaries vector. "
+                                   "Expected size " +
+                                   std::to_string(dim) + ", but got size " +
+                                   std::to_string(periodic_boundaries.size()) + "."));
   }
 
 } // namespace MeltPoolDG::CompressibleFlow

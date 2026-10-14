@@ -253,6 +253,13 @@ namespace MeltPoolDG::CompressibleFlow
     void
     add_parameters(dealii::ParameterHandler &prm);
 
+    /**
+     * Checks the validity of the parameters stored in this struct. This function should be called
+     * after the parameters have been read from the input file.
+     */
+    void
+    post();
+
     /// Sizes of the domain in each dimension. The x, y, and z sizes are given at indices 0, 1,
     /// and 2, respectively.
     std::vector<number> domain_dimensions;

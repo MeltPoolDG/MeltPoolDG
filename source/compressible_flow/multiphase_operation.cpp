@@ -902,7 +902,7 @@ namespace MeltPoolDG::Multiphase
                                   multiphase_scratch_data.scratch_data.get_mpi_comm());
 
     convective_time_step_limit =
-      multiphase_scratch_data.flow_data.courant_number /
+      multiphase_scratch_data.flow_data.cfl_time_step.convective_courant_number /
       std::pow(multiphase_scratch_data.scratch_data.get_degree(multiphase_scratch_data.dof_idx),
                1.5) /
       max_transport;
@@ -931,8 +931,8 @@ namespace MeltPoolDG::Multiphase
       const number cell_size_sq =
         std::pow(multiphase_scratch_data.scratch_data.get_min_cell_size(), 2);
 
-      return (multiphase_scratch_data.flow_data.viscous_courant_number * min_density_in *
-              cell_size_sq) /
+      return (multiphase_scratch_data.flow_data.cfl_time_step.viscous_courant_number *
+              min_density_in * cell_size_sq) /
              (degree_factor * dynamic_viscosity);
     };
 
