@@ -4,8 +4,9 @@ namespace MeltPoolDG
 {
   BaseData::BaseData()
   {
-    fe.type   = FiniteElementType::FE_Q;
-    fe.degree = 1;
+    fe.type       = FiniteElementType::FE_Q;
+    fe.degree     = 1;
+    fe.quadrature = QuadratureType::gauss;
   }
 
   void

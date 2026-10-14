@@ -8,10 +8,13 @@ namespace MeltPoolDG
 {
   BETTER_ENUM(FiniteElementType, char, not_initialized, FE_Q, FE_SimplexP, FE_Q_iso_Q1, FE_DGQ)
 
+  BETTER_ENUM(QuadratureType, char, not_initialized, gauss, gauss_lobatto)
+
   struct FiniteElementData
   {
-    FiniteElementType type   = FiniteElementType::not_initialized;
-    int               degree = -1;
+    FiniteElementType type       = FiniteElementType::not_initialized;
+    int               degree     = -1;
+    QuadratureType    quadrature = QuadratureType::not_initialized;
 
     void
     add_parameters(dealii::ParameterHandler &prm);

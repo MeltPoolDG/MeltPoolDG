@@ -159,8 +159,9 @@ namespace
 
     // Setup the DoF handler and finite element data
     FiniteElementData fe_data;
-    fe_data.type   = FiniteElementType::FE_DGQ;
-    fe_data.degree = 1;
+    fe_data.type       = FiniteElementType::FE_DGQ;
+    fe_data.degree     = 1;
+    fe_data.quadrature = QuadratureType::gauss;
     dealii::DoFHandler<dim> dof_handler(triangulation);
     FiniteElementUtils::distribute_dofs<dim, dim + 2>(fe_data, dof_handler);
 

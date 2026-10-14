@@ -75,7 +75,7 @@ protected:
   SubcellNumericalAdmissibilityTest()
     : triangulation(MPI_COMM_WORLD)
     , scratch_data(MPI_COMM_WORLD, 0, true)
-    , fe_data(FiniteElementType::FE_DGQ, degree)
+    , fe_data(FiniteElementType::FE_DGQ, degree, QuadratureType::gauss)
   {}
 
   /**

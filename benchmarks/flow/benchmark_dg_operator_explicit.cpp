@@ -255,8 +255,9 @@ namespace
         material.specific_isobaric_heat      = 1000;
         material.thermal_conductivity        = 0.042;
 
-        fe_data.type   = FiniteElementType::FE_DGQ;
-        fe_data.degree = 1;
+        fe_data.type       = FiniteElementType::FE_DGQ;
+        fe_data.degree     = 1;
+        fe_data.quadrature = QuadratureType::gauss;
         flow_data.time_integrator.integrator_type =
           TimeIntegration::TimeIntegratorSchemes::LSRK_stage_1_order_1;
       }

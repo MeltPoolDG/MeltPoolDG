@@ -222,8 +222,9 @@ public:
   void
   set_parameters()
   {
-    fe_data.type   = FiniteElementType::FE_DGQ;
-    fe_data.degree = 1;
+    fe_data.type       = FiniteElementType::FE_DGQ;
+    fe_data.degree     = 1;
+    fe_data.quadrature = QuadratureType::gauss;
 
     flow_data.fe = fe_data;
 

@@ -58,6 +58,16 @@
               "maximum": 2147483647,
               "description": "Defines the degree p of the finite element type. If \"type\" is \"FE_Q_iso_Q1\" this parameter defines the number of subdivisions.",
               "default": 1
+            },
+            "quadrature": {
+              "type": "string",
+              "enum": [
+                "not_initialized",
+                "gauss",
+                "gauss_lobatto"
+              ],
+              "description": "Quadrature rule for the cell integrals. gauss: Gauss quadrature suited to the finite element type; gauss_lobatto: Gauss-Lobatto quadrature with p+1 points per direction, which coincide with the nodes of FE_Q and FE_DGQ (only supported for these types).",
+              "default": "gauss"
             }
           },
           "additionalProperties": false
@@ -189,6 +199,16 @@
               "maximum": 2147483647,
               "description": "Defines the degree p of the finite element type. If \"type\" is \"FE_Q_iso_Q1\" this parameter defines the number of subdivisions.",
               "default": -1
+            },
+            "quadrature": {
+              "type": "string",
+              "enum": [
+                "not_initialized",
+                "gauss",
+                "gauss_lobatto"
+              ],
+              "description": "Quadrature rule for the cell integrals. gauss: Gauss quadrature suited to the finite element type; gauss_lobatto: Gauss-Lobatto quadrature with p+1 points per direction, which coincide with the nodes of FE_Q and FE_DGQ (only supported for these types).",
+              "default": "not_initialized"
             }
           },
           "additionalProperties": false
@@ -289,6 +309,16 @@
                   "maximum": 2147483647,
                   "description": "Defines the degree p of the finite element type. If \"type\" is \"FE_Q_iso_Q1\" this parameter defines the number of subdivisions.",
                   "default": -1
+                },
+                "quadrature": {
+                  "type": "string",
+                  "enum": [
+                    "not_initialized",
+                    "gauss",
+                    "gauss_lobatto"
+                  ],
+                  "description": "Quadrature rule for the cell integrals. gauss: Gauss quadrature suited to the finite element type; gauss_lobatto: Gauss-Lobatto quadrature with p+1 points per direction, which coincide with the nodes of FE_Q and FE_DGQ (only supported for these types).",
+                  "default": "not_initialized"
                 }
               },
               "additionalProperties": false
@@ -872,6 +902,16 @@
                   "maximum": 2147483647,
                   "description": "Defines the degree p of the finite element type. If \"type\" is \"FE_Q_iso_Q1\" this parameter defines the number of subdivisions.",
                   "default": -1
+                },
+                "quadrature": {
+                  "type": "string",
+                  "enum": [
+                    "not_initialized",
+                    "gauss",
+                    "gauss_lobatto"
+                  ],
+                  "description": "Quadrature rule for the cell integrals. gauss: Gauss quadrature suited to the finite element type; gauss_lobatto: Gauss-Lobatto quadrature with p+1 points per direction, which coincide with the nodes of FE_Q and FE_DGQ (only supported for these types).",
+                  "default": "not_initialized"
                 }
               },
               "additionalProperties": false
