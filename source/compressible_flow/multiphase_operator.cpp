@@ -530,8 +530,12 @@ namespace MeltPoolDG::Multiphase
                             // TODO: project interface velocity in normal direction for dim>1
                             // returns velocity with respect to the outward liquid phase pointing
                             // normal!
-                            level_set_advection_operator.set_interface_velocity(
-                              velocity_interface_vec[q]);
+                            for (unsigned int v = 0;
+                                 v <
+                                 eval_point_interface_gas.n_active_entries_per_quadrature_batch(q);
+                                 ++v)
+                              level_set_advection_operator.set_interface_velocity(
+                                velocity_interface_vec[v]);
 
                             if (is_viscous_liquid or is_viscous_gas)
                               {
