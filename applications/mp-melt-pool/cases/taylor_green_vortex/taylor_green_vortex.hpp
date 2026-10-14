@@ -34,7 +34,7 @@ namespace MeltPoolDG::Simulation::TaylorGreenVortex
   {
   public:
     InitializeVelocityField()
-      : dealii::Function<dim>()
+      : dealii::Function<dim>(dim)
     {}
 
     void
