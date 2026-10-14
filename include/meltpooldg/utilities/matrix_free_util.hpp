@@ -416,4 +416,144 @@ namespace MeltPoolDG
 
     return cell_average_values;
   }
+
+  /**
+   * This class provides a parallel distributed cell data vector primarily intended to be used with
+   * dealii::FEEvaluation and dealii::FEFaceEvaluation. In contrast to a plain AlignedVector
+   * initialized with dealii::MatrixFree::initialize_cell_data_vector(), this class allows for
+   * conveniently updating the ghost values, i.e., the cell data of the ghost cell batches. This can
+   * be useful if you need the cell data locally available for both locally owned and ghost cells,
+   * but the data itself can only be computed for the locally owned cells. The ghost values can then
+   * be updated by calling update_ghost_values(), which sends the values of the locally owned cells
+   * to the neighboring MPI processes.
+   */
+  template <int dim,
+            typename number,
+            typename VectorizedArrayType = dealii::VectorizedArray<number>>
+  class ParallelDistributedCellData
+  {
+  public:
+    /**
+     * Initializes the cell data vector. It sets the size of the vector according to the number of
+     * locally owned and ghost cell batches in the matrix free object. It also sets up the
+     * communication pattern used internally to exchange the ghost values of the cell data vector
+     * with neighboring MPI processes. This function must be called every time the matrix free
+     * object is reinitialized.
+     *
+     * @param matrix_free The matrix free object used to determine the number of cell batches and
+     * the communication pattern for exchanging ghost values.
+     */
+    void
+    reinit(const dealii::MatrixFree<dim, number, VectorizedArrayType> &matrix_free)
+    {
+      matrix_free.initialize_cell_data_vector(cell_data);
+
+      // set up the internal parallel distributed vector, used to exchange the ghost values of the
+      // cell data, with one entry per active cell
+      const std::shared_ptr<const dealii::Utilities::MPI::Partitioner> partitioner =
+        matrix_free.get_dof_handler()
+          .get_triangulation()
+          .global_active_cell_index_partitioner()
+          .lock();
+      exchange_vector.reinit(partitioner);
+
+      // create the mapping between the entries of the parallel distributed vector and the cell
+      // batches and lanes of the cell data vector
+      owned_slots.clear();
+      ghost_slots.clear();
+
+      // We only need to consider those locally owned cells which are actually ghost cells on
+      // another MPI process, since only their values are sent.
+      std::vector<bool> is_exported(partitioner->locally_owned_size(), false);
+      for (const auto [begin, end] : partitioner->import_indices())
+        {
+          std::fill(is_exported.begin() + begin, is_exported.begin() + end, true);
+        }
+
+      for (unsigned int batch = 0;
+           batch < matrix_free.n_cell_batches() + matrix_free.n_ghost_cell_batches();
+           ++batch)
+        for (unsigned int lane = 0; lane < matrix_free.n_active_entries_per_cell_batch(batch);
+             ++lane)
+          {
+            const unsigned int local_index = partitioner->global_to_local(
+              matrix_free.get_cell_iterator(batch, lane)->global_active_cell_index());
+            if (batch < matrix_free.n_cell_batches())
+              {
+                if (is_exported[local_index])
+                  {
+                    owned_slots.push_back({batch, lane, local_index});
+                  }
+              }
+            else
+              {
+                ghost_slots.push_back({batch, lane, local_index});
+              }
+          }
+    }
+
+    /**
+     * Updates the ghost values of the cell data vector by sending the values of the locally owned
+     * cells to the neighboring MPI processes. After a call to this function, the values of the
+     * ghost cell batches are up-to-date and can be used for computations that require ghost cell
+     * information, e.g., reading the cell data of the exterior cell of a face at an MPI process
+     * boundary with FEFaceEvaluation::read_cell_data().
+     */
+    void
+    update_ghost_values()
+    {
+      for (const auto &[batch, lane, local_index] : owned_slots)
+        exchange_vector.local_element(local_index) = cell_data[batch][lane];
+      exchange_vector.update_ghost_values();
+      for (const auto &[batch, lane, local_index] : ghost_slots)
+        cell_data[batch][lane] = exchange_vector.local_element(local_index);
+      exchange_vector.zero_out_ghost_values();
+    }
+
+    /**
+     * Returns the cell data vector. The vector is given in a format that can directly be used with
+     * FE(Face)Evaluation::read_cell_data() and FE(Face)Evaluation::set_cell_data(). Values written
+     * to the ghost cell batches are overwritten by the next call to update_ghost_values().
+     */
+    dealii::AlignedVector<VectorizedArrayType> &
+    cell_data_vector()
+    {
+      return cell_data;
+    }
+
+    /**
+     * Same as above, but returns a const reference to the cell data vector.
+     */
+    const dealii::AlignedVector<VectorizedArrayType> &
+    cell_data_vector() const
+    {
+      return cell_data;
+    }
+
+  private:
+    /// A struct to store the information about each slot in the parallel distributed vector. A slot
+    /// is defined by the cell batch and lane in the matrix free object and is mapped to the local
+    /// index of the corresponding cell in the parallel distributed vector.
+    struct Slot
+    {
+      unsigned int batch;
+      unsigned int lane;
+      unsigned int local_index;
+    };
+
+    /// A vector of slots corresponding to the locally owned cells which are ghost cells on another
+    /// MPI process, i.e., whose values are sent in update_ghost_values().
+    std::vector<Slot> owned_slots;
+
+    /// A vector of slots corresponding to the ghost cells, i.e., whose values are received in
+    /// update_ghost_values().
+    std::vector<Slot> ghost_slots;
+
+    /// Distributed vector used to handle the exchange of ghost values for the cell data vector
+    dealii::LinearAlgebra::distributed::Vector<number> exchange_vector;
+
+    /// Cell data vector storing the values for each cell batch and lane. The size of this vector is
+    /// equal to the number of locally owned plus ghost cell batches in the matrix free object.
+    dealii::AlignedVector<VectorizedArrayType> cell_data;
+  };
 } // namespace MeltPoolDG
