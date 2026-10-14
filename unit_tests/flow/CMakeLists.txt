@@ -3,4 +3,5 @@ mpdg_setup_serial_unit_tests(
     compressible_flow_kernels.cpp
     darcy_damping_model.cpp
     equation_of_state_01.cpp
+    utils_01.cpp
 )
