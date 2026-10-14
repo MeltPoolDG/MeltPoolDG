@@ -479,14 +479,23 @@
                     "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
                     "actions": "49"
                 },
+                "use relative tolerances":
+                {
+                    "value": "false",
+                    "default_value": "false",
+                    "documentation": "Set to true to interpret the residual tolerances relative to the norm of the initial residual and the field correction tolerances relative to the norm of the current solution. If the respective reference norm is zero, the tolerance is applied as an absolute value.",
+                    "pattern": "50",
+                    "pattern_description": "[Bool]",
+                    "actions": "50"
+                },
                 "verbosity level":
                 {
                     "value": "-1",
                     "default_value": "-1",
                     "documentation": "Set to one for detailed solver output.",
-                    "pattern": "50",
+                    "pattern": "51",
                     "pattern_description": "[Integer range -2147483648...2147483647 (inclusive)]",
-                    "actions": "50"
+                    "actions": "51"
                 }
             },
             "linear solver":
@@ -496,63 +505,63 @@
                     "value": "GMRES",
                     "default_value": "GMRES",
                     "documentation": "Set this parameter for choosing an iterative linear solver type.",
-                    "pattern": "51",
+                    "pattern": "52",
                     "pattern_description": "[Selection CG|GMRES ]",
-                    "actions": "51"
+                    "actions": "52"
                 },
                 "preconditioner type":
                 {
                     "value": "Identity",
                     "default_value": "Identity",
                     "documentation": "Set this parameter for choosing a preconditioner type.",
-                    "pattern": "52",
+                    "pattern": "53",
                     "pattern_description": "[Selection Identity|AMG|ILU|Diagonal ]",
-                    "actions": "52"
+                    "actions": "53"
                 },
                 "max iterations":
                 {
                     "value": "10000",
                     "default_value": "10000",
                     "documentation": "Set the maximum number of iterations for solving the linear system of equations.",
-                    "pattern": "53",
+                    "pattern": "54",
                     "pattern_description": "[Integer]",
-                    "actions": "53"
+                    "actions": "54"
                 },
                 "rel tolerance":
                 {
                     "value": "1e-12",
                     "default_value": "1e-12",
                     "documentation": "Set the relative tolerance for a successful solution of the linear system of equations.",
-                    "pattern": "54",
+                    "pattern": "55",
                     "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-                    "actions": "54"
+                    "actions": "55"
                 },
                 "abs tolerance":
                 {
                     "value": "1e-20",
                     "default_value": "1e-20",
                     "documentation": "Set the absolute tolerance for a successful solution of the linear system of equations.",
-                    "pattern": "55",
+                    "pattern": "56",
                     "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-                    "actions": "55"
+                    "actions": "56"
                 },
                 "do matrix free":
                 {
                     "value": "true",
                     "default_value": "true",
                     "documentation": "Set this parameter if a matrix free solution procedure should be performed.",
-                    "pattern": "56",
+                    "pattern": "57",
                     "pattern_description": "[Bool]",
-                    "actions": "56"
+                    "actions": "57"
                 },
                 "monitor type":
                 {
                     "value": "none",
                     "default_value": "none",
                     "documentation": "Set the monitor type of the linear solver.",
-                    "pattern": "57",
+                    "pattern": "58",
                     "pattern_description": "[Selection none|reduced|all ]",
-                    "actions": "57"
+                    "actions": "58"
                 }
             }
         }
@@ -564,45 +573,45 @@
             "value": ".\/",
             "default_value": ".\/",
             "documentation": "Sets the base directory for all output.",
-            "pattern": "58",
+            "pattern": "59",
             "pattern_description": "[Anything]",
-            "actions": "58"
+            "actions": "59"
         },
         "write frequency":
         {
             "value": "1",
             "default_value": "1",
             "documentation": "Every n timestep that should be written",
-            "pattern": "59",
+            "pattern": "60",
             "pattern_description": "[Integer range -2147483648...2147483647 (inclusive)]",
-            "actions": "59"
+            "actions": "60"
         },
         "write time step size":
         {
             "value": "1.79769e+308",
             "default_value": "1.79769e+308",
             "documentation": "Write output output every given time step. If this parameter is set, the output write frequency is deactivated.",
-            "pattern": "60",
+            "pattern": "61",
             "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-            "actions": "60"
+            "actions": "61"
         },
         "output variables":
         {
             "value": "all",
             "default_value": "all",
             "documentation": "Specify variables that you request to output.",
-            "pattern": "61",
+            "pattern": "62",
             "pattern_description": "[List of <[Anything]> of length 0...4294967295 (inclusive)]",
-            "actions": "61"
+            "actions": "62"
         },
         "do user defined postprocessing":
         {
             "value": "false",
             "default_value": "false",
             "documentation": "Set this parameter to true to enable user defined postprocessing.",
-            "pattern": "62",
+            "pattern": "63",
             "pattern_description": "[Bool]",
-            "actions": "62"
+            "actions": "63"
         },
         "paraview":
         {
@@ -611,81 +620,81 @@
                 "value": "false",
                 "default_value": "false",
                 "documentation": "Set this parameter to true to activate paraview output.",
-                "pattern": "63",
+                "pattern": "64",
                 "pattern_description": "[Bool]",
-                "actions": "63"
+                "actions": "64"
             },
             "filename":
             {
                 "value": "solution",
                 "default_value": "solution",
                 "documentation": "Sets the base name for paraview output files.",
-                "pattern": "64",
+                "pattern": "65",
                 "pattern_description": "[Anything]",
-                "actions": "64"
+                "actions": "65"
             },
             "n digits timestep":
             {
                 "value": "4",
                 "default_value": "4",
                 "documentation": "Number of digits for the frame number of the vtu-file.",
-                "pattern": "65",
+                "pattern": "66",
                 "pattern_description": "[Integer range -2147483648...2147483647 (inclusive)]",
-                "actions": "65"
+                "actions": "66"
             },
             "print boundary id":
             {
                 "value": "false",
                 "default_value": "false",
                 "documentation": "Set this parameter to true to output a vtu-file with the boundary id.",
-                "pattern": "66",
+                "pattern": "67",
                 "pattern_description": "[Bool]",
-                "actions": "66"
+                "actions": "67"
             },
             "output subdomains":
             {
                 "value": "false",
                 "default_value": "false",
                 "documentation": "Set this parameter to true to output the subdomain ranks.",
-                "pattern": "67",
+                "pattern": "68",
                 "pattern_description": "[Bool]",
-                "actions": "67"
+                "actions": "68"
             },
             "output material id":
             {
                 "value": "false",
                 "default_value": "false",
                 "documentation": "Set to true to output the material id.",
-                "pattern": "68",
+                "pattern": "69",
                 "pattern_description": "[Bool]",
-                "actions": "68"
+                "actions": "69"
             },
             "write higher order cells":
             {
                 "value": "true",
                 "default_value": "true",
                 "documentation": "Set this parameter to false to write bi- or trilinear data only. Set this parameter to true to write higher order cell data. Note: higher order cell data can only be written for hexahedron meshes and 2 or 3 dimensions.",
-                "pattern": "69",
+                "pattern": "70",
                 "pattern_description": "[Bool]",
-                "actions": "69"
+                "actions": "70"
             },
             "n groups":
             {
                 "value": "1",
                 "default_value": "1",
                 "documentation": "Number of parallel written vtu-files.",
-                "pattern": "70",
+                "pattern": "71",
                 "pattern_description": "[Integer range -2147483648...2147483647 (inclusive)]",
-                "actions": "70"
+                "actions": "71"
             },
             "n patches":
             {
                 "value": "0",
                 "default_value": "0",
                 "documentation": "Control number of patches to enable high-order.",
-                "pattern": "71",
+                "pattern": "72",
                 "pattern_description": "[Integer range -2147483648...2147483647 (inclusive)]",
-                "actions": "71"
+                "actions": "72"
             }
         },
         "particles":
@@ -695,18 +704,18 @@
                 "value": "false",
                 "default_value": "false",
                 "documentation": "Set this parameter to true to activate particle paraview output.",
-                "pattern": "72",
+                "pattern": "73",
                 "pattern_description": "[Bool]",
-                "actions": "72"
+                "actions": "73"
             },
             "filename":
             {
                 "value": "particle",
                 "default_value": "particle",
                 "documentation": "Sets the base name for particle output files.",
-                "pattern": "73",
+                "pattern": "74",
                 "pattern_description": "[Anything]",
-                "actions": "73"
+                "actions": "74"
             }
         }
     },
@@ -717,27 +726,27 @@
             "value": "none",
             "default_value": "none",
             "documentation": "Sets the verbosity of the profiling information to be collected. If set to 'none', no profiling information is collected. If set to 'basic', only data which is cheap to collect is recorded. If set to 'detailed', also data which is expensive to collect is recorded. It is recommended to enable detailed profiling only when necessary for in-depth analysis or debugging purposes.",
-            "pattern": "74",
+            "pattern": "75",
             "pattern_description": "[Selection none|basic|detailed ]",
-            "actions": "74"
+            "actions": "75"
         },
         "write time step size":
         {
             "value": "10",
             "default_value": "10",
             "documentation": "Write profiling output every given time step size. If this parameter is set, the specified parameter for write frequency is overwritten.",
-            "pattern": "75",
+            "pattern": "76",
             "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-            "actions": "75"
+            "actions": "76"
         },
         "time type":
         {
             "value": "real",
             "default_value": "real",
             "documentation": "Choose the type of time measure to write profiling information.",
-            "pattern": "76",
+            "pattern": "77",
             "pattern_description": "[Selection real|simulation ]",
-            "actions": "76"
+            "actions": "77"
         }
     }
 }

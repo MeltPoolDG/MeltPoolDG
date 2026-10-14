@@ -32,6 +32,13 @@ namespace MeltPoolDG
         "residual tolerance alt",
         residual_tolerance_alt,
         "Set the alternative tolerance for the maximum allowed residual of the nonlinear system.");
+      prm.add_parameter(
+        "use relative tolerances",
+        use_relative_tolerances,
+        "Set to true to interpret the residual tolerances relative to the norm of the initial "
+        "residual and the field correction tolerances relative to the norm of the current "
+        "solution. If the respective reference norm is zero, the tolerance is applied as an "
+        "absolute value.");
       prm.add_parameter("verbosity level",
                         verbosity_level,
                         "Set to one for detailed solver output.");
