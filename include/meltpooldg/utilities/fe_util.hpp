@@ -2,6 +2,7 @@
 
 #include <deal.II/base/exceptions.h>
 #include <deal.II/base/quadrature.h>
+#include <deal.II/base/quadrature_lib.h>
 
 #include <deal.II/dofs/dof_handler.h>
 
@@ -38,7 +39,8 @@ namespace MeltPoolDG::FiniteElementUtils
                 dof_handler.distribute_dofs(dealii::FE_Q_iso_Q1<dim>(fe_data.degree));
                 break;
               }
-              case FiniteElementType::FE_DGQ: {
+            case FiniteElementType::FE_DGQ:
+              case FiniteElementType::FE_DGQ_GaussLobatto: {
                 dof_handler.distribute_dofs(dealii::FE_DGQ<dim>(fe_data.degree));
                 break;
               }
@@ -67,7 +69,8 @@ namespace MeltPoolDG::FiniteElementUtils
                   dealii::FESystem<dim>(dealii::FE_Q_iso_Q1<dim>(fe_data.degree), n_components));
                 break;
               }
-              case FiniteElementType::FE_DGQ: {
+            case FiniteElementType::FE_DGQ:
+              case FiniteElementType::FE_DGQ_GaussLobatto: {
                 dof_handler.distribute_dofs(
                   dealii::FESystem<dim>(dealii::FE_DGQ<dim>(fe_data.degree), n_components));
                 break;

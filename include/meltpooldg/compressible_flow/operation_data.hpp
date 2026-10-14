@@ -208,9 +208,10 @@ namespace MeltPoolDG::CompressibleFlow
     post(const FiniteElementData &base_fe_data, const unsigned int base_verbosity_level)
     {
       fe.post(base_fe_data);
-      AssertThrow(fe.type == FiniteElementType::FE_DGQ,
-                  dealii::ExcMessage(
-                    "The compressible flow solver only supports elements of type 'FE_DGQ'."));
+      AssertThrow(
+        fe.type == FiniteElementType::FE_DGQ or fe.type == FiniteElementType::FE_DGQ_GaussLobatto,
+        dealii::ExcMessage(
+          "The compressible flow solver only supports elements of type 'FE_DGQ' or 'FE_DGQ_GaussLobatto'."));
 
       // set default time integration scheme for cut
       if (domain_representation_type == "cut")

@@ -16,7 +16,8 @@ namespace MeltPoolDG
         "FE_Q: hexahedral continuous finite element with polynomial degree p; "
         "FE_SimplexP: tetrahedral continuous finite element with polynomial degree p; "
         "FE_Q_iso_Q1: hexahedral continuous finite element with p subdivisions containing linear elements; "
-        "FE_DGQ: hexahedral discontinuous finite element with polynomial degree p");
+        "FE_DGQ: hexahedral discontinuous finite element with polynomial degree p; "
+        "FE_DGQ_GaussLobatto: hexahedral discontinuous finite element with Gauss-Lobatto quadrature points.");
       prm.add_parameter(
         "degree",
         degree,
@@ -56,6 +57,12 @@ namespace MeltPoolDG
         degree > 1,
         dealii::ExcMessage(
           "When using FE_Q_iso_Q1 use at least 2 subdivisions via setting the \"degree\" parameter."));
+
+    if (type == FiniteElementType::FE_DGQ_GaussLobatto)
+      AssertThrow(
+        degree > 0,
+        dealii::ExcMessage(
+          "When using FE_DGQ_GaussLobatto use at least a degree of 1 via setting the \"degree\" parameter."));
   }
 
   unsigned int

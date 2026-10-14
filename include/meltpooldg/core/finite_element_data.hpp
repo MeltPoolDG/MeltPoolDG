@@ -6,7 +6,14 @@
 
 namespace MeltPoolDG
 {
-  BETTER_ENUM(FiniteElementType, char, not_initialized, FE_Q, FE_SimplexP, FE_Q_iso_Q1, FE_DGQ)
+  BETTER_ENUM(FiniteElementType,
+              char,
+              not_initialized,
+              FE_Q,
+              FE_SimplexP,
+              FE_Q_iso_Q1,
+              FE_DGQ,
+              FE_DGQ_GaussLobatto)
 
   struct FiniteElementData
   {

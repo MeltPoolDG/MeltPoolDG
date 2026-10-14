@@ -27,6 +27,8 @@ namespace MeltPoolDG::FiniteElementUtils
           return std::make_shared<dealii::MappingFE<dim>>(dealii::FE_SimplexP<dim>(fe_data.degree));
         case FiniteElementType::FE_DGQ:
           return std::make_shared<dealii::MappingQGeneric<dim>>(fe_data.degree);
+        case FiniteElementType::FE_DGQ_GaussLobatto:
+          return std::make_shared<dealii::MappingQGeneric<dim>>(fe_data.degree);
         case FiniteElementType::not_initialized:
           DEAL_II_ASSERT_UNREACHABLE();
         default:
@@ -49,6 +51,8 @@ namespace MeltPoolDG::FiniteElementUtils
           return dealii::QIterated<dim>(dealii::QGauss<1>(2), fe_data.degree);
         case FiniteElementType::FE_DGQ:
           return dealii::QGauss<dim>(fe_data.get_n_q_points());
+        case FiniteElementType::FE_DGQ_GaussLobatto:
+          return dealii::QGaussLobatto<dim>(fe_data.get_n_q_points());
         case FiniteElementType::not_initialized:
           DEAL_II_ASSERT_UNREACHABLE();
         default:
