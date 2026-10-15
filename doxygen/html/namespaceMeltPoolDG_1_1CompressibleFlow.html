@@ -416,6 +416,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6f54519143f043fdee2ba6549845cfb9"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE VectorizedArrayType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a6f54519143f043fdee2ba6549845cfb9">maximum_local_wave_speed</a> (const DofViewType &amp;u_m, const DofViewType &amp;u_p)</td></tr>
 <tr class="memdesc:a6f54519143f043fdee2ba6549845cfb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the maximum local wave speed between two states on a face.  <br /></td></tr>
 <tr class="separator:a6f54519143f043fdee2ba6549845cfb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2cabb14d35f4ea05dbed53af337542f" id="r_af2cabb14d35f4ea05dbed53af337542f"><td class="memTemplParams" colspan="2">template&lt;typename number , int n_species, typename PrimitiveVariablesView &gt; </td></tr>
+<tr class="memitem:af2cabb14d35f4ea05dbed53af337542f"><td class="memTemplItemLeft" align="right" valign="top">std::bitset&lt; dealii::VectorizedArray&lt; number &gt;::size()&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#af2cabb14d35f4ea05dbed53af337542f">physical_admissibility_mask</a> (const PrimitiveVariablesView &amp;w_view, const unsigned int n_active_lanes=dealii::VectorizedArray&lt; number &gt;::size())</td></tr>
+<tr class="separator:af2cabb14d35f4ea05dbed53af337542f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac71e1461815ae18c54b0250a123561ef" id="r_ac71e1461815ae18c54b0250a123561ef"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
 <tr class="memitem:ac71e1461815ae18c54b0250a123561ef"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac71e1461815ae18c54b0250a123561ef">calculate_cauchy_stress_tensor</a> (const dealii::VectorizedArray&lt; number &gt; &amp;pressure, const dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;<a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a3c9ff2ade30078863b03f94f6f6a0559">viscous_stress_tensor</a>)</td></tr>
 <tr class="memdesc:ac71e1461815ae18c54b0250a123561ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the total stress tensor (Cauchy stress tensor) from pressure contribution and viscous stress contribution.  <br /></td></tr>
@@ -1529,6 +1532,53 @@ template&lt;typename DofViewType , typename VectorizedArrayType &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The maximum local wave speed between the two states on a face. </dd></dl>
+
+</div>
+</div>
+<a id="af2cabb14d35f4ea05dbed53af337542f" name="af2cabb14d35f4ea05dbed53af337542f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2cabb14d35f4ea05dbed53af337542f">&#9670;&#160;</a></span>physical_admissibility_mask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename number , int n_species, typename PrimitiveVariablesView &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::bitset&lt; dealii::VectorizedArray&lt; number &gt;::size()&gt; MeltPoolDG::CompressibleFlow::physical_admissibility_mask </td>
+          <td>(</td>
+          <td class="paramtype">const PrimitiveVariablesView &amp;&#160;</td>
+          <td class="paramname"><em>w_view</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>n_active_lanes</em> = <code>dealii::VectorizedArray&lt;number&gt;::size()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function checks whether the given primitive variable state is physically admissible. The check is performed for each lane of the vectorized array, and a bitset is returned indicating which lanes are admissible. For admissible lanes, the corresponding bit is set to 1, while for non-admissible lanes, the bit is set to 0.</p>
+<p>A state is considered physically admissible if the density and the pressure are positive. For multi-species flows, the mass fractions of all species must be between 0 and 1, and their sum must be equal to 1.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w_view</td><td>View of the primitive variable state to be checked. </td></tr>
+    <tr><td class="paramname">n_active_lanes</td><td>Number of active lanes in the vectorized array to be checked. Non-active lanes are set to zero in the returned bitset. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
