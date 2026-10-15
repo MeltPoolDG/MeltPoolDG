@@ -1452,10 +1452,18 @@ namespace MeltPoolDG
             Evaporation::EvaporCoolingInterfaceFluxType::sharp_conforming));
       const bool enable_normal_vector_update =
         heat_operation and param.heat.operator_type == Heat::TwoPhaseOperatorType::cut;
+#ifdef MPDG_ENABLE_ADAFLO
+      const bool enable_cell_hessians_update =
+        flow_operation and
+        param.adaflo_params.params.stabilization_navier_stokes != adaflo::FlowParameters::none;
+#else
+      const bool enable_cell_hessians_update = false;
+#endif
 
       scratch_data->build(enable_boundary_face_loops,
                           enable_inner_face_loops,
-                          enable_normal_vector_update);
+                          enable_normal_vector_update,
+                          enable_cell_hessians_update);
     }
 
     if (do_reinit)
