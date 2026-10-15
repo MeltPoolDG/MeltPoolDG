@@ -19,6 +19,7 @@
 #include <meltpooldg/linear_algebra/preconditioner_factory.hpp>
 #include <meltpooldg/utilities/fe_integrator.hpp>
 #include <meltpooldg/utilities/iteration_monitor.hpp>
+#include <meltpooldg/utilities/journal.hpp>
 #include <meltpooldg/utilities/scoped_name.hpp>
 #include <meltpooldg/utilities/vector_tools.hpp>
 
@@ -26,7 +27,9 @@
 
 #include <algorithm>
 #include <cmath>
+#include <iomanip>
 #include <limits>
+#include <sstream>
 #include <string>
 #include <utility>
 #include <vector>
@@ -307,7 +310,7 @@ namespace MeltPoolDG::Multiphase
       dealii::ExcMessage(
         "The cutDG compressible multiphase flow solver only supports finite element types of FE_DGQ!"));
 
-    multiphase_scratch_data.reinit(2);
+    multiphase_scratch_data.reinit(1);
 
     multiphase_scratch_data.scratch_data.initialize_dof_vector(
       multiphase_scratch_data.solution_history.get_current_solution(),
@@ -414,6 +417,91 @@ namespace MeltPoolDG::Multiphase
       function,
       multiphase_scratch_data.solution_history.get_current_solution());
     multiphase_scratch_data.solution_history.get_current_solution().update_ghost_values();
+  }
+
+  template <int dim, typename number>
+  bool
+  CompressibleMultiphaseOperation<dim, number>::repartition(
+    VectorType                  &level_set_in,
+    const std::function<void()> &distribute_level_set_dofs)
+  {
+    Assert(setup_dof_system != nullptr,
+           dealii::ExcMessage("You must register the setup_dof_system lambda function for "
+                              "repartitioning!"));
+
+    const MPI_Comm mpi_comm = multiphase_scratch_data.scratch_data.get_mpi_comm();
+
+    // nothing to do in serial computations
+    if (dealii::Utilities::MPI::n_mpi_processes(mpi_comm) == 1)
+      return false;
+
+    auto &tria =
+      const_cast<Triangulation<dim> &>(multiphase_scratch_data.scratch_data.get_triangulation());
+
+    AssertThrow(dynamic_cast<const parallel::distributed::Triangulation<dim> *>(&tria) != nullptr,
+                dealii::ExcMessage(
+                  "The weighted repartitioning requires a parallel::distributed::Triangulation."));
+
+    if (not partition_weights)
+      partition_weights =
+        std::make_unique<CutUtil::PartitionWeights<dim>>(tria,
+                                                         multiphase_scratch_data.cut.repartition);
+
+    // determine the cell weights according to the current cell classification.
+    partition_weights->update(*mesh_classifier);
+
+    // load statistics before the repartitioning
+    const auto load_before = partition_weights->compute_load_statistics(mpi_comm);
+
+    // do repartitioning
+    const bool is_repartitioned = CutUtil::repartition_triangulation<dim, VectorType>(
+      tria,
+      [this](DoFHandlerAndVectorDataType<dim, VectorType> &data) {
+        data.emplace_back(&get_dof_handler(), [this](std::vector<VectorType *> &vectors) {
+          vectors.push_back(&get_solution());
+        });
+      },
+      distribute_level_set_dofs,
+      multiphase_scratch_data.scratch_data.get_dof_handler(level_set_dof_idx),
+      level_set_in,
+      setup_dof_system,
+      // post
+      [this]() {
+        mesh_classifier_old->reclassify();
+
+        // cache the weights for the new partitioning
+        partition_weights->update(*mesh_classifier);
+      });
+
+    if (is_repartitioned)
+      {
+        // load statistics after the repartitioning
+        const auto load_after = partition_weights->compute_load_statistics(mpi_comm);
+
+        const auto imbalance = [](const dealii::Utilities::MPI::MinMaxAvg &load) {
+          return load.avg > 0. ? load.max / load.avg : 1.;
+        };
+
+        std::ostringstream str;
+        str << std::fixed << std::setprecision(3)
+            << "repartitioned, load imbalance (max/avg): " << imbalance(load_before) << " -> "
+            << imbalance(load_after);
+        Journal::print_line(multiphase_scratch_data.scratch_data.get_pcout(1),
+                            str.str(),
+                            "compressible_multiphase");
+
+        std::ostringstream str_details;
+        str_details << std::fixed << std::setprecision(1)
+                    << "load per process (min/avg/max): " << load_before.min << "/"
+                    << load_before.avg << "/" << load_before.max << " -> " << load_after.min << "/"
+                    << load_after.avg << "/" << load_after.max;
+        Journal::print_line(multiphase_scratch_data.scratch_data.get_pcout(2),
+                            str_details.str(),
+                            "compressible_multiphase");
+        Journal::print_decoration_line(multiphase_scratch_data.scratch_data.get_pcout(1));
+      }
+
+    return is_repartitioned;
   }
 
   template <int dim, typename number>
