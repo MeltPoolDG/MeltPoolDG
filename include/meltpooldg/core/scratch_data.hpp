@@ -102,6 +102,8 @@ namespace MeltPoolDG
      *                                    set up in @ref build().
      * @param enable_normal_vector_update If true, normal vectors are included in
      *                                    the mapping update flags.
+     * @param enable_cell_hessians_update If true, hessians are included in
+     *                                    the mapping update flags.
      */
     void
     reinit(const dealii::Mapping<dim, spacedim>                         &mapping,
@@ -110,7 +112,8 @@ namespace MeltPoolDG
            const std::vector<dealii::Quadrature<dim>>                   &quad,
            const bool                                                    enable_boundary_face_loops,
            const bool                                                    enable_inner_face_loops,
-           const bool enable_normal_vector_update = false);
+           const bool enable_normal_vector_update = false,
+           const bool enable_cell_hessians_update = false);
     /**
      * @brief Set the mapping by value.
      *
@@ -215,13 +218,15 @@ namespace MeltPoolDG
      * loops.
      * @param hold_all_faces_to_owned_cells Store all faces of locally owned cells and the ghost
      * cells behind them, not only those processed locally, see dealii::MatrixFree::AdditionalData.
+     * @param enable_cell_hessians_update      Include hessians in mapping updates.
      */
     void
     build(const bool enable_boundary_face_loops,
           const bool enable_inner_face_loops,
           const bool enable_normal_vector_update       = false,
           const bool enable_inner_face_hessians_update = false,
-          const bool hold_all_faces_to_owned_cells     = false);
+          const bool hold_all_faces_to_owned_cells     = false,
+          const bool enable_cell_hessians_update       = false);
 
     /**
      * @brief Initialize a distributed vector for a given DoF index.

@@ -2232,6 +2232,16 @@
                   "description": "Sets the formulation of the convective term in the momentum balance of the Navier-Stokes equations, i.e. ∇·(u x u) =(u·∇)u + βu(∇·u). The parameter β will be set to 1 for the conservative form, to 0 for the convective form and to 0.5 for the skew-symmetric form (default formulation).",
                   "default": "skew-symmetric"
                 },
+                "convection stabilization type": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "SUPG",
+                    "GLS"
+                  ],
+                  "description": "Sets the stabilization method for the Navier-Stokes equations. For convection-dominated flows, the standard Galerkin formulation may lead to spurious oscillations in the solution. Two stabilization methods are available: SUPG (Streamline Upwind Petrov-Galerkin) and GLS (Galerkin Least-Squares). Both introduce additional terms into the weak form of the momentum equation in a consistent manner to improve numerical stability.",
+                  "default": "none"
+                },
                 "Solver": {
                   "type": "object",
                   "properties": {
