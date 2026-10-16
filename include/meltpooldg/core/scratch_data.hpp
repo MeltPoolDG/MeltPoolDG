@@ -211,14 +211,17 @@ namespace MeltPoolDG
      * @param enable_boundary_face_loops       Enable setup of boundary face data.
      * @param enable_inner_face_loops          Enable setup of interior face data.
      * @param enable_normal_vector_update      Include normal vectors in mapping updates.
-     * @param enable_inner_face_hessians_update Include Hessians in mapping updates for
-     *                                           inner face loops.
+     * @param enable_inner_face_hessians_update Include Hessians in mapping updates for inner face
+     * loops.
+     * @param hold_all_faces_to_owned_cells Store all faces of locally owned cells and the ghost
+     * cells behind them, not only those processed locally, see dealii::MatrixFree::AdditionalData.
      */
     void
     build(const bool enable_boundary_face_loops,
           const bool enable_inner_face_loops,
           const bool enable_normal_vector_update       = false,
-          const bool enable_inner_face_hessians_update = false);
+          const bool enable_inner_face_hessians_update = false,
+          const bool hold_all_faces_to_owned_cells     = false);
 
     /**
      * @brief Initialize a distributed vector for a given DoF index.

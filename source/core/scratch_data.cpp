@@ -192,7 +192,8 @@ namespace MeltPoolDG
   ScratchData<dim, spacedim, number>::build(const bool enable_boundary_face_loops,
                                             const bool enable_inner_face_loops,
                                             const bool enable_normal_vector_update,
-                                            const bool enable_inner_face_hessians_update)
+                                            const bool enable_inner_face_hessians_update,
+                                            const bool hold_all_faces_to_owned_cells)
   {
     enable_inner_faces    = enable_inner_face_loops;
     enable_boundary_faces = enable_boundary_face_loops;
@@ -238,6 +239,9 @@ namespace MeltPoolDG
                                 0);
             additional_data.mapping_update_flags_boundary_faces = update_flags;
           }
+
+        additional_data.hold_all_faces_to_owned_cells = hold_all_faces_to_owned_cells;
+
         this->matrix_free.reinit(
           *this->mapping, this->dof_handler, this->constraint, this->quad, additional_data);
 
