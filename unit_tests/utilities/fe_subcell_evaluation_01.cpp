@@ -1,3 +1,9 @@
+/**
+ * @file fe_subcell_evaluation_01.cpp
+ * @brief Unit tests for the FESubcellEvaluation class checking the functionality related with
+ * evaluating values on subcells of a DG cells as well as submitting and setting them.
+ */
+
 #include <gtest/gtest.h>
 
 #include <deal.II/base/function.h>
@@ -27,9 +33,8 @@
 #include <meltpooldg/utilities/fe_subcell_evaluation.templates.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
 
-#include <vector>
-
 #include "../test_utils/test_functions.hpp"
+#include "../test_utils/test_generators.hpp"
 #include "../test_utils/utils.hpp"
 
 using namespace MeltPoolDG;
@@ -87,19 +92,7 @@ protected:
   FESubcellEvaluationTest()
     : fe(dealii::FE_DGQ<dim>(degree), n_components)
   {
-    dealii::Point<dim>        lower_left;
-    dealii::Point<dim>        upper_right;
-    std::vector<unsigned int> repetitions(dim);
-    for (unsigned int d = 0; d < dim; ++d)
-      {
-        lower_left[d]  = -0.5 * (d + 1);
-        upper_right[d] = 1. + d;
-        repetitions[d] = 3 + d;
-      }
-    dealii::GridGenerator::subdivided_hyper_rectangle(triangulation,
-                                                      repetitions,
-                                                      lower_left,
-                                                      upper_right);
+    TestUtils::create_test_subdivided_hyper_rectangle(triangulation);
 
     dof_handler.reinit(triangulation);
     dof_handler.distribute_dofs(fe);
@@ -366,7 +359,7 @@ TYPED_TEST(FESubcellEvaluationTest, RoundTripFEToFVToFE)
       subcells.gather_evaluate(this->solution, dealii::EvaluationFlags::values);
       for (const unsigned int subcell : subcells.subcell_indices())
         subcells.submit_value(subcell, subcells.get_value(subcell));
-      subcells.apply_subcell_values();
+      subcells.integrate();
       subcells.set_dof_values(result);
     }
 
@@ -415,7 +408,7 @@ TYPED_TEST(FESubcellEvaluationTest, RoundTripFVToFEToFV)
         {
           subcells.submit_value(subcell, subcell_value(cell, subcell));
         }
-      subcells.apply_subcell_values();
+      subcells.integrate();
       subcells.set_dof_values(dg_solution);
     }
 

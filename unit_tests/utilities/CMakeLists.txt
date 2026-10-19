@@ -6,6 +6,7 @@ mpdg_setup_serial_unit_tests(
     functions_01.cpp
     functions_02.cpp
     fe_subcell_evaluation_01.cpp
+    fe_subcell_evaluation_02.cpp
     fe_subcell_face_evaluation_01.cpp
 )
 
