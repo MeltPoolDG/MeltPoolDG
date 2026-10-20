@@ -18,6 +18,7 @@
 #include <meltpooldg/time_integration/implicit_explicit_integrator.hpp>
 #include <meltpooldg/time_integration/solution_history.hpp>
 #include <meltpooldg/time_integration/time_integrator_base.hpp>
+#include <meltpooldg/utilities/profiling_monitor.hpp>
 #include <meltpooldg/utilities/troubled_cell_marker.hpp>
 #include <meltpooldg/utilities/troubled_cell_monitor.hpp>
 

@@ -92,8 +92,8 @@ namespace MeltPoolDG
   TroubledCellMonitor<dim, n_components, number>::add_info(
     const MatrixFreeContext<dim, number> &matrix_free_context)
   {
-    if (verbosity == Profiling::ProfilingVerbosity::none or
-        verbosity == Profiling::ProfilingVerbosity::basic)
+    if ((verbosity == Profiling::ProfilingVerbosity::none) or
+        (verbosity == Profiling::ProfilingVerbosity::basic))
       return;
 
     const dealii::MatrixFree<dim, number> &matrix_free = matrix_free_context.mf;

@@ -131,6 +131,8 @@ namespace MeltPoolDG
   CellwiseNumericalAdmissibility<dim, n_components, number>::admissible_cell_vector() const
     -> const std::vector<MaskType> &
   {
+    Assert(n_cell_batches_submitted == 0 and n_ghost_cell_batches_submitted == 0,
+           dealii::ExcMessage("The admissibility is only available after evaluate() was called."));
     return numerically_admissible;
   }
 
@@ -358,6 +360,8 @@ namespace MeltPoolDG
   SubcellNumericalAdmissibility<dim, n_components, number>::admissible_cell_vector() const
     -> const std::vector<MaskType> &
   {
+    Assert(n_cell_batches_submitted == 0 and n_ghost_cell_batches_submitted == 0,
+           dealii::ExcMessage("The admissibility is only available after evaluate() was called."));
     return subcell_admissibility;
   }
 } // namespace MeltPoolDG

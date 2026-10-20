@@ -63,6 +63,8 @@ namespace MeltPoolDG
    * - subcell_size(s): the volume of the adjacent subcell on this object's side (its area in 2D).
    * - subcell_location(s): the location of the adjacent subcell on this object's side, see
    *   FESubcellEvaluation::subcell_location(). Note that this is not a point on the face.
+   * - subcell_face_location(s): the location of the subcell face. It lies on the face and is the
+   *   same on the interior and the exterior object.
    *
    * ## Submitting fluxes
    * submit_flux(s, flux) stores a flux for subcell face `s`, and integrate_scatter() adds the
@@ -148,10 +150,10 @@ namespace MeltPoolDG
      * Reinitialize the object for the face batch with index @p face_batch_index. This function
      * must be called before any other function using specific face batch information is called.
      *
-     * The geometry of the subcell faces, e.g. normal_vector(), subcell_face_size(), subcell_size()
-     * and subcell_location(), is available directly after this call. In order to read subcell
-     * values, these first need to be evaluated with gather_evaluate() or read_dof_values() followed
-     * by evaluate().
+     * The geometry of the subcell faces, e.g. normal_vector(), subcell_face_size(), subcell_size(),
+     * subcell_location() and subcell_face_location(), is available directly after this call. In
+     * order to read subcell values, these first need to be evaluated with gather_evaluate() or
+     * read_dof_values() followed by evaluate().
      *
      * @param face_batch_index The index of the face batch in the dealii::MatrixFree object.
      *
@@ -258,10 +260,11 @@ namespace MeltPoolDG
 
     /**
      * Apply the fluxes submitted with submit_flux() to the cell on this object's side and add the
-     * result to the given vector. For that the submitted fluxes are projected to the FE solution
-     * space.
+     * result to the given vector. this includes scaling the submitted fluxes with the corresponding
+     * subcell face size divided by the subcell size. Afterwards the scaled submitted fluxes are
+     * projected to the FE solution space and added to the global vector.
      *
-     * @param dst_vector The vector to which the DG coefficients of the update are added.
+     * @param dst_vector The global vector to which the DG coefficients of the update are added.
      * @param mask A bitset indicating which vectorization lanes are active and therefore which
      * values are added. If a lane is inactive, the corresponding values are not added to the
      * vector.
@@ -303,6 +306,18 @@ namespace MeltPoolDG
     subcell_location(const unsigned int subcell_index) const;
 
     /**
+     * Return the location in real space of the subcell face @p subcell_index, i.e. the face
+     * quadrature point with the same index. The location lies on the face and is the same on the
+     * interior and the exterior object. As for subcell_location(), this is in general not the
+     * geometric center of the subcell face, since the subcell faces are bounded by the cumulative
+     * sums of the quadrature weights.
+     *
+     * @param subcell_index The index of the subcell face.
+     */
+    dealii::Point<dim, VectorizedArrayType>
+    subcell_face_location(const unsigned int subcell_index) const;
+
+    /**
      * Return the number of subcell faces per DG face, i.e. `n_subcells_1d^(dim-1)` with
      * `n_subcells_1d` the number of subcells per direction of FESubcellEvaluation.
      */
@@ -341,6 +356,28 @@ namespace MeltPoolDG
      */
     VectorizedArrayType
     subcell_size(const unsigned int subcell_index) const;
+
+    /**
+     * Reads the cell data of the cell on this object's side of the face from the given data vector.
+     * The call is forwarded to the underlying dealii::FEFaceEvaluation object.
+     *
+     * @param data The data vector from which the cell data is to be read.
+     * @return The cell data for the current cell.
+     */
+    template <typename T>
+    T
+    read_cell_data(const dealii::AlignedVector<T> &data) const;
+
+    /**
+     * Sets the cell data of the cell on this object's side of the face in the given data vector to
+     * the specified value. The call is forwarded to the underlying dealii::FEFaceEvaluation object.
+     *
+     * @param data The data vector in which the cell data is to be set.
+     * @param value The value to which the cell data is to be set.
+     */
+    template <typename T>
+    void
+    set_cell_data(dealii::AlignedVector<T> &data, const T &value) const;
 
   private:
     /// Number of subcells per direction of the adjacent cells.
@@ -444,6 +481,9 @@ namespace MeltPoolDG
     /// face index.
     std::vector<dealii::Point<dim, VectorizedArrayType>> subcell_locations;
 
+    /// Locations of the subcell faces, indexed by the subcell face index.
+    std::vector<dealii::Point<dim, VectorizedArrayType>> subcell_face_locations;
+
     /// Scratch buffer for integrate() holding one value per component and subcell.
     std::vector<VectorizedArrayType> integrated_subcell_values_buffer;
 
@@ -546,6 +586,13 @@ namespace MeltPoolDG
     determine_subcell_locations();
 
     /**
+     * Compute the subcell face locations and store them in the corresponding member variable. The
+     * locations are the face quadrature points, which correspond to the subcell faces.
+     */
+    void
+    determine_subcell_face_locations();
+
+    /**
      * Allocate internal buffers and set up the cell and face evaluators.
      */
     void
@@ -564,4 +611,22 @@ namespace MeltPoolDG
     project_dof_values_to_subcell_values(
       const dealii::EvaluationFlags::EvaluationFlags evaluation_flags);
   };
+
+  template <int dim, int n_components, typename number>
+  template <typename T>
+  T
+  FESubcellFaceEvaluation<dim, n_components, number>::read_cell_data(
+    const dealii::AlignedVector<T> &data) const
+  {
+    return fe_face_evaluator.read_cell_data(data);
+  }
+
+  template <int dim, int n_components, typename number>
+  template <typename T>
+  void
+  FESubcellFaceEvaluation<dim, n_components, number>::set_cell_data(dealii::AlignedVector<T> &data,
+                                                                    const T &value) const
+  {
+    fe_face_evaluator.set_cell_data(data, value);
+  }
 } // namespace MeltPoolDG

@@ -17,7 +17,6 @@
 
 namespace MeltPoolDG
 {
-
   /**
    * Mark troubled cells, i.e., cells in which the candidate solution fails the physical
    * admissibility check in at least one subcell, or violates the relaxed discrete maximum principle
