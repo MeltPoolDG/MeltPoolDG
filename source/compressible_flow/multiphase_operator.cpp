@@ -13,6 +13,7 @@
 #include <meltpooldg/cut/util.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
 #include <meltpooldg/utilities/preprocessor_directives.hpp>
+#include <meltpooldg/utilities/scoped_name.hpp>
 
 
 namespace MeltPoolDG::Multiphase
@@ -69,6 +70,9 @@ namespace MeltPoolDG::Multiphase
     VectorType       &dst,
     const VectorType &src) const
   {
+    ScopedName         scope_vmult("vmult");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_vmult);
+
     using local_applier_type =
       std::function<void(const dealii::MatrixFree<dim, number> &,
                          dealii::LinearAlgebra::distributed::Vector<number>       &dst,
@@ -153,6 +157,9 @@ namespace MeltPoolDG::Multiphase
     VectorType       &dst,
     const VectorType &src) const
   {
+    ScopedName         scope_create_rhs("create_rhs");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_create_rhs);
+
     Assert(time_step_in > 0., dealii::ExcMessage("Time step size must be larger than 0!"));
     inv_time_step = 1. / time_step_in;
     time_step     = time_step_in;
@@ -191,6 +198,9 @@ namespace MeltPoolDG::Multiphase
                          const VectorType                    &src,
                          const std::pair<unsigned, unsigned> &cell_range) const
   {
+    ScopedName         scope_apply_cell_rhs("local_apply_cell_rhs");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_apply_cell_rhs);
+
     const auto cell_category =
       multiphase_scratch_data.scratch_data.get_cell_range_category(cell_range);
 
@@ -677,6 +687,9 @@ namespace MeltPoolDG::Multiphase
                          const VectorType                            &src,
                          const std::pair<unsigned int, unsigned int> &face_range) const
   {
+    ScopedName         scope_apply_face_rhs("local_apply_face_rhs");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_apply_face_rhs);
+
     const auto face_category =
       multiphase_scratch_data.scratch_data.get_face_range_category(face_range);
     const CutUtil::FaceType face_type = CutUtil::get_face_type(face_category);
@@ -947,6 +960,10 @@ namespace MeltPoolDG::Multiphase
                                   const VectorType                    &src,
                                   const std::pair<unsigned, unsigned> &face_range) const
   {
+    ScopedName         scope_apply_boundary_face_rhs("local_apply_boundary_face_rhs");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(),
+                         scope_apply_boundary_face_rhs);
+
     const auto face_category =
       multiphase_scratch_data.scratch_data.get_face_range_category(face_range);
 
@@ -1151,6 +1168,9 @@ namespace MeltPoolDG::Multiphase
                          const VectorType                    &src,
                          const std::pair<unsigned, unsigned> &cell_range) const
   {
+    ScopedName         scope_apply_cell_lhs("local_apply_cell_lhs");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_apply_cell_lhs);
+
     const auto cell_category =
       multiphase_scratch_data.scratch_data.get_cell_range_category(cell_range);
 
@@ -1240,6 +1260,9 @@ namespace MeltPoolDG::Multiphase
                          const VectorType                            &src,
                          const std::pair<unsigned int, unsigned int> &face_range) const
   {
+    ScopedName         scope_apply_face_lhs("local_apply_face_lhs");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_apply_face_lhs);
+
     const auto face_category =
       multiphase_scratch_data.scratch_data.get_face_range_category(face_range);
     const CutUtil::FaceType face_type = CutUtil::get_face_type(face_category);
@@ -1336,6 +1359,9 @@ namespace MeltPoolDG::Multiphase
   CompressibleMultiphaseOperator<dim, number, is_viscous_gas, is_viscous_liquid>::
     compute_inverse_diagonal_from_matrixfree(VectorType &diagonal) const
   {
+    ScopedName         scope_inverse_diagonal("compute_inverse_diagonal_for_preconditioner");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_inverse_diagonal);
+
     multiphase_scratch_data.scratch_data.initialize_dof_vector(diagonal,
                                                                multiphase_scratch_data.dof_idx);
 
@@ -1354,6 +1380,9 @@ namespace MeltPoolDG::Multiphase
     compute_system_matrix_from_matrixfree(
       dealii::TrilinosWrappers::SparseMatrix &system_matrix) const
   {
+    ScopedName         scope_matrix("compute_system_matrix_for_preconditioner");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_matrix);
+
     system_matrix = 0.0;
 
     VectorType dummy;
