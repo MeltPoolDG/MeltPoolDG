@@ -167,6 +167,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4d98109e4653d548a180bd2cbe386a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a585b1d6089a76ae3bbd27f6f094fa299" id="r_a585b1d6089a76ae3bbd27f6f094fa299"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure_1_1OperationConcept.html#a585b1d6089a76ae3bbd27f6f094fa299">set_body_force</a> (std::unique_ptr&lt; dealii::Function&lt; dim &gt; &gt; body_force_in)=0</td></tr>
 <tr class="separator:a585b1d6089a76ae3bbd27f6f094fa299"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac1b2c0f7e63a92f4e93d2fc29aa2f75" id="r_aac1b2c0f7e63a92f4e93d2fc29aa2f75"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure_1_1OperationConcept.html#aac1b2c0f7e63a92f4e93d2fc29aa2f75">repartition</a> (<a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a32e8955abd8892402c6a331f73ac3822">VectorType</a> &amp;level_set, const std::function&lt; void()&gt; &amp;distribute_level_set_dofs)=0</td></tr>
+<tr class="separator:aac1b2c0f7e63a92f4e93d2fc29aa2f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17ccbb7a8d6334921f2b9c1f168eca38" id="r_a17ccbb7a8d6334921f2b9c1f168eca38"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a32e8955abd8892402c6a331f73ac3822">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure_1_1OperationConcept.html#a17ccbb7a8d6334921f2b9c1f168eca38">get_solution</a> () const =0</td></tr>
 <tr class="separator:a17ccbb7a8d6334921f2b9c1f168eca38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf4fd6a16c975a63e2a53f9ff22c50b2" id="r_acf4fd6a16c975a63e2a53f9ff22c50b2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a32e8955abd8892402c6a331f73ac3822">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure_1_1OperationConcept.html#acf4fd6a16c975a63e2a53f9ff22c50b2">get_solution</a> ()=0</td></tr>
@@ -442,6 +444,46 @@ template&lt;int dim, typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure_1_1OperationModel.html#a328965c3939e3854db090d3976bff00a">MeltPoolDG::CompressibleFlow::OperationTypeErasure&lt; dim, number &gt;::OperationModel&lt; OperationType &gt;</a>.</p>
+
+</div>
+</div>
+<a id="aac1b2c0f7e63a92f4e93d2fc29aa2f75" name="aac1b2c0f7e63a92f4e93d2fc29aa2f75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac1b2c0f7e63a92f4e93d2fc29aa2f75">&#9670;&#160;</a></span>repartition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html">MeltPoolDG::CompressibleFlow::OperationTypeErasure</a>&lt; dim, number &gt;::OperationConcept::repartition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a32e8955abd8892402c6a331f73ac3822">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>level_set</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; void()&gt; &amp;&#160;</td>
+          <td class="paramname"><em>distribute_level_set_dofs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure_1_1OperationModel.html#a16a5abd2322bb4499f25fabcb77b35d7">MeltPoolDG::CompressibleFlow::OperationTypeErasure&lt; dim, number &gt;::OperationModel&lt; OperationType &gt;</a>.</p>
 
 </div>
 </div>

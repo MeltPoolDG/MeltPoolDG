@@ -140,9 +140,15 @@ $(function() {
   <div class="headertitle"><div class="title">MeltPoolDG::CutUtil Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="namespaceMeltPoolDG_1_1Utilities.html">Utilities</a> for the weighted repartitioning of a parallel::distributed::Triangulation in cutFEM/cutDG applications.  
+<a href="namespaceMeltPoolDG_1_1CutUtil.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html">PartitionWeights</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cell weights for the repartitioning of a parallel::distributed::Triangulation according to the location of the cells with respect to the level set.  <a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html">SolutionTransferOperator</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator for the solution transfer in moving boundary/interface simulations.  <a href="classMeltPoolDG_1_1CutUtil_1_1SolutionTransferOperator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,6 +196,13 @@ Functions</h2></td></tr>
 <tr class="memitem:aa42de3003714f571c7496849c0b59208"><td class="memTemplItemLeft" align="right" valign="top">number&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#aa42de3003714f571c7496849c0b59208">compute_cut_norm</a> (const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;solution, const dealii::MatrixFree&lt; dim, number, dealii::VectorizedArray&lt; number &gt; &gt; &amp;matrix_free, const std::vector&lt; std::shared_ptr&lt; dealii::NonMatching::MappingInfo&lt; dim, dim, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &gt; &amp;mapping_info_cells, const bool is_two_phase, const dealii::FE_Q&lt; dim &gt; &amp;reference_element, const unsigned int dof_idx, const unsigned int quad_idx, const <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#ad1bc179e224aa4b8a4142f518a442f34">NormType</a> norm_type=NormType::L2_norm)</td></tr>
 <tr class="memdesc:aa42de3003714f571c7496849c0b59208"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the norm of a solution vector with a non-fitted (cut) domain representation.  <br /></td></tr>
 <tr class="separator:aa42de3003714f571c7496849c0b59208"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac71e6e450f80cdd5da2b39b30023fe" id="r_acac71e6e450f80cdd5da2b39b30023fe"><td class="memTemplParams" colspan="2">template&lt;int dim, typename VectorType &gt; </td></tr>
+<tr class="memitem:acac71e6e450f80cdd5da2b39b30023fe"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#acac71e6e450f80cdd5da2b39b30023fe">repartition_triangulation</a> (dealii::Triangulation&lt; dim &gt; &amp;tria, const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; dim, VectorType &gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;distribute_level_set_dofs, const dealii::DoFHandler&lt; dim &gt; &amp;level_set_dof_handler, VectorType &amp;level_set_dof_vector, const std::function&lt; void()&gt; &amp;setup_dof_system, const std::function&lt; void()&gt; &amp;post={})</td></tr>
+<tr class="memdesc:acac71e6e450f80cdd5da2b39b30023fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repartition the triangulation <code>tria</code> among the MPI processes and transfer the attached DoF vectors and the level-set field to the new partitioning.  <br /></td></tr>
+<tr class="separator:acac71e6e450f80cdd5da2b39b30023fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6fed4b80fad112b9375f76c42f0ba38" id="r_ae6fed4b80fad112b9375f76c42f0ba38"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#ae6fed4b80fad112b9375f76c42f0ba38">do_repartition</a> (const unsigned int n_time_step, const <a class="el" href="structMeltPoolDG_1_1CutRepartitionData.html">CutRepartitionData</a> &amp;repartition_data)</td></tr>
+<tr class="memdesc:ae6fed4b80fad112b9375f76c42f0ba38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine whether the triangulation should be repartitioned at time step number <code>n_time_step</code>.  <br /></td></tr>
+<tr class="separator:ae6fed4b80fad112b9375f76c42f0ba38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefc63a94c21fd0c4e3c8d3567cb9a00a" id="r_aefc63a94c21fd0c4e3c8d3567cb9a00a"><td class="memTemplParams" colspan="2">template&lt;int dim, typename VectorType &gt; </td></tr>
 <tr class="memitem:aefc63a94c21fd0c4e3c8d3567cb9a00a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#aefc63a94c21fd0c4e3c8d3567cb9a00a">deserialize_internal</a> (const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; dim, VectorType &gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;post, const std::function&lt; void()&gt; &amp;distribute_level_set_dofs, const dealii::DoFHandler&lt; dim &gt; &amp;level_set_dof_handler, const std::function&lt; void()&gt; &amp;setup_dof_system, const std::string &amp;prefix)</td></tr>
 <tr class="memdesc:aefc63a94c21fd0c4e3c8d3567cb9a00a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="namespaceMeltPoolDG_1_1Restart.html#aa81fe51f3019af09896c58be9c983966">Restart::deserialize_internal()</a>, but adapted for cases where one or more DoFHandler objects are used in CutFEM operations.  <br /></td></tr>
@@ -280,7 +293,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a77641b571135efd636dbf4e364ff9658" id="r_a77641b571135efd636dbf4e364ff9658"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a77641b571135efd636dbf4e364ff9658">compute_immersed_surface_quadrature</a> (dealii::NonMatching::MappingInfo&lt; 3, 3, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const dealii::DoFHandler&lt; 3 &gt; &amp;, const dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &amp;, const dealii::MatrixFree&lt; 3, double, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const int)</td></tr>
 <tr class="separator:a77641b571135efd636dbf4e364ff9658"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="namespaceMeltPoolDG_1_1Utilities.html">Utilities</a> for the weighted repartitioning of a parallel::distributed::Triangulation in cutFEM/cutDG applications. </p>
+<p>The cost of a cell in a cut application strongly depends on its location with respect to the zero level-set isosurface: Intersected cells require non-matching quadrature rules, FEPointEvaluation and ghost-penalty stabilization (and, for two-phase problems, carry the DoFs of both phases), while cells completely inside or outside are evaluated with the standard matrix-free kernels. The tools in this file allow to repartition the triangulation such that the sum of the cell weights is balanced among the MPI processes. </p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
 <a id="a65482f1d63bf468a14abfe61d4a6278a" name="a65482f1d63bf468a14abfe61d4a6278a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a65482f1d63bf468a14abfe61d4a6278a">&#9670;&#160;</a></span>MappingInfoType</h2>
 
@@ -1583,6 +1599,52 @@ template&lt;int dim, typename VectorType &gt; </div>
 
 </div>
 </div>
+<a id="ae6fed4b80fad112b9375f76c42f0ba38" name="ae6fed4b80fad112b9375f76c42f0ba38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6fed4b80fad112b9375f76c42f0ba38">&#9670;&#160;</a></span>do_repartition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MeltPoolDG::CutUtil::do_repartition </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>n_time_step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMeltPoolDG_1_1CutRepartitionData.html">CutRepartitionData</a> &amp;&#160;</td>
+          <td class="paramname"><em>repartition_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determine whether the triangulation should be repartitioned at time step number <code>n_time_step</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n_time_step</td><td>Current time step number. </td></tr>
+    <tr><td class="paramname">repartition_data</td><td>Repartitioning parameters.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if repartitioning is enabled and <code>n_time_step</code> is a multiple of <code>repartition_data.every_n_step</code>. </dd></dl>
+
+</div>
+</div>
 <a id="a83a61644cd5fea6ca6de8b2bdf32de33" name="a83a61644cd5fea6ca6de8b2bdf32de33"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a83a61644cd5fea6ca6de8b2bdf32de33">&#9670;&#160;</a></span>evaluate_intersected_domain()</h2>
 
@@ -2304,6 +2366,91 @@ template&lt;int dim, typename VectorType , typename number  = typename VectorTyp
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="acac71e6e450f80cdd5da2b39b30023fe" name="acac71e6e450f80cdd5da2b39b30023fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acac71e6e450f80cdd5da2b39b30023fe">&#9670;&#160;</a></span>repartition_triangulation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename VectorType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MeltPoolDG::CutUtil::repartition_triangulation </td>
+          <td>(</td>
+          <td class="paramtype">dealii::Triangulation&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tria</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; dim, VectorType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>attach_vectors</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; void()&gt; &amp;&#160;</td>
+          <td class="paramname"><em>distribute_level_set_dofs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::DoFHandler&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>level_set_dof_handler</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VectorType &amp;&#160;</td>
+          <td class="paramname"><em>level_set_dof_vector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; void()&gt; &amp;&#160;</td>
+          <td class="paramname"><em>setup_dof_system</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; void()&gt; &amp;&#160;</td>
+          <td class="paramname"><em>post</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Repartition the triangulation <code>tria</code> among the MPI processes and transfer the attached DoF vectors and the level-set field to the new partitioning. </p>
+<p>This function is designed similarly to <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a558fa2f0961c1bf2768838f31be07d99" title="same as AMR::refine_grid(), but adapted for cases where one or more DoFHandler objects are used in Cu...">CutUtil::refine_grid()</a> for applications where one or more DoFHandler objects are used in cut operations: The level set is transferred first, so that the cut operations can classify the mesh according to it, before their DoFs are distributed and their solution vectors are transferred.</p>
+<p>The following steps are performed:</p><ol type="1">
+<li>Prepare the solution transfer of the level set and of the attached vectors.</li>
+<li>Repartition the triangulation.</li>
+<li>Distribute the level-set DoFs via <code>distribute_level_set_dofs</code> and transfer the level set.</li>
+<li>Call <code>setup_dof_system</code>.</li>
+<li>Transfer the attached vectors.</li>
+<li>Call <code>post</code>.</li>
+</ol>
+<p>The cells are weighted with the function connected to the weight signal of <code>tria</code>. Call <a class="el" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a19c4dc43d832f455f6540d78d4eb532d" title="Compute and cache the weights of the locally owned active cells according to their location with resp...">PartitionWeights::update()</a> directly before this function. The cached weights are transferred to the new partitioning automatically.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tria</td><td>Triangulation, which must be of type parallel::distributed::Triangulation. </td></tr>
+    <tr><td class="paramname">attach_vectors</td><td>Lambda function of type AttachDoFHandlerAndVectorsType, that attaches all DoFHandlers (except the one of the level set) and their respective DoF vectors that ought to be transferred. </td></tr>
+    <tr><td class="paramname">distribute_level_set_dofs</td><td>Lambda function, that distributes the DoFs of the <code>level_set_dof_handler</code> and reinitializes the <code>level_set_dof_vector</code> for the new partitioning. </td></tr>
+    <tr><td class="paramname">level_set_dof_handler</td><td>DoFHandler of the level-set field. </td></tr>
+    <tr><td class="paramname">level_set_dof_vector</td><td>Level-set DoF vector. After the transfer, its ghost values are updated, as required by the cut operations. </td></tr>
+    <tr><td class="paramname">setup_dof_system</td><td>Set up the dof system. </td></tr>
+    <tr><td class="paramname">post</td><td>Optional lambda function, which is run at the end.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the triangulation has been repartitioned, false if <code>tria</code> is not a parallel::distributed::Triangulation (e.g. for dim = 1). </dd></dl>
 
 </div>
 </div>

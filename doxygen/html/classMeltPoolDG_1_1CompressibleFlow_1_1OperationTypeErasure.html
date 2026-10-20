@@ -197,6 +197,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae391ce7a6c77b47c168226266875318e" id="r_ae391ce7a6c77b47c168226266875318e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#ae391ce7a6c77b47c168226266875318e">set_body_force</a> (std::unique_ptr&lt; dealii::Function&lt; dim &gt; &gt; body_force_in)</td></tr>
 <tr class="memdesc:ae391ce7a6c77b47c168226266875318e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a body force, e.g. gravity, specified by the passed function.  <br /></td></tr>
 <tr class="separator:ae391ce7a6c77b47c168226266875318e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb6b72fc4b49fd7217f9d2add99b1af5" id="r_aeb6b72fc4b49fd7217f9d2add99b1af5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#aeb6b72fc4b49fd7217f9d2add99b1af5">repartition</a> (<a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a32e8955abd8892402c6a331f73ac3822">VectorType</a> &amp;level_set, const std::function&lt; void()&gt; &amp;distribute_level_set_dofs)</td></tr>
+<tr class="memdesc:aeb6b72fc4b49fd7217f9d2add99b1af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repartition the triangulation among the MPI processes with cell weights according to the location of the cells with respect to the level set, and rebuild all data structures affected by the new partitioning.  <br /></td></tr>
+<tr class="separator:aeb6b72fc4b49fd7217f9d2add99b1af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a2ee006559633cbe78363f5813d4714" id="r_a9a2ee006559633cbe78363f5813d4714"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a9a2ee006559633cbe78363f5813d4714">add_external_force</a> (std::shared_ptr&lt; <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForce.html">ExternalFlowForce</a>&lt; dim, number &gt; &gt; external_force_residuum, std::shared_ptr&lt; <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForceJacobian.html">ExternalFlowForceJacobian</a>&lt; dim, number &gt; &gt; external_force_jacobian=nullptr)</td></tr>
 <tr class="separator:a9a2ee006559633cbe78363f5813d4714"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53d91762be5b5da587e1a64ce18397db" id="r_a53d91762be5b5da587e1a64ce18397db"><td class="memItemLeft" align="right" valign="top">const dealii::DoFHandler&lt; dim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a53d91762be5b5da587e1a64ce18397db">get_dof_handler</a> () const</td></tr>
@@ -662,6 +665,62 @@ template&lt;int dim, typename number &gt; </div>
 
 <p>Set up the required internal data structures. </p>
 <p>After a call to this function the <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a239544343e8878d3374b7f164b269af6" title="Solves the compressible Navier-Stokes equations for a single time step.">solve()</a> function of the class can be utilized. </p>
+
+</div>
+</div>
+<a id="aeb6b72fc4b49fd7217f9d2add99b1af5" name="aeb6b72fc4b49fd7217f9d2add99b1af5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb6b72fc4b49fd7217f9d2add99b1af5">&#9670;&#160;</a></span>repartition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html">MeltPoolDG::CompressibleFlow::OperationTypeErasure</a>&lt; dim, number &gt;::repartition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a32e8955abd8892402c6a331f73ac3822">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>level_set</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; void()&gt; &amp;&#160;</td>
+          <td class="paramname"><em>distribute_level_set_dofs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Repartition the triangulation among the MPI processes with cell weights according to the location of the cells with respect to the level set, and rebuild all data structures affected by the new partitioning. </p>
+<p>Repartitioning reduces the potential load imbalance between MPI processes in cut applications caused by the increased complexity of evaluating and integrating over intersected cells.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level_set</td><td>Level-set vector, which is transferred to the new partitioning. </td></tr>
+    <tr><td class="paramname">distribute_level_set_dofs</td><td>Function that distributes the DoFs of the level-set DoFHandler and reinitializes <code>level_set</code> according to the new partitioning.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the triangulation has been repartitioned.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The function simply passes the parameters to the corresponding operation function.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">This</td><td>function is only available for cut-element applications. An exception is thrown if the operation does not support repartitioning. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

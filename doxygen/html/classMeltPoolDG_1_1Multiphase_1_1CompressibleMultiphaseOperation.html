@@ -196,6 +196,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a215bf2159e4b37ecbc53063e22f988ee" id="r_a215bf2159e4b37ecbc53063e22f988ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a215bf2159e4b37ecbc53063e22f988ee">set_initial_condition</a> (const dealii::Function&lt; dim &gt; &amp;function)</td></tr>
 <tr class="memdesc:a215bf2159e4b37ecbc53063e22f988ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the initial condition of the solution dof vector.  <br /></td></tr>
 <tr class="separator:a215bf2159e4b37ecbc53063e22f988ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c0013e1f7ce524cfce9e1e7546c8ce4" id="r_a6c0013e1f7ce524cfce9e1e7546c8ce4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a6c0013e1f7ce524cfce9e1e7546c8ce4">repartition</a> (<a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a93ea12f6f86ab9a226e53fd503ecad04">VectorType</a> &amp;level_set_in, const std::function&lt; void()&gt; &amp;distribute_level_set_dofs)</td></tr>
+<tr class="memdesc:a6c0013e1f7ce524cfce9e1e7546c8ce4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repartition the triangulation among the MPI processes with cell weights according to the location of the cells with respect to the level set.  <br /></td></tr>
+<tr class="separator:a6c0013e1f7ce524cfce9e1e7546c8ce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb242a24b2954f0252aaffdb3a006a1f" id="r_adb242a24b2954f0252aaffdb3a006a1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#adb242a24b2954f0252aaffdb3a006a1f">set_boundary_conditions</a> (const std::shared_ptr&lt; <a class="el" href="classMeltPoolDG_1_1SimulationCaseBase.html">SimulationCaseBase</a>&lt; dim, number &gt; &gt; &amp;simulation_case, const std::string &amp;operation_name)</td></tr>
 <tr class="memdesc:adb242a24b2954f0252aaffdb3a006a1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the boundary conditions.  <br /></td></tr>
 <tr class="separator:adb242a24b2954f0252aaffdb3a006a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -297,6 +300,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a6d1e84b6f6396ecb84678461be4b0bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0fd691ea8bf1c51753ff0c3ad01bb2a" id="r_ab0fd691ea8bf1c51753ff0c3ad01bb2a"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#ab0fd691ea8bf1c51753ff0c3ad01bb2a">n_steps_performed</a> = 0</td></tr>
 <tr class="separator:ab0fd691ea8bf1c51753ff0c3ad01bb2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37ccbf611b6ebf448b876a9a37c49bab" id="r_a37ccbf611b6ebf448b876a9a37c49bab"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html">CutUtil::PartitionWeights</a>&lt; dim &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a37ccbf611b6ebf448b876a9a37c49bab">partition_weights</a></td></tr>
+<tr class="separator:a37ccbf611b6ebf448b876a9a37c49bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number&gt;<br />
@@ -1028,6 +1033,54 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
+<a id="a6c0013e1f7ce524cfce9e1e7546c8ce4" name="a6c0013e1f7ce524cfce9e1e7546c8ce4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c0013e1f7ce524cfce9e1e7546c8ce4">&#9670;&#160;</a></span>repartition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperation</a>&lt; dim, number &gt;::repartition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a93ea12f6f86ab9a226e53fd503ecad04">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>level_set_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; void()&gt; &amp;&#160;</td>
+          <td class="paramname"><em>distribute_level_set_dofs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Repartition the triangulation among the MPI processes with cell weights according to the location of the cells with respect to the level set. </p>
+<p>The weight of each cell (liquid, gas or intersected) is evaluated with the current cell classification, which corresponds to the current DoF layout. After the repartitioning, the level set and the solution vector are transferred to the new partitioning and all DoF-dependent data structures are rebuilt:</p><ul>
+<li>the DoFs of the level-set field are redistributed (<code>distribute_level_set_dofs</code>) and the level set is transferred,</li>
+<li>the cells are reclassified, the DoFs of the flow field are redistributed and the partitioning and the MatrixFree object are recreated (setup_dof_system),</li>
+<li>the solution, rhs and primitive-variable vectors, the penalty parameters, the non-matching quadrature rules (MappingInfo objects) and the preconditioner are reinitialized (<a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a8018343eaf77f0e3f2965a196084805d" title="Set up the required internal data structures.">reinit()</a>),</li>
+<li>the solution vector is transferred,</li>
+<li>both mesh classifiers are updated.</li>
+</ul>
+<p>The cached cell weights stay connected to the triangulation afterwards and are transferred in every change of the triangulation, so that the implicit repartitioning in Triangulation::execute_coarsening_and_refinement(), which is triggered by the solution transfer for a moved interface, reproduces the current partitioning, also after adaptive mesh refinement (see <a class="el" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html" title="Cell weights for the repartitioning of a parallel::distributed::Triangulation according to the locati...">CutUtil::PartitionWeights</a>).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level_set_in</td><td>Level-set vector. </td></tr>
+    <tr><td class="paramname">distribute_level_set_dofs</td><td>Function that distributes the DoFs of the level-set DoFHandler and reinitializes <code>level_set_in</code> according to the new partitioning.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Repartitioning is skipped when only a single MPI process is used. </dd></dl>
+
+</div>
+</div>
 <a id="a45dc21be7f126b0c3c50864bbcbf70c5" name="a45dc21be7f126b0c3c50864bbcbf70c5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a45dc21be7f126b0c3c50864bbcbf70c5">&#9670;&#160;</a></span>set_body_force()</h2>
 
@@ -1496,6 +1549,31 @@ template&lt;int dim, typename number &gt; </div>
 </table>
 </div><div class="memdoc">
 <p>Counter variable for the number of performed time steps, used to determine when to update the preconditioner </p>
+
+</div>
+</div>
+<a id="a37ccbf611b6ebf448b876a9a37c49bab" name="a37ccbf611b6ebf448b876a9a37c49bab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37ccbf611b6ebf448b876a9a37c49bab">&#9670;&#160;</a></span>partition_weights</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html">CutUtil::PartitionWeights</a>&lt;dim&gt; &gt; <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperation</a>&lt; dim, number &gt;::partition_weights</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Cached cell weights for the repartitioning of the triangulation; created at the first call of <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a6c0013e1f7ce524cfce9e1e7546c8ce4" title="Repartition the triangulation among the MPI processes with cell weights according to the location of ...">repartition()</a> </p>
 
 </div>
 </div>

@@ -1,0 +1,535 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/cut/repartition.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/parameters/index.html">📦 Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/cut/repartition.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/repartition_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-cut-repartition-hpp-source-file">
+<h1>include/meltpooldg/cut/repartition.hpp Source File<a class="headerlink" href="#include-meltpooldg-cut-repartition-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/cut/repartition.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_3d83c62cc94644fc7d3192423a0d8c24.html">cut</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">repartition.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="repartition_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;deal.II/base/exceptions.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;deal.II/base/mpi.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;deal.II/base/numbers.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;deal.II/base/utilities.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;deal.II/distributed/tria.h&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;deal.II/dofs/dof_handler.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;deal.II/grid/tria.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;deal.II/non_matching/mesh_classifier.h&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;deal.II/numerics/solution_transfer.h&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;<a class="code" href="cut__data_8hpp.html">meltpooldg/cut/cut_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;<a class="code" href="attach__vectors_8hpp.html">meltpooldg/utilities/attach_vectors.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;boost/range/iterator_range.hpp&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;boost/signals2/connection.hpp&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1CutUtil.html">MeltPoolDG::CutUtil</a></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim&gt;</div>
+<div class="foldopen" id="foldopen00081" data-start="{" data-end="};">
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html">   81</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html">PartitionWeights</a></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a84ad779dad6e2ab1cd2672e3c3f3cd22">   84</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a84ad779dad6e2ab1cd2672e3c3f3cd22">CellIterator</a> = <span class="keyword">typename</span> dealii::Triangulation&lt;dim&gt;::cell_iterator;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="}">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aaf9c45c6e41ee3c4e1d5eaef32d164cd">   92</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aaf9c45c6e41ee3c4e1d5eaef32d164cd">PartitionWeights</a>(<span class="keyword">const</span> dealii::Triangulation&lt;dim&gt; &amp;tria_in,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                              <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CutRepartitionData.html">CutRepartitionData</a>         &amp;repartition_data_in)</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      : <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a9cf26cafeb739fd36cf69a4e63fccbc0">tria</a>(&amp;tria_in)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      , <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a7ae98ec22c35674e254f336875d1bfd3">repartition_data</a>(repartition_data_in)</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      AssertThrow(</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        (<span class="keyword">dynamic_cast&lt;</span><span class="keyword">const </span>dealii::parallel::distributed::Triangulation&lt;dim&gt; *<span class="keyword">&gt;</span>(&amp;tria_in) !=</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>         <span class="keyword">nullptr</span>),</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        dealii::ExcMessage(</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>          <span class="stringliteral">&quot;The weighted repartitioning requires a parallel::distributed::Triangulation.&quot;</span>));</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
+</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00121" data-start="{" data-end="}">
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a19c4dc43d832f455f6540d78d4eb532d">  121</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a19c4dc43d832f455f6540d78d4eb532d">update</a>(<span class="keyword">const</span> dealii::NonMatching::MeshClassifier&lt;dim&gt; &amp;mesh_classifier)</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      <span class="comment">// resize weight vector and initialize to 1</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aac10506aaa97e0b5cbadecda748f4e3d">weights</a>.assign(<a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a9cf26cafeb739fd36cf69a4e63fccbc0">tria</a>-&gt;n_active_cells(), 1);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      <span class="comment">// loop over cells and set the partitioning weight</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;cell : <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a9cf26cafeb739fd36cf69a4e63fccbc0">tria</a>-&gt;active_cell_iterators())</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keywordflow">if</span> (cell-&gt;is_locally_owned())</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>          <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aac10506aaa97e0b5cbadecda748f4e3d">weights</a>[cell-&gt;active_cell_index()] =</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#ab4061b927baf26569759aa07a17ba4cf">get_partition_weight</a>(mesh_classifier.location_to_level_set(cell));</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#affc67e70411923b7f2eed9d266d4d307">connections</a>.empty())</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#afd593a9ac0d72f5b2016b1cddec9879e">connect_to_triangulation</a>();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
+</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="}">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#adaf2f6b4068a3ac5766d7c934dd369f6">  146</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#adaf2f6b4068a3ac5766d7c934dd369f6">get_weight</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a84ad779dad6e2ab1cd2672e3c3f3cd22">CellIterator</a> &amp;cell)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      <span class="keywordflow">if</span> (cell-&gt;has_children())</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>          <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> weight = 0;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>          <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> c = 0; c &lt; cell-&gt;n_children(); ++c)</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            weight = std::max(weight, <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#adaf2f6b4068a3ac5766d7c934dd369f6">get_weight</a>(cell-&gt;child(c)));</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>          <span class="keywordflow">return</span> weight;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        }</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index = cell-&gt;active_cell_index();</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>      <span class="comment">// assert that the cached weights are up-to-date with the current triangulation</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      Assert(index &lt; <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aac10506aaa97e0b5cbadecda748f4e3d">weights</a>.size(),</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>             dealii::ExcMessage(<span class="stringliteral">&quot;The cached partitioning weights are outdated. Call &quot;</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                                <span class="stringliteral">&quot;PartitionWeights::update() after each change of the &quot;</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                                <span class="stringliteral">&quot;triangulation.&quot;</span>));</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aac10506aaa97e0b5cbadecda748f4e3d">weights</a>[index];</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    }</div>
+</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    dealii::Utilities::MPI::MinMaxAvg</div>
+<div class="foldopen" id="foldopen00176" data-start="{" data-end="}">
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a66979785eebfbfb795dca97a0b90ae5d">  176</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a66979785eebfbfb795dca97a0b90ae5d">compute_load_statistics</a>(<span class="keyword">const</span> MPI_Comm mpi_comm)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      <span class="keywordtype">double</span> local_load = 0.;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;cell : <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a9cf26cafeb739fd36cf69a4e63fccbc0">tria</a>-&gt;active_cell_iterators())</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keywordflow">if</span> (cell-&gt;is_locally_owned())</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>          local_load += <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#adaf2f6b4068a3ac5766d7c934dd369f6">get_weight</a>(cell);</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      <span class="keywordflow">return</span> dealii::Utilities::MPI::min_max_avg(local_load, mpi_comm);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    }</div>
+</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a9cf26cafeb739fd36cf69a4e63fccbc0">  188</a></span>    <span class="keyword">const</span> dealii::Triangulation&lt;dim&gt; *<a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a9cf26cafeb739fd36cf69a4e63fccbc0">tria</a>;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a7ae98ec22c35674e254f336875d1bfd3">  191</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CutRepartitionData.html">CutRepartitionData</a> <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a7ae98ec22c35674e254f336875d1bfd3">repartition_data</a>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aac10506aaa97e0b5cbadecda748f4e3d">  194</a></span>    std::vector&lt;unsigned int&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aac10506aaa97e0b5cbadecda748f4e3d">weights</a>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aba7ad273fb0a2f12b6e390135c90ada8">  197</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aba7ad273fb0a2f12b6e390135c90ada8">weights_handle</a> = dealii::numbers::invalid_unsigned_int;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#affc67e70411923b7f2eed9d266d4d307">  200</a></span>    std::vector&lt;boost::signals2::scoped_connection&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#affc67e70411923b7f2eed9d266d4d307">connections</a>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00208" data-start="{" data-end="}">
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#afd593a9ac0d72f5b2016b1cddec9879e">  208</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#afd593a9ac0d72f5b2016b1cddec9879e">connect_to_triangulation</a>()</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    {</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>      <span class="keyword">auto</span> &amp;signals = <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a9cf26cafeb739fd36cf69a4e63fccbc0">tria</a>-&gt;signals;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#affc67e70411923b7f2eed9d266d4d307">connections</a>.emplace_back(signals.weight.connect(</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        [<span class="keyword">this</span>](<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a84ad779dad6e2ab1cd2672e3c3f3cd22">CellIterator</a> &amp;cell, <span class="keyword">const</span> dealii::CellStatus) -&gt; <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>          return this-&gt;get_weight(cell);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        }));</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> *signal :</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>           {&amp;signals.pre_distributed_refinement, &amp;signals.pre_distributed_repartition})</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#affc67e70411923b7f2eed9d266d4d307">connections</a>.emplace_back(signal-&gt;connect([<span class="keyword">this</span>]() { this-&gt;prepare_transfer(); }));</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> *signal :</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>           {&amp;signals.post_distributed_refinement, &amp;signals.post_distributed_repartition})</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#affc67e70411923b7f2eed9d266d4d307">connections</a>.emplace_back(signal-&gt;connect([<span class="keyword">this</span>]() { this-&gt;finish_transfer(); }));</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    }</div>
+</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00234" data-start="{" data-end="}">
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a658d2f89a63f473da6c5a76d4d1743af">  234</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a658d2f89a63f473da6c5a76d4d1743af">prepare_transfer</a>()</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    {</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>      Assert(<a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aba7ad273fb0a2f12b6e390135c90ada8">weights_handle</a> == dealii::numbers::invalid_unsigned_int, dealii::ExcInternalError());</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      <span class="comment">// get_weight() returns the maximum weight of the children for cells whose children will be</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>      <span class="comment">// coarsened</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aba7ad273fb0a2f12b6e390135c90ada8">weights_handle</a> = <span class="keyword">const_cast&lt;</span>dealii::Triangulation&lt;dim&gt; &amp;<span class="keyword">&gt;</span>(*tria).register_data_attach(</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        [<span class="keyword">this</span>](<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a84ad779dad6e2ab1cd2672e3c3f3cd22">CellIterator</a> &amp;cell, <span class="keyword">const</span> dealii::CellStatus) {</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>          <span class="keywordflow">return</span> dealii::Utilities::pack(this-&gt;<a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#adaf2f6b4068a3ac5766d7c934dd369f6">get_weight</a>(cell), <span class="comment">/*allow_compression=*/</span><span class="keyword">false</span>);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        },</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="comment">/*returns_variable_size_data=*/</span><span class="keyword">false</span>);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    }</div>
+</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00253" data-start="{" data-end="}">
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a52efda1e9b8a0de169db7c068e86c442">  253</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a52efda1e9b8a0de169db7c068e86c442">finish_transfer</a>()</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    {</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>      Assert(<a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aba7ad273fb0a2f12b6e390135c90ada8">weights_handle</a> != dealii::numbers::invalid_unsigned_int, dealii::ExcInternalError());</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>      std::vector&lt;unsigned int&gt; new_weights(<a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a9cf26cafeb739fd36cf69a4e63fccbc0">tria</a>-&gt;n_active_cells(), 1);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>      <span class="keyword">const_cast&lt;</span>dealii::Triangulation&lt;dim&gt; &amp;<span class="keyword">&gt;</span>(*tria).notify_ready_to_unpack(</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aba7ad273fb0a2f12b6e390135c90ada8">weights_handle</a>,</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        [&amp;new_weights](<span class="keyword">const</span> <a class="code hl_typedef" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a84ad779dad6e2ab1cd2672e3c3f3cd22">CellIterator</a>                                             &amp;cell,</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                       <span class="keyword">const</span> dealii::CellStatus                                        status,</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                       <span class="keyword">const</span> boost::iterator_range&lt;std::vector&lt;char&gt;::const_iterator&gt; &amp;data) {</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>          <span class="keyword">const</span> <span class="keyword">auto</span> weight = dealii::Utilities::unpack&lt;unsigned int&gt;(data.begin(),</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                                                                      data.end(),</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                                                                      <span class="comment">/*allow_compression=*/</span><span class="keyword">false</span>);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>          <span class="comment">// the children of a refined cell inherit the weight of their parent</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>          <span class="keywordflow">if</span> (status == dealii::CellStatus::cell_will_be_refined)</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;child : cell-&gt;child_iterators())</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>              new_weights[child-&gt;active_cell_index()] = weight;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>          <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            new_weights[cell-&gt;active_cell_index()] = weight;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        });</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aac10506aaa97e0b5cbadecda748f4e3d">weights</a>.swap(new_weights);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aba7ad273fb0a2f12b6e390135c90ada8">weights_handle</a> = dealii::numbers::invalid_unsigned_int;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    }</div>
+</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="foldopen" id="foldopen00289" data-start="{" data-end="}">
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#ab4061b927baf26569759aa07a17ba4cf">  289</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#ab4061b927baf26569759aa07a17ba4cf">get_partition_weight</a>(<span class="keyword">const</span> dealii::NonMatching::LocationToLevelSet location)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>      <span class="keywordflow">switch</span> (location)</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        {</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>          <span class="keywordflow">case</span> dealii::NonMatching::LocationToLevelSet::inside:</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a7ae98ec22c35674e254f336875d1bfd3">repartition_data</a>.<a class="code hl_variable" href="structMeltPoolDG_1_1CutRepartitionData.html#a9eaaa411fc92714401f08a94f501976c">weights</a>.<a class="code hl_variable" href="structMeltPoolDG_1_1CutRepartitionData_1_1Weights.html#ac6758f2a2a834410baff92b7b5704e48">inside</a>;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>          <span class="keywordflow">case</span> dealii::NonMatching::LocationToLevelSet::outside:</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a7ae98ec22c35674e254f336875d1bfd3">repartition_data</a>.<a class="code hl_variable" href="structMeltPoolDG_1_1CutRepartitionData.html#a9eaaa411fc92714401f08a94f501976c">weights</a>.<a class="code hl_variable" href="structMeltPoolDG_1_1CutRepartitionData_1_1Weights.html#ae556560da3ac2783749b0732769127e8">outside</a>;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>          <span class="keywordflow">case</span> dealii::NonMatching::LocationToLevelSet::intersected:</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a7ae98ec22c35674e254f336875d1bfd3">repartition_data</a>.<a class="code hl_variable" href="structMeltPoolDG_1_1CutRepartitionData.html#a9eaaa411fc92714401f08a94f501976c">weights</a>.<a class="code hl_variable" href="structMeltPoolDG_1_1CutRepartitionData_1_1Weights.html#aad7a0c921c0dfa075130bea46dcd23c3">intersected</a>;</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>          <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>            AssertThrow(<span class="keyword">false</span>, dealii::ExcMessage(<span class="stringliteral">&quot;Unknown location of the cell.&quot;</span>));</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>        }</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    }</div>
+</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  };</div>
+</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> VectorType&gt;</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>  <span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00347" data-start="{" data-end="}">
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1CutUtil.html#acac71e6e450f80cdd5da2b39b30023fe">  347</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1CutUtil.html#acac71e6e450f80cdd5da2b39b30023fe">repartition_triangulation</a>(</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    [[maybe_unused]] dealii::Triangulation&lt;dim&gt;                            &amp;tria,</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    [[maybe_unused]] <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType&lt;dim, VectorType&gt;</a> &amp;attach_vectors,</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    [[maybe_unused]] <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>()&gt;   &amp;distribute_level_set_dofs,</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    [[maybe_unused]] <span class="keyword">const</span> dealii::DoFHandler&lt;dim&gt; &amp;level_set_dof_handler,</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    [[maybe_unused]] VectorType                    &amp;level_set_dof_vector,</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>    [[maybe_unused]] <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>()&gt;   &amp;setup_dof_system,</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    [[maybe_unused]] <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>()&gt;   &amp;post = {})</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>  {</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (dim == 1)</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>      {</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>        <span class="comment">// parallel::distributed::Triangulation is not available for dim = 1</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>      }</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>      {</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>        <span class="comment">// check that the triangulation is of type parallel::distributed::Triangulation</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>        <span class="keyword">auto</span> *distributed_tria =</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>          <span class="keyword">dynamic_cast&lt;</span>dealii::parallel::distributed::Triangulation&lt;dim&gt; *<span class="keyword">&gt;</span>(&amp;tria);</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>        <span class="keywordflow">if</span> (distributed_tria == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        <span class="comment">// 1. prepare the solution transfer</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>        DoFHandlerAndVectorDataType&lt;dim, VectorType&gt; data;</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>        <span class="keywordflow">if</span> (attach_vectors)</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>          {</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>            attach_vectors(data);</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>            data.shrink_to_fit();</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>          }</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_dof_handlers = data.size();</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span> </div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        <span class="comment">// create a solution transfer for all DoFHandlers</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        std::vector&lt;std::unique_ptr&lt;dealii::SolutionTransfer&lt;dim, VectorType&gt;&gt;&gt; solution_transfers(</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>          n_dof_handlers);</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>        std::vector&lt;std::vector&lt;const VectorType *&gt;&gt; old_vectors(n_dof_handlers);</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>        std::vector&lt;std::vector&lt;bool&gt;&gt;               had_ghost_values(n_dof_handlers);</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span> </div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> j = 0; j &lt; n_dof_handlers; ++j)</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>          {</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>            std::vector&lt;VectorType *&gt; vectors;</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>            data[j].second(vectors);</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;v : vectors)</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>              {</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>                had_ghost_values[j].push_back(v-&gt;has_ghost_elements());</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>                <span class="comment">// ghost values are required to read the DoF values of the locally owned cells</span></div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>                v-&gt;update_ghost_values();</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>                old_vectors[j].push_back(v);</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>              }</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>            solution_transfers[j] =</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>              std::make_unique&lt;dealii::SolutionTransfer&lt;dim, VectorType&gt;&gt;(*data[j].first);</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>            solution_transfers[j]-&gt;prepare_for_coarsening_and_refinement(old_vectors[j]);</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>          }</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>        level_set_dof_vector.update_ghost_values();</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>        dealii::SolutionTransfer&lt;dim, VectorType&gt; level_set_transfer(level_set_dof_handler);</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>        level_set_transfer.prepare_for_coarsening_and_refinement(level_set_dof_vector);</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> </div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>        <span class="comment">// 2. repartition the triangulation according to the connected cell weights; the active FE</span></div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>        <span class="comment">// indices of hp-DoFHandlers are transferred automatically</span></div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>        distributed_tria-&gt;repartition();</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span> </div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>        <span class="comment">// 3. transfer the level set first, so that the cut operations can classify the cells</span></div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>        distribute_level_set_dofs();</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>        level_set_dof_vector.zero_out_ghost_values();</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>        level_set_transfer.interpolate(level_set_dof_vector);</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>        level_set_dof_vector.update_ghost_values();</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>        <span class="comment">// 4. update dof-related data to match the new partitioning</span></div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>        setup_dof_system();</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span> </div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>        <span class="comment">// 5. transfer the attached vectors; collect the target vectors again, since they might have</span></div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>        <span class="comment">// been reinitialized/reallocated in setup_dof_system()</span></div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>        <span class="keywordflow">if</span> (n_dof_handlers &gt; 0)</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>          {</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>            DoFHandlerAndVectorDataType&lt;dim, VectorType&gt; new_data;</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>            attach_vectors(new_data);</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span> </div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>            <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> j = 0; j &lt; n_dof_handlers; ++j)</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>              {</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>                std::vector&lt;VectorType *&gt; new_vectors;</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>                new_data[j].second(new_vectors);</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span> </div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>                <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;v : new_vectors)</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>                  v-&gt;<a class="code hl_function" href="namespaceMeltPoolDG_1_1VectorTools.html#a1dcf25eb9a4d50feb50e3a951d50b71d">zero_out_ghost_values</a>();</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>                solution_transfers[j]-&gt;interpolate(new_vectors);</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span> </div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>                <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; new_vectors.size(); ++i)</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>                  <span class="keywordflow">if</span> (had_ghost_values[j][i])</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>                    new_vectors[i]-&gt;update_ghost_values();</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>              }</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>          }</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span> </div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>        <span class="comment">// 6. post-processing</span></div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>        <span class="keywordflow">if</span> (post)</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>          post();</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span> </div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>      }</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>  }</div>
+</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span> </div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>  <span class="keyword">inline</span> <span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00461" data-start="{" data-end="}">
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1CutUtil.html#ae6fed4b80fad112b9375f76c42f0ba38">  461</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1CutUtil.html#ae6fed4b80fad112b9375f76c42f0ba38">do_repartition</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_time_step, <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1CutRepartitionData.html">CutRepartitionData</a> &amp;repartition_data)</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>  {</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>    <span class="keywordflow">return</span> repartition_data.<a class="code hl_variable" href="structMeltPoolDG_1_1CutRepartitionData.html#a9855c4a294a64715331fa4ef5c6b0403">enable</a> and (n_time_step % repartition_data.<a class="code hl_variable" href="structMeltPoolDG_1_1CutRepartitionData.html#aecbb37105764303386dbe58db42b5f33">every_n_step</a> == 0);</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>  }</div>
+</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>} <span class="comment">// namespace MeltPoolDG::CutUtil</span></div>
+<div class="ttc" id="aattach__vectors_8hpp_html"><div class="ttname"><a href="attach__vectors_8hpp.html">attach_vectors.hpp</a></div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html">MeltPoolDG::CutUtil::PartitionWeights</a></div><div class="ttdoc">Cell weights for the repartitioning of a parallel::distributed::Triangulation according to the locati...</div><div class="ttdef"><b>Definition</b> repartition.hpp:82</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_a19c4dc43d832f455f6540d78d4eb532d"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a19c4dc43d832f455f6540d78d4eb532d">MeltPoolDG::CutUtil::PartitionWeights::update</a></div><div class="ttdeci">void update(const dealii::NonMatching::MeshClassifier&lt; dim &gt; &amp;mesh_classifier)</div><div class="ttdoc">Compute and cache the weights of the locally owned active cells according to their location with resp...</div><div class="ttdef"><b>Definition</b> repartition.hpp:121</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_a52efda1e9b8a0de169db7c068e86c442"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a52efda1e9b8a0de169db7c068e86c442">MeltPoolDG::CutUtil::PartitionWeights::finish_transfer</a></div><div class="ttdeci">void finish_transfer()</div><div class="ttdoc">Unpack the cached weights after the triangulation has changed.</div><div class="ttdef"><b>Definition</b> repartition.hpp:253</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_a658d2f89a63f473da6c5a76d4d1743af"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a658d2f89a63f473da6c5a76d4d1743af">MeltPoolDG::CutUtil::PartitionWeights::prepare_transfer</a></div><div class="ttdeci">void prepare_transfer()</div><div class="ttdoc">Attach the cached weights to the cells before the triangulation changes.</div><div class="ttdef"><b>Definition</b> repartition.hpp:234</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_a66979785eebfbfb795dca97a0b90ae5d"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a66979785eebfbfb795dca97a0b90ae5d">MeltPoolDG::CutUtil::PartitionWeights::compute_load_statistics</a></div><div class="ttdeci">dealii::Utilities::MPI::MinMaxAvg compute_load_statistics(const MPI_Comm mpi_comm) const</div><div class="ttdoc">Compute statistics of the summed cell weights (i.e. the estimated load) of the locally owned cells ov...</div><div class="ttdef"><b>Definition</b> repartition.hpp:176</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_a7ae98ec22c35674e254f336875d1bfd3"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a7ae98ec22c35674e254f336875d1bfd3">MeltPoolDG::CutUtil::PartitionWeights::repartition_data</a></div><div class="ttdeci">const CutRepartitionData repartition_data</div><div class="ttdoc">Repartitioning parameters including the cell weights.</div><div class="ttdef"><b>Definition</b> repartition.hpp:191</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_a84ad779dad6e2ab1cd2672e3c3f3cd22"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a84ad779dad6e2ab1cd2672e3c3f3cd22">MeltPoolDG::CutUtil::PartitionWeights::CellIterator</a></div><div class="ttdeci">typename dealii::Triangulation&lt; dim &gt;::cell_iterator CellIterator</div><div class="ttdef"><b>Definition</b> repartition.hpp:84</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_a9cf26cafeb739fd36cf69a4e63fccbc0"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#a9cf26cafeb739fd36cf69a4e63fccbc0">MeltPoolDG::CutUtil::PartitionWeights::tria</a></div><div class="ttdeci">const dealii::Triangulation&lt; dim &gt; * tria</div><div class="ttdoc">Pointer to the triangulation.</div><div class="ttdef"><b>Definition</b> repartition.hpp:188</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_aac10506aaa97e0b5cbadecda748f4e3d"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aac10506aaa97e0b5cbadecda748f4e3d">MeltPoolDG::CutUtil::PartitionWeights::weights</a></div><div class="ttdeci">std::vector&lt; unsigned int &gt; weights</div><div class="ttdoc">Cached weights of the active cells (indexed by the active cell index)</div><div class="ttdef"><b>Definition</b> repartition.hpp:194</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_aaf9c45c6e41ee3c4e1d5eaef32d164cd"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aaf9c45c6e41ee3c4e1d5eaef32d164cd">MeltPoolDG::CutUtil::PartitionWeights::PartitionWeights</a></div><div class="ttdeci">PartitionWeights(const dealii::Triangulation&lt; dim &gt; &amp;tria_in, const CutRepartitionData &amp;repartition_data_in)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> repartition.hpp:92</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_ab4061b927baf26569759aa07a17ba4cf"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#ab4061b927baf26569759aa07a17ba4cf">MeltPoolDG::CutUtil::PartitionWeights::get_partition_weight</a></div><div class="ttdeci">unsigned int get_partition_weight(const dealii::NonMatching::LocationToLevelSet location) const</div><div class="ttdoc">Get the partitioning weight of a cell according to its location with respect to the level set.</div><div class="ttdef"><b>Definition</b> repartition.hpp:289</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_aba7ad273fb0a2f12b6e390135c90ada8"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#aba7ad273fb0a2f12b6e390135c90ada8">MeltPoolDG::CutUtil::PartitionWeights::weights_handle</a></div><div class="ttdeci">unsigned int weights_handle</div><div class="ttdoc">Handle of the cell-attached weights during a change of the triangulation.</div><div class="ttdef"><b>Definition</b> repartition.hpp:197</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_adaf2f6b4068a3ac5766d7c934dd369f6"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#adaf2f6b4068a3ac5766d7c934dd369f6">MeltPoolDG::CutUtil::PartitionWeights::get_weight</a></div><div class="ttdeci">unsigned int get_weight(const CellIterator &amp;cell) const</div><div class="ttdoc">Get the cached weight of a cell.</div><div class="ttdef"><b>Definition</b> repartition.hpp:146</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_afd593a9ac0d72f5b2016b1cddec9879e"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#afd593a9ac0d72f5b2016b1cddec9879e">MeltPoolDG::CutUtil::PartitionWeights::connect_to_triangulation</a></div><div class="ttdeci">void connect_to_triangulation()</div><div class="ttdoc">Connect the function returning the cached weights to the weight signal of the triangulation,...</div><div class="ttdef"><b>Definition</b> repartition.hpp:208</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1CutUtil_1_1PartitionWeights_html_affc67e70411923b7f2eed9d266d4d307"><div class="ttname"><a href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html#affc67e70411923b7f2eed9d266d4d307">MeltPoolDG::CutUtil::PartitionWeights::connections</a></div><div class="ttdeci">std::vector&lt; boost::signals2::scoped_connection &gt; connections</div><div class="ttdoc">Connections to the signals of the triangulation.</div><div class="ttdef"><b>Definition</b> repartition.hpp:200</div></div>
+<div class="ttc" id="acut__data_8hpp_html"><div class="ttname"><a href="cut__data_8hpp.html">cut_data.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CutUtil_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CutUtil.html">MeltPoolDG::CutUtil</a></div><div class="ttdoc">Utilities for the weighted repartitioning of a parallel::distributed::Triangulation in cutFEM/cutDG a...</div><div class="ttdef"><b>Definition</b> amr.hpp:15</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CutUtil_html_acac71e6e450f80cdd5da2b39b30023fe"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CutUtil.html#acac71e6e450f80cdd5da2b39b30023fe">MeltPoolDG::CutUtil::repartition_triangulation</a></div><div class="ttdeci">bool repartition_triangulation(dealii::Triangulation&lt; dim &gt; &amp;tria, const AttachDoFHandlerAndVectorsType&lt; dim, VectorType &gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;distribute_level_set_dofs, const dealii::DoFHandler&lt; dim &gt; &amp;level_set_dof_handler, VectorType &amp;level_set_dof_vector, const std::function&lt; void()&gt; &amp;setup_dof_system, const std::function&lt; void()&gt; &amp;post={})</div><div class="ttdoc">Repartition the triangulation tria among the MPI processes and transfer the attached DoF vectors and ...</div><div class="ttdef"><b>Definition</b> repartition.hpp:347</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CutUtil_html_ae6fed4b80fad112b9375f76c42f0ba38"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CutUtil.html#ae6fed4b80fad112b9375f76c42f0ba38">MeltPoolDG::CutUtil::do_repartition</a></div><div class="ttdeci">bool do_repartition(const unsigned int n_time_step, const CutRepartitionData &amp;repartition_data)</div><div class="ttdoc">Determine whether the triangulation should be repartitioned at time step number n_time_step.</div><div class="ttdef"><b>Definition</b> repartition.hpp:461</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1VectorTools_html_a1dcf25eb9a4d50feb50e3a951d50b71d"><div class="ttname"><a href="namespaceMeltPoolDG_1_1VectorTools.html#a1dcf25eb9a4d50feb50e3a951d50b71d">MeltPoolDG::VectorTools::zero_out_ghost_values</a></div><div class="ttdeci">void zero_out_ghost_values(const T &amp;...args)</div><div class="ttdef"><b>Definition</b> vector_tools.hpp:108</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html_adcdaa030a4cfc1fc8e1f9457fa441b05"><div class="ttname"><a href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">MeltPoolDG::AttachDoFHandlerAndVectorsType</a></div><div class="ttdeci">std::function&lt; void(DoFHandlerAndVectorDataType&lt; dim, VectorType &gt; &amp;)&gt; AttachDoFHandlerAndVectorsType</div><div class="ttdef"><b>Definition</b> attach_vectors.hpp:21</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CutRepartitionData_1_1Weights_html_aad7a0c921c0dfa075130bea46dcd23c3"><div class="ttname"><a href="structMeltPoolDG_1_1CutRepartitionData_1_1Weights.html#aad7a0c921c0dfa075130bea46dcd23c3">MeltPoolDG::CutRepartitionData::Weights::intersected</a></div><div class="ttdeci">unsigned int intersected</div><div class="ttdoc">Weight of cells intersected by the zero level-set isosurface.</div><div class="ttdef"><b>Definition</b> cut_data.hpp:97</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CutRepartitionData_1_1Weights_html_ac6758f2a2a834410baff92b7b5704e48"><div class="ttname"><a href="structMeltPoolDG_1_1CutRepartitionData_1_1Weights.html#ac6758f2a2a834410baff92b7b5704e48">MeltPoolDG::CutRepartitionData::Weights::inside</a></div><div class="ttdeci">unsigned int inside</div><div class="ttdoc">Weight of cells located completely inside (negative level set)</div><div class="ttdef"><b>Definition</b> cut_data.hpp:91</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CutRepartitionData_1_1Weights_html_ae556560da3ac2783749b0732769127e8"><div class="ttname"><a href="structMeltPoolDG_1_1CutRepartitionData_1_1Weights.html#ae556560da3ac2783749b0732769127e8">MeltPoolDG::CutRepartitionData::Weights::outside</a></div><div class="ttdeci">unsigned int outside</div><div class="ttdoc">Weight of cells located completely outside (positive level set)</div><div class="ttdef"><b>Definition</b> cut_data.hpp:94</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CutRepartitionData_html"><div class="ttname"><a href="structMeltPoolDG_1_1CutRepartitionData.html">MeltPoolDG::CutRepartitionData</a></div><div class="ttdoc">Collection of parameters for the weighted repartitioning of the triangulation in cut applications.</div><div class="ttdef"><b>Definition</b> cut_data.hpp:74</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CutRepartitionData_html_a9855c4a294a64715331fa4ef5c6b0403"><div class="ttname"><a href="structMeltPoolDG_1_1CutRepartitionData.html#a9855c4a294a64715331fa4ef5c6b0403">MeltPoolDG::CutRepartitionData::enable</a></div><div class="ttdeci">bool enable</div><div class="ttdef"><b>Definition</b> cut_data.hpp:77</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CutRepartitionData_html_a9eaaa411fc92714401f08a94f501976c"><div class="ttname"><a href="structMeltPoolDG_1_1CutRepartitionData.html#a9eaaa411fc92714401f08a94f501976c">MeltPoolDG::CutRepartitionData::weights</a></div><div class="ttdeci">struct MeltPoolDG::CutRepartitionData::Weights weights</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1CutRepartitionData_html_aecbb37105764303386dbe58db42b5f33"><div class="ttname"><a href="structMeltPoolDG_1_1CutRepartitionData.html#aecbb37105764303386dbe58db42b5f33">MeltPoolDG::CutRepartitionData::every_n_step</a></div><div class="ttdeci">unsigned int every_n_step</div><div class="ttdoc">The triangulation is repartitioned every n-th time step.</div><div class="ttdef"><b>Definition</b> cut_data.hpp:80</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
