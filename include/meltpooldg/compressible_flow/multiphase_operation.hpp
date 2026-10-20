@@ -436,6 +436,16 @@ namespace MeltPoolDG::Multiphase
     compute_convective_time_step_limit() const;
 
     /**
+     * @brief Compute the viscous time step limit for the current mesh and flow field.
+     *
+     * @param min_density A pair of minimum densities in the liquid and gas phase.
+     *
+     * @return Maximum viscous time step size.
+     */
+    number
+    compute_viscous_time_step_limit(const std::pair<number, number> &min_density) const;
+
+    /**
      * @brief Compute the minimum density currently occurring in the flow field.
      *
      * @return A pair of minimum densities in the liquid and gas phase.

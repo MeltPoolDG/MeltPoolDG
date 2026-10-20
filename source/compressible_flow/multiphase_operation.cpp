@@ -245,41 +245,17 @@ namespace MeltPoolDG::Multiphase
   number
   CompressibleMultiphaseOperation<dim, number>::compute_time_step_size(const bool do_print) const
   {
+    ScopedName         scope_time_step_size("compressible_multiphase::compute_time_step_size");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_time_step_size);
+
     const std::pair<number, number> min_density = compute_minimum_density();
 
     AssertThrow(min_density.first > 0 and min_density.second > 0,
                 ExcMessage("Minimum density must not be zero."));
 
-    const auto compute_viscous_time_step_limit = [&](number dynamic_viscosity,
-                                                     number min_density_in) -> number {
-      if (dynamic_viscosity <= 0)
-        {
-          return std::numeric_limits<number>::max();
-        }
-
-      const number degree_factor =
-        std::pow(multiphase_scratch_data.scratch_data.get_degree(multiphase_scratch_data.dof_idx),
-                 3);
-      const number cell_size_sq =
-        std::pow(multiphase_scratch_data.scratch_data.get_min_cell_size(), 2);
-
-      return (multiphase_scratch_data.flow_data.viscous_courant_number * min_density_in *
-              cell_size_sq) /
-             (degree_factor * dynamic_viscosity);
-    };
-
-    const number viscous_time_step_limit_liquid =
-      compute_viscous_time_step_limit(multiphase_scratch_data.material_liquid.dynamic_viscosity,
-                                      min_density.first);
-
-    const number viscous_time_step_limit_gas =
-      compute_viscous_time_step_limit(multiphase_scratch_data.material_gas.dynamic_viscosity,
-                                      min_density.second);
-
-    const number viscous_time_step_limit =
-      std::min(viscous_time_step_limit_liquid, viscous_time_step_limit_gas);
-
     const number convective_time_step_limit = compute_convective_time_step_limit();
+
+    const number viscous_time_step_limit = compute_viscous_time_step_limit(min_density);
 
     const number time_step = std::min(convective_time_step_limit, viscous_time_step_limit);
 
@@ -356,6 +332,9 @@ namespace MeltPoolDG::Multiphase
   CompressibleMultiphaseOperation<dim, number>::solve(const number current_time,
                                                       const number time_step)
   {
+    ScopedName         scope_solve("compressible_multiphase::solve");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_solve);
+
     // - compute new quadrature rules for intersected elements, intersected faces and phase
     // interface
     // - additionally, only if the DoF layout changed (i.e. at least one cell changed its location
@@ -425,6 +404,9 @@ namespace MeltPoolDG::Multiphase
     VectorType                  &level_set_in,
     const std::function<void()> &distribute_level_set_dofs)
   {
+    ScopedName         scope_repartition("compressible_multiphase::repartition");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_repartition);
+
     Assert(setup_dof_system != nullptr,
            dealii::ExcMessage("You must register the setup_dof_system lambda function for "
                               "repartitioning!"));
@@ -511,6 +493,10 @@ namespace MeltPoolDG::Multiphase
   void
   CompressibleMultiphaseOperation<dim, number>::adapt_to_new_interface_position()
   {
+    ScopedName         scope_adapt_to_new_interface_position("adapt_to_new_interface_position");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(),
+                         scope_adapt_to_new_interface_position);
+
     std::swap(mesh_classifier_old, mesh_classifier);
     classify_cells();
 
@@ -568,6 +554,9 @@ namespace MeltPoolDG::Multiphase
   std::pair<number, number>
   CompressibleMultiphaseOperation<dim, number>::compute_minimum_density() const
   {
+    ScopedName         scope_minimum_density("minimum_density");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_minimum_density);
+
     multiphase_scratch_data.solution_history.get_current_solution().update_ghost_values();
 
     constexpr unsigned int n_lanes            = VectorizedArray<number>::size();
@@ -677,6 +666,10 @@ namespace MeltPoolDG::Multiphase
   void
   CompressibleMultiphaseOperation<dim, number>::compute_intersected_quadrature()
   {
+    ScopedName         scope_intersected_quadrature("compute_intersected_quadrature");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(),
+                         scope_intersected_quadrature);
+
     level_set.update_ghost_values();
 
     CutUtil::compute_intersected_quadrature(mapping_info_cells,
@@ -695,6 +688,9 @@ namespace MeltPoolDG::Multiphase
   number
   CompressibleMultiphaseOperation<dim, number>::compute_convective_time_step_limit() const
   {
+    ScopedName         scope_convective_limit("convective_limit");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_convective_limit);
+
     number max_transport              = 0;
     number convective_time_step_limit = 0.;
 
@@ -883,6 +879,46 @@ namespace MeltPoolDG::Multiphase
       max_transport;
 
     return convective_time_step_limit;
+  }
+
+  template <int dim, typename number>
+  number
+  CompressibleMultiphaseOperation<dim, number>::compute_viscous_time_step_limit(
+    const std::pair<number, number> &min_density) const
+  {
+    ScopedName         scope_viscous_limit("viscous_limit");
+    TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(), scope_viscous_limit);
+
+    const auto compute_viscous_time_step_limit = [&](number dynamic_viscosity,
+                                                     number min_density_in) -> number {
+      if (dynamic_viscosity <= 0)
+        {
+          return std::numeric_limits<number>::max();
+        }
+
+      const number degree_factor =
+        std::pow(multiphase_scratch_data.scratch_data.get_degree(multiphase_scratch_data.dof_idx),
+                 3);
+      const number cell_size_sq =
+        std::pow(multiphase_scratch_data.scratch_data.get_min_cell_size(), 2);
+
+      return (multiphase_scratch_data.flow_data.viscous_courant_number * min_density_in *
+              cell_size_sq) /
+             (degree_factor * dynamic_viscosity);
+    };
+
+    const number viscous_time_step_limit_liquid =
+      compute_viscous_time_step_limit(multiphase_scratch_data.material_liquid.dynamic_viscosity,
+                                      min_density.first);
+
+    const number viscous_time_step_limit_gas =
+      compute_viscous_time_step_limit(multiphase_scratch_data.material_gas.dynamic_viscosity,
+                                      min_density.second);
+
+    const number viscous_time_step_limit =
+      std::min(viscous_time_step_limit_liquid, viscous_time_step_limit_gas);
+
+    return viscous_time_step_limit;
   }
 
   template class CompressibleMultiphaseOperation<1, double>;
