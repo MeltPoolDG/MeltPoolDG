@@ -13,6 +13,7 @@
 #include <meltpooldg/utilities/matrix_free_util.hpp>
 #include <meltpooldg/utilities/numerical_admissibility_detection.templates.hpp>
 #include <meltpooldg/utilities/physical_admissibility_detection.templates.hpp>
+#include <meltpooldg/utilities/subcell_matrix_free.templates.hpp>
 #include <meltpooldg/utilities/troubled_cell_marker.hpp>
 
 #include <meltpooldg/utilities/cpp23_functions.h>
@@ -52,8 +53,11 @@ namespace MeltPoolDG
   template <int dim, int n_components, typename number>
   void
   TroubledCellMarker<dim, n_components, number>::reinit(
-    const MatrixFreeContext<dim, number> &matrix_free_context)
+    const SubcellMatrixFree<dim, number> &subcell_matrix_free)
   {
+    const MatrixFreeContext<dim, number> matrix_free_context{subcell_matrix_free.get_matrix_free(),
+                                                             subcell_matrix_free.get_dof_no(),
+                                                             subcell_matrix_free.get_quad_no()};
     marked_cells.reinit(matrix_free_context.mf);
     if (apply_physical_admissibility_check)
       physical_admissibility.reinit(matrix_free_context);
@@ -67,22 +71,18 @@ namespace MeltPoolDG
   template <int dim, int n_components, typename number>
   void
   TroubledCellMarker<dim, n_components, number>::mark(
-    const MatrixFreeContext<dim, number> &matrix_free_context,
+    const SubcellMatrixFree<dim, number> &subcell_matrix_free,
     const VectorType                     &candidate,
     const VectorType                     &old_solution)
   {
-    const dealii::MatrixFree<dim, number> &matrix_free = matrix_free_context.mf;
+    const dealii::MatrixFree<dim, number> &matrix_free = subcell_matrix_free.get_matrix_free();
 
     const bool old_solution_has_ghost_values = old_solution.has_ghost_elements();
     if (not old_solution_has_ghost_values)
       old_solution.update_ghost_values();
 
-    FESubcellEvaluation<dim, n_components, number> phi_candidate(matrix_free,
-                                                                 matrix_free_context.dof_idx,
-                                                                 matrix_free_context.quad_idx);
-    FESubcellEvaluation<dim, n_components, number> phi_old(matrix_free,
-                                                           matrix_free_context.dof_idx,
-                                                           matrix_free_context.quad_idx);
+    FESubcellEvaluation<dim, n_components, number> phi_candidate(subcell_matrix_free);
+    FESubcellEvaluation<dim, n_components, number> phi_old(subcell_matrix_free);
 
     for (unsigned int cell = 0; cell < matrix_free.n_cell_batches(); ++cell)
       {

@@ -34,6 +34,7 @@
 #include <meltpooldg/utilities/fe_subcell_evaluation.hpp>
 #include <meltpooldg/utilities/fe_subcell_evaluation.templates.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
+#include <meltpooldg/utilities/subcell_matrix_free.templates.hpp>
 
 #include <cmath>
 #include <set>
@@ -135,6 +136,8 @@ protected:
                        dealii::QGauss<1>(degree + 1),
                        additional_data);
 
+    subcell_matrix_free.reinit(matrix_free, 0, 0);
+
     matrix_free.initialize_dof_vector(solution);
     dealii::VectorTools::interpolate(dof_handler,
                                      TestUtils::LinearFunction<dim, n_components>(),
@@ -156,6 +159,7 @@ protected:
   dealii::DoFHandler<dim>           dof_handler;
   dealii::AffineConstraints<double> constraints;
   dealii::MatrixFree<dim, double>   matrix_free;
+  SubcellMatrixFree<dim, double>    subcell_matrix_free;
   VectorType                        solution;
 };
 
@@ -173,9 +177,8 @@ TYPED_TEST_SUITE(FESubcellEvaluationFaceTest, TestConfigs);
  */
 TYPED_TEST(FESubcellEvaluationFaceTest, IntraCellFaceNumber)
 {
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
   const unsigned int n_subcells_1d = TypeParam::degree + 1;
 
   EXPECT_EQ(subcells.subcell_face_indices().size(),
@@ -193,9 +196,8 @@ TYPED_TEST(FESubcellEvaluationFaceTest, IntraCellFaceNumber)
  */
 TYPED_TEST(FESubcellEvaluationFaceTest, IntraCellFaceNeighbors)
 {
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
 
   for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
     {
@@ -261,9 +263,8 @@ TYPED_TEST(FESubcellEvaluationFaceTest, IntraCellFaceNeighbors)
  */
 TYPED_TEST(FESubcellEvaluationFaceTest, IntraCellFaceNormals)
 {
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
 
   for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
     {
@@ -290,9 +291,8 @@ TYPED_TEST(FESubcellEvaluationFaceTest, IntraCellFaceNormals)
  */
 TYPED_TEST(FESubcellEvaluationFaceTest, IntraCellFaceValues)
 {
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
 
   for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
     {
@@ -325,10 +325,9 @@ TYPED_TEST(FESubcellEvaluationFaceTest, IntraCellFluxesAreConservative)
 {
   using ValueType = value_type<TypeParam::n_components, VectorizedArrayType>;
 
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
-  FECellIntegrator<TypeParam::dim, TypeParam::n_components, double>    integral_check(
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
+  FECellIntegrator<TypeParam::dim, TypeParam::n_components, double> integral_check(
     this->matrix_free, 0, 0);
 
   VectorType dg_solution;
@@ -373,11 +372,10 @@ TYPED_TEST(FESubcellEvaluationFaceTest, IntegrateIntraCellFluxes)
 {
   using ValueType = value_type<TypeParam::n_components, VectorizedArrayType>;
 
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
   FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells_check(
-    this->matrix_free, 0, 0);
+    this->subcell_matrix_free);
 
   VectorType dg_solution;
   this->matrix_free.initialize_dof_vector(dg_solution);

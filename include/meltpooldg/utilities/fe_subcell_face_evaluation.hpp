@@ -4,6 +4,8 @@
 
 #include <deal.II/matrix_free/fe_evaluation.h>
 
+#include <meltpooldg/utilities/subcell_matrix_free.hpp>
+
 #include <bitset>
 #include <ranges>
 #include <vector>
@@ -13,12 +15,11 @@ namespace MeltPoolDG
   /**
    * This class evaluates finite volume subcell fluxes across the faces of a DG cell, i.e. across
    * those subcell faces that lie on a face of a DG cell. It is the face counterpart of
-   * FESubcellEvaluation and uses the same subcells: with the same MatrixFree object, DoF index and
-   * quadrature index, both classes see identical subcell values, sizes and locations. Fluxes
-   * between subcells inside a cell can therefore be applied in the cell loop with
-   * FESubcellEvaluation, and fluxes across DG faces in the face and boundary loops with this class.
-   * The interface mirrors dealii::FEFaceEvaluation, with subcell faces taking the place of face
-   * quadrature points.
+   * FESubcellEvaluation and uses the same subcells with the same SubcellMatrixFree object, such
+   * that both classes see identical subcell values, sizes and locations. Fluxes between subcells
+   * inside a cell can therefore be applied in the cell loop with FESubcellEvaluation, and fluxes
+   * across DG faces in the face and boundary loops with this class. The interface mirrors
+   * dealii::FEFaceEvaluation, with subcell faces taking the place of face quadrature points.
    *
    * ## One side of a face
    * Like dealii::FEFaceEvaluation, an object represents one side of a DG face, selected by the
@@ -85,8 +86,8 @@ namespace MeltPoolDG
    * inner faces. The flux is meant in the direction of `n`, which points out of the interior cell.
    *
    * @code
-   * FESubcellFaceEvaluation<dim, n_components, double> phi_m(matrix_free, true, dof_no, quad_no);
-   * FESubcellFaceEvaluation<dim, n_components, double> phi_p(matrix_free, false, dof_no, quad_no);
+   * FESubcellFaceEvaluation<dim, n_components, double> phi_m(subcell_matrix_free, true);
+   * FESubcellFaceEvaluation<dim, n_components, double> phi_p(subcell_matrix_free, false);
    *
    * for (unsigned int face = face_range.first; face < face_range.second; ++face)
    *   {
@@ -136,15 +137,13 @@ namespace MeltPoolDG
      * Constructor. Allocates required memory and sets up internal data structures. The object is
      * not yet reinitialized for a face.
      *
-     * @param matrix_free The MatrixFree object for the DG cell loop.
+     * @param subcell_matrix_free The SubcellMatrixFree object providing the dealii::MatrixFree
+     * object, the DoF and quadrature index of the finite element field to evaluate and the subcell
+     * index data.
      * @param is_interior_face Whether this object represents the interior side of a face.
-     * @param dof_no The DoF index of the finite element field to evaluate.
-     * @param quad_no The quadrature index of the finite element field to evaluate.
      */
-    FESubcellFaceEvaluation(const dealii::MatrixFree<dim, number> &matrix_free,
-                            const bool                             is_interior_face,
-                            const unsigned int                     dof_no,
-                            const unsigned int                     quad_no);
+    FESubcellFaceEvaluation(const SubcellMatrixFree<dim, number> &subcell_matrix_free,
+                            const bool                            is_interior_face);
 
     /**
      * Reinitialize the object for the face batch with index @p face_batch_index. This function
@@ -380,11 +379,9 @@ namespace MeltPoolDG
     set_cell_data(dealii::AlignedVector<T> &data, const T &value) const;
 
   private:
-    /// Number of subcells per direction of the adjacent cells.
-    unsigned int n_subcells_1d = dealii::numbers::invalid_unsigned_int;
-
-    /// Number of subcell faces per DG face,.
-    unsigned int n_subcells_face = dealii::numbers::invalid_unsigned_int;
+    /// The SubcellMatrixFree object providing the subcell index data and the geometry on the unit
+    /// cell.
+    const SubcellMatrixFree<dim, number> &subcell_matrix_free;
 
     /// Index of the face batch the object is currently reinitialized on.
     unsigned int face_batch_index = dealii::numbers::invalid_unsigned_int;
@@ -402,12 +399,11 @@ namespace MeltPoolDG
 
     /**
      * Values of the subcells adjacent to the face on this object's side, i.e. one layer of
-     * subcells. Filled in evaluate() and accessed via layer_index(). To allow tangential stencils
-     * at the boundary of the face, the layer is padded by one halo subcell beyond the face boundary
-     * in every tangential direction. The layout is the same on both sides and independent of the
-     * dimension: with `n = n_subcells_1d`, the layer holds `(n + 2)^(dim - 1)` values, numbered
-     * lexicographically in the tangential directions with the first direction varying fastest.
-     * Tangential indices run from -1 to n, where -1 and n denote the halo.
+     * subcells, in the haloed layout of SubcellShapeInfo::face_index_info, see SubcellIndexInfo.
+     * To allow tangential stencils at the boundary of the face, the layer is padded by one halo
+     * subcell beyond the face boundary in every face direction. The layout is the same on both
+     * sides: with `n = n_subcells_1d`, the layer holds `(n + 2)^(dim - 1)` values, numbered
+     * lexicographically in the face directions with the first direction varying fastest.
      *
      * The two-dimensional case for the left face of the interior cell with `n == 4` is shown below.
      * The layer of the interior object consists of the subcells `i`, the layer of the exterior
@@ -417,17 +413,17 @@ namespace MeltPoolDG
      *        exterior side | interior side       index
      *
      *        ----+----+----+----+----+----
-     *            |    | h  | h  |    |              4
+     *            |    | h  | h  |    |              5
      *        ====+====+====o====+====+====
+     *            |    | e  # i  |    |              4
+     *        ----+----+----#----+----+----
      *            |    | e  # i  |    |              3
      *        ----+----+----#----+----+----
      *            |    | e  # i  |    |              2
      *        ----+----+----#----+----+----
      *            |    | e  # i  |    |              1
-     *        ----+----+----#----+----+----
-     *            |    | e  # i  |    |              0
      *        ====+====+====o====+====+====
-     *            |    | h  | h  |    |             -1
+     *            |    | h  | h  |    |              0
      *        ----+----+----+----+----+----
      *
      *     #  cell face        o  face vertex        ==  further cell boundaries
@@ -438,28 +434,29 @@ namespace MeltPoolDG
      * beyond the face vertices:
      *
      * @verbatim
-     *              -1    0    1    2    3    4    <- first tangential index
+     *              0    1    2    3    4    5    <- index in face direction 0
      *            +----+----+----+----+----+----+
-     *         4  | c  | h  | h  | h  | h  | c  |
+     *         5  | c  | h  | h  | h  | h  | c  |
      *            +----o====+====+====+====o----+
+     *         4  | h  # f  | f  | f  | f  # h  |
+     *            +----#----+----+----+----#----+
      *         3  | h  # f  | f  | f  | f  # h  |
      *            +----#----+----+----+----#----+
      *         2  | h  # f  | f  | f  | f  # h  |
      *            +----#----+----+----+----#----+
      *         1  | h  # f  | f  | f  | f  # h  |
-     *            +----#----+----+----+----#----+
-     *         0  | h  # f  | f  | f  | f  # h  |
      *            +----o====+====+====+====o----+
-     *        -1  | c  | h  | h  | h  | h  | c  |
+     *         0  | c  | h  | h  | h  | h  | c  |
      *            +----+----+----+----+----+----+
      *         ^
-     *         second tangential index
+     *         index in face direction 1
      *
      *     #, ==  face edges        o  face vertices
      * @endverbatim
      *
-     * @note The halo and corner subcells are currently not filled but already allocated to allow
-     * for future extensions with tangential stencils.
+     * The face subcells are filled in every call of gather_evaluate(), the halo subcells only if
+     * gradients are evaluated, see fill_halo_subcell_values(). The corner subcells are never
+     * filled, since the tangential stencils do not reach them.
      */
     std::vector<value_type> layer_values;
 
@@ -513,45 +510,6 @@ namespace MeltPoolDG
     /// Finite element evaluator for the face.
     dealii::FEFaceEvaluation<dim, -1, 0, n_components, number, VectorizedArrayType>
       fe_face_evaluator;
-
-    /**
-     * Returns the position of the face subcell @p subcell_index within the padded layer
-     * layer_values. The face subcells are numbered
-     * lexicographically in the tangential directions without the halo, i.e. @p subcell_index runs
-     * from 0 to n_subcells_face - 1. Each tangential index is shifted by one to skip the halo
-     * subcell in front of it, and the row stride is taken from the padded layer.
-     *
-     * Example for `dim == 3` and `n_subcells_1d == 2`, i.e. a padded layer of 4x4 entries:
-     *
-     * @verbatim
-     *   subcell_index:   layer index:
-     *                     12 13 14 15
-     *       2  3          8  [2][3] 11
-     *       0  1          4  [0][1]  7
-     *                     0  1  2  3
-     * @endverbatim
-     *
-     * yields the mapping 0 -> 5, 1 -> 6, 2 -> 9, 3 -> 10.
-     */
-    unsigned int
-    layer_index(const unsigned int subcell_index) const;
-
-    /**
-     * This function returns the index of the cell quadrature point adjacent to the face quadrature
-     * point @p q_face on face @p face_no of the cell, i.e. the subcell adjacent to the subcell face
-     * @p q_face. It is assumed that the underlying quadrature is a tensor-product quadrature with
-     * lexicographic numbering on the cell and on the face.
-     *
-     * @param face_no The face number within the cell according to the standard numbering in
-     * deal.II.
-     * @param q_face The index of the face quadrature point.
-     * @param shape_info The shape info of the cell evaluator.
-     */
-    unsigned int
-    face_to_cell_quadrature_index(
-      const unsigned int                                              face_no,
-      const unsigned int                                              q_face,
-      const dealii::internal::MatrixFreeFunctions::ShapeInfo<number> &shape_info) const;
 
     /**
      * Compute the subcell face sizes and store them in the corresponding member variable. The sizes

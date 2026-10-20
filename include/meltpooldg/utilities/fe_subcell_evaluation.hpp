@@ -14,6 +14,7 @@
 #include <meltpooldg/utilities/better_enum.hpp>
 #include <meltpooldg/utilities/fe_integrator.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
+#include <meltpooldg/utilities/subcell_matrix_free.hpp>
 
 #include <bitset>
 #include <ranges>
@@ -128,10 +129,12 @@ namespace MeltPoolDG
    * ## Usage Example
    *
    * Let's have a short look on how this class can be used. The following example shows the cell
-   * part of a finite volume operator on the subcells within a matrix-free cell loop:
+   * part of a finite volume operator on the subcells within a matrix-free cell loop, where
+   * `subcell_matrix_free` is a SubcellMatrixFree object set up for the DoFHandler and quadrature
+   * of interest:
    *
    * @code
-   * FESubcellEvaluation<dim, n_components, double> phi(matrix_free, dof_no, quad_no);
+   * FESubcellEvaluation<dim, n_components, double> phi(subcell_matrix_free);
    *
    * for (unsigned int cell = cell_range.first; cell < cell_range.second; ++cell)
    *   {
@@ -198,26 +201,13 @@ namespace MeltPoolDG
 
   public:
     /**
-     * Constructor from a dealii::MatrixFree object, the DoF index and the quadrature index. The
-     * sets up all internal data structures.
+     * Constructor. Sets up all internal data structures.
      *
-     * @param matrix_free The dealii::MatrixFree object used for evaluating the finite element
-     * solution on the cell and interacting with the matrix-free framework.
-     * @param dof_no The index of the DoF to be used for evaluating the finite element solution on
-     * the cell.
-     * @param quad_no The index of the quadrature to be used for evaluating the finite element
-     * solution on the cell.
+     * @param subcell_matrix_free The SubcellMatrixFree object providing the dealii::MatrixFree
+     * object, the DoF and quadrature index of the finite element solution and the subcell index
+     * data.
      */
-    FESubcellEvaluation(const dealii::MatrixFree<dim, number> &matrix_free,
-                        const unsigned int                     dof_no,
-                        const unsigned int                     quad_no);
-
-    /**
-     * Constructor from an FEEvaluation object.
-     */
-    FESubcellEvaluation(
-      const dealii::FEEvaluation<dim, -1, 0, n_components, number, VectorizedArrayType>
-        &fe_evaluation);
+    explicit FESubcellEvaluation(const SubcellMatrixFree<dim, number> &subcell_matrix_free);
 
     /**
      * Reinitialize the FESubcellEvaluation object for a specific cell batch. This function must be
@@ -486,6 +476,12 @@ namespace MeltPoolDG
     subcell_neighbor_indices(const unsigned int subcell_index) const;
 
   private:
+    /// The SubcellMatrixFree object providing the subcell index data and the geometry on the unit
+    /// cell.
+    const SubcellMatrixFree<dim, number> &subcell_matrix_free;
+
+    const SubcellIndexInfo<dim> &subcell_index_info;
+
     /// The cell batch index of the cell on which this FESubcellEvaluation object is currently
     /// reinitialized.
     unsigned int cell_batch_index;
@@ -530,17 +526,6 @@ namespace MeltPoolDG
     /// A buffer used for projecting the subcell values to the finite element solution space. The
     /// buffer is a class member to avoid repeated allocations memory.
     std::vector<VectorizedArrayType> subcell_values_to_project_buffer;
-
-    /// The number of subcells in each spatial direction. The total number of subcells is
-    /// `n_subcells_1d^dim`.
-    unsigned int n_subcells_1d;
-
-    /// The total number of subcells on the current cell.
-    unsigned int n_subcells_total;
-
-    /// The number of intra cell subcell faces on the current cell. Intra cell subcell faces are the
-    /// faces that are shared between two subcells on the same DG cell.
-    unsigned int n_intra_cell_faces;
 
     /// A flag indicating whether the FESubcellEvaluation object has been reinitialized for a cell.
     /// Used for debug information.
@@ -608,27 +593,6 @@ namespace MeltPoolDG
      */
     void
     project_subcell_values_to_dof_values(const std::vector<value_type> &values_to_project);
-
-    /**
-     * Return the reference coordinate direction `d` normal to the intra cell subcell face with the
-     * given index @p subcell_face_index. On the supported Cartesian cells, the physical normal
-     * vector is the unit vector in direction `d`.
-     */
-    unsigned int
-    compute_reference_coordinates_normal_direction(const unsigned int subcell_face_index) const;
-
-    /**
-     * Return the index of the interior or exterior subcell adjacent to the intra cell subcell face
-     * with the given index.
-     *
-     * @param subcell_face_index The index of the intra cell subcell face.
-     * @param interior_face A boolean indicating whether the interior or exterior subcell index is
-     * to be returned. If true, the interior subcell index is returned, otherwise the exterior
-     * subcell index is returned.
-     */
-    unsigned int
-    face_adjacent_subcell_index(const unsigned int subcell_face_index,
-                                const bool         interior_face) const;
   };
 
 

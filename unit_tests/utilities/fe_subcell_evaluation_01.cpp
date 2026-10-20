@@ -32,6 +32,7 @@
 #include <meltpooldg/utilities/fe_subcell_evaluation.hpp>
 #include <meltpooldg/utilities/fe_subcell_evaluation.templates.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
+#include <meltpooldg/utilities/subcell_matrix_free.templates.hpp>
 
 #include "../test_utils/test_functions.hpp"
 #include "../test_utils/test_generators.hpp"
@@ -108,6 +109,8 @@ protected:
                        dealii::QGauss<1>(degree + 1),
                        additional_data);
 
+    subcell_matrix_free.reinit(matrix_free, 0, 0);
+
     matrix_free.initialize_dof_vector(solution);
     dealii::VectorTools::interpolate(dof_handler,
                                      TestUtils::LinearFunction<dim, n_components>(),
@@ -129,6 +132,7 @@ protected:
   dealii::DoFHandler<dim>           dof_handler;
   dealii::AffineConstraints<double> constraints;
   dealii::MatrixFree<dim, double>   matrix_free;
+  SubcellMatrixFree<dim, double>    subcell_matrix_free;
   VectorType                        solution;
 };
 
@@ -147,9 +151,8 @@ TYPED_TEST_SUITE(FESubcellEvaluationTest, TestConfigs);
  */
 TYPED_TEST(FESubcellEvaluationTest, NumberOfSubcells)
 {
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
 
   const unsigned int expected_n_subcells =
     dealii::Utilities::pow(TypeParam::degree + 1, TypeParam::dim);
@@ -162,9 +165,8 @@ TYPED_TEST(FESubcellEvaluationTest, NumberOfSubcells)
  */
 TYPED_TEST(FESubcellEvaluationTest, SubcellIndexRange)
 {
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
 
   const unsigned int expected_n_subcells =
     dealii::Utilities::pow(TypeParam::degree + 1, TypeParam::dim);
@@ -179,9 +181,8 @@ TYPED_TEST(FESubcellEvaluationTest, SubcellIndexRange)
  */
 TYPED_TEST(FESubcellEvaluationTest, SubcellSizes)
 {
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
   const dealii::QGauss<TypeParam::dim> quadrature(TypeParam::degree + 1);
 
   for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
@@ -210,10 +211,9 @@ TYPED_TEST(FESubcellEvaluationTest, SubcellSizes)
  */
 TYPED_TEST(FESubcellEvaluationTest, SubcellLocations)
 {
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
-  FECellIntegrator<TypeParam::dim, TypeParam::n_components, double>    fe_eval(this->matrix_free,
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
+  FECellIntegrator<TypeParam::dim, TypeParam::n_components, double> fe_eval(this->matrix_free,
                                                                             0,
                                                                             0);
 
@@ -238,10 +238,9 @@ TYPED_TEST(FESubcellEvaluationTest, SubcellLocations)
  */
 TYPED_TEST(FESubcellEvaluationTest, ValuesAndGradientsOfLinearFunction)
 {
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
-  FECellIntegrator<TypeParam::dim, TypeParam::n_components, double>    fe_eval(this->matrix_free,
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
+  FECellIntegrator<TypeParam::dim, TypeParam::n_components, double> fe_eval(this->matrix_free,
                                                                             0,
                                                                             0);
   const TestUtils::LinearFunction<TypeParam::dim, TypeParam::n_components> linear_function;
@@ -287,10 +286,9 @@ TYPED_TEST(FESubcellEvaluationTest, AccessingNotEvaluatedQuantityAsserts)
   TestUtils::ScopedThrowOnAssert scoped_throw_on_assert;
 
   FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> values_only(
-    this->matrix_free, 0, 0);
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> grad_only(this->matrix_free,
-                                                                                 0,
-                                                                                 0);
+    this->subcell_matrix_free);
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> grad_only(
+    this->subcell_matrix_free);
 
   values_only.reinit(0);
   values_only.gather_evaluate(this->solution, dealii::EvaluationFlags::values);
@@ -314,9 +312,8 @@ TYPED_TEST(FESubcellEvaluationTest, AccessingNotEvaluatedQuantityAsserts)
  */
 TYPED_TEST(FESubcellEvaluationTest, FEToFVIsConservative)
 {
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
   const TestUtils::LinearFunction<TypeParam::dim, TypeParam::n_components> linear_function;
 
   for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
@@ -346,9 +343,8 @@ TYPED_TEST(FESubcellEvaluationTest, FEToFVIsConservative)
  */
 TYPED_TEST(FESubcellEvaluationTest, RoundTripFEToFVToFE)
 {
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
 
   VectorType result;
   this->matrix_free.initialize_dof_vector(result);
@@ -376,11 +372,10 @@ TYPED_TEST(FESubcellEvaluationTest, RoundTripFEToFVToFE)
  */
 TYPED_TEST(FESubcellEvaluationTest, RoundTripFVToFEToFV)
 {
-  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(this->matrix_free,
-                                                                                0,
-                                                                                0);
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free);
   FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells_check(
-    this->matrix_free, 0, 0);
+    this->subcell_matrix_free);
 
   VectorType dg_solution;
   this->matrix_free.initialize_dof_vector(dg_solution);

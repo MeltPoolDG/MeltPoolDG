@@ -116,9 +116,7 @@ namespace MeltPoolDG::CompressibleFlow
 
     if (flow_scratch_data.flow_data.limiter_data.apply_limiter and
         flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
-      troubled_cell_marker.reinit({flow_scratch_data.scratch_data.get_matrix_free(),
-                                   flow_scratch_data.dof_idx,
-                                   flow_scratch_data.quad_idx});
+      troubled_cell_marker.reinit(*flow_scratch_data.subcell_matrix_free);
   }
 
   template <int dim, typename number, int n_species>
@@ -185,11 +183,7 @@ namespace MeltPoolDG::CompressibleFlow
                       ScopedName         scope_marker("troubled_cell_marker");
                       TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(),
                                            scope_marker);
-                      troubled_cell_marker.mark({flow_scratch_data.scratch_data.get_matrix_free(),
-                                                 flow_scratch_data.dof_idx,
-                                                 flow_scratch_data.quad_idx},
-                                                dst,
-                                                src);
+                      troubled_cell_marker.mark(*flow_scratch_data.subcell_matrix_free, dst, src);
                     }
                     if (troubled_cell_monitor)
                       troubled_cell_monitor->add_info(

@@ -29,6 +29,7 @@
 #include <meltpooldg/utilities/fe_subcell_evaluation.templates.hpp>
 #include <meltpooldg/utilities/fe_util.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
+#include <meltpooldg/utilities/subcell_matrix_free.templates.hpp>
 #include <meltpooldg/utilities/troubled_cell_marker.templates.hpp>
 
 #include <algorithm>
@@ -145,9 +146,11 @@ TYPED_TEST(CellwiseNumericalAdmissibilityTest, CandidateEqualToOldSolutionIsAdmi
 
   // mark the troubled cells with the same solution as old solution and candidate, accepting all
   // states in the physical admissibility check such that only the numerical admissibility is tested
+  SubcellMatrixFree<dim, double> subcell_matrix_free;
+  subcell_matrix_free.reinit(matrix_free, 0, 0);
   TroubledCellMarker<dim, n_components, double> marker(this->limiter_data);
-  marker.reinit({matrix_free, 0, 0});
-  marker.mark({matrix_free, 0, 0}, solution, solution);
+  marker.reinit(subcell_matrix_free);
+  marker.mark(subcell_matrix_free, solution, solution);
 
   // no cell is troubled, i.e., the candidate is admissible in all cells
   for (unsigned int cell = 0; cell < matrix_free.n_cell_batches(); ++cell)
@@ -203,9 +206,11 @@ TYPED_TEST(CellwiseNumericalAdmissibilityTest, CandidateAboveOldSolutionInNeighb
       }
 
   // mark the troubled cells
+  SubcellMatrixFree<dim, double> subcell_matrix_free;
+  subcell_matrix_free.reinit(matrix_free, 0, 0);
   TroubledCellMarker<dim, n_components, double> marker(this->limiter_data);
-  marker.reinit({matrix_free, 0, 0});
-  marker.mark({matrix_free, 0, 0}, candidate, old_solution);
+  marker.reinit(subcell_matrix_free);
+  marker.mark(subcell_matrix_free, candidate, old_solution);
 
   // only the cell containing the target point is troubled
   unsigned int n_troubled = 0;
@@ -309,9 +314,11 @@ TYPED_TEST(CellwiseNumericalAdmissibilityTest, OnlyFaceNeighborsContributeToBoun
     1.5);
 
   // mark the troubled cells
+  SubcellMatrixFree<dim, double> subcell_matrix_free;
+  subcell_matrix_free.reinit(matrix_free, 0, 0);
   TroubledCellMarker<dim, n_components, double> marker(this->limiter_data);
-  marker.reinit({matrix_free, 0, 0});
-  marker.mark({matrix_free, 0, 0}, candidate, old_solution);
+  marker.reinit(subcell_matrix_free);
+  marker.mark(subcell_matrix_free, candidate, old_solution);
 
   // The face neighbors are bounded by the peak and hence admissible, while the edge and vertex
   // neighbors are bounded by one and hence troubled. All other cells are admissible.
