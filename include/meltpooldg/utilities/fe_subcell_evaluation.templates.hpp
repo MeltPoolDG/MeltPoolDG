@@ -310,6 +310,27 @@ namespace MeltPoolDG
   }
 
   template <int dim, int n_components, typename number>
+  std::array<unsigned int, 2 * dim>
+  FESubcellEvaluation<dim, n_components, number>::subcell_neighbor_indices(
+    const unsigned int subcell_index) const
+  {
+    AssertIndexRange(subcell_index, n_subcells_total);
+    std::array<unsigned int, 2 * dim> neighbor_indices;
+    unsigned int                      stride = 1;
+    for (unsigned int d = 0; d < dim; ++d)
+      {
+        const unsigned int coordinate = (subcell_index / stride) % n_subcells_1d;
+        neighbor_indices[2 * d] =
+          (coordinate == 0) ? dealii::numbers::invalid_unsigned_int : subcell_index - stride;
+        neighbor_indices[2 * d + 1] = (coordinate == n_subcells_1d - 1) ?
+                                        dealii::numbers::invalid_unsigned_int :
+                                        subcell_index + stride;
+        stride *= n_subcells_1d;
+      }
+    return neighbor_indices;
+  }
+
+  template <int dim, int n_components, typename number>
   void
   FESubcellEvaluation<dim, n_components, number>::setup_internal_data_structures()
   {

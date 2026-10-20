@@ -25,6 +25,23 @@ namespace MeltPoolDG::Utilities
   BETTER_ENUM(LimiterType, char, tvd_minmod, tvb_minmod)
 
   /**
+   * An enumeration for the available troubled cell marking strategies. The following strategies are
+   * available:
+   *
+   * - `subcell_pad`: Mark a cell as troubled if any of its subcell values are outside the physical
+   *          admissible range.
+   * - `cell_nad`: Mark a cell as troubled if the discrete maximum principle is violated on the cell
+   *               level, i.e. if any of the cell values exceed the extrema of the old solution on
+   *               the solution and the face neighbors of the cell. See
+   *               CellwiseNumericalAdmissibility for details.
+   * - `subcell_nad`: Mark a cell as troubled if the discrete maximum principle is violated on the
+   *                  subcell level, i.e. if any of the subcell values are outside the extrema of
+   *                  the old solution over the subcell itself and its face neighbors. See
+   *                  SubcellNumericalAdmissibility for details.
+   */
+  BETTER_ENUM(TroubledCellMarkingStrategy, char, subcell_pad, cell_nad, subcell_nad)
+
+  /**
    * A struct to hold the data for the limiters.
    */
   template <typename number>
@@ -38,6 +55,9 @@ namespace MeltPoolDG::Utilities
 
     /// The type of limiter to apply.
     LimiterType type = LimiterType::tvd_minmod;
+
+    /// The troubled cell marking strategy to use.
+    std::vector<TroubledCellMarkingStrategy> troubled_cell_marking_strategy = {};
 
     /**
      * Add the limiter parameters to the parameter handler.
