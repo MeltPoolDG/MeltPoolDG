@@ -60,4 +60,49 @@ namespace MeltPoolDG
     void
     add_parameters(dealii::ParameterHandler &prm);
   };
+
+  /**
+   * @brief Collection of parameters for the weighted repartitioning of the triangulation in cut applications.
+   *
+   * The weight of a cell is chosen according to its location with respect to the zero level-set
+   * isosurface, as determined by dealii::NonMatching::MeshClassifier:
+   * - inside: the level set is negative on the whole cell,
+   * - outside: the level set is positive on the whole cell,
+   * - intersected: the zero level-set isosurface intersects the cell.
+   */
+  struct CutRepartitionData
+  {
+    /// If true, the triangulation is repartitioned with cell weights according to the location of
+    /// the cells with respect to the level set
+    bool enable = false;
+
+    /// The triangulation is repartitioned every n-th time step
+    unsigned int every_n_step = 100;
+
+    /// Partitioning weights
+    /// The default weights are chosen according to the reference:
+    /// Bergbauer, Maximilian, et al. "High-performance matrix-free unfitted finite element operator
+    /// evaluation." SIAM Journal on Scientific Computing 47.3 (2025): B665-B689. Note that we used
+    /// 20 instead of 10 for the weight of intersected cells, since we have a two-phase flow
+    /// problem.
+    struct Weights
+    {
+      /// Weight of cells located completely inside (negative level set)
+      unsigned int inside = 1;
+
+      /// Weight of cells located completely outside (positive level set)
+      unsigned int outside = 1;
+
+      /// Weight of cells intersected by the zero level-set isosurface
+      unsigned int intersected = 20;
+    } weights;
+
+    /**
+     * @brief Add the repartitioning parameters in the parameter handler.
+     *
+     * @param prm The parameter handler to which the parameters are added.
+     */
+    void
+    add_parameters(dealii::ParameterHandler &prm);
+  };
 } // namespace MeltPoolDG
