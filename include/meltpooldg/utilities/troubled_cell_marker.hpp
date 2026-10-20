@@ -6,8 +6,10 @@
 
 #include <deal.II/lac/la_parallel_vector.h>
 
+#include <meltpooldg/utilities/limiters.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
 #include <meltpooldg/utilities/numerical_admissibility_detection.hpp>
+#include <meltpooldg/utilities/physical_admissibility_detection.hpp>
 
 #include <bitset>
 #include <functional>
@@ -34,17 +36,14 @@ namespace MeltPoolDG
     /**
      * Constructor.
      *
+     * @param limiter_data The limiter data holding the information which marking strategy to use
+     * for the troubled cell detection.
      * @param physical_admissibility_check Function returning for a vectorized subcell state a
      * bitset in which the bits of the physically admissible lanes are set.
      */
     explicit TroubledCellMarker(
-      const std::function<MaskType(const ValueType &)> &physical_admissibility_check);
-
-    /**
-     * Default constructor. The physical admissibility check is set to a function that returns a
-     * bitset with all bits set, i.e., all lanes are considered physically admissible.
-     */
-    TroubledCellMarker();
+      const Utilities::LimiterData<number>             &limiter_data,
+      const std::function<MaskType(const ValueType &)> &physical_admissibility_check = {});
 
     /**
      * Initialize the internal data structures. This function must be called every time the matrix
@@ -83,22 +82,28 @@ namespace MeltPoolDG
     troubled_cells() const;
 
   private:
-    /// Function returning for a vectorized subcell state the bits of the physically admissible
-    /// lanes.
-    std::function<MaskType(const ValueType &)> physical_admissibility_check;
+    /// The limiter data holding the information which marking strategy to use for the troubled cell
+    /// detection.
+    const Utilities::LimiterData<number> limiter_data;
 
     /// Troubled cell markers of the locally owned and ghost cell batches.
     ParallelDistributedCellData<dim, number> marked_cells;
 
+    /// Physical admissibility detection of the candidate on each subcell.
+    PhysicalAdmissibility<dim, n_components, number> physical_admissibility;
+
     /// Numerical admissibility detection based on cellwise bounds.
     CellwiseNumericalAdmissibility<dim, n_components, number> cellwise_numerical_admissibility;
 
-    /// Lanes of each locally owned cell batch in which at least one subcell of the candidate is
-    /// physically inadmissible.
-    std::vector<MaskType> physically_admissible;
+    /// Numerical admissibility detection based on subcellwise bounds.
+    SubcellNumericalAdmissibility<dim, n_components, number> subcellwise_numerical_admissibility;
 
-    /// Lanes of each locally owned cell batch in which the candidate satisfies the relaxed discrete
-    /// maximum principle.
-    std::vector<MaskType> numerically_admissible;
+    /// Troubled lanes of each locally owned cell batch, i.e., the lanes marked by at least one of
+    /// the applied marking strategies.
+    std::vector<MaskType> troubled_cells_mask;
+
+    const bool apply_cellwise_nad;
+    const bool apply_subcellwise_nad;
+    const bool apply_physical_admissibility_check;
   };
 } // namespace MeltPoolDG
