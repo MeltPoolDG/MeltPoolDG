@@ -99,6 +99,12 @@ namespace MeltPoolDG::CompressibleFlow
     w_p.density()      = w_m.density();
     w_p.grad_density() = -(w_m.grad_density());
 
+    for (unsigned int d = 0; d < dim; ++d)
+      {
+        w_p.momentum(d)      = w_m.momentum(d);
+        w_p.grad_momentum(d) = -(w_m.grad_momentum(d));
+      }
+
     // Dirichlet
     auto p_dyn = dealii::VectorizedArray<number>(0.);
     for (unsigned int i = 0; i < dim; ++i)
