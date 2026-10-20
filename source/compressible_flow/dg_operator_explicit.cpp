@@ -171,15 +171,16 @@ namespace MeltPoolDG::CompressibleFlow
 
             if (is_viscous_flow<number, n_species>(flow_scratch_data.material))
               {
-                const auto flux =
-                  ConvectionDiffusionOperator::face(phi_m.get_value(q),
-                                                    phi_p.get_value(q),
-                                                    phi_m.get_gradient(q),
-                                                    phi_p.get_gradient(q),
-                                                    phi_m.normal_vector(q),
-                                                    interior_penalty_parameter,
-                                                    ConvectiveKernel(flow_scratch_data.material),
-                                                    DiffusiveKernel(flow_scratch_data.material));
+                const auto flux = ConvectionDiffusionOperator::face(
+                  phi_m.get_value(q),
+                  phi_p.get_value(q),
+                  phi_m.get_gradient(q),
+                  phi_p.get_gradient(q),
+                  phi_m.normal_vector(q),
+                  interior_penalty_parameter,
+                  ConvectiveKernel(flow_scratch_data.material),
+                  DiffusiveKernel(flow_scratch_data.material),
+                  to_riemann_solver_type(flow_scratch_data.flow_data.numerical_flux_type));
 
                 flux_m = flux.inner_face_value;
                 flux_p = flux.outer_face_value;
@@ -193,7 +194,9 @@ namespace MeltPoolDG::CompressibleFlow
                   ConvectionOperator::face(phi_m.get_value(q),
                                            phi_p.get_value(q),
                                            phi_m.normal_vector(q),
-                                           ConvectiveKernel(flow_scratch_data.material));
+                                           ConvectiveKernel(flow_scratch_data.material),
+                                           to_riemann_solver_type(
+                                             flow_scratch_data.flow_data.numerical_flux_type));
 
                 flux_m = flux.inner_face_value;
                 flux_p = flux.outer_face_value;
@@ -285,15 +288,16 @@ namespace MeltPoolDG::CompressibleFlow
             FaceFluxType<dim, number, n_species> flux_m;
             if (is_viscous_flow<number, n_species>(flow_scratch_data.material))
               {
-                const auto flux =
-                  ConvectionDiffusionOperator::face(phi_m.get_value(q),
-                                                    w_p,
-                                                    phi_m.get_gradient(q),
-                                                    grad_w_p,
-                                                    phi_m.normal_vector(q),
-                                                    interior_penalty_parameter,
-                                                    ConvectiveKernel(flow_scratch_data.material),
-                                                    DiffusiveKernel(flow_scratch_data.material));
+                const auto flux = ConvectionDiffusionOperator::face(
+                  phi_m.get_value(q),
+                  w_p,
+                  phi_m.get_gradient(q),
+                  grad_w_p,
+                  phi_m.normal_vector(q),
+                  interior_penalty_parameter,
+                  ConvectiveKernel(flow_scratch_data.material),
+                  DiffusiveKernel(flow_scratch_data.material),
+                  to_riemann_solver_type(flow_scratch_data.flow_data.numerical_flux_type));
 
                 flux_m = flux.inner_face_value;
 
@@ -305,7 +309,9 @@ namespace MeltPoolDG::CompressibleFlow
                   ConvectionOperator::face(phi_m.get_value(q),
                                            w_p,
                                            phi_m.normal_vector(q),
-                                           ConvectiveKernel(flow_scratch_data.material));
+                                           ConvectiveKernel(flow_scratch_data.material),
+                                           to_riemann_solver_type(
+                                             flow_scratch_data.flow_data.numerical_flux_type));
 
                 flux_m = flux.inner_face_value;
               }

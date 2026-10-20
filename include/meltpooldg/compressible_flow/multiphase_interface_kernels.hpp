@@ -718,10 +718,8 @@ namespace MeltPoolDG::Multiphase
     total_flux_liquid -= penalty_flux_liquid;
     total_flux_gas -= penalty_flux_gas;
 
-    return {contract_tensor_with_vector<CompressibleFlow::n_conserved_variables<dim>, dim, number>(
-              total_flux_liquid, normal),
-            contract_tensor_with_vector<CompressibleFlow::n_conserved_variables<dim>, dim, number>(
-              total_flux_gas, normal)};
+    return {contract_tensor_with_vector(total_flux_liquid, normal),
+            contract_tensor_with_vector(total_flux_gas, normal)};
   }
 
   /**
@@ -913,11 +911,9 @@ namespace MeltPoolDG::Multiphase
     const ConservedVariablesType weighted_viscous_flux =
       UtilityFunctions::calculate_arithmetic_phase_weighted_average(
         visc_ave_weight_phase_gas,
-        contract_tensor_with_vector<CompressibleFlow::n_conserved_variables<dim>, dim, number>(
-          viscous_flux_liquid, normal),
+        contract_tensor_with_vector(viscous_flux_liquid, normal),
         visc_ave_weight_phase_liquid,
-        contract_tensor_with_vector<CompressibleFlow::n_conserved_variables<dim>, dim, number>(
-          viscous_flux_gas, normal));
+        contract_tensor_with_vector(viscous_flux_gas, normal));
 
     const ConservedVariablesType total_viscous_flux_liquid =
       -J_Rob * visc_ave_weight_phase_liquid - weighted_viscous_flux + penalty_term_dT;

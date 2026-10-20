@@ -528,14 +528,10 @@ namespace MeltPoolDG::Multiphase
                                 ConvectiveKernel(multiphase_scratch_data.material_gas),
                                 m_dot_evap);
 
-                            ConservedVariablesType flux_liquid = contract_tensor_with_vector<
-                              CompressibleFlow::n_conserved_variables<dim>,
-                              dim,
-                              number>(riemann_flux_liquid, normal);
-                            ConservedVariablesType flux_gas = contract_tensor_with_vector<
-                              CompressibleFlow::n_conserved_variables<dim>,
-                              dim,
-                              number>(riemann_flux_gas, -normal);
+                            ConservedVariablesType flux_liquid =
+                              contract_tensor_with_vector(riemann_flux_liquid, normal);
+                            ConservedVariablesType flux_gas =
+                              contract_tensor_with_vector(riemann_flux_gas, -normal);
                             // TODO: consider more complex data structure for velocity for dim>1
                             // TODO: project interface velocity in normal direction for dim>1
                             // returns velocity with respect to the outward liquid phase pointing
@@ -722,14 +718,16 @@ namespace MeltPoolDG::Multiphase
 
               if (is_viscous)
                 {
-                  const auto flux = ConvectionDiffusionOperator::face(eval_m.get_value(q),
-                                                                      eval_p.get_value(q),
-                                                                      eval_m.get_gradient(q),
-                                                                      eval_p.get_gradient(q),
-                                                                      eval_m.normal_vector(q),
-                                                                      interior_penalty_parameter,
-                                                                      ConvectiveKernel(material),
-                                                                      DiffusiveKernel(material));
+                  const auto flux = ConvectionDiffusionOperator::face(
+                    eval_m.get_value(q),
+                    eval_p.get_value(q),
+                    eval_m.get_gradient(q),
+                    eval_p.get_gradient(q),
+                    eval_m.normal_vector(q),
+                    interior_penalty_parameter,
+                    ConvectiveKernel(material),
+                    DiffusiveKernel(material),
+                    to_riemann_solver_type(multiphase_scratch_data.flow_data.numerical_flux_type));
 
                   flux_m = flux.inner_face_value;
                   flux_p = flux.outer_face_value;
@@ -739,10 +737,12 @@ namespace MeltPoolDG::Multiphase
                 }
               else
                 {
-                  const auto flux = ConvectionOperator::face(eval_m.get_value(q),
-                                                             eval_p.get_value(q),
-                                                             eval_m.normal_vector(q),
-                                                             ConvectiveKernel(material));
+                  const auto flux = ConvectionOperator::face(
+                    eval_m.get_value(q),
+                    eval_p.get_value(q),
+                    eval_m.normal_vector(q),
+                    ConvectiveKernel(material),
+                    to_riemann_solver_type(multiphase_scratch_data.flow_data.numerical_flux_type));
 
                   flux_m = flux.inner_face_value;
                   flux_p = flux.outer_face_value;
@@ -816,15 +816,17 @@ namespace MeltPoolDG::Multiphase
 
                   if (is_viscous)
                     {
-                      const auto flux =
-                        ConvectionDiffusionOperator::face(w_m,
-                                                          w_p,
-                                                          grad_w_m,
-                                                          grad_w_p,
-                                                          normal,
-                                                          interior_penalty_parameter,
-                                                          ConvectiveKernel(material),
-                                                          DiffusiveKernel(material));
+                      const auto flux = ConvectionDiffusionOperator::face(
+                        w_m,
+                        w_p,
+                        grad_w_m,
+                        grad_w_p,
+                        normal,
+                        interior_penalty_parameter,
+                        ConvectiveKernel(material),
+                        DiffusiveKernel(material),
+                        to_riemann_solver_type(
+                          multiphase_scratch_data.flow_data.numerical_flux_type));
 
                       flux_m = flux.inner_face_value;
                       flux_p = flux.outer_face_value;
@@ -834,8 +836,13 @@ namespace MeltPoolDG::Multiphase
                     }
                   else
                     {
-                      const auto flux =
-                        ConvectionOperator::face(w_m, w_p, normal, ConvectiveKernel(material));
+                      const auto flux = ConvectionOperator::face(
+                        w_m,
+                        w_p,
+                        normal,
+                        ConvectiveKernel(material),
+                        to_riemann_solver_type(
+                          multiphase_scratch_data.flow_data.numerical_flux_type));
 
                       flux_m = flux.inner_face_value;
                       flux_p = flux.outer_face_value;
@@ -1000,14 +1007,16 @@ namespace MeltPoolDG::Multiphase
               CompressibleFlow::FaceFluxType<dim, number> flux_m;
               if (is_viscous)
                 {
-                  const auto flux = ConvectionDiffusionOperator::face(eval_m.get_value(q),
-                                                                      w_p,
-                                                                      eval_m.get_gradient(q),
-                                                                      grad_w_p,
-                                                                      eval_m.normal_vector(q),
-                                                                      interior_penalty_parameter,
-                                                                      ConvectiveKernel(material),
-                                                                      DiffusiveKernel(material));
+                  const auto flux = ConvectionDiffusionOperator::face(
+                    eval_m.get_value(q),
+                    w_p,
+                    eval_m.get_gradient(q),
+                    grad_w_p,
+                    eval_m.normal_vector(q),
+                    interior_penalty_parameter,
+                    ConvectiveKernel(material),
+                    DiffusiveKernel(material),
+                    to_riemann_solver_type(multiphase_scratch_data.flow_data.numerical_flux_type));
 
                   flux_m = flux.inner_face_value;
 
@@ -1015,10 +1024,12 @@ namespace MeltPoolDG::Multiphase
                 }
               else
                 {
-                  const auto flux = ConvectionOperator::face(eval_m.get_value(q),
-                                                             w_p,
-                                                             eval_m.normal_vector(q),
-                                                             ConvectiveKernel(material));
+                  const auto flux = ConvectionOperator::face(
+                    eval_m.get_value(q),
+                    w_p,
+                    eval_m.normal_vector(q),
+                    ConvectiveKernel(material),
+                    to_riemann_solver_type(multiphase_scratch_data.flow_data.numerical_flux_type));
 
                   flux_m = flux.inner_face_value;
                 }
@@ -1084,15 +1095,17 @@ namespace MeltPoolDG::Multiphase
                     CompressibleFlow::FaceFluxType<dim, number> flux_m;
                     if (is_viscous)
                       {
-                        const auto flux =
-                          ConvectionDiffusionOperator::face(w_m,
-                                                            w_p,
-                                                            grad_w_m,
-                                                            grad_w_p,
-                                                            normal,
-                                                            interior_penalty_parameter,
-                                                            ConvectiveKernel(material),
-                                                            DiffusiveKernel(material));
+                        const auto flux = ConvectionDiffusionOperator::face(
+                          w_m,
+                          w_p,
+                          grad_w_m,
+                          grad_w_p,
+                          normal,
+                          interior_penalty_parameter,
+                          ConvectiveKernel(material),
+                          DiffusiveKernel(material),
+                          to_riemann_solver_type(
+                            multiphase_scratch_data.flow_data.numerical_flux_type));
 
                         flux_m = flux.inner_face_value;
 
@@ -1100,8 +1113,13 @@ namespace MeltPoolDG::Multiphase
                       }
                     else
                       {
-                        const auto flux =
-                          ConvectionOperator::face(w_m, w_p, normal, ConvectiveKernel(material));
+                        const auto flux = ConvectionOperator::face(
+                          w_m,
+                          w_p,
+                          normal,
+                          ConvectiveKernel(material),
+                          to_riemann_solver_type(
+                            multiphase_scratch_data.flow_data.numerical_flux_type));
 
                         flux_m = flux.inner_face_value;
                       }

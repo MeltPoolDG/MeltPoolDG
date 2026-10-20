@@ -37,6 +37,14 @@ public:
   {
     return 2.0;
   }
+
+  std::pair<number, number>
+  smallest_and_largest_wave_speed(const ValueType &,
+                                  const ValueType &,
+                                  const dealii::Tensor<1, dim, number> &) const
+  {
+    return {1.0, 3.0};
+  }
 };
 
 class DiffusiveKernelFake
