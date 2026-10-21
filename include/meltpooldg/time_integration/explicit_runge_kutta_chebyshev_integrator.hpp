@@ -30,12 +30,6 @@ namespace MeltPoolDG::TimeIntegration
   public:
     using VectorType = dealii::LinearAlgebra::distributed::Vector<number>;
 
-    using RhsFunctionType = std::function<void(number,
-                                               number,
-                                               VectorType &,
-                                               const VectorType &,
-                                               std::function<void(unsigned, unsigned)>)>;
-
     /**
      * Constructor. Set the coefficients for the Runge-Kutta Chebyshev scheme and store
      * the function which computes the right-hand side of the ODE system internally.
@@ -45,8 +39,8 @@ namespace MeltPoolDG::TimeIntegration
      */
 
     explicit ExplicitRungeKuttaChebyshevIntegrator(
-      const TimeIntegratorData<number> &time_integrator_data,
-      const RhsFunctionType            &compute_rhs);
+      const TimeIntegratorData<number>                          &time_integrator_data,
+      const TimeIntegratorBase<number>::ExplicitRhsFunctionType &compute_rhs);
 
     /**
      * Returns the number of previous solutions, that is solutions at time step n - x, where x >= 0,
@@ -164,6 +158,6 @@ namespace MeltPoolDG::TimeIntegration
     ///                    a range of global indices `[begin, end)` to process, ensuring all
     ///                    indices are handled. Designed for efficient integration with deal.II’s
     ///                    matrix-free framework.
-    RhsFunctionType compute_rhs;
+    TimeIntegratorBase<number>::ExplicitRhsFunctionType compute_rhs;
   };
 } // namespace MeltPoolDG::TimeIntegration
