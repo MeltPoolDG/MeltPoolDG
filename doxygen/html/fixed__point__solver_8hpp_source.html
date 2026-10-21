@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/linear_algebra/fixed_point_solver.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/parameters/index.html">📦 Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/linear_algebra/fixed_point_solver.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/fixed__point__solver_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-linear-algebra-fixed-point-solver-hpp-source-file">
+<h1>include/meltpooldg/linear_algebra/fixed_point_solver.hpp Source File<a class="headerlink" href="#include-meltpooldg-linear-algebra-fixed-point-solver-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/linear_algebra/fixed_point_solver.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_7408abf3d1459402edeb1922a4712e77.html">linear_algebra</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">fixed_point_solver.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="fixed__point__solver_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;deal.II/lac/generic_linear_algebra.h&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="scratch__data_8hpp.html">meltpooldg/core/scratch_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="nonlinear__solver__data_8hpp.html">meltpooldg/linear_algebra/nonlinear_solver_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="vector__tools_8hpp.html">meltpooldg/utilities/vector_tools.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG.html">MeltPoolDG</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number,</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>            <span class="keyword">typename</span> <a class="code hl_typedef" href="namespaceMeltPoolDG_1_1Utilities_1_1MatrixFree.html#aed2f6423007d1255567f4358ccd5d38c">VectorType</a> = dealii::LinearAlgebra::distributed::Vector&lt;number&gt;&gt;</div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html">   12</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1FixedPointSolver.html">FixedPointSolver</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#a432295e73a58cc85804672713ccce7ff">   22</a></span>    std::function&lt;int(<span class="keyword">const</span> VectorType &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#aff3b512ff2258ed89d307f6d976ebbf5">rhs</a>, VectorType &amp;dst)&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#a432295e73a58cc85804672713ccce7ff">solve_fixed_point</a> = {};</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#a10d6c86c79afa2decaa946a2c72d339b">   29</a></span>    std::function&lt;void(VectorType &amp;v)&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#a10d6c86c79afa2decaa946a2c72d339b">reinit_vector</a> = {};</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#aa6d6ba6345b0a5788fcd623741cd7c92">   36</a></span>    std::function&lt;void(VectorType &amp;v)&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#aa6d6ba6345b0a5788fcd623741cd7c92">distribute_constraints</a> = {};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#a5e7ce6c47c707e6ef6698dc2e74dcd0a">   44</a></span>    std::function&lt;void(<span class="keyword">const</span> VectorType &amp;src, VectorType &amp;dst)&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#a5e7ce6c47c707e6ef6698dc2e74dcd0a">create_rhs</a> = {};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#ab417477e9f339b9079756adee83445ab">   51</a></span>    std::function&lt;number()&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#ab417477e9f339b9079756adee83445ab">norm_of_solution_vector</a> = {};</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#a74d93d9aad0aede03448ecb8df2edf65">   55</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1NonlinearSolverData.html">NonlinearSolverData&lt;number&gt;</a> <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#a74d93d9aad0aede03448ecb8df2edf65">nlsolve_data</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#aff9b870bdb20526cb298f7a6761535e4">   58</a></span>    dealii::ConditionalOStream <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#aff9b870bdb20526cb298f7a6761535e4">pcout</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#a32a42ffa75a7c776ebb2a173eac76f17">   61</a></span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#a32a42ffa75a7c776ebb2a173eac76f17">max_number_of_iterations</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#a1f1b256d539752529f7667c3c243430c">   64</a></span>    number <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#a1f1b256d539752529f7667c3c243430c">residual_tolerance</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#a6cf00d3be5733b15fd8a03dbf0a5be8b">   67</a></span>    number <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#a6cf00d3be5733b15fd8a03dbf0a5be8b">field_correction_tolerance</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#aff3b512ff2258ed89d307f6d976ebbf5">   70</a></span>    VectorType <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#aff3b512ff2258ed89d307f6d976ebbf5">rhs</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#aa4b8e61591649ff0e2323f72607ea686">   73</a></span>    VectorType <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#aa4b8e61591649ff0e2323f72607ea686">new_solution</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#ac97299123625a3ec75ebbc0e51a05174">   76</a></span>    VectorType <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#ac97299123625a3ec75ebbc0e51a05174">current_solution</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#af67af51376d54f7f7ed0f64a04d83335">   79</a></span>    VectorType <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#af67af51376d54f7f7ed0f64a04d83335">residual</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#a1848d77ae16aeeaa73f99ee4369c5571">   82</a></span>    VectorType <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#a1848d77ae16aeeaa73f99ee4369c5571">solution_update</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#a1dd203ec0b2ddc763503a0bb1033ee0c">   85</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#a1dd203ec0b2ddc763503a0bb1033ee0c">iteration_counter</a> = 0;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#ad23423610ecb38f2eca240e531edbe41">   88</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#ad23423610ecb38f2eca240e531edbe41">linear_iter_acc</a> = 0;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#a123679e5d0aec4bb207f770aca258cca">   91</a></span>    std::ostringstream <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#a123679e5d0aec4bb207f770aca258cca">str_</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classMeltPoolDG_1_1FixedPointSolver.html">FixedPointSolver</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1NonlinearSolverData.html">NonlinearSolverData&lt;number&gt;</a> &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#a74d93d9aad0aede03448ecb8df2edf65">nlsolve_data</a>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FixedPointSolver.html#acb299a14b4bc0096dc046867adf8e170">solve</a>(VectorType &amp;solution);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keyword">const</span> VectorType &amp;</div>
+<div class="foldopen" id="foldopen00115" data-start="{" data-end="}">
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#a41650a6f2062356112b288e5b024ad18">  115</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1FixedPointSolver.html#a41650a6f2062356112b288e5b024ad18">get_residual</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#af67af51376d54f7f7ed0f64a04d83335">residual</a>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
+</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keyword">const</span> VectorType &amp;</div>
+<div class="foldopen" id="foldopen00126" data-start="{" data-end="}">
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1FixedPointSolver.html#a2887fd489f7b9dc43d7cfa4425503cb3">  126</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1FixedPointSolver.html#a2887fd489f7b9dc43d7cfa4425503cb3">get_solution</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1FixedPointSolver.html#aa4b8e61591649ff0e2323f72607ea686">new_solution</a>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    }</div>
+</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FixedPointSolver.html#a80b509b213a122d70411a84acd8308b9">solve_increment</a>();</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    number</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FixedPointSolver.html#a03a971c73b0bbcbc88aa06ce63d4555c">suggest_new_time_increment</a>();</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FixedPointSolver.html#af7981dd14f6871ab3dd45b4b5810a64e">set_tolerances_to_alternative_values</a>();</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordtype">bool</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FixedPointSolver.html#a626e340e1e3364e1c4b28dd443a89562">is_converged</a>();</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FixedPointSolver.html#af299eca26f001b574583926938b40548">print_header</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    std::string</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <a class="code hl_function" href="classMeltPoolDG_1_1FixedPointSolver.html#a42c59945d0329b626d37e349241fbcb7">print_checkmark</a>(<span class="keywordtype">bool</span> <a class="code hl_function" href="classMeltPoolDG_1_1FixedPointSolver.html#a626e340e1e3364e1c4b28dd443a89562">is_converged</a>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  };</div>
+</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html">MeltPoolDG::FixedPointSolver</a></div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:13</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a03a971c73b0bbcbc88aa06ce63d4555c"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a03a971c73b0bbcbc88aa06ce63d4555c">MeltPoolDG::FixedPointSolver::suggest_new_time_increment</a></div><div class="ttdeci">number suggest_new_time_increment()</div><div class="ttdoc">Suggest a new time increment based on the current solution and residual.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.cpp:106</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a10d6c86c79afa2decaa946a2c72d339b"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a10d6c86c79afa2decaa946a2c72d339b">MeltPoolDG::FixedPointSolver::reinit_vector</a></div><div class="ttdeci">std::function&lt; void(VectorType &amp;v)&gt; reinit_vector</div><div class="ttdoc">Reinitialize an arbitrary vector.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:29</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a123679e5d0aec4bb207f770aca258cca"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a123679e5d0aec4bb207f770aca258cca">MeltPoolDG::FixedPointSolver::str_</a></div><div class="ttdeci">std::ostringstream str_</div><div class="ttdoc">String stream for formatting output.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:91</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a1848d77ae16aeeaa73f99ee4369c5571"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a1848d77ae16aeeaa73f99ee4369c5571">MeltPoolDG::FixedPointSolver::solution_update</a></div><div class="ttdeci">VectorType solution_update</div><div class="ttdoc">Solution update vector for the fixed-point iteration.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:82</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a1dd203ec0b2ddc763503a0bb1033ee0c"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a1dd203ec0b2ddc763503a0bb1033ee0c">MeltPoolDG::FixedPointSolver::iteration_counter</a></div><div class="ttdeci">int iteration_counter</div><div class="ttdoc">Counter for the number of iterations performed.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:85</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a1f1b256d539752529f7667c3c243430c"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a1f1b256d539752529f7667c3c243430c">MeltPoolDG::FixedPointSolver::residual_tolerance</a></div><div class="ttdeci">number residual_tolerance</div><div class="ttdoc">Tolerance for the residual of the fixed-point iteration.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:64</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a2887fd489f7b9dc43d7cfa4425503cb3"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a2887fd489f7b9dc43d7cfa4425503cb3">MeltPoolDG::FixedPointSolver::get_solution</a></div><div class="ttdeci">const VectorType &amp; get_solution() const</div><div class="ttdoc">Get the solution vector.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:126</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a32a42ffa75a7c776ebb2a173eac76f17"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a32a42ffa75a7c776ebb2a173eac76f17">MeltPoolDG::FixedPointSolver::max_number_of_iterations</a></div><div class="ttdeci">const int max_number_of_iterations</div><div class="ttdoc">Maximum total number of iterations (including alternative tolerances phase).</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:61</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a41650a6f2062356112b288e5b024ad18"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a41650a6f2062356112b288e5b024ad18">MeltPoolDG::FixedPointSolver::get_residual</a></div><div class="ttdeci">const VectorType &amp; get_residual() const</div><div class="ttdoc">Get the residual vector.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:115</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a42c59945d0329b626d37e349241fbcb7"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a42c59945d0329b626d37e349241fbcb7">MeltPoolDG::FixedPointSolver::print_checkmark</a></div><div class="ttdeci">std::string print_checkmark(bool is_converged) const</div><div class="ttdoc">Print the footer for the fixed-point solver output.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.cpp:146</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a432295e73a58cc85804672713ccce7ff"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a432295e73a58cc85804672713ccce7ff">MeltPoolDG::FixedPointSolver::solve_fixed_point</a></div><div class="ttdeci">std::function&lt; int(const VectorType &amp;rhs, VectorType &amp;dst)&gt; solve_fixed_point</div><div class="ttdoc">Solve the equation using fixed-point iteration.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:22</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a5e7ce6c47c707e6ef6698dc2e74dcd0a"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a5e7ce6c47c707e6ef6698dc2e74dcd0a">MeltPoolDG::FixedPointSolver::create_rhs</a></div><div class="ttdeci">std::function&lt; void(const VectorType &amp;src, VectorType &amp;dst)&gt; create_rhs</div><div class="ttdoc">Create the right-hand side vector.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:44</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a626e340e1e3364e1c4b28dd443a89562"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a626e340e1e3364e1c4b28dd443a89562">MeltPoolDG::FixedPointSolver::is_converged</a></div><div class="ttdeci">bool is_converged()</div><div class="ttdoc">Check if the fixed-point iteration has converged.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.cpp:122</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a6cf00d3be5733b15fd8a03dbf0a5be8b"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a6cf00d3be5733b15fd8a03dbf0a5be8b">MeltPoolDG::FixedPointSolver::field_correction_tolerance</a></div><div class="ttdeci">number field_correction_tolerance</div><div class="ttdoc">Tolerance for the correction of the solution vector in the fixed-point iteration.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:67</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a74d93d9aad0aede03448ecb8df2edf65"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a74d93d9aad0aede03448ecb8df2edf65">MeltPoolDG::FixedPointSolver::nlsolve_data</a></div><div class="ttdeci">const NonlinearSolverData&lt; number &gt; nlsolve_data</div><div class="ttdoc">Nonlinear solver parameters of the class.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:55</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_a80b509b213a122d70411a84acd8308b9"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#a80b509b213a122d70411a84acd8308b9">MeltPoolDG::FixedPointSolver::solve_increment</a></div><div class="ttdeci">void solve_increment()</div><div class="ttdoc">Solve the fixed-point iteration for one increment.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.cpp:153</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_aa4b8e61591649ff0e2323f72607ea686"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#aa4b8e61591649ff0e2323f72607ea686">MeltPoolDG::FixedPointSolver::new_solution</a></div><div class="ttdeci">VectorType new_solution</div><div class="ttdoc">New iteration solution vector.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:73</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_aa6d6ba6345b0a5788fcd623741cd7c92"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#aa6d6ba6345b0a5788fcd623741cd7c92">MeltPoolDG::FixedPointSolver::distribute_constraints</a></div><div class="ttdeci">std::function&lt; void(VectorType &amp;v)&gt; distribute_constraints</div><div class="ttdoc">Distribute constraints.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:36</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_ab417477e9f339b9079756adee83445ab"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#ab417477e9f339b9079756adee83445ab">MeltPoolDG::FixedPointSolver::norm_of_solution_vector</a></div><div class="ttdeci">std::function&lt; number()&gt; norm_of_solution_vector</div><div class="ttdoc">Get the norm of the solution vector.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:51</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_ac97299123625a3ec75ebbc0e51a05174"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#ac97299123625a3ec75ebbc0e51a05174">MeltPoolDG::FixedPointSolver::current_solution</a></div><div class="ttdeci">VectorType current_solution</div><div class="ttdoc">Old iteration solution vector.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:76</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_acb299a14b4bc0096dc046867adf8e170"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#acb299a14b4bc0096dc046867adf8e170">MeltPoolDG::FixedPointSolver::solve</a></div><div class="ttdeci">void solve(VectorType &amp;solution)</div><div class="ttdoc">Solve the fixed-point iteration.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.cpp:24</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_ad23423610ecb38f2eca240e531edbe41"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#ad23423610ecb38f2eca240e531edbe41">MeltPoolDG::FixedPointSolver::linear_iter_acc</a></div><div class="ttdeci">int linear_iter_acc</div><div class="ttdoc">Number of linear iterations performed during the fixed-point iteration.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:88</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_af299eca26f001b574583926938b40548"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#af299eca26f001b574583926938b40548">MeltPoolDG::FixedPointSolver::print_header</a></div><div class="ttdeci">void print_header() const</div><div class="ttdoc">Print the header for the fixed-point solver output.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.cpp:90</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_af67af51376d54f7f7ed0f64a04d83335"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#af67af51376d54f7f7ed0f64a04d83335">MeltPoolDG::FixedPointSolver::residual</a></div><div class="ttdeci">VectorType residual</div><div class="ttdoc">Residual vector for the fixed-point iteration.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:79</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_af7981dd14f6871ab3dd45b4b5810a64e"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#af7981dd14f6871ab3dd45b4b5810a64e">MeltPoolDG::FixedPointSolver::set_tolerances_to_alternative_values</a></div><div class="ttdeci">void set_tolerances_to_alternative_values()</div><div class="ttdoc">Set the tolerances to alternative values when the fixed-point iteration does not converge in the firs...</div><div class="ttdef"><b>Definition</b> fixed_point_solver.cpp:114</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_aff3b512ff2258ed89d307f6d976ebbf5"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#aff3b512ff2258ed89d307f6d976ebbf5">MeltPoolDG::FixedPointSolver::rhs</a></div><div class="ttdeci">VectorType rhs</div><div class="ttdoc">Right-hand side vector for the fixed-point iteration.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:70</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1FixedPointSolver_html_aff9b870bdb20526cb298f7a6761535e4"><div class="ttname"><a href="classMeltPoolDG_1_1FixedPointSolver.html#aff9b870bdb20526cb298f7a6761535e4">MeltPoolDG::FixedPointSolver::pcout</a></div><div class="ttdeci">dealii::ConditionalOStream pcout</div><div class="ttdoc">Output stream for printing information.</div><div class="ttdef"><b>Definition</b> fixed_point_solver.hpp:58</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Utilities_1_1MatrixFree_html_aed2f6423007d1255567f4358ccd5d38c"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Utilities_1_1MatrixFree.html#aed2f6423007d1255567f4358ccd5d38c">MeltPoolDG::Utilities::MatrixFree::VectorType</a></div><div class="ttdeci">dealii::LinearAlgebra::distributed::Vector&lt; number &gt; VectorType</div><div class="ttdef"><b>Definition</b> utilities_matrixfree.hpp:15</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> boundary_condition_functions.hpp:17</div></div>
+<div class="ttc" id="anonlinear__solver__data_8hpp_html"><div class="ttname"><a href="nonlinear__solver__data_8hpp.html">nonlinear_solver_data.hpp</a></div></div>
+<div class="ttc" id="ascratch__data_8hpp_html"><div class="ttname"><a href="scratch__data_8hpp.html">scratch_data.hpp</a></div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1NonlinearSolverData_html"><div class="ttname"><a href="structMeltPoolDG_1_1NonlinearSolverData.html">MeltPoolDG::NonlinearSolverData</a></div><div class="ttdef"><b>Definition</b> nonlinear_solver_data.hpp:12</div></div>
+<div class="ttc" id="avector__tools_8hpp_html"><div class="ttname"><a href="vector__tools_8hpp.html">vector_tools.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

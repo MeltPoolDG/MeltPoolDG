@@ -176,7 +176,7 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1Journal" id="r_namespaceMeltPoolDG_1_1Journal"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Journal.html">Journal</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1LevelSet" id="r_namespaceMeltPoolDG_1_1LevelSet"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1LevelSet.html">LevelSet</a></td></tr>
-<tr class="memdesc:namespaceMeltPoolDG_1_1LevelSet"><td class="mdescLeft">&#160;</td><td class="mdescRight">This operation solves the reinitialization problem for a CG-FEM-based discrete level-set field by solving an elliptic problem using analytical implicit Newton-Raphson method. <br /></td></tr>
+<tr class="memdesc:namespaceMeltPoolDG_1_1LevelSet"><td class="mdescLeft">&#160;</td><td class="mdescRight">This operation solves the reinitialization problem for a CG- or DG-FEM-based discrete level-set field by solving an elliptic problem. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1MaterialUpdateFlags" id="r_namespaceMeltPoolDG_1_1MaterialUpdateFlags"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1MaterialUpdateFlags.html">MaterialUpdateFlags</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -256,6 +256,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1FESubcellFaceEvaluation.html">FESubcellFaceEvaluation</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1FiniteElementData.html">FiniteElementData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1FixedPointSolver.html">FixedPointSolver</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1FluidStructureInteractionData.html">FluidStructureInteractionData</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -442,6 +444,8 @@ Functions</h2></td></tr>
 <tr class="separator:a7faac38c30c0935e8a35011d1732c0c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa979998899ba9e4b931bbbb49a80165f" id="r_aa979998899ba9e4b931bbbb49a80165f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#aa979998899ba9e4b931bbbb49a80165f">DeclExceptionMsg</a> (ExcNewtonDidNotConverge, &quot;The Newton-Raphson solver did not converge.&quot;)</td></tr>
 <tr class="separator:aa979998899ba9e4b931bbbb49a80165f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97236bf102d136877e74827d61af885d" id="r_a97236bf102d136877e74827d61af885d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a97236bf102d136877e74827d61af885d">DeclExceptionMsg</a> (ExcFixedPointDidNotConverge, &quot;The fixed point solver did not converge.&quot;)</td></tr>
+<tr class="separator:a97236bf102d136877e74827d61af885d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a5ea428e1220e39cfa22b0b29d842ac" id="r_a5a5ea428e1220e39cfa22b0b29d842ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a5a5ea428e1220e39cfa22b0b29d842ac">DeclExceptionMsg</a> (ExcHeatTransferNoConvergence, &quot;The heat transfer solver did not converge.&quot;)</td></tr>
 <tr class="separator:a5a5ea428e1220e39cfa22b0b29d842ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6fd15dc2ba0cd2c3effdf81965d0a6c" id="r_ad6fd15dc2ba0cd2c3effdf81965d0a6c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ad6fd15dc2ba0cd2c3effdf81965d0a6c">DeclException2</a> (ExcInvalidCSVInputColumns, unsigned int, unsigned int,&lt;&lt; &quot;Expected &quot;&lt;&lt; arg1&lt;&lt; &quot; columns in each line of the CSV file, but got &quot;&lt;&lt; arg2&lt;&lt; &quot;. Please check your input file.&quot;)</td></tr>
@@ -1950,8 +1954,36 @@ template&lt;int dim_1, int dim_2, typename number &gt; </div>
 
 </div>
 </div>
+<a id="a97236bf102d136877e74827d61af885d" name="a97236bf102d136877e74827d61af885d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97236bf102d136877e74827d61af885d">&#9670;&#160;</a></span>DeclExceptionMsg() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MeltPoolDG::DeclExceptionMsg </td>
+          <td>(</td>
+          <td class="paramtype">ExcFixedPointDidNotConverge&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;The fixed point solver did not converge.&quot;&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a5a5ea428e1220e39cfa22b0b29d842ac" name="a5a5ea428e1220e39cfa22b0b29d842ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a5ea428e1220e39cfa22b0b29d842ac">&#9670;&#160;</a></span>DeclExceptionMsg() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a5ea428e1220e39cfa22b0b29d842ac">&#9670;&#160;</a></span>DeclExceptionMsg() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1979,7 +2011,7 @@ template&lt;int dim_1, int dim_2, typename number &gt; </div>
 </div>
 </div>
 <a id="aa979998899ba9e4b931bbbb49a80165f" name="aa979998899ba9e4b931bbbb49a80165f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa979998899ba9e4b931bbbb49a80165f">&#9670;&#160;</a></span>DeclExceptionMsg() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa979998899ba9e4b931bbbb49a80165f">&#9670;&#160;</a></span>DeclExceptionMsg() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2007,7 +2039,7 @@ template&lt;int dim_1, int dim_2, typename number &gt; </div>
 </div>
 </div>
 <a id="a7faac38c30c0935e8a35011d1732c0c0" name="a7faac38c30c0935e8a35011d1732c0c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7faac38c30c0935e8a35011d1732c0c0">&#9670;&#160;</a></span>DeclExceptionMsg() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7faac38c30c0935e8a35011d1732c0c0">&#9670;&#160;</a></span>DeclExceptionMsg() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
