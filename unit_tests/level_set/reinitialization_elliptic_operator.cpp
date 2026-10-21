@@ -89,10 +89,10 @@ namespace MeltPoolDG::LevelSet
         level_set = 1.0;
       }
 
-      ReinitializationEllipticOperator<dim, number>
+      ReinitializationEllipticOperatorFixedPoint<dim, number>
       make_operator()
       {
-        return ReinitializationEllipticOperator<dim, number>(
+        return ReinitializationEllipticOperatorFixedPoint<dim, number>(
           scratch_data, reinit_data, 0, 0, mapping_info_surface, 0);
       }
     };

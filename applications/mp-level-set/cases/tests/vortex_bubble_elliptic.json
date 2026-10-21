@@ -7,7 +7,8 @@
     "do print parameters": false,
     "fe": {
       "degree": 1
-    }
+    },
+    "verbosity level": 1
   },
   "time stepping": {
     "start time": 0.0,
@@ -16,7 +17,7 @@
   },
   "output": {
     "paraview": {
-      "enable": false
+      "enable": true
     }
   },
   "level set": {
@@ -31,9 +32,12 @@
       "elliptic": {
         "penalty parameter": 10000000000.0,
         "nlsolve": {
-          "max nonlinear iterations": 10,
-          "residual tolerance": 1e-05,
-          "verbosity": 1
+          "max nonlinear iterations": 100,
+          "residual tolerance": 0.001,
+          "residual tolerance alt": 0.1,
+          "field correction tolerance": 0.001,
+          "field correction tolerance alt": 0.1,
+          "verbosity level": 1
         }
       }
     },
