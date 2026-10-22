@@ -177,9 +177,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a24bb3c85b3231ff55ef4139acd4be8eb" id="r_a24bb3c85b3231ff55ef4139acd4be8eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a24bb3c85b3231ff55ef4139acd4be8eb">create_partitioning</a> ()</td></tr>
 <tr class="memdesc:a24bb3c85b3231ff55ef4139acd4be8eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build partitioning and cell-size information for all attached DoFHandlers.  <br /></td></tr>
 <tr class="separator:a24bb3c85b3231ff55ef4139acd4be8eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cd19fa26ce0de830df64c555a8402a9" id="r_a8cd19fa26ce0de830df64c555a8402a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build</a> (const bool enable_boundary_face_loops, const bool enable_inner_face_loops, const bool enable_normal_vector_update=false, const bool enable_inner_face_hessians_update=false)</td></tr>
-<tr class="memdesc:a8cd19fa26ce0de830df64c555a8402a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build matrix-free and mapping-related data structures.  <br /></td></tr>
-<tr class="separator:a8cd19fa26ce0de830df64c555a8402a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa636d561ee15da4ac020b52b1d289efd" id="r_aa636d561ee15da4ac020b52b1d289efd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#aa636d561ee15da4ac020b52b1d289efd">build</a> (const bool enable_boundary_face_loops, const bool enable_inner_face_loops, const bool enable_normal_vector_update=false, const bool enable_inner_face_hessians_update=false, const bool hold_all_faces_to_owned_cells=false)</td></tr>
+<tr class="memdesc:aa636d561ee15da4ac020b52b1d289efd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build matrix-free and mapping-related data structures.  <br /></td></tr>
+<tr class="separator:aa636d561ee15da4ac020b52b1d289efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7f253daca546761e2e32599ad58343f" id="r_aa7f253daca546761e2e32599ad58343f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1ScratchData.html#aa7f253daca546761e2e32599ad58343f">initialize_dof_vector</a> (<a class="el" href="classMeltPoolDG_1_1ScratchData.html#a390733fc74524b6e10e18a58197af50f">VectorType</a> &amp;vec, const unsigned int dof_idx) const</td></tr>
 <tr class="memdesc:aa7f253daca546761e2e32599ad58343f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a distributed vector for a given DoF index.  <br /></td></tr>
 <tr class="separator:aa7f253daca546761e2e32599ad58343f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -508,7 +508,7 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
   <table class="params">
     <tr><td class="paramname">mpi_communicator</td><td>MPI communicator used for all distributed data. </td></tr>
     <tr><td class="paramname">verbosity_level_in</td><td>Verbosity level for dealii::ConditionalOStream output (0–3, where 0 effectively disables output). </td></tr>
-    <tr><td class="paramname">do_matrix_free</td><td>If true, <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build()</a> will set up the internal dealii::MatrixFree object. If false, only partitioning and related data are created. </td></tr>
+    <tr><td class="paramname">do_matrix_free</td><td>If true, <a class="el" href="classMeltPoolDG_1_1ScratchData.html#aa636d561ee15da4ac020b52b1d289efd">build()</a> will set up the internal dealii::MatrixFree object. If false, only partitioning and related data are created. </td></tr>
   </table>
   </dd>
 </dl>
@@ -647,8 +647,8 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
 
 </div>
 </div>
-<a id="a8cd19fa26ce0de830df64c555a8402a9" name="a8cd19fa26ce0de830df64c555a8402a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8cd19fa26ce0de830df64c555a8402a9">&#9670;&#160;</a></span>build()</h2>
+<a id="aa636d561ee15da4ac020b52b1d289efd" name="aa636d561ee15da4ac020b52b1d289efd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa636d561ee15da4ac020b52b1d289efd">&#9670;&#160;</a></span>build()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -677,7 +677,13 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>enable_inner_face_hessians_update</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>enable_inner_face_hessians_update</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>hold_all_faces_to_owned_cells</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -696,6 +702,7 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
     <tr><td class="paramname">enable_inner_face_loops</td><td>Enable setup of interior face data. </td></tr>
     <tr><td class="paramname">enable_normal_vector_update</td><td>Include normal vectors in mapping updates. </td></tr>
     <tr><td class="paramname">enable_inner_face_hessians_update</td><td>Include Hessians in mapping updates for inner face loops. </td></tr>
+    <tr><td class="paramname">hold_all_faces_to_owned_cells</td><td>Store all faces of locally owned cells and the ghost cells behind them, not only those processed locally, see dealii::MatrixFree::AdditionalData. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2083,15 +2090,15 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>Set up mapping, DoFHandlers, constraints, quadrature rules and matrix-free data in a single call. </p>
-<p>This is the high-level convenience entry point that clears any existing state, attaches all provided DoFHandlers, constraint matrices and quadrature rules, (re-)creates partitioning information and then calls <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build()</a> to initialize matrix-free data if requested.</p>
+<p>This is the high-level convenience entry point that clears any existing state, attaches all provided DoFHandlers, constraint matrices and quadrature rules, (re-)creates partitioning information and then calls <a class="el" href="classMeltPoolDG_1_1ScratchData.html#aa636d561ee15da4ac020b52b1d289efd">build()</a> to initialize matrix-free data if requested.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mapping</td><td>Mapping used for all attached DoFHandlers. </td></tr>
     <tr><td class="paramname">dof_handler</td><td>Vector of DoFHandlers to attach. </td></tr>
     <tr><td class="paramname">constraint</td><td>Vector of constraint matrices corresponding one-to-one to <code>dof_handler</code>. </td></tr>
     <tr><td class="paramname">quad</td><td>Vector of cell quadrature rules to attach. </td></tr>
-    <tr><td class="paramname">enable_boundary_face_loops</td><td>If true, face data for boundary loops are set up in <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build()</a>. </td></tr>
-    <tr><td class="paramname">enable_inner_face_loops</td><td>If true, face data for interior faces are set up in <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build()</a>. </td></tr>
+    <tr><td class="paramname">enable_boundary_face_loops</td><td>If true, face data for boundary loops are set up in <a class="el" href="classMeltPoolDG_1_1ScratchData.html#aa636d561ee15da4ac020b52b1d289efd">build()</a>. </td></tr>
+    <tr><td class="paramname">enable_inner_face_loops</td><td>If true, face data for interior faces are set up in <a class="el" href="classMeltPoolDG_1_1ScratchData.html#aa636d561ee15da4ac020b52b1d289efd">build()</a>. </td></tr>
     <tr><td class="paramname">enable_normal_vector_update</td><td>If true, normal vectors are included in the mapping update flags. </td></tr>
   </table>
   </dd>
@@ -2269,7 +2276,7 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>Flag indicating whether boundary-face matrix-free loops are enabled. </p>
-<p>This is set in <a class="el" href="classMeltPoolDG_1_1ScratchData.html#af77a33619dd4a5a30363196eeae7cc92">reinit()</a> / <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build()</a> based on the corresponding arguments and can be queried by operators. </p>
+<p>This is set in <a class="el" href="classMeltPoolDG_1_1ScratchData.html#af77a33619dd4a5a30363196eeae7cc92">reinit()</a> / <a class="el" href="classMeltPoolDG_1_1ScratchData.html#aa636d561ee15da4ac020b52b1d289efd">build()</a> based on the corresponding arguments and can be queried by operators. </p>
 
 </div>
 </div>
@@ -2288,7 +2295,7 @@ template&lt;int dim, int spacedim, typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>Flag indicating whether interior-face matrix-free loops are enabled. </p>
-<p>This is set in <a class="el" href="classMeltPoolDG_1_1ScratchData.html#af77a33619dd4a5a30363196eeae7cc92">reinit()</a> / <a class="el" href="classMeltPoolDG_1_1ScratchData.html#a8cd19fa26ce0de830df64c555a8402a9">build()</a> based on the corresponding arguments and can be queried by operators. </p>
+<p>This is set in <a class="el" href="classMeltPoolDG_1_1ScratchData.html#af77a33619dd4a5a30363196eeae7cc92">reinit()</a> / <a class="el" href="classMeltPoolDG_1_1ScratchData.html#aa636d561ee15da4ac020b52b1d289efd">build()</a> based on the corresponding arguments and can be queried by operators. </p>
 
 </div>
 </div>
