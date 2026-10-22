@@ -138,13 +138,14 @@ $(function() {
   <div class="headertitle"><div class="title">time_integrator_util.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="scratch__data_8hpp_source.html">meltpooldg/core/scratch_data.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="scratch__data_8hpp_source.html">meltpooldg/core/scratch_data.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="linear__solver__data_8hpp_source.html">meltpooldg/linear_algebra/linear_solver_data.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="preconditioner_8hpp_source.html">meltpooldg/linear_algebra/preconditioner.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="preconditioner__factory_8hpp_source.html">meltpooldg/linear_algebra/preconditioner_factory.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="bdf__time__integration_8hpp_source.html">meltpooldg/time_integration/bdf_time_integration.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="explicit__low__storage__runge__kutta__integrator_8hpp_source.html">meltpooldg/time_integration/explicit_low_storage_runge_kutta_integrator.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="explicit__runge__kutta__chebyshev__integrator_8hpp_source.html">meltpooldg/time_integration/explicit_runge_kutta_chebyshev_integrator.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="explicit__ssp__runge__kutta__integrator_8hpp_source.html">meltpooldg/time_integration/explicit_ssp_runge_kutta_integrator.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="one__step__theta_8hpp_source.html">meltpooldg/time_integration/one_step_theta.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="time__integrator__base_8hpp_source.html">meltpooldg/time_integration/time_integrator_base.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="time__integrator__data_8hpp_source.html">meltpooldg/time_integration/time_integrator_data.hpp</a>&gt;</code><br />
@@ -178,9 +179,9 @@ Functions</h2></td></tr>
 <tr class="separator:a83ea6483cc2e0ebad83f9aaf2d28af01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8af114c4f9bb777b49ce5afea73a4ec" id="r_aa8af114c4f9bb777b49ce5afea73a4ec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1TimeIntegration.html#aa8af114c4f9bb777b49ce5afea73a4ec">MeltPoolDG::TimeIntegration::time_integrator_scheme_is_implicit</a> (const TimeIntegratorSchemes scheme)</td></tr>
 <tr class="separator:aa8af114c4f9bb777b49ce5afea73a4ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae90aa93ef80da650affe4f201afb07f3" id="r_ae90aa93ef80da650affe4f201afb07f3"><td class="memTemplParams" colspan="2">template&lt;typename number , typename PDEOperator &gt; </td></tr>
-<tr class="memitem:ae90aa93ef80da650affe4f201afb07f3"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1TimeIntegration.html#ae90aa93ef80da650affe4f201afb07f3">MeltPoolDG::TimeIntegration::explicit_time_integrator_factory</a> (const PDEOperator &amp;pde_operator, const TimeIntegratorData&lt; number &gt; &amp;params)</td></tr>
-<tr class="separator:ae90aa93ef80da650affe4f201afb07f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb72e08f49359c70e301b36e1aeb75af" id="r_aeb72e08f49359c70e301b36e1aeb75af"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
+<tr class="memitem:aeb72e08f49359c70e301b36e1aeb75af"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1TimeIntegration.html#aeb72e08f49359c70e301b36e1aeb75af">MeltPoolDG::TimeIntegration::explicit_time_integrator_factory</a> (const typename <a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt;::ExplicitRhsFunctionType &amp;compute_rhs, const TimeIntegratorData&lt; number &gt; &amp;params)</td></tr>
+<tr class="separator:aeb72e08f49359c70e301b36e1aeb75af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a983e2b353f1eab4c60cff8124b6f8060" id="r_a983e2b353f1eab4c60cff8124b6f8060"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename PDEOperator &gt; </td></tr>
 <tr class="memitem:a983e2b353f1eab4c60cff8124b6f8060"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1TimeIntegration_1_1TimeIntegratorBase.html">TimeIntegratorBase</a>&lt; number &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1TimeIntegration.html#a983e2b353f1eab4c60cff8124b6f8060">MeltPoolDG::TimeIntegration::implicit_time_integrator_factory</a> (const PDEOperator &amp;pde_operator, const <a class="el" href="classMeltPoolDG_1_1ScratchData.html">ScratchData</a>&lt; dim, dim, number &gt; &amp;scratch_data, const unsigned int dof_idx, const TimeIntegratorData&lt; number &gt; &amp;params)</td></tr>
 <tr class="separator:a983e2b353f1eab4c60cff8124b6f8060"><td class="memSeparator" colspan="2">&#160;</td></tr>
