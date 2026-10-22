@@ -162,7 +162,7 @@ namespace MeltPoolDG
   std::ranges::iota_view<unsigned int, unsigned int>
   FESubcellFaceEvaluation<dim, n_components, number>::subcell_face_indices() const
   {
-    return {0U, n_subcells_face};
+    return std::ranges::iota_view{0U, n_subcells_face};
   }
 
   template <int dim, int n_components, typename number>
