@@ -12,6 +12,7 @@
 #include <meltpooldg/utilities/matrix_free_util.hpp>
 
 #include <cmath>
+#include <ranges>
 
 namespace MeltPoolDG
 {
@@ -217,14 +218,14 @@ namespace MeltPoolDG
   std::ranges::iota_view<unsigned int, unsigned int>
   FESubcellEvaluation<dim, n_components, number>::subcell_indices() const
   {
-    return {0U, n_subcells_total};
+    return std::ranges::iota_view{0U, n_subcells_total};
   }
 
   template <int dim, int n_components, typename number>
   std::ranges::iota_view<unsigned int, unsigned int>
   FESubcellEvaluation<dim, n_components, number>::subcell_face_indices() const
   {
-    return {0U, n_intra_cell_faces};
+    return std::ranges::iota_view{0U, n_intra_cell_faces};
   }
 
   template <int dim, int n_components, typename number>
