@@ -153,6 +153,24 @@ namespace MeltPoolDG::CompressibleFlow
         DofStateViewType(u_m, material), DofStateViewType(u_p, material));
     }
 
+    /**
+     * Estimate the smallest and the largest wave speed between two states on a face, as required by
+     * the HLL flux.
+     *
+     * @param u_m Local values of the conserved variables on the inner face.
+     * @param u_p Local values of the conserved variables on the outer face.
+     * @param unit_normal Outer facing normal vector at the face quadrature point.
+     */
+    std::pair<dealii::VectorizedArray<number>, dealii::VectorizedArray<number>>
+    smallest_and_largest_wave_speed(
+      const ValueType                                               &u_m,
+      const ValueType                                               &u_p,
+      const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &unit_normal) const
+    {
+      return acoustic_wave_speeds<dim, DofStateViewType, dealii::VectorizedArray<number>>(
+        DofStateViewType(u_m, material), DofStateViewType(u_p, material), unit_normal);
+    }
+
   private:
     const MaterialPhaseData<number> &material;
   };

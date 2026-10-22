@@ -105,24 +105,22 @@ namespace MeltPoolDG
    * Contracts the given second order tensor with a vector, which results in a vector. Note that
    * the second order tensor is provided as two nested first order tensors in this function.
    *
-   * @param tensor Second order tensor of type
-   * 'Tensor<1, dim_1, Tensor<1, dim_2, VectorizedArray<number>>>'
-   * @param vector Vector of type 'Tensor<1, dim_2, VectorizedArray<number>>'
+   * @param tensor Second order tensor of type 'Tensor<1, dim_1, Tensor<1, dim_2, number>>'
+   * @param vector Vector of type 'Tensor<1, dim_2, number>'
    *
    * @return Result of the contraction, i.e. result_i = tensor_ij * vector_j. The result has vector
-   * type 'Tensor<1, dim_1, VectorizedArray<number>>'.
+   * type 'Tensor<1, dim_1, number>'.
    *
    * @ note The dimensions of the provided tensor and the vector have to match, i.e. the second
    * basis of the tensor and the vector must have the same dimension @p dim_2.
    */
   template <int dim_1, int dim_2, typename number>
-  dealii::Tensor<1, dim_1, dealii::VectorizedArray<number>>
+  dealii::Tensor<1, dim_1, number>
   contract_tensor_with_vector(
-    const dealii::Tensor<1, dim_1, dealii::Tensor<1, dim_2, dealii::VectorizedArray<number>>>
-                                                                    &tensor,
-    const dealii::Tensor<1, dim_2, dealii::VectorizedArray<number>> &vector)
+    const dealii::Tensor<1, dim_1, dealii::Tensor<1, dim_2, number>> &tensor,
+    const dealii::Tensor<1, dim_2, number>                           &vector)
   {
-    dealii::Tensor<1, dim_1, dealii::VectorizedArray<number>> result;
+    dealii::Tensor<1, dim_1, number> result;
 
     for (unsigned int i = 0; i < dim_1; ++i)
       result[i] = tensor[i] * vector;
@@ -135,16 +133,14 @@ namespace MeltPoolDG
    * vector. Note that the second order tensors are provided as two nested first order tensors in
    * this function.
    *
-   * @param tensor_1 First second order tensor of type
-   * 'Tensor<1, dim_1, Tensor<1, dim_2, VectorizedArray<number>>>'
-   * @param tensor_2 Second second order tensor of type
-   * 'Tensor<1, dim_1, Tensor<1, dim_2, VectorizedArray<number>>>'
-   * @param vector Vector of type 'Tensor<1, dim_2, VectorizedArray<number>>'
+   * @param tensor_1 First second order tensor of type 'Tensor<1, dim_1, Tensor<1, dim_2, number>>'
+   * @param tensor_2 Second second order tensor of type 'Tensor<1, dim_1, Tensor<1, dim_2, number>>'
+   * @param vector Vector of type 'Tensor<1, dim_2, number>'
    *
    * @return Result of the contraction, i.e. result_i = 0.5 * (tensor_1_ij + tensor_2_ij) * vector_j.
    * The result has vector type 'Tensor<1, dim_1, VectorizedArray<number>>'.
    *
-   * @ note The dimensions of the provided tensors and the vector have to match, i.e. the second
+   * @note The dimensions of the provided tensors and the vector have to match, i.e. the second
    * basis of the tensors and the vector must have the same dimension @p dim_2.
    */
   template <int dim_1, int dim_2, typename number>

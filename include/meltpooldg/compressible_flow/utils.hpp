@@ -22,6 +22,9 @@
 #include <meltpooldg/core/scratch_data.hpp>
 #include <meltpooldg/utilities/better_enum.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
+#include <meltpooldg/utilities/riemann_solvers.hpp>
+
+#include <utility>
 
 namespace MeltPoolDG::CompressibleFlow
 {
@@ -121,6 +124,25 @@ namespace MeltPoolDG::CompressibleFlow
     maximum_local_wave_speed(const DofViewType &u_m, const DofViewType &u_p);
 
   /**
+   * Estimate the acoustic wave speeds, i.e., the smallest and the largest wave speed between two
+   * states on a face, as required e.g. by the HLL flux.
+   *
+   * @param u_m State view for the interior side of the face.
+   * @param u_p State view for the exterior side of the face.
+   * @param unit_normal Unit normal vector in the direction of which the wave speeds are estimated.
+   *
+   * @return The smallest and the largest wave speed in the direction of @p unit_normal. The first
+   * element of the returned pair is the smallest wave speed, and the second element is the largest
+   * wave speed.
+   */
+  template <int dim, typename DofViewType, typename VectorizedArrayType>
+  inline DEAL_II_ALWAYS_INLINE //
+    std::pair<VectorizedArrayType, VectorizedArrayType>
+    acoustic_wave_speeds(const DofViewType                                 &u_m,
+                         const DofViewType                                 &u_p,
+                         const dealii::Tensor<1, dim, VectorizedArrayType> &unit_normal);
+
+  /**
    * This function checks whether the given primitive variable state is physically admissible. The
    * check is performed for each lane of the vectorized array, and a bitset is returned indicating
    * which lanes are admissible. For admissible lanes, the corresponding bit is set to 1, while for
@@ -161,6 +183,14 @@ namespace MeltPoolDG::CompressibleFlow
     calculate_cauchy_stress_tensor(
       const dealii::VectorizedArray<number>                         &pressure,
       const dealii::Tensor<2, dim, dealii::VectorizedArray<number>> &viscous_stress_tensor);
+
+  inline Utils::RiemannSolverType
+  to_riemann_solver_type(NumericalFluxType numerical_flux_type)
+  {
+    return numerical_flux_type == NumericalFluxType::harten_lax_vanleer ?
+             Utils::RiemannSolverType::harten_lax_vanleer :
+             Utils::RiemannSolverType::lax_friedrichs;
+  }
 
   /**
    * This function checks whether the flow is viscous or not. This is done by checking the dynamic
@@ -511,6 +541,25 @@ namespace MeltPoolDG::CompressibleFlow
     const auto lambda = 0.5 * std::sqrt(std::max(velocity_p.norm_square() + sound_speed_p2,
                                                  velocity_m.norm_square() + sound_speed_m2));
     return lambda;
+  }
+
+  template <int dim, typename DofViewType, typename VectorizedArrayType>
+  inline DEAL_II_ALWAYS_INLINE //
+    std::pair<VectorizedArrayType, VectorizedArrayType>
+    acoustic_wave_speeds(const DofViewType                                 &u_m,
+                         const DofViewType                                 &u_p,
+                         const dealii::Tensor<1, dim, VectorizedArrayType> &unit_normal)
+  {
+    const VectorizedArrayType average_normal_velocity =
+      0.5 * ((u_m.velocity() + u_p.velocity()) * unit_normal);
+    const VectorizedArrayType average_speed_of_sound =
+      0.5 * (u_m.speed_of_sound() + u_p.speed_of_sound());
+
+    const VectorizedArrayType smallest_wave_speed =
+      std::min(VectorizedArrayType(0.), average_normal_velocity - average_speed_of_sound);
+    const VectorizedArrayType largest_wave_speed =
+      std::max(VectorizedArrayType(0.), average_normal_velocity + average_speed_of_sound);
+    return {smallest_wave_speed, largest_wave_speed};
   }
 
   template <int dim, typename number>

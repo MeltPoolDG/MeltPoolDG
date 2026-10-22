@@ -4,6 +4,10 @@
 #include <deal.II/base/vectorization.h>
 
 #include <meltpooldg/utilities/dealii_tensor.hpp>
+#include <meltpooldg/utilities/riemann_solvers.hpp>
+
+#include <concepts>
+#include <utility>
 
 /**
  * @file
@@ -37,7 +41,7 @@ namespace MeltPoolDG::Utils
    * Concept defining the required interface for a convection kernel used in the
    * DGConvectionOperator.
    */
-  template <typename T>
+  template <typename T, int dim, typename VectorizedArrayType>
   concept ConvectionKernelType = requires(const T &kernel) {
     typename T::ValueType;
     typename T::PhysicalFluxType;
@@ -47,8 +51,17 @@ namespace MeltPoolDG::Utils
     } -> std::same_as<typename T::PhysicalFluxType>;
 
     {
+      // Required for Lax-Friedrichs flux evaluation
       kernel.local_maximum_wave_speed(std::declval<typename T::ValueType>(),
                                       std::declval<typename T::ValueType>())
+    };
+
+    {
+      // Required for HLL flux evaluation
+      kernel.smallest_and_largest_wave_speed(
+        std::declval<typename T::ValueType>(),
+        std::declval<typename T::ValueType>(),
+        std::declval<dealii::Tensor<1, dim, VectorizedArrayType>>())
     };
   };
 
@@ -61,8 +74,9 @@ namespace MeltPoolDG::Utils
    */
   template <int dim,
             typename number,
-            ConvectionKernelType Kernel,
+            typename Kernel,
             typename VectorizedArrayType = dealii::VectorizedArray<number>>
+    requires ConvectionKernelType<Kernel, dim, VectorizedArrayType>
   struct DGConvectionOperator
   {
     using ValueType = typename Kernel::ValueType;
@@ -99,6 +113,7 @@ namespace MeltPoolDG::Utils
      * @param normal Outer facing normal vector at the face quadrature point.
      * @param kernel User-provided kernel defining how to compute the convective flux from the
      * local solution values.
+     * @param riemann_solver_type Type of Riemann solver to use for computing the numerical flux.
      *
      * @return Convective flux contribution for the face integral, including both inner and outer
      * face values.
@@ -107,18 +122,34 @@ namespace MeltPoolDG::Utils
     face(const ValueType                                   &u_m,
          const ValueType                                   &u_p,
          const dealii::Tensor<1, dim, VectorizedArrayType> &normal,
-         const Kernel                                      &kernel)
+         const Kernel                                      &kernel,
+         const RiemannSolverType riemann_solver_type = RiemannSolverType::lax_friedrichs)
     {
       const FluxType flux_m = kernel.flux(u_m);
       const FluxType flux_p = kernel.flux(u_p);
 
-      const auto local_maximum_wave_speed = kernel.local_maximum_wave_speed(u_m, u_p);
+      ValueType numerical_flux;
+      switch (riemann_solver_type)
+        {
+            case RiemannSolverType::lax_friedrichs: {
+              const auto local_maximum_wave_speed = kernel.local_maximum_wave_speed(u_m, u_p);
+              numerical_flux =
+                lax_friedrichs_flux(u_m, u_p, flux_m, flux_p, normal, local_maximum_wave_speed);
+              break;
+            }
+            case RiemannSolverType::harten_lax_vanleer: {
+              const auto [smallest_wave_speed, largest_wave_speed] =
+                kernel.smallest_and_largest_wave_speed(u_m, u_p, normal);
+              numerical_flux = harten_lax_van_leer_flux(
+                u_m, u_p, flux_m, flux_p, normal, smallest_wave_speed, largest_wave_speed);
+              break;
+            }
+          default:
+            Assert(false, dealii::ExcNotImplemented());
+            return FaceFlux{};
+        }
 
-      const auto lax_friedrichs_flux = contract_average_tensor_with_vector(flux_m, flux_p, normal) +
-                                       0.5 * local_maximum_wave_speed * (u_m - u_p);
-
-      return FaceFlux{.inner_face_value = -lax_friedrichs_flux,
-                      .outer_face_value = lax_friedrichs_flux};
+      return FaceFlux{.inner_face_value = -numerical_flux, .outer_face_value = numerical_flux};
     }
   };
 
@@ -225,9 +256,10 @@ namespace MeltPoolDG::Utils
    */
   template <int dim,
             typename number,
-            ConvectionKernelType ConvectiveKernel,
-            DiffusionKernelType  DiffusiveKernel,
+            typename ConvectiveKernel,
+            DiffusionKernelType DiffusiveKernel,
             typename VectorizedArrayType = dealii::VectorizedArray<number>>
+    requires ConvectionKernelType<ConvectiveKernel, dim, VectorizedArrayType>
   struct DGConvectionDiffusionOperator
   {
     using ConvectionOperator =
@@ -283,6 +315,8 @@ namespace MeltPoolDG::Utils
      * local solution values.
      * @param diffusion_kernel User-provided kernel defining how to compute the diffusive flux from
      * local solution values and gradients.
+     * @param riemann_solver_type Type of Riemann solver to use for computing the convective
+     * numerical flux.
      *
      * @return Combined convective and diffusive face flux contribution for the face integral, including
      * both inner and outer face values and gradients.
@@ -295,10 +329,11 @@ namespace MeltPoolDG::Utils
          const dealii::Tensor<1, dim, VectorizedArrayType> &normal,
          const VectorizedArrayType                          penalty_parameter,
          const ConvectiveKernel                            &convective_kernel,
-         const DiffusiveKernel                             &diffusion_kernel)
+         const DiffusiveKernel                             &diffusion_kernel,
+         const RiemannSolverType riemann_solver_type = RiemannSolverType::lax_friedrichs)
     {
       const auto convection_face_value =
-        ConvectionOperator::face(u_m, u_p, normal, convective_kernel);
+        ConvectionOperator::face(u_m, u_p, normal, convective_kernel, riemann_solver_type);
       const auto diffusion_face_value = DiffusionOperator::face(
         u_m, u_p, grad_u_m, grad_u_p, normal, penalty_parameter, diffusion_kernel);
 

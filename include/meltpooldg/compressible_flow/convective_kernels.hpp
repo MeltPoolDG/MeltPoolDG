@@ -234,14 +234,9 @@ namespace MeltPoolDG::CompressibleFlow
             const dealii::VectorizedArray<number> inverse_s =
               dealii::VectorizedArray<number>(1.) / (s_pos - s_neg);
 
-            return inverse_s *
-                   (s_pos *
-                      contract_tensor_with_vector<n_conserved_variables<dim>, dim, number>(flux_m,
-                                                                                           normal) -
-                    s_neg *
-                      contract_tensor_with_vector<n_conserved_variables<dim>, dim, number>(flux_p,
-                                                                                           normal) -
-                    s_pos * s_neg * (u_m - u_p));
+            return inverse_s * (s_pos * contract_tensor_with_vector(flux_m, normal) -
+                                s_neg * contract_tensor_with_vector(flux_p, normal) -
+                                s_pos * s_neg * (u_m - u_p));
           }
           default: {
             Assert(false, dealii::ExcNotImplemented());

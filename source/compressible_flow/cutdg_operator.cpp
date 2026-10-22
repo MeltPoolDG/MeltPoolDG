@@ -184,7 +184,9 @@ namespace MeltPoolDG::CompressibleFlow
                                             normal,
                                             interior_penalty_parameter,
                                             ConvectiveFlux<dim, number>(flow_scratch_data.material),
-                                            DiffusiveFlux<dim, number>(flow_scratch_data.material));
+                                            DiffusiveFlux<dim, number>(flow_scratch_data.material),
+                                            to_riemann_solver_type(
+                                              flow_scratch_data.flow_data.numerical_flux_type));
 
         flux_m = flux.inner_face_value;
 
@@ -192,8 +194,13 @@ namespace MeltPoolDG::CompressibleFlow
       }
     else
       {
-        const auto flux = ConvectionOperator::face(
-          w_m, w_p, normal, ConvectiveFlux<dim, number>(flow_scratch_data.material));
+        const auto flux =
+          ConvectionOperator::face(w_m,
+                                   w_p,
+                                   normal,
+                                   ConvectiveFlux<dim, number>(flow_scratch_data.material),
+                                   to_riemann_solver_type(
+                                     flow_scratch_data.flow_data.numerical_flux_type));
 
         flux_m = flux.inner_face_value;
       }
@@ -224,7 +231,9 @@ namespace MeltPoolDG::CompressibleFlow
                                             phi_m.normal_vector(q),
                                             interior_penalty_parameter,
                                             ConvectiveFlux<dim, number>(flow_scratch_data.material),
-                                            DiffusiveFlux<dim, number>(flow_scratch_data.material));
+                                            DiffusiveFlux<dim, number>(flow_scratch_data.material),
+                                            to_riemann_solver_type(
+                                              flow_scratch_data.flow_data.numerical_flux_type));
 
         flux_m = flux.inner_face_value;
         flux_p = flux.outer_face_value;
@@ -238,7 +247,9 @@ namespace MeltPoolDG::CompressibleFlow
           ConvectionOperator::face(phi_m.get_value(q),
                                    phi_p.get_value(q),
                                    phi_m.normal_vector(q),
-                                   ConvectiveFlux<dim, number>(flow_scratch_data.material));
+                                   ConvectiveFlux<dim, number>(flow_scratch_data.material),
+                                   to_riemann_solver_type(
+                                     flow_scratch_data.flow_data.numerical_flux_type));
 
         flux_m = flux.inner_face_value;
         flux_p = flux.outer_face_value;
@@ -293,7 +304,9 @@ namespace MeltPoolDG::CompressibleFlow
                                             phi.normal_vector(q),
                                             interior_penalty_parameter,
                                             ConvectiveFlux<dim, number>(flow_scratch_data.material),
-                                            DiffusiveFlux<dim, number>(flow_scratch_data.material));
+                                            DiffusiveFlux<dim, number>(flow_scratch_data.material),
+                                            to_riemann_solver_type(
+                                              flow_scratch_data.flow_data.numerical_flux_type));
 
         flux_m = flux.inner_face_value;
 
@@ -305,7 +318,9 @@ namespace MeltPoolDG::CompressibleFlow
           ConvectionOperator::face(phi.get_value(q),
                                    w_p,
                                    phi.normal_vector(q),
-                                   ConvectiveFlux<dim, number>(flow_scratch_data.material));
+                                   ConvectiveFlux<dim, number>(flow_scratch_data.material),
+                                   to_riemann_solver_type(
+                                     flow_scratch_data.flow_data.numerical_flux_type));
 
         flux_m = flux.inner_face_value;
       }
