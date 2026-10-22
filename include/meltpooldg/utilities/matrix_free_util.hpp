@@ -25,6 +25,44 @@ namespace MeltPoolDG
   };
 
   /**
+   * Convert a vectorized lane mask to a bitset. Bit v is set if lane v of @p mask is nonzero.
+   *
+   * @param mask Vectorized lane mask, e.g., the troubled cell markers of a batch obtained with
+   * read_cell_data().
+   * @param n_active_lanes Number of active lanes of the cell or face batch. The bits of the
+   * remaining lanes are not set.
+   */
+  template <typename number>
+  std::bitset<dealii::VectorizedArray<number>::size()>
+  vectorized_mask_to_bitset(const dealii::VectorizedArray<number> &mask,
+                            const unsigned int                     n_active_lanes)
+  {
+    AssertIndexRange(n_active_lanes, dealii::VectorizedArray<number>::size() + 1);
+
+    std::bitset<dealii::VectorizedArray<number>::size()> bitset;
+    for (unsigned int lane = 0; lane < n_active_lanes; ++lane)
+      bitset.set(lane, mask[lane] != number(0.));
+    return bitset;
+  }
+
+  /**
+   * Convert a bitset to a vectorized lane mask, which is 1 in the lanes whose bit is set and 0 in
+   * all other lanes.
+   *
+   * @param bitset The bitset to be converted.
+   */
+  template <typename number>
+  dealii::VectorizedArray<number>
+  bitset_to_vectorized_mask(const std::bitset<dealii::VectorizedArray<number>::size()> &bitset)
+  {
+    dealii::VectorizedArray<number> mask = 0.;
+    for (unsigned int lane = 0; lane < dealii::VectorizedArray<number>::size(); ++lane)
+      if (bitset[lane])
+        mask[lane] = 1.;
+    return mask;
+  }
+
+  /**
    * Helper function that returns the values at a given quadrature point (specified by `q_index`)
    * using the provided finite element evaluation object (`fe_eval`) and ensures that the result
    * is always returned as a `dealii::Tensor`.
@@ -416,4 +454,253 @@ namespace MeltPoolDG
 
     return cell_average_values;
   }
+
+  /**
+   * This class provides a parallel distributed cell data vector primarily intended to be used with
+   * dealii::FEEvaluation and dealii::FEFaceEvaluation. In contrast to a plain AlignedVector
+   * initialized with dealii::MatrixFree::initialize_cell_data_vector(), this class allows for
+   * conveniently updating the ghost values, i.e., the cell data of the ghost cell batches. This can
+   * be useful if you need the cell data locally available for both locally owned and ghost cells,
+   * but the data itself can only be computed for the locally owned cells. The ghost values can then
+   * be updated by calling update_ghost_values(), which sends the values of the locally owned cells
+   * to the neighboring MPI processes.
+   */
+  template <int dim,
+            typename number,
+            typename VectorizedArrayType = dealii::VectorizedArray<number>>
+  class ParallelDistributedCellData
+  {
+  public:
+    /**
+     * Initializes the cell data vector. It sets the size of the vector according to the number of
+     * locally owned and ghost cell batches in the matrix free object. It also sets up the
+     * communication pattern used internally to exchange the ghost values of the cell data vector
+     * with neighboring MPI processes. This function must be called every time the matrix free
+     * object is reinitialized.
+     *
+     * @param matrix_free The matrix free object used to determine the number of cell batches and
+     * the communication pattern for exchanging ghost values.
+     */
+    void
+    reinit(const dealii::MatrixFree<dim, number, VectorizedArrayType> &matrix_free)
+    {
+      matrix_free.initialize_cell_data_vector(cell_data);
+
+      // set up the internal parallel distributed vector, used to exchange the ghost values of the
+      // cell data, with one entry per active cell
+      const std::shared_ptr<const dealii::Utilities::MPI::Partitioner> partitioner =
+        matrix_free.get_dof_handler()
+          .get_triangulation()
+          .global_active_cell_index_partitioner()
+          .lock();
+      exchange_vector.reinit(partitioner);
+
+      // create the mapping between the entries of the parallel distributed vector and the cell
+      // batches and lanes of the cell data vector
+      owned_slots.clear();
+      ghost_slots.clear();
+
+      // We only need to consider those locally owned cells which are actually ghost cells on
+      // another MPI process, since only their values are sent.
+      std::vector<bool> is_exported(partitioner->locally_owned_size(), false);
+      for (const auto [begin, end] : partitioner->import_indices())
+        {
+          std::fill(is_exported.begin() + begin, is_exported.begin() + end, true);
+        }
+
+      for (unsigned int batch = 0;
+           batch < matrix_free.n_cell_batches() + matrix_free.n_ghost_cell_batches();
+           ++batch)
+        for (unsigned int lane = 0; lane < matrix_free.n_active_entries_per_cell_batch(batch);
+             ++lane)
+          {
+            const unsigned int local_index = partitioner->global_to_local(
+              matrix_free.get_cell_iterator(batch, lane)->global_active_cell_index());
+            if (batch < matrix_free.n_cell_batches())
+              {
+                if (is_exported[local_index])
+                  {
+                    owned_slots.push_back({batch, lane, local_index});
+                  }
+              }
+            else
+              {
+                ghost_slots.push_back({batch, lane, local_index});
+              }
+          }
+    }
+
+    /**
+     * Updates the ghost values of the cell data vector by sending the values of the locally owned
+     * cells to the neighboring MPI processes. After a call to this function, the values of the
+     * ghost cell batches are up-to-date and can be used for computations that require ghost cell
+     * information, e.g., reading the cell data of the exterior cell of a face at an MPI process
+     * boundary with FEFaceEvaluation::read_cell_data().
+     */
+    void
+    update_ghost_values()
+    {
+      for (const auto &[batch, lane, local_index] : owned_slots)
+        exchange_vector.local_element(local_index) = cell_data[batch][lane];
+      exchange_vector.update_ghost_values();
+      for (const auto &[batch, lane, local_index] : ghost_slots)
+        cell_data[batch][lane] = exchange_vector.local_element(local_index);
+      exchange_vector.zero_out_ghost_values();
+    }
+    /**
+     * Returns the cell data vector. The vector is given in a format that can directly be used with
+     * FE(Face)Evaluation::read_cell_data() and FE(Face)Evaluation::set_cell_data(). Values written
+     * to the ghost cell batches are overwritten by the next call to update_ghost_values().
+     */
+    dealii::AlignedVector<VectorizedArrayType> &
+    cell_data_vector()
+    {
+      return cell_data;
+    }
+
+    /**
+     * Same as above, but returns a const reference to the cell data vector.
+     */
+    const dealii::AlignedVector<VectorizedArrayType> &
+    cell_data_vector() const
+    {
+      return cell_data;
+    }
+
+  private:
+    /// A struct to store the information about each slot in the parallel distributed vector. A slot
+    /// is defined by the cell batch and lane in the matrix free object and is mapped to the local
+    /// index of the corresponding cell in the parallel distributed vector.
+    struct Slot
+    {
+      unsigned int batch;
+      unsigned int lane;
+      unsigned int local_index;
+    };
+
+    /// A vector of slots corresponding to the locally owned cells which are ghost cells on another
+    /// MPI process, i.e., whose values are sent in update_ghost_values().
+    std::vector<Slot> owned_slots;
+
+    /// A vector of slots corresponding to the ghost cells, i.e., whose values are received in
+    /// update_ghost_values().
+    std::vector<Slot> ghost_slots;
+
+    /// Distributed vector used to handle the exchange of ghost values for the cell data vector
+    dealii::LinearAlgebra::distributed::Vector<number> exchange_vector;
+
+    /// Cell data vector storing the values for each cell batch and lane. The size of this vector is
+    /// equal to the number of locally owned plus ghost cell batches in the matrix free object.
+    dealii::AlignedVector<VectorizedArrayType> cell_data;
+  };
+
+  /**
+   * A class that caches the matrix free cell batch index and lane index of the neighbors of each
+   * cell face. Once set up, it allows for efficient access to the neighbor information without
+   * repeated queries to the matrix free object.
+   */
+  template <int dim>
+  class CellFaceNeighbors
+  {
+  public:
+    struct Neighbor
+    {
+      /// Matrix-free index of the neighbor, invalid at the domain boundary.
+      unsigned int cell_index = dealii::numbers::invalid_unsigned_int;
+      /// Number of the shared face seen from the neighbor.
+      unsigned int face_no = dealii::numbers::invalid_unsigned_int;
+
+      /// Matrix-free batch of the neighbor.
+      unsigned int cell_batch = dealii::numbers::invalid_unsigned_int;
+      /// Lane within the batch.
+      unsigned int lane = dealii::numbers::invalid_unsigned_int;
+    };
+
+    /**
+     * This function initializes the neighbor information for each cell face. It stores the neighbor
+     * indices of each cell internally. After a call to this function, the neighbor information can
+     * be accessed using the operator() function.
+     *
+     * @note This function requires that the values of all ghost cells are locally available. This
+     * can be achieved by setting MatrixFree::AdditionalData::hold_all_faces_to_owned_cells = true
+     * and enabling face integrals.
+     * @note This function must be called every time the matrix free object is reinitialized, as the
+     * cell batches and lanes may change.
+     */
+    template <typename number>
+    void
+    reinit(const dealii::MatrixFree<dim, number> &matrix_free)
+    {
+      constexpr unsigned int n_lanes = dealii::VectorizedArray<number>::size();
+      neighbors.reinit(matrix_free.n_cell_batches() * n_lanes,
+                       dealii::GeometryInfo<dim>::faces_per_cell);
+
+      for (unsigned int batch = 0; batch < matrix_free.n_cell_batches(); ++batch)
+        for (unsigned int lane = 0; lane < matrix_free.n_active_entries_per_cell_batch(batch);
+             ++lane)
+          {
+            const dealii::TriaIterator<dealii::CellAccessor<dim>> cell =
+              matrix_free.get_cell_iterator(batch, lane);
+            for (const unsigned int f : cell->face_indices())
+              {
+                const bool periodic = cell->has_periodic_neighbor(f);
+                if (cell->at_boundary(f) and not periodic)
+                  continue;
+
+                const dealii::TriaIterator<dealii::CellAccessor<dim>> neighbor =
+                  cell->neighbor_or_periodic_neighbor(f);
+                Assert(neighbor->is_active() and neighbor->level() == cell->level(),
+                       dealii::ExcNotImplemented("Hanging faces are not supported yet."));
+
+                const unsigned int neighbor_mf_index =
+                  matrix_free.get_matrix_free_cell_index(neighbor);
+                Assert(
+                  neighbor_mf_index != dealii::numbers::invalid_unsigned_int,
+                  dealii::ExcMessage(
+                    "The face neighbor of a locally owned cell is not stored in the MatrixFree object. "
+                    "Set MatrixFree::AdditionalData::hold_all_faces_to_owned_cells = true and enable "
+                    "face integrals."));
+                neighbors(batch * n_lanes + lane, f) = {neighbor_mf_index,
+                                                        periodic ?
+                                                          cell->periodic_neighbor_face_no(f) :
+                                                          cell->neighbor_face_no(f),
+                                                        neighbor_mf_index / n_lanes,
+                                                        neighbor_mf_index % n_lanes};
+              }
+          }
+    }
+
+    /**
+     * Returns the neighbor information for the specified cell and face. The returned Neighbor
+     * struct contains the matrix-free index of the neighbor, the face number of the shared face
+     * seen from the neighbor, as well as the cell batch and lane of the neighbor.
+     *
+     * @param cell_index Matrix-free index of the cell.
+     * @param face_no Face number of the cell for which to retrieve the neighbor information.
+     */
+    const Neighbor &
+    operator()(const unsigned int cell_index, const unsigned int face_no) const
+    {
+      return neighbors(cell_index, face_no);
+    }
+
+    /**
+     * Returns a span of all neighbor information for the specified cell. This can be used to
+     * conveniently iterate over all faces of a cell and access the neighbor information for each
+     * face in a range-based for loop.
+     *
+     * @param cell_index Matrix-free index of the cell.
+     */
+    std::span<const Neighbor>
+    neighbors_of_cell(const unsigned int cell_index) const
+    {
+      return {&neighbors(cell_index, 0), dealii::GeometryInfo<dim>::faces_per_cell};
+    }
+
+  private:
+    /// A table storing the neighbor information for each cell and face. The first index corresponds
+    /// to the matrix-free index of the cell, and the second index corresponds to the face number of
+    /// the cell.
+    dealii::Table<2, Neighbor> neighbors;
+  };
 } // namespace MeltPoolDG
