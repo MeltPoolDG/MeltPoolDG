@@ -138,7 +138,7 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="dg__generic__convection__diffusion__worker_8hpp_source.html">dg_generic_convection_diffusion_worker.hpp</a>&gt;</code></p>
 <h2 class="groupheader">Concept definition</h2>
-<div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keywordtype">int</span> dim, <span class="keyword">typename</span> VectorizedArrayType&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptMeltPoolDG_1_1Utils_1_1ConvectionKernelType.html">MeltPoolDG::Utils::ConvectionKernelType</a> =  <span class="keyword">requires</span>(<span class="keyword">const</span> T &amp;kernel) {</div>
 <div class="line">    <span class="keyword">typename</span> T::ValueType;</div>
 <div class="line">    <span class="keyword">typename</span> T::PhysicalFluxType;</div>
@@ -148,11 +148,20 @@ $(function() {
 <div class="line">    } -&gt; std::same_as&lt;typename T::PhysicalFluxType&gt;;</div>
 <div class="line"> </div>
 <div class="line">    {</div>
+<div class="line">      </div>
 <div class="line">      kernel.local_maximum_wave_speed(std::declval&lt;typename T::ValueType&gt;(),</div>
 <div class="line">                                      std::declval&lt;typename T::ValueType&gt;())</div>
 <div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">    {</div>
+<div class="line">      </div>
+<div class="line">      kernel.smallest_and_largest_wave_speed(</div>
+<div class="line">        std::declval&lt;typename T::ValueType&gt;(),</div>
+<div class="line">        std::declval&lt;typename T::ValueType&gt;(),</div>
+<div class="line">        std::declval&lt;dealii::Tensor&lt;1, dim, VectorizedArrayType&gt;&gt;())</div>
+<div class="line">    };</div>
 <div class="line">  }</div>
-<div class="ttc" id="aconceptMeltPoolDG_1_1Utils_1_1ConvectionKernelType_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1Utils_1_1ConvectionKernelType.html">MeltPoolDG::Utils::ConvectionKernelType</a></div><div class="ttdef"><b>Definition</b> dg_generic_convection_diffusion_worker.hpp:41</div></div>
+<div class="ttc" id="aconceptMeltPoolDG_1_1Utils_1_1ConvectionKernelType_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1Utils_1_1ConvectionKernelType.html">MeltPoolDG::Utils::ConvectionKernelType</a></div><div class="ttdef"><b>Definition</b> dg_generic_convection_diffusion_worker.hpp:45</div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Concept defining the required interface for a convection kernel used in the DGConvectionOperator. </p>
 </div></div><!-- contents -->

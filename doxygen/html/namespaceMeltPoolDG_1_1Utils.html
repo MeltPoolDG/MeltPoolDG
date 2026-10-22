@@ -166,10 +166,59 @@ Functions</h2></td></tr>
 <tr class="memitem:a0df095ceeb5ccde83d10d155500a8d77" id="r_a0df095ceeb5ccde83d10d155500a8d77"><td class="memTemplParams" colspan="2">template&lt;range Container&gt; </td></tr>
 <tr class="memitem:a0df095ceeb5ccde83d10d155500a8d77"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Utils.html#a0df095ceeb5ccde83d10d155500a8d77">contains</a> (const Container &amp;c, typename Container::value_type const value)</td></tr>
 <tr class="separator:a0df095ceeb5ccde83d10d155500a8d77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf7b749131f547b46c2940b561f36721" id="r_aaf7b749131f547b46c2940b561f36721"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Utils.html#aaf7b749131f547b46c2940b561f36721">BETTER_ENUM</a> (RiemannSolverType, int, lax_friedrichs, harten_lax_vanleer)</td></tr>
+<tr class="separator:aaf7b749131f547b46c2940b561f36721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ffcaa31a3cd2cee16a20581f8c2e11b" id="r_a1ffcaa31a3cd2cee16a20581f8c2e11b"><td class="memTemplParams" colspan="2">template&lt;int dim, int n_components, typename VectorizedArrayType &gt; </td></tr>
+<tr class="memitem:a1ffcaa31a3cd2cee16a20581f8c2e11b"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, n_components, VectorizedArrayType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Utils.html#a1ffcaa31a3cd2cee16a20581f8c2e11b">lax_friedrichs_flux</a> (const dealii::Tensor&lt; 1, n_components, VectorizedArrayType &gt; &amp;u_m, const dealii::Tensor&lt; 1, n_components, VectorizedArrayType &gt; &amp;u_p, const dealii::Tensor&lt; 1, n_components, dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &gt; &amp;flux_m, const dealii::Tensor&lt; 1, n_components, dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &gt; &amp;flux_p, const dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &amp;unit_normal, const VectorizedArrayType maximum_wave_speed)</td></tr>
+<tr class="separator:a1ffcaa31a3cd2cee16a20581f8c2e11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a069dcdedad1ae50c1a89a7746df3f125" id="r_a069dcdedad1ae50c1a89a7746df3f125"><td class="memTemplParams" colspan="2">template&lt;int dim, int n_components, typename VectorizedArrayType &gt; </td></tr>
+<tr class="memitem:a069dcdedad1ae50c1a89a7746df3f125"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, n_components, VectorizedArrayType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Utils.html#a069dcdedad1ae50c1a89a7746df3f125">harten_lax_van_leer_flux</a> (const dealii::Tensor&lt; 1, n_components, VectorizedArrayType &gt; &amp;u_m, const dealii::Tensor&lt; 1, n_components, VectorizedArrayType &gt; &amp;u_p, const dealii::Tensor&lt; 1, n_components, dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &gt; &amp;flux_m, const dealii::Tensor&lt; 1, n_components, dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &gt; &amp;flux_p, const dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &amp;unit_normal, const VectorizedArrayType &amp;smallest_signal_speed, const VectorizedArrayType &amp;largest_signal_speed)</td></tr>
+<tr class="separator:a069dcdedad1ae50c1a89a7746df3f125"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of functions defined by C++23. </p>
+<p>This file contains the implementation of different Riemann solvers for hyperbolic systems of conservation laws. The Riemann solvers are used to compute the numerical fluxes at the interfaces between cells in a finite volume or discontinuous Galerkin method. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="aaf7b749131f547b46c2940b561f36721" name="aaf7b749131f547b46c2940b561f36721"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf7b749131f547b46c2940b561f36721">&#9670;&#160;</a></span>BETTER_ENUM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MeltPoolDG::Utils::BETTER_ENUM </td>
+          <td>(</td>
+          <td class="paramtype">RiemannSolverType&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">lax_friedrichs&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">harten_lax_vanleer&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0df095ceeb5ccde83d10d155500a8d77" name="a0df095ceeb5ccde83d10d155500a8d77"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0df095ceeb5ccde83d10d155500a8d77">&#9670;&#160;</a></span>contains()</h2>
 
@@ -197,6 +246,155 @@ template&lt;range Container&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a069dcdedad1ae50c1a89a7746df3f125" name="a069dcdedad1ae50c1a89a7746df3f125"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a069dcdedad1ae50c1a89a7746df3f125">&#9670;&#160;</a></span>harten_lax_van_leer_flux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, int n_components, typename VectorizedArrayType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::Tensor&lt; 1, n_components, VectorizedArrayType &gt; MeltPoolDG::Utils::harten_lax_van_leer_flux </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, n_components, VectorizedArrayType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, n_components, VectorizedArrayType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, n_components, dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>flux_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, n_components, dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>flux_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>unit_normal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const VectorizedArrayType &amp;&#160;</td>
+          <td class="paramname"><em>smallest_signal_speed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const VectorizedArrayType &amp;&#160;</td>
+          <td class="paramname"><em>largest_signal_speed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Harten-Lax-van Leer (HLL) numerical flux, which approximates the Riemann problem at a face by two waves traveling with the smallest and the largest signal speed \(S^-\) and \(S^+\):  </p><p class="formulaDsp">
+\[
+  \hat{F} = \frac{S^+ F(u^-) \cdot n - S^- F(u^+) \cdot n + S^- S^+ (u^+ - u^-)}{S^+ - S^-}.
+\]
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u_m</td><td>State on the interior side of the face. </td></tr>
+    <tr><td class="paramname">u_p</td><td>State on the exterior side of the face. </td></tr>
+    <tr><td class="paramname">flux_m</td><td>Physical flux tensor evaluated at <code>u_m</code>. </td></tr>
+    <tr><td class="paramname">flux_p</td><td>Physical flux tensor evaluated at <code>u_p</code>. </td></tr>
+    <tr><td class="paramname">unit_normal</td><td>Unit normal vector pointing from the interior to the exterior side. </td></tr>
+    <tr><td class="paramname">smallest_signal_speed</td><td>Smallest signal speed \(S^-\) in the direction of <code>unit_normal</code>. </td></tr>
+    <tr><td class="paramname">largest_signal_speed</td><td>Largest signal speed \(S^+\) in the direction of <code>unit_normal</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The numerical flux in the direction of <code>unit_normal</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a1ffcaa31a3cd2cee16a20581f8c2e11b" name="a1ffcaa31a3cd2cee16a20581f8c2e11b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ffcaa31a3cd2cee16a20581f8c2e11b">&#9670;&#160;</a></span>lax_friedrichs_flux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, int n_components, typename VectorizedArrayType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::Tensor&lt; 1, n_components, VectorizedArrayType &gt; MeltPoolDG::Utils::lax_friedrichs_flux </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, n_components, VectorizedArrayType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, n_components, VectorizedArrayType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, n_components, dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>flux_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, n_components, dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>flux_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>unit_normal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const VectorizedArrayType&#160;</td>
+          <td class="paramname"><em>maximum_wave_speed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Lax-Friedrichs numerical flux, computed using the maximum wave speed \(\lambda\) by  </p><p class="formulaDsp">
+\[
+  \hat{F} = \frac{1}{2} \left(F(u^-) + F(u^+)\right) \cdot n + \frac{\lambda}{2} (u^- - u^+).
+\]
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u_m</td><td>State on the interior side of the face. </td></tr>
+    <tr><td class="paramname">u_p</td><td>State on the exterior side of the face. </td></tr>
+    <tr><td class="paramname">flux_m</td><td>Physical flux tensor evaluated at <code>u_m</code>. </td></tr>
+    <tr><td class="paramname">flux_p</td><td>Physical flux tensor evaluated at <code>u_p</code>. </td></tr>
+    <tr><td class="paramname">unit_normal</td><td>Unit normal vector pointing from the interior to the exterior side. </td></tr>
+    <tr><td class="paramname">maximum_wave_speed</td><td>Maximum wave speed \(\lambda\) between the two states.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The numerical flux in the direction of <code>unit_normal</code>. </dd></dl>
 
 </div>
 </div>

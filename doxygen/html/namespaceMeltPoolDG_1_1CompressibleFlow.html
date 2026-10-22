@@ -416,6 +416,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6f54519143f043fdee2ba6549845cfb9"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE VectorizedArrayType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a6f54519143f043fdee2ba6549845cfb9">maximum_local_wave_speed</a> (const DofViewType &amp;u_m, const DofViewType &amp;u_p)</td></tr>
 <tr class="memdesc:a6f54519143f043fdee2ba6549845cfb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the maximum local wave speed between two states on a face.  <br /></td></tr>
 <tr class="separator:a6f54519143f043fdee2ba6549845cfb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac01c949baf0e6bba8b2f4ade5ea535cc" id="r_ac01c949baf0e6bba8b2f4ade5ea535cc"><td class="memTemplParams" colspan="2">template&lt;int dim, typename DofViewType , typename VectorizedArrayType &gt; </td></tr>
+<tr class="memitem:ac01c949baf0e6bba8b2f4ade5ea535cc"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::pair&lt; VectorizedArrayType, VectorizedArrayType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac01c949baf0e6bba8b2f4ade5ea535cc">acoustic_wave_speeds</a> (const DofViewType &amp;u_m, const DofViewType &amp;u_p, const dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &amp;unit_normal)</td></tr>
+<tr class="separator:ac01c949baf0e6bba8b2f4ade5ea535cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2cabb14d35f4ea05dbed53af337542f" id="r_af2cabb14d35f4ea05dbed53af337542f"><td class="memTemplParams" colspan="2">template&lt;typename number , int n_species, typename PrimitiveVariablesView &gt; </td></tr>
 <tr class="memitem:af2cabb14d35f4ea05dbed53af337542f"><td class="memTemplItemLeft" align="right" valign="top">std::bitset&lt; dealii::VectorizedArray&lt; number &gt;::size()&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#af2cabb14d35f4ea05dbed53af337542f">physical_admissibility_mask</a> (const PrimitiveVariablesView &amp;w_view, const unsigned int n_active_lanes=dealii::VectorizedArray&lt; number &gt;::size())</td></tr>
 <tr class="separator:af2cabb14d35f4ea05dbed53af337542f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -423,6 +426,8 @@ Functions</h2></td></tr>
 <tr class="memitem:ac71e1461815ae18c54b0250a123561ef"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac71e1461815ae18c54b0250a123561ef">calculate_cauchy_stress_tensor</a> (const dealii::VectorizedArray&lt; number &gt; &amp;pressure, const dealii::Tensor&lt; 2, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;<a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a3c9ff2ade30078863b03f94f6f6a0559">viscous_stress_tensor</a>)</td></tr>
 <tr class="memdesc:ac71e1461815ae18c54b0250a123561ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the total stress tensor (Cauchy stress tensor) from pressure contribution and viscous stress contribution.  <br /></td></tr>
 <tr class="separator:ac71e1461815ae18c54b0250a123561ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3cfaa762626999c6a0d3d12ccbc6070" id="r_ab3cfaa762626999c6a0d3d12ccbc6070"><td class="memItemLeft" align="right" valign="top">Utils::RiemannSolverType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ab3cfaa762626999c6a0d3d12ccbc6070">to_riemann_solver_type</a> (NumericalFluxType numerical_flux_type)</td></tr>
+<tr class="separator:ab3cfaa762626999c6a0d3d12ccbc6070"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8c65ceb2fb37fe5eaee7a5a487570e2" id="r_ab8c65ceb2fb37fe5eaee7a5a487570e2"><td class="memTemplParams" colspan="2">template&lt;typename number , int n_species&gt; </td></tr>
 <tr class="memitem:ab8c65ceb2fb37fe5eaee7a5a487570e2"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ab8c65ceb2fb37fe5eaee7a5a487570e2">is_viscous_flow</a> (const <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1MaterialPhaseData.html">MaterialPhaseData</a>&lt; number &gt; &amp;material_data)</td></tr>
 <tr class="separator:ab8c65ceb2fb37fe5eaee7a5a487570e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -663,6 +668,60 @@ template&lt;int dim, typename number , int n_species = 1&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ac01c949baf0e6bba8b2f4ade5ea535cc" name="ac01c949baf0e6bba8b2f4ade5ea535cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac01c949baf0e6bba8b2f4ade5ea535cc">&#9670;&#160;</a></span>acoustic_wave_speeds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename DofViewType , typename VectorizedArrayType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DEAL_II_ALWAYS_INLINE std::pair&lt; VectorizedArrayType, VectorizedArrayType &gt; MeltPoolDG::CompressibleFlow::acoustic_wave_speeds </td>
+          <td>(</td>
+          <td class="paramtype">const DofViewType &amp;&#160;</td>
+          <td class="paramname"><em>u_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const DofViewType &amp;&#160;</td>
+          <td class="paramname"><em>u_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>unit_normal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Estimate the acoustic wave speeds, i.e., the smallest and the largest wave speed between two states on a face, as required e.g. by the HLL flux.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u_m</td><td>State view for the interior side of the face. </td></tr>
+    <tr><td class="paramname">u_p</td><td>State view for the exterior side of the face. </td></tr>
+    <tr><td class="paramname">unit_normal</td><td>Unit normal vector in the direction of which the wave speeds are estimated.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The smallest and the largest wave speed in the direction of <code>unit_normal</code>. The first element of the returned pair is the smallest wave speed, and the second element is the largest wave speed. </dd></dl>
+
+</div>
+</div>
 <a id="adf66927d2f1a59e7d391e35a61974d81" name="adf66927d2f1a59e7d391e35a61974d81"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adf66927d2f1a59e7d391e35a61974d81">&#9670;&#160;</a></span>add_hyper_rectangle_custom_boundary_condition_parameters()</h2>
 
@@ -1893,6 +1952,32 @@ template&lt;int dim, typename number , FaceEvaluatorType&lt; dim, dim+2, number,
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Tuple, which containing the fluxes for the inside and outside faces, weighted with the value of the test functions, as first two arguments, and the fluxes for the inside and outside faces, weighted with the gradient of the test functions, as the third and fourth argument. </dd></dl>
+
+</div>
+</div>
+<a id="ab3cfaa762626999c6a0d3d12ccbc6070" name="ab3cfaa762626999c6a0d3d12ccbc6070"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3cfaa762626999c6a0d3d12ccbc6070">&#9670;&#160;</a></span>to_riemann_solver_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Utils::RiemannSolverType MeltPoolDG::CompressibleFlow::to_riemann_solver_type </td>
+          <td>(</td>
+          <td class="paramtype">NumericalFluxType&#160;</td>
+          <td class="paramname"><em>numerical_flux_type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

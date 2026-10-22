@@ -546,9 +546,9 @@ requires std::ranges::range&lt;ContainerType&gt;</td></tr>
 <tr class="memitem:a15434dd2db955d6afcdf0e2d83478813" id="r_a15434dd2db955d6afcdf0e2d83478813"><td class="memTemplParams" colspan="2">template&lt;int a, int b, int c, typename number &gt; </td></tr>
 <tr class="memitem:a15434dd2db955d6afcdf0e2d83478813"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, a, dealii::Tensor&lt; 1, c, number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a15434dd2db955d6afcdf0e2d83478813">matrix_matrix_product</a> (const dealii::Tensor&lt; 1, a, dealii::Tensor&lt; 1, b, number &gt; &gt; &amp;matrix1, const dealii::Tensor&lt; 1, b, dealii::Tensor&lt; 1, c, number &gt; &gt; &amp;matrix2)</td></tr>
 <tr class="separator:a15434dd2db955d6afcdf0e2d83478813"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad412bd356a125d1eba94afac65f2538b" id="r_ad412bd356a125d1eba94afac65f2538b"><td class="memTemplParams" colspan="2">template&lt;int dim_1, int dim_2, typename number &gt; </td></tr>
-<tr class="memitem:ad412bd356a125d1eba94afac65f2538b"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim_1, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ad412bd356a125d1eba94afac65f2538b">contract_tensor_with_vector</a> (const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &amp;tensor, const dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &amp;vector)</td></tr>
-<tr class="separator:ad412bd356a125d1eba94afac65f2538b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78479a6b0b24207778f275c379997d02" id="r_a78479a6b0b24207778f275c379997d02"><td class="memTemplParams" colspan="2">template&lt;int dim_1, int dim_2, typename number &gt; </td></tr>
+<tr class="memitem:a78479a6b0b24207778f275c379997d02"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim_1, number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a78479a6b0b24207778f275c379997d02">contract_tensor_with_vector</a> (const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, number &gt; &gt; &amp;tensor, const dealii::Tensor&lt; 1, dim_2, number &gt; &amp;vector)</td></tr>
+<tr class="separator:a78479a6b0b24207778f275c379997d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a510d1fd8328dd7ed4baabda6c8896927" id="r_a510d1fd8328dd7ed4baabda6c8896927"><td class="memTemplParams" colspan="2">template&lt;int dim_1, int dim_2, typename number &gt; </td></tr>
 <tr class="memitem:a510d1fd8328dd7ed4baabda6c8896927"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, dim_1, number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a510d1fd8328dd7ed4baabda6c8896927">contract_average_tensor_with_vector</a> (const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, number &gt; &gt; &amp;tensor_1, const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, number &gt; &gt; &amp;tensor_2, const dealii::Tensor&lt; 1, dim_2, number &gt; &amp;vector)</td></tr>
 <tr class="separator:a510d1fd8328dd7ed4baabda6c8896927"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1737,19 +1737,19 @@ template&lt;int dim_1, int dim_2, typename number &gt; </div>
 <p>Contracts the average of two given second order tensors with a vector, which results in a vector. Note that the second order tensors are provided as two nested first order tensors in this function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">tensor_1</td><td>First second order tensor of type 'Tensor&lt;1, dim_1, Tensor&lt;1, dim_2, VectorizedArray&lt;number&gt;&gt;&gt;' </td></tr>
-    <tr><td class="paramname">tensor_2</td><td>Second second order tensor of type 'Tensor&lt;1, dim_1, Tensor&lt;1, dim_2, VectorizedArray&lt;number&gt;&gt;&gt;' </td></tr>
-    <tr><td class="paramname">vector</td><td>Vector of type 'Tensor&lt;1, dim_2, VectorizedArray&lt;number&gt;&gt;'</td></tr>
+    <tr><td class="paramname">tensor_1</td><td>First second order tensor of type 'Tensor&lt;1, dim_1, Tensor&lt;1, dim_2, number&gt;&gt;' </td></tr>
+    <tr><td class="paramname">tensor_2</td><td>Second second order tensor of type 'Tensor&lt;1, dim_1, Tensor&lt;1, dim_2, number&gt;&gt;' </td></tr>
+    <tr><td class="paramname">vector</td><td>Vector of type 'Tensor&lt;1, dim_2, number&gt;'</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result of the contraction, i.e. result_i = 0.5 * (tensor_1_ij + tensor_2_ij) * vector_j. The result has vector type 'Tensor&lt;1, dim_1, VectorizedArray&lt;number&gt;&gt;'.</dd></dl>
-<p>@ note The dimensions of the provided tensors and the vector have to match, i.e. the second basis of the tensors and the vector must have the same dimension <code>dim_2</code>. </p>
+<dl class="section note"><dt>Note</dt><dd>The dimensions of the provided tensors and the vector have to match, i.e. the second basis of the tensors and the vector must have the same dimension <code>dim_2</code>. </dd></dl>
 
 </div>
 </div>
-<a id="ad412bd356a125d1eba94afac65f2538b" name="ad412bd356a125d1eba94afac65f2538b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad412bd356a125d1eba94afac65f2538b">&#9670;&#160;</a></span>contract_tensor_with_vector()</h2>
+<a id="a78479a6b0b24207778f275c379997d02" name="a78479a6b0b24207778f275c379997d02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78479a6b0b24207778f275c379997d02">&#9670;&#160;</a></span>contract_tensor_with_vector()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1757,15 +1757,15 @@ template&lt;int dim_1, int dim_2, typename number &gt; </div>
 template&lt;int dim_1, int dim_2, typename number &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">dealii::Tensor&lt; 1, dim_1, dealii::VectorizedArray&lt; number &gt; &gt; MeltPoolDG::contract_tensor_with_vector </td>
+          <td class="memname">dealii::Tensor&lt; 1, dim_1, number &gt; MeltPoolDG::contract_tensor_with_vector </td>
           <td>(</td>
-          <td class="paramtype">const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim_1, dealii::Tensor&lt; 1, dim_2, number &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>tensor</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const dealii::Tensor&lt; 1, dim_2, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim_2, number &gt; &amp;&#160;</td>
           <td class="paramname"><em>vector</em>&#160;</td>
         </tr>
         <tr>
@@ -1778,12 +1778,12 @@ template&lt;int dim_1, int dim_2, typename number &gt; </div>
 <p>Contracts the given second order tensor with a vector, which results in a vector. Note that the second order tensor is provided as two nested first order tensors in this function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">tensor</td><td>Second order tensor of type 'Tensor&lt;1, dim_1, Tensor&lt;1, dim_2, VectorizedArray&lt;number&gt;&gt;&gt;' </td></tr>
-    <tr><td class="paramname">vector</td><td>Vector of type 'Tensor&lt;1, dim_2, VectorizedArray&lt;number&gt;&gt;'</td></tr>
+    <tr><td class="paramname">tensor</td><td>Second order tensor of type 'Tensor&lt;1, dim_1, Tensor&lt;1, dim_2, number&gt;&gt;' </td></tr>
+    <tr><td class="paramname">vector</td><td>Vector of type 'Tensor&lt;1, dim_2, number&gt;'</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Result of the contraction, i.e. result_i = tensor_ij * vector_j. The result has vector type 'Tensor&lt;1, dim_1, VectorizedArray&lt;number&gt;&gt;'.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of the contraction, i.e. result_i = tensor_ij * vector_j. The result has vector type 'Tensor&lt;1, dim_1, number&gt;'.</dd></dl>
 <p>@ note The dimensions of the provided tensor and the vector have to match, i.e. the second basis of the tensor and the vector must have the same dimension <code>dim_2</code>. </p>
 
 </div>

@@ -163,11 +163,12 @@ Public Types</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a2e6b7b70295f4b4ae7bd317d98effe05" id="r_a2e6b7b70295f4b4ae7bd317d98effe05"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a63a31371545f5f13610ca4ab12020b61">GradientType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a2e6b7b70295f4b4ae7bd317d98effe05">cell</a> (const <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a94581c5e7e2ad24498db30b2d79dcc71">ValueType</a> &amp;u, const <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a63a31371545f5f13610ca4ab12020b61">GradientType</a> &amp;grad_u, const ConvectiveKernel &amp;convective_kernel, const DiffusiveKernel &amp;diffusion_kernel)</td></tr>
 <tr class="separator:a2e6b7b70295f4b4ae7bd317d98effe05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64da4a7300fec9dd9d01ad8dd42f4263" id="r_a64da4a7300fec9dd9d01ad8dd42f4263"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator_1_1FaceFlux.html">FaceFlux</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a64da4a7300fec9dd9d01ad8dd42f4263">face</a> (const <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a94581c5e7e2ad24498db30b2d79dcc71">ValueType</a> &amp;u_m, const <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a94581c5e7e2ad24498db30b2d79dcc71">ValueType</a> &amp;u_p, const <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a63a31371545f5f13610ca4ab12020b61">GradientType</a> &amp;grad_u_m, const <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a63a31371545f5f13610ca4ab12020b61">GradientType</a> &amp;grad_u_p, const dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &amp;normal, const VectorizedArrayType penalty_parameter, const ConvectiveKernel &amp;convective_kernel, const DiffusiveKernel &amp;diffusion_kernel)</td></tr>
-<tr class="separator:a64da4a7300fec9dd9d01ad8dd42f4263"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a125f8cec40242aa1183d6e03df828af9" id="r_a125f8cec40242aa1183d6e03df828af9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator_1_1FaceFlux.html">FaceFlux</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a125f8cec40242aa1183d6e03df828af9">face</a> (const <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a94581c5e7e2ad24498db30b2d79dcc71">ValueType</a> &amp;u_m, const <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a94581c5e7e2ad24498db30b2d79dcc71">ValueType</a> &amp;u_p, const <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a63a31371545f5f13610ca4ab12020b61">GradientType</a> &amp;grad_u_m, const <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html#a63a31371545f5f13610ca4ab12020b61">GradientType</a> &amp;grad_u_p, const dealii::Tensor&lt; 1, dim, VectorizedArrayType &gt; &amp;normal, const VectorizedArrayType penalty_parameter, const ConvectiveKernel &amp;convective_kernel, const DiffusiveKernel &amp;diffusion_kernel, const RiemannSolverType riemann_solver_type=RiemannSolverType::lax_friedrichs)</td></tr>
+<tr class="separator:a125f8cec40242aa1183d6e03df828af9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number, ConvectionKernelType ConvectiveKernel, DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType = dealii::VectorizedArray&lt;number&gt;&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number, typename ConvectiveKernel, DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType = dealii::VectorizedArray&lt;number&gt;&gt;<br />
+requires ConvectionKernelType&lt;ConvectiveKernel, dim, VectorizedArrayType&gt;<br />
 struct MeltPoolDG::Utils::DGConvectionDiffusionOperator&lt; dim, number, ConvectiveKernel, DiffusiveKernel, VectorizedArrayType &gt;</div><p>Generic discontinuous Galerkin operator for convection-diffusion problems, combining the <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionOperator.html">DGConvectionOperator</a> and <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGDiffusionOperator.html">DGDiffusionOperator</a>. The physical convective and diffusive fluxes are defined by user-provided kernels, which specify how the fluxes are computed from local solution values and gradients. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a4c19daca82a59ad202777b9bf420f38b" name="a4c19daca82a59ad202777b9bf420f38b"></a>
@@ -176,7 +177,7 @@ struct MeltPoolDG::Utils::DGConvectionDiffusionOperator&lt; dim, number, Convect
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;&gt; </div>
+template&lt;int dim, typename number , typename ConvectiveKernel , DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html">MeltPoolDG::Utils::DGConvectionDiffusionOperator</a>&lt; dim, number, ConvectiveKernel, DiffusiveKernel, VectorizedArrayType &gt;::ConvectionOperator =  <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionOperator.html">DGConvectionOperator</a>&lt;dim, number, ConvectiveKernel, VectorizedArrayType&gt;</td>
@@ -192,7 +193,7 @@ template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, Di
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;&gt; </div>
+template&lt;int dim, typename number , typename ConvectiveKernel , DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html">MeltPoolDG::Utils::DGConvectionDiffusionOperator</a>&lt; dim, number, ConvectiveKernel, DiffusiveKernel, VectorizedArrayType &gt;::DiffusionOperator =  <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGDiffusionOperator.html">DGDiffusionOperator</a>&lt;dim, number, DiffusiveKernel, VectorizedArrayType&gt;</td>
@@ -208,7 +209,7 @@ template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, Di
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;&gt; </div>
+template&lt;int dim, typename number , typename ConvectiveKernel , DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html">MeltPoolDG::Utils::DGConvectionDiffusionOperator</a>&lt; dim, number, ConvectiveKernel, DiffusiveKernel, VectorizedArrayType &gt;::GradientType =  typename DiffusionOperator::GradientType</td>
@@ -224,7 +225,7 @@ template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, Di
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;&gt; </div>
+template&lt;int dim, typename number , typename ConvectiveKernel , DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="structMeltPoolDG_1_1Utils_1_1DGConvectionDiffusionOperator.html">MeltPoolDG::Utils::DGConvectionDiffusionOperator</a>&lt; dim, number, ConvectiveKernel, DiffusiveKernel, VectorizedArrayType &gt;::ValueType =  typename DiffusionOperator::ValueType</td>
@@ -241,7 +242,7 @@ template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, Di
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;&gt; </div>
+template&lt;int dim, typename number , typename ConvectiveKernel , DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -296,13 +297,13 @@ template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, Di
 
 </div>
 </div>
-<a id="a64da4a7300fec9dd9d01ad8dd42f4263" name="a64da4a7300fec9dd9d01ad8dd42f4263"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64da4a7300fec9dd9d01ad8dd42f4263">&#9670;&#160;</a></span>face()</h2>
+<a id="a125f8cec40242aa1183d6e03df828af9" name="a125f8cec40242aa1183d6e03df828af9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a125f8cec40242aa1183d6e03df828af9">&#9670;&#160;</a></span>face()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;&gt; </div>
+template&lt;int dim, typename number , typename ConvectiveKernel , DiffusionKernelType DiffusiveKernel, typename VectorizedArrayType  = dealii::VectorizedArray&lt;number&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -353,7 +354,13 @@ template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, Di
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const DiffusiveKernel &amp;&#160;</td>
-          <td class="paramname"><em>diffusion_kernel</em>&#160;</td>
+          <td class="paramname"><em>diffusion_kernel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const RiemannSolverType&#160;</td>
+          <td class="paramname"><em>riemann_solver_type</em> = <code>RiemannSolverType::lax_friedrichs</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -377,7 +384,8 @@ template&lt;int dim, typename number , ConvectionKernelType ConvectiveKernel, Di
     <tr><td class="paramname">normal</td><td>Outer facing normal vector at the face quadrature point. </td></tr>
     <tr><td class="paramname">penalty_parameter</td><td>Penalty parameter for numerical flux computation. </td></tr>
     <tr><td class="paramname">convective_kernel</td><td>User-provided kernel defining how to compute the convective flux from local solution values. </td></tr>
-    <tr><td class="paramname">diffusion_kernel</td><td>User-provided kernel defining how to compute the diffusive flux from local solution values and gradients.</td></tr>
+    <tr><td class="paramname">diffusion_kernel</td><td>User-provided kernel defining how to compute the diffusive flux from local solution values and gradients. </td></tr>
+    <tr><td class="paramname">riemann_solver_type</td><td>Type of Riemann solver to use for computing the convective numerical flux.</td></tr>
   </table>
   </dd>
 </dl>
