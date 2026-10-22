@@ -15,9 +15,14 @@ namespace MeltPoolDG::TimeIntegration
   template <typename number>
   class TimeIntegratorBase
   {
-    using VectorType = dealii::LinearAlgebra::distributed::Vector<number>;
-
   public:
+    using VectorType              = dealii::LinearAlgebra::distributed::Vector<number>;
+    using ExplicitRhsFunctionType = std::function<void(number,
+                                                       number,
+                                                       VectorType &,
+                                                       const VectorType &,
+                                                       std::function<void(unsigned, unsigned)>)>;
+
     explicit TimeIntegratorBase(const TimeIntegratorData<number> &time_integrator_data_in)
       : time_integrator_data(time_integrator_data_in)
     {}

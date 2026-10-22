@@ -8,8 +8,8 @@ namespace MeltPoolDG::TimeIntegration
 {
   template <typename number>
   LowStorageExplicitRungeKuttaIntegrator<number>::LowStorageExplicitRungeKuttaIntegrator(
-    const TimeIntegratorData<number> &time_integrator_data,
-    const RhsFunctionType            &compute_rhs)
+    const TimeIntegratorData<number>                                   &time_integrator_data,
+    const typename TimeIntegratorBase<number>::ExplicitRhsFunctionType &compute_rhs)
     : TimeIntegratorBase<number>(time_integrator_data)
     , compute_rhs(compute_rhs)
   {

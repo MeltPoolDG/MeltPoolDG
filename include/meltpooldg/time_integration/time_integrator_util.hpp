@@ -1,13 +1,14 @@
 
 #pragma once
 
-#include "meltpooldg/core/scratch_data.hpp"
+#include <meltpooldg/core/scratch_data.hpp>
 #include <meltpooldg/linear_algebra/linear_solver_data.hpp>
 #include <meltpooldg/linear_algebra/preconditioner.hpp>
 #include <meltpooldg/linear_algebra/preconditioner_factory.hpp>
 #include <meltpooldg/time_integration/bdf_time_integration.hpp>
 #include <meltpooldg/time_integration/explicit_low_storage_runge_kutta_integrator.hpp>
 #include <meltpooldg/time_integration/explicit_runge_kutta_chebyshev_integrator.hpp>
+#include <meltpooldg/time_integration/explicit_ssp_runge_kutta_integrator.hpp>
 #include <meltpooldg/time_integration/one_step_theta.hpp>
 #include <meltpooldg/time_integration/time_integrator_base.hpp>
 #include <meltpooldg/time_integration/time_integrator_data.hpp>
@@ -33,6 +34,8 @@ namespace MeltPoolDG::TimeIntegration
       return true;
     else if (Utils::contains(explicit_rkc_supported_schemes, scheme))
       return true;
+    else if (Utils::contains(explicit_ssp_rk_supported_schemes, scheme))
+      return true;
     return false;
   }
 
@@ -56,29 +59,34 @@ namespace MeltPoolDG::TimeIntegration
    * Factory function that creates and returns a raw pointer to an explicit time integrator
    * based on the scheme specified in @p TimeIntegratorData.
    *
+   * @param compute_rhs Function computing the right-hand side of the ODE system. All explicit time
+   * integrators share the same signature, see e.g. TimeIntegratorBase::ExplicitRhsFunctionType.
    * @param params Contains the configuration details for the time integrator.
-   * @param timer Timer passed to the constructor of the time integrator.
    *
    * @return A raw pointer to the appropriate explicit time integrator.
    * @throws An exception if the specified integration scheme is not supported.
    * @note This function returns a raw pointer, leaving the responsibility for memory management
    * (e.g., wrapping it in a smart pointer) to the caller.
    */
-  template <typename number, typename PDEOperator>
+  template <typename number>
   TimeIntegratorBase<number> *
-  explicit_time_integrator_factory(const PDEOperator                &pde_operator,
-                                   const TimeIntegratorData<number> &params)
+  explicit_time_integrator_factory(
+    const typename TimeIntegratorBase<number>::ExplicitRhsFunctionType &compute_rhs,
+    const TimeIntegratorData<number>                                   &params)
   {
     if (Utils::contains(explicit_lsrk_supported_schemes, params.integrator_type))
       {
-        auto integrator = new LowStorageExplicitRungeKuttaIntegrator<number>(
-          params, std::bind_front(&PDEOperator::apply_operator, &pde_operator));
+        auto integrator = new LowStorageExplicitRungeKuttaIntegrator<number>(params, compute_rhs);
         return integrator;
       }
     else if (Utils::contains(explicit_rkc_supported_schemes, params.integrator_type))
       {
-        auto integrator = new ExplicitRungeKuttaChebyshevIntegrator<number>(
-          params, std::bind_front(&PDEOperator::apply_operator, &pde_operator));
+        auto integrator = new ExplicitRungeKuttaChebyshevIntegrator<number>(params, compute_rhs);
+        return integrator;
+      }
+    else if (Utils::contains(explicit_ssp_rk_supported_schemes, params.integrator_type))
+      {
+        auto integrator = new ExplicitSSPRungeKuttaIntegrator<number>(params, compute_rhs);
         return integrator;
       }
     return nullptr;

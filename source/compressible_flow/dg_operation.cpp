@@ -818,27 +818,12 @@ namespace MeltPoolDG::CompressibleFlow
         flow_operator.template emplace<DGOperatorExplicit<dim, number, n_species>>(
           flow_scratch_data);
 
-        using RKC = TimeIntegration::ExplicitRungeKuttaChebyshevIntegrator<number>;
-
-        using RhsFunctionType = typename RKC::RhsFunctionType;
-
-        const RhsFunctionType rhs =
+        const typename TimeIntegration::TimeIntegratorBase<number>::ExplicitRhsFunctionType rhs =
           std::bind_front(&DGOperatorExplicit<dim, number, n_species>::apply_operator,
                           &std::get<DGOperatorExplicit<dim, number, n_species>>(flow_operator));
 
-        if (flow_scratch_data.flow_data.time_integrator.integrator_type ==
-            TimeIntegration::TimeIntegratorSchemes::RKC_n_stages)
-          {
-            time_integrator =
-              std::make_unique<RKC>(flow_scratch_data.flow_data.time_integrator, rhs);
-          }
-        else
-          {
-            time_integrator =
-              std::make_unique<TimeIntegration::LowStorageExplicitRungeKuttaIntegrator<number>>(
-                flow_scratch_data.flow_data.time_integrator, rhs);
-          }
-
+        time_integrator.reset(TimeIntegration::explicit_time_integrator_factory(
+          rhs, flow_scratch_data.flow_data.time_integrator));
         return;
       }
     else if (time_integrator_scheme_is_implicit(
