@@ -36,7 +36,8 @@ namespace MeltPoolDG::LevelSet
                                               const unsigned int     reinit_dof_idx_in,
                                               const unsigned int     reinit_quad_idx_in,
                                               const unsigned int     ls_dof_idx_in,
-                                              const unsigned int     normal_dof_idx_in)
+                                              const unsigned int     normal_dof_idx_in,
+                                              const MappingInfoType *mapping_info_surface_in)
     : scratch_data(scratch_data_in)
     , reinit_data(reinit_data_in)
     , ls_n_subdivisions(ls_n_subdivisions)
@@ -47,8 +48,15 @@ namespace MeltPoolDG::LevelSet
     , tolerance_normal_vector(UtilityFunctions::compute_numerical_zero_of_norm<dim, number>(
         scratch_data.get_triangulation(),
         scratch_data.get_mapping()))
+    , mapping_info_surface(mapping_info_surface_in)
   {
     this->reset_dof_index(reinit_dof_idx_in);
+
+    AssertThrow(reinit_data.hyperbolic.cg.interface_constraint_type ==
+                    InterfaceConstraintType::none or
+                  mapping_info_surface != nullptr,
+                ExcMessage("For the interface constraint, the mapping information of the "
+                           "interface surface must be provided."));
   }
 
   template <int dim, typename number>
@@ -153,15 +161,19 @@ namespace MeltPoolDG::LevelSet
   void
   OlssonOperator<dim, number>::vmult(VectorType &dst, const VectorType &src) const
   {
+    do_pre_vmult(src);
+
     scratch_data.get_matrix_free().template loop<VectorType, VectorType>(
       [&](const auto &matrix_free, auto &dst, const auto &src, auto cell_range) {
         FECellIntegrator<dim, 1, number> delta_psi(matrix_free, this->dof_idx, reinit_quad_idx);
+        auto interface_penalty_surface = create_interface_penalty_evaluator();
+
         for (unsigned int cell = cell_range.first; cell < cell_range.second; ++cell)
           {
             delta_psi.reinit(cell);
             delta_psi.read_dof_values(src);
 
-            tangent_cell_operation(delta_psi);
+            tangent_cell_operation(delta_psi, interface_penalty_surface);
 
             delta_psi.distribute_local_to_global(dst);
           }
@@ -177,6 +189,8 @@ namespace MeltPoolDG::LevelSet
       dst,
       src,
       true /*zero dst vector*/);
+
+    do_post_vmult(dst, src);
   }
 
   template <int dim, typename number>
@@ -192,6 +206,7 @@ namespace MeltPoolDG::LevelSet
         FECellIntegrator<dim, dim, number> normal_vector(scratch_data.get_matrix_free(),
                                                          normal_dof_idx,
                                                          reinit_quad_idx);
+        auto interface_penalty_surface = create_interface_penalty_evaluator();
 
         for (unsigned int cell = macro_cells.first; cell < macro_cells.second; ++cell)
           {
@@ -230,7 +245,18 @@ namespace MeltPoolDG::LevelSet
                                     q_index);
               }
 
-            rhs.integrate_scatter(EvaluationFlags::gradients, dst);
+            rhs.integrate(EvaluationFlags::gradients);
+
+            // weak enforcement of the initial interface position: psi_old + delta_psi = 0
+            if (interface_penalty_surface)
+              interface_penalty_cell_operation(
+                psi_old.begin_dof_values(),
+                rhs.begin_dof_values(),
+                cell,
+                -reinit_data.hyperbolic.cg.interface_penalty_parameter,
+                *interface_penalty_surface);
+
+            rhs.distribute_local_to_global(dst);
           }
       },
       [&](const auto &,
@@ -245,6 +271,9 @@ namespace MeltPoolDG::LevelSet
       dst,
       src,
       true /*zero out dst*/);
+
+    // homogeneous Dirichlet constraints on the increment
+    apply_dirichlet_constraints(dst);
   }
 
   template <int dim, typename number>
@@ -262,6 +291,8 @@ namespace MeltPoolDG::LevelSet
                                                         reinit_quad_idx);
 
     unsigned int old_cell_index = dealii::numbers::invalid_unsigned_int;
+
+    auto interface_penalty_surface = create_interface_penalty_evaluator();
 
 
     // Compute diagonal of the operator using MatrixFreeTools.
@@ -286,7 +317,7 @@ namespace MeltPoolDG::LevelSet
           [&](auto &delta_psi) {
             const unsigned int current_cell_index = delta_psi.get_current_cell_index();
 
-            tangent_cell_operation(delta_psi);
+            tangent_cell_operation(delta_psi, interface_penalty_surface);
 
             old_cell_index = current_cell_index;
           },
@@ -307,13 +338,19 @@ namespace MeltPoolDG::LevelSet
           [&](auto &delta_psi) {
             const unsigned int current_cell_index = delta_psi.get_current_cell_index();
 
-            tangent_cell_operation(delta_psi);
+            tangent_cell_operation(delta_psi, interface_penalty_surface);
 
             old_cell_index = current_cell_index;
           },
           this->dof_idx,
           reinit_quad_idx);
       }
+
+    // identity rows at the Dirichlet-constrained DoFs
+    const auto &partitioner = matrix_free.get_vector_partitioner(this->dof_idx);
+    for (const unsigned int i : dirichlet_indices)
+      if (i < partitioner->locally_owned_size())
+        system_matrix.clear_row(partitioner->local_to_global(i), 1.0);
   }
 
   template <int dim, typename number>
@@ -326,6 +363,8 @@ namespace MeltPoolDG::LevelSet
     const auto &matrix_free = scratch_data.get_matrix_free();
 
     unsigned int old_cell_index = dealii::numbers::invalid_unsigned_int;
+
+    auto interface_penalty_surface = create_interface_penalty_evaluator();
 
     FEFaceIntegrator<dim, dim, number> normal_face_eval(matrix_free,
                                                         true /*is_interior_face*/,
@@ -354,7 +393,7 @@ namespace MeltPoolDG::LevelSet
           [&](auto &delta_psi) {
             const unsigned int current_cell_index = delta_psi.get_current_cell_index();
 
-            tangent_cell_operation(delta_psi);
+            tangent_cell_operation(delta_psi, interface_penalty_surface);
 
             old_cell_index = current_cell_index;
           },
@@ -374,7 +413,7 @@ namespace MeltPoolDG::LevelSet
           [&](auto &delta_psi) {
             const unsigned int current_cell_index = delta_psi.get_current_cell_index();
 
-            tangent_cell_operation(delta_psi);
+            tangent_cell_operation(delta_psi, interface_penalty_surface);
 
             old_cell_index = current_cell_index;
           },
@@ -386,14 +425,28 @@ namespace MeltPoolDG::LevelSet
     const number linfty_norm = std::max(1.0, diagonal.linfty_norm());
     for (auto &i : diagonal)
       i = (std::abs(i) > 1.0e-14 * linfty_norm) ? (1.0 / i) : 1.0;
+
+    // identity at the Dirichlet-constrained DoFs
+    const unsigned int n_owned = diagonal.locally_owned_size();
+    for (const unsigned int i : dirichlet_indices)
+      if (i < n_owned)
+        diagonal.local_element(i) = 1.0;
   }
 
 
   template <int dim, typename number>
   void
   OlssonOperator<dim, number>::tangent_cell_operation(
-    FECellIntegrator<dim, 1, number> &delta_psi) const
+    FECellIntegrator<dim, 1, number>   &delta_psi,
+    std::optional<PointEvaluationType> &interface_penalty_surface) const
   {
+    // keep a copy of the DoF values for the interface penalty term, since they are
+    // overwritten by integrate()
+    if (interface_penalty_surface)
+      std::copy_n(delta_psi.begin_dof_values(),
+                  n_dofs_per_cell,
+                  interface_penalty_src_dofs.begin());
+
     delta_psi.evaluate(EvaluationFlags::values | EvaluationFlags::gradients);
 
     for (unsigned int q_index = 0; q_index < delta_psi.n_q_points; q_index++)
@@ -418,6 +471,78 @@ namespace MeltPoolDG::LevelSet
       }
 
     delta_psi.integrate(EvaluationFlags::values | EvaluationFlags::gradients);
+
+    if (interface_penalty_surface)
+      interface_penalty_cell_operation(interface_penalty_src_dofs.data(),
+                                       delta_psi.begin_dof_values(),
+                                       delta_psi.get_current_cell_index(),
+                                       reinit_data.hyperbolic.cg.interface_penalty_parameter,
+                                       *interface_penalty_surface);
+  }
+
+  template <int dim, typename number>
+  bool
+  OlssonOperator<dim, number>::surface_penalty_enabled() const
+  {
+    return reinit_data.hyperbolic.cg.interface_constraint_type ==
+           InterfaceConstraintType::surface_penalty;
+  }
+
+  template <int dim, typename number>
+  std::optional<typename OlssonOperator<dim, number>::PointEvaluationType>
+  OlssonOperator<dim, number>::create_interface_penalty_evaluator() const
+  {
+    if (!surface_penalty_enabled())
+      return std::nullopt;
+
+    return std::optional<PointEvaluationType>(
+      std::in_place, *mapping_info_surface, *fe_point_level_set, 0, true);
+  }
+
+  template <int dim, typename number>
+  void
+  OlssonOperator<dim, number>::interface_penalty_cell_operation(
+    const VectorizedArrayType *src_dofs,
+    VectorizedArrayType       *dst_dofs,
+    const unsigned int         cell_batch,
+    const number               penalty_factor,
+    PointEvaluationType       &interface_penalty_surface) const
+  {
+    constexpr unsigned int n_lanes = VectorizedArrayType::size();
+
+    for (unsigned int lane = 0;
+         lane < scratch_data.get_matrix_free().n_active_entries_per_cell_batch(cell_batch);
+         ++lane)
+      {
+        interface_penalty_surface.reinit(cell_batch * n_lanes + lane);
+
+        const auto q_indices = interface_penalty_surface.quadrature_point_indices();
+
+        // this corresponds to the case that the cell is not cut by the interface, and thus no
+        // surface integral is computed
+        if (q_indices.begin() == q_indices.end())
+          continue;
+
+        // scale the dimensionless penalty factor by h/Δτ such that the surface term scales
+        // like the mass term of the cut cell, independent of the mesh size and pseudo-time step
+        const number penalty_coefficient = penalty_factor *
+                                           scratch_data.get_cell_sizes()[cell_batch][lane] /
+                                           ls_n_subdivisions * this->time_increment_inv;
+
+        interface_penalty_surface.evaluate(
+          StridedArrayView<const number, n_lanes>(&src_dofs[0][lane], n_dofs_per_cell),
+          EvaluationFlags::values);
+
+        for (const unsigned int q_index : q_indices)
+          interface_penalty_surface.submit_value(penalty_coefficient *
+                                                   interface_penalty_surface.get_value(q_index),
+                                                 q_index);
+
+        interface_penalty_surface.integrate(StridedArrayView<number, n_lanes>(&dst_dofs[0][lane],
+                                                                              n_dofs_per_cell),
+                                            EvaluationFlags::values,
+                                            true /*sum_into_values*/);
+      }
   }
 
   template <int dim, typename number>
@@ -602,6 +727,13 @@ namespace MeltPoolDG::LevelSet
         solution_old.resize_fast(scratch_data.get_matrix_free().n_cell_batches() *
                                  scratch_data.get_n_q_points(reinit_quad_idx));
 
+        fe_point_level_set = std::make_unique<FE_Q<dim>>(scratch_data.get_degree(ls_dof_idx));
+        n_dofs_per_cell    = fe_point_level_set->dofs_per_cell;
+        interface_penalty_src_dofs.resize_fast(n_dofs_per_cell);
+
+        // the constraints are recomputed by create_dirichlet_constraints()
+        dirichlet_indices.clear();
+
         for (unsigned int cell = 0; cell < scratch_data.get_matrix_free().n_cell_batches(); ++cell)
           {
             normal_diffusion_length[cell] =
@@ -614,6 +746,110 @@ namespace MeltPoolDG::LevelSet
     else
       {
         this->reinit_sparsity_pattern(scratch_data);
+      }
+  }
+
+  template <int dim, typename number>
+  void
+  OlssonOperator<dim, number>::create_dirichlet_constraints()
+  {
+    dirichlet_indices.clear();
+
+    if (reinit_data.hyperbolic.cg.interface_constraint_type != InterfaceConstraintType::dirichlet)
+      return;
+
+    Assert(fe_point_level_set, ExcMessage("Call reinit() before creating the constraints."));
+
+    const auto            &matrix_free = scratch_data.get_matrix_free();
+    const auto            &partitioner = matrix_free.get_vector_partitioner(this->dof_idx);
+    constexpr unsigned int n_lanes     = VectorizedArrayType::size();
+    PointEvaluationType    interface_surface(*mapping_info_surface, *fe_point_level_set, 0, true);
+
+    // Marker vector: 1 on every DoF to be constrained. Using a distributed vector makes the
+    // constrained set consistent across ranks: a DoF of a cut cell owned by another rank is
+    // marked here as a ghost entry, compress(add) transfers the mark to the owner and
+    // update_ghost_values() distributes the owner's decision back to all ranks.
+    VectorType marker;
+    scratch_data.initialize_dof_vector(marker, this->dof_idx);
+
+    std::vector<types::global_dof_index> global_dof_indices(n_dofs_per_cell);
+
+    for (unsigned int cell_batch = 0; cell_batch < matrix_free.n_cell_batches(); ++cell_batch)
+      for (unsigned int lane = 0; lane < matrix_free.n_active_entries_per_cell_batch(cell_batch);
+           ++lane)
+        {
+          interface_surface.reinit(cell_batch * n_lanes + lane);
+          const auto q_indices = interface_surface.quadrature_point_indices();
+
+          // not a cut cell
+          if (q_indices.begin() == q_indices.end())
+            continue;
+
+          const auto cell = matrix_free.get_cell_iterator(cell_batch, lane, this->dof_idx);
+          cell->get_dof_indices(global_dof_indices);
+
+          for (const auto global_index : global_dof_indices)
+            if (partitioner->in_local_range(global_index) ||
+                partitioner->is_ghost_entry(global_index))
+              marker.local_element(partitioner->global_to_local(global_index)) = 1.0;
+        }
+
+    marker.compress(VectorOperation::add);
+    marker.update_ghost_values();
+
+    // collect the consistent set over locally owned and ghost entries
+    const unsigned int n_local_entries =
+      partitioner->locally_owned_size() + partitioner->n_ghost_indices();
+    for (unsigned int i = 0; i < n_local_entries; ++i)
+      if (marker.local_element(i) > 0.5)
+        dirichlet_indices.emplace_back(i);
+  }
+
+  template <int dim, typename number>
+  void
+  OlssonOperator<dim, number>::apply_dirichlet_constraints(VectorType &vec) const
+  {
+    const unsigned int n_owned = vec.locally_owned_size();
+    for (const unsigned int i : dirichlet_indices)
+      if (i < n_owned)
+        vec.local_element(i) = 0.0;
+  }
+
+  template <int dim, typename number>
+  void
+  OlssonOperator<dim, number>::do_pre_vmult(const VectorType &src_in) const
+  {
+    if (dirichlet_indices.empty())
+      return;
+
+    // The constrained entries (including ghost entries, in case src already holds valid
+    // ghost values) are temporarily set to zero, such that the operator is evaluated for
+    // the homogeneous Dirichlet problem. They are restored in do_post_vmult().
+    VectorType &src = const_cast<VectorType &>(src_in);
+
+    dirichlet_src_values.resize(dirichlet_indices.size());
+    for (unsigned int i = 0; i < dirichlet_indices.size(); ++i)
+      {
+        dirichlet_src_values[i]                 = src.local_element(dirichlet_indices[i]);
+        src.local_element(dirichlet_indices[i]) = 0.0;
+      }
+  }
+
+  template <int dim, typename number>
+  void
+  OlssonOperator<dim, number>::do_post_vmult(VectorType &dst, const VectorType &src_in) const
+  {
+    if (dirichlet_indices.empty())
+      return;
+
+    VectorType &src = const_cast<VectorType &>(src_in);
+
+    const unsigned int n_owned = dst.locally_owned_size();
+    for (unsigned int i = 0; i < dirichlet_indices.size(); ++i)
+      {
+        src.local_element(dirichlet_indices[i]) = dirichlet_src_values[i];
+        if (dirichlet_indices[i] < n_owned)
+          dst.local_element(dirichlet_indices[i]) = dirichlet_src_values[i];
       }
   }
 

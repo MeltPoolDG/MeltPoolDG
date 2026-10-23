@@ -456,6 +456,22 @@
                   "minimum": 0.0,
                   "description": "Factor that multiplies the normal diffusion factor, i.e., the diffusion length, to obtain the diffusion factor in the tangential direction.",
                   "default": 0.0
+                },
+                "interface constraint type": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "surface_penalty",
+                    "dirichlet"
+                  ],
+                  "description": "Technique to enforce the initial position of the zero level-set iso-surface during the reinitialization. none: no enforcement. surface_penalty: penalty term integrated over the interface, scaled by the interface penalty parameter. dirichlet: the DoFs of all cells intersected by the interface are fixed by Dirichlet constraints.",
+                  "default": "none"
+                },
+                "interface penalty parameter": {
+                  "type": "number",
+                  "minimum": 0.0,
+                  "description": "Dimensionless penalty factor for the weak enforcement of the initial position of the zero level-set iso-surface during the reinitialization. It is scaled by h/dtau, with the cell size h and the pseudo-time step dtau, to obtain the penalty coefficient. Only used for the interface constraint type surface_penalty.",
+                  "default": 0.0
                 }
               },
               "additionalProperties": false
