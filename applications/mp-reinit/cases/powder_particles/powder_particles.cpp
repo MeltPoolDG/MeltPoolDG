@@ -195,6 +195,16 @@ namespace MeltPoolDG::Simulation::PowderParticles
   void
   SimulationPowderParticles<dim, number>::set_field_conditions()
   {
+    AssertThrow(this->parameters.reinit.modeltype != LevelSet::ModelType::olsson2007 or
+                  level_set_type == LevelSet::LevelSetType::tanh,
+                dealii::ExcMessage(
+                  "For the Olsson reinitialization, the initial level set type must be tanh."));
+
+    AssertThrow(this->parameters.reinit.modeltype != LevelSet::ModelType::elliptic or
+                  level_set_type == LevelSet::LevelSetType::signed_distance,
+                dealii::ExcMessage("For the elliptic reinitialization, the initial level set "
+                                   "type must be signed_distance."));
+
     const number eps = this->parameters.reinit.compute_interface_thickness_parameter_epsilon(
       dealii::GridTools::minimal_cell_diameter(*this->triangulation) / std::sqrt(dim));
 

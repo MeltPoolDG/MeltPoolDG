@@ -31,6 +31,15 @@ namespace MeltPoolDG::LevelSet
 
   BETTER_ENUM(ModelType, char, olsson2007, elliptic, geometric)
 
+  BETTER_ENUM(InterfacePenaltyType,
+              char,
+              // no enforcement of the initial interface position
+              none,
+              // penalty term integrated over the interface
+              surface_penalty,
+              // fix the DoFs of all cells intersected by the interface (Dirichlet constraints)
+              dirichlet)
+
   template <typename number>
   struct ReinitializationEllipticData
   {
@@ -82,6 +91,9 @@ namespace MeltPoolDG::LevelSet
     {
       std::string implementation              = "meltpooldg";
       number      tangential_diffusion_factor = 0.0;
+      number      interface_penalty_parameter = 0.0;
+
+      InterfacePenaltyType interface_penalty_type = InterfacePenaltyType::none;
     } cg;
 
     struct DG

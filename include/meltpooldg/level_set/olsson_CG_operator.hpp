@@ -1,16 +1,23 @@
 #pragma once
+#include <deal.II/fe/fe_q.h>
+
 #include <deal.II/lac/generic_linear_algebra.h>
 #include <deal.II/lac/la_parallel_block_vector.h>
 
 #include <deal.II/matrix_free/fe_evaluation.h>
+#include <deal.II/matrix_free/fe_point_evaluation.h>
 #include <deal.II/matrix_free/matrix_free.h>
 // MeltPoolDG
 #include <meltpooldg/core/operator_base.hpp>
 #include <meltpooldg/core/scratch_data.hpp>
+#include <meltpooldg/cut/util.hpp>
 #include <meltpooldg/level_set/normal_vector_operator.hpp>
 #include <meltpooldg/level_set/reinitialization_data.hpp>
 #include <meltpooldg/utilities/fe_integrator.hpp>
 #include <meltpooldg/utilities/vector_tools.hpp>
+
+#include <memory>
+#include <optional>
 
 namespace MeltPoolDG::LevelSet
 {
@@ -35,6 +42,12 @@ namespace MeltPoolDG::LevelSet
    * S. Zahedi, K. Gustavsson, and G. Kreiss, “A conservative level set method
    * for contact line dynamics,” J. Comput. Phys., vol. 228, no. 17,
    * pp. 6361–6375, Sep. 2009, doi: 10.1016/j.jcp.2009.05.043.
+   *
+   * Optionally, the initial position of the zero level-set iso-surface can be enforced
+   * (see InterfacePenaltyType), either weakly by a penalty term integrated over the
+   * interface, analogous to ReinitializationEllipticOperatorNewton, or by fixing the DoFs
+   * of all cells intersected by the interface via homogeneous Dirichlet constraints on the
+   * increment.
    *
    * @tparam dim    Spatial dimension (2 or 3).
    * @tparam number Scalar number type (e.g., double or float).
@@ -68,6 +81,12 @@ namespace MeltPoolDG::LevelSet
     /// Scalar type with SIMD-enabled entries.
     using scalar = VectorizedArrayType;
 
+    /// Mapping information type for the integration over the interface.
+    using MappingInfoType = CutUtil::MappingInfoType<dim, number>;
+
+    /// Point evaluation type for the integration over the interface.
+    using PointEvaluationType = dealii::FEPointEvaluation<1, dim, dim, VectorizedArrayType>;
+
     /**
      * @brief Constructor.
      *
@@ -79,6 +98,9 @@ namespace MeltPoolDG::LevelSet
      * @param reinit_quad_idx_in  Quadrature index for reinitialization.
      * @param ls_dof_idx_in       DOF handler index for the level set function.
      * @param normal_dof_idx_in   DOF handler index for the normal vector.
+     * @param mapping_info_surface_in Mapping information for the interface surface. Only
+     *                            required if an interface penalty type other than none is
+     *                            selected.
      */
     OlssonOperator(const ScratchData<dim, dim, number> &scratch_data_in,
                    const ReinitializationData<number>  &reinit_data_in,
@@ -87,7 +109,8 @@ namespace MeltPoolDG::LevelSet
                    const unsigned int                   reinit_dof_idx_in,
                    const unsigned int                   reinit_quad_idx_in,
                    const unsigned int                   ls_dof_idx_in,
-                   const unsigned int                   normal_dof_idx_in);
+                   const unsigned int                   normal_dof_idx_in,
+                   const MappingInfoType               *mapping_info_surface_in = nullptr);
 
     /**
      * @brief Assemble the system matrix and right-hand side using a matrix-based approach.
@@ -146,14 +169,84 @@ namespace MeltPoolDG::LevelSet
     void
     set_wetting_boundary_condition_ids(std::vector<dealii::types::boundary_id> &&wetting_bc_ids);
 
+    /**
+     * @brief Collect the DoFs of all cells intersected by the interface described by
+     *        @p mapping_info_surface. The increment of the level set is constrained to zero
+     *        at these DoFs, i.e. their values are kept fixed during the reinitialization.
+     *
+     * Only active for InterfacePenaltyType::dirichlet. Must be called after reinit() and
+     * after the interface quadrature has been computed.
+     */
+    void
+    create_dirichlet_constraints();
+
+    /**
+     * @brief Set the locally owned entries of @p vec at the Dirichlet-constrained DoFs to zero.
+     *
+     * @param vec Vector of the increment of the level set, e.g. the initial guess or
+     *            the solution of the linear system.
+     */
+    void
+    apply_dirichlet_constraints(VectorType &vec) const;
+
   private:
     /**
      * @brief Compute the contribution of a single cell integral to the tangent.
      *
      * @param delta_psi Cell integrator for the solution field (increment of level set).
+     * @param interface_penalty_surface Point evaluation object for the interface penalty
+     *                                  term. If empty, the penalty term is skipped.
      */
     void
-    tangent_cell_operation(FECellIntegrator<dim, 1, number> &delta_psi) const;
+    tangent_cell_operation(FECellIntegrator<dim, 1, number>   &delta_psi,
+                           std::optional<PointEvaluationType> &interface_penalty_surface) const;
+
+    /**
+     * @brief Return true if the penalty term for the weak imposition of the initial
+     *        interface position is active.
+     */
+    bool
+    surface_penalty_enabled() const;
+
+    /**
+     * @brief Zero the Dirichlet-constrained entries of @p src before the operator
+     *        evaluation and store their values.
+     */
+    void
+    do_pre_vmult(const VectorType &src) const;
+
+    /**
+     * @brief Restore the Dirichlet-constrained entries of @p src and set the corresponding
+     *        entries of @p dst to these values, i.e. the operator acts as identity there.
+     */
+    void
+    do_post_vmult(VectorType &dst, const VectorType &src) const;
+
+    /**
+     * @brief Create the point evaluation object for the interface penalty term.
+     *
+     * @return The point evaluation object if the interface penalty term is enabled,
+     *         otherwise an empty optional.
+     */
+    std::optional<PointEvaluationType>
+    create_interface_penalty_evaluator() const;
+
+    /**
+     * @brief Add the contribution of the surface integral of the penalty term for the weak
+     *        imposition of the interface Dirichlet boundary condition to a cell batch.
+     *
+     * @param src_dofs Cell DoF values of the field to be evaluated at the interface.
+     * @param dst_dofs Cell DoF values to which the integrated contribution is added.
+     * @param cell_batch Index of the cell batch.
+     * @param penalty_coefficient Penalty coefficient for the interface penalty term.
+     * @param interface_penalty_surface Point evaluation object for the surface integral.
+     */
+    void
+    interface_penalty_cell_operation(const VectorizedArrayType *src_dofs,
+                                     VectorizedArrayType       *dst_dofs,
+                                     const unsigned int         cell_batch,
+                                     const number               penalty_coefficient,
+                                     PointEvaluationType       &interface_penalty_surface) const;
 
     /**
      * @brief Compute the contribution of a single boundary face integral to the tangent.
@@ -246,5 +339,27 @@ namespace MeltPoolDG::LevelSet
     /// @note Marked as mutable to allow updates in const functions.
     mutable dealii::AlignedVector<dealii::Tensor<1, dim, dealii::VectorizedArray<number>>>
       unit_normal;
+
+    /// Mapping information for integration over the interface (penalty term).
+    const MappingInfoType *mapping_info_surface;
+
+    /// Temporary FE object required by FEPointEvaluation. It is created in reinit(), since
+    /// the finite element of the level set DoFHandler is not yet available at construction.
+    std::unique_ptr<dealii::FE_Q<dim>> fe_point_level_set;
+
+    /// Number of DoFs per cell of the temporary FE.
+    unsigned int n_dofs_per_cell = 0;
+
+    /// Copy of the cell DoF values of the increment, which are overwritten by integrate().
+    /// @note Marked as mutable to allow updates in const functions.
+    mutable dealii::AlignedVector<dealii::VectorizedArray<number>> interface_penalty_src_dofs;
+
+    /// Local indices (locally owned and ghost) of the Dirichlet-constrained DoFs, i.e. all
+    /// DoFs of cells intersected by the interface.
+    std::vector<unsigned int> dirichlet_indices;
+
+    /// Buffer for the entries of the source vector at the Dirichlet-constrained DoFs.
+    /// @note Marked as mutable to allow updates in const functions.
+    mutable std::vector<number> dirichlet_src_values;
   };
 } // namespace MeltPoolDG::LevelSet
