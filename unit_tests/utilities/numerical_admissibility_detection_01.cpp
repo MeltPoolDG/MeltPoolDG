@@ -77,7 +77,10 @@ protected:
     : triangulation(MPI_COMM_WORLD)
     , scratch_data(MPI_COMM_WORLD, 0, true)
     , fe_data(FiniteElementType::FE_DGQ, degree)
-  {}
+  {
+    limiter_data.troubled_cell_marking_strategy = {
+      Utilities::TroubledCellMarkingStrategy::cell_nad};
+  }
 
   /**
    * Create the mesh and the matrix-free data structures.
@@ -109,6 +112,7 @@ protected:
   dealii::AffineConstraints<double>                 constraints;
   ScratchData<dim, dim, double>                     scratch_data;
   FiniteElementData                                 fe_data;
+  Utilities::LimiterData<double>                    limiter_data;
 };
 
 using TestConfigs = ::testing::
@@ -141,10 +145,7 @@ TYPED_TEST(CellwiseNumericalAdmissibilityTest, CandidateEqualToOldSolutionIsAdmi
 
   // mark the troubled cells with the same solution as old solution and candidate, accepting all
   // states in the physical admissibility check such that only the numerical admissibility is tested
-  TroubledCellMarker<dim, n_components, double> marker([](const auto &) {
-    MaskType all_lanes;
-    return all_lanes.set();
-  });
+  TroubledCellMarker<dim, n_components, double> marker(this->limiter_data);
   marker.reinit({matrix_free, 0, 0});
   marker.mark({matrix_free, 0, 0}, solution, solution);
 
@@ -202,7 +203,7 @@ TYPED_TEST(CellwiseNumericalAdmissibilityTest, CandidateAboveOldSolutionInNeighb
       }
 
   // mark the troubled cells
-  TroubledCellMarker<dim, n_components, double> marker;
+  TroubledCellMarker<dim, n_components, double> marker(this->limiter_data);
   marker.reinit({matrix_free, 0, 0});
   marker.mark({matrix_free, 0, 0}, candidate, old_solution);
 
@@ -308,7 +309,7 @@ TYPED_TEST(CellwiseNumericalAdmissibilityTest, OnlyFaceNeighborsContributeToBoun
     1.5);
 
   // mark the troubled cells
-  TroubledCellMarker<dim, n_components, double> marker;
+  TroubledCellMarker<dim, n_components, double> marker(this->limiter_data);
   marker.reinit({matrix_free, 0, 0});
   marker.mark({matrix_free, 0, 0}, candidate, old_solution);
 

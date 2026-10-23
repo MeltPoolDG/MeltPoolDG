@@ -35,6 +35,10 @@ MeltPoolDG::Utilities::LimiterData<number>::add_parameters(dealii::ParameterHand
       tvb_constant,
       "The TVB constant used in the TVB minmod limiter. The constant has the dimension of a second derivative.");
     prm.add_parameter("type", type, "The type of limiter to apply.");
+    prm.add_parameter(
+      "troubled cell marking strategy",
+      troubled_cell_marking_strategy,
+      "The troubled cell marking strategy used to identify cells that require limiting.");
   }
   prm.leave_subsection();
 }
