@@ -2816,7 +2816,12 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">skew-symmetric</span></code></p></td>
 <td><p>Sets the formulation of the convective term in the momentum balance of the Navier-Stokes equations, i.e. ∇·(u x u) =(u·∇)u + βu(∇·u). The parameter β will be set to 1 for the conservative form, to 0 for the convective form and to 0.5 for the skew-symmetric form (default formulation).<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">skew-symmetric</span></code><br>- <code class="docutils literal notranslate"><span class="pre">convective</span></code><br>- <code class="docutils literal notranslate"><span class="pre">conservative</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#flow-adaflo-navier-stokes-solver"><span class="std std-ref">Solver</span></a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">convection</span> <span class="pre">stabilization</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+<td><p>Sets the stabilization method for the Navier-Stokes equations. For convection-dominated flows, the standard Galerkin formulation may lead to spurious oscillations in the solution. Two stabilization methods are available: SUPG (Streamline Upwind Petrov-Galerkin) and GLS (Galerkin Least-Squares). Both introduce additional terms into the weak form of the momentum equation in a consistent manner to improve numerical stability.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">none</span></code><br>- <code class="docutils literal notranslate"><span class="pre">SUPG</span></code><br>- <code class="docutils literal notranslate"><span class="pre">GLS</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#flow-adaflo-navier-stokes-solver"><span class="std std-ref">Solver</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
 <td><p></p></td>
 <td><p><a class="reference internal" href="#flow-adaflo-navier-stokes-solver"><span class="std std-ref">See table</span></a></p></td>
