@@ -11,7 +11,6 @@
 
 #include <map>
 #include <string>
-#include <tuple>
 #include <vector>
 
 namespace MeltPoolDG
@@ -38,35 +37,47 @@ namespace MeltPoolDG
     using ElementWiseVectorType = dealii::Vector<number>;
 
     /**
-     * @brief Storage of registered data entries.
-     *
-     * Each entry contains:
-     * - a pointer to the DoFHandler (or nullptr for element-wise),
-     * - a pointer to the distributed vector (or nullptr for element-wise),
-     * - a pointer to the element-wise vector (or nullptr for DoF-based data),
-     * - a list of variable/component names,
-     * - the component interpretations.
+     * @brief A registered data vector, either DoF-based or element-wise.
      */
-    std::vector<
-      std::tuple<const dealii::DoFHandler<dim> * /*optional*/,
-                 const VectorType *,
-                 const ElementWiseVectorType * /*optional*/,
-                 const std::vector<std::string>,
-                 std::vector<dealii::DataComponentInterpretation::DataComponentInterpretation>>>
-      entries;
+    struct DataEntry
+    {
+      /// DoFHandler of the DoF-based vector, nullptr for element-wise data.
+      const dealii::DoFHandler<dim> *dof_handler = nullptr;
+
+      /// DoF-based vector, nullptr for element-wise data.
+      const VectorType *dof_vector = nullptr;
+
+      /// Element-wise vector, nullptr for DoF-based data.
+      const ElementWiseVectorType *element_wise_vector = nullptr;
+
+      /// Names of the variable/components. The first name identifies the entry.
+      std::vector<std::string> names;
+
+      /// Interpretation of each component.
+      std::vector<dealii::DataComponentInterpretation::DataComponentInterpretation>
+        component_interpretation;
+    };
 
     /**
-     * Storage of registered data postprocessor entries.
-     * Each entry contains:
-     *
-     * - a pointer to the DoFHandler (or nullptr if not applicable),
-     * - a pointer to the distributed vector (or nullptr if not applicable),
-     * - a pointer to the data postprocessor defining and computing the output variables.
+     * @brief A registered data postprocessor together with the DoF-based vector it evaluates.
      */
-    std::vector<std::tuple<const dealii::DoFHandler<dim> * /*optional*/,
-                           const VectorType *,
-                           const dealii::DataPostprocessor<dim> *>>
-      data_postprocessor_entries;
+    struct DataPostprocessorEntry
+    {
+      /// DoFHandler of the DoF-based vector.
+      const dealii::DoFHandler<dim> *dof_handler = nullptr;
+
+      /// DoF-based vector evaluated by the data postprocessor.
+      const VectorType *dof_vector = nullptr;
+
+      /// Data postprocessor defining and computing the output variables.
+      const dealii::DataPostprocessor<dim> *data_postprocessor = nullptr;
+    };
+
+    /// Storage of registered data entries.
+    std::vector<DataEntry> entries;
+
+    /// Storage of registered data postprocessor entries.
+    std::vector<DataPostprocessorEntry> data_postprocessor_entries;
 
     /**
      * @brief Constructor.

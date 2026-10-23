@@ -32,11 +32,10 @@ namespace MeltPoolDG
     if (not(is_requested(names[0]) or force_output))
       return;
 
-    entries.emplace_back(&dof_handler,
-                         &data,
-                         nullptr /*dummy, no element wise vector*/,
-                         names,
-                         data_component_interpretation);
+    entries.push_back(DataEntry{.dof_handler              = &dof_handler,
+                                .dof_vector               = &data,
+                                .names                    = names,
+                                .component_interpretation = data_component_interpretation});
     entry_id[names[0]] = entries.size() - 1;
   }
 
@@ -50,12 +49,11 @@ namespace MeltPoolDG
     if (not(is_requested(name) or force_output))
       return;
 
-    entries.emplace_back(&dof_handler,
-                         &data,
-                         nullptr, /*dummy, no element wise vector*/
-                         std::vector<std::string>{name},
-                         std::vector<DataComponentInterpretation::DataComponentInterpretation>{
-                           DataComponentInterpretation::component_is_scalar});
+    entries.push_back(
+      DataEntry{.dof_handler              = &dof_handler,
+                .dof_vector               = &data,
+                .names                    = {name},
+                .component_interpretation = {DataComponentInterpretation::component_is_scalar}});
     entry_id[name] = entries.size() - 1;
   }
 
@@ -79,7 +77,8 @@ namespace MeltPoolDG
             force_output))
       return;
 
-    data_postprocessor_entries.emplace_back(dof_handler, data, data_postprocessor);
+    data_postprocessor_entries.push_back(DataPostprocessorEntry{
+      .dof_handler = dof_handler, .dof_vector = data, .data_postprocessor = data_postprocessor});
   }
 
   template <int dim, typename number>
@@ -91,12 +90,10 @@ namespace MeltPoolDG
     if (not(is_requested(name) or force_output))
       return;
 
-    entries.emplace_back(nullptr, /*dummy, no DoFHandler*/
-                         nullptr, /*dummy, no DoF vector*/
-                         &data,
-                         std::vector<std::string>{name},
-                         std::vector<DataComponentInterpretation::DataComponentInterpretation>{
-                           DataComponentInterpretation::component_is_scalar});
+    entries.push_back(
+      DataEntry{.element_wise_vector      = &data,
+                .names                    = {name},
+                .component_interpretation = {DataComponentInterpretation::component_is_scalar}});
     entry_id[name] = entries.size() - 1;
   }
 
@@ -105,13 +102,13 @@ namespace MeltPoolDG
   GenericDataOut<dim, number>::get_vector(const std::string &name) const
   {
     std::vector<std::string> available_postprocessor_names;
-    for (const auto &[dof_handler, data, data_postprocessor] : data_postprocessor_entries)
+    for (const DataPostprocessorEntry &entry : data_postprocessor_entries)
       {
-        for (const auto &entry_name : data_postprocessor->get_names())
+        for (const auto &entry_name : entry.data_postprocessor->get_names())
           {
             available_postprocessor_names.push_back(entry_name);
             if (entry_name == name)
-              return *data;
+              return *entry.dof_vector;
           }
       }
     if (not entry_id.contains(name))
@@ -129,23 +126,24 @@ namespace MeltPoolDG
         AssertThrow(false, ExcMessage(exc_message.str()));
       }
 
-    AssertThrow(std::get<0>(entries[entry_id.at(name)]) and std::get<1>(entries[entry_id.at(name)]),
+    const DataEntry &entry = entries[entry_id.at(name)];
+    AssertThrow(entry.dof_handler and entry.dof_vector,
                 ExcMessage("You are requesting the result of an element-wise "
                            "vector which is not supported."));
 
-    return *std::get<1>(entries[entry_id.at(name)]);
+    return *entry.dof_vector;
   }
 
   template <int dim, typename number>
   const dealii::DataPostprocessor<dim> &
   GenericDataOut<dim, number>::get_data_postprocessor(const std::string &name) const
   {
-    for (const auto &[dof_handler, data, data_postprocessor] : data_postprocessor_entries)
+    for (const DataPostprocessorEntry &entry : data_postprocessor_entries)
       {
-        for (const auto &entry_name : data_postprocessor->get_names())
+        for (const auto &entry_name : entry.data_postprocessor->get_names())
           {
             if (entry_name == name)
-              return *data_postprocessor;
+              return *entry.data_postprocessor;
           }
       }
     AssertThrow(false,
@@ -158,13 +156,13 @@ namespace MeltPoolDG
   GenericDataOut<dim, number>::get_dof_handler(const std::string &name) const
   {
     std::vector<std::string> available_postprocessor_names;
-    for (const auto &[dof_handler, data, data_postprocessor] : data_postprocessor_entries)
+    for (const DataPostprocessorEntry &entry : data_postprocessor_entries)
       {
-        for (const auto &entry_name : data_postprocessor->get_names())
+        for (const auto &entry_name : entry.data_postprocessor->get_names())
           {
             available_postprocessor_names.push_back(entry_name);
             if (entry_name == name)
-              return *dof_handler;
+              return *entry.dof_handler;
           }
       }
 
@@ -182,12 +180,13 @@ namespace MeltPoolDG
 
         AssertThrow(false, ExcMessage(exc_message.str()));
       }
-    AssertThrow(std::get<0>(entries[entry_id.at(name)]) and std::get<1>(entries[entry_id.at(name)]),
+    const DataEntry &entry = entries[entry_id.at(name)];
+    AssertThrow(entry.dof_handler and entry.dof_vector,
                 ExcMessage("You are requesting the DoFHandler of an element-wise "
                            "vector which is not supported."));
 
 
-    return *std::get<0>(entries[entry_id.at(name)]);
+    return *entry.dof_handler;
   }
 
   template <int dim, typename number>
