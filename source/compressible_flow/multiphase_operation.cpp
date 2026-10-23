@@ -53,7 +53,8 @@ namespace MeltPoolDG::Multiphase
     const VectorType                                  &level_set_in,
     const unsigned int                                 comp_flow_dof_idx_in,
     const unsigned int                                 level_set_dof_idx_in,
-    const unsigned int                                 comp_flow_quad_idx_in)
+    const unsigned int                                 comp_flow_quad_idx_in,
+    const unsigned int                                 comp_flow_band_dof_idx_in)
     : multiphase_scratch_data(comp_flow_data_in,
                               material_data_gas_in,
                               material_data_liquid_in,
@@ -63,7 +64,8 @@ namespace MeltPoolDG::Multiphase
                               darcy_damping_data_in,
                               scratch_data_in,
                               comp_flow_dof_idx_in,
-                              comp_flow_quad_idx_in)
+                              comp_flow_quad_idx_in,
+                              comp_flow_band_dof_idx_in)
     , time_iterator(time_iterator_in)
     , level_set_dof_idx(level_set_dof_idx_in)
     , level_set(level_set_in)
@@ -127,6 +129,13 @@ namespace MeltPoolDG::Multiphase
     mapping_info_faces.push_back(
       std::make_shared<NonMatching::MappingInfo<dim, dim, VectorizedArray<number>>>(
         this->multiphase_scratch_data.scratch_data.get_mapping(), update_flags_faces));
+
+    AssertThrow(
+      (not multiphase_scratch_data.cut.use_band_solver) or
+        (multiphase_scratch_data.flow_data.time_integrator.linear_solver_data.preconditioner_type ==
+         PreconditionerType::Identity),
+      ExcMessage("Currently, the band solver solves the band with an unpreconditioned solver. "
+                 "Set preconditioner type to Identity."));
 
     std::visit(
       [&](auto &op) {
@@ -301,6 +310,9 @@ namespace MeltPoolDG::Multiphase
 
     preconditioner.reinit();
     preconditioner_update_flag = true;
+
+    if (multiphase_scratch_data.cut.use_band_solver)
+      band_solver.reinit();
   }
 
   template <int dim, typename number>
@@ -342,7 +354,7 @@ namespace MeltPoolDG::Multiphase
     //   level set):
     //   - setup new dof layout, transfer/extrapolate the solution
     //   - reinit matrix-free object, rhs and solution vectors
-    //   - reinit preconditioner
+    //   - reinit preconditioner and band solver
     adapt_to_new_interface_position();
 
     // update preconditioner if required
@@ -365,14 +377,36 @@ namespace MeltPoolDG::Multiphase
                       rhs,
                       multiphase_scratch_data.solution_history.get_current_solution());
 
-        // solve linear and symmetric system of equations with CG
-        int iter = LinearSolver::solve<VectorType>(
-          op,
-          multiphase_scratch_data.solution_history.get_current_solution(),
-          rhs,
-          multiphase_scratch_data.flow_data.time_integrator.linear_solver_data,
-          preconditioner,
-          "compressible_multiphase_operation");
+        unsigned int iter = 0;
+
+        {
+          ScopedName         scope_solve_system("compressible_multiphase::solve_system");
+          TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(),
+                               scope_solve_system);
+
+          if (multiphase_scratch_data.cut.use_band_solver)
+            {
+              if (!band_solver.is_initialized())
+                band_solver.update(op);
+
+              iter = band_solver.solve(
+                op,
+                multiphase_scratch_data.solution_history.get_current_solution(),
+                rhs,
+                multiphase_scratch_data.flow_data.time_integrator.linear_solver_data,
+                "compressible_multiphase_operation");
+            }
+          else
+            {
+              iter = LinearSolver::solve<VectorType>(
+                op,
+                multiphase_scratch_data.solution_history.get_current_solution(),
+                rhs,
+                multiphase_scratch_data.flow_data.time_integrator.linear_solver_data,
+                preconditioner,
+                "compressible_multiphase_operation");
+            }
+        }
 
         Journal::print_line(multiphase_scratch_data.scratch_data.get_pcout(2),
                             "Linear solver iterations: " + std::to_string(iter),
@@ -548,6 +582,10 @@ namespace MeltPoolDG::Multiphase
 
     // reinit the preconditioner's data structures
     preconditioner.reinit();
+    preconditioner_update_flag = true;
+
+    // reinit the band solver's data structures
+    band_solver.reinit();
   }
 
   template <int dim, typename number>
