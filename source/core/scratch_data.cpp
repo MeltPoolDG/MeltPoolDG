@@ -43,7 +43,8 @@ namespace MeltPoolDG
     const std::vector<dealii::Quadrature<dim>>                   &quad,
     const bool                                                    enable_boundary_face_loops,
     const bool                                                    enable_inner_face_loops,
-    const bool                                                    enable_normal_vector_update)
+    const bool                                                    enable_normal_vector_update,
+    const bool                                                    enable_cell_hessians_update)
   {
     enable_inner_faces    = enable_inner_face_loops;
     enable_boundary_faces = enable_boundary_face_loops;
@@ -62,7 +63,10 @@ namespace MeltPoolDG
 
     this->create_pcout(this->get_mpi_comm());
 
-    this->build(enable_boundary_face_loops, enable_inner_face_loops, enable_normal_vector_update);
+    this->build(enable_boundary_face_loops,
+                enable_inner_face_loops,
+                enable_normal_vector_update,
+                enable_cell_hessians_update);
   }
 
   template <int dim, int spacedim, typename number>
@@ -193,7 +197,8 @@ namespace MeltPoolDG
                                             const bool enable_inner_face_loops,
                                             const bool enable_normal_vector_update,
                                             const bool enable_inner_face_hessians_update,
-                                            const bool hold_all_faces_to_owned_cells)
+                                            const bool hold_all_faces_to_owned_cells,
+                                            const bool enable_cell_hessians_update)
   {
     enable_inner_faces    = enable_inner_face_loops;
     enable_boundary_faces = enable_boundary_face_loops;
@@ -217,6 +222,9 @@ namespace MeltPoolDG
                                            dealii::update_quadrature_points;
         if (enable_normal_vector_update)
           update_flags = update_flags | dealii::update_normal_vectors;
+
+        if (enable_cell_hessians_update)
+          update_flags = update_flags | dealii::update_hessians;
 
         additional_data.mapping_update_flags = update_flags;
 
