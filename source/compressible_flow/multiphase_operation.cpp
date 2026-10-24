@@ -365,20 +365,26 @@ namespace MeltPoolDG::Multiphase
                       rhs,
                       multiphase_scratch_data.solution_history.get_current_solution());
 
-        // solve linear and symmetric system of equations with CG
-        int iter = LinearSolver::solve<VectorType>(
-          op,
-          multiphase_scratch_data.solution_history.get_current_solution(),
-          rhs,
-          multiphase_scratch_data.flow_data.time_integrator.linear_solver_data,
-          preconditioner,
-          "compressible_multiphase_operation");
+        {
+          ScopedName         scope_solve_system("compressible_multiphase::solve_system");
+          TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(),
+                               scope_solve_system);
 
-        Journal::print_line(multiphase_scratch_data.scratch_data.get_pcout(2),
-                            "Linear solver iterations: " + std::to_string(iter),
-                            "linear solve");
+          // solve linear and symmetric system of equations with CG
+          int iter = LinearSolver::solve<VectorType>(
+            op,
+            multiphase_scratch_data.solution_history.get_current_solution(),
+            rhs,
+            multiphase_scratch_data.flow_data.time_integrator.linear_solver_data,
+            preconditioner,
+            "compressible_multiphase_operation");
 
-        IterationMonitor<number>::add_linear_iterations(ScopedName("linear_solve"), iter);
+          Journal::print_line(multiphase_scratch_data.scratch_data.get_pcout(2),
+                              "Linear solver iterations: " + std::to_string(iter),
+                              "linear solve");
+
+          IterationMonitor<number>::add_linear_iterations(ScopedName("linear_solve"), iter);
+        }
       },
       cmp_operator);
 

@@ -21,7 +21,7 @@ namespace MeltPoolDG::CutUtil
     // Detect whether the DoFHandler is set up for CutFEM by checking if it is in hp-mode.
     if (not dof_handler.has_hp_capabilities())
       return CutPhaseType::not_cut;
-    // If so, detect weather it is in one phase or on two phase cut mode. To that, we  check the
+    // If so, detect whether it is in one phase or on two phase cut mode. To that, we  check the
     // number of components in the intersected fe collection. If it's 2, the cut mode is two phase.
     const unsigned int n_components_intersected =
       dof_handler.get_fe_collection()[CellCategory::intersected].n_components();
@@ -155,6 +155,9 @@ namespace MeltPoolDG::CutUtil
   {
     AssertDimension(mapping_info_cells.size(), is_two_phase ? 2 : 1);
 
+    if (not level_set.has_ghost_elements())
+      level_set.update_ghost_values();
+
     dealii::hp::QCollection<1> q_collection(dealii::QGauss<1>(fe_degree + 1));
 
     const unsigned int n_lanes = dealii::VectorizedArray<number>::size();
@@ -167,14 +170,9 @@ namespace MeltPoolDG::CutUtil
     dealii::NonMatching::DiscreteQuadratureGenerator<dim> quadrature_generator(
       q_collection, level_set_dof_handler, level_set);
 
-    dealii::NonMatching::DiscreteFaceQuadratureGenerator<dim> face_quadrature_generator(
-      q_collection, level_set_dof_handler, level_set);
-
     std::vector<dealii::Quadrature<dim>>                             quad_vec_cells_liquid_domain;
     std::vector<dealii::Quadrature<dim>>                             quad_vec_cells_gas_domain;
     std::vector<dealii::NonMatching::ImmersedSurfaceQuadrature<dim>> quad_vec_surface;
-    std::vector<std::vector<dealii::Quadrature<dim - 1>>>            quad_vec_faces_liquid_domain;
-    std::vector<std::vector<dealii::Quadrature<dim - 1>>>            quad_vec_faces_gas_domain;
     std::vector<typename dealii::DoFHandler<dim>::cell_iterator>     vector_cell_iterators;
 
     const unsigned int reserve_size = n_cell_batches * n_lanes;
@@ -182,47 +180,50 @@ namespace MeltPoolDG::CutUtil
     if (is_two_phase)
       quad_vec_cells_gas_domain.reserve(reserve_size);
     quad_vec_surface.reserve(reserve_size);
-    if (has_face_quadrature)
-      {
-        quad_vec_faces_liquid_domain.resize(reserve_size);
-        if (is_two_phase)
-          quad_vec_faces_gas_domain.resize(reserve_size);
-      }
     vector_cell_iterators.reserve(reserve_size);
 
+    // cell and surface quadrature
     for (unsigned int cell_batch = 0; cell_batch < n_cell_batches; ++cell_batch)
-      for (unsigned int lane = 0; lane < n_lanes; ++lane)
-        {
-          // fill empty lanes with dummy data (first lane is used in this case)
-          const unsigned int lane_used_for_quad_generation =
-            lane < matrix_free.n_active_entries_per_cell_batch(cell_batch) ? lane : 0;
+      {
+        // check if the cell batch is intersected, all cells in a batch share the same category
+        const bool is_intersected_batch =
+          matrix_free.get_cell_category(cell_batch) == CellCategory::intersected;
 
-          const auto cell =
-            matrix_free.get_cell_iterator(cell_batch, lane_used_for_quad_generation);
-          vector_cell_iterators.push_back(cell);
-          quadrature_generator.generate(cell);
+        for (unsigned int lane = 0; lane < n_lanes; ++lane)
+          {
+            const bool is_active_lane =
+              lane < matrix_free.n_active_entries_per_cell_batch(cell_batch);
 
-          if (has_face_quadrature)
-            {
-              for (const auto face : dealii::GeometryInfo<dim>::face_indices())
-                {
-                  face_quadrature_generator.generate(cell, face);
-                  // Currently, the single-phase region is assigned to the positive level-set
-                  // region.
-                  quad_vec_faces_liquid_domain[cell_batch * n_lanes + lane].push_back(
-                    face_quadrature_generator.get_outside_quadrature());
-                  if (is_two_phase)
-                    quad_vec_faces_gas_domain[cell_batch * n_lanes + lane].push_back(
-                      face_quadrature_generator.get_inside_quadrature());
-                }
-            }
+            // empty lanes of a partially filled cell batch use the cell of the first lane as dummy
+            const auto cell = matrix_free.get_cell_iterator(cell_batch, is_active_lane ? lane : 0);
+            vector_cell_iterators.push_back(cell);
 
-          quad_vec_cells_liquid_domain.push_back(quadrature_generator.get_outside_quadrature());
-          if (is_two_phase)
-            quad_vec_cells_gas_domain.push_back(quadrature_generator.get_inside_quadrature());
+            // only compute quadrature for intersected cell batches and active lanes of partially
+            // filled batches
+            if (is_intersected_batch and is_active_lane)
+              {
+                quadrature_generator.generate(cell);
 
-          quad_vec_surface.push_back(quadrature_generator.get_surface_quadrature());
-        }
+                // Currently, the single-phase region is assigned to the positive level-set region.
+                quad_vec_cells_liquid_domain.push_back(
+                  quadrature_generator.get_outside_quadrature());
+                if (is_two_phase)
+                  quad_vec_cells_gas_domain.push_back(quadrature_generator.get_inside_quadrature());
+
+                quad_vec_surface.push_back(quadrature_generator.get_surface_quadrature());
+              }
+            else
+              {
+                // add empty quadratures for non-intersected cell batches and empty lanes of
+                // partially filled cell batches
+                quad_vec_cells_liquid_domain.emplace_back();
+                if (is_two_phase)
+                  quad_vec_cells_gas_domain.emplace_back();
+
+                quad_vec_surface.emplace_back();
+              }
+          }
+      }
 
     mapping_info_cells[0]->reinit_cells(vector_cell_iterators, quad_vec_cells_liquid_domain);
     if (is_two_phase)
@@ -230,12 +231,72 @@ namespace MeltPoolDG::CutUtil
 
     mapping_info_surface.reinit_surface(vector_cell_iterators, quad_vec_surface);
 
-    if (has_face_quadrature)
+    // face quadrature
+    if (not has_face_quadrature)
+      return;
+
+    dealii::NonMatching::DiscreteFaceQuadratureGenerator<dim> face_quadrature_generator(
+      q_collection, level_set_dof_handler, level_set);
+
+    std::vector<std::vector<dealii::Quadrature<dim - 1>>> quad_vec_faces_liquid_domain;
+    std::vector<std::vector<dealii::Quadrature<dim - 1>>> quad_vec_faces_gas_domain;
+
+    // fill the face quadrature vectors with empty quadratures for all cell batches and lanes
+    const std::vector<dealii::Quadrature<dim - 1>> empty_face_quadratures(
+      dealii::GeometryInfo<dim>::faces_per_cell);
+    quad_vec_faces_liquid_domain.assign(vector_cell_iterators.size(), empty_face_quadratures);
+    if (is_two_phase)
+      quad_vec_faces_gas_domain.assign(vector_cell_iterators.size(), empty_face_quadratures);
+
+    const auto generate_face_quadrature = [&](const unsigned int cell_index,
+                                              const unsigned int face_no) {
+      face_quadrature_generator.generate(vector_cell_iterators[cell_index], face_no);
+
+      // Currently, the single-phase region is assigned to the positive level-set region.
+      quad_vec_faces_liquid_domain[cell_index][face_no] =
+        face_quadrature_generator.get_outside_quadrature();
+      if (is_two_phase)
+        quad_vec_faces_gas_domain[cell_index][face_no] =
+          face_quadrature_generator.get_inside_quadrature();
+    };
+
+    const unsigned int n_inner_face_batches    = matrix_free.n_inner_face_batches();
+    const unsigned int n_boundary_face_batches = matrix_free.n_boundary_face_batches();
+    const unsigned int n_face_batches =
+      n_inner_face_batches + n_boundary_face_batches + matrix_free.n_ghost_inner_face_batches();
+
+    for (unsigned int face_batch = 0; face_batch < n_face_batches; ++face_batch)
       {
-        mapping_info_faces[0]->reinit_faces(vector_cell_iterators, quad_vec_faces_liquid_domain);
-        if (is_two_phase)
-          mapping_info_faces[1]->reinit_faces(vector_cell_iterators, quad_vec_faces_gas_domain);
+        const bool is_boundary_face = face_batch >= n_inner_face_batches and
+                                      face_batch < n_inner_face_batches + n_boundary_face_batches;
+
+        // all lanes in a face batch share the same face category, which is determined by the
+        // categories of the adjacent cells
+        const auto face_category = matrix_free.get_face_category(face_batch);
+
+        // Note: For boundary faces, face_category.second is numbers::invalid_unsigned_int.
+        // Therefore, boundary faces are checked via the category of the interior cell.
+        const bool needs_face_quadrature =
+          is_boundary_face ? face_category.first == CellCategory::intersected :
+                             get_face_type(face_category) == FaceType::intersected_face;
+
+        if (not needs_face_quadrature)
+          continue;
+
+        const auto &face_info = matrix_free.get_face_info(face_batch);
+
+        for (unsigned int lane = 0; lane < matrix_free.n_active_entries_per_face_batch(face_batch);
+             ++lane)
+          {
+            generate_face_quadrature(face_info.cells_interior[lane], face_info.interior_face_no);
+            if (not is_boundary_face)
+              generate_face_quadrature(face_info.cells_exterior[lane], face_info.exterior_face_no);
+          }
       }
+
+    mapping_info_faces[0]->reinit_faces(vector_cell_iterators, quad_vec_faces_liquid_domain);
+    if (is_two_phase)
+      mapping_info_faces[1]->reinit_faces(vector_cell_iterators, quad_vec_faces_gas_domain);
   }
 
   template CutPhaseType

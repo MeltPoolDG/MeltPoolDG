@@ -146,6 +146,10 @@ namespace MeltPoolDG::CutUtil
    * quadrature rules, for the immersed geometry described by discrete level-set function
    * via a (@p level_set_dof_handler, @p level_set) pair.
    *
+   * Non-intersected cells/faces and unused lanes of partially filled batches get empty
+   * quadratures, as they are assumed to be treated not within a MappingInfo object but
+   * rather by standard quadrature rules (e.g. `QGauss` etc.).
+   *
    * @tparam dim Dimension in which this function is to be used.
    * @tparam number Floating-point value type used for this function.
    * @tparam VectorType Vector type used for this function.
