@@ -6,6 +6,7 @@
 
 #include <deal.II/numerics/data_component_interpretation.h>
 
+#include "meltpooldg/utilities/profiling_data.hpp"
 #include <meltpooldg/compressible_flow/data_types.hpp>
 #include <meltpooldg/compressible_flow/dg_operation.hpp>
 #include <meltpooldg/compressible_flow/dg_operator_explicit.hpp>
@@ -23,6 +24,7 @@
 #include <meltpooldg/utilities/preprocessor_directives.hpp>
 #include <meltpooldg/utilities/scoped_name.hpp>
 #include <meltpooldg/utilities/troubled_cell_marker.templates.hpp>
+#include <meltpooldg/utilities/troubled_cell_monitor.templates.hpp>
 #include <meltpooldg/utilities/vector_tools.templates.hpp>
 
 #include <meltpooldg/utilities/matrix_type_wrapper.h>
@@ -189,6 +191,10 @@ namespace MeltPoolDG::CompressibleFlow
                                                 dst,
                                                 src);
                     }
+                    troubled_cell_monitor->add_info(
+                      {flow_scratch_data.scratch_data.get_matrix_free(),
+                       flow_scratch_data.dof_idx,
+                       flow_scratch_data.quad_idx});
                   }
                 else
                   {
@@ -839,7 +845,8 @@ namespace MeltPoolDG::CompressibleFlow
           flow_scratch_data.flow_data.limiter_data.troubled_cell_marking_strategy;
 
         // cells marked by the physical admissibility detection (PAD)
-        if (Utils::contains(marking_strategies, Utilities::TroubledCellMarkingStrategy::pad))
+        if (Utils::contains(marking_strategies,
+                            Utilities::TroubledCellMarkingStrategy::subcell_pad))
           {
             const std::function<dealii::Vector<number>()> create_pad_marked_cell_vector = [&]() {
               const std::vector<std::bitset<dealii::VectorizedArray<number>::size()>>
@@ -873,6 +880,24 @@ namespace MeltPoolDG::CompressibleFlow
             data_out.add_element_wise_data_vector("nad_marked_cells",
                                                   create_nad_marked_cell_vector);
           }
+      }
+  }
+
+  template <int dim, typename number, int n_species>
+  void
+  DGOperation<dim, number, n_species>::register_monitors(
+    Profiling::ProfilingMonitor<number> &profiling_monitor,
+    const Profiling::ProfilingVerbosity  verbosity)
+  {
+    if (flow_scratch_data.flow_data.limiter_data.apply_limiter and
+        flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
+      {
+        troubled_cell_monitor =
+          std::make_unique<TroubledCellMonitor<dim, n_conserved_variables<dim, n_species>, number>>(
+            troubled_cell_marker, flow_scratch_data.flow_data.limiter_data, verbosity);
+        profiling_monitor.subscribe([this](const ConditionalOStream &pcout) {
+          troubled_cell_monitor->print(pcout, "Troubled cell statistics");
+        });
       }
   }
 

@@ -37,10 +37,6 @@ namespace MeltPoolDG
         Utils::contains(limiter_data.troubled_cell_marking_strategy,
                         Utilities::TroubledCellMarkingStrategy::subcell_pad))
   {
-    AssertThrow(not limiter_data.troubled_cell_marking_strategy.empty(),
-                dealii::ExcMessage(
-                  "You must at least specify one troubled cell marking strategy."));
-
     AssertThrow(
       !apply_physical_admissibility_check or physical_admissibility_check,
       dealii::ExcMessage(

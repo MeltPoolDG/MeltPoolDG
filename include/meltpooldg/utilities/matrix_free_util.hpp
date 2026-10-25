@@ -528,7 +528,7 @@ namespace MeltPoolDG
       // We only need to consider those locally owned cells which are actually ghost cells on
       // another MPI process, since only their values are sent.
       std::vector<bool> is_exported(partitioner->locally_owned_size(), false);
-      for (const auto [begin, end] : partitioner->import_indices())
+      for (const auto &[begin, end] : partitioner->import_indices())
         {
           std::fill(is_exported.begin() + begin, is_exported.begin() + end, true);
         }

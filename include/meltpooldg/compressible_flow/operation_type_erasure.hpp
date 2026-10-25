@@ -189,9 +189,10 @@ namespace MeltPoolDG::CompressibleFlow
      * the operation does not provide any monitors, nothing is done.
      */
     void
-    register_monitors(Profiling::ProfilingMonitor<number> &profiling_monitor)
+    register_monitors(Profiling::ProfilingMonitor<number> &profiling_monitor,
+                      const Profiling::ProfilingVerbosity  verbosity)
     {
-      operation_pimpl->register_monitors(profiling_monitor);
+      operation_pimpl->register_monitors(profiling_monitor, verbosity);
     }
 
     void
@@ -298,7 +299,8 @@ namespace MeltPoolDG::CompressibleFlow
                   const std::function<void()> &distribute_level_set_dofs) = 0;
 
       virtual void
-      register_monitors(Profiling::ProfilingMonitor<number> &profiling_monitor) = 0;
+      register_monitors(Profiling::ProfilingMonitor<number> &profiling_monitor,
+                        const Profiling::ProfilingVerbosity  verbosity) = 0;
 
       virtual const VectorType &
       get_solution() const = 0;
@@ -402,11 +404,12 @@ namespace MeltPoolDG::CompressibleFlow
       }
 
       void
-      register_monitors(Profiling::ProfilingMonitor<number> &profiling_monitor) override
+      register_monitors(Profiling::ProfilingMonitor<number> &profiling_monitor,
+                        const Profiling::ProfilingVerbosity  verbosity) override
       {
         // only operations which provide monitors subscribe them
-        if constexpr (requires { operation->register_monitors(profiling_monitor); })
-          operation->register_monitors(profiling_monitor);
+        if constexpr (requires { operation->register_monitors(profiling_monitor, verbosity); })
+          operation->register_monitors(profiling_monitor, verbosity);
         else
           (void)profiling_monitor;
       }
