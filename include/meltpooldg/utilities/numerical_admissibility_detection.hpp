@@ -143,6 +143,14 @@ namespace MeltPoolDG
     void
     evaluate(std::vector<MaskType> &troubled_cells_mask);
 
+    /**
+     * Returns a vector of bitsets, where each bitset corresponds to a locally owned cell batch and
+     * each bit to a vectorization lane. The bits of the numerical admissible lanes are set, while
+     * the bits of the numerical inadmissible lanes are unset.
+     */
+    const std::vector<MaskType> &
+    admissible_cell_vector() const;
+
   private:
     static constexpr unsigned int n_lanes = VectorizedArrayType::size();
 
@@ -237,6 +245,7 @@ namespace MeltPoolDG
   {
     using VectorizedArrayType = dealii::VectorizedArray<number>;
     using ValueType           = dealii::Tensor<1, n_components, VectorizedArrayType>;
+    using MaskType            = std::bitset<VectorizedArrayType::size()>;
 
   public:
     /**
@@ -290,7 +299,15 @@ namespace MeltPoolDG
      * logical OR. It is assumed that the given vector already has the correct size.
      */
     void
-    evaluate(std::vector<std::bitset<VectorizedArrayType::size()>> &troubled_cells_mask);
+    evaluate(std::vector<MaskType> &troubled_cells_mask);
+
+    /**
+     * Returns a vector of bitsets, where each bitset corresponds to a locally owned cell batch and
+     * each bit to a vectorization lane. The bits of the numerical admissible lanes are set, while
+     * the bits of the numerical inadmissible lanes are unset.
+     */
+    const std::vector<MaskType> &
+    admissible_cell_vector() const;
 
   private:
     static constexpr unsigned int n_lanes        = VectorizedArrayType::size();
@@ -349,7 +366,7 @@ namespace MeltPoolDG
     /// admissible according to the relaxed discrete maximum principle criterion. The bits are set
     /// to 1 for admissible lanes and 0 for inadmissible lanes. Lanes with deferred subcells are
     /// only final after evaluate().
-    dealii::AlignedVector<std::bitset<VectorizedArrayType::size()>> subcell_admissibility;
+    std::vector<MaskType> subcell_admissibility;
 
     /// Component-wise minimum and maximum of the old solution over the layer of subcells at each
     /// face of each locally owned and ghost cell batch. The extrema of face `f` of cell batch

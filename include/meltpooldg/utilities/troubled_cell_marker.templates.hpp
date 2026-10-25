@@ -152,4 +152,31 @@ namespace MeltPoolDG
   {
     return marked_cells.cell_data_vector();
   }
+
+  template <int dim, int n_components, typename number>
+  auto
+  TroubledCellMarker<dim, n_components, number>::physically_admissible_cell_vector() const
+    -> const std::vector<MaskType> &
+  {
+    AssertThrow(
+      apply_physical_admissibility_check,
+      dealii::ExcMessage(
+        "The physically admissible cell vector is only available if the 'pad' troubled cell marking strategy is applied."));
+    return physical_admissibility.admissible_cell_vector();
+  }
+
+  template <int dim, int n_components, typename number>
+  auto
+  TroubledCellMarker<dim, n_components, number>::numerically_admissible_cell_vector() const
+    -> const std::vector<MaskType> &
+  {
+    AssertThrow(
+      apply_cellwise_nad or apply_subcellwise_nad,
+      dealii::ExcMessage(
+        "The numerically admissible cell vector is only available if the 'cell_nad' or 'subcell_nad' troubled cell marking strategy is applied."));
+    if (apply_cellwise_nad)
+      return cellwise_numerical_admissibility.admissible_cell_vector();
+    else
+      return subcellwise_numerical_admissibility.admissible_cell_vector();
+  }
 } // namespace MeltPoolDG

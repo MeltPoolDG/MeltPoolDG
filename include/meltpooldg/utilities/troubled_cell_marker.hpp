@@ -81,6 +81,26 @@ namespace MeltPoolDG
     const dealii::AlignedVector<VectorizedArrayType> &
     troubled_cells() const;
 
+    /**
+     * Returns a vector of bitsets, where active bits indicate that the solution on the cell is
+     * physically admissible while non-active bits indicate that the solution on the cell is
+     * physically inadmissible. The vector is indexed by the local batch index where each entry
+     * corresponds to a locally owned cell batch and each bit to a vectorization lane inside that
+     * cell batch.
+     */
+    const std::vector<MaskType> &
+    physically_admissible_cell_vector() const;
+
+    /**
+     * Returns a vector of bitsets, where active bits indicate that the solution on the cell is
+     * numerically admissible while non-active bits indicate that the solution on the cell is
+     * numerically inadmissible. The vector is indexed by the local batch index where each entry
+     * corresponds to a locally owned cell batch and each bit to a vectorization lane inside that
+     * cell batch.
+     */
+    const std::vector<MaskType> &
+    numerically_admissible_cell_vector() const;
+
   private:
     /// The limiter data holding the information which marking strategy to use for the troubled cell
     /// detection.

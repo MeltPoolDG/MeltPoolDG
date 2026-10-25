@@ -98,6 +98,20 @@ namespace MeltPoolDG
   }
 
   template <int dim, typename number>
+  void
+  GenericDataOut<dim, number>::add_element_wise_data_vector(
+    const std::string                            &name,
+    const std::function<ElementWiseVectorType()> &data_generator,
+    const bool                                    force_output)
+  {
+    if (not(is_requested(name) or force_output))
+      return;
+    const auto data = data_generator();
+    owned_element_wise_vectors.push_back(data_generator());
+    add_element_wise_data_vector(owned_element_wise_vectors.back(), name, force_output);
+  }
+
+  template <int dim, typename number>
   const typename GenericDataOut<dim, number>::VectorType &
   GenericDataOut<dim, number>::get_vector(const std::string &name) const
   {

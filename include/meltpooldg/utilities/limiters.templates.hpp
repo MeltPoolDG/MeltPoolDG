@@ -31,6 +31,10 @@ MeltPoolDG::Utilities::LimiterData<number>::add_parameters(dealii::ParameterHand
   {
     prm.add_parameter("apply", apply_limiter, "Whether to apply a limiter.");
     prm.add_parameter(
+      "output troubled cells",
+      output_troubled_cells,
+      "Whether to output the troubled cell markers for the applied marking strategies.");
+    prm.add_parameter(
       "tvb constant",
       tvb_constant,
       "The TVB constant used in the TVB minmod limiter. The constant has the dimension of a second derivative.");

@@ -9,6 +9,7 @@
 #include <meltpooldg/compressible_flow/boundary_conditions.hpp>
 #include <meltpooldg/compressible_flow/utils.hpp>
 #include <meltpooldg/cut/cut_data.hpp>
+#include <meltpooldg/utilities/profiling_monitor.hpp>
 
 #include <functional>
 #include <memory>
@@ -179,6 +180,20 @@ namespace MeltPoolDG::CompressibleFlow
       return operation_pimpl->repartition(level_set, distribute_level_set_dofs);
     }
 
+    /**
+     * @brief Subscribe the monitors of the specific operation.
+     *
+     * @param profiling_monitor The profiling monitor to which the monitors are subscribed.
+     *
+     * @note The function simply passes the parameters to the corresponding operation function. If
+     * the operation does not provide any monitors, nothing is done.
+     */
+    void
+    register_monitors(Profiling::ProfilingMonitor<number> &profiling_monitor)
+    {
+      operation_pimpl->register_monitors(profiling_monitor);
+    }
+
     void
     add_external_force(
       std::shared_ptr<ExternalFlowForce<dim, number>>         external_force_residuum,
@@ -282,6 +297,9 @@ namespace MeltPoolDG::CompressibleFlow
       repartition(VectorType                  &level_set,
                   const std::function<void()> &distribute_level_set_dofs) = 0;
 
+      virtual void
+      register_monitors(Profiling::ProfilingMonitor<number> &profiling_monitor) = 0;
+
       virtual const VectorType &
       get_solution() const = 0;
 
@@ -381,6 +399,16 @@ namespace MeltPoolDG::CompressibleFlow
                           "Repartitioning is not supported by this compressible flow operation."));
             return false;
           }
+      }
+
+      void
+      register_monitors(Profiling::ProfilingMonitor<number> &profiling_monitor) override
+      {
+        // only operations which provide monitors subscribe them
+        if constexpr (requires { operation->register_monitors(profiling_monitor); })
+          operation->register_monitors(profiling_monitor);
+        else
+          (void)profiling_monitor;
       }
 
       const VectorType &

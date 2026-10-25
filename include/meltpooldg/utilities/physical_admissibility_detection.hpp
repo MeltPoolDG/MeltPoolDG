@@ -74,6 +74,14 @@ namespace MeltPoolDG
     void
     evaluate(std::vector<MaskType> &troubled_cells_mask);
 
+    /**
+     * Returns a vector of bitsets, where each bitset corresponds to a locally owned cell batch and
+     * each bit to a vectorization lane. The bits of the physically admissible lanes are set, while
+     * the bits of the physically inadmissible lanes are unset.
+     */
+    const std::vector<MaskType> &
+    admissible_cell_vector() const;
+
   private:
     /// Function returning for a vectorized subcell state the bits of the physically admissible
     /// lanes.

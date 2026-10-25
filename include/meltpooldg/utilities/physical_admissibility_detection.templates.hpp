@@ -66,4 +66,12 @@ namespace MeltPoolDG
       troubled_cells_mask[cell] |= ~physically_admissible[cell];
     n_cell_batches_submitted = 0;
   }
+
+  template <int dim, int n_components, typename number>
+  auto
+  PhysicalAdmissibility<dim, n_components, number>::admissible_cell_vector() const
+    -> const std::vector<MaskType> &
+  {
+    return physically_admissible;
+  }
 } // namespace MeltPoolDG
