@@ -1125,6 +1125,7 @@ template&lt;int dim, typename number , typename VectorType &gt; </div>
 
 <p>This function generates the immersed quadrature rules in the case that the domain is described by a discrete level-set function. </p>
 <p>The class NonMatching::DiscreteQuadratureGenerator&lt;dim&gt; is used to generate the immersed quadrature rules, for the immersed geometry described by discrete level-set function via a (<code>level_set_dof_handler</code>, <code>level_set</code>) pair.</p>
+<p>Non-intersected cells/faces and unused lanes of partially filled batches get empty quadratures, as they are assumed to be treated not within a MappingInfo object but rather by standard quadrature rules (e.g. <code>QGauss</code> etc.).</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">dim</td><td>Dimension in which this function is to be used. </td></tr>
