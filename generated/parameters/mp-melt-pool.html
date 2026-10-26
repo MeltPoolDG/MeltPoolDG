@@ -1516,6 +1516,16 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
 <td><p>Factor that multiplies the normal diffusion factor, i.e., the diffusion length, to obtain the diffusion factor in the tangential direction.</p></td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">constraint</span> <span class="pre">type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+<td><p>Technique to enforce the initial position of the zero level-set iso-surface during the reinitialization. none: no enforcement. surface_penalty: penalty term integrated over the interface, scaled by the interface penalty parameter. dirichlet: the DoFs of all cells intersected by the interface are fixed by Dirichlet constraints.<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">none</span></code><br>- <code class="docutils literal notranslate"><span class="pre">surface_penalty</span></code><br>- <code class="docutils literal notranslate"><span class="pre">dirichlet</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">penalty</span> <span class="pre">parameter</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+<td><p>Dimensionless penalty factor for the weak enforcement of the initial position of the zero level-set iso-surface during the reinitialization. It is scaled by h/dtau, with the cell size h and the pseudo-time step dtau, to obtain the penalty coefficient. Only used for the interface constraint type surface_penalty.</p></td>
+</tr>
 </tbody>
 </table>
 <p><a id="level-set-reinitialization-hyperbolic-discontinuous-galerkin"></a></p>
