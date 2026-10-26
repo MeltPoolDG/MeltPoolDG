@@ -98,6 +98,23 @@ namespace MeltPoolDG::LevelSet
                           "diffusion length, to obtain the diffusion factor in the tangential "
                           "direction.",
                           dealii::Patterns::Double(0.0));
+
+        prm.add_parameter("interface constraint type",
+                          cg.interface_constraint_type,
+                          "Technique to enforce the initial position of the zero level-set "
+                          "iso-surface during the reinitialization. none: no enforcement. "
+                          "surface_penalty: penalty term integrated over the interface, scaled "
+                          "by the interface penalty parameter. dirichlet: the DoFs of all cells "
+                          "intersected by the interface are fixed by Dirichlet constraints.");
+
+        prm.add_parameter("interface penalty parameter",
+                          cg.interface_penalty_parameter,
+                          "Dimensionless penalty factor for the weak enforcement of the initial "
+                          "position of the zero level-set iso-surface during the "
+                          "reinitialization. It is scaled by h/dtau, with the cell size h and "
+                          "the pseudo-time step dtau, to obtain the penalty coefficient. Only "
+                          "used for the interface constraint type surface_penalty.",
+                          dealii::Patterns::Double(0.0));
       }
       prm.leave_subsection();
 
@@ -215,6 +232,17 @@ namespace MeltPoolDG::LevelSet
                   cg.implementation == "meltpooldg",
                 dealii::ExcMessage("For the adaflo implementation, a variable thickness "
                                    "parameter epsilon is mandatory."));
+
+    AssertThrow(cg.interface_constraint_type == InterfaceConstraintType::none or
+                  (linear_solver.do_matrix_free and cg.implementation == "meltpooldg"),
+                dealii::ExcMessage("The interface constraint for the hyperbolic CG "
+                                   "reinitialization is only implemented for the matrix-free "
+                                   "meltpooldg implementation."));
+
+    AssertThrow(cg.interface_constraint_type != InterfaceConstraintType::surface_penalty or
+                  cg.interface_penalty_parameter > 0.0,
+                dealii::ExcMessage("For the interface constraint type surface_penalty, the "
+                                   "interface penalty parameter must be larger than zero."));
   }
 
   template <typename number>

@@ -43,6 +43,8 @@ namespace MeltPoolDG::LevelSet
     , ls_dof_idx(ls_dof_idx_in)
     , normal_dof_indices_per_block(normal_dof_indices_per_block_in)
     , normal_no_bc_dof_idx(normal_no_bc_dof_idx_in)
+    , mapping_info_surface(scratch_data_in.get_mapping(),
+                           dealii::update_values | dealii::update_JxW_values)
     , solution_history(reinit_data.predictor.n_old_solution_vectors)
   {
     if (normal_vec_data.implementation == "meltpooldg")
@@ -94,6 +96,8 @@ namespace MeltPoolDG::LevelSet
     normal_vector_operation->reinit();
     reinit_operator->reinit();
     preconditioner.reinit();
+
+    interface_quadrature_is_outdated = true;
   }
 
   template <int dim, typename number>
@@ -109,6 +113,7 @@ namespace MeltPoolDG::LevelSet
     // level set; the normal vector field is called by reference within the
     // operator class
     normal_vector_operation->solve();
+    compute_interface_quadrature();
     preconditioner.set_do_update_preconditioner(true);
   }
 
@@ -133,6 +138,7 @@ namespace MeltPoolDG::LevelSet
      *    operator class
      */
     normal_vector_operation->solve();
+    compute_interface_quadrature();
     preconditioner.set_do_update_preconditioner(true);
   }
 
@@ -188,6 +194,9 @@ namespace MeltPoolDG::LevelSet
       solution_level_set.update_ghost_values();
 
     init_time_advance();
+
+    // make the initial guess consistent with the Dirichlet constraints (if any)
+    reinit_operator->apply_dirichlet_constraints(solution_history.get_current_solution());
 
     int iter = 0;
 
@@ -347,7 +356,8 @@ namespace MeltPoolDG::LevelSet
           reinit_dof_idx,
           reinit_quad_idx,
           ls_dof_idx,
-          normal_dof_indices_per_block[0]);
+          normal_dof_indices_per_block[0],
+          &mapping_info_surface);
 
         preconditioner = make_preconditioner<dim, number, OlssonOperator<dim, number>, VectorType>(
           reinit_data.linear_solver.preconditioner_type,
@@ -365,6 +375,36 @@ namespace MeltPoolDG::LevelSet
      */
     else
       AssertThrow(false, ExcMessage("Requested reinitialization model not implemented."));
+  }
+
+  template <int dim, typename number>
+  void
+  ReinitializationHyperbolicCGOperation<dim, number>::compute_interface_quadrature()
+  {
+    if (reinit_data.hyperbolic.cg.interface_constraint_type == InterfaceConstraintType::none)
+      return;
+
+    // keep the initial interface position if set_initial_condition() is called during the
+    // pseudo-time stepping, e.g. to update the normal vector
+    if (time_iterator.get_current_time_step_number() > 0 and !interface_quadrature_is_outdated)
+      return;
+
+    const bool ls_update_ghosts = !solution_level_set.has_ghost_elements();
+    if (ls_update_ghosts)
+      solution_level_set.update_ghost_values();
+
+    CutUtil::compute_immersed_surface_quadrature(mapping_info_surface,
+                                                 scratch_data.get_dof_handler(ls_dof_idx),
+                                                 solution_level_set,
+                                                 scratch_data.get_matrix_free(),
+                                                 scratch_data.get_degree(ls_dof_idx));
+
+    if (ls_update_ghosts)
+      solution_level_set.zero_out_ghost_values();
+
+    reinit_operator->create_dirichlet_constraints();
+
+    interface_quadrature_is_outdated = false;
   }
 
   template class ReinitializationHyperbolicCGOperation<1, double>;

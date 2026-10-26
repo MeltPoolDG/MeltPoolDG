@@ -8,6 +8,7 @@
 
 #include <meltpooldg/core/boundary_conditions.hpp>
 #include <meltpooldg/core/scratch_data.hpp>
+#include <meltpooldg/cut/util.hpp>
 #include <meltpooldg/level_set/normal_vector_operation.hpp>
 #include <meltpooldg/level_set/normal_vector_operation_adaflo_wrapper.hpp>
 #include <meltpooldg/level_set/olsson_CG_operator.hpp>
@@ -40,6 +41,7 @@ namespace MeltPoolDG::LevelSet
     using VectorType       = dealii::LinearAlgebra::distributed::Vector<number>;
     using BlockVectorType  = dealii::LinearAlgebra::distributed::BlockVector<number>;
     using SparseMatrixType = dealii::TrilinosWrappers::SparseMatrix;
+    using MappingInfoType  = CutUtil::MappingInfoType<dim, number>;
 
   public:
     ReinitializationHyperbolicCGOperation(
@@ -120,6 +122,18 @@ namespace MeltPoolDG::LevelSet
     void
     create_operator();
 
+    /**
+     * @brief Compute the quadrature rule for the zero level-set iso-surface of the
+     *        current level set field and, if requested, the Dirichlet constraints at the
+     *        DoFs of the intersected cells. Used for the interface penalty.
+     *
+     * Since the initial position of the interface is enforced during the whole
+     * reinitialization, the quadrature is only computed at the beginning of the
+     * reinitialization, i.e. at pseudo-time step zero, or after the mesh has changed.
+     */
+    void
+    compute_interface_quadrature();
+
   private:
     const ScratchData<dim, dim, number>         &scratch_data;
     const ReinitializationData<number>           reinit_data;
@@ -135,6 +149,12 @@ namespace MeltPoolDG::LevelSet
     const unsigned int                  ls_dof_idx;
     const std::array<unsigned int, dim> normal_dof_indices_per_block;
     const unsigned int                  normal_no_bc_dof_idx;
+
+    /// Mapping information for integration over the interface (interface penalty term)
+    MappingInfoType mapping_info_surface;
+
+    /// Flag indicating that the interface quadrature refers to an outdated mesh
+    bool interface_quadrature_is_outdated = true;
 
     TimeIntegration::SolutionHistory<VectorType> solution_history;
 

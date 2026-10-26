@@ -1,0 +1,92 @@
+{
+  "base": {
+    "case name": "powder_particles",
+    "dimension": 2,
+    "global refinements": 0,
+    "do print parameters": false,
+    "verbosity level": 1,
+    "fe": {
+      "degree": 1,
+      "type": "FE_Q"
+    }
+  },
+  "case specific": {
+    "domain x min": -5e-05,
+    "domain x max": 5e-05,
+    "domain y min": -2.5e-05,
+    "domain y max": 2.5e-05,
+    "cell repetitions": "61, 31",
+    "particle distribution case": "two_particles",
+    "two particles": {
+      "radius": 1.5e-05,
+      "distance": 3.2e-05
+    },
+    "level set type": "tanh"
+  },
+  "application specific parameters": {
+    "do update normal vector": true
+  },
+  "time stepping": {
+    "time step size": 1e-08,
+    "max n steps": 5
+  },
+  "reinitialization": {
+    "enable": true,
+    "type": "olsson2007",
+    "linear solver": {
+      "abs tolerance": 1e-20,
+      "rel tolerance": 1e-12,
+      "preconditioner type": "AMG",
+      "do matrix free": true,
+      "solver type": "GMRES"
+    },
+    "geometric": {
+      "max distance": 4e-06,
+      "verbosity": 1
+    },
+    "hyperbolic": {
+      "pseudo time stepping": {
+        "tolerance": 1e-05,
+        "max n steps": 5,
+        "pseudo time step size": 1e-08
+      },
+      "Continuous Galerkin": {
+        "implementation": "meltpooldg",
+        "tangential diffusion factor": 0.0,
+        "interface constraint type": "surface_penalty",
+        "interface penalty parameter": 1000000000.0
+      }
+    },
+    "elliptic": {
+      "penalty parameter": 1000000000,
+      "nlsolve": {
+        "max nonlinear iterations": 4,
+        "max nonlinear iterations alt": 1,
+        "residual tolerance": 1e-08,
+        "residual tolerance alt": 1,
+        "field correction tolerance": 1e-08,
+        "field correction tolerance alt": 1
+      }
+    },
+    "interface thickness parameter": {
+      "type": "absolute_value",
+      "val": 1.6e-06
+    }
+  },
+  "normal vector": {
+    "implementation": "meltpooldg",
+    "filter parameter": 2.0,
+    "linear solver": {
+      "abs tolerance": 1e-20,
+      "rel tolerance": 1e-12,
+      "preconditioner type": "Diagonal",
+      "do matrix free": true
+    }
+  },
+  "output": {
+    "write frequency": 100,
+    "paraview": {
+      "enable": false
+    }
+  }
+}
