@@ -258,8 +258,8 @@ namespace MeltPoolDG::Simulation::AdvectionDiffusionVortex
       pcout << "    Starting user defined postprocessing" << std::endl;
       pcout << "---------------------------------------------" << std::endl;
       pcout << "Accessible vectors:" << std::endl;
-      for (const auto &entry : generic_data_out.entries)
-        for (const auto &name : std::get<3>(entry))
+      for (const typename GenericDataOut<dim, number>::DataEntry &entry : generic_data_out.entries)
+        for (const auto &name : entry.names)
           {
             pcout << " * " << std::setw(20) << name << " Max-norm: " << std::setprecision(5)
                   << std::setw(10) << generic_data_out.get_vector(name).linfty_norm()

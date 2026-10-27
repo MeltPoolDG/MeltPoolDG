@@ -127,6 +127,14 @@ namespace MeltPoolDG
   }
 
   template <int dim, int n_components, typename number>
+  auto
+  CellwiseNumericalAdmissibility<dim, n_components, number>::admissible_cell_vector() const
+    -> const std::vector<MaskType> &
+  {
+    return numerically_admissible;
+  }
+
+  template <int dim, int n_components, typename number>
   void
   CellwiseNumericalAdmissibility<dim, n_components, number>::compute_extrema(
     const FESubcellEvaluation<dim, n_components, number> &phi,
@@ -343,5 +351,13 @@ namespace MeltPoolDG
     deferred_subcells.clear();
     n_cell_batches_submitted       = 0;
     n_ghost_cell_batches_submitted = 0;
+  }
+
+  template <int dim, int n_components, typename number>
+  auto
+  SubcellNumericalAdmissibility<dim, n_components, number>::admissible_cell_vector() const
+    -> const std::vector<MaskType> &
+  {
+    return subcell_admissibility;
   }
 } // namespace MeltPoolDG

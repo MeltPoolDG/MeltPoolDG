@@ -152,45 +152,42 @@ namespace MeltPoolDG
 
     for (const auto &i : *used_var_ids)
       {
-        const auto &data = generic_data_out.entries[i];
+        const typename GenericDataOut<dim, number>::DataEntry &data = generic_data_out.entries[i];
 
         // If the DoFHandler pointer is null, this corresponds to element-wise data.
         // Store the index for deferred processing after all DoFHandlers are available.
-        if (std::get<0>(data) == nullptr)
+        if (data.dof_handler == nullptr)
           element_ids.emplace_back(i);
         // Otherwise, this is nodal data and can be attached immediately.
         else
           {
-            data_out.add_data_vector(*std::get<0>(data),
-                                     *std::get<1>(data),
-                                     std::get<3>(data),
-                                     std::get<4>(data));
+            data_out.add_data_vector(*data.dof_handler,
+                                     *data.dof_vector,
+                                     data.names,
+                                     data.component_interpretation);
           }
       }
+
+    // Data post postprocessor output data
+    for (const typename GenericDataOut<dim, number>::DataPostprocessorEntry &data :
+         generic_data_out.data_postprocessor_entries)
+      data_out.add_data_vector(*data.dof_handler, *data.dof_vector, *data.data_postprocessor);
 
     // Attach element-wise output data.
     for (const auto &i : element_ids)
       {
-        const auto &data = generic_data_out.entries[i];
-        data_out.add_data_vector(*std::get<2>(data),
-                                 std::get<3>(data),
+        const typename GenericDataOut<dim, number>::DataEntry &data = generic_data_out.entries[i];
+        data_out.add_data_vector(*data.element_wise_vector,
+                                 data.names,
                                  dealii::DataOut_DoFData<dim, dim>::DataVectorType::type_cell_data,
-                                 std::get<4>(data));
-      }
-
-    // Data post postprocessor output data
-    for (const auto &i : generic_data_out.data_postprocessor_entries)
-      {
-        const auto &[dof_handler, data, data_postprocessor] = i;
-        data_out.add_data_vector(*dof_handler, *data, *data_postprocessor);
+                                 data.component_interpretation);
       }
 
     const auto get_tria = [&generic_data_out]() -> const dealii::Triangulation<dim> & {
       if (not generic_data_out.entries.empty())
-        return std::get<0>(generic_data_out.entries.front())->get_triangulation();
+        return generic_data_out.entries.front().dof_handler->get_triangulation();
       if (not generic_data_out.data_postprocessor_entries.empty())
-        return std::get<0>(generic_data_out.data_postprocessor_entries.front())
-          ->get_triangulation();
+        return generic_data_out.data_postprocessor_entries.front().dof_handler->get_triangulation();
 
       AssertThrow(false,
                   dealii::ExcMessage("No DoFHandler with valid triangulation found in "
@@ -229,9 +226,9 @@ namespace MeltPoolDG
         const auto compute_n_patches = [&n_patches](const auto &data_entries) {
           for (const auto &data : data_entries)
             {
-              if (std::get<0>(data) == nullptr)
+              if (data.dof_handler == nullptr)
                 continue;
-              n_patches = std::max(n_patches, std::get<0>(data)->get_fe().degree);
+              n_patches = std::max(n_patches, data.dof_handler->get_fe().degree);
             }
         };
 

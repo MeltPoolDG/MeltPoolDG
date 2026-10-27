@@ -63,6 +63,31 @@ namespace MeltPoolDG
   }
 
   /**
+   * Convert data given per lane of the locally owned cell batches into a vector indexed by the
+   * active cell index, e.g., for the output as cell data. Entries of cells that are not locally
+   * owned are zero.
+   *
+   * @param matrix_free The matrix-free object defining the cell batches.
+   * @param value_of_lane Function returning the value for a given cell batch index and lane.
+   *
+   * @return Vector with one entry per active cell of the triangulation.
+   */
+  template <int dim, typename number>
+  dealii::Vector<number>
+  cell_batch_data_to_active_cell_vector(
+    const dealii::MatrixFree<dim, number>                               &matrix_free,
+    const std::function<number(const unsigned int, const unsigned int)> &value_of_lane)
+  {
+    dealii::Vector<number> result(
+      matrix_free.get_dof_handler().get_triangulation().n_active_cells());
+    for (unsigned int cell = 0; cell < matrix_free.n_cell_batches(); ++cell)
+      for (unsigned int lane = 0; lane < matrix_free.n_active_entries_per_cell_batch(cell); ++lane)
+        result[matrix_free.get_cell_iterator(cell, lane)->active_cell_index()] =
+          value_of_lane(cell, lane);
+    return result;
+  }
+
+  /**
    * Helper function that returns the values at a given quadrature point (specified by `q_index`)
    * using the provided finite element evaluation object (`fe_eval`) and ensures that the result
    * is always returned as a `dealii::Tensor`.
@@ -503,7 +528,7 @@ namespace MeltPoolDG
       // We only need to consider those locally owned cells which are actually ghost cells on
       // another MPI process, since only their values are sent.
       std::vector<bool> is_exported(partitioner->locally_owned_size(), false);
-      for (const auto [begin, end] : partitioner->import_indices())
+      for (const auto &[begin, end] : partitioner->import_indices())
         {
           std::fill(is_exported.begin() + begin, is_exported.begin() + end, true);
         }

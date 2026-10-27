@@ -85,20 +85,21 @@ namespace MeltPoolDG::PostProcessingTools
 
           for (const auto &i : idx_req_vars)
             {
-              const auto &data = generic_data_out->entries[i];
+              const typename GenericDataOut<dim, number>::DataEntry &data =
+                generic_data_out->entries[i];
 
               // element wise ouput
-              if (std::get<0>(data) == nullptr)
-                data_out.add_data_vector(*std::get<2>(data),
-                                         std::get<3>(data),
+              if (data.dof_handler == nullptr)
+                data_out.add_data_vector(*data.element_wise_vector,
+                                         data.names,
                                          dealii::DataOutResample<dim, dim - 1, dim>::type_cell_data,
-                                         std::get<4>(data));
+                                         data.component_interpretation);
               // nodal output
               else
-                data_out.add_data_vector(*std::get<0>(data),
-                                         *std::get<1>(data),
-                                         std::get<3>(data),
-                                         std::get<4>(data));
+                data_out.add_data_vector(*data.dof_handler,
+                                         *data.dof_vector,
+                                         data.names,
+                                         data.component_interpretation);
             }
 
 

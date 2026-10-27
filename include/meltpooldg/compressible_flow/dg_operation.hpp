@@ -4,7 +4,6 @@
 
 #include <deal.II/lac/la_parallel_vector.h>
 
-#include "meltpooldg/time_integration/time_integrator_base.hpp"
 #include <meltpooldg/compressible_flow/dg_operator_explicit.hpp>
 #include <meltpooldg/compressible_flow/dg_operator_implicit.hpp>
 #include <meltpooldg/compressible_flow/dg_operator_implicit_explicit.hpp>
@@ -18,6 +17,9 @@
 #include <meltpooldg/time_integration/explicit_low_storage_runge_kutta_integrator.hpp>
 #include <meltpooldg/time_integration/implicit_explicit_integrator.hpp>
 #include <meltpooldg/time_integration/solution_history.hpp>
+#include <meltpooldg/time_integration/time_integrator_base.hpp>
+#include <meltpooldg/utilities/troubled_cell_marker.hpp>
+#include <meltpooldg/utilities/troubled_cell_monitor.hpp>
 
 #include <memory>
 #include <string>
@@ -189,6 +191,17 @@ namespace MeltPoolDG::CompressibleFlow
     const dealii::DoFHandler<dim> &
     get_dof_handler() const;
 
+    /**
+     * @brief Subscribe the monitors of the operation, e.g. the statistics of the troubled cells of
+     * the finite volume subcell limiter, to the passed profiling monitor.
+     *
+     * @param profiling_monitor The profiling monitor to which the monitors are subscribed.
+     * @param verbosity The verbosity level for the profiling output.
+     */
+    void
+    register_monitors(Profiling::ProfilingMonitor<number> &profiling_monitor,
+                      const Profiling::ProfilingVerbosity  verbosity);
+
   private:
     /// Scratch data for compressible flows
     OperationScratchData<dim, number> flow_scratch_data;
@@ -205,6 +218,13 @@ namespace MeltPoolDG::CompressibleFlow
                  DGOperatorImplicit<dim, number>,
                  DGOperatorImplicitExplicit<dim, number>>
       flow_operator;
+
+    /// Marker of the troubled cells to which the finite volume subcell limiter is applied.
+    TroubledCellMarker<dim, n_conserved_variables<dim, n_species>, number> troubled_cell_marker;
+
+    /// Statistics of the troubled cells marked by troubled_cell_marker.
+    std::unique_ptr<TroubledCellMonitor<dim, n_conserved_variables<dim, n_species>, number>>
+      troubled_cell_monitor;
 
     /// Object containing the data post processor for the different output options
     OutputManager<dim, number> output_manager;
