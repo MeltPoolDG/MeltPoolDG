@@ -471,6 +471,20 @@ namespace MeltPoolDG
     std::pair<unsigned int, unsigned int>
     subcell_face_interior_exterior_indices(const unsigned int subcell_face_index) const;
 
+    /**
+     * Returns the subcell indices of the neighbors (shared faces) of the subcell with the given
+     * index  @p subcell_index. The neighbors are ordered by their normal direction, i.e. the first
+     * two indices are the neighbors in the x-direction, the next two in the y-direction, and in 3D
+     * the last two in the z-direction (the same order as the standard deal.II face numbering). If a
+     * subcell does not have an interior neighbor in a certain direction, the corresponding index is
+     * set to dealii::numbers::invalid_unsigned_int.
+     *
+     * @param subcell_index The index of the subcell for which the neighbor indices are to be
+     * returned.
+     */
+    std::array<unsigned int, 2 * dim>
+    subcell_neighbor_indices(const unsigned int subcell_index) const;
+
   private:
     /// The cell batch index of the cell on which this FESubcellEvaluation object is currently
     /// reinitialized.
