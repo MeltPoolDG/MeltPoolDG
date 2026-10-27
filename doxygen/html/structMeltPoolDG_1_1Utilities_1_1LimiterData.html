@@ -158,13 +158,19 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a6e54a8a59807709b1de6939a336f2919" id="r_a6e54a8a59807709b1de6939a336f2919"><td class="memItemLeft" align="right" valign="top">LimiterType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Utilities_1_1LimiterData.html#a6e54a8a59807709b1de6939a336f2919">type</a> = LimiterType::tvd_minmod</td></tr>
 <tr class="memdesc:a6e54a8a59807709b1de6939a336f2919"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of limiter to apply.  <br /></td></tr>
 <tr class="separator:a6e54a8a59807709b1de6939a336f2919"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2434dd159fc6d604be46ae675b06eb49" id="r_a2434dd159fc6d604be46ae675b06eb49"><td class="memItemLeft" align="right" valign="top">std::vector&lt; TroubledCellMarkingStrategy &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Utilities_1_1LimiterData.html#a2434dd159fc6d604be46ae675b06eb49">troubled_cell_marking_strategy</a> = {}</td></tr>
+<tr class="memdesc:a2434dd159fc6d604be46ae675b06eb49"><td class="mdescLeft">&#160;</td><td class="mdescRight">The troubled cell marking strategy to use.  <br /></td></tr>
+<tr class="separator:a2434dd159fc6d604be46ae675b06eb49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename number&gt;<br />
 struct MeltPoolDG::Utilities::LimiterData&lt; number &gt;</div><p>An enumeration of the available limiters.</p>
 <ul>
 <li><code>tvd_minmod</code>: Standard TVD (total variation diminishing) minmod limiter</li>
-<li><code>tvb_minmod</code>: TVB (total variation bounded) minmod limiter, which relaxes the TVD criteria near smooth extrema to avoid unnecessary clipping of physical peaks. A struct to hold the data for the limiters. </li>
+<li><code>tvb_minmod</code>: TVB (total variation bounded) minmod limiter, which relaxes the TVD criteria near smooth extrema to avoid unnecessary clipping of physical peaks. An enumeration for the available troubled cell marking strategies. The following strategies are available:</li>
+<li><code>subcell_pad</code>: Mark a cell as troubled if any of its subcell values are outside the physical admissible range.</li>
+<li><code>cell_nad</code>: Mark a cell as troubled if the discrete maximum principle is violated on the cell level, i.e. if any of the cell values exceed the extrema of the old solution on the solution and the face neighbors of the cell. See <a class="el" href="classMeltPoolDG_1_1CellwiseNumericalAdmissibility.html">CellwiseNumericalAdmissibility</a> for details.</li>
+<li><code>subcell_nad</code>: Mark a cell as troubled if the discrete maximum principle is violated on the subcell level, i.e. if any of the subcell values are outside the extrema of the old solution over the subcell itself and its face neighbors. See <a class="el" href="classMeltPoolDG_1_1SubcellNumericalAdmissibility.html">SubcellNumericalAdmissibility</a> for details. A struct to hold the data for the limiters. </li>
 </ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="abc3cb4b1f63849166c987009f27614c6" name="abc3cb4b1f63849166c987009f27614c6"></a>
@@ -210,6 +216,24 @@ template&lt;typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>Boolean flag indicating whether to apply the limiter or not. </p>
+
+</div>
+</div>
+<a id="a2434dd159fc6d604be46ae675b06eb49" name="a2434dd159fc6d604be46ae675b06eb49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2434dd159fc6d604be46ae675b06eb49">&#9670;&#160;</a></span>troubled_cell_marking_strategy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;TroubledCellMarkingStrategy&gt; <a class="el" href="structMeltPoolDG_1_1Utilities_1_1LimiterData.html">MeltPoolDG::Utilities::LimiterData</a>&lt; number &gt;::troubled_cell_marking_strategy = {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The troubled cell marking strategy to use. </p>
 
 </div>
 </div>

@@ -199,6 +199,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5330a199cbd4985107abbacf97c315bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fa4c1441397d5f45eb2f074e15feff5" id="r_a8fa4c1441397d5f45eb2f074e15feff5"><td class="memItemLeft" align="right" valign="top">std::pair&lt; unsigned int, unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a8fa4c1441397d5f45eb2f074e15feff5">subcell_face_interior_exterior_indices</a> (const unsigned int subcell_face_index) const</td></tr>
 <tr class="separator:a8fa4c1441397d5f45eb2f074e15feff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43bc15f5633d790687eef92db5b109aa" id="r_a43bc15f5633d790687eef92db5b109aa"><td class="memItemLeft" align="right" valign="top">std::array&lt; unsigned int, 2 *dim &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1FESubcellEvaluation.html#a43bc15f5633d790687eef92db5b109aa">subcell_neighbor_indices</a> (const unsigned int subcell_index) const</td></tr>
+<tr class="separator:a43bc15f5633d790687eef92db5b109aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
 Private Types</h2></td></tr>
@@ -1254,6 +1256,33 @@ template&lt;int dim, int n_components, typename number &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Returns the location of the subcell with the given index <code>subcell_index</code> in real space. Following Sonntag and Munz, this is the quadrature point the subcell is associated with. Note that the quadrature point is in general not the geometric center of the subcell. </p>
+
+</div>
+</div>
+<a id="a43bc15f5633d790687eef92db5b109aa" name="a43bc15f5633d790687eef92db5b109aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43bc15f5633d790687eef92db5b109aa">&#9670;&#160;</a></span>subcell_neighbor_indices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, int n_components, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt; unsigned int, 2 *dim &gt; <a class="el" href="classMeltPoolDG_1_1FESubcellEvaluation.html">MeltPoolDG::FESubcellEvaluation</a>&lt; dim, n_components, number &gt;::subcell_neighbor_indices </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>subcell_index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the subcell indices of the neighbors (shared faces) of the subcell with the given index <code>subcell_index</code>. The neighbors are ordered by their normal direction, i.e. the first two indices are the neighbors in the x-direction, the next two in the y-direction, and in 3D the last two in the z-direction (the same order as the standard deal.II face numbering). If a subcell does not have an interior neighbor in a certain direction, the corresponding index is set to dealii::numbers::invalid_unsigned_int.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subcell_index</td><td>The index of the subcell for which the neighbor indices are to be returned. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
