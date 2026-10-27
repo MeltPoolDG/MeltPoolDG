@@ -200,6 +200,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeb6b72fc4b49fd7217f9d2add99b1af5" id="r_aeb6b72fc4b49fd7217f9d2add99b1af5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#aeb6b72fc4b49fd7217f9d2add99b1af5">repartition</a> (<a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a32e8955abd8892402c6a331f73ac3822">VectorType</a> &amp;level_set, const std::function&lt; void()&gt; &amp;distribute_level_set_dofs)</td></tr>
 <tr class="memdesc:aeb6b72fc4b49fd7217f9d2add99b1af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repartition the triangulation among the MPI processes with cell weights according to the location of the cells with respect to the level set, and rebuild all data structures affected by the new partitioning.  <br /></td></tr>
 <tr class="separator:aeb6b72fc4b49fd7217f9d2add99b1af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65ab5ff5eee3846a3e77215449030b9e" id="r_a65ab5ff5eee3846a3e77215449030b9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a65ab5ff5eee3846a3e77215449030b9e">register_monitors</a> (<a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html">Profiling::ProfilingMonitor</a>&lt; number &gt; &amp;profiling_monitor, const Profiling::ProfilingVerbosity verbosity)</td></tr>
+<tr class="memdesc:a65ab5ff5eee3846a3e77215449030b9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribe the monitors of the specific operation.  <br /></td></tr>
+<tr class="separator:a65ab5ff5eee3846a3e77215449030b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a2ee006559633cbe78363f5813d4714" id="r_a9a2ee006559633cbe78363f5813d4714"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a9a2ee006559633cbe78363f5813d4714">add_external_force</a> (std::shared_ptr&lt; <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForce.html">ExternalFlowForce</a>&lt; dim, number &gt; &gt; external_force_residuum, std::shared_ptr&lt; <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForceJacobian.html">ExternalFlowForceJacobian</a>&lt; dim, number &gt; &gt; external_force_jacobian=nullptr)</td></tr>
 <tr class="separator:a9a2ee006559633cbe78363f5813d4714"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53d91762be5b5da587e1a64ce18397db" id="r_a53d91762be5b5da587e1a64ce18397db"><td class="memItemLeft" align="right" valign="top">const dealii::DoFHandler&lt; dim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html#a53d91762be5b5da587e1a64ce18397db">get_dof_handler</a> () const</td></tr>
@@ -635,6 +638,53 @@ template&lt;int dim, typename number &gt; </div>
 <p>Check if the compressible flow operation is initialized,. </p>
 <p>Check that the current object holds a valid pointer to any compressible flow operation object.</p>
 <dl class="section return"><dt>Returns</dt><dd>True if object holds a valid preconditioner object. </dd></dl>
+
+</div>
+</div>
+<a id="a65ab5ff5eee3846a3e77215449030b9e" name="a65ab5ff5eee3846a3e77215449030b9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65ab5ff5eee3846a3e77215449030b9e">&#9670;&#160;</a></span>register_monitors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1OperationTypeErasure.html">MeltPoolDG::CompressibleFlow::OperationTypeErasure</a>&lt; dim, number &gt;::register_monitors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html">Profiling::ProfilingMonitor</a>&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>profiling_monitor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Profiling::ProfilingVerbosity&#160;</td>
+          <td class="paramname"><em>verbosity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Subscribe the monitors of the specific operation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">profiling_monitor</td><td>The profiling monitor to which the monitors are subscribed.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The function simply passes the parameters to the corresponding operation function. If the operation does not provide any monitors, nothing is done. </dd></dl>
 
 </div>
 </div>

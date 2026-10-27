@@ -161,6 +161,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae95f94abd40713beb5ae1f6f9cb5a5f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad932919c64634dcee1c313da9f100a00" id="r_ad932919c64634dcee1c313da9f100a00"><td class="memItemLeft" align="right" valign="top">const dealii::AlignedVector&lt; <a class="el" href="classMeltPoolDG_1_1TroubledCellMarker.html#a96d5a7159dc92c4e176dc6ccc91c9c1e">VectorizedArrayType</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1TroubledCellMarker.html#ad932919c64634dcee1c313da9f100a00">troubled_cells</a> () const</td></tr>
 <tr class="separator:ad932919c64634dcee1c313da9f100a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab83c6951916525218bffa43f2215f7dd" id="r_ab83c6951916525218bffa43f2215f7dd"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classMeltPoolDG_1_1TroubledCellMarker.html#adf320aee638d179a36d248367ffae445">MaskType</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1TroubledCellMarker.html#ab83c6951916525218bffa43f2215f7dd">physically_admissible_cell_vector</a> () const</td></tr>
+<tr class="separator:ab83c6951916525218bffa43f2215f7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f53023bd3c1b15bd4720433686751a8" id="r_a6f53023bd3c1b15bd4720433686751a8"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classMeltPoolDG_1_1TroubledCellMarker.html#adf320aee638d179a36d248367ffae445">MaskType</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1TroubledCellMarker.html#a6f53023bd3c1b15bd4720433686751a8">numerically_admissible_cell_vector</a> () const</td></tr>
+<tr class="separator:a6f53023bd3c1b15bd4720433686751a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
 Private Types</h2></td></tr>
@@ -368,6 +372,46 @@ template&lt;int dim, int n_components, typename number &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a6f53023bd3c1b15bd4720433686751a8" name="a6f53023bd3c1b15bd4720433686751a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f53023bd3c1b15bd4720433686751a8">&#9670;&#160;</a></span>numerically_admissible_cell_vector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, int n_components, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="classMeltPoolDG_1_1TroubledCellMarker.html">MeltPoolDG::TroubledCellMarker</a>&lt; dim, n_components, number &gt;::numerically_admissible_cell_vector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns a vector of bitsets, where active bits indicate that the solution on the cell is numerically admissible while non-active bits indicate that the solution on the cell is numerically inadmissible. The vector is indexed by the local batch index where each entry corresponds to a locally owned cell batch and each bit to a vectorization lane inside that cell batch. </p>
+
+</div>
+</div>
+<a id="ab83c6951916525218bffa43f2215f7dd" name="ab83c6951916525218bffa43f2215f7dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab83c6951916525218bffa43f2215f7dd">&#9670;&#160;</a></span>physically_admissible_cell_vector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, int n_components, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="classMeltPoolDG_1_1TroubledCellMarker.html">MeltPoolDG::TroubledCellMarker</a>&lt; dim, n_components, number &gt;::physically_admissible_cell_vector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns a vector of bitsets, where active bits indicate that the solution on the cell is physically admissible while non-active bits indicate that the solution on the cell is physically inadmissible. The vector is indexed by the local batch index where each entry corresponds to a locally owned cell batch and each bit to a vectorization lane inside that cell batch. </p>
 
 </div>
 </div>

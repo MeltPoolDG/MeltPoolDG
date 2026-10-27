@@ -144,6 +144,11 @@ $(function() {
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="dg__operation_8hpp_source.html">dg_operation.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for MeltPoolDG::CompressibleFlow::DGOperation&lt; dim, number, n_species &gt;:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperation__coll__graph.svg" width="270" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -192,6 +197,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa3e715699f4e0866d006baa4efed15e4" id="r_aa3e715699f4e0866d006baa4efed15e4"><td class="memItemLeft" align="right" valign="top">const dealii::DoFHandler&lt; dim &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperation.html#aa3e715699f4e0866d006baa4efed15e4">get_dof_handler</a> () const</td></tr>
 <tr class="memdesc:aa3e715699f4e0866d006baa4efed15e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant getter function for the DoFHandler.  <br /></td></tr>
 <tr class="separator:aa3e715699f4e0866d006baa4efed15e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff935c534a36d89c69eee710e878c8aa" id="r_aff935c534a36d89c69eee710e878c8aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperation.html#aff935c534a36d89c69eee710e878c8aa">register_monitors</a> (<a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html">Profiling::ProfilingMonitor</a>&lt; number &gt; &amp;profiling_monitor, const Profiling::ProfilingVerbosity verbosity)</td></tr>
+<tr class="memdesc:aff935c534a36d89c69eee710e878c8aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribe the monitors of the operation, e.g. the statistics of the troubled cells of the finite volume subcell limiter, to the passed profiling monitor.  <br /></td></tr>
+<tr class="separator:aff935c534a36d89c69eee710e878c8aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -221,6 +229,12 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ac2a493a1f2aaad55babdb66b43a992a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9fe53c3d8fc3128aa238f8d9cf14721" id="r_af9fe53c3d8fc3128aa238f8d9cf14721"><td class="memItemLeft" align="right" valign="top">std::variant&lt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">DGOperatorExplicit</a>&lt; dim, number, n_species &gt;, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorImplicit.html">DGOperatorImplicit</a>&lt; dim, number &gt;, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorImplicitExplicit.html">DGOperatorImplicitExplicit</a>&lt; dim, number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperation.html#af9fe53c3d8fc3128aa238f8d9cf14721">flow_operator</a></td></tr>
 <tr class="separator:af9fe53c3d8fc3128aa238f8d9cf14721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16bf38fe6512d51e18e1dc583365f290" id="r_a16bf38fe6512d51e18e1dc583365f290"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1TroubledCellMarker.html">TroubledCellMarker</a>&lt; dim, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a75072c3e134d587a3929ac4999f5752a">n_conserved_variables</a>&lt; dim, n_species &gt;, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperation.html#a16bf38fe6512d51e18e1dc583365f290">troubled_cell_marker</a></td></tr>
+<tr class="memdesc:a16bf38fe6512d51e18e1dc583365f290"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marker of the troubled cells to which the finite volume subcell limiter is applied.  <br /></td></tr>
+<tr class="separator:a16bf38fe6512d51e18e1dc583365f290"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a511a5bfb1c87d8590942f91e1bf7adbc" id="r_a511a5bfb1c87d8590942f91e1bf7adbc"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classMeltPoolDG_1_1TroubledCellMonitor.html">TroubledCellMonitor</a>&lt; dim, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a75072c3e134d587a3929ac4999f5752a">n_conserved_variables</a>&lt; dim, n_species &gt;, number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperation.html#a511a5bfb1c87d8590942f91e1bf7adbc">troubled_cell_monitor</a></td></tr>
+<tr class="memdesc:a511a5bfb1c87d8590942f91e1bf7adbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statistics of the troubled cells marked by troubled_cell_marker.  <br /></td></tr>
+<tr class="separator:a511a5bfb1c87d8590942f91e1bf7adbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca5979377de11fe2766086fc945e00e0" id="r_aca5979377de11fe2766086fc945e00e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1OutputManager.html">OutputManager</a>&lt; dim, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperation.html#aca5979377de11fe2766086fc945e00e0">output_manager</a></td></tr>
 <tr class="memdesc:aca5979377de11fe2766086fc945e00e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object containing the data post processor for the different output options.  <br /></td></tr>
 <tr class="separator:aca5979377de11fe2766086fc945e00e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -628,6 +642,45 @@ template&lt;int dim, typename number , int n_species&gt; </div>
 
 </div>
 </div>
+<a id="aff935c534a36d89c69eee710e878c8aa" name="aff935c534a36d89c69eee710e878c8aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff935c534a36d89c69eee710e878c8aa">&#9670;&#160;</a></span>register_monitors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperation.html">MeltPoolDG::CompressibleFlow::DGOperation</a>&lt; dim, number, n_species &gt;::register_monitors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1Profiling_1_1ProfilingMonitor.html">Profiling::ProfilingMonitor</a>&lt; number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>profiling_monitor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Profiling::ProfilingVerbosity&#160;</td>
+          <td class="paramname"><em>verbosity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Subscribe the monitors of the operation, e.g. the statistics of the troubled cells of the finite volume subcell limiter, to the passed profiling monitor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">profiling_monitor</td><td>The profiling monitor to which the monitors are subscribed. </td></tr>
+    <tr><td class="paramname">verbosity</td><td>The verbosity level for the profiling output. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ae6763aa4c406d01beeb8ef09496abf2d" name="ae6763aa4c406d01beeb8ef09496abf2d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae6763aa4c406d01beeb8ef09496abf2d">&#9670;&#160;</a></span>reinit()</h2>
 
@@ -950,6 +1003,58 @@ template&lt;int dim, typename number , int n_species = 1&gt; </div>
 </table>
 </div><div class="memdoc">
 <p>A pointer to the time integrator used for the time integration of the compressible flow equations. This includes explicit, implicit, and implicit-explicit time integration schemes. </p>
+
+</div>
+</div>
+<a id="a16bf38fe6512d51e18e1dc583365f290" name="a16bf38fe6512d51e18e1dc583365f290"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16bf38fe6512d51e18e1dc583365f290">&#9670;&#160;</a></span>troubled_cell_marker</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species = 1&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMeltPoolDG_1_1TroubledCellMarker.html">TroubledCellMarker</a>&lt;dim, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a75072c3e134d587a3929ac4999f5752a">n_conserved_variables</a>&lt;dim, n_species&gt;, number&gt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperation.html">MeltPoolDG::CompressibleFlow::DGOperation</a>&lt; dim, number, n_species &gt;::troubled_cell_marker</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Marker of the troubled cells to which the finite volume subcell limiter is applied. </p>
+
+</div>
+</div>
+<a id="a511a5bfb1c87d8590942f91e1bf7adbc" name="a511a5bfb1c87d8590942f91e1bf7adbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a511a5bfb1c87d8590942f91e1bf7adbc">&#9670;&#160;</a></span>troubled_cell_monitor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species = 1&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classMeltPoolDG_1_1TroubledCellMonitor.html">TroubledCellMonitor</a>&lt;dim, <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a75072c3e134d587a3929ac4999f5752a">n_conserved_variables</a>&lt;dim, n_species&gt;, number&gt; &gt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperation.html">MeltPoolDG::CompressibleFlow::DGOperation</a>&lt; dim, number, n_species &gt;::troubled_cell_monitor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Statistics of the troubled cells marked by troubled_cell_marker. </p>
 
 </div>
 </div>

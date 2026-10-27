@@ -389,6 +389,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1TroubledCellMarker.html">TroubledCellMarker</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1TroubledCellMonitor.html">TroubledCellMonitor</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
@@ -603,6 +605,9 @@ requires std::ranges::range&lt;ContainerType&gt;</td></tr>
 <tr class="memitem:a2f8ff2d15dc3e0a9368187b92fa9712a" id="r_a2f8ff2d15dc3e0a9368187b92fa9712a"><td class="memTemplParams" colspan="2">template&lt;typename number &gt; </td></tr>
 <tr class="memitem:a2f8ff2d15dc3e0a9368187b92fa9712a"><td class="memTemplItemLeft" align="right" valign="top">dealii::VectorizedArray&lt; number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a2f8ff2d15dc3e0a9368187b92fa9712a">bitset_to_vectorized_mask</a> (const std::bitset&lt; dealii::VectorizedArray&lt; number &gt;::size()&gt; &amp;bitset)</td></tr>
 <tr class="separator:a2f8ff2d15dc3e0a9368187b92fa9712a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dbf3a9cc4a0fcc1b96742823215b2e3" id="r_a6dbf3a9cc4a0fcc1b96742823215b2e3"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
+<tr class="memitem:a6dbf3a9cc4a0fcc1b96742823215b2e3"><td class="memTemplItemLeft" align="right" valign="top">dealii::Vector&lt; number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a6dbf3a9cc4a0fcc1b96742823215b2e3">cell_batch_data_to_active_cell_vector</a> (const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, const std::function&lt; number(const unsigned int, const unsigned int)&gt; &amp;value_of_lane)</td></tr>
+<tr class="separator:a6dbf3a9cc4a0fcc1b96742823215b2e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3841379fcda83206763691df69c56c18" id="r_a3841379fcda83206763691df69c56c18"><td class="memTemplParams" colspan="2">template&lt;typename FeEval &gt; </td></tr>
 <tr class="memitem:a3841379fcda83206763691df69c56c18"><td class="memTemplItemLeft" align="right" valign="top">dealii::Tensor&lt; 1, FeEval::n_components, dealii::VectorizedArray&lt; typename FeEval::number_type &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a3841379fcda83206763691df69c56c18">fe_evaluation_tensor_value_at_q</a> (const FeEval &amp;fe_eval, const unsigned q_index)</td></tr>
 <tr class="separator:a3841379fcda83206763691df69c56c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1261,6 +1266,45 @@ template&lt;int dim, typename number &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a6dbf3a9cc4a0fcc1b96742823215b2e3" name="a6dbf3a9cc4a0fcc1b96742823215b2e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dbf3a9cc4a0fcc1b96742823215b2e3">&#9670;&#160;</a></span>cell_batch_data_to_active_cell_vector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::Vector&lt; number &gt; MeltPoolDG::cell_batch_data_to_active_cell_vector </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::MatrixFree&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_free</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; number(const unsigned int, const unsigned int)&gt; &amp;&#160;</td>
+          <td class="paramname"><em>value_of_lane</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Convert data given per lane of the locally owned cell batches into a vector indexed by the active cell index, e.g., for the output as cell data. Entries of cells that are not locally owned are zero.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matrix_free</td><td>The matrix-free object defining the cell batches. </td></tr>
+    <tr><td class="paramname">value_of_lane</td><td>Function returning the value for a given cell batch index and lane.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector with one entry per active cell of the triangulation. </dd></dl>
 
 </div>
 </div>
