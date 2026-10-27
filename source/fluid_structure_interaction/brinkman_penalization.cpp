@@ -142,7 +142,7 @@ MeltPoolDG::BrinkmanPenalizationResidualContribution<dim, number, ObstacleType>:
   const number,
   const unsigned int                                         cell_batch_id,
   const dealii::Point<dim, dealii::VectorizedArray<number>> &q_point,
-  const ConservedVariablesType                              &w_q) -> ConservedVariablesType
+  const CompressibleVariablesType                           &w_q) -> CompressibleVariablesType
 {
   using VectorizedArrayType = dealii::VectorizedArray<number>;
 
@@ -166,11 +166,38 @@ MeltPoolDG::BrinkmanPenalizationResidualContribution<dim, number, ObstacleType>:
                        w_q[0];
     }
 
-  ConservedVariablesType fluid_force;
+  CompressibleVariablesType fluid_force;
   for (int d = 0; d < dim; ++d)
     fluid_force[d + 1] = momentum_penalty[d];
   fluid_force[dim + 1] = energy_penalty;
   return fluid_force;
+}
+
+template <int dim, typename number, typename ObstacleType>
+auto
+MeltPoolDG::BrinkmanPenalizationResidualContribution<dim, number, ObstacleType>::value(
+  const number                                               density,
+  const unsigned int                                         cell_batch_id,
+  const dealii::Point<dim, dealii::VectorizedArray<number>> &location,
+  const IncompressibleVariablesType &velocity) -> IncompressibleVariablesType
+{
+  using VectorizedArrayType = dealii::VectorizedArray<number>;
+
+  dealii::Tensor<1, dim, VectorizedArrayType> momentum_penalty;
+  for (DEMParticleAccessor<dim, number> &particle :
+       cell_cache->obstacles_in_cell_batch(cell_batch_id))
+    {
+      const dealii::Tensor<1, dim, VectorizedArrayType> local_obstacle_velocity =
+        local_particle_velocity<dim, number, VectorizedArrayType>(particle, location);
+
+      auto mask = mask_function<dim, number, VectorizedArrayType>(
+        brinkman_penalization_data.mask_function_type, location, particle);
+
+      momentum_penalty -= mask / brinkman_penalization_data.permeability * density *
+                          (velocity - local_obstacle_velocity);
+    }
+
+  return momentum_penalty;
 }
 
 template <int dim, typename number, typename ObstacleType>

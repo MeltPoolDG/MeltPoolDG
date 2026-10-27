@@ -80,7 +80,8 @@ namespace MeltPoolDG
   struct BrinkmanPenalizationResidualContribution final
     : public CompressibleFlow::ExternalFlowForce<dim, number>
   {
-    using ConservedVariablesType = CompressibleFlow::ConservedVariablesType<dim, number>;
+    using CompressibleVariablesType   = CompressibleFlow::ConservedVariablesType<dim, number>;
+    using IncompressibleVariablesType = dealii::Tensor<1, dim, dealii::VectorizedArray<number>>;
 
   public:
     /**
@@ -97,10 +98,11 @@ namespace MeltPoolDG
         &cell_cache);
 
     /**
-     * This function evaluates the Brinkman penalty term at a set of vectorized points, typically
-     * quadrature points. Since successive calls often operate on the same set of cells, the
-     * function internally caches the obstacles relevant to the provided cells. The cache is updated
-     * automatically if the cell set differs from that used in the previous call.
+     * This function evaluates the Brinkman penalty term for compressible flows at a set of
+     * vectorized points, typically quadrature points. Since successive calls often operate on the
+     * same set of cells, the function internally caches the obstacles relevant to the provided
+     * cells. The cache is updated automatically if the cell set differs from that used in the
+     * previous call.
      *
      * @param time_step_size Current time step size.
      * @param cell_batch_id ID of the cell batch for which to compute the residual contribution.
@@ -108,11 +110,42 @@ namespace MeltPoolDG
      * @param w_q Conserved variables evaluated at the given coordinates.
      * @return The computed Brinkman penalty term at the specified points.
      */
-    ConservedVariablesType
+    CompressibleVariablesType
     value(number                                                     time_step_size,
           const unsigned int                                         cell_batch_id,
           const dealii::Point<dim, dealii::VectorizedArray<number>> &q_point,
-          const ConservedVariablesType                              &w_q) override;
+          const CompressibleVariablesType                           &w_q) override;
+
+    /**
+     * This function evaluates the Brinkman penalty term for the incompressible momentum balance
+     * equation at a set of vectorized points. The penalty term is defined as
+     * \f[
+     * f_{vp} = \frac{\xi}{\eta} \rho_f \left(\mathbf{u}_s - \mathbf{u}_f \right),
+     * \f]
+     * where:
+     * - \f(\xi\f) is the mask function,
+     * - \f(\eta\f) is the permeability,
+     * - \f(\rho_f\f) is the local fluid density,
+     * - \f(\mathbf{u}_s\f) is the local obstacle velocity,
+     * - \f(\mathbf{u}_f\f) is the local fluid velocity.
+     *
+     * Since successive calls often operate on the same set of cells, the function internally caches
+     * the obstacles relevant to the provided cells. The cache is updated automatically if the cell
+     * set differs from that used in the previous call. For this reason the function requires the
+     * cell batch ID to be provided as an argument.
+     *
+     * @param time_step_size Current time step size.
+     * @param cell_batch_id ID of the cell batch for which to compute the residual contribution.
+     * @param location Coordinates at which the penalty term is to be evaluated.
+     * @param velocity Fluid velocity evaluated at the given coordinates.
+     * @return The computed Brinkman penalty term for the incompressible momentum balance equation
+     * at the specified points.
+     */
+    IncompressibleVariablesType
+    value(const number                                               density,
+          const unsigned int                                         cell_batch_id,
+          const dealii::Point<dim, dealii::VectorizedArray<number>> &location,
+          const IncompressibleVariablesType                         &velocity);
 
   private:
     /// Brinkman penalization data
