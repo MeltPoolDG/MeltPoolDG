@@ -1,0 +1,51 @@
+{
+  "$schema": "../../parameters.schema.json",
+  "base": {
+    "case name": "vortex_bubble",
+    "dimension": 2,
+    "global refinements": 4,
+    "do print parameters": false,
+    "fe": {
+      "degree": 1
+    }
+  },
+  "time stepping": {
+    "start time": 0.0,
+    "end time": 0.03,
+    "time step size": 0.01
+  },
+  "output": {
+    "do user defined postprocessing": true,
+    "paraview": {
+      "enable": false
+    }
+  },
+  "level set": {
+    "reinitialization": {
+      "linear solver": {
+        "do matrix free": true
+      },
+      "enable": true,
+      "type": "olsson2007",
+      "hyperbolic": {
+        "pseudo time stepping": {
+          "max n steps": 5
+        }
+      }
+    },
+    "curvature": {
+      "filter parameter": 0.0
+    },
+    "normal vector": {
+      "filter parameter": 0.5,
+      "linear solver": {
+        "do matrix free": true
+      }
+    },
+    "advection diffusion": {
+      "linear solver": {
+        "do matrix free": true
+      }
+    }
+  }
+}
