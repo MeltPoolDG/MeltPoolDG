@@ -301,6 +301,8 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a6d1e84b6f6396ecb84678461be4b0bd2" id="r_a6d1e84b6f6396ecb84678461be4b0bd2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a6d1e84b6f6396ecb84678461be4b0bd2">preconditioner_update_flag</a> = false</td></tr>
 <tr class="memdesc:a6d1e84b6f6396ecb84678461be4b0bd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean indicator whether the preconditioner needs to be updated before the next solve.  <br /></td></tr>
 <tr class="separator:a6d1e84b6f6396ecb84678461be4b0bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e88ba1f8507d2b138532a0ed7b7ece1" id="r_a9e88ba1f8507d2b138532a0ed7b7ece1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html">InterfaceBandSolver</a>&lt; number, <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a93ea12f6f86ab9a226e53fd503ecad04">VectorType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a9e88ba1f8507d2b138532a0ed7b7ece1">band_solver</a></td></tr>
+<tr class="separator:a9e88ba1f8507d2b138532a0ed7b7ece1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0fd691ea8bf1c51753ff0c3ad01bb2a" id="r_ab0fd691ea8bf1c51753ff0c3ad01bb2a"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#ab0fd691ea8bf1c51753ff0c3ad01bb2a">n_steps_performed</a> = 0</td></tr>
 <tr class="separator:ab0fd691ea8bf1c51753ff0c3ad01bb2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37ccbf611b6ebf448b876a9a37c49bab" id="r_a37ccbf611b6ebf448b876a9a37c49bab"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classMeltPoolDG_1_1CutUtil_1_1PartitionWeights.html">CutUtil::PartitionWeights</a>&lt; dim &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a37ccbf611b6ebf448b876a9a37c49bab">partition_weights</a></td></tr>
@@ -572,7 +574,7 @@ template&lt;int dim, typename number &gt; </div>
 <p>If the DoF layout changed, the following additional steps are performed:</p><ul>
 <li>adapt DoFHandler and solution vectors according to new interface position, extrapolate new DoF values via ghost-penalty extrapolation</li>
 <li>reinit matrix-free object, rhs and solution vectors</li>
-<li>reinitialize the preconditioner's data structures </li>
+<li>reinitialize the preconditioner's and the band solver's data structures </li>
 </ul>
 
 </div>
@@ -1258,6 +1260,31 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9e88ba1f8507d2b138532a0ed7b7ece1" name="a9e88ba1f8507d2b138532a0ed7b7ece1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e88ba1f8507d2b138532a0ed7b7ece1">&#9670;&#160;</a></span>band_solver</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html">InterfaceBandSolver</a>&lt;number, <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html#a93ea12f6f86ab9a226e53fd503ecad04">VectorType</a>&gt; <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperation.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperation</a>&lt; dim, number &gt;::band_solver</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Specialized efficient solver for the ghost-penalty stabilized mass matrix system: exact cell-wise inverse for all cells away from the interface and a linear solver for the band of intersected cells and their ghost-penalty neighbors </p>
+
+</div>
+</div>
 <a id="a62617a35b1c511045d70e516dd81fc30" name="a62617a35b1c511045d70e516dd81fc30"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a62617a35b1c511045d70e516dd81fc30">&#9670;&#160;</a></span>cmp_operator</h2>
 

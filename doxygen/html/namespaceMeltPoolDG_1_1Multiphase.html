@@ -134,16 +134,20 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#concepts">Concepts</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">MeltPoolDG::Multiphase Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>A collection of functions for the computation of the interface terms for compressible two-phase flows.  
+<p>Band solver for the ghost-penalty stabilized mass matrix of the cutDG compressible multiphase flow solver: the element mass matrices from all cells away from the interface are inverted exactly and only the through the ghost-penalty stabilization coupled band of cells around the interface is solved with a linear solver.  
 <a href="namespaceMeltPoolDG_1_1Multiphase.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">BandData</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Description of the "band" of a cutDG mass-type operator, i.e., of the cells whose degrees of freedom are coupled to the degrees of freedom of other cells (intersected cells and cells sharing a ghost-penalty face with them).  <a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1Multiphase_1_1CompressibleFlowPhaseCouplingData.html">CompressibleFlowPhaseCouplingData</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data structure, which contains parameters specifically for the phase coupling of compressible multiphase simulations.  <a href="structMeltPoolDG_1_1Multiphase_1_1CompressibleFlowPhaseCouplingData.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,6 +156,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">CompressibleMultiphaseOperator</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator for the matrix-free of a compressible multiphase flow cutDG formulation.  <a href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html">InterfaceBandSolver</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialized solver for the linear system of the cutDG compressible multiphase flow solver, i.e., the cutDG mass matrix with face-based ghost-penalty stabilization.  <a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1LevelSetAdvection.html">LevelSetAdvection</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for the analytical advection of a 1D test case.  <a href="classMeltPoolDG_1_1Multiphase_1_1LevelSetAdvection.html#details">More...</a><br /></td></tr>
@@ -163,8 +170,18 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of parameters related to liquid-gas and solid-liquid phase transitions.  <a href="structMeltPoolDG_1_1Multiphase_1_1PhaseChangeData.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
+Concepts</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolverOperatorType.html">InterfaceBandSolverOperatorType</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A concept for matrix-free operators that can be solved with the InterfaceBandSolver. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a1aab28448cb87122177549eb1ab355af" id="r_a1aab28448cb87122177549eb1ab355af"><td class="memTemplParams" colspan="2">template&lt;int dim&gt; </td></tr>
+<tr class="memitem:a1aab28448cb87122177549eb1ab355af"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a1aab28448cb87122177549eb1ab355af">is_band_cell</a> (const typename dealii::DoFHandler&lt; dim &gt;::cell_iterator &amp;cell)</td></tr>
+<tr class="memdesc:a1aab28448cb87122177549eb1ab355af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return whether the active cell <code>cell</code> belongs to the band, i.e., whether it is intersected or contains a ghost-penalty face.  <br /></td></tr>
+<tr class="separator:a1aab28448cb87122177549eb1ab355af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6c404822601cbdf44872e5e2c4fbf38" id="r_af6c404822601cbdf44872e5e2c4fbf38"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number , typename ConservedVariablesType , typename DofValueAndGradientStateView &gt; </td></tr>
 <tr class="memitem:af6c404822601cbdf44872e5e2c4fbf38"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::pair&lt; ConservedVariablesType, ConservedVariablesType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#af6c404822601cbdf44872e5e2c4fbf38">calculate_convective_and_viscous_interface_flux_penalty</a> (const DofValueAndGradientStateView &amp;liquid_state, const DofValueAndGradientStateView &amp;gas_state, const <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html">CompressibleFlow::MultiphaseOperationScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data, const number &amp;m_dot_evap, const number &amp;laser_heat_source)</td></tr>
 <tr class="memdesc:af6c404822601cbdf44872e5e2c4fbf38"><td class="mdescLeft">&#160;</td><td class="mdescRight">"penalty" method ///  <br /></td></tr>
@@ -197,14 +214,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a00c93ad7cef8c734d2760acbd2387474"><td class="memTemplItemLeft" align="right" valign="top">DEAL_II_ALWAYS_INLINE std::tuple&lt; number, number &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a00c93ad7cef8c734d2760acbd2387474">update_evaporative_mass_flux_and_temperature_jump</a> (const DofStateView &amp;liquid_state, const DofStateView &amp;gas_state, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, const <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1MultiphaseOperationScratchData.html">CompressibleFlow::MultiphaseOperationScratchData</a>&lt; dim, number &gt; &amp;multiphase_scratch_data, <a class="el" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelKnight.html">Evaporation::EvaporationModelKnight</a>&lt; number &gt; *evaporation_model_knight=nullptr)</td></tr>
 <tr class="memdesc:a00c93ad7cef8c734d2760acbd2387474"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the current evaporative mass flux and temperature jump across the interface.  <br /></td></tr>
 <tr class="separator:a00c93ad7cef8c734d2760acbd2387474"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44c77ba4fb2309e3dd6a742091edc3bb" id="r_a44c77ba4fb2309e3dd6a742091edc3bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a44c77ba4fb2309e3dd6a742091edc3bb">BETTER_ENUM</a> (Phase, int, <a class="el" href="namespaceMeltPoolDG.html#ac22db4db3a43285e5fa5cb1a3a012a6eaf80b6383d767feb24333c7d460bed98c">liquid</a>, <a class="el" href="namespaceMeltPoolDG.html#ac22db4db3a43285e5fa5cb1a3a012a6eafee74eac0728a1bb5ff7d4666f8c4a88">gas</a>)</td></tr>
-<tr class="memdesc:a44c77ba4fb2309e3dd6a742091edc3bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper enum to distinguish between the liquid and gas phase in the multiphase operator.  <br /></td></tr>
-<tr class="separator:a44c77ba4fb2309e3dd6a742091edc3bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A collection of functions for the computation of the interface terms for compressible two-phase flows. </p>
+<div class="textblock"><p>Band solver for the ghost-penalty stabilized mass matrix of the cutDG compressible multiphase flow solver: the element mass matrices from all cells away from the interface are inverted exactly and only the through the ghost-penalty stabilization coupled band of cells around the interface is solved with a linear solver. </p>
 <p>This operator solves the compressible two-phase Navier-Stokes equations, comprising the primary variables.</p>
 <p>This file is only relevant temporarily and solves the level-set advection for one-dimensional test cases. When the incorporation of a full level-set velocity field is considered, the already available functionalities should be used.</p>
+<p>A collection of functions for the computation of the interface terms for compressible two-phase flows.</p>
 <p>Three different strategies for enforcing the interface jump conditions are implemented:</p>
 <ul>
 <li>"HLLP0 and penalty": approximate HLLP0 Riemann solver for convective fluxes and a combination of strong incorporation in the weak form and penalty terms for the viscous fluxes</li>
@@ -228,48 +243,6 @@ Functions</h2></td></tr>
 <li>"penalty": strong enforcement of both convective and viscous fluxes in the weak form and penalty terms for Dirichlet density and temperature constraints for the gas phase </li>
 </ul>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a44c77ba4fb2309e3dd6a742091edc3bb" name="a44c77ba4fb2309e3dd6a742091edc3bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44c77ba4fb2309e3dd6a742091edc3bb">&#9670;&#160;</a></span>BETTER_ENUM()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MeltPoolDG::Multiphase::BETTER_ENUM </td>
-          <td>(</td>
-          <td class="paramtype">Phase&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMeltPoolDG.html#ac22db4db3a43285e5fa5cb1a3a012a6eaf80b6383d767feb24333c7d460bed98c">liquid</a>&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMeltPoolDG.html#ac22db4db3a43285e5fa5cb1a3a012a6eafee74eac0728a1bb5ff7d4666f8c4a88">gas</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Helper enum to distinguish between the liquid and gas phase in the multiphase operator. </p>
-
-</div>
-</div>
 <a id="af6c404822601cbdf44872e5e2c4fbf38" name="af6c404822601cbdf44872e5e2c4fbf38"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af6c404822601cbdf44872e5e2c4fbf38">&#9670;&#160;</a></span>calculate_convective_and_viscous_interface_flux_penalty()</h2>
 
@@ -839,6 +812,35 @@ template&lt;int dim, typename number , typename ConservedVariablesType , typenam
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pair of interface viscous fluxes for liquid and gas phase, which are weighted with the test functions. </dd></dl>
+
+</div>
+</div>
+<a id="a1aab28448cb87122177549eb1ab355af" name="a1aab28448cb87122177549eb1ab355af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1aab28448cb87122177549eb1ab355af">&#9670;&#160;</a></span>is_band_cell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MeltPoolDG::Multiphase::is_band_cell </td>
+          <td>(</td>
+          <td class="paramtype">const typename dealii::DoFHandler&lt; dim &gt;::cell_iterator &amp;&#160;</td>
+          <td class="paramname"><em>cell</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return whether the active cell <code>cell</code> belongs to the band, i.e., whether it is intersected or contains a ghost-penalty face. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cell</td><td>Active cell to check.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the cell belongs to the band. </dd></dl>
 
 </div>
 </div>

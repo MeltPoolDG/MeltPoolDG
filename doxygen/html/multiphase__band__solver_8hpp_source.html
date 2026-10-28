@@ -1,0 +1,583 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/compressible_flow/multiphase_band_solver.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/parameters/index.html">📦 Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/compressible_flow/multiphase_band_solver.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/multiphase__band__solver_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-compressible-flow-multiphase-band-solver-hpp-source-file">
+<h1>include/meltpooldg/compressible_flow/multiphase_band_solver.hpp Source File<a class="headerlink" href="#include-meltpooldg-compressible-flow-multiphase-band-solver-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/compressible_flow/multiphase_band_solver.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_bb77f7f27cd899d864c2a9921966d6b9.html">compressible_flow</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">multiphase_band_solver.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="multiphase__band__solver_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;deal.II/base/exceptions.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;deal.II/base/geometry_info.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;deal.II/base/index_set.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;deal.II/base/mpi.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;deal.II/base/types.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;deal.II/dofs/dof_handler.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;deal.II/lac/precondition.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="util_8hpp.html">meltpooldg/cut/util.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="linear__solver_8hpp.html">meltpooldg/linear_algebra/linear_solver.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;<a class="code" href="linear__solver__data_8hpp.html">meltpooldg/linear_algebra/linear_solver_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1Multiphase.html">   27</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1Multiphase.html">MeltPoolDG::Multiphase</a></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim&gt;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1Multiphase.html#a1aab28448cb87122177549eb1ab355af">   39</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1Multiphase.html#a1aab28448cb87122177549eb1ab355af">is_band_cell</a>(<span class="keyword">const</span> <span class="keyword">typename</span> dealii::DoFHandler&lt;dim&gt;::cell_iterator &amp;cell)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> category = cell-&gt;active_fe_index();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">if</span> (category == <a class="code hl_enumvalue" href="namespaceMeltPoolDG_1_1CutUtil.html#a27034c61403f17637b919d517870ea9da84b59b983e00e67d45a4b155b1bb3585">CutUtil::CellCategory::intersected</a>)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">return</span> CutUtil::cell_has_ghost_penalty_face&lt;dim&gt;(cell,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                                                     category == <a class="code hl_enumvalue" href="namespaceMeltPoolDG_1_1CutUtil.html#a27034c61403f17637b919d517870ea9da3fea8c0e62dcf169c55f17237be54945">CutUtil::CellCategory::liquid</a> ?</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                                                       CutUtil::Phase::liquid :</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                                                       CutUtil::Phase::gas);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  }</div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="};">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">   64</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">BandData</a></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a8b854d32f79541cbb7a53b80ff92d6a2">   72</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a8b854d32f79541cbb7a53b80ff92d6a2">BandData</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00081" data-start="{" data-end="}">
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aaca60328961401a11ff8b58e3df613c7">   81</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aaca60328961401a11ff8b58e3df613c7">reinit</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_cell_batches_in, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_lanes_in)</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a0000d1ca9ab8a75d541205941d450004">n_cell_batches</a> = n_cell_batches_in;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a31fc0f8dcc6f1a30e4acb238841aadf2">n_lanes</a>        = n_lanes_in;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a54e7e9d7929935928ca6eb36b5f51241">cell_in_band</a>.assign(<a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a0000d1ca9ab8a75d541205941d450004">n_cell_batches</a> * <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a31fc0f8dcc6f1a30e4acb238841aadf2">n_lanes</a>, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#add3dc0e5f6829664dfbb0f755f56e217">batch_in_band</a>.assign(<a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a0000d1ca9ab8a75d541205941d450004">n_cell_batches</a>, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a3038613122f54e426144f58e22478794">dof_indices</a>.clear();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#af68803ae36e0f22bab7e263d5043471d">initialized</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    }</div>
+</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00096" data-start="{" data-end="}">
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#ad26cdebe77379202252aec049e5603df">   96</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#ad26cdebe77379202252aec049e5603df">clear</a>()</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a54e7e9d7929935928ca6eb36b5f51241">cell_in_band</a>.clear();</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a54e7e9d7929935928ca6eb36b5f51241">cell_in_band</a>.shrink_to_fit();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#add3dc0e5f6829664dfbb0f755f56e217">batch_in_band</a>.clear();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#add3dc0e5f6829664dfbb0f755f56e217">batch_in_band</a>.shrink_to_fit();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a3038613122f54e426144f58e22478794">dof_indices</a>.clear();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a3038613122f54e426144f58e22478794">dof_indices</a>.shrink_to_fit();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a0000d1ca9ab8a75d541205941d450004">n_cell_batches</a> = 0;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#af68803ae36e0f22bab7e263d5043471d">initialized</a>    = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    }</div>
+</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00114" data-start="{" data-end="}">
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aba9c0653c6a3ae63d1e2484617d6f6e6">  114</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aba9c0653c6a3ae63d1e2484617d6f6e6">is_initialized</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#af68803ae36e0f22bab7e263d5043471d">initialized</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
+</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00123" data-start="{" data-end="}">
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#afbca05d902b2f8a1a83a8fe635d10622">  123</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#afbca05d902b2f8a1a83a8fe635d10622">add</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_batch, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lane)</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    {</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a54e7e9d7929935928ca6eb36b5f51241">cell_in_band</a>[<a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#adab8a41cf0b7b447f55bb305e66e1c88">index</a>(cell_batch, lane)] = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#add3dc0e5f6829664dfbb0f755f56e217">batch_in_band</a>[cell_batch]             = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    }</div>
+</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00135" data-start="{" data-end="}">
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a4b87ec29ffacb9aea801f8a0c42e46e8">  135</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a4b87ec29ffacb9aea801f8a0c42e46e8">contains</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_batch, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lane)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a54e7e9d7929935928ca6eb36b5f51241">cell_in_band</a>[<a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#adab8a41cf0b7b447f55bb305e66e1c88">index</a>(cell_batch, lane)];</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    }</div>
+</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="}">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aeaa29993bd10fc1072582ef3326fd17e">  146</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aeaa29993bd10fc1072582ef3326fd17e">contains_cell_batch</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_batch)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      AssertIndexRange(cell_batch, <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a0000d1ca9ab8a75d541205941d450004">n_cell_batches</a>);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#add3dc0e5f6829664dfbb0f755f56e217">batch_in_band</a>[cell_batch];</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    }</div>
+</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00159" data-start="{" data-end="}">
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#ad21c4f040274d5b69706a5133daa72d7">  159</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#ad21c4f040274d5b69706a5133daa72d7">set_dof_indices</a>(std::vector&lt;unsigned int&gt; &amp;&amp;dof_indices_in)</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a3038613122f54e426144f58e22478794">dof_indices</a> = std::move(dof_indices_in);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    }</div>
+</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keyword">const</span> std::vector&lt;unsigned int&gt; &amp;</div>
+<div class="foldopen" id="foldopen00170" data-start="{" data-end="}">
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aca1a1ac48c028a55dc4ac3fd81ad1fa7">  170</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aca1a1ac48c028a55dc4ac3fd81ad1fa7">get_dof_indices</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a3038613122f54e426144f58e22478794">dof_indices</a>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    }</div>
+</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    std::size_t</div>
+<div class="foldopen" id="foldopen00182" data-start="{" data-end="}">
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#adab8a41cf0b7b447f55bb305e66e1c88">  182</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#adab8a41cf0b7b447f55bb305e66e1c88">index</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_batch, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lane)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>      AssertIndexRange(cell_batch, <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a0000d1ca9ab8a75d541205941d450004">n_cell_batches</a>);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>      AssertIndexRange(lane, <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a31fc0f8dcc6f1a30e4acb238841aadf2">n_lanes</a>);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>      <span class="keywordflow">return</span> cell_batch * <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a31fc0f8dcc6f1a30e4acb238841aadf2">n_lanes</a> + lane;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    }</div>
+</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a31fc0f8dcc6f1a30e4acb238841aadf2">  190</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a31fc0f8dcc6f1a30e4acb238841aadf2">n_lanes</a> = 0;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a0000d1ca9ab8a75d541205941d450004">  193</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a0000d1ca9ab8a75d541205941d450004">n_cell_batches</a> = 0;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#af68803ae36e0f22bab7e263d5043471d">  196</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#af68803ae36e0f22bab7e263d5043471d">initialized</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a54e7e9d7929935928ca6eb36b5f51241">  199</a></span>    std::vector&lt;bool&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a54e7e9d7929935928ca6eb36b5f51241">cell_in_band</a>;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#add3dc0e5f6829664dfbb0f755f56e217">  202</a></span>    std::vector&lt;bool&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#add3dc0e5f6829664dfbb0f755f56e217">batch_in_band</a>;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a3038613122f54e426144f58e22478794">  205</a></span>    std::vector&lt;unsigned int&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a3038613122f54e426144f58e22478794">dof_indices</a>;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>  };</div>
+</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> OperatorType, <span class="keyword">typename</span> VectorType&gt;</div>
+<div class="foldopen" id="foldopen00212" data-start="{" data-end="}">
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="conceptMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolverOperatorType.html">  212</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="conceptMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolverOperatorType.html">InterfaceBandSolverOperatorType</a> = <span class="keyword">requires</span>(<span class="keyword">const</span> OperatorType &amp;op,</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                                                     BandData           &amp;band,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                                                     <span class="keyword">const</span> BandData     &amp;const_band,</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>                                                     VectorType         &amp;dst,</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>                                                     <span class="keyword">const</span> VectorType   &amp;src) {</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    op.compute_band(band);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    op.apply_inverse_mass_matrix_outside_band(const_band, dst, src);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    op.vmult_band(const_band, dst, src);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>  };</div>
+</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number, <span class="keyword">typename</span> VectorType&gt;</div>
+<div class="foldopen" id="foldopen00257" data-start="{" data-end="};">
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html">  257</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html">InterfaceBandSolver</a></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>  {</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keyword">template</span> &lt;InterfaceBandSolverOperatorType&lt;VectorType&gt; OperatorType&gt;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00268" data-start="{" data-end="}">
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a1c2a6d2349d367a8626ff14102c43dd4">  268</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a1c2a6d2349d367a8626ff14102c43dd4">update</a>(<span class="keyword">const</span> OperatorType &amp;op)</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    {</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>      op.compute_band(<a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#afb9e4b2b5a1d8991b87176fa3ad6151c">band</a>);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>      <span class="comment">// the band may have changed: the vectors have to be set up new</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a2143feb0478d37ba7661abb51b20c22d">vectors_valid</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    }</div>
+</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00282" data-start="{" data-end="}">
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ac1ec0ac03f1b20eb0749e8589e2d1c93">  282</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ac1ec0ac03f1b20eb0749e8589e2d1c93">reinit</a>()</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    {</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#afb9e4b2b5a1d8991b87176fa3ad6151c">band</a>.<a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#ad26cdebe77379202252aec049e5603df">clear</a>();</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a9cfba298a690cce61bd566f8465c6d28">x_band</a>   = VectorType();</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ab28e83aad62b464a2450b270fd9fb344">b_band</a>   = VectorType();</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a4f4e4cecbeb8f02a4b77a46ec19fd085">src_full</a> = VectorType();</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ae8df37fb6461577ad922cb4c49eff27f">dst_full</a> = VectorType();</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a2143feb0478d37ba7661abb51b20c22d">vectors_valid</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    }</div>
+</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00298" data-start="{" data-end="}">
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a4d4cc88df9d81108e5fbd7b12e4214d2">  298</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a4d4cc88df9d81108e5fbd7b12e4214d2">is_initialized</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#afb9e4b2b5a1d8991b87176fa3ad6151c">band</a>.<a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aba9c0653c6a3ae63d1e2484617d6f6e6">is_initialized</a>();</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    }</div>
+</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">BandData</a> &amp;</div>
+<div class="foldopen" id="foldopen00309" data-start="{" data-end="}">
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a441f27dba66c31a3b6ad7557fd502e91">  309</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a441f27dba66c31a3b6ad7557fd502e91">get_band</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#afb9e4b2b5a1d8991b87176fa3ad6151c">band</a>;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    }</div>
+</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    <span class="keyword">template</span> &lt;InterfaceBandSolverOperatorType&lt;VectorType&gt; OperatorType&gt;</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="foldopen" id="foldopen00327" data-start="{" data-end="}">
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ae7090885d6266364b1e9e1a0384c48bd">  327</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ae7090885d6266364b1e9e1a0384c48bd">solve</a>(<span class="keyword">const</span> OperatorType             &amp;op,</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>          VectorType                     &amp;x,</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>          <span class="keyword">const</span> VectorType               &amp;b,</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>          <span class="keyword">const</span> LinearSolverData&lt;number&gt; &amp;linear_solver_data,</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>          <span class="keyword">const</span> std::string              &amp;identifier = <span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    {</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>      Assert(<a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#afb9e4b2b5a1d8991b87176fa3ad6151c">band</a>.<a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aba9c0653c6a3ae63d1e2484617d6f6e6">is_initialized</a>(),</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>             dealii::ExcMessage(<span class="stringliteral">&quot;The band solver has not been updated after its last &quot;</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>                                <span class="stringliteral">&quot;reinitialization. Call update() before solve().&quot;</span>));</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span> </div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>      <span class="keyword">const</span> std::vector&lt;unsigned int&gt; &amp;band_dof_indices = <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#afb9e4b2b5a1d8991b87176fa3ad6151c">band</a>.<a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aca1a1ac48c028a55dc4ac3fd81ad1fa7">get_dof_indices</a>();</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>      <span class="keywordflow">if</span> (not <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a2143feb0478d37ba7661abb51b20c22d">vectors_valid</a>)</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>        <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ad4b38ca187c3f3c3382f9c19fb861b2f">setup_vectors</a>(b);</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>      AssertDimension(<a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a4f4e4cecbeb8f02a4b77a46ec19fd085">src_full</a>.locally_owned_size(), b.locally_owned_size());</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span> </div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>      <span class="comment">// Set up reduced vectors.</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; band_dof_indices.size(); ++i)</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>        {</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>          <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ab28e83aad62b464a2450b270fd9fb344">b_band</a>.local_element(i) = b.local_element(band_dof_indices[i]);</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>          <span class="comment">// Initial guess: previous solution on the band DoFs.</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>          <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a9cfba298a690cce61bd566f8465c6d28">x_band</a>.local_element(i) = x.local_element(band_dof_indices[i]);</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>        }</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span> </div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html">BandOperator&lt;OperatorType&gt;</a> band_operator{op, <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#afb9e4b2b5a1d8991b87176fa3ad6151c">band</a>, <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a4f4e4cecbeb8f02a4b77a46ec19fd085">src_full</a>, <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ae8df37fb6461577ad922cb4c49eff27f">dst_full</a>};</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>      <span class="comment">// Solve the band system with a linear solver.</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>      <span class="comment">// Currently, no preconditioner is used for the band solve, since the band system is small and</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>      <span class="comment">// well-conditioned.</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>      <span class="keyword">const</span> <span class="keywordtype">int</span> n_iterations = LinearSolver::solve&lt;VectorType&gt;(band_operator,</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>                                                               <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a9cfba298a690cce61bd566f8465c6d28">x_band</a>,</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>                                                               <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ab28e83aad62b464a2450b270fd9fb344">b_band</a>,</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>                                                               linear_solver_data,</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>                                                               dealii::PreconditionIdentity(),</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>                                                               identifier);</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span> </div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>      <span class="keywordflow">if</span> (x.has_ghost_elements())</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>        x.zero_out_ghost_values();</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>      <span class="comment">// Apply the exact cell-wise inverse mass matrix for the cells away from the interface.</span></div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>      op.apply_inverse_mass_matrix_outside_band(<a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#afb9e4b2b5a1d8991b87176fa3ad6151c">band</a>, x, b);</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>      <span class="comment">// Copy the band entries of the reduced solution vector into the full vector.</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; band_dof_indices.size(); ++i)</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>        x.local_element(band_dof_indices[i]) = <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a9cfba298a690cce61bd566f8465c6d28">x_band</a>.local_element(i);</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>      <span class="keywordflow">if</span> (x.has_ghost_elements())</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>        x.update_ghost_values();</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span> </div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>      <span class="keywordflow">return</span> n_iterations;</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    }</div>
+</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span> </div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> OperatorType&gt;</div>
+<div class="foldopen" id="foldopen00386" data-start="{" data-end="};">
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html">  386</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html">BandOperator</a></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    {</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#a38f8ef9eb11d6dd812b9e1362a7a0958">  388</a></span>      <span class="keyword">const</span> OperatorType &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#a38f8ef9eb11d6dd812b9e1362a7a0958">op</a>;</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#aff6f72949959ec8ff3729f86d97f34e1">  389</a></span>      <span class="keyword">const</span> <a class="code hl_class" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">BandData</a>     &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#aff6f72949959ec8ff3729f86d97f34e1">band</a>;</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>      <span class="comment">// Work vectors with the layout of the full system</span></div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#a4b14fc97a0920858c7c5c531de3b8429">  392</a></span>      VectorType &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#a4b14fc97a0920858c7c5c531de3b8429">src_full</a>;</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#ac312e0365a9581a076ccc7813ae0d2eb">  393</a></span>      VectorType &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#ac312e0365a9581a076ccc7813ae0d2eb">dst_full</a>;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span> </div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>      <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00396" data-start="{" data-end="}">
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#a14576e80cd9f01952e5248e20f0ab619">  396</a></span>      <a class="code hl_function" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#a14576e80cd9f01952e5248e20f0ab619">vmult</a>(VectorType &amp;dst, <span class="keyword">const</span> VectorType &amp;src)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span><span class="keyword">      </span>{</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>        <span class="keyword">const</span> std::vector&lt;unsigned int&gt; &amp;band_dof_indices = <a class="code hl_variable" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#aff6f72949959ec8ff3729f86d97f34e1">band</a>.<a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aca1a1ac48c028a55dc4ac3fd81ad1fa7">get_dof_indices</a>();</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span> </div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>        <span class="comment">// expand: band entries of the full vectors (the entries of src_full outside the band are</span></div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>        <span class="comment">// never written and stay zero; they do not influence the band entries of the result of</span></div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>        <span class="comment">// vmult_band())</span></div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; band_dof_indices.size(); ++i)</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>          {</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>            <a class="code hl_variable" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#a4b14fc97a0920858c7c5c531de3b8429">src_full</a>.local_element(band_dof_indices[i]) = src.local_element(i);</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>            <a class="code hl_variable" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#ac312e0365a9581a076ccc7813ae0d2eb">dst_full</a>.local_element(band_dof_indices[i]) = number(0.);</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>          }</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span> </div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>        <span class="comment">// solve band system</span></div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>        <a class="code hl_variable" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#a38f8ef9eb11d6dd812b9e1362a7a0958">op</a>.vmult_band(<a class="code hl_variable" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#aff6f72949959ec8ff3729f86d97f34e1">band</a>, <a class="code hl_variable" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#ac312e0365a9581a076ccc7813ae0d2eb">dst_full</a>, <a class="code hl_variable" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#a4b14fc97a0920858c7c5c531de3b8429">src_full</a>);</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span> </div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>        <span class="comment">// compress: band entries of the result</span></div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; band_dof_indices.size(); ++i)</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>          dst.local_element(i) = <a class="code hl_variable" href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#ac312e0365a9581a076ccc7813ae0d2eb">dst_full</a>.local_element(band_dof_indices[i]);</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>      }</div>
+</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    };</div>
+</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00425" data-start="{" data-end="}">
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ad4b38ca187c3f3c3382f9c19fb861b2f">  425</a></span>    <a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ad4b38ca187c3f3c3382f9c19fb861b2f">setup_vectors</a>(<span class="keyword">const</span> VectorType &amp;full_vector)</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>    {</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>      <span class="keyword">const</span> MPI_Comm mpi_comm = full_vector.get_mpi_communicator();</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span> </div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>      <span class="keyword">const</span> dealii::types::global_dof_index n_locally_owned_band_dofs =</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>        <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#afb9e4b2b5a1d8991b87176fa3ad6151c">band</a>.<a class="code hl_function" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aca1a1ac48c028a55dc4ac3fd81ad1fa7">get_dof_indices</a>().size();</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>      <span class="comment">// contiguous global numbering of the band DoFs (ordered by MPI rank)</span></div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>      <span class="keyword">const</span> std::vector&lt;dealii::types::global_dof_index&gt; n_band_dofs_per_rank =</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>        dealii::Utilities::MPI::all_gather(mpi_comm, n_locally_owned_band_dofs);</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> rank = dealii::Utilities::MPI::this_mpi_process(mpi_comm);</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>      dealii::types::global_dof_index offset = 0, n_band_dofs = 0;</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> r = 0; r &lt; n_band_dofs_per_rank.size(); ++r)</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>        {</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>          <span class="keywordflow">if</span> (r &lt; rank)</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>            offset += n_band_dofs_per_rank[r];</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>          n_band_dofs += n_band_dofs_per_rank[r];</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>        }</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span> </div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>      dealii::IndexSet locally_owned_band_dofs(n_band_dofs);</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>      locally_owned_band_dofs.add_range(offset, offset + n_locally_owned_band_dofs);</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span> </div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a9cfba298a690cce61bd566f8465c6d28">x_band</a>.reinit(locally_owned_band_dofs, mpi_comm);</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ab28e83aad62b464a2450b270fd9fb344">b_band</a>.reinit(locally_owned_band_dofs, mpi_comm);</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span> </div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>      <span class="comment">// work vectors with the same parallel layout as the full system (zero-initialized)</span></div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a4f4e4cecbeb8f02a4b77a46ec19fd085">src_full</a>.reinit(full_vector);</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ae8df37fb6461577ad922cb4c49eff27f">dst_full</a>.reinit(full_vector);</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span> </div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>      <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a2143feb0478d37ba7661abb51b20c22d">vectors_valid</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>    }</div>
+</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span> </div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>    <span class="comment">// Cells and DoFs of the band</span></div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#afb9e4b2b5a1d8991b87176fa3ad6151c">  458</a></span>    <a class="code hl_class" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">BandData</a> <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#afb9e4b2b5a1d8991b87176fa3ad6151c">band</a>;</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span> </div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>    <span class="comment">// Compressed solution and right-hand side vectors of the band system (band DoFs only)</span></div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ab28e83aad62b464a2450b270fd9fb344">  461</a></span>    VectorType <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a9cfba298a690cce61bd566f8465c6d28">x_band</a>, <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ab28e83aad62b464a2450b270fd9fb344">b_band</a>;</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span> </div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>    <span class="comment">// Work vectors of the band operator with the layout of the full system</span></div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ae8df37fb6461577ad922cb4c49eff27f">  464</a></span>    VectorType <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a4f4e4cecbeb8f02a4b77a46ec19fd085">src_full</a>, <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ae8df37fb6461577ad922cb4c49eff27f">dst_full</a>;</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span> </div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>    <span class="comment">// Flag indicating whether the vectors match the current band</span></div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a2143feb0478d37ba7661abb51b20c22d">  467</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a2143feb0478d37ba7661abb51b20c22d">vectors_valid</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>  };</div>
+</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>} <span class="comment">// namespace MeltPoolDG::Multiphase</span></div>
+</div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">MeltPoolDG::Multiphase::BandData</a></div><div class="ttdoc">Description of the &quot;band&quot; of a cutDG mass-type operator, i.e., of the cells whose degrees of freedom ...</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:65</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_a0000d1ca9ab8a75d541205941d450004"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a0000d1ca9ab8a75d541205941d450004">MeltPoolDG::Multiphase::BandData::n_cell_batches</a></div><div class="ttdeci">unsigned int n_cell_batches</div><div class="ttdoc">Number of cell batches the data has been set up for.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:193</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_a3038613122f54e426144f58e22478794"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a3038613122f54e426144f58e22478794">MeltPoolDG::Multiphase::BandData::dof_indices</a></div><div class="ttdeci">std::vector&lt; unsigned int &gt; dof_indices</div><div class="ttdoc">Local indices of all DoFs of the band.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:205</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_a31fc0f8dcc6f1a30e4acb238841aadf2"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a31fc0f8dcc6f1a30e4acb238841aadf2">MeltPoolDG::Multiphase::BandData::n_lanes</a></div><div class="ttdeci">unsigned int n_lanes</div><div class="ttdoc">Number of SIMD lanes per cell batch.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:190</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_a4b87ec29ffacb9aea801f8a0c42e46e8"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a4b87ec29ffacb9aea801f8a0c42e46e8">MeltPoolDG::Multiphase::BandData::contains</a></div><div class="ttdeci">bool contains(const unsigned int cell_batch, const unsigned int lane) const</div><div class="ttdoc">Check whether the given cell belongs to the band.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:135</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_a54e7e9d7929935928ca6eb36b5f51241"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a54e7e9d7929935928ca6eb36b5f51241">MeltPoolDG::Multiphase::BandData::cell_in_band</a></div><div class="ttdeci">std::vector&lt; bool &gt; cell_in_band</div><div class="ttdoc">Flag for each cell whether the cell belongs to the band.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:199</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_a8b854d32f79541cbb7a53b80ff92d6a2"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#a8b854d32f79541cbb7a53b80ff92d6a2">MeltPoolDG::Multiphase::BandData::BandData</a></div><div class="ttdeci">BandData()=default</div><div class="ttdoc">Default constructor.</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_aaca60328961401a11ff8b58e3df613c7"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aaca60328961401a11ff8b58e3df613c7">MeltPoolDG::Multiphase::BandData::reinit</a></div><div class="ttdeci">void reinit(const unsigned int n_cell_batches_in, const unsigned int n_lanes_in)</div><div class="ttdoc">Initialize the internal data structures and remove all cells from the band.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:81</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_aba9c0653c6a3ae63d1e2484617d6f6e6"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aba9c0653c6a3ae63d1e2484617d6f6e6">MeltPoolDG::Multiphase::BandData::is_initialized</a></div><div class="ttdeci">bool is_initialized() const</div><div class="ttdoc">Check whether reinit() has been called since the last call to clear().</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:114</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_aca1a1ac48c028a55dc4ac3fd81ad1fa7"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aca1a1ac48c028a55dc4ac3fd81ad1fa7">MeltPoolDG::Multiphase::BandData::get_dof_indices</a></div><div class="ttdeci">const std::vector&lt; unsigned int &gt; &amp; get_dof_indices() const</div><div class="ttdoc">Local indices (within the locally owned range of a vector) of all DoFs of the band.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:170</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_ad21c4f040274d5b69706a5133daa72d7"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#ad21c4f040274d5b69706a5133daa72d7">MeltPoolDG::Multiphase::BandData::set_dof_indices</a></div><div class="ttdeci">void set_dof_indices(std::vector&lt; unsigned int &gt; &amp;&amp;dof_indices_in)</div><div class="ttdoc">Set the local indices (within the locally owned range of a vector) of all DoFs of the band.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:159</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_ad26cdebe77379202252aec049e5603df"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#ad26cdebe77379202252aec049e5603df">MeltPoolDG::Multiphase::BandData::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Remove all cells and release the memory.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:96</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_adab8a41cf0b7b447f55bb305e66e1c88"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#adab8a41cf0b7b447f55bb305e66e1c88">MeltPoolDG::Multiphase::BandData::index</a></div><div class="ttdeci">std::size_t index(const unsigned int cell_batch, const unsigned int lane) const</div><div class="ttdoc">Compute the index of the given cell.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:182</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_add3dc0e5f6829664dfbb0f755f56e217"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#add3dc0e5f6829664dfbb0f755f56e217">MeltPoolDG::Multiphase::BandData::batch_in_band</a></div><div class="ttdeci">std::vector&lt; bool &gt; batch_in_band</div><div class="ttdoc">Flag for each cell batch whether it contains at least one band cell.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:202</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_aeaa29993bd10fc1072582ef3326fd17e"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#aeaa29993bd10fc1072582ef3326fd17e">MeltPoolDG::Multiphase::BandData::contains_cell_batch</a></div><div class="ttdeci">bool contains_cell_batch(const unsigned int cell_batch) const</div><div class="ttdoc">Check whether at least one cell of the given cell batch belongs to the band.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:146</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_af68803ae36e0f22bab7e263d5043471d"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#af68803ae36e0f22bab7e263d5043471d">MeltPoolDG::Multiphase::BandData::initialized</a></div><div class="ttdeci">bool initialized</div><div class="ttdoc">Flag whether reinit() has been called since the last call to clear().</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:196</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1BandData_html_afbca05d902b2f8a1a83a8fe635d10622"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1BandData.html#afbca05d902b2f8a1a83a8fe635d10622">MeltPoolDG::Multiphase::BandData::add</a></div><div class="ttdeci">void add(const unsigned int cell_batch, const unsigned int lane)</div><div class="ttdoc">Add the given cell to the band.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:123</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html">MeltPoolDG::Multiphase::InterfaceBandSolver</a></div><div class="ttdoc">Specialized solver for the linear system of the cutDG compressible multiphase flow solver,...</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:258</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html_a1c2a6d2349d367a8626ff14102c43dd4"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a1c2a6d2349d367a8626ff14102c43dd4">MeltPoolDG::Multiphase::InterfaceBandSolver::update</a></div><div class="ttdeci">void update(const OperatorType &amp;op)</div><div class="ttdoc">Determine the band of the operator. This has to be done whenever the MatrixFree object of the operato...</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:268</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html_a2143feb0478d37ba7661abb51b20c22d"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a2143feb0478d37ba7661abb51b20c22d">MeltPoolDG::Multiphase::InterfaceBandSolver::vectors_valid</a></div><div class="ttdeci">bool vectors_valid</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:467</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html_a441f27dba66c31a3b6ad7557fd502e91"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a441f27dba66c31a3b6ad7557fd502e91">MeltPoolDG::Multiphase::InterfaceBandSolver::get_band</a></div><div class="ttdeci">const BandData &amp; get_band() const</div><div class="ttdoc">Getter for the band data structure.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:309</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html_a4d4cc88df9d81108e5fbd7b12e4214d2"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a4d4cc88df9d81108e5fbd7b12e4214d2">MeltPoolDG::Multiphase::InterfaceBandSolver::is_initialized</a></div><div class="ttdeci">bool is_initialized() const</div><div class="ttdoc">Return whether the band has been determined since the last call to reinit().</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:298</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html_a4f4e4cecbeb8f02a4b77a46ec19fd085"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a4f4e4cecbeb8f02a4b77a46ec19fd085">MeltPoolDG::Multiphase::InterfaceBandSolver::src_full</a></div><div class="ttdeci">VectorType src_full</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:464</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html_a9cfba298a690cce61bd566f8465c6d28"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#a9cfba298a690cce61bd566f8465c6d28">MeltPoolDG::Multiphase::InterfaceBandSolver::x_band</a></div><div class="ttdeci">VectorType x_band</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:461</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html_ab28e83aad62b464a2450b270fd9fb344"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ab28e83aad62b464a2450b270fd9fb344">MeltPoolDG::Multiphase::InterfaceBandSolver::b_band</a></div><div class="ttdeci">VectorType b_band</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:461</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html_ac1ec0ac03f1b20eb0749e8589e2d1c93"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ac1ec0ac03f1b20eb0749e8589e2d1c93">MeltPoolDG::Multiphase::InterfaceBandSolver::reinit</a></div><div class="ttdeci">void reinit()</div><div class="ttdoc">Reset the internal data structures.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:282</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html_ad4b38ca187c3f3c3382f9c19fb861b2f"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ad4b38ca187c3f3c3382f9c19fb861b2f">MeltPoolDG::Multiphase::InterfaceBandSolver::setup_vectors</a></div><div class="ttdeci">void setup_vectors(const VectorType &amp;full_vector)</div><div class="ttdoc">Set up the compressed vectors (band DoFs only, contiguous global numbering of the band DoFs) and the ...</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:425</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html_ae7090885d6266364b1e9e1a0384c48bd"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ae7090885d6266364b1e9e1a0384c48bd">MeltPoolDG::Multiphase::InterfaceBandSolver::solve</a></div><div class="ttdeci">unsigned int solve(const OperatorType &amp;op, VectorType &amp;x, const VectorType &amp;b, const LinearSolverData&lt; number &gt; &amp;linear_solver_data, const std::string &amp;identifier=&quot;&quot;)</div><div class="ttdoc">Solve the linear system A x = b.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:327</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html_ae8df37fb6461577ad922cb4c49eff27f"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#ae8df37fb6461577ad922cb4c49eff27f">MeltPoolDG::Multiphase::InterfaceBandSolver::dst_full</a></div><div class="ttdeci">VectorType dst_full</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:464</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_html_afb9e4b2b5a1d8991b87176fa3ad6151c"><div class="ttname"><a href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html#afb9e4b2b5a1d8991b87176fa3ad6151c">MeltPoolDG::Multiphase::InterfaceBandSolver::band</a></div><div class="ttdeci">BandData band</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:458</div></div>
+<div class="ttc" id="aconceptMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolverOperatorType_html"><div class="ttname"><a href="conceptMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolverOperatorType.html">MeltPoolDG::Multiphase::InterfaceBandSolverOperatorType</a></div><div class="ttdoc">A concept for matrix-free operators that can be solved with the InterfaceBandSolver.</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:212</div></div>
+<div class="ttc" id="alinear__solver_8hpp_html"><div class="ttname"><a href="linear__solver_8hpp.html">linear_solver.hpp</a></div></div>
+<div class="ttc" id="alinear__solver__data_8hpp_html"><div class="ttname"><a href="linear__solver__data_8hpp.html">linear_solver_data.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CutUtil_html_a27034c61403f17637b919d517870ea9da3fea8c0e62dcf169c55f17237be54945"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CutUtil.html#a27034c61403f17637b919d517870ea9da3fea8c0e62dcf169c55f17237be54945">MeltPoolDG::CutUtil::liquid</a></div><div class="ttdeci">@ liquid</div><div class="ttdef"><b>Definition</b> util.hpp:66</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1CutUtil_html_a27034c61403f17637b919d517870ea9da84b59b983e00e67d45a4b155b1bb3585"><div class="ttname"><a href="namespaceMeltPoolDG_1_1CutUtil.html#a27034c61403f17637b919d517870ea9da84b59b983e00e67d45a4b155b1bb3585">MeltPoolDG::CutUtil::intersected</a></div><div class="ttdeci">@ intersected</div><div class="ttdef"><b>Definition</b> util.hpp:67</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Multiphase_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Multiphase.html">MeltPoolDG::Multiphase</a></div><div class="ttdoc">Band solver for the ghost-penalty stabilized mass matrix of the cutDG compressible multiphase flow so...</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:28</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Multiphase_html_a1aab28448cb87122177549eb1ab355af"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Multiphase.html#a1aab28448cb87122177549eb1ab355af">MeltPoolDG::Multiphase::is_band_cell</a></div><div class="ttdeci">bool is_band_cell(const typename dealii::DoFHandler&lt; dim &gt;::cell_iterator &amp;cell)</div><div class="ttdoc">Return whether the active cell cell belongs to the band, i.e., whether it is intersected or contains ...</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:39</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator_html"><div class="ttname"><a href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html">MeltPoolDG::Multiphase::InterfaceBandSolver::BandOperator</a></div><div class="ttdoc">Operator of the band system acting on compressed vectors (band DoFs only), providing vmult() for Line...</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:387</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator_html_a14576e80cd9f01952e5248e20f0ab619"><div class="ttname"><a href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#a14576e80cd9f01952e5248e20f0ab619">MeltPoolDG::Multiphase::InterfaceBandSolver::BandOperator::vmult</a></div><div class="ttdeci">void vmult(VectorType &amp;dst, const VectorType &amp;src) const</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:396</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator_html_a38f8ef9eb11d6dd812b9e1362a7a0958"><div class="ttname"><a href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#a38f8ef9eb11d6dd812b9e1362a7a0958">MeltPoolDG::Multiphase::InterfaceBandSolver::BandOperator::op</a></div><div class="ttdeci">const OperatorType &amp; op</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:388</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator_html_a4b14fc97a0920858c7c5c531de3b8429"><div class="ttname"><a href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#a4b14fc97a0920858c7c5c531de3b8429">MeltPoolDG::Multiphase::InterfaceBandSolver::BandOperator::src_full</a></div><div class="ttdeci">VectorType &amp; src_full</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:392</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator_html_ac312e0365a9581a076ccc7813ae0d2eb"><div class="ttname"><a href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#ac312e0365a9581a076ccc7813ae0d2eb">MeltPoolDG::Multiphase::InterfaceBandSolver::BandOperator::dst_full</a></div><div class="ttdeci">VectorType &amp; dst_full</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:393</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator_html_aff6f72949959ec8ff3729f86d97f34e1"><div class="ttname"><a href="structMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver_1_1BandOperator.html#aff6f72949959ec8ff3729f86d97f34e1">MeltPoolDG::Multiphase::InterfaceBandSolver::BandOperator::band</a></div><div class="ttdeci">const BandData &amp; band</div><div class="ttdef"><b>Definition</b> multiphase_band_solver.hpp:389</div></div>
+<div class="ttc" id="autil_8hpp_html"><div class="ttname"><a href="util_8hpp.html">util.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

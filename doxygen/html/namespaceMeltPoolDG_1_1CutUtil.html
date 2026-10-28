@@ -207,9 +207,12 @@ Functions</h2></td></tr>
 <tr class="memitem:aefc63a94c21fd0c4e3c8d3567cb9a00a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#aefc63a94c21fd0c4e3c8d3567cb9a00a">deserialize_internal</a> (const <a class="el" href="namespaceMeltPoolDG.html#adcdaa030a4cfc1fc8e1f9457fa441b05">AttachDoFHandlerAndVectorsType</a>&lt; dim, VectorType &gt; &amp;attach_vectors, const std::function&lt; void()&gt; &amp;post, const std::function&lt; void()&gt; &amp;distribute_level_set_dofs, const dealii::DoFHandler&lt; dim &gt; &amp;level_set_dof_handler, const std::function&lt; void()&gt; &amp;setup_dof_system, const std::string &amp;prefix)</td></tr>
 <tr class="memdesc:aefc63a94c21fd0c4e3c8d3567cb9a00a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="namespaceMeltPoolDG_1_1Restart.html#aa81fe51f3019af09896c58be9c983966">Restart::deserialize_internal()</a>, but adapted for cases where one or more DoFHandler objects are used in CutFEM operations.  <br /></td></tr>
 <tr class="separator:aefc63a94c21fd0c4e3c8d3567cb9a00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96678652f8b962c8d4ab0260d743becc" id="r_a96678652f8b962c8d4ab0260d743becc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a96678652f8b962c8d4ab0260d743becc">BETTER_ENUM</a> (Phase, int, <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a27034c61403f17637b919d517870ea9da3fea8c0e62dcf169c55f17237be54945">liquid</a>, <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a27034c61403f17637b919d517870ea9dac9dbbc403fefff7ac587b3358e0dd149">gas</a>)</td></tr>
+<tr class="memdesc:a96678652f8b962c8d4ab0260d743becc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum that names a type of CutFEM in use.  <br /></td></tr>
+<tr class="separator:a96678652f8b962c8d4ab0260d743becc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21047d9ca193cbe0019811486e9c7be0" id="r_a21047d9ca193cbe0019811486e9c7be0"><td class="memTemplParams" colspan="2">template&lt;int dim&gt; </td></tr>
 <tr class="memitem:a21047d9ca193cbe0019811486e9c7be0"><td class="memTemplItemLeft" align="right" valign="top">CutPhaseType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a21047d9ca193cbe0019811486e9c7be0">get_cut_type</a> (const dealii::DoFHandler&lt; dim &gt; &amp;dof_handler)</td></tr>
-<tr class="memdesc:a21047d9ca193cbe0019811486e9c7be0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum that names a type of CutFEM in use.  <br /></td></tr>
+<tr class="memdesc:a21047d9ca193cbe0019811486e9c7be0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine the CutPhaseType of the <code>dof_handler</code>.  <br /></td></tr>
 <tr class="separator:a21047d9ca193cbe0019811486e9c7be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa884bb592fc15a14efa81de2de66feb6" id="r_aa884bb592fc15a14efa81de2de66feb6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a16425c0dc0a08f4ff5ad9083704a94d2">FaceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#aa884bb592fc15a14efa81de2de66feb6">get_face_type</a> (const std::pair&lt; unsigned int, unsigned int &gt; &amp;adjacent_cell_categories)</td></tr>
 <tr class="memdesc:aa884bb592fc15a14efa81de2de66feb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function categorizes the FaceType of the current face range.  <br /></td></tr>
@@ -240,6 +243,13 @@ Functions</h2></td></tr>
 <tr class="memitem:ad8e68609b0207327bb8e5a2f684041c8" id="r_ad8e68609b0207327bb8e5a2f684041c8"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#ad8e68609b0207327bb8e5a2f684041c8">face_type_has_ghost_penalty</a> (const <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a16425c0dc0a08f4ff5ad9083704a94d2">FaceType</a> face_type, const bool is_liquid_phase)</td></tr>
 <tr class="memdesc:ad8e68609b0207327bb8e5a2f684041c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the ghost penalty stabilization applies on a face.  <br /></td></tr>
 <tr class="separator:ad8e68609b0207327bb8e5a2f684041c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ee38f1c1ecf8287d0058dbd503bdbb8" id="r_a4ee38f1c1ecf8287d0058dbd503bdbb8"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a4ee38f1c1ecf8287d0058dbd503bdbb8">category_has_phase</a> (const unsigned int category, const Phase phase)</td></tr>
+<tr class="memdesc:a4ee38f1c1ecf8287d0058dbd503bdbb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return whether the cell category <code>category</code> (active FE index) contains DoFs of the phase <code>phase</code>.  <br /></td></tr>
+<tr class="separator:a4ee38f1c1ecf8287d0058dbd503bdbb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a170a511ad1c298417c17ec18ec5d9c55" id="r_a170a511ad1c298417c17ec18ec5d9c55"><td class="memTemplParams" colspan="2">template&lt;int dim&gt; </td></tr>
+<tr class="memitem:a170a511ad1c298417c17ec18ec5d9c55"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a170a511ad1c298417c17ec18ec5d9c55">cell_has_ghost_penalty_face</a> (const typename dealii::DoFHandler&lt; dim &gt;::cell_iterator &amp;cell, const Phase phase)</td></tr>
+<tr class="memdesc:a170a511ad1c298417c17ec18ec5d9c55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return whether the active cell <code>cell</code> has at least one (sub)face at which the ghost-penalty stabilization of phase <code>phase</code> (0: liquid, 1: gas) acts.  <br /></td></tr>
+<tr class="separator:a170a511ad1c298417c17ec18ec5d9c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a834fdcc67ba57df619371c2a25b6ce84" id="r_a834fdcc67ba57df619371c2a25b6ce84"><td class="memTemplParams" colspan="2">template&lt;int dim&gt; </td></tr>
 <tr class="memitem:a834fdcc67ba57df619371c2a25b6ce84"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a834fdcc67ba57df619371c2a25b6ce84">is_new_intersected_face</a> (const dealii::NonMatching::MeshClassifier&lt; dim &gt; &amp;mesh_classifier, const dealii::NonMatching::MeshClassifier&lt; dim &gt; &amp;mesh_classifier_old, const typename dealii::Triangulation&lt; dim &gt;::active_cell_iterator &amp;cell, const unsigned int face_index, const dealii::NonMatching::LocationToLevelSet &amp;inactive_location=dealii::NonMatching::LocationToLevelSet::inside)</td></tr>
 <tr class="memdesc:a834fdcc67ba57df619371c2a25b6ce84"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks whether the considered face is a newly created intersected face.  <br /></td></tr>
@@ -280,6 +290,12 @@ Functions</h2></td></tr>
 <tr class="separator:aec258aa202a2efb60474183b0b0fbfbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7b6d567c549ff20bee8dea906ded0d5" id="r_af7b6d567c549ff20bee8dea906ded0d5"><td class="memItemLeft" align="right" valign="top">template bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#af7b6d567c549ff20bee8dea906ded0d5">cell_classifications_changed</a> (const dealii::Triangulation&lt; 3 &gt; &amp;, const dealii::NonMatching::MeshClassifier&lt; 3 &gt; &amp;, const dealii::NonMatching::MeshClassifier&lt; 3 &gt; &amp;, const MPI_Comm)</td></tr>
 <tr class="separator:af7b6d567c549ff20bee8dea906ded0d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57df95bf920da0155e9c8d2b802049a5" id="r_a57df95bf920da0155e9c8d2b802049a5"><td class="memItemLeft" align="right" valign="top">template bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a57df95bf920da0155e9c8d2b802049a5">cell_has_ghost_penalty_face&lt; 1 &gt;</a> (const dealii::DoFHandler&lt; 1 &gt;::cell_iterator &amp;, const Phase)</td></tr>
+<tr class="separator:a57df95bf920da0155e9c8d2b802049a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a390b1169b989b3c262812b460470c054" id="r_a390b1169b989b3c262812b460470c054"><td class="memItemLeft" align="right" valign="top">template bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a390b1169b989b3c262812b460470c054">cell_has_ghost_penalty_face&lt; 2 &gt;</a> (const dealii::DoFHandler&lt; 2 &gt;::cell_iterator &amp;, const Phase)</td></tr>
+<tr class="separator:a390b1169b989b3c262812b460470c054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4676a8bd5cbb0cbda3d7799c1976272" id="r_ab4676a8bd5cbb0cbda3d7799c1976272"><td class="memItemLeft" align="right" valign="top">template bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#ab4676a8bd5cbb0cbda3d7799c1976272">cell_has_ghost_penalty_face&lt; 3 &gt;</a> (const dealii::DoFHandler&lt; 3 &gt;::cell_iterator &amp;, const Phase)</td></tr>
+<tr class="separator:ab4676a8bd5cbb0cbda3d7799c1976272"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0de8b03827831720d5f9a671cc8b4554" id="r_a0de8b03827831720d5f9a671cc8b4554"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a0de8b03827831720d5f9a671cc8b4554">compute_intersected_quadrature</a> (std::vector&lt; std::shared_ptr&lt; dealii::NonMatching::MappingInfo&lt; 1, 1, dealii::VectorizedArray&lt; double &gt; &gt; &gt; &gt;, dealii::NonMatching::MappingInfo&lt; 1, 1, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const dealii::DoFHandler&lt; 1 &gt; &amp;, const dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &amp;, const dealii::MatrixFree&lt; 1, double, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const int, const bool, const bool, std::vector&lt; std::shared_ptr&lt; dealii::NonMatching::MappingInfo&lt; 1, 1, dealii::VectorizedArray&lt; double &gt; &gt; &gt; &gt;)</td></tr>
 <tr class="separator:a0de8b03827831720d5f9a671cc8b4554"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fd2e3187dd83c8f024516b83f35819b" id="r_a5fd2e3187dd83c8f024516b83f35819b"><td class="memItemLeft" align="right" valign="top">template void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a5fd2e3187dd83c8f024516b83f35819b">compute_intersected_quadrature</a> (std::vector&lt; std::shared_ptr&lt; dealii::NonMatching::MappingInfo&lt; 2, 2, dealii::VectorizedArray&lt; double &gt; &gt; &gt; &gt;, dealii::NonMatching::MappingInfo&lt; 2, 2, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const dealii::DoFHandler&lt; 2 &gt; &amp;, const dealii::LinearAlgebra::distributed::Vector&lt; double &gt; &amp;, const dealii::MatrixFree&lt; 2, double, dealii::VectorizedArray&lt; double &gt; &gt; &amp;, const int, const bool, const bool, std::vector&lt; std::shared_ptr&lt; dealii::NonMatching::MappingInfo&lt; 2, 2, dealii::VectorizedArray&lt; double &gt; &gt; &gt; &gt;)</td></tr>
@@ -392,6 +408,99 @@ template&lt;int dim, typename number &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a96678652f8b962c8d4ab0260d743becc" name="a96678652f8b962c8d4ab0260d743becc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96678652f8b962c8d4ab0260d743becc">&#9670;&#160;</a></span>BETTER_ENUM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MeltPoolDG::CutUtil::BETTER_ENUM </td>
+          <td>(</td>
+          <td class="paramtype">Phase&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a27034c61403f17637b919d517870ea9da3fea8c0e62dcf169c55f17237be54945">liquid</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a27034c61403f17637b919d517870ea9dac9dbbc403fefff7ac587b3358e0dd149">gas</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enum that names a type of CutFEM in use. </p>
+<ul>
+<li>not_cut: no CutFEM in use, the field in continuous</li>
+<li>one_phase_cut: The domain of the field is restricted to the liquid domain, i.e., positive level set values. CutFEM is used for cells that contain the interface.</li>
+<li>two_phase_cut: The domain is cut at the interface with the liquid domain Helper enum to distinguish between the liquid and gas phase in liquid-gas two-phase problems. </li>
+</ul>
+
+</div>
+</div>
+<a id="a4ee38f1c1ecf8287d0058dbd503bdbb8" name="a4ee38f1c1ecf8287d0058dbd503bdbb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ee38f1c1ecf8287d0058dbd503bdbb8">&#9670;&#160;</a></span>category_has_phase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool MeltPoolDG::CutUtil::category_has_phase </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>category</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Phase&#160;</td>
+          <td class="paramname"><em>phase</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return whether the cell category <code>category</code> (active FE index) contains DoFs of the phase <code>phase</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">category</td><td>Cell category (active FE index) of the cell. </td></tr>
+    <tr><td class="paramname">phase</td><td>Phase index (0: liquid, 1: gas).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>True if the cell is intersected or if it is a single-phase cell of the given phase. </dd></dl>
+
+</div>
+</div>
 <a id="ae515f9550fe1c17c5a713ea3194d910d" name="ae515f9550fe1c17c5a713ea3194d910d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae515f9550fe1c17c5a713ea3194d910d">&#9670;&#160;</a></span>cell_classifications_changed() <span class="overload">[1/4]</span></h2>
 
@@ -563,6 +672,131 @@ template&lt;int dim&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if at least one cell changed its location with respect to the level set; <code>false</code> otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a170a511ad1c298417c17ec18ec5d9c55" name="a170a511ad1c298417c17ec18ec5d9c55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a170a511ad1c298417c17ec18ec5d9c55">&#9670;&#160;</a></span>cell_has_ghost_penalty_face()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MeltPoolDG::CutUtil::cell_has_ghost_penalty_face </td>
+          <td>(</td>
+          <td class="paramtype">const typename dealii::DoFHandler&lt; dim &gt;::cell_iterator &amp;&#160;</td>
+          <td class="paramname"><em>cell</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Phase&#160;</td>
+          <td class="paramname"><em>phase</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return whether the active cell <code>cell</code> has at least one (sub)face at which the ghost-penalty stabilization of phase <code>phase</code> (0: liquid, 1: gas) acts. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cell</td><td>Active cell to check. </td></tr>
+    <tr><td class="paramname">phase</td><td>Phase index (0: liquid, 1: gas).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Boundary faces (except for periodic ones) are skipped.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the cell has at least one ghost-penalty face. </dd></dl>
+
+</div>
+</div>
+<a id="a57df95bf920da0155e9c8d2b802049a5" name="a57df95bf920da0155e9c8d2b802049a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57df95bf920da0155e9c8d2b802049a5">&#9670;&#160;</a></span>cell_has_ghost_penalty_face&lt; 1 &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">template bool <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a170a511ad1c298417c17ec18ec5d9c55">MeltPoolDG::CutUtil::cell_has_ghost_penalty_face</a>&lt; 1 &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::DoFHandler&lt; 1 &gt;::cell_iterator &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Phase&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a390b1169b989b3c262812b460470c054" name="a390b1169b989b3c262812b460470c054"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a390b1169b989b3c262812b460470c054">&#9670;&#160;</a></span>cell_has_ghost_penalty_face&lt; 2 &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">template bool <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a170a511ad1c298417c17ec18ec5d9c55">MeltPoolDG::CutUtil::cell_has_ghost_penalty_face</a>&lt; 2 &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::DoFHandler&lt; 2 &gt;::cell_iterator &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Phase&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4676a8bd5cbb0cbda3d7799c1976272" name="ab4676a8bd5cbb0cbda3d7799c1976272"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4676a8bd5cbb0cbda3d7799c1976272">&#9670;&#160;</a></span>cell_has_ghost_penalty_face&lt; 3 &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">template bool <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a170a511ad1c298417c17ec18ec5d9c55">MeltPoolDG::CutUtil::cell_has_ghost_penalty_face</a>&lt; 3 &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::DoFHandler&lt; 3 &gt;::cell_iterator &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Phase&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -1916,13 +2150,7 @@ template&lt;int dim&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Enum that names a type of CutFEM in use. </p>
-<ul>
-<li>not_cut: no CutFEM in use, the field in continuous</li>
-<li>one_phase_cut: The domain of the field is restricted to the liquid domain, i.e., positive level set values. CutFEM is used for cells that contain the interface.</li>
-<li>two_phase_cut: The domain is cut at the interface with the liquid domain</li>
-</ul>
-<p>Determine the CutPhaseType of the <code>dof_handler</code>.</p>
+<p>Determine the CutPhaseType of the <code>dof_handler</code>. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">dim</td><td>Dimension in which this function is to be used.</td></tr>

@@ -240,6 +240,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e86ea64068a558819b017ba3ce77825" id="r_a1e86ea64068a558819b017ba3ce77825"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a1e86ea64068a558819b017ba3ce77825">compute_system_matrix_from_matrixfree</a> (dealii::TrilinosWrappers::SparseMatrix &amp;system_matrix) const</td></tr>
 <tr class="memdesc:a1e86ea64068a558819b017ba3ce77825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assemble the system matrix explicitly from the matrix-free operator. Used by matrix-based preconditioners.  <br /></td></tr>
 <tr class="separator:a1e86ea64068a558819b017ba3ce77825"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53cf2f1189b1494fc9a5f03588a4d2cc" id="r_a53cf2f1189b1494fc9a5f03588a4d2cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a53cf2f1189b1494fc9a5f03588a4d2cc">compute_band</a> (<a class="el" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">BandData</a> &amp;band) const</td></tr>
+<tr class="memdesc:a53cf2f1189b1494fc9a5f03588a4d2cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine the band of the system matrix for the band solver.  <br /></td></tr>
+<tr class="separator:a53cf2f1189b1494fc9a5f03588a4d2cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29c62a426d4776c3357cd62e0a40f1be" id="r_a29c62a426d4776c3357cd62e0a40f1be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a29c62a426d4776c3357cd62e0a40f1be">apply_inverse_mass_matrix_outside_band</a> (const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">BandData</a> &amp;band, <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab7d227b749d19845f484c40ceea04dee">VectorType</a> &amp;dst, const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab7d227b749d19845f484c40ceea04dee">VectorType</a> &amp;src) const</td></tr>
+<tr class="memdesc:a29c62a426d4776c3357cd62e0a40f1be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the (decoupled) inverse element mass matrices to all cells outside the band.  <br /></td></tr>
+<tr class="separator:a29c62a426d4776c3357cd62e0a40f1be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ea0f49c66e6861594f849eb9ed1b060" id="r_a0ea0f49c66e6861594f849eb9ed1b060"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a0ea0f49c66e6861594f849eb9ed1b060">vmult_band</a> (const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">BandData</a> &amp;band, <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab7d227b749d19845f484c40ceea04dee">VectorType</a> &amp;dst, const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab7d227b749d19845f484c40ceea04dee">VectorType</a> &amp;src) const</td></tr>
+<tr class="memdesc:a0ea0f49c66e6861594f849eb9ed1b060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function for the matrix-free matrix-vector product restricted to the band.  <br /></td></tr>
+<tr class="separator:a0ea0f49c66e6861594f849eb9ed1b060"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -734,6 +743,83 @@ template&lt;int dim, typename number , bool is_viscous_gas, bool is_viscous_liqu
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">external_force</td><td>A provided shared pointer to an external force definition. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a29c62a426d4776c3357cd62e0a40f1be" name="a29c62a426d4776c3357cd62e0a40f1be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29c62a426d4776c3357cd62e0a40f1be">&#9670;&#160;</a></span>apply_inverse_mass_matrix_outside_band()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous_gas, bool is_viscous_liquid&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperator</a>&lt; dim, number, is_viscous_gas, is_viscous_liquid &gt;::apply_inverse_mass_matrix_outside_band </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">BandData</a> &amp;&#160;</td>
+          <td class="paramname"><em>band</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab7d227b749d19845f484c40ceea04dee">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab7d227b749d19845f484c40ceea04dee">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Apply the (decoupled) inverse element mass matrices to all cells outside the band. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is only relevant for the band solver.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">band</td><td>Object describing the band data structure information. </td></tr>
+    <tr><td class="paramname">dst</td><td>Vector receiving the result. </td></tr>
+    <tr><td class="paramname">src</td><td>Vector the inverse mass matrix is applied to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a53cf2f1189b1494fc9a5f03588a4d2cc" name="a53cf2f1189b1494fc9a5f03588a4d2cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53cf2f1189b1494fc9a5f03588a4d2cc">&#9670;&#160;</a></span>compute_band()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous_gas, bool is_viscous_liquid&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperator</a>&lt; dim, number, is_viscous_gas, is_viscous_liquid &gt;::compute_band </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">BandData</a> &amp;&#160;</td>
+          <td class="paramname"><em>band</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Determine the band of the system matrix for the band solver. </p>
+<p>The band consists of all cells whose DoFs are coupled to other cells, i.e., intersected cells (both phases) and bulk cells sharing a ghost-penalty face of their phase with an intersected cell.</p>
+<p>In addition to the band cells, the local indices of all DoFs of the band are stored.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">band</td><td>Object describing the band data structure information. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1527,6 +1613,54 @@ template&lt;int dim, typename number , bool is_viscous_gas, bool is_viscous_liqu
   <table class="params">
     <tr><td class="paramname">dst</td><td>Vector where the computed evaluated vector-matrix product is stored. </td></tr>
     <tr><td class="paramname">src</td><td>The solution vector at the current time. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0ea0f49c66e6861594f849eb9ed1b060" name="a0ea0f49c66e6861594f849eb9ed1b060"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ea0f49c66e6861594f849eb9ed1b060">&#9670;&#160;</a></span>vmult_band()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous_gas, bool is_viscous_liquid&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperator</a>&lt; dim, number, is_viscous_gas, is_viscous_liquid &gt;::vmult_band </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1BandData.html">BandData</a> &amp;&#160;</td>
+          <td class="paramname"><em>band</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab7d227b749d19845f484c40ceea04dee">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab7d227b749d19845f484c40ceea04dee">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function for the matrix-free matrix-vector product restricted to the band. </p>
+<p>Only the cell batches containing band cells and the ghost-penalty faces are evaluated. Since the system matrix does not couple band cells with cells outside the band (the mass matrix is cell-local and all ghost-penalty faces lie within the band), the band entries of <code>dst</code> only depend on the band entries of <code>src</code>. However, a cell batch with band cells can also contain cells outside the band. These are evaluated together with the band cells (SIMD), so their entries of <code>dst</code> are changed as well. Thus, only the band entries of <code>dst</code> hold the result. The entries outside the band are undefined and must not be used.</p>
+<dl class="section note"><dt>Note</dt><dd>In the <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceBandSolver.html" title="Specialized solver for the linear system of the cutDG compressible multiphase flow solver,...">InterfaceBandSolver</a>, the entries of <code>src</code> outside the band are zero, since only the band entries of its work vectors are filled. The cells outside the band then only add zeros to <code>dst</code>, i.e., the entries of <code>dst</code> outside the band stay zero.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">band</td><td>Object describing the band data structure information. </td></tr>
+    <tr><td class="paramname">dst</td><td>Vector to which the result is added. </td></tr>
+    <tr><td class="paramname">src</td><td>Source vector. </td></tr>
   </table>
   </dd>
 </dl>
