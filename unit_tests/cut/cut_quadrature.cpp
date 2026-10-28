@@ -10,6 +10,7 @@
  * The quadrature rules are accessed as in the operators. On inner faces, both sides have the same
  * quadrature points in the same order, since the operators evaluate both sides at the same
  * quadrature point index.
+ * In addition, the surface quadrature is tested for an interface that coincides with cell faces.
  */
 
 #include <gtest/gtest.h>
@@ -50,6 +51,7 @@
 
 #include <algorithm>
 #include <array>
+#include <cmath>
 #include <limits>
 #include <memory>
 #include <string>
@@ -591,4 +593,74 @@ TYPED_TEST(CutQuadratureTest, ImmersedSurfaceQuadrature)
                                                             TestFixture::fe_degree);
 
   this->check_cells(level_set_matrix_free, {}, *mapping_info_surface);
+}
+
+/**
+ * CutUtil::compute_immersed_surface_quadrature() for an interface that coincides with the faces
+ * x_0 = 0.25 between the first and the second layer of cells, for a continuous (FE_Q) and a
+ * discontinuous (FE_DGQ) level set. Since the level set is zero on these faces, the quadrature
+ * generator returns a surface quadrature on them for the cells on both sides. To integrate the
+ * interface only once, only the cells on the side of negative level-set values may get one.
+ */
+TYPED_TEST(CutQuadratureTest, ImmersedSurfaceQuadratureAlignedInterface)
+{
+  constexpr int    dim       = TestFixture::dim;
+  constexpr double x_aligned = 0.25;
+
+  // signed distance to the interface, positive for x_0 > x_aligned
+  dealii::Point<dim>     point_on_interface;
+  dealii::Tensor<1, dim> normal;
+  point_on_interface[0] = x_aligned;
+  normal[0]             = 1.;
+  const dealii::Functions::SignedDistance::Plane<dim> plane(point_on_interface, normal);
+
+  for (const bool is_dg : {false, true})
+    {
+      SCOPED_TRACE(is_dg ? "FE_DGQ" : "FE_Q");
+
+      dealii::DoFHandler<dim> level_set_dof_handler(this->tria);
+      if (is_dg)
+        level_set_dof_handler.distribute_dofs(dealii::FE_DGQ<dim>(1));
+      else
+        level_set_dof_handler.distribute_dofs(dealii::FE_Q<dim>(1));
+
+      dealii::MatrixFree<dim, number> level_set_matrix_free;
+      level_set_matrix_free.reinit(this->mapping,
+                                   level_set_dof_handler,
+                                   this->constraints,
+                                   dealii::QGauss<1>(2));
+
+      // the vector is set up by MatrixFree
+      VectorType level_set;
+      level_set_matrix_free.initialize_dof_vector(level_set);
+      dealii::VectorTools::interpolate(level_set_dof_handler, plane, level_set);
+
+      const auto mapping_info_surface = this->create_mapping_infos(1)[0];
+      CutUtil::compute_immersed_surface_quadrature<dim, number>(*mapping_info_surface,
+                                                                level_set_dof_handler,
+                                                                level_set,
+                                                                level_set_matrix_free,
+                                                                TestFixture::fe_degree);
+
+      double surface_measure = 0.;
+      for (unsigned int cell_batch = 0; cell_batch < level_set_matrix_free.n_cell_batches();
+           ++cell_batch)
+        for (unsigned int lane = 0;
+             lane < level_set_matrix_free.n_active_entries_per_cell_batch(cell_batch);
+             ++lane)
+          {
+            const auto quadrature =
+              this->get_cell_quadrature(*mapping_info_surface,
+                                        cell_batch * TestFixture::n_lanes + lane);
+
+            for (const auto &q : quadrature)
+              surface_measure += q.JxW;
+          }
+
+      // the interface (in the domain [0, 1] x [0, 0.8] (x [0, 0.6])) is integrated exactly once
+      const double interface_measure = (dim == 2) ? 0.8 : 0.8 * 0.6;
+      EXPECT_NEAR(dealii::Utilities::MPI::sum(surface_measure, MPI_COMM_WORLD),
+                  interface_measure,
+                  tolerance);
+    }
 }

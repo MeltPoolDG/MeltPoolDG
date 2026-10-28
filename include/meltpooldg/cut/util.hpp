@@ -13,6 +13,7 @@
 
 #include <deal.II/non_matching/mapping_info.h>
 #include <deal.II/non_matching/mesh_classifier.h>
+#include <deal.II/non_matching/quadrature_generator.h>
 
 #include <meltpooldg/utilities/enum.hpp>
 #include <meltpooldg/utilities/fe_integrator.hpp>
@@ -141,6 +142,25 @@ namespace MeltPoolDG::CutUtil
                                const MPI_Comm                                  mpi_comm);
 
   /**
+   * @brief Determine the location of a cell with respect to the level set from the immersed
+   * quadrature rules that @p quadrature_generator has generated for this cell.
+   *
+   * Consistent with dealii::NonMatching::MeshClassifier, a cell, of which the interface only
+   * touches a face, is only considered intersected if it lies on the side of negative level-set
+   * values. Thus, an interface coinciding with a cell face is assigned to one cell only.
+   *
+   * @param quadrature_generator The quadrature generator that has generated the immersed quadrature.
+   *
+   * @return The location of the current cell with respect to the level set.
+   *
+   * @note dealii::NonMatching classifies negative level-set values as "inside".
+   */
+  template <int dim>
+  dealii::NonMatching::LocationToLevelSet
+  location_from_quadratures(
+    const dealii::NonMatching::QuadratureGenerator<dim> &quadrature_generator);
+
+  /**
    * @brief This function generates the immersed quadrature rules in the case that the
    * domain is described by a discrete level-set function.
    *
@@ -204,6 +224,10 @@ namespace MeltPoolDG::CutUtil
    * quadrature rules, for the immersed geometry described by discrete level-set function
    * via a (@p level_set_dof_handler, @p level_set) pair.
    *
+   * If the zero level set coincides with a cell face, the surface quadrature on this face is only
+   * assigned to the adjacent cell on the side of negative level-set values, so that the interface
+   * is integrated only once. This is consistent with the dealii::NonMatching::MeshClassifier.
+   *
    * @tparam dim Dimension in which this function is to be used.
    * @tparam number Floating-point value type used for this function.
    * @tparam VectorType Vector type used for this function.
@@ -211,7 +235,7 @@ namespace MeltPoolDG::CutUtil
    * @param mapping_info_surface dealii::NonMatching::MappingInfo object, provides the mapping
    * information computation and mapping data storage of the surface.
    * @param level_set_dof_handler DoFHandler object of the discrete level-set.
-   * @param level_set Discrete level-set vector.
+   * @param level_set_in Discrete level-set vector.
    * @param matrix_free Matrix free object, provides the iterators.
    * @param fe_degree
    *
@@ -226,10 +250,9 @@ namespace MeltPoolDG::CutUtil
   compute_immersed_surface_quadrature(
     MappingInfoType<dim, number>                                           &mapping_info_surface,
     const dealii::DoFHandler<dim>                                          &level_set_dof_handler,
-    const VectorType                                                       &level_set,
+    const VectorType                                                       &level_set_in,
     const dealii::MatrixFree<dim, number, dealii::VectorizedArray<number>> &matrix_free,
     const int                                                               fe_degree);
-
 
   /**
    * @brief Evaluates solution values in the intersected domain for a specific SIMD lane within a cell batch.

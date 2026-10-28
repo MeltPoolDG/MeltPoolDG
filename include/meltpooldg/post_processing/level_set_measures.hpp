@@ -15,6 +15,7 @@
 #include <deal.II/non_matching/mesh_classifier.h>
 #include <deal.II/non_matching/quadrature_generator.h>
 
+#include <meltpooldg/cut/util.hpp>
 #include <meltpooldg/post_processing/generic_data_out.hpp>
 #include <meltpooldg/post_processing/post_processor_base.hpp>
 
@@ -144,8 +145,13 @@ namespace MeltPoolDG::PostProcessingTools
           auto required_ghost_dofs = locally_relevant_dofs;
           required_ghost_dofs.subtract_set(level_set_in.locally_owned_elements());
 
-          use_copy =
-            not required_ghost_dofs.is_subset_of(level_set_in.get_partitioner()->ghost_indices());
+          const bool has_sufficient_ghosts =
+            required_ghost_dofs.is_subset_of(level_set_in.get_partitioner()->ghost_indices());
+          // All processes have to take the same decision. Otherwise, a process that does not need
+          // the copy (e.g. one without cells) would skip it, and the others would wait for it
+          // forever.
+          use_copy = dealii::Utilities::MPI::logical_or(not has_sufficient_ghosts,
+                                                        level_set_in.get_mpi_communicator());
 
           if (use_copy)
             {
@@ -215,21 +221,7 @@ namespace MeltPoolDG::PostProcessingTools
           else
             {
               quadrature_generator.generate(cell);
-
-              const bool has_inside  = not quadrature_generator.get_inside_quadrature().empty();
-              const bool has_outside = not quadrature_generator.get_outside_quadrature().empty();
-              const bool has_surface = not quadrature_generator.get_surface_quadrature().empty();
-
-              // Consistent with the MeshClassifier, a cell, of which the interface only
-              // touches a face, is only considered intersected if it lies on the side of
-              // negative level-set values. Thus, an interface coinciding with a cell face is
-              // only counted once.
-              if (has_inside and (has_outside or has_surface))
-                location = dealii::NonMatching::LocationToLevelSet::intersected;
-              else if (has_inside)
-                location = dealii::NonMatching::LocationToLevelSet::inside;
-              else
-                location = dealii::NonMatching::LocationToLevelSet::outside;
+              location = CutUtil::location_from_quadratures(quadrature_generator);
             }
 
           if (location == dealii::NonMatching::LocationToLevelSet::intersected)

@@ -5,12 +5,19 @@
 #include <deal.II/base/quadrature.h>
 #include <deal.II/base/quadrature_lib.h>
 
+#include <deal.II/dofs/dof_tools.h>
+
+#include <deal.II/fe/fe_q_base.h>
+
 #include <deal.II/hp/q_collection.h>
 
 #include <deal.II/lac/la_parallel_vector.h>
 
 #include <deal.II/non_matching/immersed_surface_quadrature.h>
+#include <deal.II/non_matching/mesh_classifier.h>
 #include <deal.II/non_matching/quadrature_generator.h>
+
+#include <optional>
 
 namespace MeltPoolDG::CutUtil
 {
@@ -140,6 +147,27 @@ namespace MeltPoolDG::CutUtil
     return dealii::Utilities::MPI::logical_or(changed, mpi_comm);
   }
 
+  template <int dim>
+  dealii::NonMatching::LocationToLevelSet
+  location_from_quadratures(
+    const dealii::NonMatching::QuadratureGenerator<dim> &quadrature_generator)
+  {
+    const bool has_inside  = not quadrature_generator.get_inside_quadrature().empty();
+    const bool has_outside = not quadrature_generator.get_outside_quadrature().empty();
+    const bool has_surface = not quadrature_generator.get_surface_quadrature().empty();
+
+    // Consistent with the MeshClassifier, a cell, of which the interface only
+    // touches a face, is only considered intersected if it lies on the side of
+    // negative level-set values. Thus, an interface coinciding with a cell face is
+    // only counted once.
+    if (has_inside and (has_outside or has_surface))
+      return dealii::NonMatching::LocationToLevelSet::intersected;
+    else if (has_inside)
+      return dealii::NonMatching::LocationToLevelSet::inside;
+    else
+      return dealii::NonMatching::LocationToLevelSet::outside;
+  }
+
   template <int dim, typename number, typename VectorType>
   void
   compute_intersected_quadrature(
@@ -155,7 +183,8 @@ namespace MeltPoolDG::CutUtil
   {
     AssertDimension(mapping_info_cells.size(), is_two_phase ? 2 : 1);
 
-    if (not level_set.has_ghost_elements())
+    const bool update_ghosts = not level_set.has_ghost_elements();
+    if (update_ghosts)
       level_set.update_ghost_values();
 
     dealii::hp::QCollection<1> q_collection(dealii::QGauss<1>(fe_degree + 1));
@@ -297,6 +326,9 @@ namespace MeltPoolDG::CutUtil
     mapping_info_faces[0]->reinit_faces(vector_cell_iterators, quad_vec_faces_liquid_domain);
     if (is_two_phase)
       mapping_info_faces[1]->reinit_faces(vector_cell_iterators, quad_vec_faces_gas_domain);
+
+    if (update_ghosts)
+      level_set.zero_out_ghost_values();
   }
 
   template <int dim>
@@ -406,6 +438,13 @@ namespace MeltPoolDG::CutUtil
                                const dealii::NonMatching::MeshClassifier<3> &,
                                const MPI_Comm);
 
+  template dealii::NonMatching::LocationToLevelSet
+  location_from_quadratures(const dealii::NonMatching::QuadratureGenerator<1> &);
+  template dealii::NonMatching::LocationToLevelSet
+  location_from_quadratures(const dealii::NonMatching::QuadratureGenerator<2> &);
+  template dealii::NonMatching::LocationToLevelSet
+  location_from_quadratures(const dealii::NonMatching::QuadratureGenerator<3> &);
+
   template bool
   cell_has_ghost_penalty_face<1>(const dealii::DoFHandler<1>::cell_iterator &, const Phase);
   template bool
@@ -418,7 +457,7 @@ namespace MeltPoolDG::CutUtil
   compute_immersed_surface_quadrature(
     MappingInfoType<dim, number>                                           &mapping_info_surface,
     const dealii::DoFHandler<dim>                                          &level_set_dof_handler,
-    const VectorType                                                       &level_set,
+    const VectorType                                                       &level_set_in,
     const dealii::MatrixFree<dim, number, dealii::VectorizedArray<number>> &matrix_free,
     const int                                                               fe_degree)
   {
@@ -428,33 +467,113 @@ namespace MeltPoolDG::CutUtil
     const unsigned int n_cell_batches =
       matrix_free.n_cell_batches() + matrix_free.n_ghost_cell_batches();
 
+    // The MeshClassifier is only implemented for elements derived from FE_Q_Base.
+    const bool use_mesh_classifier =
+      dynamic_cast<const dealii::FE_Q_Base<dim> *>(&level_set_dof_handler.get_fe()) != nullptr;
+
+    // The MeshClassifier reads the level-set values on all faces of the ghost cells, which
+    // requires the locally relevant DoFs as ghost entries. However, the ghost set of a vector
+    // set up by MatrixFree might only contain the DoFs of locally owned cells. In this case,
+    // the level-set field is copied to a vector with a sufficient ghost set.
+    VectorType level_set_relevant;
+    bool       use_copy = false;
+    if (use_mesh_classifier)
+      {
+        const auto locally_relevant_dofs =
+          dealii::DoFTools::extract_locally_relevant_dofs(level_set_dof_handler);
+
+        auto required_ghost_dofs = locally_relevant_dofs;
+        required_ghost_dofs.subtract_set(level_set_in.locally_owned_elements());
+
+        const bool has_sufficient_ghosts =
+          required_ghost_dofs.is_subset_of(level_set_in.get_partitioner()->ghost_indices());
+        // All processes have to take the same decision. Otherwise, a process that does not need
+        // the copy (e.g. one without cells) would skip it, and the others would wait for it
+        // forever.
+        use_copy = dealii::Utilities::MPI::logical_or(not has_sufficient_ghosts,
+                                                      level_set_in.get_mpi_communicator());
+
+        if (use_copy)
+          {
+            level_set_relevant.reinit(level_set_dof_handler.locally_owned_dofs(),
+                                      locally_relevant_dofs,
+                                      level_set_in.get_mpi_communicator());
+            level_set_relevant.copy_locally_owned_data_from(level_set_in);
+            level_set_relevant.update_ghost_values();
+          }
+      }
+
+    const VectorType &level_set = use_copy ? level_set_relevant : level_set_in;
+
+    const bool update_ghosts = not level_set.has_ghost_elements();
+    if (update_ghosts)
+      level_set.update_ghost_values();
+
     dealii::NonMatching::DiscreteQuadratureGenerator<dim> quadrature_generator(
       q_collection, level_set_dof_handler, level_set);
+
+    std::optional<dealii::NonMatching::MeshClassifier<dim>> mesh_classifier;
+    if (use_mesh_classifier)
+      {
+        mesh_classifier.emplace(level_set_dof_handler, level_set);
+        mesh_classifier->reclassify();
+      }
 
     std::vector<dealii::NonMatching::ImmersedSurfaceQuadrature<dim>> quad_vec_surface;
     std::vector<typename dealii::DoFHandler<dim>::cell_iterator>     vector_cell_iterators;
     {
       const unsigned int reserve_size = n_cell_batches * n_lanes;
+      quad_vec_surface.reserve(reserve_size);
       vector_cell_iterators.reserve(reserve_size);
     }
 
     for (unsigned int cell_batch = 0; cell_batch < n_cell_batches; ++cell_batch)
       for (unsigned int lane = 0; lane < n_lanes; ++lane)
         {
-          // fill empty lanes with dummy data (first lane is used in this case)
-          const unsigned int lane_used_for_quad_generation =
-            lane < matrix_free.n_active_entries_per_cell_batch(cell_batch) ? lane : 0;
+          const bool is_active_lane =
+            lane < matrix_free.n_active_entries_per_cell_batch(cell_batch);
 
-          const auto cell =
-            matrix_free.get_cell_iterator(cell_batch, lane_used_for_quad_generation);
+          // Empty lanes of a partially filled cell batch use the cell of the first lane as dummy.
+          const auto cell = matrix_free.get_cell_iterator(cell_batch, is_active_lane ? lane : 0);
 
           vector_cell_iterators.push_back(cell);
-          quadrature_generator.generate(cell);
+
+          // Early exit for empty lanes of partially filled cell batches.
+          if (not is_active_lane)
+            {
+              quad_vec_surface.emplace_back();
+              continue;
+            }
+
+          // Determine the location of the cell with respect to the level set. If a MeshClassifier
+          // is used, it is queried. Otherwise, the location is determined from the quadratures
+          // generated by the QuadratureGenerator.
+          dealii::NonMatching::LocationToLevelSet location;
+          if (mesh_classifier)
+            location = mesh_classifier->location_to_level_set(cell);
+          else
+            {
+              quadrature_generator.generate(cell);
+              location = location_from_quadratures(quadrature_generator);
+            }
+
+          // Skip the quadrature generation for cells, which are not intersected.
+          if (location != dealii::NonMatching::LocationToLevelSet::intersected)
+            {
+              quad_vec_surface.emplace_back();
+              continue;
+            }
+
+          if (mesh_classifier)
+            quadrature_generator.generate(cell);
 
           quad_vec_surface.push_back(quadrature_generator.get_surface_quadrature());
         }
 
     mapping_info_surface.reinit_surface(vector_cell_iterators, quad_vec_surface);
+
+    if (update_ghosts)
+      level_set.zero_out_ghost_values();
   }
 
   template void
