@@ -32,6 +32,9 @@ namespace MeltPoolDG::CutUtil
    */
   BETTER_ENUM(CutPhaseType, char, not_cut, one_phase_cut, two_phase_cut)
 
+  /// Helper enum to distinguish between the liquid and gas phase in liquid-gas two-phase problems.
+  BETTER_ENUM(Phase, int, liquid, gas);
+
   /**
    * @brief Determine the CutPhaseType of the @p dof_handler.
    *
@@ -351,6 +354,37 @@ namespace MeltPoolDG::CutUtil
     return face_type == FaceType::mixed_face_gas_intersected or
            face_type == FaceType::mixed_face_intersected_gas;
   }
+
+  /**
+   * @brief Return whether the cell category @p category (active FE index) contains DoFs of the phase @p phase.
+   *
+   * @param category Cell category (active FE index) of the cell.
+   * @param phase Phase index (0: liquid, 1: gas).
+   *
+   * @note True if the cell is intersected or if it is a single-phase cell of the given phase.
+   */
+  constexpr bool
+  category_has_phase(const unsigned int category, const Phase phase)
+  {
+    return category == CellCategory::intersected or
+           category == (phase == Phase::liquid ? CellCategory::liquid : CellCategory::gas);
+  }
+
+  /**
+   * @brief Return whether the active cell @p cell has at least one (sub)face at which the ghost-penalty
+   * stabilization of phase @p phase (0: liquid, 1: gas) acts.
+   *
+   * @param cell Active cell to check.
+   * @param phase Phase index (0: liquid, 1: gas).
+   *
+   * @note Boundary faces (except for periodic ones) are skipped.
+   *
+   * @return True if the cell has at least one ghost-penalty face.
+   */
+  template <int dim>
+  bool
+  cell_has_ghost_penalty_face(const typename dealii::DoFHandler<dim>::cell_iterator &cell,
+                              const Phase                                            phase);
 
   /**
    * @brief This function checks whether the considered face is a newly created intersected face.

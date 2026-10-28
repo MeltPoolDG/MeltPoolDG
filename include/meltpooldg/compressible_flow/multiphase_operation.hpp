@@ -29,6 +29,7 @@
 #include <deal.II/non_matching/mesh_classifier.h>
 
 #include <meltpooldg/compressible_flow/boundary_conditions.hpp>
+#include <meltpooldg/compressible_flow/multiphase_band_solver.hpp>
 #include <meltpooldg/compressible_flow/multiphase_operation.hpp>
 #include <meltpooldg/compressible_flow/multiphase_operator.hpp>
 #include <meltpooldg/compressible_flow/operation_scratch_data.hpp>
@@ -390,6 +391,11 @@ namespace MeltPoolDG::Multiphase
     /// Boolean indicator whether the preconditioner needs to be updated before the next solve
     bool preconditioner_update_flag = false;
 
+    /// Specialized efficient solver for the ghost-penalty stabilized mass matrix system: exact
+    /// cell-wise inverse for all cells away from the interface and a linear solver for the band of
+    /// intersected cells and their ghost-penalty neighbors
+    InterfaceBandSolver<number, VectorType> band_solver;
+
     /// Counter variable for the number of performed time steps, used to determine when to update
     /// the preconditioner
     unsigned int n_steps_performed = 0;
@@ -416,7 +422,7 @@ namespace MeltPoolDG::Multiphase
      * - adapt DoFHandler and solution vectors according to new interface position, extrapolate new
      * DoF values via ghost-penalty extrapolation
      * - reinit matrix-free object, rhs and solution vectors
-     * - reinitialize the preconditioner's data structures
+     * - reinitialize the preconditioner's and the band solver's data structures
      */
     void
     adapt_to_new_interface_position();
