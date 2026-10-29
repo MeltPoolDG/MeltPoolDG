@@ -128,6 +128,13 @@ namespace MeltPoolDG::Multiphase
       std::make_shared<NonMatching::MappingInfo<dim, dim, VectorizedArray<number>>>(
         this->multiphase_scratch_data.scratch_data.get_mapping(), update_flags_faces));
 
+    AssertThrow(
+      (not multiphase_scratch_data.cut.use_band_solver) or
+        (multiphase_scratch_data.flow_data.time_integrator.linear_solver_data.preconditioner_type ==
+         PreconditionerType::Identity),
+      ExcMessage("Currently, the band solver solves the band with an unpreconditioned solver. "
+                 "Set preconditioner type to Identity."));
+
     std::visit(
       [&](auto &op) {
         using OperatorType = std::decay_t<decltype(op)>;
@@ -342,7 +349,7 @@ namespace MeltPoolDG::Multiphase
     //   level set):
     //   - setup new dof layout, transfer/extrapolate the solution
     //   - reinit matrix-free object, rhs and solution vectors
-    //   - reinit preconditioner
+    //   - reinit preconditioner and band solver
     adapt_to_new_interface_position();
 
     // update preconditioner if required
@@ -365,26 +372,42 @@ namespace MeltPoolDG::Multiphase
                       rhs,
                       multiphase_scratch_data.solution_history.get_current_solution());
 
+        unsigned int iter = 0;
+
         {
           ScopedName         scope_solve_system("compressible_multiphase::solve_system");
           TimerOutput::Scope t(multiphase_scratch_data.scratch_data.get_timer(),
                                scope_solve_system);
 
-          // solve linear and symmetric system of equations with CG
-          int iter = LinearSolver::solve<VectorType>(
-            op,
-            multiphase_scratch_data.solution_history.get_current_solution(),
-            rhs,
-            multiphase_scratch_data.flow_data.time_integrator.linear_solver_data,
-            preconditioner,
-            "compressible_multiphase_operation");
+          if (multiphase_scratch_data.cut.use_band_solver)
+            {
+              if (not band_solver.is_initialized())
+                band_solver.update(op);
 
-          Journal::print_line(multiphase_scratch_data.scratch_data.get_pcout(2),
-                              "Linear solver iterations: " + std::to_string(iter),
-                              "linear solve");
-
-          IterationMonitor<number>::add_linear_iterations(ScopedName("linear_solve"), iter);
+              iter = band_solver.solve(
+                op,
+                multiphase_scratch_data.solution_history.get_current_solution(),
+                rhs,
+                multiphase_scratch_data.flow_data.time_integrator.linear_solver_data,
+                "compressible_multiphase_operation");
+            }
+          else
+            {
+              iter = LinearSolver::solve<VectorType>(
+                op,
+                multiphase_scratch_data.solution_history.get_current_solution(),
+                rhs,
+                multiphase_scratch_data.flow_data.time_integrator.linear_solver_data,
+                preconditioner,
+                "compressible_multiphase_operation");
+            }
         }
+
+        Journal::print_line(multiphase_scratch_data.scratch_data.get_pcout(2),
+                            "Linear solver iterations: " + std::to_string(iter),
+                            "linear solve");
+
+        IterationMonitor<number>::add_linear_iterations(ScopedName("linear_solve"), iter);
       },
       cmp_operator);
 

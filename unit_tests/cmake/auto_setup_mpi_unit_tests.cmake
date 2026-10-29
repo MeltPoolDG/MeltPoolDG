@@ -1,3 +1,59 @@
+# Removes Trilinos' bundled Google Test from the entire (transitive) link
+# interface of a target. Our own GoogleTest 1.17.0 (GTest::*) is left
+# untouched; only Trilinos targets "Gtest::*" and file paths to
+# libgtest*/libgmock* are filtered out.
+function(meltpooldg_strip_trilinos_gtest start_target)
+  set(_queue ${start_target})
+  set(_visited "")
+
+  while(_queue)
+    list(POP_FRONT _queue _tgt)
+
+    # Properties can only be set on the original target, not on an alias.
+    get_target_property(_aliased ${_tgt} ALIASED_TARGET)
+    if(_aliased)
+      set(_tgt ${_aliased})
+    endif()
+    if(_tgt IN_LIST _visited)
+      continue()
+    endif()
+    list(APPEND _visited ${_tgt})
+
+    set(_props INTERFACE_LINK_LIBRARIES)
+    get_target_property(_imported ${_tgt} IMPORTED)
+    get_target_property(_type ${_tgt} TYPE)
+    if(NOT _imported AND NOT _type STREQUAL "INTERFACE_LIBRARY")
+      list(APPEND _props LINK_LIBRARIES)
+    endif()
+
+    foreach(_prop IN LISTS _props)
+      get_target_property(_libs ${_tgt} ${_prop})
+      if(NOT _libs)
+        continue()
+      endif()
+
+      set(_kept "")
+      foreach(_lib IN LISTS _libs)
+        # Unwrap $<LINK_ONLY:x>; leave other generator expressions untouched.
+        string(REGEX REPLACE "^\\$<LINK_ONLY:([^$<>]*)>$" "\\1" _item "${_lib}")
+        if(NOT _item MATCHES "[<>]" AND
+           _item MATCHES "^Gtest::|/libg(test|mock)[._][^/]*$")
+          message(STATUS "[gtest-fix] ${_tgt} (${_prop}): removing ${_lib}")
+        else()
+          list(APPEND _kept "${_lib}")
+          if(TARGET "${_item}")
+            list(APPEND _queue "${_item}")
+          endif()
+        endif()
+      endforeach()
+
+      if(NOT "${_kept}" STREQUAL "${_libs}")
+        set_property(TARGET ${_tgt} PROPERTY ${_prop} "${_kept}")
+      endif()
+    endforeach()
+  endwhile()
+endfunction()
+
 # Creates MPI-enabled unit test executables using GoogleTest. Each source file 
 # is compiled into its own executable, linked against GTest, GMock, deal.II, 
 # and the meltpooldg library, and registered with CTest to be run via mpiexec.
@@ -38,6 +94,7 @@ function(mpdg_setup_mpi_unit_tests)
         # Start all ranks in a single app context. The MPMD syntax (":")
         # crashes mpiexec in the Open MPI of Ubuntu 26.04 (resolute).
         # Only rank 0 writes the XML report, see gtest_mpi_main.cpp.
+
         # We (at least for now) do not use gtest_discover_tests here because it was not designed for MPI
         add_test(
             NAME ${TEST_TARGET}

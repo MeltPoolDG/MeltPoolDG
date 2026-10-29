@@ -72,6 +72,8 @@ namespace MeltPoolDG
   PhysicalAdmissibility<dim, n_components, number>::admissible_cell_vector() const
     -> const std::vector<MaskType> &
   {
+    Assert(n_cell_batches_submitted == 0,
+           dealii::ExcMessage("The admissibility is only available after evaluate() was called."));
     return physically_admissible;
   }
 } // namespace MeltPoolDG

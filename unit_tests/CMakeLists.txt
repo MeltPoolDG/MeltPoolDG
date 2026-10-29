@@ -19,6 +19,7 @@ mpdg_setup_mpi_unit_tests(
 
 add_subdirectory(cut)
 add_subdirectory(flow)
+add_subdirectory(fluid_structure_interaction)
 add_subdirectory(heat)
 add_subdirectory(level_set)
 add_subdirectory(linear_algebra)

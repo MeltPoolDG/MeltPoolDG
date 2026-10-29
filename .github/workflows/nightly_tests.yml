@@ -40,6 +40,11 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.APPLICATION_DEV_PRIVATE_KEY }}
 
+      - name: Diagnostic - link with GNU ld instead of mold
+        run: |
+          ln -sf "$(command -v ld.bfd)" "$(command -v ld.mold)"
+          ld.mold --version | head -1    # should now print "GNU ld ..."
+
       - name: Compile adaflo
         if: matrix.adaflo == 'adaflo=on'
         run: |
@@ -74,11 +79,17 @@ jobs:
       - name: Run ctest
         if: matrix.adaflo == 'adaflo=on'
         run: |
+          echo "=== Runtime libraries ==="
+          ldd build/unit_tests/post_processing/level_set_measures_01 | grep -E 'gtest|gmock' || true
+
+          echo "=== Link command ==="
+          cat build/unit_tests/post_processing/CMakeFiles/level_set_measures_01.dir/link.txt
+
           export HWLOC_HIDE_ERRORS=2
           export OMPI_ALLOW_RUN_AS_ROOT=1
           export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
           cd build
-          ctest -j${{ env.COMPILE_JOBS }} --output-on-failure
+          ctest -V -j${{ env.COMPILE_JOBS }} --output-on-failure
 
       - name: Failed test log
         if: ${{ failure() }}
