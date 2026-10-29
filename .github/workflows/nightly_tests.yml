@@ -74,6 +74,12 @@ jobs:
       - name: Run ctest
         if: matrix.adaflo == 'adaflo=on'
         run: |
+          echo "=== Runtime libraries ==="
+          ldd build/unit_tests/post_processing/level_set_measures_01 | grep -E 'gtest|gmock' || true
+      
+          echo "=== Link command ==="
+          cat build/unit_tests/post_processing/CMakeFiles/level_set_measures_01.dir/link.txt
+          
           export HWLOC_HIDE_ERRORS=2
           export OMPI_ALLOW_RUN_AS_ROOT=1
           export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
