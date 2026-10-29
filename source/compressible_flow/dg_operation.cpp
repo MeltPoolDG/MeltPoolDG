@@ -155,7 +155,7 @@ namespace MeltPoolDG::CompressibleFlow
       };
 
     std::function<void(number, number, VectorType &, const VectorType &)> stage_post_processing =
-      [&](number, number, VectorType &dst, const VectorType &src) {
+      [&](number time, number stage_time_step, VectorType &dst, const VectorType &src) {
         ScopedName         scope_stage_post("stage_post_processing");
         TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(), scope_stage_post);
         if (flow_scratch_data.flow_data.limiter_data.apply_limiter and
@@ -191,10 +191,13 @@ namespace MeltPoolDG::CompressibleFlow
                                                 dst,
                                                 src);
                     }
-                    troubled_cell_monitor->add_info(
-                      {flow_scratch_data.scratch_data.get_matrix_free(),
-                       flow_scratch_data.dof_idx,
-                       flow_scratch_data.quad_idx});
+                    if (troubled_cell_monitor)
+                      troubled_cell_monitor->add_info(
+                        {flow_scratch_data.scratch_data.get_matrix_free(),
+                         flow_scratch_data.dof_idx,
+                         flow_scratch_data.quad_idx});
+                    comp_flow_operator.apply_fv_subcell_limiter(
+                      time, stage_time_step, dst, src, troubled_cell_marker.troubled_cells());
                   }
                 else
                   {

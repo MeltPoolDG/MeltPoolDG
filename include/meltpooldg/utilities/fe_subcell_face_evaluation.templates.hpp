@@ -29,7 +29,7 @@ namespace MeltPoolDG
     : matrix_free(matrix_free)
     , is_interior_face(is_interior_face)
     , fe_cell_evaluator(matrix_free, dof_no, quad_no)
-    , fe_face_evaluator(matrix_free, true, dof_no, quad_no)
+    , fe_face_evaluator(matrix_free, is_interior_face, dof_no, quad_no)
   {
     setup_internal_data_structures();
   }
@@ -74,6 +74,7 @@ namespace MeltPoolDG
     determine_subcell_sizes();
 
     determine_subcell_locations();
+    determine_subcell_face_locations();
 
     std::ranges::fill(submitted_fluxes, value_type());
 
@@ -183,6 +184,16 @@ namespace MeltPoolDG
     Assert(is_reinitialized, dealii::ExcNotInitialized());
     AssertIndexRange(subcell_index, n_subcells_face);
     return subcell_locations[subcell_index];
+  }
+
+  template <int dim, int n_components, typename number>
+  auto
+  FESubcellFaceEvaluation<dim, n_components, number>::subcell_face_location(
+    const unsigned int subcell_index) const -> dealii::Point<dim, VectorizedArrayType>
+  {
+    Assert(is_reinitialized, dealii::ExcNotInitialized());
+    AssertIndexRange(subcell_index, n_subcells_face);
+    return subcell_face_locations[subcell_index];
   }
 
   template <int dim, int n_components, typename number>
@@ -324,6 +335,7 @@ namespace MeltPoolDG
     subcell_sizes.resize(n_subcells_face);
 
     subcell_locations.resize(n_subcells_face);
+    subcell_face_locations.resize(n_subcells_face);
     integrated_subcell_values_buffer.resize(n_components * fe_cell_evaluator.n_q_points);
   }
 
@@ -360,6 +372,17 @@ namespace MeltPoolDG
         subcell_locations[subcell] = fe_cell_evaluator.quadrature_point(cell_q_index);
       }
   }
+
+  template <int dim, int n_components, typename number>
+  void
+  FESubcellFaceEvaluation<dim, n_components, number>::determine_subcell_face_locations()
+  {
+    for (const unsigned int subcell_face : subcell_face_indices())
+      {
+        subcell_face_locations[subcell_face] = fe_face_evaluator.quadrature_point(subcell_face);
+      }
+  }
+
 
   template <int dim, int n_components, typename number>
   unsigned int
