@@ -35,21 +35,18 @@ function(mpdg_setup_mpi_unit_tests)
         deal_ii_setup_target(${TEST_TARGET})
         target_link_libraries(${TEST_TARGET} ${MELTPOOLDG_LIB})
 
-        set(MPI_ARGUMENTS
-            ${MPIEXEC_NUMPROC_FLAG}
-            1
-            $<TARGET_FILE:${TEST_TARGET}>
-            --gtest_output=xml:unittest_reports/${TEST_TARGET}_report.xml)
-
-        if(ARG_N_MPI_PROCESSES GREATER 1)
-            math(EXPR _N_REMAINING_PROCESSES "${ARG_N_MPI_PROCESSES} - 1")
-            list(APPEND MPI_ARGUMENTS ":" ${MPIEXEC_NUMPROC_FLAG} ${_N_REMAINING_PROCESSES} $<TARGET_FILE:${TEST_TARGET}>)
-        endif()
-
+        # Start all ranks in a single app context. The MPMD syntax (":")
+        # crashes mpiexec in the Open MPI of Ubuntu 26.04 (resolute).
+        # Only rank 0 writes the XML report, see gtest_mpi_main.cpp.
         # We (at least for now) do not use gtest_discover_tests here because it was not designed for MPI
         add_test(
             NAME ${TEST_TARGET}
-            COMMAND ${MPIEXEC_EXECUTABLE} ${MPI_ARGUMENTS}
+            COMMAND ${MPIEXEC_EXECUTABLE}
+                    ${MPIEXEC_NUMPROC_FLAG} ${ARG_N_MPI_PROCESSES}
+                    ${MPIEXEC_PREFLAGS}
+                    $<TARGET_FILE:${TEST_TARGET}>
+                    --gtest_output=xml:unittest_reports/${TEST_TARGET}_report.xml
+                    ${MPIEXEC_POSTFLAGS}
         )
 
         set_property(TEST ${TEST_TARGET} PROPERTY LABELS UnitTest MPI)
