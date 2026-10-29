@@ -159,11 +159,11 @@ MeltPoolDG::BrinkmanPenalizationResidualContribution<dim, number, ObstacleType>:
         local_particle_velocity<dim, number, VectorizedArrayType>(particle, q_point);
       auto mask = mask_function<dim, number, VectorizedArrayType>(
         brinkman_penalization_data.mask_function_type, q_point, particle);
-      momentum_penalty -= mask / brinkman_penalization_data.permeability *
-                          (fluid_momentum - w_q[0] * local_obstacle_velocity);
-      energy_penalty = mask / brinkman_penalization_data.permeability *
-                       (fluid_momentum - w_q[0] * local_obstacle_velocity) * fluid_momentum /
-                       w_q[0];
+      dealii::Tensor<1, dim, VectorizedArrayType> particle_momentum_penalty =
+        mask / brinkman_penalization_data.permeability *
+        (fluid_momentum - w_q[0] * local_obstacle_velocity);
+      momentum_penalty -= particle_momentum_penalty;
+      energy_penalty -= particle_momentum_penalty * fluid_momentum / w_q[0];
     }
 
   CompressibleVariablesType fluid_force;
