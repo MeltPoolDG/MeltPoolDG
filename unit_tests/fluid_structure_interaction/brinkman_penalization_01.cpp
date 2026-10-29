@@ -112,6 +112,70 @@ namespace
     BrinkmanPenalizationData<double> brinkman_penalization_data;
   };
 
+  TEST_F(BrinkmanPenalizationFixture, CompressibleValueInsideObstacles)
+  {
+    BrinkmanPenalizationResidualContribution<dim, double, SphericalParticle<dim, double>>
+      brinkman_contribution(brinkman_penalization_data, cell_batch_particle_cache);
+
+    // fluid with density 2, momentum (4, 2), i.e. velocity (2, 1), and energy 10
+    CompressibleFlow::ConservedVariablesType<dim, double> w_q;
+    w_q[0] = 2.;
+    w_q[1] = 4.;
+    w_q[2] = 2.;
+    w_q[3] = 10.;
+
+    dealii::Point<dim, dealii::VectorizedArray<double>> point_in_lower_left_obstacle;
+    point_in_lower_left_obstacle[0] = 0.3;
+    point_in_lower_left_obstacle[1] = 0.2;
+
+    dealii::Point<dim, dealii::VectorizedArray<double>> point_in_upper_right_obstacle;
+    point_in_upper_right_obstacle[0] = 0.7;
+    point_in_upper_right_obstacle[1] = 0.8;
+
+    const CompressibleFlow::ConservedVariablesType<dim, double> penalty_in_lower_left_obstacle =
+      brinkman_contribution.value(0.1, 0, point_in_lower_left_obstacle, w_q);
+    const CompressibleFlow::ConservedVariablesType<dim, double> penalty_in_upper_right_obstacle =
+      brinkman_contribution.value(0.1, 0, point_in_upper_right_obstacle, w_q);
+
+    // The expected penalty is f_m = 1 / permeability * (rho * u_s - m) and f_e = f_m * m / rho
+    // with the obstacle velocity u_s.
+    for (unsigned int lane = 0; lane < dealii::VectorizedArray<double>::size(); ++lane)
+      {
+        EXPECT_DOUBLE_EQ(penalty_in_lower_left_obstacle[0][lane], 0.);
+        EXPECT_DOUBLE_EQ(penalty_in_lower_left_obstacle[1][lane], -4.);
+        EXPECT_DOUBLE_EQ(penalty_in_lower_left_obstacle[2][lane], -4.);
+        EXPECT_DOUBLE_EQ(penalty_in_lower_left_obstacle[3][lane], -12.);
+
+        EXPECT_DOUBLE_EQ(penalty_in_upper_right_obstacle[0][lane], 0.);
+        EXPECT_DOUBLE_EQ(penalty_in_upper_right_obstacle[1][lane], -8.);
+        EXPECT_DOUBLE_EQ(penalty_in_upper_right_obstacle[2][lane], 0.);
+        EXPECT_DOUBLE_EQ(penalty_in_upper_right_obstacle[3][lane], -16.);
+      }
+  }
+
+  TEST_F(BrinkmanPenalizationFixture, CompressibleValueOutsideObstacles)
+
+  {
+    BrinkmanPenalizationResidualContribution<dim, double, SphericalParticle<dim, double>>
+      brinkman_contribution(brinkman_penalization_data, cell_batch_particle_cache);
+
+    // fluid with density 2, momentum (4, 2), and energy 10
+    CompressibleFlow::ConservedVariablesType<dim, double> w_q;
+    w_q[0] = 2.;
+    w_q[1] = 4.;
+    w_q[2] = 2.;
+    w_q[3] = 10.;
+
+    dealii::Point<dim, dealii::VectorizedArray<double>> point_outside_obstacles;
+    point_outside_obstacles[0] = 0.75;
+    point_outside_obstacles[1] = 0.25;
+
+    const CompressibleFlow::ConservedVariablesType<dim, double> penalty =
+      brinkman_contribution.value(0.1, 0, point_outside_obstacles, w_q);
+
+    TestUtils::expect_near(penalty, CompressibleFlow::ConservedVariablesType<dim, double>(), 1e-12);
+  }
+
   /**
    * This test checks that the Brinkman penalization force for incompressible flows is computed
    * correctly at points inside the obstacles.
