@@ -89,7 +89,7 @@ jobs:
           export OMPI_ALLOW_RUN_AS_ROOT=1
           export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
           cd build
-          ctest -j${{ env.COMPILE_JOBS }} --output-on-failure
+          ctest -V -j${{ env.COMPILE_JOBS }} --output-on-failure
 
       - name: Failed test log
         if: ${{ failure() }}
