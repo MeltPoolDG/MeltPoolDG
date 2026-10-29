@@ -135,6 +135,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit-members.html">List of all members</a>  </div>
@@ -179,8 +180,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a81b8fb1befacedf6ca3dfccd74077b6f" id="r_a81b8fb1befacedf6ca3dfccd74077b6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a81b8fb1befacedf6ca3dfccd74077b6f">apply_operator</a> (number time, number time_step, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;dst, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;src, const std::function&lt; void(unsigned int, unsigned int)&gt; &amp;func) const</td></tr>
 <tr class="memdesc:a81b8fb1befacedf6ca3dfccd74077b6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the value of the function f(y) for the compressible Navier-Stokes equations of the form y' = f(y).  <br /></td></tr>
 <tr class="separator:a81b8fb1befacedf6ca3dfccd74077b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa43891f43853d48e7ce85e6d9cfd463b" id="r_aa43891f43853d48e7ce85e6d9cfd463b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#aa43891f43853d48e7ce85e6d9cfd463b">apply_fv_subcell_limiter</a> (number time, number time_step, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;candidate_solution, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;previous_solution, const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;troubled_cells) const</td></tr>
+<tr class="memdesc:aa43891f43853d48e7ce85e6d9cfd463b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the finite volume subcell limiter to the candidate solution of a forward Euler step.  <br /></td></tr>
+<tr class="separator:aa43891f43853d48e7ce85e6d9cfd463b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34434c601183ce90b6fd457a2b00690c" id="r_a34434c601183ce90b6fd457a2b00690c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a34434c601183ce90b6fd457a2b00690c">add_external_force</a> (std::shared_ptr&lt; <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForce.html">ExternalFlowForce</a>&lt; dim, number, n_species &gt; &gt; external_force)</td></tr>
 <tr class="separator:a34434c601183ce90b6fd457a2b00690c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:a4d76e1ac6a1257fa6e4e2322d75623dd" id="r_a4d76e1ac6a1257fa6e4e2322d75623dd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a4d76e1ac6a1257fa6e4e2322d75623dd">LaneMask</a> = std::bitset&lt; dealii::VectorizedArray&lt; number &gt;::size()&gt;</td></tr>
+<tr class="separator:a4d76e1ac6a1257fa6e4e2322d75623dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -193,6 +202,21 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a2c2c2d940691b100fad5e31ab41985d0" id="r_a2c2c2d940691b100fad5e31ab41985d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a2c2c2d940691b100fad5e31ab41985d0">local_apply_boundary_face</a> (const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;dst, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;src, const std::pair&lt; unsigned int, unsigned int &gt; &amp;face_range) const</td></tr>
 <tr class="memdesc:a2c2c2d940691b100fad5e31ab41985d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local boundary face applier.  <br /></td></tr>
 <tr class="separator:a2c2c2d940691b100fad5e31ab41985d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1c1b497a9141e4e1e540a613fa7736f" id="r_af1c1b497a9141e4e1e540a613fa7736f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#af1c1b497a9141e4e1e540a613fa7736f">fv_subcell_limiter_local_apply_cell</a> (const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;dst, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;old_solution, const std::pair&lt; unsigned int, unsigned int &gt; &amp;cell_range, const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;troubled_cells) const</td></tr>
+<tr class="memdesc:af1c1b497a9141e4e1e540a613fa7736f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local cell applier of the finite volume subcell limiter.  <br /></td></tr>
+<tr class="separator:af1c1b497a9141e4e1e540a613fa7736f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a77417f4d15542c56f5ee64e8812fc9" id="r_a1a77417f4d15542c56f5ee64e8812fc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a1a77417f4d15542c56f5ee64e8812fc9">fv_subcell_limiter_local_apply_face</a> (const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;dst, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;old_solution, const std::pair&lt; unsigned int, unsigned int &gt; &amp;face_range, const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;troubled_cells) const</td></tr>
+<tr class="memdesc:a1a77417f4d15542c56f5ee64e8812fc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local face applier of the finite volume subcell limiter.  <br /></td></tr>
+<tr class="separator:a1a77417f4d15542c56f5ee64e8812fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a223c169a2b57b415acc8ccbf77fc66b4" id="r_a223c169a2b57b415acc8ccbf77fc66b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a223c169a2b57b415acc8ccbf77fc66b4">fv_subcell_limiter_local_apply_boundary_face</a> (const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;dst, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;old_solution, const std::pair&lt; unsigned int, unsigned int &gt; &amp;face_range, const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;troubled_cells) const</td></tr>
+<tr class="memdesc:a223c169a2b57b415acc8ccbf77fc66b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local boundary face applier of the finite volume subcell limiter.  <br /></td></tr>
+<tr class="separator:a223c169a2b57b415acc8ccbf77fc66b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99f696428e873e716fcf58f15341f37e" id="r_a99f696428e873e716fcf58f15341f37e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a99f696428e873e716fcf58f15341f37e">fv_subcell_limiter_local_apply_neighbor_correction</a> (const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;dst, const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;old_solution, const std::pair&lt; unsigned int, unsigned int &gt; &amp;face_range, const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;troubled_cells) const</td></tr>
+<tr class="memdesc:a99f696428e873e716fcf58f15341f37e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local face applier for the conservation correction of the finite volume subcell limiter.  <br /></td></tr>
+<tr class="separator:a99f696428e873e716fcf58f15341f37e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a126c4314c346a5521c259d9934ca3a53" id="r_a126c4314c346a5521c259d9934ca3a53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a126c4314c346a5521c259d9934ca3a53">fv_subcell_convective_numerical_flux</a> (const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;w_m, const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;w_p, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal) const</td></tr>
+<tr class="memdesc:a126c4314c346a5521c259d9934ca3a53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convective numerical flux across a finite volume subcell face.  <br /></td></tr>
+<tr class="separator:a126c4314c346a5521c259d9934ca3a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -204,6 +228,11 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ae72fbed93e966dde0b189784a2438028" id="r_ae72fbed93e966dde0b189784a2438028"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#ae72fbed93e966dde0b189784a2438028">current_time_step</a></td></tr>
 <tr class="memdesc:ae72fbed93e966dde0b189784a2438028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current time step size.  <br /></td></tr>
 <tr class="separator:ae72fbed93e966dde0b189784a2438028"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad70180a39ea6164a311c2c34fd64876d" id="r_ad70180a39ea6164a311c2c34fd64876d"><td class="memItemLeft" align="right" valign="top">dealii::LinearAlgebra::distributed::Vector&lt; number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#ad70180a39ea6164a311c2c34fd64876d">fv_rhs</a></td></tr>
+<tr class="memdesc:ad70180a39ea6164a311c2c34fd64876d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Right-hand side of the finite volume subcell formulation.  <br /></td></tr>
+<tr class="separator:ad70180a39ea6164a311c2c34fd64876d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaa776078d36893019da191545dca7af" id="r_acaa776078d36893019da191545dca7af"><td class="memItemLeft" align="right" valign="top">dealii::LinearAlgebra::distributed::Vector&lt; number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#acaa776078d36893019da191545dca7af">fv_neighbor_correction</a></td></tr>
+<tr class="separator:acaa776078d36893019da191545dca7af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number, int n_species = 1&gt;<br />
@@ -345,6 +374,30 @@ template&lt;int dim, typename number , int n_species = 1&gt; </div>
 
 </div>
 </div>
+<a id="a4d76e1ac6a1257fa6e4e2322d75623dd" name="a4d76e1ac6a1257fa6e4e2322d75623dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d76e1ac6a1257fa6e4e2322d75623dd">&#9670;&#160;</a></span>LaneMask</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species = 1&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">MeltPoolDG::CompressibleFlow::DGOperatorExplicit</a>&lt; dim, number, n_species &gt;::LaneMask =  std::bitset&lt;dealii::VectorizedArray&lt;number&gt;::size()&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a36b37c2a4910173930477b9021a93265" name="a36b37c2a4910173930477b9021a93265"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a36b37c2a4910173930477b9021a93265">&#9670;&#160;</a></span>VectorType</h2>
 
@@ -426,6 +479,69 @@ template&lt;int dim, typename number , int n_species&gt; </div>
 
 </div>
 </div>
+<a id="aa43891f43853d48e7ce85e6d9cfd463b" name="aa43891f43853d48e7ce85e6d9cfd463b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa43891f43853d48e7ce85e6d9cfd463b">&#9670;&#160;</a></span>apply_fv_subcell_limiter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">MeltPoolDG::CompressibleFlow::DGOperatorExplicit</a>&lt; dim, number, n_species &gt;::apply_fv_subcell_limiter </td>
+          <td>(</td>
+          <td class="paramtype">number&#160;</td>
+          <td class="paramname"><em>time</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">number&#160;</td>
+          <td class="paramname"><em>time_step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>candidate_solution</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>previous_solution</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>troubled_cells</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Apply the finite volume subcell limiter to the candidate solution of a forward Euler step. </p>
+<p>In the troubled cells, the candidate solution is replaced by a forward Euler step of the finite volume subcell scheme starting from <code>previous_solution</code>. The finite volume right-hand side contains the convective fluxes and the external forces. Viscous terms are not considered yet.</p>
+<p>In the untroubled neighbors of troubled cells, the update is corrected such that it uses the finite volume flux instead of the DG flux at the faces shared with troubled cells. Thus, both cells use the same flux at their common faces and the scheme remains conservative. In all other cells, the candidate solution is not changed.</p>
+<p>The correction of the untroubled neighbors assumes that <code>candidate_solution</code> is the result of a DG forward Euler step from <code>previous_solution</code> with the same <code>time_step</code>. Therefore, the limiter is only available for strong stability preserving Runge-Kutta schemes, where each stage is such a step, and an exception is thrown for other time integrators.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>The current time. </td></tr>
+    <tr><td class="paramname">time_step</td><td>The time step size of the forward Euler step. </td></tr>
+    <tr><td class="paramname">candidate_solution</td><td>On input, the solution of the DG forward Euler step. On output, the limited solution. </td></tr>
+    <tr><td class="paramname">previous_solution</td><td>The solution from which the forward Euler step starts. </td></tr>
+    <tr><td class="paramname">troubled_cells</td><td>Troubled cell markers, read per cell batch via read_cell_data(), where a nonzero entry in a lane marks the corresponding cell as troubled. The markers must also be set for the ghost cell batches, since the face loops need to know whether the neighbor across a face is troubled. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a81b8fb1befacedf6ca3dfccd74077b6f" name="a81b8fb1befacedf6ca3dfccd74077b6f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a81b8fb1befacedf6ca3dfccd74077b6f">&#9670;&#160;</a></span>apply_operator()</h2>
 
@@ -480,6 +596,338 @@ template&lt;int dim, typename number , int n_species&gt; </div>
     <tr><td class="paramname">dst</td><td>Vector where the computed value of f(y) is stored. </td></tr>
     <tr><td class="paramname">src</td><td>The solution vector, y, at the current time. </td></tr>
     <tr><td class="paramname">func</td><td>A function to be executed after f(y) has been computed. This function is applied to the resulting vector in <code>dst</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a126c4314c346a5521c259d9934ca3a53" name="a126c4314c346a5521c259d9934ca3a53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a126c4314c346a5521c259d9934ca3a53">&#9670;&#160;</a></span>fv_subcell_convective_numerical_flux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">MeltPoolDG::CompressibleFlow::DGOperatorExplicit</a>&lt; dim, number, n_species &gt;::fv_subcell_convective_numerical_flux </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;&#160;</td>
+          <td class="paramname"><em>w_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;&#160;</td>
+          <td class="paramname"><em>w_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>normal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convective numerical flux across a finite volume subcell face. </p>
+<p>Evaluates the numerical flux selected by the numerical flux type of the flow data. Used by the finite volume subcell limiter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w_m</td><td>State on the side from which <code>normal</code> points outwards. </td></tr>
+    <tr><td class="paramname">w_p</td><td>State on the side into which <code>normal</code> points. </td></tr>
+    <tr><td class="paramname">normal</td><td>Unit normal vector of the face.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Numerical flux in the direction of <code>normal</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a223c169a2b57b415acc8ccbf77fc66b4" name="a223c169a2b57b415acc8ccbf77fc66b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a223c169a2b57b415acc8ccbf77fc66b4">&#9670;&#160;</a></span>fv_subcell_limiter_local_apply_boundary_face()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">MeltPoolDG::CompressibleFlow::DGOperatorExplicit</a>&lt; dim, number, n_species &gt;::fv_subcell_limiter_local_apply_boundary_face </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::MatrixFree&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_free</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>old_solution</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; unsigned int, unsigned int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>face_range</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>troubled_cells</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Local boundary face applier of the finite volume subcell limiter. </p>
+<p>For boundary faces of troubled cells, computes the convective numerical fluxes across the subcell faces on the boundary from <code>old_solution</code>, with the exterior state given by the boundary conditions.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matrix_free</td><td>Matrix free object on which the applier works on. </td></tr>
+    <tr><td class="paramname">dst</td><td>Destination vector to which the result is added. </td></tr>
+    <tr><td class="paramname">old_solution</td><td>Solution from which the forward Euler step starts. </td></tr>
+    <tr><td class="paramname">face_range</td><td>Boundary face range which is considered in the applier. </td></tr>
+    <tr><td class="paramname">troubled_cells</td><td>Cell data vector marking the troubled cells. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af1c1b497a9141e4e1e540a613fa7736f" name="af1c1b497a9141e4e1e540a613fa7736f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1c1b497a9141e4e1e540a613fa7736f">&#9670;&#160;</a></span>fv_subcell_limiter_local_apply_cell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">MeltPoolDG::CompressibleFlow::DGOperatorExplicit</a>&lt; dim, number, n_species &gt;::fv_subcell_limiter_local_apply_cell </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::MatrixFree&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_free</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>old_solution</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; unsigned int, unsigned int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>cell_range</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>troubled_cells</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Local cell applier of the finite volume subcell limiter. </p>
+<p>For the troubled cells, computes the external forces on the subcells and the convective numerical fluxes across the subcell faces inside the cell from <code>old_solution</code>. Untroubled cells are skipped.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matrix_free</td><td>Matrix free object on which the applier works on. </td></tr>
+    <tr><td class="paramname">dst</td><td>Destination vector to which the result is added. </td></tr>
+    <tr><td class="paramname">old_solution</td><td>Solution from which the forward Euler step starts. </td></tr>
+    <tr><td class="paramname">cell_range</td><td>Cell range which is considered in the applier. </td></tr>
+    <tr><td class="paramname">troubled_cells</td><td>Cell data vector marking the troubled cells. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1a77417f4d15542c56f5ee64e8812fc9" name="a1a77417f4d15542c56f5ee64e8812fc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a77417f4d15542c56f5ee64e8812fc9">&#9670;&#160;</a></span>fv_subcell_limiter_local_apply_face()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">MeltPoolDG::CompressibleFlow::DGOperatorExplicit</a>&lt; dim, number, n_species &gt;::fv_subcell_limiter_local_apply_face </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::MatrixFree&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_free</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>old_solution</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; unsigned int, unsigned int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>face_range</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>troubled_cells</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Local face applier of the finite volume subcell limiter. </p>
+<p>For faces adjacent to at least one troubled cell, computes the convective numerical fluxes across the subcell faces on the face from <code>old_solution</code> and adds them to both cells. Only the contributions to the troubled cells are used.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matrix_free</td><td>Matrix free object on which the applier works on. </td></tr>
+    <tr><td class="paramname">dst</td><td>Destination vector to which the result is added. </td></tr>
+    <tr><td class="paramname">old_solution</td><td>Solution from which the forward Euler step starts. </td></tr>
+    <tr><td class="paramname">face_range</td><td>Face range which is considered in the applier. </td></tr>
+    <tr><td class="paramname">troubled_cells</td><td>Cell data vector marking the troubled cells, including the ghost cell batches. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a99f696428e873e716fcf58f15341f37e" name="a99f696428e873e716fcf58f15341f37e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99f696428e873e716fcf58f15341f37e">&#9670;&#160;</a></span>fv_subcell_limiter_local_apply_neighbor_correction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">MeltPoolDG::CompressibleFlow::DGOperatorExplicit</a>&lt; dim, number, n_species &gt;::fv_subcell_limiter_local_apply_neighbor_correction </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::MatrixFree&lt; dim, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_free</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a36b37c2a4910173930477b9021a93265">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>old_solution</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; unsigned int, unsigned int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>face_range</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::AlignedVector&lt; dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>troubled_cells</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Local face applier for the conservation correction of the finite volume subcell limiter. </p>
+<p>At a face between a troubled and an untroubled cell, the troubled cell is updated with the finite volume flux, while the DG update of the untroubled cell contains the DG flux. For the untroubled cell, this function computes the face integral of the difference between the two fluxes, which replaces the DG flux by the finite volume flux once the inverse mass matrix is applied.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matrix_free</td><td>Matrix free object on which the applier works on. </td></tr>
+    <tr><td class="paramname">dst</td><td>Destination vector to which the face integrals are added. </td></tr>
+    <tr><td class="paramname">old_solution</td><td>Solution at the beginning of the time step. </td></tr>
+    <tr><td class="paramname">face_range</td><td>Face range which is considered in the applier. </td></tr>
+    <tr><td class="paramname">troubled_cells</td><td>Cell data vector marking the troubled cells, including the ghost cell batches. </td></tr>
   </table>
   </dd>
 </dl>
@@ -769,6 +1217,57 @@ template&lt;int dim, typename number , int n_species = 1&gt; </div>
 </div><div class="memdoc">
 
 <p>Scratch data for compressible flows. </p>
+
+</div>
+</div>
+<a id="acaa776078d36893019da191545dca7af" name="acaa776078d36893019da191545dca7af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaa776078d36893019da191545dca7af">&#9670;&#160;</a></span>fv_neighbor_correction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species = 1&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::LinearAlgebra::distributed::Vector&lt;number&gt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">MeltPoolDG::CompressibleFlow::DGOperatorExplicit</a>&lt; dim, number, n_species &gt;::fv_neighbor_correction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Correction of the update of the untroubled cells adjacent to troubled cells, which replaces the DG flux by the finite volume flux at their common faces to retain conservation. </p>
+
+</div>
+</div>
+<a id="ad70180a39ea6164a311c2c34fd64876d" name="ad70180a39ea6164a311c2c34fd64876d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad70180a39ea6164a311c2c34fd64876d">&#9670;&#160;</a></span>fv_rhs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species = 1&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dealii::LinearAlgebra::distributed::Vector&lt;number&gt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">MeltPoolDG::CompressibleFlow::DGOperatorExplicit</a>&lt; dim, number, n_species &gt;::fv_rhs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Right-hand side of the finite volume subcell formulation. </p>
 
 </div>
 </div>
