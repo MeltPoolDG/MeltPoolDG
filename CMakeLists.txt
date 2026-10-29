@@ -148,7 +148,16 @@ if(MPDG_ENABLE_TESTING)
         GIT_REPOSITORY https://github.com/google/googletest.git
         GIT_TAG v1.17.0
     )
+
+    # Always build GoogleTest as a static library. Together with
+    # --exclude-libs in unit_tests/cmake/auto_setup_mpi_unit_tests.cmake,
+    # this prevents Trilinos' libgtest.so.14 (loaded transitively via
+    # deal.II) from binding to our GTest symbols (double free at exit).
+    set(_meltpooldg_saved_bsl ${BUILD_SHARED_LIBS})
+    set(BUILD_SHARED_LIBS OFF)
     fetchcontent_makeavailable(googletest)
+    set(BUILD_SHARED_LIBS ${_meltpooldg_saved_bsl})
+
     include(GoogleTest)
 
     set(DEAL_II_HAVE_TESTS_DIRECTORY ON)
