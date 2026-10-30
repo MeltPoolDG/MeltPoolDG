@@ -20,9 +20,12 @@ namespace MeltPoolDG
    * bitset where each bit corresponds to a lane.
    *
    * The function checks if the lower value is greater than or equal to the minimum value minus a
-   * small tolerance, and if the upper value is less than or equal to the maximum value plus a small
-   * tolerance. The tolerance is computed as the maximum of a small constant and a fraction of the
-   * range between the maximum and minimum values.
+   * small tolerance, using the tolerance defined in [1], and if the upper value is less than or
+   * equal to the maximum value plus a small tolerance. The tolerance is computed as the maximum of
+   * a small constant and a fraction of the range between the maximum and minimum values.
+   *
+   * [1] Dumbser et al., A posteriori subcell limiting of the discontinuous Galerkin finite element
+   * method for hyperbolic conservation laws, J. Comput. Phys. 278, 2014.
    *
    * @param lower The lower value to be checked.
    * @param upper The upper value to be checked.

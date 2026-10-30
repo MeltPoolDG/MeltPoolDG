@@ -26,7 +26,7 @@ namespace MeltPoolDG
                      const dealii::Tensor<1, n_components, dealii::VectorizedArray<number>> &m,
                      const dealii::Tensor<1, n_components, dealii::VectorizedArray<number>> &M)
   {
-    constexpr number delta_0 = 1e-10;
+    constexpr number delta_0 = 1e-4;
     constexpr number epsilon = 1e-5;
 
     std::bitset<dealii::VectorizedArray<number>::size()> mask;
