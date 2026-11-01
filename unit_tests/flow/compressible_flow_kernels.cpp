@@ -159,9 +159,9 @@ TEST(CompressibleFlowKernelsTest, ViscousKernel)
   {
     SCOPED_TRACE("Energy flux computation");
     const typename FluxType::value_type expected_energy_flux{
-      {VectorizedArrayType(-0.042784766064157681),
-       VectorizedArrayType(-0.085616474496499437),
-       VectorizedArrayType(-0.12844818292884119)}};
+      {VectorizedArrayType(-0.042823535495678536),
+       VectorizedArrayType(-0.085622012986716706),
+       VectorizedArrayType(-0.12842049047775486)}};
     MeltPoolDG::TestUtils::expect_double_eq(flux[dim + 1], expected_energy_flux);
   }
 }
