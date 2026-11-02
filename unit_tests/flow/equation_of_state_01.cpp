@@ -485,7 +485,7 @@ namespace
     const dealii::Tensor<1, dim, double> result =
       IdealGasEOS::grad_temperature(value, gradient, material);
 
-    const dealii::Tensor<1, dim, double> expected{{-279.30188822475071, -175.7002807583589}};
+    const dealii::Tensor<1, dim, double> expected{{-279.30044761172394, -175.72707003038957}};
 
     MeltPoolDG::TestUtils::expect_near(result[0], expected[0], 1.e-14);
     MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-14);
@@ -600,7 +600,7 @@ namespace
 
     const auto result = StiffenedGasEOS::grad_temperature(value, gradient, material);
 
-    const dealii::Tensor<1, dim, double> expected{{-0.41358926529284523, -0.25250720355648204}};
+    const dealii::Tensor<1, dim, double> expected{{-0.41290122269093599, -0.26530186811113593}};
 
     MeltPoolDG::TestUtils::expect_near(result[0], expected[0], 1.e-14);
     MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-14);
@@ -719,7 +719,7 @@ namespace
 
     const auto result = NobleAbelStiffenedGasEOS::grad_temperature(value, gradient, material);
 
-    const dealii::Tensor<1, dim, double> expected{{0.45383316385673866, 0.28555300918083193}};
+    const dealii::Tensor<1, dim, double> expected{{0.45408888871587721, 0.28356622373675555}};
 
     MeltPoolDG::TestUtils::expect_near(result[0], expected[0], 1.e-14);
     MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-14);
@@ -836,7 +836,7 @@ namespace
 
     const auto result = WeaklyCompressibleEOS::grad_temperature(value, gradient, material);
 
-    const dealii::Tensor<1, dim, double> expected{{-1.061207412244898, -0.66744903673469402}};
+    const dealii::Tensor<1, dim, double> expected{{-1.060921412244898, -0.66967103673469408}};
 
     MeltPoolDG::TestUtils::expect_near(result[0], expected[0], 1.e-14);
     MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-14);

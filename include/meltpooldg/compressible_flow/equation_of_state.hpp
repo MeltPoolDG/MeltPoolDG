@@ -221,7 +221,8 @@ namespace MeltPoolDG::Flow
          1. / value_view.density() * value_view.total_energy() * gradient_view.grad_density());
 
       return (material_view.heat_capacity_ratio() - 1.0) / material_view.specific_gas_constant() *
-             (grad_E - matrix_vector_product(gradient_view.grad_velocity(), value_view.velocity()));
+             (grad_E - matrix_vector_product(transpose(gradient_view.grad_velocity()),
+                                             value_view.velocity()));
     }
 
     /**
@@ -412,7 +413,9 @@ namespace MeltPoolDG::Flow
                    inv_rho * value_view.total_energy() * gradient_view.grad_density());
 
       return material_view.heat_capacity_ratio() / material_view.specific_isobaric_heat() *
-             (grad_E - matrix_vector_product(gradient_view.grad_velocity(), value_view.velocity()) +
+             (grad_E -
+              matrix_vector_product(transpose(gradient_view.grad_velocity()),
+                                    value_view.velocity()) +
               material_view.stiffening_pressure() * inv_rho * inv_rho *
                 gradient_view.grad_density());
     }
@@ -618,7 +621,9 @@ namespace MeltPoolDG::Flow
                    inv_rho * value_view.total_energy() * gradient_view.grad_density());
 
       return material_view.heat_capacity_ratio() / material_view.specific_isobaric_heat() *
-             (grad_E - matrix_vector_product(gradient_view.grad_velocity(), value_view.velocity()) +
+             (grad_E -
+              matrix_vector_product(transpose(gradient_view.grad_velocity()),
+                                    value_view.velocity()) +
               material_view.stiffening_pressure() * inv_rho * inv_rho *
                 gradient_view.grad_density());
     }
@@ -842,7 +847,8 @@ namespace MeltPoolDG::Flow
          value_view.total_energy() / value_view.density() * gradient_view.grad_density());
 
       return 1. / material_view.specific_isochoric_heat() *
-             (grad_E - matrix_vector_product(gradient_view.grad_velocity(), value_view.velocity()));
+             (grad_E - matrix_vector_product(transpose(gradient_view.grad_velocity()),
+                                             value_view.velocity()));
     }
 
     /**
