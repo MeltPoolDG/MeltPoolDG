@@ -491,6 +491,21 @@ namespace
     MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-14);
   }
 
+  TEST(IdealGasEOS, GradientPressure)
+  {
+    const auto value    = IdealGasValueView();
+    const auto material = IdealGasMaterialView{};
+    const auto gradient = GradientView();
+
+    const dealii::Tensor<1, dim, double> result =
+      IdealGasEOS::grad_pressure(value, gradient, material);
+
+    const dealii::Tensor<1, dim, double> expected{{-1944.830448, -1235.824048}};
+
+    MeltPoolDG::TestUtils::expect_near(result[0], expected[0], 1.e-12 * std::abs(expected[0]));
+    MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-12 * std::abs(expected[1]));
+  }
+
   TEST(IdealGasEOS, ConservativeFromPrimitive)
   {
     PrimitiveVariableView primitive;
@@ -589,6 +604,22 @@ namespace
 
     MeltPoolDG::TestUtils::expect_near(result[0], expected[0], 1.e-14);
     MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-14);
+  }
+
+  TEST(StiffenedGasEOS, GradientPressure)
+  {
+    StiffenedGasValueView value;
+
+    const auto material = StiffenedGasMaterialView{};
+    const auto gradient = GradientView();
+
+    const dealii::Tensor<1, dim, double> result =
+      StiffenedGasEOS::grad_pressure(value, gradient, material);
+
+    const dealii::Tensor<1, dim, double> expected{{-214742.3023819818, -150644.4682839253}};
+
+    MeltPoolDG::TestUtils::expect_near(result[0], expected[0], 1.e-12 * std::abs(expected[0]));
+    MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-12 * std::abs(expected[1]));
   }
 
   TEST(StiffenedGasEOS, ConservativeFromPrimitive)
@@ -694,6 +725,22 @@ namespace
     MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-14);
   }
 
+  TEST(NobleAbelStiffenedGasEOS, GradientPressure)
+  {
+    NobleAbelStiffenedGasValueView value;
+
+    const auto material = NobleAbelMaterialView{};
+    const auto gradient = GradientView();
+
+    const dealii::Tensor<1, dim, double> result =
+      NobleAbelStiffenedGasEOS::grad_pressure(value, gradient, material);
+
+    const dealii::Tensor<1, dim, double> expected{{1123988.8025757861, 705955.9500895689}};
+
+    MeltPoolDG::TestUtils::expect_near(result[0], expected[0], 1.e-12 * std::abs(expected[0]));
+    MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-12 * std::abs(expected[1]));
+  }
+
   TEST(NobleAbelStiffenedGasEOS, ConservativeFromPrimitive)
   {
     PrimitiveVariableView primitive;
@@ -793,6 +840,22 @@ namespace
 
     MeltPoolDG::TestUtils::expect_near(result[0], expected[0], 1.e-14);
     MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-14);
+  }
+
+  TEST(WeaklyCompressibleEOS, GradientPressure)
+  {
+    WeaklyCompressibleValueView value;
+
+    const auto material = WeaklyCompressibleMaterialView{};
+    const auto gradient = GradientView();
+
+    const dealii::Tensor<1, dim, double> result =
+      WeaklyCompressibleEOS::grad_pressure(value, gradient, material);
+
+    const dealii::Tensor<1, dim, double> expected{{310000., 195000.}};
+
+    MeltPoolDG::TestUtils::expect_near(result[0], expected[0], 1.e-12 * std::abs(expected[0]));
+    MeltPoolDG::TestUtils::expect_near(result[1], expected[1], 1.e-12 * std::abs(expected[1]));
   }
 
   TEST(WeaklyCompressibleEOS, ConservativeFromPrimitive)

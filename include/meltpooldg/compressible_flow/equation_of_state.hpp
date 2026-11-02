@@ -225,6 +225,33 @@ namespace MeltPoolDG::Flow
     }
 
     /**
+     * Compute the gradient of the pressure for an ideal gas from the given flow state and
+     * material properties.
+     *
+     * @param value_view View providing access to the flow state.
+     * @param gradient_view View providing access to the gradients of the flow state.
+     * @param material_view View providing access to the material properties.
+     *
+     * @return Gradient of the pressure resulting from the given flow state and material properties.
+     */
+    template <EOSIsConservativeValueView ValueView,
+              EOSIsGradientView          GradientView,
+              IdealGasIsMaterialView     MaterialView>
+    static inline DEAL_II_ALWAYS_INLINE //
+      auto
+      grad_pressure(const ValueView    &value_view,
+                    const GradientView &gradient_view,
+                    const MaterialView &material_view)
+    {
+      return (material_view.heat_capacity_ratio() - 1.0) *
+             (gradient_view.grad_total_energy() -
+              value_view.density() * matrix_vector_product(transpose(gradient_view.grad_velocity()),
+                                                           value_view.velocity()) -
+              0.5 * scalar_product(value_view.velocity(), value_view.velocity()) *
+                gradient_view.grad_density());
+    }
+
+    /**
      * Compute the speed of sound for an ideal gas from the given flow state and material
      * properties.
      *
@@ -387,6 +414,33 @@ namespace MeltPoolDG::Flow
       return material_view.heat_capacity_ratio() / material_view.specific_isobaric_heat() *
              (grad_E - matrix_vector_product(gradient_view.grad_velocity(), value_view.velocity()) +
               material_view.stiffening_pressure() * inv_rho * inv_rho *
+                gradient_view.grad_density());
+    }
+
+    /**
+     * Compute the gradient of the pressure for a stiffened gas from the given flow state and
+     * material properties.
+     *
+     * @param value_view View providing access to the flow state.
+     * @param gradient_view View providing access to the gradients of the flow state.
+     * @param material_view View providing access to the material properties.
+     *
+     * @return Gradient of the pressure resulting from the given flow state and material properties.
+     */
+    template <EOSIsConservativeValueView ValueView,
+              EOSIsGradientView          GradientView,
+              StiffenedGasIsMaterialView MaterialView>
+    static inline DEAL_II_ALWAYS_INLINE //
+      auto
+      grad_pressure(const ValueView    &value_view,
+                    const GradientView &gradient_view,
+                    const MaterialView &material_view)
+    {
+      return (material_view.heat_capacity_ratio() - 1.0) *
+             (gradient_view.grad_total_energy() -
+              value_view.density() * matrix_vector_product(transpose(gradient_view.grad_velocity()),
+                                                           value_view.velocity()) -
+              0.5 * scalar_product(value_view.velocity(), value_view.velocity()) *
                 gradient_view.grad_density());
     }
 
@@ -570,6 +624,45 @@ namespace MeltPoolDG::Flow
     }
 
     /**
+     * Compute the gradient of the pressure for a Noble-Abel stiffened gas from the given flow
+     * state and material properties.
+     *
+     * @param value_view View providing access to the flow state.
+     * @param gradient_view View providing access to the gradients of the flow state.
+     * @param material_view View providing access to the material properties.
+     *
+     * @return Gradient of the pressure resulting from the given flow state and material properties.
+     */
+    template <EOSIsConservativeValueView          ValueView,
+              EOSIsGradientView                   GradientView,
+              NobleAbelStiffenedGasIsMaterialView MaterialView>
+    static inline DEAL_II_ALWAYS_INLINE //
+      auto
+      grad_pressure(const ValueView    &value_view,
+                    const GradientView &gradient_view,
+                    const MaterialView &material_view)
+    {
+      const auto inv_rho                            = 1. / value_view.density();
+      const auto heat_capacity_ratio_minus_one      = material_view.heat_capacity_ratio() - 1.;
+      const auto inv_specific_volume_minus_covolume = 1. / (inv_rho - material_view.covolume());
+      const auto specific_int_energy = specific_internal_energy(value_view, material_view);
+
+      const auto grad_specific_internal_energy =
+        inv_rho *
+        (gradient_view.grad_total_energy() - specific_int_energy * gradient_view.grad_density() -
+         value_view.density() *
+           matrix_vector_product(transpose(gradient_view.grad_velocity()), value_view.velocity()) -
+         0.5 * scalar_product(value_view.velocity(), value_view.velocity()) *
+           gradient_view.grad_density());
+
+      return heat_capacity_ratio_minus_one * inv_specific_volume_minus_covolume *
+               grad_specific_internal_energy +
+             (specific_int_energy - material_view.heat_bound()) * heat_capacity_ratio_minus_one *
+               inv_specific_volume_minus_covolume * inv_specific_volume_minus_covolume * inv_rho *
+               inv_rho * gradient_view.grad_density();
+    }
+
+    /**
      * Compute the speed of sound for a Noble-Abel stiffened gas from the given flow state and
      * material properties.
      *
@@ -750,6 +843,28 @@ namespace MeltPoolDG::Flow
 
       return 1. / material_view.specific_isochoric_heat() *
              (grad_E - matrix_vector_product(gradient_view.grad_velocity(), value_view.velocity()));
+    }
+
+    /**
+     * Compute the gradient of the pressure for a weakly compressible fluid from the given flow
+     * state and material properties.
+     *
+     * @param gradient_view View providing access to the gradients of the flow state.
+     * @param material_view View providing access to the material properties.
+     *
+     * @return Gradient of the pressure resulting from the given flow state and material properties.
+     */
+    template <EOSIsConservativeValueView       ValueView,
+              EOSIsGradientView                GradientView,
+              WeaklyCompressibleIsMaterialView MaterialView>
+    static inline DEAL_II_ALWAYS_INLINE //
+      auto
+      grad_pressure(const ValueView &,
+                    const GradientView &gradient_view,
+                    const MaterialView &material_view)
+    {
+      return material_view.reference_state_sound_speed() *
+             material_view.reference_state_sound_speed() * gradient_view.grad_density();
     }
 
     /**
@@ -1047,6 +1162,14 @@ namespace MeltPoolDG::Flow
     {
       return dispatch_eos<Derived>(eos_type(), [&](auto eos) -> decltype(auto) {
         return eos.grad_temperature(derived(), derived(), derived());
+      });
+    }
+
+    decltype(auto)
+    grad_pressure() const
+    {
+      return dispatch_eos<Derived>(eos_type(), [&](auto eos) -> decltype(auto) {
+        return eos.grad_pressure(derived(), derived(), derived());
       });
     }
 
