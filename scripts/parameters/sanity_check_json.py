@@ -298,8 +298,6 @@ rename_parameter_values = [
     (["recoil pressure", "interface distributed flux type"],
      "continuous", "local_value"),
     (["laser", "model"],
-     "Analytical", "analytical_temperature"),
-    (["laser", "model"],
      "interface_projection", "interface_projection_regularized"),
     # 24-02-29
     (["evaporation", "analytical", "function"], "constant", "analytical"),

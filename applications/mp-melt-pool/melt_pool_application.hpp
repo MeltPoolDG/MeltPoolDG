@@ -73,6 +73,19 @@ namespace MeltPoolDG
     void
     set_initial_condition_heat_transfer();
 
+    /**
+     * Return the temperature field prescribed by the simulation case, or a nullptr if the
+     * temperature is computed by solving the heat equation.
+     */
+    std::shared_ptr<dealii::Function<dim>>
+    get_prescribed_temperature() const;
+
+    /**
+     * Interpolate @p prescribed_temperature at the current time onto the temperature vector.
+     */
+    void
+    interpolate_prescribed_temperature(dealii::Function<dim> &prescribed_temperature);
+
     void
     set_initial_condition_flow();
 

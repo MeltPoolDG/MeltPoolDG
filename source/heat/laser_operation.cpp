@@ -19,7 +19,6 @@ namespace MeltPoolDG::Heat
     const VectorType                                         *heaviside_in,
     const unsigned int                                        hs_dof_idx_in,
     const RadiativeTransport::RadiativeTransportData<number> *rad_trans_data_in,
-    const bool                                                problem_is_melt_pool,
     const bool                                                heat_is_cut,
     const bool material_two_phase_transition_is_diffuse,
     const bool print_boundary_ids)
@@ -33,14 +32,6 @@ namespace MeltPoolDG::Heat
       ExcMessage(
         "For the temporal ramp distribution of the laser power,"
         " the parameter laser power end time must be larger than laser power start time."));
-
-    if (laser_data.model == LaserModelType::analytical_temperature)
-      {
-        AssertThrow(problem_is_melt_pool,
-                    ExcMessage(
-                      "Only the melt pool problem can handle the analytical laser model."));
-        return;
-      }
 
     /*
      * Factory for the intensity profile
@@ -155,7 +146,7 @@ namespace MeltPoolDG::Heat
             break;
           }
         default:
-          AssertThrow(laser_data.model == LaserModelType::analytical_temperature,
+          AssertThrow(false,
                       ExcMessage(
                         "No requested laser model found. Please specify the "
                         "heat source model in the laser section of the input parameters."));
@@ -249,7 +240,7 @@ namespace MeltPoolDG::Heat
     // 0) update current time
     current_time += dt;
     // 1) compute the current center of the laser beam
-    if (laser_data.scan_speed != 0.0 and laser_data.model != LaserModelType::analytical_temperature)
+    if (laser_data.scan_speed != 0.0)
       {
         laser_position +=
           laser_data.template get_scan_direction<dim>() * laser_data.scan_speed * dt;

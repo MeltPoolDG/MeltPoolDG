@@ -42,7 +42,6 @@
 #include <meltpooldg/flow/adaflo_wrapper.hpp>
 #include <meltpooldg/heat/heat_cut_operation.hpp>
 #include <meltpooldg/heat/heat_diffuse_operation.hpp>
-#include <meltpooldg/heat/laser_analytical_temperature_field.hpp>
 #include <meltpooldg/heat/laser_data.hpp>
 #include <meltpooldg/level_set/level_set_tools.hpp>
 #include <meltpooldg/level_set/nearest_point.hpp>
@@ -291,17 +290,7 @@ namespace MeltPoolDG
                   {
                     laser_operation->move_laser(dt);
 
-                    if (param.laser.model == Heat::LaserModelType::analytical_temperature)
-                      Heat::LaserAnalyticalTemperatureField<dim, number>::compute_temperature_field(
-                        *scratch_data,
-                        param.material,
-                        param.laser,
-                        laser_operation->get_laser_power(),
-                        laser_operation->get_laser_position(),
-                        heat_operation->get_temperature(),
-                        level_set_operation->get_level_set_as_heaviside(),
-                        heat_dof_idx);
-                    else if (heat_diffuse_operation)
+                    if (heat_diffuse_operation)
                       // only precompute the laser heat source if it's not passed to the CutFEM
                       // Operator
                       laser_operation->compute_heat_source(
@@ -319,12 +308,12 @@ namespace MeltPoolDG
                 // the heat equation will NOT be solved if
                 //    * the evaporative mass flux is given as a constant
                 //    (temperature-independent) value
-                //    * the temperature field is prescribed analytically
-                if (not(
-                      (evaporation_operation and param.evapor.evaporative_mass_flux_model ==
-                                                   Evaporation::EvaporationModelType::analytical) or
-                      (laser_operation and
-                       param.laser.model == Heat::LaserModelType::analytical_temperature)))
+                //    * the temperature field is prescribed by the simulation case
+                if (const auto prescribed_temperature = get_prescribed_temperature())
+                  interpolate_prescribed_temperature(*prescribed_temperature);
+                else if (not(evaporation_operation and
+                             param.evapor.evaporative_mass_flux_model ==
+                               Evaporation::EvaporationModelType::analytical))
                   {
                     // do heat and mass flux iteration - which is only necessary for the diffuse
                     // heat operator
@@ -834,6 +823,10 @@ namespace MeltPoolDG
     // initialize laser operation
     if (param.application_specific_parameters.do_heat_transfer and param.laser.power > 0.0)
       {
+        AssertThrow(not get_prescribed_temperature(),
+                    ExcMessage("A laser heat source cannot be combined with a temperature field "
+                               "prescribed by the simulation case."));
+
         laser_operation = std::make_shared<Heat::LaserOperation<dim, number>>(
           *scratch_data,
           simulation_case->get_periodic_bc(),
@@ -841,7 +834,6 @@ namespace MeltPoolDG
           &level_set_operation->get_level_set_as_heaviside(),
           ls_dof_idx,
           &param.rte,
-          true,
           param.heat.operator_type == Heat::TwoPhaseOperatorType::cut,
           param.material.two_phase_fluid_properties_transition_type !=
             TwoPhaseFluidPropertiesTransitionType::sharp,
@@ -1242,17 +1234,8 @@ namespace MeltPoolDG
     if (not heat_operation)
       return;
 
-    if (laser_operation and
-        simulation_case->parameters.laser.model == Heat::LaserModelType::analytical_temperature)
-      Heat::LaserAnalyticalTemperatureField<dim, number>::compute_temperature_field(
-        *scratch_data,
-        simulation_case->parameters.material,
-        simulation_case->parameters.laser,
-        laser_operation->get_laser_power(),
-        laser_operation->get_laser_position(),
-        heat_operation->get_temperature(),
-        level_set_operation->get_level_set_as_heaviside(),
-        heat_dof_idx);
+    if (const auto prescribed_temperature = get_prescribed_temperature())
+      interpolate_prescribed_temperature(*prescribed_temperature);
     else if (not(evaporation_operation and
                  simulation_case->parameters.evapor.evaporative_mass_flux_model ==
                    Evaporation::EvaporationModelType::analytical))
@@ -1262,6 +1245,38 @@ namespace MeltPoolDG
 
     if (compute_interface_temperature)
       heat_operation->compute_interface_temperature();
+  }
+
+
+  template <int dim, typename number>
+  std::shared_ptr<dealii::Function<dim>>
+  MeltPoolApplication<dim, number>::get_prescribed_temperature() const
+  {
+    return simulation_case->get_field_function("prescribed_temperature",
+                                               "heat_transfer",
+                                               true /*is_optional*/);
+  }
+
+
+  template <int dim, typename number>
+  void
+  MeltPoolApplication<dim, number>::interpolate_prescribed_temperature(
+    dealii::Function<dim> &prescribed_temperature)
+  {
+    AssertThrow(simulation_case->parameters.heat.operator_type ==
+                  Heat::TwoPhaseOperatorType::diffuse,
+                ExcMessage("A prescribed temperature field requires the diffuse heat operator."));
+
+    auto &temperature = heat_operation->get_temperature();
+
+    scratch_data->initialize_dof_vector(temperature, heat_dof_idx);
+    prescribed_temperature.set_time(time_iterator->get_current_time());
+    dealii::VectorTools::interpolate(scratch_data->get_mapping(),
+                                     scratch_data->get_dof_handler(heat_dof_idx),
+                                     prescribed_temperature,
+                                     temperature);
+    scratch_data->get_constraint(heat_dof_idx).distribute(temperature);
+    temperature.update_ghost_values();
   }
 
 

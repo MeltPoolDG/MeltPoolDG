@@ -475,30 +475,26 @@ namespace MeltPoolDG::Simulation::RecoilPressure
       /*
        * BC for heat transfer
        */
-      if (this->parameters.laser.model != Heat::LaserModelType::analytical_temperature)
+      if (evaporation_boundary and this->parameters.heat.convection.convection_coefficient > 0)
+        this->attach_boundary_condition(upper_bc, "convection", "heat_transfer");
+      else
         {
-          if (evaporation_boundary && this->parameters.heat.convection.convection_coefficient > 0)
-            this->attach_boundary_condition(upper_bc, "convection", "heat_transfer");
+          std::shared_ptr<dealii::Function<dim>> T_1;
+          std::shared_ptr<dealii::Function<dim>> T_2;
+
+          if ((T_bc_top != "") and (T_bc_bottom != ""))
+            {
+              T_1 = std::make_shared<dealii::FunctionParser<dim>>(T_bc_top);
+              T_2 = std::make_shared<dealii::FunctionParser<dim>>(T_bc_bottom);
+            }
           else
             {
-              std::shared_ptr<dealii::Function<dim>> T_1;
-              std::shared_ptr<dealii::Function<dim>> T_2;
-
-              if ((T_bc_top != "") && (T_bc_bottom != ""))
-                {
-                  T_1 = std::make_shared<dealii::FunctionParser<dim>>(T_bc_top);
-                  T_2 = std::make_shared<dealii::FunctionParser<dim>>(T_bc_bottom);
-                }
-              else
-                {
-                  T_1 = std::make_shared<dealii::Functions::ConstantFunction<dim>>(T_initial_top);
-                  T_2 =
-                    std::make_shared<dealii::Functions::ConstantFunction<dim>>(T_initial_bottom);
-                }
-
-              this->attach_boundary_condition({upper_bc, T_1}, "dirichlet", "heat_transfer");
-              this->attach_boundary_condition({lower_bc, T_2}, "dirichlet", "heat_transfer");
+              T_1 = std::make_shared<dealii::Functions::ConstantFunction<dim>>(T_initial_top);
+              T_2 = std::make_shared<dealii::Functions::ConstantFunction<dim>>(T_initial_bottom);
             }
+
+          this->attach_boundary_condition({upper_bc, T_1}, "dirichlet", "heat_transfer");
+          this->attach_boundary_condition({lower_bc, T_2}, "dirichlet", "heat_transfer");
         }
       // BC for RTE laser
       if (this->parameters.laser.model == Heat::LaserModelType::RTE)
@@ -572,11 +568,9 @@ namespace MeltPoolDG::Simulation::RecoilPressure
         "signed_distance");
       this->attach_initial_condition(std::make_shared<dealii::Functions::ZeroFunction<dim>>(dim),
                                      "navier_stokes_u");
-      if (this->parameters.laser.model != Heat::LaserModelType::analytical_temperature)
-        this->attach_initial_condition(
-          std::make_shared<InitialConditionTemperature<dim>>(
-            T_initial_bottom, T_initial_top, domain_y_min, domain_y_max),
-          "heat_transfer");
+      this->attach_initial_condition(std::make_shared<InitialConditionTemperature<dim>>(
+                                       T_initial_bottom, T_initial_top, domain_y_min, domain_y_max),
+                                     "heat_transfer");
 
       if (this->parameters.laser.model == Heat::LaserModelType::RTE)
         this->attach_initial_condition(std::make_shared<dealii::Functions::ZeroFunction<dim>>(),

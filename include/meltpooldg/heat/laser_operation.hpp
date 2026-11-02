@@ -69,13 +69,12 @@ namespace MeltPoolDG::Heat
       ScratchData<dim, dim, number>                            &scratch_data_in,
       const PeriodicBoundaryConditions<dim>                    &periodic_bc_in,
       const LaserData<number>                                  &laser_data_in,
-      const VectorType                                         *heaviside_in         = nullptr,
-      const unsigned int                                        hs_dof_idx_in        = 0,
-      const RadiativeTransport::RadiativeTransportData<number> *rad_trans_data_in    = nullptr,
-      const bool                                                problem_is_melt_pool = false,
-      const bool                                                heat_is_cut          = false,
-      const bool material_two_phase_transition_is_diffuse                            = false,
-      const bool print_boundary_ids                                                  = false);
+      const VectorType                                         *heaviside_in      = nullptr,
+      const unsigned int                                        hs_dof_idx_in     = 0,
+      const RadiativeTransport::RadiativeTransportData<number> *rad_trans_data_in = nullptr,
+      const bool                                                heat_is_cut       = false,
+      const bool material_two_phase_transition_is_diffuse                         = false,
+      const bool print_boundary_ids                                               = false);
 
     void
     distribute_dofs(const FiniteElementData &fe_data);
