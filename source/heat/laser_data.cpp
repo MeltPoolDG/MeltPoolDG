@@ -24,7 +24,6 @@ namespace MeltPoolDG::Heat
         "model",
         model,
         "Laser model. "
-        "analytical_temperature: see Mirkoohi et al. (2019); "
         "volumetric: volumetric heat source, the intensity is defined by \"\"intensity profile\"\"; "
         "interface_projection: projection-based regularized continuum surface flux in \"direction\", the intensity is defined by \"\"intensity profile\"\"; "
         "interface_projection_sharp: projection-based sharp surface flux in \"direction\", the intensity is defined by \"\"intensity profile\"\"; "
@@ -84,24 +83,6 @@ namespace MeltPoolDG::Heat
                           gusarov.extinction_coefficient,
                           "Extinction coefficient in [1/m].");
         prm.add_parameter("layer thickness", gusarov.layer_thickness, "Layer thickness");
-      }
-      prm.leave_subsection();
-      /*
-       *   Analytical temperature field
-       */
-      prm.enter_subsection("analytical");
-      {
-        prm.add_parameter("ambient temperature",
-                          analytical.ambient_temperature,
-                          "Ambient temperature in the inert gas.");
-        prm.add_parameter(
-          "max temperature",
-          analytical.max_temperature,
-          "Maximum temperature arising in the melt pool. If this temperature is lower than the boiling"
-          " temperature, this value is corrected to correspond to the boiling temperature + 500 K.");
-        prm.add_parameter("temperature x to y ratio",
-                          analytical.temperature_x_to_y_ratio,
-                          "This factor scales the analytical temperature field to be anisotropic.");
       }
       prm.leave_subsection();
 
@@ -233,8 +214,6 @@ namespace MeltPoolDG::Heat
   LaserData<number>::check_input_parameters() const
   {
     if (power <= 0.0)
-      return;
-    if (model == LaserModelType::analytical_temperature)
       return;
 
     if (intensity_profile != LaserIntensityProfileType::uniform)

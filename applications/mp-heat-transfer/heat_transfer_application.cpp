@@ -180,7 +180,6 @@ namespace MeltPoolDG::Heat
           &level_set_as_heaviside,
           level_set_dof_idx,
           &param.rad_trans,
-          false,
           param.heat.operator_type != TwoPhaseOperatorType::cut,
           param.material.two_phase_fluid_properties_transition_type !=
             TwoPhaseFluidPropertiesTransitionType::sharp,

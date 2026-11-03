@@ -542,9 +542,9 @@
         {
             "value": "not_initialized",
             "default_value": "not_initialized",
-            "documentation": "Laser model. analytical_temperature: see Mirkoohi et al. (2019); volumetric: volumetric heat source, the intensity is defined by \"\"intensity profile\"\"; interface_projection: projection-based regularized continuum surface flux in \"direction\", the intensity is defined by \"\"intensity profile\"\"; interface_projection_sharp: projection-based sharp surface flux in \"direction\", the intensity is defined by \"\"intensity profile\"\"; interface_projection_sharp_conforming: projection-based sharp surface flux in \"direction\" on a conforming mesh, the intensity is defined by \"\"intensity profile\"\"; RTE: continuum surface flux projected using the radiative transport equation in \"direction\", supporting shadowing of undercuts, the intensity is defined by \"\"intensity profile\"\"; ",
+            "documentation": "Laser model. volumetric: volumetric heat source, the intensity is defined by \"\"intensity profile\"\"; interface_projection: projection-based regularized continuum surface flux in \"direction\", the intensity is defined by \"\"intensity profile\"\"; interface_projection_sharp: projection-based sharp surface flux in \"direction\", the intensity is defined by \"\"intensity profile\"\"; interface_projection_sharp_conforming: projection-based sharp surface flux in \"direction\" on a conforming mesh, the intensity is defined by \"\"intensity profile\"\"; RTE: continuum surface flux projected using the radiative transport equation in \"direction\", supporting shadowing of undercuts, the intensity is defined by \"\"intensity profile\"\"; ",
             "pattern": "56",
-            "pattern_description": "[Selection not_initialized|analytical_temperature|volumetric|interface_projection_regularized|interface_projection_sharp|interface_projection_sharp_conforming|RTE ]",
+            "pattern_description": "[Selection not_initialized|volumetric|interface_projection_regularized|interface_projection_sharp|interface_projection_sharp_conforming|RTE ]",
             "actions": "56"
         },
         "intensity profile":
@@ -703,36 +703,6 @@
                 "actions": "73"
             }
         },
-        "analytical":
-        {
-            "ambient temperature":
-            {
-                "value": "0",
-                "default_value": "0",
-                "documentation": "Ambient temperature in the inert gas.",
-                "pattern": "74",
-                "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-                "actions": "74"
-            },
-            "max temperature":
-            {
-                "value": "0",
-                "default_value": "0",
-                "documentation": "Maximum temperature arising in the melt pool. If this temperature is lower than the boiling temperature, this value is corrected to correspond to the boiling temperature + 500 K.",
-                "pattern": "75",
-                "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-                "actions": "75"
-            },
-            "temperature x to y ratio":
-            {
-                "value": "1",
-                "default_value": "1",
-                "documentation": "This factor scales the analytical temperature field to be anisotropic.",
-                "pattern": "76",
-                "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-                "actions": "76"
-            }
-        },
         "dirac delta function approximation":
         {
             "type":
@@ -740,54 +710,54 @@
                 "value": "norm_of_indicator_gradient",
                 "default_value": "norm_of_indicator_gradient",
                 "documentation": "Choose how to smear a parameter over the interface.",
-                "pattern": "77",
+                "pattern": "74",
                 "pattern_description": "[Selection norm_of_indicator_gradient|heaviside_phase_weighted|heaviside_times_heaviside_phase_weighted|reciprocal_phase_weighted|reciprocal_times_heaviside_phase_weighted|heavy_phase_only ]",
-                "actions": "77"
+                "actions": "74"
             },
             "auto weights":
             {
                 "value": "false",
                 "default_value": "false",
                 "documentation": "Choose if weights should be computed automatically.",
-                "pattern": "78",
+                "pattern": "75",
                 "pattern_description": "[Bool]",
-                "actions": "78"
+                "actions": "75"
             },
             "gas phase weight":
             {
                 "value": "1",
                 "default_value": "1",
                 "documentation": "If >>> dirac delta function approximation type <<< is set to any phase weighted optionthis parameter controls the (first) weight of the gas phase (level set = -1).",
-                "pattern": "79",
+                "pattern": "76",
                 "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-                "actions": "79"
+                "actions": "76"
             },
             "heavy phase weight":
             {
                 "value": "1",
                 "default_value": "1",
                 "documentation": "If >>> dirac delta function approximation type <<< is set to any phase weighted optionthis parameter controls the (first) weight of the heavy phase (level set = 1).",
-                "pattern": "80",
+                "pattern": "77",
                 "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-                "actions": "80"
+                "actions": "77"
             },
             "gas phase weight 2":
             {
                 "value": "1",
                 "default_value": "1",
                 "documentation": "If >>> dirac delta function approximation type <<< is set to >>> heaviside_times_heaviside_phase_weighted <<< this parameter controls the second weight of the gas phase (level set = -1).",
-                "pattern": "81",
+                "pattern": "78",
                 "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-                "actions": "81"
+                "actions": "78"
             },
             "heavy phase weight 2":
             {
                 "value": "1",
                 "default_value": "1",
                 "documentation": "If >>> dirac delta function approximation type <<< is set to >>> heaviside_times_heaviside_phase_weighted <<< this parameter controls the second weight of the heavy liquid\/solid phase (level set = 1).",
-                "pattern": "82",
+                "pattern": "79",
                 "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-                "actions": "82"
+                "actions": "79"
             }
         }
     },
@@ -798,45 +768,45 @@
             "value": ".\/",
             "default_value": ".\/",
             "documentation": "Sets the base directory for all output.",
-            "pattern": "83",
+            "pattern": "80",
             "pattern_description": "[Anything]",
-            "actions": "83"
+            "actions": "80"
         },
         "write frequency":
         {
             "value": "1",
             "default_value": "1",
             "documentation": "Every n timestep that should be written",
-            "pattern": "84",
+            "pattern": "81",
             "pattern_description": "[Integer range -2147483648...2147483647 (inclusive)]",
-            "actions": "84"
+            "actions": "81"
         },
         "write time step size":
         {
             "value": "1.79769e+308",
             "default_value": "1.79769e+308",
             "documentation": "Write output output every given time step. If this parameter is set, the output write frequency is deactivated.",
-            "pattern": "85",
+            "pattern": "82",
             "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-            "actions": "85"
+            "actions": "82"
         },
         "output variables":
         {
             "value": "all",
             "default_value": "all",
             "documentation": "Specify variables that you request to output.",
-            "pattern": "86",
+            "pattern": "83",
             "pattern_description": "[List of <[Anything]> of length 0...4294967295 (inclusive)]",
-            "actions": "86"
+            "actions": "83"
         },
         "do user defined postprocessing":
         {
             "value": "false",
             "default_value": "false",
             "documentation": "Set this parameter to true to enable user defined postprocessing.",
-            "pattern": "87",
+            "pattern": "84",
             "pattern_description": "[Bool]",
-            "actions": "87"
+            "actions": "84"
         },
         "paraview":
         {
@@ -845,81 +815,81 @@
                 "value": "false",
                 "default_value": "false",
                 "documentation": "Set this parameter to true to activate paraview output.",
-                "pattern": "88",
+                "pattern": "85",
                 "pattern_description": "[Bool]",
-                "actions": "88"
+                "actions": "85"
             },
             "filename":
             {
                 "value": "solution",
                 "default_value": "solution",
                 "documentation": "Sets the base name for paraview output files.",
-                "pattern": "89",
+                "pattern": "86",
                 "pattern_description": "[Anything]",
-                "actions": "89"
+                "actions": "86"
             },
             "n digits timestep":
             {
                 "value": "4",
                 "default_value": "4",
                 "documentation": "Number of digits for the frame number of the vtu-file.",
-                "pattern": "90",
+                "pattern": "87",
                 "pattern_description": "[Integer range -2147483648...2147483647 (inclusive)]",
-                "actions": "90"
+                "actions": "87"
             },
             "print boundary id":
             {
                 "value": "false",
                 "default_value": "false",
                 "documentation": "Set this parameter to true to output a vtu-file with the boundary id.",
-                "pattern": "91",
+                "pattern": "88",
                 "pattern_description": "[Bool]",
-                "actions": "91"
+                "actions": "88"
             },
             "output subdomains":
             {
                 "value": "false",
                 "default_value": "false",
                 "documentation": "Set this parameter to true to output the subdomain ranks.",
-                "pattern": "92",
+                "pattern": "89",
                 "pattern_description": "[Bool]",
-                "actions": "92"
+                "actions": "89"
             },
             "output material id":
             {
                 "value": "false",
                 "default_value": "false",
                 "documentation": "Set to true to output the material id.",
-                "pattern": "93",
+                "pattern": "90",
                 "pattern_description": "[Bool]",
-                "actions": "93"
+                "actions": "90"
             },
             "write higher order cells":
             {
                 "value": "true",
                 "default_value": "true",
                 "documentation": "Set this parameter to false to write bi- or trilinear data only. Set this parameter to true to write higher order cell data. Note: higher order cell data can only be written for hexahedron meshes and 2 or 3 dimensions.",
-                "pattern": "94",
+                "pattern": "91",
                 "pattern_description": "[Bool]",
-                "actions": "94"
+                "actions": "91"
             },
             "n groups":
             {
                 "value": "1",
                 "default_value": "1",
                 "documentation": "Number of parallel written vtu-files.",
-                "pattern": "95",
+                "pattern": "92",
                 "pattern_description": "[Integer range -2147483648...2147483647 (inclusive)]",
-                "actions": "95"
+                "actions": "92"
             },
             "n patches":
             {
                 "value": "0",
                 "default_value": "0",
                 "documentation": "Control number of patches to enable high-order.",
-                "pattern": "96",
+                "pattern": "93",
                 "pattern_description": "[Integer range -2147483648...2147483647 (inclusive)]",
-                "actions": "96"
+                "actions": "93"
             }
         },
         "particles":
@@ -929,18 +899,18 @@
                 "value": "false",
                 "default_value": "false",
                 "documentation": "Set this parameter to true to activate particle paraview output.",
-                "pattern": "97",
+                "pattern": "94",
                 "pattern_description": "[Bool]",
-                "actions": "97"
+                "actions": "94"
             },
             "filename":
             {
                 "value": "particle",
                 "default_value": "particle",
                 "documentation": "Sets the base name for particle output files.",
-                "pattern": "98",
+                "pattern": "95",
                 "pattern_description": "[Anything]",
-                "actions": "98"
+                "actions": "95"
             }
         }
     },
@@ -951,27 +921,27 @@
             "value": "none",
             "default_value": "none",
             "documentation": "Sets the verbosity of the profiling information to be collected. If set to 'none', no profiling information is collected. If set to 'basic', only data which is cheap to collect is recorded. If set to 'detailed', also data which is expensive to collect is recorded. It is recommended to enable detailed profiling only when necessary for in-depth analysis or debugging purposes.",
-            "pattern": "99",
+            "pattern": "96",
             "pattern_description": "[Selection none|basic|detailed ]",
-            "actions": "99"
+            "actions": "96"
         },
         "write time step size":
         {
             "value": "10",
             "default_value": "10",
             "documentation": "Write profiling output every given time step size. If this parameter is set, the specified parameter for write frequency is overwritten.",
-            "pattern": "100",
+            "pattern": "97",
             "pattern_description": "[Double -MAX_DOUBLE...MAX_DOUBLE (inclusive)]",
-            "actions": "100"
+            "actions": "97"
         },
         "time type":
         {
             "value": "real",
             "default_value": "real",
             "documentation": "Choose the type of time measure to write profiling information.",
-            "pattern": "101",
+            "pattern": "98",
             "pattern_description": "[Selection real|simulation ]",
-            "actions": "101"
+            "actions": "98"
         }
     }
 }

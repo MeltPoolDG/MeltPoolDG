@@ -20,8 +20,6 @@ namespace MeltPoolDG::Heat
     char,
     // must be specified by user
     not_initialized,
-    // analytical laser model, see MeltPoolDG::Heat::LaserAnalyticalTemperatureField
-    analytical_temperature,
     // volumetric heat source
     volumetric,
     // interfacial heat source; use continuum surface force modeling within the interface region
@@ -88,13 +86,6 @@ namespace MeltPoolDG::Heat
       number extinction_coefficient = 0.0; // beta
       number layer_thickness        = 0.0; // L
     } gusarov;
-
-    struct AnalyticalData
-    {
-      number temperature_x_to_y_ratio = 1.0;
-      number max_temperature          = 0.0;
-      number ambient_temperature      = 0.0;
-    } analytical;
 
     void
     add_parameters(dealii::ParameterHandler &prm);
