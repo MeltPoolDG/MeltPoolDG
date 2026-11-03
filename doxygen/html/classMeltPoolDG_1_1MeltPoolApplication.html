@@ -170,6 +170,10 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:aee05513ddbdd1cfd0ac3a52d2123ee28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e308923cda8362e9ce6460ff660211e" id="r_a4e308923cda8362e9ce6460ff660211e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1MeltPoolApplication.html#a4e308923cda8362e9ce6460ff660211e">set_initial_condition_heat_transfer</a> ()</td></tr>
 <tr class="separator:a4e308923cda8362e9ce6460ff660211e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18d7ea107c7d37c68412d63c8918045d" id="r_a18d7ea107c7d37c68412d63c8918045d"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1MeltPoolApplication.html#a18d7ea107c7d37c68412d63c8918045d">get_prescribed_temperature</a> () const</td></tr>
+<tr class="separator:a18d7ea107c7d37c68412d63c8918045d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e0a276f544425de45e66e1ad01cc4d8" id="r_a3e0a276f544425de45e66e1ad01cc4d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1MeltPoolApplication.html#a3e0a276f544425de45e66e1ad01cc4d8">interpolate_prescribed_temperature</a> (dealii::Function&lt; dim &gt; &amp;prescribed_temperature)</td></tr>
+<tr class="separator:a3e0a276f544425de45e66e1ad01cc4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7731049301f13729282c819f992cb389" id="r_a7731049301f13729282c819f992cb389"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1MeltPoolApplication.html#a7731049301f13729282c819f992cb389">set_initial_condition_flow</a> ()</td></tr>
 <tr class="separator:a7731049301f13729282c819f992cb389"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed9f8082fb0f8a770d27b4e7b1023187" id="r_aed9f8082fb0f8a770d27b4e7b1023187"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1MeltPoolApplication.html#aed9f8082fb0f8a770d27b4e7b1023187">set_initial_condition_evaporation</a> ()</td></tr>
@@ -629,6 +633,34 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
+<a id="a18d7ea107c7d37c68412d63c8918045d" name="a18d7ea107c7d37c68412d63c8918045d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18d7ea107c7d37c68412d63c8918045d">&#9670;&#160;</a></span>get_prescribed_temperature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; dealii::Function&lt; dim &gt; &gt; <a class="el" href="classMeltPoolDG_1_1MeltPoolApplication.html">MeltPoolDG::MeltPoolApplication</a>&lt; dim, number &gt;::get_prescribed_temperature </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return the temperature field prescribed by the simulation case, or a nullptr if the temperature is computed by solving the heat equation. </p>
+
+</div>
+</div>
 <a id="a1884e337a5c65d6163c43cc0b26dbef4" name="a1884e337a5c65d6163c43cc0b26dbef4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1884e337a5c65d6163c43cc0b26dbef4">&#9670;&#160;</a></span>initialize()</h2>
 
@@ -654,6 +686,35 @@ template&lt;int dim, typename number &gt; </div>
 </table>
 </div><div class="memdoc">
 <p>This function initials the relevant scratch data for the computation of the level set problem </p>
+
+</div>
+</div>
+<a id="a3e0a276f544425de45e66e1ad01cc4d8" name="a3e0a276f544425de45e66e1ad01cc4d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e0a276f544425de45e66e1ad01cc4d8">&#9670;&#160;</a></span>interpolate_prescribed_temperature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1MeltPoolApplication.html">MeltPoolDG::MeltPoolApplication</a>&lt; dim, number &gt;::interpolate_prescribed_temperature </td>
+          <td>(</td>
+          <td class="paramtype">dealii::Function&lt; dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>prescribed_temperature</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Interpolate <code>prescribed_temperature</code> at the current time onto the temperature vector. </p>
 
 </div>
 </div>

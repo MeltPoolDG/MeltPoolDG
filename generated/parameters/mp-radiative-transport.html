@@ -590,7 +590,7 @@
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">not_initialized</span></code></p></td>
-<td><p>Laser model. analytical_temperature: see Mirkoohi et al. (2019); volumetric: volumetric heat source, the intensity is defined by “”intensity profile””; interface_projection: projection-based regularized continuum surface flux in “direction”, the intensity is defined by “”intensity profile””; interface_projection_sharp: projection-based sharp surface flux in “direction”, the intensity is defined by “”intensity profile””; interface_projection_sharp_conforming: projection-based sharp surface flux in “direction” on a conforming mesh, the intensity is defined by “”intensity profile””; RTE: continuum surface flux projected using the radiative transport equation in “direction”, supporting shadowing of undercuts, the intensity is defined by “”intensity profile””;<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">not_initialized</span></code><br>- <code class="docutils literal notranslate"><span class="pre">analytical_temperature</span></code><br>- <code class="docutils literal notranslate"><span class="pre">volumetric</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_projection_regularized</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_projection_sharp</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_projection_sharp_conforming</span></code><br>- <code class="docutils literal notranslate"><span class="pre">RTE</span></code></p></td>
+<td><p>Laser model. volumetric: volumetric heat source, the intensity is defined by “”intensity profile””; interface_projection: projection-based regularized continuum surface flux in “direction”, the intensity is defined by “”intensity profile””; interface_projection_sharp: projection-based sharp surface flux in “direction”, the intensity is defined by “”intensity profile””; interface_projection_sharp_conforming: projection-based sharp surface flux in “direction” on a conforming mesh, the intensity is defined by “”intensity profile””; RTE: continuum surface flux projected using the radiative transport equation in “direction”, supporting shadowing of undercuts, the intensity is defined by “”intensity profile””;<br><br>Allowed values:<br>- <code class="docutils literal notranslate"><span class="pre">not_initialized</span></code><br>- <code class="docutils literal notranslate"><span class="pre">volumetric</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_projection_regularized</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_projection_sharp</span></code><br>- <code class="docutils literal notranslate"><span class="pre">interface_projection_sharp_conforming</span></code><br>- <code class="docutils literal notranslate"><span class="pre">RTE</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">intensity</span> <span class="pre">profile</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
@@ -667,12 +667,7 @@
 <td><p></p></td>
 <td><p><a class="reference internal" href="#laser-gusarov"><span class="std std-ref">See table</span></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#laser-analytical"><span class="std std-ref">analytical</span></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
-<td><p></p></td>
-<td><p><a class="reference internal" href="#laser-analytical"><span class="std std-ref">See table</span></a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#laser-dirac-delta-function-approximation"><span class="std std-ref">dirac delta function approximation</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#laser-dirac-delta-function-approximation"><span class="std std-ref">dirac delta function approximation</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
 <td><p></p></td>
 <td><p><a class="reference internal" href="#laser-dirac-delta-function-approximation"><span class="std std-ref">See table</span></a></p></td>
@@ -705,36 +700,6 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
 <td><p>Layer thickness</p></td>
-</tr>
-</tbody>
-</table>
-<p><a id="laser-analytical"></a></p>
-</section>
-<section id="laser-analytical">
-<h3><code class="docutils literal notranslate"><span class="pre">laser:</span> <span class="pre">analytical</span></code><a class="headerlink" href="#laser-analytical" title="Link to this heading"></a></h3>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Parameter</p></th>
-<th class="head"><p>Type</p></th>
-<th class="head"><p>Default</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ambient</span> <span class="pre">temperature</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
-<td><p>Ambient temperature in the inert gas.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">temperature</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
-<td><p>Maximum temperature arising in the melt pool. If this temperature is lower than the boiling temperature, this value is corrected to correspond to the boiling temperature + 500 K.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">temperature</span> <span class="pre">x</span> <span class="pre">to</span> <span class="pre">y</span> <span class="pre">ratio</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
-<td><p>This factor scales the analytical temperature field to be anisotropic.</p></td>
 </tr>
 </tbody>
 </table>
