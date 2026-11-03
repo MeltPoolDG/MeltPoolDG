@@ -57,9 +57,6 @@ namespace MeltPoolDG::CompressibleFlow
     /// Similar to Courant number but for the viscous time step restriction
     number viscous_courant_number = 1.0;
 
-    /// If set to true the CFL-criteria determines the size of a time step
-    bool do_cfl_time_stepping = false;
-
     /// Gravity constant used in the body force computation
     number gravity_constant = 0.0;
 
@@ -73,6 +70,21 @@ namespace MeltPoolDG::CompressibleFlow
 
     /// Type of the variables added to the output
     std::vector<OutputType> output_variables = {OutputType::conserved_variables};
+
+    struct
+    {
+      /// If set to true the CFL-criteria determines the size of a time step
+      bool enable = false;
+
+      /// Frequency of updating the CFL time step limit. The parameter determines after how many
+      /// time steps the CFL time step limit is recomputed.
+      unsigned int update_frequency = 1;
+
+      /// If set to true, prints a short summary of the CFL time step limit to the console, whenever
+      /// the CFL time step limit is updated.
+      bool do_print_summary = false;
+
+    } cfl_time_step;
 
     struct
     {
@@ -118,15 +130,9 @@ namespace MeltPoolDG::CompressibleFlow
         prm.add_parameter("viscous courant number",
                           viscous_courant_number,
                           "Characteristic Courant-like number for viscous time-step limit.");
-
         prm.add_parameter("jacobian type",
                           jacobian_type,
                           "Type of the jacobian. Choose between 'exact' and 'finite_difference'.");
-        prm.add_parameter(
-          "use cfl criteria",
-          do_cfl_time_stepping,
-          "If set to true, the CFL time step size criteria is used to determine the time step"
-          " size in each iteration.");
         prm.add_parameter("gravity constant", gravity_constant, "Gravity constant.");
         prm.add_parameter("domain representation type",
                           domain_representation_type,
@@ -134,6 +140,30 @@ namespace MeltPoolDG::CompressibleFlow
                           dealii::Patterns::Selection("fitted|cut"));
         prm.add_parameter("verbosity level", verbosity_level, "Verbosity level for output.");
         limiter_data.add_parameters(prm);
+      }
+      prm.leave_subsection();
+
+      prm.enter_subsection("time stepping");
+      {
+        prm.enter_subsection("compressible flow cfl");
+        {
+          prm.add_parameter(
+            "enable",
+            cfl_time_step.enable,
+            "If set to true, the CFL time step size criteria is used to determine the time step"
+            " size in each iteration.");
+          prm.add_parameter(
+            "update frequency",
+            cfl_time_step.update_frequency,
+            "Frequency of updating the CFL time step limit. The parameter determines"
+            " after how many time steps the CFL time step limit is recomputed.");
+          prm.add_parameter(
+            "do print summary",
+            cfl_time_step.do_print_summary,
+            "If set to true, prints a short summary of the CFL time step limit to the console, whenever"
+            " the CFL time step limit is updated.");
+        }
+        prm.leave_subsection();
       }
       prm.leave_subsection();
 
@@ -195,6 +225,11 @@ namespace MeltPoolDG::CompressibleFlow
             dealii::ExcMessage(
               "The cut compressible flow solver only supports explicit Euler time integration."));
         }
+
+      // A CFL time step limit update frequency of 0 is not allowed.
+      AssertThrow(cfl_time_step.update_frequency > 0 or not cfl_time_step.enable,
+                  dealii::ExcMessage(
+                    "A CFL time step limit update frequency of 0 is not allowed."));
 
       // Synchronize verbosity with base verbosity if not set explicitly.
       if (verbosity_level < 0)
