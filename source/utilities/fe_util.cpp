@@ -27,8 +27,6 @@ namespace MeltPoolDG::FiniteElementUtils
           return std::make_shared<dealii::MappingFE<dim>>(dealii::FE_SimplexP<dim>(fe_data.degree));
         case FiniteElementType::FE_DGQ:
           return std::make_shared<dealii::MappingQGeneric<dim>>(fe_data.degree);
-        case FiniteElementType::FE_DGQ_GaussLobatto:
-          return std::make_shared<dealii::MappingQGeneric<dim>>(fe_data.degree);
         case FiniteElementType::not_initialized:
           DEAL_II_ASSERT_UNREACHABLE();
         default:
@@ -41,6 +39,19 @@ namespace MeltPoolDG::FiniteElementUtils
   dealii::Quadrature<dim>
   create_quadrature(const FiniteElementData &fe_data)
   {
+    Assert(fe_data.quadrature != QuadratureType::not_initialized,
+           dealii::ExcMessage("The quadrature is not set. "
+                              "Probably you forgot to call fe.post(base.fe) on this object."));
+
+    if (fe_data.quadrature == QuadratureType::gauss_lobatto)
+      {
+        AssertThrow(
+          fe_data.type == FiniteElementType::FE_Q or fe_data.type == FiniteElementType::FE_DGQ,
+          dealii::ExcMessage(
+            "Gauss-Lobatto quadrature is only supported for the finite element types FE_Q and FE_DGQ."));
+        return dealii::QGaussLobatto<dim>(fe_data.get_n_q_points());
+      }
+
     switch (fe_data.type)
       {
         case FiniteElementType::FE_Q:
@@ -51,8 +62,6 @@ namespace MeltPoolDG::FiniteElementUtils
           return dealii::QIterated<dim>(dealii::QGauss<1>(2), fe_data.degree);
         case FiniteElementType::FE_DGQ:
           return dealii::QGauss<dim>(fe_data.get_n_q_points());
-        case FiniteElementType::FE_DGQ_GaussLobatto:
-          return dealii::QGaussLobatto<dim>(fe_data.get_n_q_points());
         case FiniteElementType::not_initialized:
           DEAL_II_ASSERT_UNREACHABLE();
         default:

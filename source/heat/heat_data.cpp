@@ -97,6 +97,8 @@ namespace MeltPoolDG::Heat
       fe.type = FiniteElementType::FE_Q;
     if (fe.degree == -1)
       fe.degree = 1;
+    if (fe.quadrature == QuadratureType::not_initialized)
+      fe.quadrature = QuadratureType::gauss;
 
     // sync verbosity level with base verbosity if not set
     if (nlsolve.verbosity_level < 0)

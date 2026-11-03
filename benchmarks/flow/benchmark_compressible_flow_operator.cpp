@@ -165,8 +165,9 @@ namespace
       void
       set_simulation_parameters()
       {
-        fe_data.type   = MeltPoolDG::FiniteElementType::FE_DGQ;
-        fe_data.degree = 2;
+        fe_data.type       = MeltPoolDG::FiniteElementType::FE_DGQ;
+        fe_data.degree     = 2;
+        fe_data.quadrature = MeltPoolDG::QuadratureType::gauss;
       }
 
       /**

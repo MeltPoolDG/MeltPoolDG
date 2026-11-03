@@ -47,10 +47,9 @@
                 "FE_Q",
                 "FE_SimplexP",
                 "FE_Q_iso_Q1",
-                "FE_DGQ",
-                "FE_DGQ_GaussLobatto"
+                "FE_DGQ"
               ],
-              "description": "Finite Element.FE_Q: hexahedral continuous finite element with polynomial degree p; FE_SimplexP: tetrahedral continuous finite element with polynomial degree p; FE_Q_iso_Q1: hexahedral continuous finite element with p subdivisions containing linear elements; FE_DGQ: hexahedral discontinuous finite element with polynomial degree p; FE_DGQ_GaussLobatto: hexahedral discontinuous finite element with Gauss-Lobatto quadrature points.",
+              "description": "Finite Element.FE_Q: hexahedral continuous finite element with polynomial degree p; FE_SimplexP: tetrahedral continuous finite element with polynomial degree p; FE_Q_iso_Q1: hexahedral continuous finite element with p subdivisions containing linear elements; FE_DGQ: hexahedral discontinuous finite element with polynomial degree p",
               "default": "FE_Q"
             },
             "degree": {
@@ -59,6 +58,16 @@
               "maximum": 2147483647,
               "description": "Defines the degree p of the finite element type. If \"type\" is \"FE_Q_iso_Q1\" this parameter defines the number of subdivisions.",
               "default": 1
+            },
+            "quadrature": {
+              "type": "string",
+              "enum": [
+                "not_initialized",
+                "gauss",
+                "gauss_lobatto"
+              ],
+              "description": "Quadrature rule for the cell integrals. gauss: Gauss quadrature suited to the finite element type; gauss_lobatto: Gauss-Lobatto quadrature with p+1 points per direction, which coincide with the nodes of FE_Q and FE_DGQ (only supported for these types).",
+              "default": "gauss"
             }
           },
           "additionalProperties": false
@@ -179,10 +188,9 @@
                 "FE_Q",
                 "FE_SimplexP",
                 "FE_Q_iso_Q1",
-                "FE_DGQ",
-                "FE_DGQ_GaussLobatto"
+                "FE_DGQ"
               ],
-              "description": "Finite Element.FE_Q: hexahedral continuous finite element with polynomial degree p; FE_SimplexP: tetrahedral continuous finite element with polynomial degree p; FE_Q_iso_Q1: hexahedral continuous finite element with p subdivisions containing linear elements; FE_DGQ: hexahedral discontinuous finite element with polynomial degree p; FE_DGQ_GaussLobatto: hexahedral discontinuous finite element with Gauss-Lobatto quadrature points.",
+              "description": "Finite Element.FE_Q: hexahedral continuous finite element with polynomial degree p; FE_SimplexP: tetrahedral continuous finite element with polynomial degree p; FE_Q_iso_Q1: hexahedral continuous finite element with p subdivisions containing linear elements; FE_DGQ: hexahedral discontinuous finite element with polynomial degree p",
               "default": "not_initialized"
             },
             "degree": {
@@ -191,6 +199,16 @@
               "maximum": 2147483647,
               "description": "Defines the degree p of the finite element type. If \"type\" is \"FE_Q_iso_Q1\" this parameter defines the number of subdivisions.",
               "default": -1
+            },
+            "quadrature": {
+              "type": "string",
+              "enum": [
+                "not_initialized",
+                "gauss",
+                "gauss_lobatto"
+              ],
+              "description": "Quadrature rule for the cell integrals. gauss: Gauss quadrature suited to the finite element type; gauss_lobatto: Gauss-Lobatto quadrature with p+1 points per direction, which coincide with the nodes of FE_Q and FE_DGQ (only supported for these types).",
+              "default": "not_initialized"
             }
           },
           "additionalProperties": false
@@ -280,10 +298,9 @@
                     "FE_Q",
                     "FE_SimplexP",
                     "FE_Q_iso_Q1",
-                    "FE_DGQ",
-                    "FE_DGQ_GaussLobatto"
+                    "FE_DGQ"
                   ],
-                  "description": "Finite Element.FE_Q: hexahedral continuous finite element with polynomial degree p; FE_SimplexP: tetrahedral continuous finite element with polynomial degree p; FE_Q_iso_Q1: hexahedral continuous finite element with p subdivisions containing linear elements; FE_DGQ: hexahedral discontinuous finite element with polynomial degree p; FE_DGQ_GaussLobatto: hexahedral discontinuous finite element with Gauss-Lobatto quadrature points.",
+                  "description": "Finite Element.FE_Q: hexahedral continuous finite element with polynomial degree p; FE_SimplexP: tetrahedral continuous finite element with polynomial degree p; FE_Q_iso_Q1: hexahedral continuous finite element with p subdivisions containing linear elements; FE_DGQ: hexahedral discontinuous finite element with polynomial degree p",
                   "default": "not_initialized"
                 },
                 "degree": {
@@ -292,6 +309,16 @@
                   "maximum": 2147483647,
                   "description": "Defines the degree p of the finite element type. If \"type\" is \"FE_Q_iso_Q1\" this parameter defines the number of subdivisions.",
                   "default": -1
+                },
+                "quadrature": {
+                  "type": "string",
+                  "enum": [
+                    "not_initialized",
+                    "gauss",
+                    "gauss_lobatto"
+                  ],
+                  "description": "Quadrature rule for the cell integrals. gauss: Gauss quadrature suited to the finite element type; gauss_lobatto: Gauss-Lobatto quadrature with p+1 points per direction, which coincide with the nodes of FE_Q and FE_DGQ (only supported for these types).",
+                  "default": "not_initialized"
                 }
               },
               "additionalProperties": false
@@ -864,10 +891,9 @@
                     "FE_Q",
                     "FE_SimplexP",
                     "FE_Q_iso_Q1",
-                    "FE_DGQ",
-                    "FE_DGQ_GaussLobatto"
+                    "FE_DGQ"
                   ],
-                  "description": "Finite Element.FE_Q: hexahedral continuous finite element with polynomial degree p; FE_SimplexP: tetrahedral continuous finite element with polynomial degree p; FE_Q_iso_Q1: hexahedral continuous finite element with p subdivisions containing linear elements; FE_DGQ: hexahedral discontinuous finite element with polynomial degree p; FE_DGQ_GaussLobatto: hexahedral discontinuous finite element with Gauss-Lobatto quadrature points.",
+                  "description": "Finite Element.FE_Q: hexahedral continuous finite element with polynomial degree p; FE_SimplexP: tetrahedral continuous finite element with polynomial degree p; FE_Q_iso_Q1: hexahedral continuous finite element with p subdivisions containing linear elements; FE_DGQ: hexahedral discontinuous finite element with polynomial degree p",
                   "default": "not_initialized"
                 },
                 "degree": {
@@ -876,6 +902,16 @@
                   "maximum": 2147483647,
                   "description": "Defines the degree p of the finite element type. If \"type\" is \"FE_Q_iso_Q1\" this parameter defines the number of subdivisions.",
                   "default": -1
+                },
+                "quadrature": {
+                  "type": "string",
+                  "enum": [
+                    "not_initialized",
+                    "gauss",
+                    "gauss_lobatto"
+                  ],
+                  "description": "Quadrature rule for the cell integrals. gauss: Gauss quadrature suited to the finite element type; gauss_lobatto: Gauss-Lobatto quadrature with p+1 points per direction, which coincide with the nodes of FE_Q and FE_DGQ (only supported for these types).",
+                  "default": "not_initialized"
                 }
               },
               "additionalProperties": false
