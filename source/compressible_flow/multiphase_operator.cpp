@@ -6,7 +6,7 @@
 #include <deal.II/matrix_free/matrix_free.h>
 
 #include <meltpooldg/compressible_flow/explicit_time_integration_utils.hpp>
-#include <meltpooldg/compressible_flow/multiphase_interface_kernels.hpp>
+#include <meltpooldg/compressible_flow/multiphase_interface_coupling.hpp>
 #include <meltpooldg/compressible_flow/multiphase_operator.hpp>
 #include <meltpooldg/compressible_flow/operation_scratch_data.hpp>
 #include <meltpooldg/compressible_flow/utils.hpp>
@@ -17,6 +17,7 @@
 
 #include <algorithm>
 #include <bitset>
+#include <variant>
 #include <vector>
 
 
@@ -39,34 +40,18 @@ namespace MeltPoolDG::Multiphase
     , fe_point_temp(FE_DGQ<dim>(multiphase_scratch_data.flow_data.fe.degree),
                     CompressibleFlow::n_conserved_variables<dim>)
     , n_dofs_per_cell(fe_point_temp.dofs_per_cell)
+    , convective_coupling(multiphase_scratch_data.material_liquid,
+                          multiphase_scratch_data.material_gas)
+    , viscous_coupling(create_viscous_interface_coupling<dim, number>(
+        multiphase_scratch_data.material_liquid,
+        multiphase_scratch_data.material_gas,
+        multiphase_scratch_data.phase_coupling,
+        multiphase_scratch_data.phase_change.liquid_gas.latent_heat_of_vaporization,
+        multiphase_scratch_data.flow_data.fe.degree,
+        is_viscous_liquid or is_viscous_gas))
+    , jump_model(multiphase_scratch_data)
     , darcy_damping_model(multiphase_scratch_data.darcy_damping)
-  {
-    const auto &l     = multiphase_scratch_data.material_liquid;
-    const auto &g     = multiphase_scratch_data.material_gas;
-    const auto &pc_lg = multiphase_scratch_data.phase_change.liquid_gas;
-
-    const number q_liquid =
-      2. * l.dynamic_viscosity + l.thermal_conductivity / (l.specific_isobaric_heat / l.gamma);
-    const number q_gas =
-      2. * g.dynamic_viscosity + g.thermal_conductivity / (g.specific_isobaric_heat / g.gamma);
-
-    visc_ave_weight_phase_liquid = q_liquid / (q_liquid + q_gas);
-    visc_ave_weight_phase_gas    = 1. - visc_ave_weight_phase_liquid;
-
-    if (multiphase_scratch_data.phase_coupling.evaporation_model == EvaporationModelType::Knight)
-      {
-        evaporation_model_knight = std::make_unique<Evaporation::EvaporationModelKnight<number>>(
-          pc_lg.reference_pressure,
-          pc_lg.boiling_temperature,
-          pc_lg.latent_heat_of_vaporization,
-          g.specific_gas_constant,
-          g.gamma);
-      }
-    else
-      AssertThrow(multiphase_scratch_data.phase_coupling.evaporation_model ==
-                    EvaporationModelType::constant,
-                  dealii::ExcMessage("The given evaporation model is not supported."));
-  }
+  {}
 
   template <int dim, typename number, bool is_viscous_gas, bool is_viscous_liquid>
   void
@@ -167,6 +152,8 @@ namespace MeltPoolDG::Multiphase
     Assert(time_step_in > 0., dealii::ExcMessage("Time step size must be larger than 0!"));
     inv_time_step = 1. / time_step_in;
     time_step     = time_step_in;
+
+    jump_model.update_laser_heat_source(time);
 
     // reset values for interface velocity
     level_set_advection_operator.clear_interface_velocity();
@@ -330,11 +317,6 @@ namespace MeltPoolDG::Multiphase
             DomainPointEval eval_point_gas(*mapping_info_cells[CutUtil::Phase::gas], fe_point_temp);
             DomainPointEval eval_point_interface_gas(mapping_info_interface, fe_point_temp);
 
-            // update current laser heat source
-            const number laser_heat_source =
-              update_laser_heat_source<number>(multiphase_scratch_data.phase_coupling,
-                                               current_time);
-
             for (unsigned int cell_batch = cell_range.first; cell_batch < cell_range.second;
                  ++cell_batch)
               {
@@ -411,194 +393,12 @@ namespace MeltPoolDG::Multiphase
                                                n_dofs_per_cell),
                                              EvaluationFlags::values | EvaluationFlags::gradients);
 
-                    // do interface integral
-                    if (multiphase_scratch_data.phase_coupling.type ==
-                          InterfaceNumericalMethod::HLLP0_and_SIPG or
-                        multiphase_scratch_data.phase_coupling.type ==
-                          InterfaceNumericalMethod::HLLP0_and_penalty)
-                      {
-                        for (const unsigned int q :
-                             eval_point_interface_gas.quadrature_point_indices())
-                          {
-                            const auto w_liquid      = eval_point_interface_liquid.get_value(q);
-                            const auto w_gas         = eval_point_interface_gas.get_value(q);
-                            const auto grad_w_liquid = eval_point_interface_liquid.get_gradient(q);
-                            const auto grad_w_gas    = eval_point_interface_gas.get_gradient(q);
-                            // Outwards pointing normal vector with respect to the liquid domain.
-                            // (The sign depends on the level-set orientation. Currently, we use
-                            // a positive level-set for the liquid phase.)
-                            const auto normal = -eval_point_interface_liquid.normal_vector(q);
-
-                            DofStateView liquid_state(w_liquid,
-                                                      multiphase_scratch_data.material_liquid);
-                            DofStateView gas_state(w_gas, multiphase_scratch_data.material_gas);
-
-                            DofValueAndGradientStateView liquid_value_and_gradient_state(
-                              w_liquid, grad_w_liquid, multiphase_scratch_data.material_liquid);
-                            DofValueAndGradientStateView gas_value_and_gradient_state(
-                              w_gas, grad_w_gas, multiphase_scratch_data.material_gas);
-
-                            const auto [m_dot_evap, delta_T] =
-                              update_evaporative_mass_flux_and_temperature_jump<dim,
-                                                                                number,
-                                                                                DofStateView>(
-                                liquid_state,
-                                gas_state,
-                                normal,
-                                multiphase_scratch_data,
-                                evaporation_model_knight.get());
-
-                            const auto [riemann_flux_liquid,
-                                        riemann_flux_gas,
-                                        velocity_interface_vec] =
-                              calculate_convective_interface_flux_HLLP0<dim,
-                                                                        number,
-                                                                        ConservedVariablesType,
-                                                                        ConservedVariablesGradType,
-                                                                        DofStateView>(
-                                liquid_state,
-                                gas_state,
-                                normal,
-                                ConvectiveKernel(multiphase_scratch_data.material_liquid),
-                                ConvectiveKernel(multiphase_scratch_data.material_gas),
-                                m_dot_evap);
-
-                            ConservedVariablesType flux_liquid =
-                              contract_tensor_with_vector(riemann_flux_liquid, normal);
-                            ConservedVariablesType flux_gas =
-                              contract_tensor_with_vector(riemann_flux_gas, -normal);
-                            // TODO: consider more complex data structure for velocity for dim>1
-                            // TODO: project interface velocity in normal direction for dim>1
-                            // returns velocity with respect to the outward liquid phase pointing
-                            // normal!
-                            for (unsigned int v = 0;
-                                 v <
-                                 eval_point_interface_gas.n_active_entries_per_quadrature_batch(q);
-                                 ++v)
-                              level_set_advection_operator.set_interface_velocity(
-                                velocity_interface_vec[v]);
-
-                            if (is_viscous_liquid or is_viscous_gas)
-                              {
-                                if (multiphase_scratch_data.phase_coupling.type ==
-                                    InterfaceNumericalMethod::HLLP0_and_SIPG)
-                                  {
-                                    const auto [viscous_interface_flux_liquid,
-                                                viscous_interface_flux_gas] =
-                                      calculate_viscous_interface_flux<dim,
-                                                                       number,
-                                                                       ConservedVariablesType,
-                                                                       ConservedVariablesGradType,
-                                                                       DofValueAndGradientStateView,
-                                                                       DofValueView,
-                                                                       DofPrimitiveValueView,
-                                                                       DofPrimitiveStateView>(
-                                        liquid_value_and_gradient_state,
-                                        gas_value_and_gradient_state,
-                                        normal,
-                                        visc_ave_weight_phase_liquid,
-                                        visc_ave_weight_phase_gas,
-                                        multiphase_scratch_data.phase_coupling.hllp0_and_sipg
-                                          .interior_penalty_parameter_interface,
-                                        DiffusiveKernel(multiphase_scratch_data.material_liquid),
-                                        DiffusiveKernel(multiphase_scratch_data.material_gas),
-                                        multiphase_scratch_data,
-                                        multiphase_scratch_data.scratch_data.get_min_cell_size(),
-                                        m_dot_evap,
-                                        delta_T,
-                                        laser_heat_source);
-
-                                    flux_liquid -= viscous_interface_flux_liquid;
-                                    // opposite normal direction for phase 2
-                                    flux_gas += viscous_interface_flux_gas;
-                                  }
-                                else if (multiphase_scratch_data.phase_coupling.type ==
-                                         InterfaceNumericalMethod::HLLP0_and_penalty)
-                                  {
-                                    const auto [viscous_interface_flux_liquid,
-                                                viscous_interface_flux_gas] =
-                                      calculate_viscous_interface_flux_method_3<
-                                        dim,
-                                        number,
-                                        ConservedVariablesType,
-                                        ConservedVariablesGradType,
-                                        DofValueAndGradientStateView>(
-                                        liquid_value_and_gradient_state,
-                                        gas_value_and_gradient_state,
-                                        normal,
-                                        visc_ave_weight_phase_liquid,
-                                        visc_ave_weight_phase_gas,
-                                        DiffusiveKernel(multiphase_scratch_data.material_liquid),
-                                        DiffusiveKernel(multiphase_scratch_data.material_gas),
-                                        multiphase_scratch_data,
-                                        multiphase_scratch_data.scratch_data.get_min_cell_size(),
-                                        m_dot_evap,
-                                        delta_T,
-                                        laser_heat_source);
-
-                                    flux_liquid += viscous_interface_flux_liquid;
-                                    flux_gas += viscous_interface_flux_gas;
-                                  }
-                              }
-
-                            eval_point_interface_liquid.submit_value(-flux_liquid, q);
-                            eval_point_interface_gas.submit_value(-flux_gas, q);
-
-                            if ((is_viscous_liquid or is_viscous_gas) and
-                                multiphase_scratch_data.phase_coupling.type ==
-                                  InterfaceNumericalMethod::HLLP0_and_SIPG)
-                              {
-                                const auto [numerical_flux_gradient_liquid,
-                                            numerical_flux_gradient_gas] =
-                                  calculate_viscous_interface_flux_gradient<
-                                    dim,
-                                    number,
-                                    ConservedVariablesType,
-                                    ConservedVariablesGradType,
-                                    DofStateView,
-                                    DofValueView,
-                                    DofPrimitiveValueView,
-                                    DofPrimitiveStateView>(
-                                    liquid_state,
-                                    gas_state,
-                                    normal,
-                                    visc_ave_weight_phase_liquid,
-                                    visc_ave_weight_phase_gas,
-                                    DiffusiveKernel(multiphase_scratch_data.material_liquid),
-                                    DiffusiveKernel(multiphase_scratch_data.material_gas),
-                                    multiphase_scratch_data,
-                                    m_dot_evap,
-                                    delta_T);
-
-                                eval_point_interface_liquid.submit_gradient(
-                                  -numerical_flux_gradient_liquid, q);
-                                eval_point_interface_gas.submit_gradient(
-                                  -numerical_flux_gradient_gas, q);
-                              }
-                          }
-                      }
-                    else
-                      Assert(false, dealii::ExcNotImplemented());
-
-                    eval_point_interface_liquid.integrate(StridedArrayView<number, n_lanes>(
-                                  &eval_liquid_intersected.begin_dof_values()[0][lane],
-                                  n_dofs_per_cell),
-                                  EvaluationFlags::values |
-                                  (multiphase_scratch_data.phase_coupling.type
-                                    == InterfaceNumericalMethod::HLLP0_and_SIPG ?
-                                    EvaluationFlags::gradients: EvaluationFlags::nothing) , true
-                                  /*specify flag 'true' for summing the integrated values
-                                   *into the solution values*/);
-
-                    eval_point_interface_gas.integrate(StridedArrayView<number, n_lanes>(
-                                  &eval_gas_intersected.begin_dof_values()[0][lane],
-                                  n_dofs_per_cell),
-                                  EvaluationFlags::values |
-                                  (multiphase_scratch_data.phase_coupling.type
-                                    == InterfaceNumericalMethod::HLLP0_and_SIPG ?
-                                    EvaluationFlags::gradients : EvaluationFlags::nothing), true
-                                  /*specify flag 'true' for summing the integrated values
-                                   *into the solution values*/);
+                    // apply integrals on the immersed phase interface
+                    apply_interface_terms(eval_point_interface_liquid,
+                                          eval_point_interface_gas,
+                                          eval_liquid_intersected,
+                                          eval_gas_intersected,
+                                          lane);
                   }
                 eval_liquid_intersected.distribute_local_to_global(dst);
                 eval_gas_intersected.distribute_local_to_global(dst);
@@ -608,6 +408,91 @@ namespace MeltPoolDG::Multiphase
         default:
           break;
       }
+  }
+
+  template <int dim, typename number, bool is_viscous_gas, bool is_viscous_liquid>
+  void
+  CompressibleMultiphaseOperator<dim, number, is_viscous_gas, is_viscous_liquid>::
+    apply_interface_terms(DomainPointEval<>                      &point_eval_liquid,
+                          DomainPointEval<>                      &point_eval_gas,
+                          FECellIntegrator<dim, dim + 2, number> &eval_liquid,
+                          FECellIntegrator<dim, dim + 2, number> &eval_gas,
+                          const unsigned int                      lane) const
+  {
+    // TODO: use local cell size
+    const number cell_size = multiphase_scratch_data.scratch_data.get_min_cell_size();
+
+    std::visit(
+      [&]<IsViscousCoupling<dim, number> ViscousCouplingType>(
+        const ViscousCouplingType &viscous_coupling_) {
+        for (const unsigned int q : point_eval_gas.quadrature_point_indices())
+          {
+            const auto w_liquid = point_eval_liquid.get_value(q);
+            const auto w_gas    = point_eval_gas.get_value(q);
+            // gradients are only necessary for viscous coupling
+            ConservedVariablesGradType grad_w_liquid{};
+            ConservedVariablesGradType grad_w_gas{};
+            if constexpr (is_viscous_liquid or is_viscous_gas)
+              {
+                grad_w_liquid = point_eval_liquid.get_gradient(q);
+                grad_w_gas    = point_eval_gas.get_gradient(q);
+              }
+            // Outwards pointing normal vector with respect to the liquid domain.
+            // (The sign depends on the level-set orientation. Currently, we use
+            // a positive level-set for the liquid phase.)
+            const auto normal = -point_eval_liquid.normal_vector(q);
+
+            // collect the relevant data for the interface flux computation
+            const InterfaceState<dim, number> state{
+              {w_liquid, grad_w_liquid, multiphase_scratch_data.material_liquid},
+              {w_gas, grad_w_gas, multiphase_scratch_data.material_gas},
+              normal,
+              cell_size};
+
+            // evaluate the interface jump parameters for the given state
+            const InterfaceJump<number> jump = jump_model.evaluate(state);
+
+            // add the convective and viscous interface flux contributions, and get the interface
+            // normal velocity from the convective_coupling
+            InterfaceFlux<dim, number>      flux{};
+            dealii::VectorizedArray<number> interface_velocity{};
+            convective_coupling.add(state, jump, flux, interface_velocity);
+            viscous_coupling_.add(state, jump, flux);
+
+            // TODO: project interface velocity in normal direction for dim>1
+            for (unsigned int v = 0; v < point_eval_gas.n_active_entries_per_quadrature_batch(q);
+                 ++v)
+              level_set_advection_operator.set_interface_velocity(interface_velocity[v]);
+
+            point_eval_liquid.submit_value(flux.value_liquid, q);
+            point_eval_gas.submit_value(flux.value_gas, q);
+
+            if (ViscousCouplingType::has_gradient_terms)
+              {
+                point_eval_liquid.submit_gradient(flux.gradient_liquid, q);
+                point_eval_gas.submit_gradient(flux.gradient_gas, q);
+              }
+          }
+
+        const auto integration_flags =
+          EvaluationFlags::values |
+          (ViscousCouplingType::has_gradient_terms ? EvaluationFlags::gradients :
+                                                     EvaluationFlags::nothing);
+
+        constexpr unsigned int n_lanes = VectorizedArray<number>::size();
+
+        point_eval_liquid.integrate(StridedArrayView<number, n_lanes>(
+                                      &eval_liquid.begin_dof_values()[0][lane], n_dofs_per_cell),
+                                    integration_flags,
+                                    true /*specify flag 'true' for summing the integrated values
+                                   *into the solution values*/);
+
+        point_eval_gas.integrate(
+          StridedArrayView<number, n_lanes>(&eval_gas.begin_dof_values()[0][lane], n_dofs_per_cell),
+          integration_flags,
+          true /*specify flag 'true' for summing the integrated values into the solution values*/);
+      },
+      viscous_coupling);
   }
 
   template <int dim, typename number, bool is_viscous_gas, bool is_viscous_liquid>

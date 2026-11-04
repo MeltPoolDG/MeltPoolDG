@@ -1,13 +1,15 @@
 /**
- * @brief A collection of functions for the computation of the interface terms for
- * compressible two-phase flows.
+ * @brief Physics kernels for the interface terms of compressible two-phase flows.
  *
  * Two different strategies for enforcing the interface jump conditions are implemented:
  *
  * - "HLLP0 and SIPG": approximate HLLP0 Riemann solver for convective fluxes and Nitsche-type
  *   method for viscous fluxes, consistently aligned to the SIPG method for inner faces
- * - "penalty": strong enforcement of both convective and viscous fluxes in the weak form and
- *   penalty terms for Dirichlet density and temperature constraints for the gas phase
+ * - "HLLP0 and penalty": approximate HLLP0 Riemann solver for convective fluxes and a combination
+ *   of strong incorporation in the weak form and penalty terms for the viscous fluxes
+ *
+ * The composed interface constraint methods ("HLLP0 and SIPG", "HLLP0 and penalty") are assembled
+ * from these kernels in multiphase_interface_coupling.hpp.
  */
 
 #pragma once
@@ -19,8 +21,6 @@
 #include <meltpooldg/compressible_flow/kernels.hpp>
 #include <meltpooldg/compressible_flow/state_views.hpp>
 #include <meltpooldg/compressible_flow/utils.hpp>
-#include <meltpooldg/core/material.hpp>
-#include <meltpooldg/phase_change/evaporation_model_knight.hpp>
 #include <meltpooldg/utilities/utility_functions.hpp>
 
 #include <tuple>
@@ -28,9 +28,32 @@
 
 namespace MeltPoolDG::Multiphase
 {
-  ///////////////////////////////////////////////////////////////////////////////////////////
-  ///                               HLLP0 Riemann solver                                  ///
-  ///////////////////////////////////////////////////////////////////////////////////////////
+  /**
+   * @brief Calculate the weights of the Nitsche-type viscous interface fluxes.
+   *
+   * @param material_liquid Material data of the liquid phase.
+   * @param material_gas Material data of the gas phase.
+   *
+   * @return Pair of weights (liquid, gas). The weights sum up to one (convex combination).
+   */
+  template <typename number>
+  inline std::pair<number, number>
+  calculate_viscous_average_weights(
+    const CompressibleFlow::MaterialPhaseData<number> &material_liquid,
+    const CompressibleFlow::MaterialPhaseData<number> &material_gas)
+  {
+    const auto &l = material_liquid;
+    const auto &g = material_gas;
+
+    const number q_liquid =
+      2. * l.dynamic_viscosity + l.thermal_conductivity / (l.specific_isobaric_heat / l.gamma);
+    const number q_gas =
+      2. * g.dynamic_viscosity + g.thermal_conductivity / (g.specific_isobaric_heat / g.gamma);
+
+    const number weight_liquid = q_liquid / (q_liquid + q_gas);
+
+    return {weight_liquid, 1. - weight_liquid};
+  }
 
   /**
    * @brief Calculate the convective flux with the HLLP0 Riemann solver.
@@ -58,11 +81,13 @@ namespace MeltPoolDG::Multiphase
    */
   template <int dim,
             typename number,
-            typename ConservedVariablesType,
-            typename ConservedVariablesGradType,
             typename DofStateView,
-            CompressibleFlow::IsFluxKernel<ConservedVariablesType, ConservedVariablesGradType>
-              ConvectiveKernel>
+            typename ConvectiveKernel,
+            typename ConservedVariablesType     = typename DofStateView::state_type,
+            typename ConservedVariablesGradType = typename ConvectiveKernel::PhysicalFluxType>
+    requires CompressibleFlow::IsFluxKernel<ConvectiveKernel,
+                                            ConservedVariablesType,
+                                            ConservedVariablesGradType>
   inline DEAL_II_ALWAYS_INLINE //
     std::
       tuple<ConservedVariablesGradType, ConservedVariablesGradType, dealii::VectorizedArray<number>>
@@ -80,13 +105,7 @@ namespace MeltPoolDG::Multiphase
     constexpr int liquid = 0;
     constexpr int gas    = 1;
 
-    // enumeration for conserved variables component indices
-    using Idx = std::conditional_t<
-      dim == 1,
-      CompressibleFlow::Idx1D,
-      std::conditional_t<dim == 2,
-                         CompressibleFlow::Idx2D,
-                         std::conditional_t<dim == 3, CompressibleFlow::Idx3D, void>>>;
+    using Idx = CompressibleFlow::ConservedVariableIndex<dim>;
 
     // 0) preliminaries
 
@@ -269,10 +288,6 @@ namespace MeltPoolDG::Multiphase
     return {flux[liquid], flux[gas], normal_velocity_interface};
   }
 
-  ///////////////////////////////////////////////////////////////////////////////////////////
-  ///                     SIPG functions for method "HLLP and SIPG"                       ///
-  ///////////////////////////////////////////////////////////////////////////////////////////
-
   /**
    * @brief Calculates the Dirichlet jump in conservative variables between two phases.
    *
@@ -281,12 +296,10 @@ namespace MeltPoolDG::Multiphase
    * conditions between compressible viscous phases: An extended interior penalty discontinuous
    * Galerkin method for sharp interface simulation.'
    *
-   * @param liquid_cons_view State view for liquid phase at quadrature point on the (unfitted)
-   * interface.
-   * @param gas_cons_view State view for gas phase at quadrature point on the (unfitted)
-   * interface.
-   * @param multiphase_scratch_data Collection of parameters required by the compressible multiphase
-   * Navier-Stokes operator.
+   * @param liquid_cons_view State view for the liquid phase at the quadrature point.
+   * @param gas_cons_view State view for the gas phase at the quadrature point.
+   * @param material_liquid Material data of the liquid phase.
+   * @param material_gas Material data of the gas phase.
    * @param m_dot_evap Current evaporation mass flux (SI: in kg/(m^2 s)).
    * @param delta_T Current temperature jump at the interface (T^l - T^g) (SI: in K)
    *
@@ -294,20 +307,24 @@ namespace MeltPoolDG::Multiphase
    */
   template <int dim,
             typename number,
-            typename ConservedVariablesType,
             typename DofStateView,
-            typename DofValueView,
-            typename DofPrimitiveValueView,
-            typename DofPrimitiveStateView>
+            typename ConservedVariablesType = typename DofStateView::state_type>
   inline DEAL_II_ALWAYS_INLINE //
     ConservedVariablesType
-    calculate_Dirichlet_jump_in_conservative_variables(
-      const DofStateView                                                  &liquid_cons_view,
-      const DofStateView                                                  &gas_cons_view,
-      const CompressibleFlow::MultiphaseOperationScratchData<dim, number> &multiphase_scratch_data,
-      const number                                                        &m_dot_evap,
-      const number                                                        &delta_T)
+    calculate_Dirichlet_jump_SIPG(
+      const DofStateView                                &liquid_cons_view,
+      const DofStateView                                &gas_cons_view,
+      const CompressibleFlow::MaterialPhaseData<number> &material_liquid,
+      const CompressibleFlow::MaterialPhaseData<number> &material_gas,
+      const number                                       m_dot_evap,
+      const number                                       delta_T)
   {
+    using DofValueView = CompressibleFlow::DofValueView<dim, ConservedVariablesType>;
+    using DofPrimitiveValueView =
+      CompressibleFlow::DofPrimitiveValueView<dim, ConservedVariablesType>;
+    using DofPrimitiveStateView =
+      CompressibleFlow::DofPrimitiveStateView<dim, number, const ConservedVariablesType>;
+
     ConservedVariablesType liquid_prim_data;
     ConservedVariablesType gas_prim_data;
     DofPrimitiveValueView  liquid_prim_view(liquid_prim_data);
@@ -343,11 +360,9 @@ namespace MeltPoolDG::Multiphase
     DofValueView           gas_cons_view_star(gas_cons_star_data);
 
     CompressibleFlow::primitive_to_conservative<dim, DofValueView, DofPrimitiveStateView>(
-      DofPrimitiveStateView(liquid_prim_view.value(), multiphase_scratch_data.material_liquid),
-      liquid_cons_view_star);
+      DofPrimitiveStateView(liquid_prim_view.value(), material_liquid), liquid_cons_view_star);
     CompressibleFlow::primitive_to_conservative<dim, DofValueView, DofPrimitiveStateView>(
-      DofPrimitiveStateView(gas_prim_view.value(), multiphase_scratch_data.material_gas),
-      gas_cons_view_star);
+      DofPrimitiveStateView(gas_prim_view.value(), material_gas), gas_cons_view_star);
 
     J_Dir = liquid_cons_view_star.value() - gas_cons_view_star.value();
 
@@ -355,9 +370,10 @@ namespace MeltPoolDG::Multiphase
   }
 
   /**
-   * @brief Calculate the viscous interface flux for viscous phase coupling with the SIPG method.
+   * @brief Calculate the viscous interface fluxes of the SIPG method, which are tested with the
+   * test functions.
    *
-   * This function calculates the viscous interface flux, as described in:
+   * Nitsche-type viscous interface flux with a symmetric interior penalty term, as described in:
    * Henneaux, 2023: 'Higher-order enforcement of jumps conditions between compressible viscous
    * phases: An extended interior penalty discontinuous Galerkin method for sharp interface
    * simulation.'
@@ -366,20 +382,14 @@ namespace MeltPoolDG::Multiphase
    * interface.
    * @param gas_state State view for gas phase at quadrature point on the (unfitted) interface.
    * @param normal Interface normal vector, pointing outside the liquid phase.
-   * @param visc_ave_weight_phase_liquid Weighting factor for Nitsche-type weighted viscous
-   * interface fluxes.
-   * @param visc_ave_weight_phase_gas Weighting factor for Nitsche-type weighted viscous interface
-   * fluxes.
-   * @param tau Symmetric interior penalty parameter.
-   * @param diffusive_kernel_liquid Object with reference to the material data needed for diffusive
-   * flux calculations in the liquid phase.
-   *  @param diffusive_kernel_gas Object with reference to the material data needed for diffusive
-   * flux calculations in the gas phase.
-   * @param multiphase_scratch_data Collection of parameters required by the compressible multiphase
-   * Navier-Stokes operator.
-   * @param cell_size Cell size.
+   * @param J_Dir Dirichlet-type jump in conservative variables.
+   * @param weight_liquid Weight of the liquid phase.
+   * @param weight_gas Weight of the gas phase.
+   * @param penalty_parameter Interior penalty parameter, including the scaling with the cell size.
+   * @param diffusive_kernel_liquid Diffusive flux kernel of the liquid phase.
+   * @param diffusive_kernel_gas Diffusive flux kernel of the gas phase.
+   * @param latent_heat_of_vaporization Latent heat of vaporization (SI: in J/kg).
    * @param m_dot_evap Current evaporation mass flux (SI: in kg/(m^2 s)).
-   * @param delta_T Current temperature jump at the interface (T^l - T^g) (SI: in K).
    * @param laser_heat_source Current value of the laser heat source (SI: in W/m^2).
    *
    * @return Pair of interface viscous fluxes for liquid and gas phase, which are weighted with the
@@ -387,38 +397,30 @@ namespace MeltPoolDG::Multiphase
    */
   template <int dim,
             typename number,
-            typename ConservedVariablesType,
-            typename ConservedVariablesGradType,
             typename DofStateView,
-            typename DofValueView,
-            typename DofPrimitiveValueView,
-            typename DofPrimitiveStateView,
-            CompressibleFlow::IsFluxKernel<ConservedVariablesType, ConservedVariablesGradType>
-              DiffusiveKernel>
+            typename DiffusiveKernel,
+            typename ConservedVariablesType     = typename DofStateView::state_type,
+            typename ConservedVariablesGradType = typename DiffusiveKernel::PhysicalFluxType>
+    requires CompressibleFlow::IsFluxKernel<DiffusiveKernel,
+                                            ConservedVariablesType,
+                                            ConservedVariablesGradType>
   inline DEAL_II_ALWAYS_INLINE //
     std::pair<ConservedVariablesType, ConservedVariablesType>
-    calculate_viscous_interface_flux(
+    calculate_viscous_interface_flux_SIPG(
       const DofStateView                                            &liquid_state,
       const DofStateView                                            &gas_state,
       const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
-      const number                                                  &visc_ave_weight_phase_liquid,
-      const number                                                  &visc_ave_weight_phase_gas,
-      const number                                                  &tau,
+      const ConservedVariablesType                                  &J_Dir,
+      const number                                                   weight_liquid,
+      const number                                                   weight_gas,
+      const number                                                   penalty_parameter,
       const DiffusiveKernel                                         &diffusive_kernel_liquid,
       const DiffusiveKernel                                         &diffusive_kernel_gas,
-      const CompressibleFlow::MultiphaseOperationScratchData<dim, number> &multiphase_scratch_data,
-      const number                                                        &cell_size,
-      const number                                                        &m_dot_evap,
-      const number                                                        &delta_T,
-      const number                                                        &laser_heat_source)
+      const number                                                   latent_heat_of_vaporization,
+      const number                                                   m_dot_evap,
+      const number                                                   laser_heat_source)
   {
-    // enumeration for conserved variables component indices
-    using Idx = std::conditional_t<
-      dim == 1,
-      CompressibleFlow::Idx1D,
-      std::conditional_t<dim == 2,
-                         CompressibleFlow::Idx2D,
-                         std::conditional_t<dim == 3, CompressibleFlow::Idx3D, void>>>;
+    using Idx = CompressibleFlow::ConservedVariableIndex<dim>;
 
     // TODO: add contributions for surface tension, interface heat source (laser energy) and
     // Marangoni forces
@@ -438,12 +440,10 @@ namespace MeltPoolDG::Multiphase
     ConservedVariablesType J_Rob;
 
     // TODO: Add entries for case dim>1
-    J_Rob[Idx::energy] =
-      (pressure_liquid * vel_n_liquid - pressure_gas * vel_n_gas) +
-      m_dot_evap * (liquid_state.total_energy() / liquid_state.density() -
-                    gas_state.total_energy() / gas_state.density()) +
-      laser_heat_source -
-      m_dot_evap * multiphase_scratch_data.phase_change.liquid_gas.latent_heat_of_vaporization;
+    J_Rob[Idx::energy] = (pressure_liquid * vel_n_liquid - pressure_gas * vel_n_gas) +
+                         m_dot_evap * (liquid_state.total_energy() / liquid_state.density() -
+                                       gas_state.total_energy() / gas_state.density()) +
+                         laser_heat_source - m_dot_evap * latent_heat_of_vaporization;
 
     const ConservedVariablesGradType viscous_flux_liquid =
       diffusive_kernel_liquid.flux(liquid_state.value(), liquid_state.gradient_value());
@@ -453,43 +453,22 @@ namespace MeltPoolDG::Multiphase
 
     ConservedVariablesGradType total_flux_liquid = dyadic_product(J_Rob, normal);
     total_flux_liquid += viscous_flux_gas;
-    total_flux_liquid *= visc_ave_weight_phase_liquid;
-    total_flux_liquid += visc_ave_weight_phase_gas * viscous_flux_liquid;
+    total_flux_liquid *= weight_liquid;
+    total_flux_liquid += weight_gas * viscous_flux_liquid;
 
     ConservedVariablesGradType total_flux_gas =
-      dyadic_product(J_Rob, -normal); // opposite normal direction for phase 2
+      dyadic_product(J_Rob, -normal); // opposite normal direction for the gas phase
     total_flux_gas += viscous_flux_liquid;
-    total_flux_gas *= visc_ave_weight_phase_gas;
-    total_flux_gas += visc_ave_weight_phase_liquid * viscous_flux_gas;
+    total_flux_gas *= weight_gas;
+    total_flux_gas += weight_liquid * viscous_flux_gas;
 
     // penalty term
-
-    const auto J_Dir_cons =
-      calculate_Dirichlet_jump_in_conservative_variables<dim,
-                                                         number,
-                                                         ConservedVariablesType,
-                                                         DofStateView,
-                                                         DofValueView,
-                                                         DofPrimitiveValueView,
-                                                         DofPrimitiveStateView>(
-        liquid_state, gas_state, multiphase_scratch_data, m_dot_evap, delta_T);
-
-    const number penalty_parameter =
-      std::min(liquid_state.dynamic_viscosity() /
-                 multiphase_scratch_data.material_liquid.reference_density,
-               gas_state.dynamic_viscosity() /
-                 multiphase_scratch_data.material_gas.reference_density) *
-      (multiphase_scratch_data.flow_data.fe.degree + 1.) *
-      (multiphase_scratch_data.flow_data.fe.degree + 1.) / cell_size * tau;
-
-    ConservedVariablesGradType penalty_flux_liquid;
-    const auto                 tmp_m = liquid_state.value() - (gas_state.value() + J_Dir_cons);
-    penalty_flux_liquid              = dyadic_product(tmp_m, normal);
+    ConservedVariablesGradType penalty_flux_liquid =
+      dyadic_product(liquid_state.value() - (gas_state.value() + J_Dir), normal);
     penalty_flux_liquid *= penalty_parameter;
 
-    ConservedVariablesGradType penalty_flux_gas;
-    const auto                 tmp_p = gas_state.value() - (liquid_state.value() - J_Dir_cons);
-    penalty_flux_gas                 = dyadic_product(tmp_p, -normal);
+    ConservedVariablesGradType penalty_flux_gas =
+      dyadic_product(gas_state.value() - (liquid_state.value() - J_Dir), -normal);
     penalty_flux_gas *= penalty_parameter;
 
     total_flux_liquid -= penalty_flux_liquid;
@@ -512,67 +491,46 @@ namespace MeltPoolDG::Multiphase
    * interface.
    * @param gas_state State view for gas phase at quadrature point on the (unfitted) interface.
    * @param normal Interface normal vector, pointing outside the liquid phase.
-   * @param visc_ave_weight_phase_liquid Weighting factor for Nitsche-type weighted viscous
-   * interface fluxes.
-   * @param visc_ave_weight_phase_gas Weighting factor for Nitsche-type weighted viscous interface
-   * fluxes.
-   * @param diffusive_kernel_liquid Object with reference to the material data needed for diffusive
-   * flux calculations in the liquid phase.
-   * @param diffusive_kernel_gas Object with reference to the material data needed for diffusive
-   * flux calculations in the gas phase.
-   * @param multiphase_scratch_data Collection of parameters required by the compressible multiphase
-   * Navier-Stokes operator.
-   * @param m_dot_evap Current evaporation mass flux (SI: in kg/(m^2 s)).
-   * @param delta_T Current temperature jump at the interface (T^l - T^g) (SI: in K).
+   * @param J_Dir Dirichlet-type jump in conservative variables.
+   * @param weight_liquid Weight of the liquid phase.
+   * @param weight_gas Weight of the gas phase.
+   * @param diffusive_kernel_liquid Diffusive flux kernel of the liquid phase.
+   * @param diffusive_kernel_gas Diffusive flux kernel of the gas phase.
    *
    * @return Pair of interface viscous fluxes for liquid and gas phase, which are weighted with the
    * gradient of the test functions.
    */
   template <int dim,
             typename number,
-            typename ConservedVariablesType,
-            typename ConservedVariablesGradType,
             typename DofStateView,
-            typename DofValueView,
-            typename DofPrimitiveValueView,
-            typename DofPrimitiveStateView,
-            CompressibleFlow::IsFluxKernel<ConservedVariablesType, ConservedVariablesGradType>
-              DiffusiveKernel>
+            typename DiffusiveKernel,
+            typename ConservedVariablesType     = typename DofStateView::state_type,
+            typename ConservedVariablesGradType = typename DiffusiveKernel::PhysicalFluxType>
+    requires CompressibleFlow::IsFluxKernel<DiffusiveKernel,
+                                            ConservedVariablesType,
+                                            ConservedVariablesGradType>
   inline DEAL_II_ALWAYS_INLINE //
     std::pair<ConservedVariablesGradType, ConservedVariablesGradType>
-    calculate_viscous_interface_flux_gradient(
+    calculate_viscous_interface_flux_gradient_SIPG(
       const DofStateView                                            &liquid_state,
       const DofStateView                                            &gas_state,
       const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
-      const number                                                  &visc_ave_weight_phase_liquid,
-      const number                                                  &visc_ave_weight_phase_gas,
+      const ConservedVariablesType                                  &J_Dir,
+      const number                                                   weight_liquid,
+      const number                                                   weight_gas,
       const DiffusiveKernel                                         &diffusive_kernel_liquid,
-      const DiffusiveKernel                                         &diffusive_kernel_gas,
-      const CompressibleFlow::MultiphaseOperationScratchData<dim, number> &multiphase_scratch_data,
-      const number                                                        &m_dot_evap,
-      const number                                                        &delta_T)
+      const DiffusiveKernel                                         &diffusive_kernel_gas)
   {
-    const auto J_Dir_cons =
-      calculate_Dirichlet_jump_in_conservative_variables<dim,
-                                                         number,
-                                                         ConservedVariablesType,
-                                                         DofStateView,
-                                                         DofValueView,
-                                                         DofPrimitiveValueView,
-                                                         DofPrimitiveStateView>(
-        liquid_state, gas_state, multiphase_scratch_data, m_dot_evap, delta_T);
-
-    const auto u_liquid_star =
-      UtilityFunctions::calculate_arithmetic_phase_weighted_average(visc_ave_weight_phase_gas,
+    const ConservedVariablesType u_liquid_star =
+      UtilityFunctions::calculate_arithmetic_phase_weighted_average(weight_gas,
                                                                     liquid_state.value(),
-                                                                    visc_ave_weight_phase_liquid,
-                                                                    gas_state.value() + J_Dir_cons);
-    const auto u_gas_star =
-      UtilityFunctions::calculate_arithmetic_phase_weighted_average(visc_ave_weight_phase_liquid,
+                                                                    weight_liquid,
+                                                                    gas_state.value() + J_Dir);
+    const ConservedVariablesType u_gas_star =
+      UtilityFunctions::calculate_arithmetic_phase_weighted_average(weight_liquid,
                                                                     gas_state.value(),
-                                                                    visc_ave_weight_phase_gas,
-                                                                    liquid_state.value() -
-                                                                      J_Dir_cons);
+                                                                    weight_gas,
+                                                                    liquid_state.value() - J_Dir);
 
     auto tmp_liquid = u_liquid_star - liquid_state.value();
     auto tmp_gas    = u_gas_star - gas_state.value();
@@ -588,69 +546,62 @@ namespace MeltPoolDG::Multiphase
     return {flux_grad_liquid, flux_grad_gas};
   }
 
-  ///////////////////////////////////////////////////////////////////////////////////////////
-  ///                 viscous terms for the method "HLLP0 and penalty"                    ///
-  ///////////////////////////////////////////////////////////////////////////////////////////
-
   /**
    * @brief Calculates the viscous flux at the phase interface with a combined direct and penalty
    * approach.
    *
-   * This function calculates the viscous interface flux for direct incorporation in the weak form
-   * in combination with a penalty term for the temperature jump constraint.
+   * The viscous interface flux is incorporated directly in the weak form in combination with
+   * penalty terms for the temperature jump and, for dim > 1, the tangential no-slip constraint.
    *
    * @param liquid_state State view for liquid phase at quadrature point on the (unfitted)
    * interface.
    * @param gas_state State view for gas phase at quadrature point on the (unfitted) interface.
    * @param normal Interface normal vector, pointing outside the liquid phase.
-   * @param visc_ave_weight_phase_liquid Weighting factor for Nitsche-type weighted viscous
-   * interface fluxes.
-   * @param visc_ave_weight_phase_gas Weighting factor for Nitsche-type weighted viscous interface
-   * fluxes.
-   * @param diffusive_kernel_liquid Collection of helper functions for viscous term evaluations in the
-   * liquid phase.
-   *  @param diffusive_kernel_gas Collection of helper functions for viscous term evaluations in the
-   * gas phase.
-   * @param multiphase_scratch_data Collection of parameters required by the compressible multiphaes
-   * Navier-Stokes operator.
-   * @param cell_size Cell size.
+   * @param weight_liquid Weight of the liquid phase (see calculate_viscous_average_weights()).
+   * @param weight_gas Weight of the gas phase (see calculate_viscous_average_weights()).
+   * @param slip_penalty_parameter Penalty parameter of the tangential no-slip constraint, including
+   * the scaling with the cell size (only relevant for dim > 1).
+   * @param temperature_penalty_parameter Penalty parameter of the temperature jump constraint,
+   * including the scaling with the cell size.
+   * @param diffusive_kernel_liquid Diffusive flux kernel of the liquid phase.
+   * @param diffusive_kernel_gas Diffusive flux kernel of the gas phase.
+   * @param latent_heat_of_vaporization Latent heat of vaporization (SI: in J/kg).
    * @param m_dot_evap Current evaporation mass flux (SI: in kg/(m^2 s)).
    * @param delta_T Current temperature jump at the interface (T^l - T^g) (SI: in K).
    * @param laser_heat_source Current value of the laser heat source (SI: in W/m^2).
    *
-   * @return Pair of interface viscous fluxes for liquid and gas phase, which are weighted with the
-   * test functions.
+   * @return Pair of viscous interface fluxes (liquid, gas), which are tested with the test
+   * functions.
+   *
+   * @todo Add contributions for surface tension and Marangoni forces (for dim > 1).
    */
   template <int dim,
             typename number,
-            typename ConservedVariablesType,
-            typename ConservedVariablesGradType,
             typename DofValueAndGradientStateView,
-            CompressibleFlow::IsFluxKernel<ConservedVariablesType, ConservedVariablesGradType>
-              DiffusiveKernel>
+            typename DiffusiveKernel,
+            typename ConservedVariablesType     = typename DofValueAndGradientStateView::state_type,
+            typename ConservedVariablesGradType = typename DiffusiveKernel::PhysicalFluxType>
+    requires CompressibleFlow::IsFluxKernel<DiffusiveKernel,
+                                            ConservedVariablesType,
+                                            ConservedVariablesGradType>
   inline DEAL_II_ALWAYS_INLINE //
     std::pair<ConservedVariablesType, ConservedVariablesType>
-    calculate_viscous_interface_flux_method_3(
+    calculate_viscous_interface_flux_penalty(
       const DofValueAndGradientStateView                            &liquid_state,
       const DofValueAndGradientStateView                            &gas_state,
       const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
-      const number                                                  &visc_ave_weight_phase_liquid,
-      const number                                                  &visc_ave_weight_phase_gas,
+      const number                                                   weight_liquid,
+      const number                                                   weight_gas,
+      const number                                                   slip_penalty_parameter,
+      const number                                                   temperature_penalty_parameter,
       const DiffusiveKernel                                         &diffusive_kernel_liquid,
       const DiffusiveKernel                                         &diffusive_kernel_gas,
-      const CompressibleFlow::MultiphaseOperationScratchData<dim, number> &multiphase_scratch_data,
-      const number                                                        &cell_size,
-      const number                                                        &m_dot_evap,
-      const number                                                        &delta_T,
-      const number                                                        &laser_heat_source)
+      const number                                                   latent_heat_of_vaporization,
+      const number                                                   m_dot_evap,
+      const number                                                   delta_T,
+      const number                                                   laser_heat_source)
   {
-    // enumeration for conserved variables component indices
-    using Idx = std::conditional_t<
-      dim == 1,
-      CompressibleFlow::Idx1D,
-      std::conditional_t<dim == 2,
-                         CompressibleFlow::Idx2D,
-                         std::conditional_t<dim == 3, CompressibleFlow::Idx3D, void>>>;
+    using Idx = CompressibleFlow::ConservedVariableIndex<dim>;
 
     const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> vel_liquid =
       liquid_state.velocity();
@@ -667,11 +618,10 @@ namespace MeltPoolDG::Multiphase
 
     ConservedVariablesType J_Rob;
 
-    J_Rob[Idx::energy] =
-      m_dot_evap * (liquid_state.total_energy() / liquid_state.density() -
-                    gas_state.total_energy() / gas_state.density()) +
-      (pressure_liquid * vel_n_liquid - pressure_gas * vel_n_gas) + laser_heat_source -
-      m_dot_evap * multiphase_scratch_data.phase_change.liquid_gas.latent_heat_of_vaporization;
+    J_Rob[Idx::energy] = m_dot_evap * (liquid_state.total_energy() / liquid_state.density() -
+                                       gas_state.total_energy() / gas_state.density()) +
+                         (pressure_liquid * vel_n_liquid - pressure_gas * vel_n_gas) +
+                         laser_heat_source - m_dot_evap * latent_heat_of_vaporization;
 
     const ConservedVariablesGradType viscous_flux_liquid =
       diffusive_kernel_liquid.flux(liquid_state.value(), liquid_state.gradient_value());
@@ -689,17 +639,10 @@ namespace MeltPoolDG::Multiphase
         const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> jump_vel_t =
           jump_vel - (jump_vel * normal) * normal;
 
-        const number average_viscosity =
-          0.5 * (multiphase_scratch_data.material_liquid.dynamic_viscosity +
-                 multiphase_scratch_data.material_gas.dynamic_viscosity);
-        const number slip_penalty = multiphase_scratch_data.phase_coupling.hllp0_and_penalty
-                                      .penalty_parameter_tangential_no_slip *
-                                    average_viscosity / cell_size;
-
         for (unsigned int d = 0; d < dim; ++d)
           {
-            penalty_term[Idx::momentum_x + d] = slip_penalty * jump_vel_t[d];
-            J_Rob[Idx::momentum_x + d]        = m_dot_evap * jump_vel_t[d];
+            penalty_term[Idx::momentum + d] = slip_penalty_parameter * jump_vel_t[d];
+            J_Rob[Idx::momentum + d]        = m_dot_evap * jump_vel_t[d];
           }
 
         // energy contribution from the tangential no-slip penalty term
@@ -707,126 +650,25 @@ namespace MeltPoolDG::Multiphase
         // contributes to the work term)
         const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> ave_vel =
           0.5 * (vel_liquid + vel_gas);
-        penalty_term[Idx::energy] = slip_penalty * scalar_product(jump_vel_t, ave_vel);
+        penalty_term[Idx::energy] = slip_penalty_parameter * scalar_product(jump_vel_t, ave_vel);
       }
 
-    penalty_term[Idx::energy] +=
-      multiphase_scratch_data.phase_coupling.hllp0_and_penalty.penalty_parameter_temperature_jump *
-      (liquid_state.thermal_conductivity() + gas_state.thermal_conductivity()) / (2. * cell_size) *
-      ((liquid_state.temperature() - gas_state.temperature()) - delta_T);
+    penalty_term[Idx::energy] += temperature_penalty_parameter *
+                                 ((liquid_state.temperature() - gas_state.temperature()) - delta_T);
 
     const ConservedVariablesType weighted_viscous_flux =
       UtilityFunctions::calculate_arithmetic_phase_weighted_average(
-        visc_ave_weight_phase_gas,
+        weight_gas,
         contract_tensor_with_vector(viscous_flux_liquid, normal),
-        visc_ave_weight_phase_liquid,
+        weight_liquid,
         contract_tensor_with_vector(viscous_flux_gas, normal));
 
     const ConservedVariablesType total_viscous_flux_liquid =
-      -J_Rob * visc_ave_weight_phase_liquid - weighted_viscous_flux + penalty_term;
+      J_Rob * weight_liquid + weighted_viscous_flux - penalty_term;
 
     const ConservedVariablesType total_viscous_flux_gas =
-      -J_Rob * visc_ave_weight_phase_gas + weighted_viscous_flux - penalty_term;
+      J_Rob * weight_gas - weighted_viscous_flux + penalty_term;
 
     return {total_viscous_flux_liquid, total_viscous_flux_gas};
-  }
-
-  /**
-   * @brief Compute the current value of the laser heat source.
-   *
-   * @param phase_coupling_data Collection of parameters specific for phase coupling.
-   * @param time Current time.
-   *
-   * @return Current value of the laser heat source.
-   */
-  template <typename number>
-  inline DEAL_II_ALWAYS_INLINE //
-    number
-    update_laser_heat_source(const CompressibleFlowPhaseCouplingData<number> &phase_coupling_data,
-                             const number                                    &time)
-  {
-    const auto &laser = phase_coupling_data.laser_heat_source;
-
-    if (laser.do_ramp and time < laser.ramp_time)
-      {
-        const number factor = 0.5 * (1. - std::cos(std::numbers::pi * time / laser.ramp_time));
-
-        return factor * laser.laser_power_density;
-      }
-
-    return laser.laser_power_density;
-  }
-
-  /**
-   * @brief Compute the current evaporative mass flux and temperature jump across the interface.
-   *
-   * @param liquid_state State view for liquid phase at quadrature point on the (unfitted)
-   * interface.
-   * @param gas_state State view for gas phase at quadrature point on the (unfitted)
-   * interface.
-   * @param normal Interface normal vector, pointing outwards the liquid phase.
-   * @param multiphase_scratch_data Collection of parameters required by the compressible multiphase
-   * Navier-Stokes operator.
-   * @param evaporation_model_knight Applied evaporation model.
-   *
-   * @return Tuple, containing the current values of the evaporative mass flux and the interface
-   * temperature jump (T^l - T^g).
-   */
-  template <int dim,
-            typename number,
-            typename DofStateView>
-  inline DEAL_II_ALWAYS_INLINE //
-    std::tuple<number, number>
-    update_evaporative_mass_flux_and_temperature_jump(
-      const DofStateView                                                  &liquid_state,
-      const DofStateView                                                  &gas_state,
-      const dealii::Tensor<1, dim, dealii::VectorizedArray<number>>       &normal,
-      const CompressibleFlow::MultiphaseOperationScratchData<dim, number> &multiphase_scratch_data,
-      Evaporation::EvaporationModelKnight<number> *evaporation_model_knight = nullptr)
-  {
-    number m_dot_evap = 0.;
-    number delta_T    = 0.;
-
-    if (evaporation_model_knight)
-      {
-        const dealii::VectorizedArray<number> T_liquid = liquid_state.temperature();
-
-        const dealii::VectorizedArray<number> vel_n_gas = gas_state.velocity() * normal;
-
-        const dealii::VectorizedArray<number> speed_of_sound_g = gas_state.temperature();
-
-        const dealii::VectorizedArray<number> Ma_g = vel_n_gas / speed_of_sound_g;
-
-        // TODO: evaluate vectorized array for dim>1!
-        evaporation_model_knight->reinit(T_liquid[0], Ma_g[0]);
-        m_dot_evap = evaporation_model_knight->get_evaporative_mass_flux();
-        delta_T    = evaporation_model_knight->get_temperature_jump();
-      }
-    else if (multiphase_scratch_data.phase_coupling.evaporation_model ==
-             EvaporationModelType::constant)
-      {
-        m_dot_evap = multiphase_scratch_data.phase_coupling.m_dot_evap;
-
-        switch (multiphase_scratch_data.phase_coupling.type)
-          {
-            case InterfaceNumericalMethod::HLLP0_and_SIPG:
-              delta_T = multiphase_scratch_data.phase_coupling.hllp0_and_sipg.delta_T;
-              break;
-
-            case InterfaceNumericalMethod::HLLP0_and_penalty:
-              delta_T = multiphase_scratch_data.phase_coupling.hllp0_and_penalty.delta_T;
-              break;
-
-            default:
-              break;
-          }
-      }
-    else
-      {
-        AssertThrow(false,
-                    dealii::ExcNotImplemented("The given evaporation model is not implemented."));
-      }
-
-    return {m_dot_evap, delta_T};
   }
 } // namespace MeltPoolDG::Multiphase
