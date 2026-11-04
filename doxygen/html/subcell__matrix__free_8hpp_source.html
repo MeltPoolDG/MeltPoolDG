@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/utilities/subcell_matrix_free.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/parameters/index.html">📦 Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/utilities/subcell_matrix_free.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/subcell__matrix__free_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-utilities-subcell-matrix-free-hpp-source-file">
+<h1>include/meltpooldg/utilities/subcell_matrix_free.hpp Source File<a class="headerlink" href="#include-meltpooldg-utilities-subcell-matrix-free-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/utilities/subcell_matrix_free.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_33f297a483115a9e2addf470c6b064fb.html">utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">subcell_matrix_free.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="subcell__matrix__free_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/aligned_vector.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;deal.II/base/partitioner.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;deal.II/base/point.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;deal.II/base/quadrature.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;deal.II/base/table.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;deal.II/base/tensor.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;deal.II/base/types.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;deal.II/base/vectorization.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;deal.II/dofs/dof_handler.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;deal.II/lac/la_parallel_vector.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;deal.II/matrix_free/matrix_free.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="matrix__free__util_8hpp.html">meltpooldg/utilities/matrix_free_util.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;bitset&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG.html">MeltPoolDG</a></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim&gt;</div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="};">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellIndexInfo.html">   78</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1SubcellIndexInfo.html">SubcellIndexInfo</a></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <a class="code hl_function" href="structMeltPoolDG_1_1SubcellIndexInfo.html#ac2fe9727ac32a0e087febacd61fdf089">reinit</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellIndexInfo.html#ad8a1bfab2398768f7bbab910111f63f8">n_subcells_1d</a>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellIndexInfo.html#ad8a1bfab2398768f7bbab910111f63f8">   87</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellIndexInfo.html#ad8a1bfab2398768f7bbab910111f63f8">n_subcells_1d</a> = 0;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a4e25c8f27804ac1c89c11c927f8e627a">   90</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a4e25c8f27804ac1c89c11c927f8e627a">n_subcells</a> = 0;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellIndexInfo.html#ae2f10dcb1f14fc17e7ce679177db7fe6">   93</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellIndexInfo.html#ae2f10dcb1f14fc17e7ce679177db7fe6">n_subcells_face</a> = 0;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a5f8d84185a9289eba95396b47a18ef1c">   96</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a5f8d84185a9289eba95396b47a18ef1c">n_intra_cell_faces</a> = 0;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a75b1f2ec141b148e74baab497d196cd5">  100</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a75b1f2ec141b148e74baab497d196cd5">n_haloed_subcells</a> = 0;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a36394a30ed3ec2ebb50ba6ac93f49973">  106</a></span>    std::array&lt;std::vector&lt;unsigned int&gt;, 2 * dim&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a36394a30ed3ec2ebb50ba6ac93f49973">face_to_cell_subcell_indices</a>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a39c4117803389b49e8ee8ef49d967bfe">  110</a></span>    std::vector&lt;std::array&lt;unsigned int, 2&gt;&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a39c4117803389b49e8ee8ef49d967bfe">intra_cell_face_to_subcells</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellIndexInfo.html#ad6e5a6898c73e5675d3d0c36164bfdc6">  113</a></span>    std::vector&lt;unsigned int&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellIndexInfo.html#ad6e5a6898c73e5675d3d0c36164bfdc6">intra_cell_face_directions</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a6bb378ccbb14ba8fbd1c4617fe5a0b15">  116</a></span>    std::vector&lt;std::array&lt;unsigned int, dim&gt;&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a6bb378ccbb14ba8fbd1c4617fe5a0b15">subcell_cartesian_indices</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellIndexInfo.html#ac5a15b304c7a887ad47df79d98797f89">  120</a></span>    std::vector&lt;unsigned int&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellIndexInfo.html#ac5a15b304c7a887ad47df79d98797f89">subcell_index_to_haloed_vector_index</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a8a2a7b9340907fb5d3b01efeec9293d4">  125</a></span>    dealii::Table&lt;2, unsigned int&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellIndexInfo.html#a8a2a7b9340907fb5d3b01efeec9293d4">subcell_index_to_haloed_neighbor_vector_index</a>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  };</div>
+</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00135" data-start="{" data-end="};">
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellShapeInfo.html">  135</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1SubcellShapeInfo.html">SubcellShapeInfo</a></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  {</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <a class="code hl_function" href="structMeltPoolDG_1_1SubcellShapeInfo.html#a7d66d1015c8fda63364cd00e4ec5539b">reinit</a>(<span class="keyword">const</span> dealii::Quadrature&lt;1&gt; &amp;quadrature_1d);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellShapeInfo.html#ab6eb1e830c95e8a989537e828424ae1d">  146</a></span>    <a class="code hl_struct" href="structMeltPoolDG_1_1SubcellIndexInfo.html">SubcellIndexInfo&lt;dim&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellShapeInfo.html#ab6eb1e830c95e8a989537e828424ae1d">cell_index_info</a>;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellShapeInfo.html#a78040b0ec921b4dd33398d99790042fb">  152</a></span>    <a class="code hl_struct" href="structMeltPoolDG_1_1SubcellIndexInfo.html">SubcellIndexInfo</a>&lt;dim - 1&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellShapeInfo.html#a78040b0ec921b4dd33398d99790042fb">face_index_info</a>;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellShapeInfo.html#af6caca5304b5ff27b4430f56974828c7">  155</a></span>    std::vector&lt;number&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellShapeInfo.html#af6caca5304b5ff27b4430f56974828c7">subcell_centers_1d</a>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellShapeInfo.html#aeb4e6272f4bebcfb900109faaa79bd05">  158</a></span>    std::vector&lt;number&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellShapeInfo.html#aeb4e6272f4bebcfb900109faaa79bd05">subcell_widths_1d</a>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  };</div>
+</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00205" data-start="{" data-end="};">
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html">  205</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classMeltPoolDG_1_1SubcellMatrixFree.html">SubcellMatrixFree</a></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>  {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a1a4367661d2e7a8f24d94cb9d1af7e67">  207</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a1a4367661d2e7a8f24d94cb9d1af7e67">VectorizedArrayType</a> = dealii::VectorizedArray&lt;number&gt;;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a31160b827f696b8a86b43d01c218f8c2">  210</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a31160b827f696b8a86b43d01c218f8c2">n_lanes</a> = VectorizedArrayType::size();</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="foldopen" id="foldopen00217" data-start="{" data-end="};">
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html">  217</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html">FaceNeighbors</a></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    {</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>      <a class="code hl_function" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#a95553cfc56c38b0cb304067f8160f36a">FaceNeighbors</a>();</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#ad4bb9a320ad648d501d153536f7febd7">  227</a></span>      std::array&lt;unsigned int, n_lanes&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#ad4bb9a320ad648d501d153536f7febd7">cell_ids</a>;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#aae3ab866bb464195cc1169dffe303141">  231</a></span>      std::array&lt;unsigned int, n_lanes&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#aae3ab866bb464195cc1169dffe303141">extra_cell_ids</a>;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#ae8c8022c83cae790b5a876c71921b3bb">  235</a></span>      std::array&lt;dealii::types::boundary_id, n_lanes&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#ae8c8022c83cae790b5a876c71921b3bb">boundary_ids</a>;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#ae569199f36a31e725f7d00481dcd30c7">  238</a></span>      <a class="code hl_typedef" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a1a4367661d2e7a8f24d94cb9d1af7e67">VectorizedArrayType</a> <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#ae569199f36a31e725f7d00481dcd30c7">extents</a>;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#a879b758806c2696c2b7c66ed11edd2fe">  242</a></span>      <span class="keywordtype">bool</span> <a class="code hl_variable" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#a879b758806c2696c2b7c66ed11edd2fe">all_held</a>;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    };</div>
+</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a229d70e69cc65515dc67a94b206c5ba1">reinit</a>(<span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt; &amp;<a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a210b2116b4106c0def97ff3184ac5071">matrix_free</a>,</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>           <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                     <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#aabaad5b54eb7d55020d4cdcc7c54d768">dof_no</a>,</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>           <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                     <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#aeafa6c4ac76367565c1d836c21bb3717">quad_no</a>);</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a2df162dbe43bd3bad1e58a944211ce78">update_ghost_values</a>(<span class="keyword">const</span> dealii::LinearAlgebra::distributed::Vector&lt;number&gt; &amp;src) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordtype">bool</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a7e1c8650210d898271286070546c3ef3">has_ghost_values_of</a>(<span class="keyword">const</span> dealii::LinearAlgebra::distributed::Vector&lt;number&gt; &amp;src) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html">FaceNeighbors</a> &amp;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#af490607c9a4fec12336d96fb249a8cb1">get_face_neighbors</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_batch, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> face_no) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <a class="code hl_struct" href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html">FaceNeighbors</a></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#af490607c9a4fec12336d96fb249a8cb1">get_face_neighbors</a>(<span class="keyword">const</span> std::array&lt;unsigned int, n_lanes&gt; &amp;cell_ids,</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                       face_no) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="keyword">const</span> dealii::Point&lt;dim, VectorizedArrayType&gt; &amp;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#acd99b8769227ed58c0344ce23c3ddba5">get_cell_origin</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cell_batch) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    dealii::Point&lt;dim, VectorizedArrayType&gt;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#acd99b8769227ed58c0344ce23c3ddba5">get_cell_origin</a>(<span class="keyword">const</span> std::array&lt;unsigned int, n_lanes&gt; &amp;cell_ids) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#ae1dc45100a2e89c01f0e9a388d4b4655">read_extra_cell_dof_values</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>   extra_cell,</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>                               <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>   lane,</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>                               <a class="code hl_typedef" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a1a4367661d2e7a8f24d94cb9d1af7e67">VectorizedArrayType</a> *dof_values) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a3a96848810d47ad643334d8594395494">n_extra_cells</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structMeltPoolDG_1_1SubcellShapeInfo.html">SubcellShapeInfo&lt;dim, number&gt;</a> &amp;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a07af9c67e3c4fd22936977297dae4d5a">get_subcell_shape_info</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt; &amp;</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a1c11a6d919ac9419f5d13612899ed895">get_matrix_free</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#abaff405cf424caaaea4d9993076a670b">get_dof_no</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a6aa1aa096adad98440c147ab69215442">get_quad_no</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a415469fcca87aa5612ff49c647f49a4a">setup_face_neighbors</a>();</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a6761ef34e41e133f9991fe6fc6a6aa4a">setup_cell_origins</a>();</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    <a class="code hl_function" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a10e42a11f58a0ecd79a94212a851ff8c">setup_extra_cells</a>();</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a210b2116b4106c0def97ff3184ac5071">  368</a></span>    <span class="keyword">const</span> dealii::MatrixFree&lt;dim, number&gt; *<a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a210b2116b4106c0def97ff3184ac5071">matrix_free</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#aabaad5b54eb7d55020d4cdcc7c54d768">  371</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#aabaad5b54eb7d55020d4cdcc7c54d768">dof_no</a> = dealii::numbers::invalid_unsigned_int;</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#aeafa6c4ac76367565c1d836c21bb3717">  374</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#aeafa6c4ac76367565c1d836c21bb3717">quad_no</a> = dealii::numbers::invalid_unsigned_int;</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span> </div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a49b2f0d12aa3fec94a06093358e744a4">  377</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a49b2f0d12aa3fec94a06093358e744a4">n_dofs_per_cell</a> = 0;</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a7016d4022b79397eb6875f2a007394fd">  380</a></span>    <a class="code hl_struct" href="structMeltPoolDG_1_1SubcellShapeInfo.html">SubcellShapeInfo&lt;dim, number&gt;</a> <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a7016d4022b79397eb6875f2a007394fd">subcell_shape_info</a>;</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span> </div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a74124f7ead7af70c04e28626fd971ef8">  383</a></span>    dealii::Table&lt;2, FaceNeighbors&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a74124f7ead7af70c04e28626fd971ef8">face_neighbors</a>;</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> </div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a6109535c10570408bbd5d783780a7e58">  386</a></span>    dealii::AlignedVector&lt;dealii::Point&lt;dim, VectorizedArrayType&gt;&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a6109535c10570408bbd5d783780a7e58">cell_origins</a>;</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span> </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a8a5b7381ee7ae946d85fe847974ec04c">  389</a></span>    std::vector&lt;typename dealii::DoFHandler&lt;dim&gt;::cell_iterator&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a8a5b7381ee7ae946d85fe847974ec04c">extra_cells</a>;</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#ab78e826e5b40fa7332d50ee6815a5bf3">  393</a></span>    std::shared_ptr&lt;const dealii::Utilities::MPI::Partitioner&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#ab78e826e5b40fa7332d50ee6815a5bf3">extra_cell_partitioner</a>;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span> </div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a6c6462c613d989ff8df7b73f196ec957">  397</a></span>    <span class="keyword">mutable</span> dealii::AlignedVector&lt;number&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a6c6462c613d989ff8df7b73f196ec957">extra_cell_ghost_values</a>;</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a8a6227ee07eb1227162d3a41144b298d">  400</a></span>    <span class="keyword">mutable</span> dealii::AlignedVector&lt;number&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a8a6227ee07eb1227162d3a41144b298d">extra_cell_import_values</a>;</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a8d03892213834d564a71735527fe15c0">  404</a></span>    std::vector&lt;unsigned int&gt; <a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a8d03892213834d564a71735527fe15c0">extra_cell_dof_positions</a>;</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno"><a class="line" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a87e63f3f7da4f62ab8b30b571144eb1e">  407</a></span>    <span class="keyword">mutable</span> <span class="keyword">const</span> dealii::LinearAlgebra::distributed::Vector&lt;number&gt; *<a class="code hl_variable" href="classMeltPoolDG_1_1SubcellMatrixFree.html#a87e63f3f7da4f62ab8b30b571144eb1e">ghost_values_source</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>  };</div>
+</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>} <span class="comment">// namespace MeltPoolDG</span></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html">MeltPoolDG::SubcellMatrixFree</a></div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:206</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a07af9c67e3c4fd22936977297dae4d5a"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a07af9c67e3c4fd22936977297dae4d5a">MeltPoolDG::SubcellMatrixFree::get_subcell_shape_info</a></div><div class="ttdeci">const SubcellShapeInfo&lt; dim, number &gt; &amp; get_subcell_shape_info() const</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:299</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a10e42a11f58a0ecd79a94212a851ff8c"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a10e42a11f58a0ecd79a94212a851ff8c">MeltPoolDG::SubcellMatrixFree::setup_extra_cells</a></div><div class="ttdeci">void setup_extra_cells()</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:445</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a1a4367661d2e7a8f24d94cb9d1af7e67"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a1a4367661d2e7a8f24d94cb9d1af7e67">MeltPoolDG::SubcellMatrixFree::VectorizedArrayType</a></div><div class="ttdeci">dealii::VectorizedArray&lt; number &gt; VectorizedArrayType</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:207</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a1c11a6d919ac9419f5d13612899ed895"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a1c11a6d919ac9419f5d13612899ed895">MeltPoolDG::SubcellMatrixFree::get_matrix_free</a></div><div class="ttdeci">const dealii::MatrixFree&lt; dim, number &gt; &amp; get_matrix_free() const</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:306</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a210b2116b4106c0def97ff3184ac5071"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a210b2116b4106c0def97ff3184ac5071">MeltPoolDG::SubcellMatrixFree::matrix_free</a></div><div class="ttdeci">const dealii::MatrixFree&lt; dim, number &gt; * matrix_free</div><div class="ttdoc">The underlying matrix-free object.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:368</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a229d70e69cc65515dc67a94b206c5ba1"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a229d70e69cc65515dc67a94b206c5ba1">MeltPoolDG::SubcellMatrixFree::reinit</a></div><div class="ttdeci">void reinit(const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, const unsigned int dof_no, const unsigned int quad_no)</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:154</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a2df162dbe43bd3bad1e58a944211ce78"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a2df162dbe43bd3bad1e58a944211ce78">MeltPoolDG::SubcellMatrixFree::update_ghost_values</a></div><div class="ttdeci">void update_ghost_values(const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;src) const</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:178</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a31160b827f696b8a86b43d01c218f8c2"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a31160b827f696b8a86b43d01c218f8c2">MeltPoolDG::SubcellMatrixFree::n_lanes</a></div><div class="ttdeci">static constexpr unsigned int n_lanes</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:210</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a3a96848810d47ad643334d8594395494"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a3a96848810d47ad643334d8594395494">MeltPoolDG::SubcellMatrixFree::n_extra_cells</a></div><div class="ttdeci">unsigned int n_extra_cells() const</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:292</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a415469fcca87aa5612ff49c647f49a4a"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a415469fcca87aa5612ff49c647f49a4a">MeltPoolDG::SubcellMatrixFree::setup_face_neighbors</a></div><div class="ttdeci">void setup_face_neighbors()</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:328</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a49b2f0d12aa3fec94a06093358e744a4"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a49b2f0d12aa3fec94a06093358e744a4">MeltPoolDG::SubcellMatrixFree::n_dofs_per_cell</a></div><div class="ttdeci">unsigned int n_dofs_per_cell</div><div class="ttdoc">Number of DoFs per cell, including all components.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:377</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a6109535c10570408bbd5d783780a7e58"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a6109535c10570408bbd5d783780a7e58">MeltPoolDG::SubcellMatrixFree::cell_origins</a></div><div class="ttdeci">dealii::AlignedVector&lt; dealii::Point&lt; dim, VectorizedArrayType &gt; &gt; cell_origins</div><div class="ttdoc">[owned + ghost cell batch]: origins of the cells, see get_cell_origin().</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:386</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a6761ef34e41e133f9991fe6fc6a6aa4a"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a6761ef34e41e133f9991fe6fc6a6aa4a">MeltPoolDG::SubcellMatrixFree::setup_cell_origins</a></div><div class="ttdeci">void setup_cell_origins()</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:423</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a6aa1aa096adad98440c147ab69215442"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a6aa1aa096adad98440c147ab69215442">MeltPoolDG::SubcellMatrixFree::get_quad_no</a></div><div class="ttdeci">unsigned int get_quad_no() const</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:321</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a6c6462c613d989ff8df7b73f196ec957"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a6c6462c613d989ff8df7b73f196ec957">MeltPoolDG::SubcellMatrixFree::extra_cell_ghost_values</a></div><div class="ttdeci">dealii::AlignedVector&lt; number &gt; extra_cell_ghost_values</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:397</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a7016d4022b79397eb6875f2a007394fd"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a7016d4022b79397eb6875f2a007394fd">MeltPoolDG::SubcellMatrixFree::subcell_shape_info</a></div><div class="ttdeci">SubcellShapeInfo&lt; dim, number &gt; subcell_shape_info</div><div class="ttdoc">Subcell index data and geometry on the unit cell that are the same for all cells.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:380</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a74124f7ead7af70c04e28626fd971ef8"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a74124f7ead7af70c04e28626fd971ef8">MeltPoolDG::SubcellMatrixFree::face_neighbors</a></div><div class="ttdeci">dealii::Table&lt; 2, FaceNeighbors &gt; face_neighbors</div><div class="ttdoc">[owned + ghost cell batch][face_no]: neighbors across the face.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:383</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a7e1c8650210d898271286070546c3ef3"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a7e1c8650210d898271286070546c3ef3">MeltPoolDG::SubcellMatrixFree::has_ghost_values_of</a></div><div class="ttdeci">bool has_ghost_values_of(const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;src) const</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:205</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a87e63f3f7da4f62ab8b30b571144eb1e"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a87e63f3f7da4f62ab8b30b571144eb1e">MeltPoolDG::SubcellMatrixFree::ghost_values_source</a></div><div class="ttdeci">const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; * ghost_values_source</div><div class="ttdoc">The vector from which the DoF values of the extra cells were last exchanged.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:407</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a8a5b7381ee7ae946d85fe847974ec04c"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a8a5b7381ee7ae946d85fe847974ec04c">MeltPoolDG::SubcellMatrixFree::extra_cells</a></div><div class="ttdeci">std::vector&lt; typename dealii::DoFHandler&lt; dim &gt;::cell_iterator &gt; extra_cells</div><div class="ttdoc">[extra cell]: the extra cells as DoFHandler cell iterators.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:389</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a8a6227ee07eb1227162d3a41144b298d"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a8a6227ee07eb1227162d3a41144b298d">MeltPoolDG::SubcellMatrixFree::extra_cell_import_values</a></div><div class="ttdeci">dealii::AlignedVector&lt; number &gt; extra_cell_import_values</div><div class="ttdoc">Temporary storage for the values sent to other processes in update_ghost_values().</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:400</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_a8d03892213834d564a71735527fe15c0"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#a8d03892213834d564a71735527fe15c0">MeltPoolDG::SubcellMatrixFree::extra_cell_dof_positions</a></div><div class="ttdeci">std::vector&lt; unsigned int &gt; extra_cell_dof_positions</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:404</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_aabaad5b54eb7d55020d4cdcc7c54d768"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#aabaad5b54eb7d55020d4cdcc7c54d768">MeltPoolDG::SubcellMatrixFree::dof_no</a></div><div class="ttdeci">unsigned int dof_no</div><div class="ttdoc">Index of the DoFHandler within the matrix-free object.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:371</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_ab78e826e5b40fa7332d50ee6815a5bf3"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#ab78e826e5b40fa7332d50ee6815a5bf3">MeltPoolDG::SubcellMatrixFree::extra_cell_partitioner</a></div><div class="ttdeci">std::shared_ptr&lt; const dealii::Utilities::MPI::Partitioner &gt; extra_cell_partitioner</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:393</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_abaff405cf424caaaea4d9993076a670b"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#abaff405cf424caaaea4d9993076a670b">MeltPoolDG::SubcellMatrixFree::get_dof_no</a></div><div class="ttdeci">unsigned int get_dof_no() const</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:314</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_acd99b8769227ed58c0344ce23c3ddba5"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#acd99b8769227ed58c0344ce23c3ddba5">MeltPoolDG::SubcellMatrixFree::get_cell_origin</a></div><div class="ttdeci">const dealii::Point&lt; dim, VectorizedArrayType &gt; &amp; get_cell_origin(const unsigned int cell_batch) const</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:248</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_ae1dc45100a2e89c01f0e9a388d4b4655"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#ae1dc45100a2e89c01f0e9a388d4b4655">MeltPoolDG::SubcellMatrixFree::read_extra_cell_dof_values</a></div><div class="ttdeci">void read_extra_cell_dof_values(const unsigned int extra_cell, const unsigned int lane, VectorizedArrayType *dof_values) const</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:275</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_aeafa6c4ac76367565c1d836c21bb3717"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#aeafa6c4ac76367565c1d836c21bb3717">MeltPoolDG::SubcellMatrixFree::quad_no</a></div><div class="ttdeci">unsigned int quad_no</div><div class="ttdoc">Index of the quadrature within the matrix-free object.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:374</div></div>
+<div class="ttc" id="aclassMeltPoolDG_1_1SubcellMatrixFree_html_af490607c9a4fec12336d96fb249a8cb1"><div class="ttname"><a href="classMeltPoolDG_1_1SubcellMatrixFree.html#af490607c9a4fec12336d96fb249a8cb1">MeltPoolDG::SubcellMatrixFree::get_face_neighbors</a></div><div class="ttdeci">const FaceNeighbors &amp; get_face_neighbors(const unsigned int cell_batch, const unsigned int face_no) const</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:213</div></div>
+<div class="ttc" id="amatrix__free__util_8hpp_html"><div class="ttname"><a href="matrix__free__util_8hpp.html">matrix_free_util.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_html"><div class="ttname"><a href="namespaceMeltPoolDG.html">MeltPoolDG</a></div><div class="ttdoc">Interface for a general preconditioner.</div><div class="ttdef"><b>Definition</b> boundary_condition_functions.hpp:17</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html">MeltPoolDG::SubcellIndexInfo</a></div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:79</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html_a36394a30ed3ec2ebb50ba6ac93f49973"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html#a36394a30ed3ec2ebb50ba6ac93f49973">MeltPoolDG::SubcellIndexInfo::face_to_cell_subcell_indices</a></div><div class="ttdeci">std::array&lt; std::vector&lt; unsigned int &gt;, 2 *dim &gt; face_to_cell_subcell_indices</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:106</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html_a39c4117803389b49e8ee8ef49d967bfe"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html#a39c4117803389b49e8ee8ef49d967bfe">MeltPoolDG::SubcellIndexInfo::intra_cell_face_to_subcells</a></div><div class="ttdeci">std::vector&lt; std::array&lt; unsigned int, 2 &gt; &gt; intra_cell_face_to_subcells</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:110</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html_a4e25c8f27804ac1c89c11c927f8e627a"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html#a4e25c8f27804ac1c89c11c927f8e627a">MeltPoolDG::SubcellIndexInfo::n_subcells</a></div><div class="ttdeci">unsigned int n_subcells</div><div class="ttdoc">Number of subcells per cell.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:90</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html_a5f8d84185a9289eba95396b47a18ef1c"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html#a5f8d84185a9289eba95396b47a18ef1c">MeltPoolDG::SubcellIndexInfo::n_intra_cell_faces</a></div><div class="ttdeci">unsigned int n_intra_cell_faces</div><div class="ttdoc">Number of intra cell subcell faces, i.e. faces shared by two subcells of the same cell.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:96</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html_a6bb378ccbb14ba8fbd1c4617fe5a0b15"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html#a6bb378ccbb14ba8fbd1c4617fe5a0b15">MeltPoolDG::SubcellIndexInfo::subcell_cartesian_indices</a></div><div class="ttdeci">std::vector&lt; std::array&lt; unsigned int, dim &gt; &gt; subcell_cartesian_indices</div><div class="ttdoc">[subcell index][d]: index of the subcell in direction d, i.e. its Cartesian index.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:116</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html_a75b1f2ec141b148e74baab497d196cd5"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html#a75b1f2ec141b148e74baab497d196cd5">MeltPoolDG::SubcellIndexInfo::n_haloed_subcells</a></div><div class="ttdeci">unsigned int n_haloed_subcells</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:100</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html_a8a2a7b9340907fb5d3b01efeec9293d4"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html#a8a2a7b9340907fb5d3b01efeec9293d4">MeltPoolDG::SubcellIndexInfo::subcell_index_to_haloed_neighbor_vector_index</a></div><div class="ttdeci">dealii::Table&lt; 2, unsigned int &gt; subcell_index_to_haloed_neighbor_vector_index</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:125</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html_ac2fe9727ac32a0e087febacd61fdf089"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html#ac2fe9727ac32a0e087febacd61fdf089">MeltPoolDG::SubcellIndexInfo::reinit</a></div><div class="ttdeci">void reinit(const unsigned int n_subcells_1d)</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:25</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html_ac5a15b304c7a887ad47df79d98797f89"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html#ac5a15b304c7a887ad47df79d98797f89">MeltPoolDG::SubcellIndexInfo::subcell_index_to_haloed_vector_index</a></div><div class="ttdeci">std::vector&lt; unsigned int &gt; subcell_index_to_haloed_vector_index</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:120</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html_ad6e5a6898c73e5675d3d0c36164bfdc6"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html#ad6e5a6898c73e5675d3d0c36164bfdc6">MeltPoolDG::SubcellIndexInfo::intra_cell_face_directions</a></div><div class="ttdeci">std::vector&lt; unsigned int &gt; intra_cell_face_directions</div><div class="ttdoc">[intra cell face]: direction of the normal vector of the face.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:113</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html_ad8a1bfab2398768f7bbab910111f63f8"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html#ad8a1bfab2398768f7bbab910111f63f8">MeltPoolDG::SubcellIndexInfo::n_subcells_1d</a></div><div class="ttdeci">unsigned int n_subcells_1d</div><div class="ttdoc">Number of subcells per direction.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:87</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellIndexInfo_html_ae2f10dcb1f14fc17e7ce679177db7fe6"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellIndexInfo.html#ae2f10dcb1f14fc17e7ce679177db7fe6">MeltPoolDG::SubcellIndexInfo::n_subcells_face</a></div><div class="ttdeci">unsigned int n_subcells_face</div><div class="ttdoc">Number of subcells adjacent to a face of the cell.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:93</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors_html"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html">MeltPoolDG::SubcellMatrixFree::FaceNeighbors</a></div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:218</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors_html_a879b758806c2696c2b7c66ed11edd2fe"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#a879b758806c2696c2b7c66ed11edd2fe">MeltPoolDG::SubcellMatrixFree::FaceNeighbors::all_held</a></div><div class="ttdeci">bool all_held</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:242</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors_html_a95553cfc56c38b0cb304067f8160f36a"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#a95553cfc56c38b0cb304067f8160f36a">MeltPoolDG::SubcellMatrixFree::FaceNeighbors::FaceNeighbors</a></div><div class="ttdeci">FaceNeighbors()</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:143</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors_html_aae3ab866bb464195cc1169dffe303141"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#aae3ab866bb464195cc1169dffe303141">MeltPoolDG::SubcellMatrixFree::FaceNeighbors::extra_cell_ids</a></div><div class="ttdeci">std::array&lt; unsigned int, n_lanes &gt; extra_cell_ids</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:231</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors_html_ad4bb9a320ad648d501d153536f7febd7"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#ad4bb9a320ad648d501d153536f7febd7">MeltPoolDG::SubcellMatrixFree::FaceNeighbors::cell_ids</a></div><div class="ttdeci">std::array&lt; unsigned int, n_lanes &gt; cell_ids</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:227</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors_html_ae569199f36a31e725f7d00481dcd30c7"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#ae569199f36a31e725f7d00481dcd30c7">MeltPoolDG::SubcellMatrixFree::FaceNeighbors::extents</a></div><div class="ttdeci">VectorizedArrayType extents</div><div class="ttdoc">Extent of the neighbor in the direction normal to the face, zero at the domain boundary.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:238</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors_html_ae8c8022c83cae790b5a876c71921b3bb"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellMatrixFree_1_1FaceNeighbors.html#ae8c8022c83cae790b5a876c71921b3bb">MeltPoolDG::SubcellMatrixFree::FaceNeighbors::boundary_ids</a></div><div class="ttdeci">std::array&lt; dealii::types::boundary_id, n_lanes &gt; boundary_ids</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:235</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellShapeInfo_html"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellShapeInfo.html">MeltPoolDG::SubcellShapeInfo</a></div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:136</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellShapeInfo_html_a78040b0ec921b4dd33398d99790042fb"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellShapeInfo.html#a78040b0ec921b4dd33398d99790042fb">MeltPoolDG::SubcellShapeInfo::face_index_info</a></div><div class="ttdeci">SubcellIndexInfo&lt; dim - 1 &gt; face_index_info</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:152</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellShapeInfo_html_a7d66d1015c8fda63364cd00e4ec5539b"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellShapeInfo.html#a7d66d1015c8fda63364cd00e4ec5539b">MeltPoolDG::SubcellShapeInfo::reinit</a></div><div class="ttdeci">void reinit(const dealii::Quadrature&lt; 1 &gt; &amp;quadrature_1d)</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.templates.hpp:123</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellShapeInfo_html_ab6eb1e830c95e8a989537e828424ae1d"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellShapeInfo.html#ab6eb1e830c95e8a989537e828424ae1d">MeltPoolDG::SubcellShapeInfo::cell_index_info</a></div><div class="ttdeci">SubcellIndexInfo&lt; dim &gt; cell_index_info</div><div class="ttdoc">Index data of the subcells of a cell.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:146</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellShapeInfo_html_aeb4e6272f4bebcfb900109faaa79bd05"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellShapeInfo.html#aeb4e6272f4bebcfb900109faaa79bd05">MeltPoolDG::SubcellShapeInfo::subcell_widths_1d</a></div><div class="ttdeci">std::vector&lt; number &gt; subcell_widths_1d</div><div class="ttdoc">Widths of the subcells on the unit interval.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:158</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1SubcellShapeInfo_html_af6caca5304b5ff27b4430f56974828c7"><div class="ttname"><a href="structMeltPoolDG_1_1SubcellShapeInfo.html#af6caca5304b5ff27b4430f56974828c7">MeltPoolDG::SubcellShapeInfo::subcell_centers_1d</a></div><div class="ttdeci">std::vector&lt; number &gt; subcell_centers_1d</div><div class="ttdoc">Geometric centers of the subcells on the unit interval.</div><div class="ttdef"><b>Definition</b> subcell_matrix_free.hpp:155</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

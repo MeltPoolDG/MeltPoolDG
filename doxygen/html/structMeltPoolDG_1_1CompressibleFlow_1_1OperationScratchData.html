@@ -200,6 +200,8 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a60a64d72103636b1ad4c1721fe020682" id="r_a60a64d72103636b1ad4c1721fe020682"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; dealii::Function&lt; dim &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#a60a64d72103636b1ad4c1721fe020682">body_force</a></td></tr>
 <tr class="memdesc:a60a64d72103636b1ad4c1721fe020682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the body force function.  <br /></td></tr>
 <tr class="separator:a60a64d72103636b1ad4c1721fe020682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed23cdda0ed13930158d669e6cf92b40" id="r_aed23cdda0ed13930158d669e6cf92b40"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classMeltPoolDG_1_1SubcellMatrixFree.html">SubcellMatrixFree</a>&lt; dim, number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html#aed23cdda0ed13930158d669e6cf92b40">subcell_matrix_free</a></td></tr>
+<tr class="separator:aed23cdda0ed13930158d669e6cf92b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number&gt;<br />
@@ -333,7 +335,7 @@ template&lt;int dim, typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>Set up the internal data structures. </p>
-<p>Allocate memory for the solution history object and precompute the penalty parameter for the symmetric interior penalty method.</p>
+<p>Allocate memory for the solution history object, precompute the penalty parameter for the symmetric interior penalty method, and set up the subcell data of the finite volume subcell limiter if necessary.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">solution_history_size</td><td>Size of the solution history object, i.e. the number of vectors at different concrete times n for which the solution history is responsible. </td></tr>
@@ -539,6 +541,23 @@ template&lt;int dim, typename number &gt; </div>
 </div><div class="memdoc">
 
 <p>Solution history object. </p>
+
+</div>
+</div>
+<a id="aed23cdda0ed13930158d669e6cf92b40" name="aed23cdda0ed13930158d669e6cf92b40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed23cdda0ed13930158d669e6cf92b40">&#9670;&#160;</a></span>subcell_matrix_free</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classMeltPoolDG_1_1SubcellMatrixFree.html">SubcellMatrixFree</a>&lt;dim, number&gt; &gt; <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1OperationScratchData.html">MeltPoolDG::CompressibleFlow::OperationScratchData</a>&lt; dim, number &gt;::subcell_matrix_free</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Subcell data of the finite volume subcell limiter. Only constructed if the finite volume subcell limiter is applied. </p>
 
 </div>
 </div>
