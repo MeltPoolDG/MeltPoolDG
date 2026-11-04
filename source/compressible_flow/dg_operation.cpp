@@ -703,7 +703,7 @@ namespace MeltPoolDG::CompressibleFlow
 
     const number viscous_time_step_limit =
       (flow_scratch_data.material.dynamic_viscosity > 0) ?
-        flow_scratch_data.flow_data.viscous_courant_number /
+        flow_scratch_data.flow_data.cfl_time_step.viscous_courant_number /
           std::pow(flow_scratch_data.scratch_data.get_degree(flow_scratch_data.dof_idx), 3) *
           std::pow(flow_scratch_data.scratch_data.get_min_cell_size(), 2) * min_density /
           flow_scratch_data.material.dynamic_viscosity :
@@ -780,7 +780,7 @@ namespace MeltPoolDG::CompressibleFlow
       dealii::Utilities::MPI::max(max_transport, flow_scratch_data.scratch_data.get_mpi_comm());
 
     convective_time_step_limit =
-      flow_scratch_data.flow_data.courant_number /
+      flow_scratch_data.flow_data.cfl_time_step.convective_courant_number /
       std::pow(flow_scratch_data.scratch_data.get_degree(flow_scratch_data.dof_idx), 1.5) /
       max_transport;
 

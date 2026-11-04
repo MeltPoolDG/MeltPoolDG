@@ -51,12 +51,6 @@ namespace MeltPoolDG::CompressibleFlow
     /// Jacobian approximation type. The options are "exact" and "finite_difference"
     JacobianType jacobian_type = JacobianType::exact;
 
-    /// Courant number for the convective time step restriction
-    number courant_number = 0.15;
-
-    /// Similar to Courant number but for the viscous time step restriction
-    number viscous_courant_number = 1.0;
-
     /// Gravity constant used in the body force computation
     number gravity_constant = 0.0;
 
@@ -84,6 +78,11 @@ namespace MeltPoolDG::CompressibleFlow
       /// the CFL time step limit is updated.
       bool do_print_summary = false;
 
+      /// Courant number for the convective time step restriction
+      number convective_courant_number = 0.15;
+
+      /// Similar to Courant number but for the viscous time step restriction
+      number viscous_courant_number = 1.0;
     } cfl_time_step;
 
     struct
@@ -124,12 +123,7 @@ namespace MeltPoolDG::CompressibleFlow
         prm.add_parameter("numerical flux type",
                           numerical_flux_type,
                           "Type of the numerical flux.");
-        prm.add_parameter("courant number",
-                          courant_number,
-                          "Courant number for convective time-step limit.");
-        prm.add_parameter("viscous courant number",
-                          viscous_courant_number,
-                          "Characteristic Courant-like number for viscous time-step limit.");
+
         prm.add_parameter("jacobian type",
                           jacobian_type,
                           "Type of the jacobian. Choose between 'exact' and 'finite_difference'.");
@@ -162,6 +156,12 @@ namespace MeltPoolDG::CompressibleFlow
             cfl_time_step.do_print_summary,
             "If set to true, prints a short summary of the CFL time step limit to the console, whenever"
             " the CFL time step limit is updated.");
+          prm.add_parameter("convective courant number",
+                            cfl_time_step.convective_courant_number,
+                            "Courant number for convective time-step limit.");
+          prm.add_parameter("viscous courant number",
+                            cfl_time_step.viscous_courant_number,
+                            "Characteristic Courant-like number for viscous time-step limit.");
         }
         prm.leave_subsection();
       }
@@ -225,6 +225,12 @@ namespace MeltPoolDG::CompressibleFlow
             dealii::ExcMessage(
               "The cut compressible flow solver only supports explicit Euler time integration."));
         }
+
+      AssertThrow(
+        not cfl_time_step.enable or (cfl_time_step.viscous_courant_number > 0.0 and
+                                     cfl_time_step.convective_courant_number > 0.0),
+        dealii::ExcMessage(
+          "If CFL time step limit is enabled, the viscous and convective Courant numbers must be positive."));
 
       // A CFL time step limit update frequency of 0 is not allowed.
       AssertThrow(cfl_time_step.update_frequency > 0 or not cfl_time_step.enable,
