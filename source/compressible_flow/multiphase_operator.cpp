@@ -413,80 +413,9 @@ namespace MeltPoolDG::Multiphase
 
                     // do interface integral
                     if (multiphase_scratch_data.phase_coupling.type ==
-                        InterfaceNumericalMethod::penalty)
-                      {
-                        // enumeration for conserved variables component indices
-                        using Idx = std::conditional_t<
-                          dim == 1,
-                          CompressibleFlow::Idx1D,
-                          std::conditional_t<
-                            dim == 2,
-                            CompressibleFlow::Idx2D,
-                            std::conditional_t<dim == 3, CompressibleFlow::Idx3D, void>>>;
-
-                        for (const unsigned int q :
-                             eval_point_interface_liquid.quadrature_point_indices())
-                          {
-                            auto w_liquid      = eval_point_interface_liquid.get_value(q);
-                            auto w_gas         = eval_point_interface_gas.get_value(q);
-                            auto grad_w_liquid = eval_point_interface_liquid.get_gradient(q);
-                            auto grad_w_gas    = eval_point_interface_gas.get_gradient(q);
-                            // Outwards pointing normal vector with respect to the liquid domain
-                            const auto normal = -eval_point_interface_liquid.normal_vector(q);
-
-                            DofStateView liquid_state(w_liquid,
-                                                      multiphase_scratch_data.material_liquid);
-                            DofStateView gas_state(w_gas, multiphase_scratch_data.material_gas);
-
-                            DofValueAndGradientStateView liquid_value_and_gradient_state(
-                              w_liquid, grad_w_liquid, multiphase_scratch_data.material_liquid);
-                            DofValueAndGradientStateView gas_value_and_gradient_state(
-                              w_gas, grad_w_gas, multiphase_scratch_data.material_gas);
-
-                            const auto [m_dot_evap, delta_T] =
-                              update_evaporative_mass_flux_and_temperature_jump<dim,
-                                                                                number,
-                                                                                DofStateView>(
-                                liquid_state,
-                                gas_state,
-                                normal,
-                                multiphase_scratch_data,
-                                evaporation_model_knight.get());
-
-                            const auto [flux_liquid, flux_gas] =
-                              calculate_convective_and_viscous_interface_flux_penalty<
-                                dim,
-                                number,
-                                ConservedVariablesType>(liquid_value_and_gradient_state,
-                                                        gas_value_and_gradient_state,
-                                                        multiphase_scratch_data,
-                                                        m_dot_evap,
-                                                        laser_heat_source);
-
-                            // Compute the velocity at the interface using the difference in
-                            // momentum and density between the liquid and gas phases
-                            // (mass conservation across the interface).
-                            // indices: [conserved variables component][vectorization index]
-
-                            // TODO: temporal solution for dim=1; revise for dim>1!
-                            const number interface_velocity =
-                              (std::abs(w_liquid[Idx::density][0] - w_gas[Idx::density][0]) >
-                                   1.e-12 ?
-                                 (w_liquid[Idx::momentum_x][0] - w_gas[Idx::momentum_x][0]) /
-                                   (w_liquid[Idx::density][0] - w_gas[Idx::density][0]) :
-                                 w_liquid[Idx::momentum_x][0] / w_liquid[Idx::density][0]) *
-                              normal[0][0];
-
-                            level_set_advection_operator.set_interface_velocity(interface_velocity);
-
-                            eval_point_interface_liquid.submit_value(-flux_liquid, q);
-                            eval_point_interface_gas.submit_value(-flux_gas, q);
-                          }
-                      }
-                    else if (multiphase_scratch_data.phase_coupling.type ==
-                               InterfaceNumericalMethod::HLLP0_and_SIPG or
-                             multiphase_scratch_data.phase_coupling.type ==
-                               InterfaceNumericalMethod::HLLP0_and_penalty)
+                          InterfaceNumericalMethod::HLLP0_and_SIPG or
+                        multiphase_scratch_data.phase_coupling.type ==
+                          InterfaceNumericalMethod::HLLP0_and_penalty)
                       {
                         for (const unsigned int q :
                              eval_point_interface_gas.quadrature_point_indices())

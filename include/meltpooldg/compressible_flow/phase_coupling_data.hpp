@@ -9,7 +9,7 @@
 
 namespace MeltPoolDG::Multiphase
 {
-  BETTER_ENUM(InterfaceNumericalMethod, char, HLLP0_and_SIPG, HLLP0_and_penalty, penalty)
+  BETTER_ENUM(InterfaceNumericalMethod, char, HLLP0_and_SIPG, HLLP0_and_penalty)
 
   // TODO: use EvaporationData for evaporation-specific parameters
   BETTER_ENUM(EvaporationModelType, char, constant, Knight)
@@ -42,31 +42,6 @@ namespace MeltPoolDG::Multiphase
 
     /// Numerical method for interface jump enforcement
     InterfaceNumericalMethod type = InterfaceNumericalMethod::HLLP0_and_SIPG;
-
-    /// Parameters specifically for the penalty interface numerical method
-    struct Penalty
-    {
-      struct Coefficients
-      {
-        /// Density constraint penalty factor
-        number density = std::numeric_limits<number>::max();
-
-        /// Temperature constraint penalty factor
-        number temperature = std::numeric_limits<number>::max();
-      } coefficients;
-
-      struct TargetValues
-      {
-        /// Target values for density for gas phase
-        // TODO: remove from input file, only temporary required for testing
-        number density_gas_phase = 0.;
-
-        /// Target values for temperature for gas phase
-        // TODO: remove from input file, only temporary required for testing
-        number temperature_gas_phase = 0.;
-      } target_values;
-
-    } penalty;
 
     /// Parameters specifically for the HLLP0 and SIPG interface numerical method
     struct HLLP0_SIPG
@@ -133,34 +108,6 @@ namespace MeltPoolDG::Multiphase
                           "Numerical method for enforcing interface jump conditions. "
                           "The options are \"penalty\", \"HLLP0_and_SIPG\", \"HLLP0_and_penalty\".",
                           dealii::Patterns::Selection("penalty|HLLP0_and_SIPG|HLLP0_and_penalty"));
-        prm.enter_subsection("penalty");
-        prm.enter_subsection("coefficients");
-        prm.add_parameter(
-          "density",
-          penalty.coefficients.density,
-          "Density constraint penalty factor for enforcing the density in the gas phase. "
-          "The minimum value is 0.",
-          dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
-        prm.add_parameter(
-          "temperature",
-          penalty.coefficients.temperature,
-          "Temperature constraint penalty factor for enforcing the temperature in the "
-          "gas phase. The minimum value is 0.",
-          dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
-        prm.leave_subsection();
-        // TODO: In the case that the Hertz-Knudsen theory is considered, no target values should be
-        // set in the user input
-        prm.enter_subsection("target values");
-        prm.add_parameter("density gas phase",
-                          penalty.target_values.density_gas_phase,
-                          "Target density of gas phase.",
-                          dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
-        prm.add_parameter("temperature gas phase",
-                          penalty.target_values.temperature_gas_phase,
-                          "Target temperature of gas phase.",
-                          dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
-        prm.leave_subsection();
-        prm.leave_subsection();
         prm.enter_subsection("HLLP0 and SIPG");
         prm.add_parameter(
           "interior penalty parameter interface",
@@ -199,18 +146,6 @@ namespace MeltPoolDG::Multiphase
     void
     post()
     {
-      if (type == InterfaceNumericalMethod::penalty)
-        {
-          AssertThrow(penalty.coefficients.density != std::numeric_limits<number>::max(),
-                      dealii::ExcMessage(
-                        "You have to set the density constraint penalty factor for penalty "
-                        "method."));
-          AssertThrow(penalty.coefficients.temperature != std::numeric_limits<number>::max(),
-                      dealii::ExcMessage(
-                        "You have to set the temperature constraint penalty factor for penalty "
-                        "method."));
-        }
-
       if (evaporation_model == EvaporationModelType::Knight)
         AssertThrow(type == InterfaceNumericalMethod::HLLP0_and_penalty,
                     dealii::ExcMessage(
