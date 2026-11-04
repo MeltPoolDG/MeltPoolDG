@@ -18,6 +18,7 @@
 #include <meltpooldg/flow/darcy_damping_data.hpp>
 #include <meltpooldg/phase_change/phase_change_data.hpp>
 #include <meltpooldg/time_integration/solution_history.hpp>
+#include <meltpooldg/utilities/subcell_matrix_free.templates.hpp>
 
 namespace MeltPoolDG::CompressibleFlow
 {
@@ -115,11 +116,16 @@ namespace MeltPoolDG::CompressibleFlow
     /// Pointer to the body force function
     std::unique_ptr<dealii::Function<dim>> body_force;
 
+    /// Subcell data of the finite volume subcell limiter. Only constructed if the finite volume
+    /// subcell limiter is applied.
+    std::unique_ptr<SubcellMatrixFree<dim, number>> subcell_matrix_free;
+
     /**
      * @brief Set up the internal data structures.
      *
-     * Allocate memory for the solution history object and precompute the penalty parameter for the
-     * symmetric interior penalty method.
+     * Allocate memory for the solution history object, precompute the penalty parameter for the
+     * symmetric interior penalty method, and set up the subcell data of the finite volume subcell
+     * limiter if necessary.
      *
      * @param solution_history_size Size of the solution history object, i.e. the number of vectors
      * at different concrete times n for which the solution history is responsible.
@@ -138,6 +144,14 @@ namespace MeltPoolDG::CompressibleFlow
                                     scratch_data.get_matrix_free(),
                                     flow_data.domain_representation_type,
                                     dof_idx);
+
+      if (flow_data.limiter_data.apply_limiter and
+          flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
+        {
+          if (not subcell_matrix_free)
+            subcell_matrix_free = std::make_unique<SubcellMatrixFree<dim, number>>();
+          subcell_matrix_free->reinit(scratch_data.get_matrix_free(), dof_idx, quad_idx);
+        }
     }
   };
 

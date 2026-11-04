@@ -10,6 +10,7 @@
 #include <meltpooldg/utilities/matrix_free_util.hpp>
 #include <meltpooldg/utilities/numerical_admissibility_detection.hpp>
 #include <meltpooldg/utilities/physical_admissibility_detection.hpp>
+#include <meltpooldg/utilities/subcell_matrix_free.hpp>
 
 #include <bitset>
 #include <functional>
@@ -48,11 +49,11 @@ namespace MeltPoolDG
      * Initialize the internal data structures. This function must be called every time the matrix
      * free object is reinitialized.
      *
-     * @param matrix_free_context Matrix-free context containing the matrix free object and the
+     * @param subcell_matrix_free Subcell data providing the matrix free object and the
      * corresponding DoF and quadrature indices.
      */
     void
-    reinit(const MatrixFreeContext<dim, number> &matrix_free_context);
+    reinit(const SubcellMatrixFree<dim, number> &subcell_matrix_free);
 
     /**
      * Mark the troubled cells of @p candidate. The marked cells are stored internally and can be
@@ -60,14 +61,14 @@ namespace MeltPoolDG
      * satisfies the physical admissibility check in all subcells and the numerical admissibility
      * check with respect to the old solution (see CellwiseNumericalAdmissibility).
      *
-     * @param matrix_free_context Matrix-free data providing the dof and quadrature indices used to
-     * evaluate the solutions on the subcells.
+     * @param subcell_matrix_free Subcell data used to evaluate the solutions on the subcells. Must
+     * be the same as passed to reinit().
      * @param candidate Candidate solution to be checked. Only its locally owned values are used.
      * @param old_solution Solution from which the bounds of the numerical admissibility check are
      * computed.
      */
     void
-    mark(const MatrixFreeContext<dim, number> &matrix_free_context,
+    mark(const SubcellMatrixFree<dim, number> &subcell_matrix_free,
          const VectorType                     &candidate,
          const VectorType                     &old_solution);
 

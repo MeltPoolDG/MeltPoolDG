@@ -24,6 +24,7 @@
 #include <meltpooldg/utilities/fe_subcell_evaluation.templates.hpp>
 #include <meltpooldg/utilities/fe_util.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
+#include <meltpooldg/utilities/subcell_matrix_free.templates.hpp>
 #include <meltpooldg/utilities/troubled_cell_marker.templates.hpp>
 
 #include <algorithm>
@@ -121,8 +122,10 @@ protected:
     VectorType field;
     scratch_data.initialize_dof_vector(field, 0);
 
-    const dealii::MatrixFree<dim, double>         &matrix_free = scratch_data.get_matrix_free();
-    FESubcellEvaluation<dim, n_components, double> phi(matrix_free, 0, 0);
+    const dealii::MatrixFree<dim, double> &matrix_free = scratch_data.get_matrix_free();
+    SubcellMatrixFree<dim, double>         subcell_matrix_free;
+    subcell_matrix_free.reinit(matrix_free, 0, 0);
+    FESubcellEvaluation<dim, n_components, double> phi(subcell_matrix_free);
     for (unsigned int batch = 0; batch < matrix_free.n_cell_batches(); ++batch)
       {
         phi.reinit(batch);
@@ -172,9 +175,11 @@ protected:
     Utilities::LimiterData<double> limiter_data;
     limiter_data.troubled_cell_marking_strategy = {
       Utilities::TroubledCellMarkingStrategy::subcell_nad};
+    SubcellMatrixFree<dim, double> subcell_matrix_free;
+    subcell_matrix_free.reinit(matrix_free, 0, 0);
     TroubledCellMarker<dim, n_components, double> marker(limiter_data);
-    marker.reinit({matrix_free, 0, 0});
-    marker.mark({matrix_free, 0, 0}, candidate, old_solution);
+    marker.reinit(subcell_matrix_free);
+    marker.mark(subcell_matrix_free, candidate, old_solution);
 
     unsigned int n_troubled = 0;
     for (unsigned int batch = 0; batch < matrix_free.n_cell_batches(); ++batch)

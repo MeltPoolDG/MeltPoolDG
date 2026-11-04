@@ -96,6 +96,8 @@ namespace MeltPoolDG::CompressibleFlow
           TimeIntegration::TimeIntegratorSchemes::SSP_RK_stage_3_order_3,
       ExcMessage(
         "The finite volume subcell limiter is only implemented for strong stability preserving time integration."));
+    Assert(flow_scratch_data.subcell_matrix_free,
+           ExcMessage("The subcell data of the finite volume subcell limiter is not set up."));
     current_time_step        = time_step;
     using local_applier_type = std::function<void(const dealii::MatrixFree<dim, number> &,
                                                   VectorType       &dst,
@@ -500,7 +502,7 @@ namespace MeltPoolDG::CompressibleFlow
     const dealii::AlignedVector<dealii::VectorizedArray<number>> &troubled_cells) const
   {
     FESubcellEvaluation<dim, n_conserved_variables<dim, n_species>, number> subcell_evaluation(
-      matrix_free, flow_scratch_data.dof_idx, flow_scratch_data.quad_idx);
+      *flow_scratch_data.subcell_matrix_free);
 
     for (unsigned int cell = cell_range.first; cell < cell_range.second; ++cell)
       {
@@ -557,9 +559,9 @@ namespace MeltPoolDG::CompressibleFlow
     const dealii::AlignedVector<dealii::VectorizedArray<number>> &troubled_cells) const
   {
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> phi_m(
-      matrix_free, true, flow_scratch_data.dof_idx, flow_scratch_data.quad_idx);
+      *flow_scratch_data.subcell_matrix_free, true);
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> phi_p(
-      matrix_free, false, flow_scratch_data.dof_idx, flow_scratch_data.quad_idx);
+      *flow_scratch_data.subcell_matrix_free, false);
 
     for (unsigned int face = face_range.first; face < face_range.second; ++face)
       {
@@ -603,7 +605,7 @@ namespace MeltPoolDG::CompressibleFlow
     const dealii::AlignedVector<dealii::VectorizedArray<number>> &troubled_cells) const
   {
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> phi_m(
-      matrix_free, true, flow_scratch_data.dof_idx, flow_scratch_data.quad_idx);
+      *flow_scratch_data.subcell_matrix_free, true);
 
     using DofReaderType = NSpeciesDofValueAndGradientStateView<
       dim,
@@ -682,9 +684,9 @@ namespace MeltPoolDG::CompressibleFlow
     const dealii::AlignedVector<dealii::VectorizedArray<number>> &troubled_cells) const
   {
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> subcell_m(
-      matrix_free, true, flow_scratch_data.dof_idx, flow_scratch_data.quad_idx);
+      *flow_scratch_data.subcell_matrix_free, true);
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> subcell_p(
-      matrix_free, false, flow_scratch_data.dof_idx, flow_scratch_data.quad_idx);
+      *flow_scratch_data.subcell_matrix_free, false);
     FEFaceIntegrator<dim, n_conserved_variables<dim, n_species>, number> phi_m(
       matrix_free, true, flow_scratch_data.dof_idx, flow_scratch_data.quad_idx);
     FEFaceIntegrator<dim, n_conserved_variables<dim, n_species>, number> phi_p(

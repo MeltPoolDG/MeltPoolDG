@@ -27,6 +27,7 @@
 #include <meltpooldg/utilities/fe_subcell_evaluation.templates.hpp>
 #include <meltpooldg/utilities/fe_subcell_face_evaluation.hpp>
 #include <meltpooldg/utilities/fe_subcell_face_evaluation.templates.hpp>
+#include <meltpooldg/utilities/subcell_matrix_free.templates.hpp>
 
 #include <algorithm>
 #include <array>
@@ -213,6 +214,8 @@ protected:
                        dealii::QGauss<1>(degree + 1),
                        additional_data);
 
+    subcell_matrix_free.reinit(matrix_free, 0, 0);
+
     matrix_free.initialize_dof_vector(solution);
     dealii::VectorTools::interpolate(dof_handler,
                                      TestUtils::LinearFunction<dim, n_components>(),
@@ -306,6 +309,7 @@ protected:
   dealii::DoFHandler<dim>           dof_handler;
   dealii::AffineConstraints<double> constraints;
   dealii::MatrixFree<dim, double>   matrix_free;
+  SubcellMatrixFree<dim, double>    subcell_matrix_free;
   VectorType                        solution;
   const dealii::QGauss<1>           quadrature_1d;
   const dealii::QGauss<dim - 1>     face_quadrature;
@@ -329,7 +333,7 @@ TYPED_TEST_SUITE(FESubcellFaceEvaluationTest, TestConfigs);
  */
 TYPED_TEST(FESubcellFaceEvaluationTest, NumberOfSubcellFaces)
 {
-  typename TestFixture::SubcellFaceEvaluation phi(this->matrix_free, true, 0, 0);
+  typename TestFixture::SubcellFaceEvaluation phi(this->subcell_matrix_free, true);
   phi.reinit(0);
 
   const unsigned int expected_n_subcell_faces =
@@ -346,8 +350,8 @@ TYPED_TEST(FESubcellFaceEvaluationTest, NumberOfSubcellFaces)
  */
 TYPED_TEST(FESubcellFaceEvaluationTest, BoundaryInformation)
 {
-  typename TestFixture::SubcellFaceEvaluation phi_m(this->matrix_free, true, 0, 0);
-  typename TestFixture::SubcellFaceEvaluation phi_p(this->matrix_free, false, 0, 0);
+  typename TestFixture::SubcellFaceEvaluation phi_m(this->subcell_matrix_free, true);
+  typename TestFixture::SubcellFaceEvaluation phi_p(this->subcell_matrix_free, false);
 
   for (const unsigned int face : this->inner_face_batches())
     {
@@ -375,8 +379,8 @@ TYPED_TEST(FESubcellFaceEvaluationTest, NormalVectors)
 {
   constexpr int dim = TypeParam::dim;
 
-  typename TestFixture::SubcellFaceEvaluation phi_m(this->matrix_free, true, 0, 0);
-  typename TestFixture::SubcellFaceEvaluation phi_p(this->matrix_free, false, 0, 0);
+  typename TestFixture::SubcellFaceEvaluation phi_m(this->subcell_matrix_free, true);
+  typename TestFixture::SubcellFaceEvaluation phi_p(this->subcell_matrix_free, false);
 
   for (const unsigned int face : this->inner_face_batches())
     {
@@ -418,8 +422,8 @@ TYPED_TEST(FESubcellFaceEvaluationTest, NormalVectors)
  */
 TYPED_TEST(FESubcellFaceEvaluationTest, SubcellFaceSizes)
 {
-  typename TestFixture::SubcellFaceEvaluation phi_m(this->matrix_free, true, 0, 0);
-  typename TestFixture::SubcellFaceEvaluation phi_p(this->matrix_free, false, 0, 0);
+  typename TestFixture::SubcellFaceEvaluation phi_m(this->subcell_matrix_free, true);
+  typename TestFixture::SubcellFaceEvaluation phi_p(this->subcell_matrix_free, false);
 
   for (const unsigned int face : this->all_face_batches())
     {
@@ -456,8 +460,8 @@ TYPED_TEST(FESubcellFaceEvaluationTest, SubcellFaceSizes)
  */
 TYPED_TEST(FESubcellFaceEvaluationTest, SubcellSizes)
 {
-  typename TestFixture::SubcellFaceEvaluation phi_m(this->matrix_free, true, 0, 0);
-  typename TestFixture::SubcellFaceEvaluation phi_p(this->matrix_free, false, 0, 0);
+  typename TestFixture::SubcellFaceEvaluation phi_m(this->subcell_matrix_free, true);
+  typename TestFixture::SubcellFaceEvaluation phi_p(this->subcell_matrix_free, false);
 
   // make use og the fact that the first Gauss point in normal direction is symmetric to the last
   // one
@@ -499,8 +503,8 @@ TYPED_TEST(FESubcellFaceEvaluationTest, SubcellLocations)
   constexpr int dim          = TypeParam::dim;
   constexpr int n_components = TypeParam::n_components;
 
-  typename TestFixture::SubcellFaceEvaluation phi_m(this->matrix_free, true, 0, 0);
-  typename TestFixture::SubcellFaceEvaluation phi_p(this->matrix_free, false, 0, 0);
+  typename TestFixture::SubcellFaceEvaluation phi_m(this->subcell_matrix_free, true);
+  typename TestFixture::SubcellFaceEvaluation phi_p(this->subcell_matrix_free, false);
   FEFaceIntegrator<dim, n_components, double> fe_face(this->matrix_free, true, 0, 0);
   const double                                reference_distance = this->quadrature_1d.point(0)[0];
 
@@ -539,8 +543,8 @@ TYPED_TEST(FESubcellFaceEvaluationTest, SubcellLocations)
  */
 TYPED_TEST(FESubcellFaceEvaluationTest, ValuesOfLinearFunction)
 {
-  typename TestFixture::SubcellFaceEvaluation phi_m(this->matrix_free, true, 0, 0);
-  typename TestFixture::SubcellFaceEvaluation phi_p(this->matrix_free, false, 0, 0);
+  typename TestFixture::SubcellFaceEvaluation phi_m(this->subcell_matrix_free, true);
+  typename TestFixture::SubcellFaceEvaluation phi_p(this->subcell_matrix_free, false);
   const TestUtils::LinearFunction<TypeParam::dim, TypeParam::n_components> linear_function;
 
   for (const unsigned int face : this->all_face_batches())
@@ -578,9 +582,9 @@ TYPED_TEST(FESubcellFaceEvaluationTest, IntegrateScatterUpdatesAdjacentSubcells)
   constexpr int dim          = TypeParam::dim;
   constexpr int n_components = TypeParam::n_components;
 
-  typename TestFixture::SubcellFaceEvaluation phi_m(this->matrix_free, true, 0, 0);
-  typename TestFixture::SubcellFaceEvaluation phi_p(this->matrix_free, false, 0, 0);
-  typename TestFixture::SubcellEvaluation     subcells(this->matrix_free, 0, 0);
+  typename TestFixture::SubcellFaceEvaluation phi_m(this->subcell_matrix_free, true);
+  typename TestFixture::SubcellFaceEvaluation phi_p(this->subcell_matrix_free, false);
+  typename TestFixture::SubcellEvaluation     subcells(this->subcell_matrix_free);
 
   ExpectedSubcellValues<dim, n_components> expected;
 
@@ -640,9 +644,9 @@ TYPED_TEST(FESubcellFaceEvaluationTest, OppositeFluxesAreConservative)
   constexpr int dim          = TypeParam::dim;
   constexpr int n_components = TypeParam::n_components;
 
-  typename TestFixture::SubcellFaceEvaluation phi_m(this->matrix_free, true, 0, 0);
-  typename TestFixture::SubcellFaceEvaluation phi_p(this->matrix_free, false, 0, 0);
-  typename TestFixture::SubcellEvaluation     subcells(this->matrix_free, 0, 0);
+  typename TestFixture::SubcellFaceEvaluation phi_m(this->subcell_matrix_free, true);
+  typename TestFixture::SubcellFaceEvaluation phi_p(this->subcell_matrix_free, false);
+  typename TestFixture::SubcellEvaluation     subcells(this->subcell_matrix_free);
 
   VectorType dst;
   this->matrix_free.initialize_dof_vector(dst);
@@ -696,8 +700,8 @@ TYPED_TEST(FESubcellFaceEvaluationTest, InvalidUsageAsserts)
   const unsigned int inner_face    = 0;
   const unsigned int boundary_face = this->matrix_free.n_inner_face_batches();
 
-  typename TestFixture::SubcellFaceEvaluation phi_m(this->matrix_free, true, 0, 0);
-  typename TestFixture::SubcellFaceEvaluation phi_p(this->matrix_free, false, 0, 0);
+  typename TestFixture::SubcellFaceEvaluation phi_m(this->subcell_matrix_free, true);
+  typename TestFixture::SubcellFaceEvaluation phi_p(this->subcell_matrix_free, false);
 
   EXPECT_THROW(phi_p.reinit(boundary_face), dealii::ExceptionBase);
 
