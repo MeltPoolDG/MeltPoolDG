@@ -383,6 +383,15 @@ namespace MeltPoolDG
     /// cell.
     const SubcellMatrixFree<dim, number> &subcell_matrix_free;
 
+    /// The subcell index data and the geometry on the unit cell.
+    const SubcellShapeInfo<dim, number> &subcell_shape_info;
+
+    /// The index data of the subcells of a cell.
+    const SubcellIndexInfo<dim> &cell_index_info;
+
+    /// The index data of the subcells of a face.
+    const SubcellIndexInfo<dim - 1> &face_index_info;
+
     /// Index of the face batch the object is currently reinitialized on.
     unsigned int face_batch_index = dealii::numbers::invalid_unsigned_int;
 
@@ -396,6 +405,10 @@ namespace MeltPoolDG
     /// Face number of the current face within the adjacent cell on this object's side, i.e. the
     /// interior or exterior face number of the face batch.
     unsigned int face_no = dealii::numbers::invalid_unsigned_int;
+
+    /// Coordinate direction of the cell normal to the current face, i.e. `face_no / 2`. It is the
+    /// same on the interior and the exterior side.
+    unsigned int face_normal_coordinate_direction = dealii::numbers::invalid_unsigned_int;
 
     /**
      * Values of the subcells adjacent to the face on this object's side, i.e. one layer of

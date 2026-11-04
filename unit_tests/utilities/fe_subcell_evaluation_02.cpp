@@ -1,9 +1,9 @@
 /**
  * @file fe_subcell_evaluation_02.cpp
  * @brief Unit tests for the FESubcellEvaluation class checking the functionality related with
- * evaluating values on intra cell subcell faces, i.e. the faces shared by two subcells of the same
- * DG cell and submitting/integrating fluxes for these faces. The tests implemented in this file are
- * exclusively for cartesian grids.
+ * evaluating values and gradients on intra cell subcell faces, i.e. the faces shared by two
+ * subcells of the same DG cell and submitting/integrating fluxes for these faces. The tests
+ * implemented in this file are exclusively for cartesian grids.
  */
 
 #include <gtest/gtest.h>
@@ -37,6 +37,7 @@
 #include <meltpooldg/utilities/subcell_matrix_free.templates.hpp>
 
 #include <cmath>
+#include <functional>
 #include <set>
 #include <utility>
 #include <vector>
@@ -310,6 +311,72 @@ TYPED_TEST(FESubcellEvaluationFaceTest, IntraCellFaceValues)
                                  tolerance);
           TestUtils::expect_near(subcells.get_face_value(face_index, false),
                                  subcells.get_value(exterior),
+                                 this->n_active_lanes(cell),
+                                 tolerance);
+        }
+    }
+}
+
+/**
+ * Check that get_face_gradient() is exact for subcell values given by a linear function at the
+ * subcell locations. For such values, both the two-point difference in the normal direction and the
+ * averaged central differences in the tangential directions are exact. Hence, such subcell values
+ * are submitted on all cells and projected to a DG solution, and it is then checked that the
+ * gradients on the intra cell subcell faces match the gradient of the linear function. At the
+ * domain boundary, the boundary value function returns the linear function at the given point on
+ * the boundary face.
+ */
+TYPED_TEST(FESubcellEvaluationFaceTest, IntraCellFaceGradients)
+{
+  const TestUtils::LinearFunction<TypeParam::dim, TypeParam::n_components> linear_function;
+
+  const std::function<value_type<TypeParam::n_components, VectorizedArrayType>(
+    const dealii::Point<TypeParam::dim, VectorizedArrayType> &,
+    const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> &,
+    const dealii::types::boundary_id,
+    const value_type<TypeParam::n_components, VectorizedArrayType> &)>
+    boundary_value_function =
+      [&linear_function](const dealii::Point<TypeParam::dim, VectorizedArrayType> &location,
+                         const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> &,
+                         const dealii::types::boundary_id,
+                         const value_type<TypeParam::n_components, VectorizedArrayType> &)
+    -> value_type<TypeParam::n_components, VectorizedArrayType> {
+    return linear_function.value(location);
+  };
+
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free, boundary_value_function);
+
+  // We first need to submit the values of the linear function at the subcell center locations to
+  // guarantee that the subcell values are correct. Using the default gather_evaluate()
+  // functionality would evaluate the linear function at the cell quadrature points, which are not
+  // the same as the subcell center locations.
+  VectorType subcell_solution;
+  this->matrix_free.initialize_dof_vector(subcell_solution);
+  for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
+    {
+      subcells.reinit(cell);
+      for (const unsigned int subcell : subcells.subcell_indices())
+        subcells.submit_value(subcell, linear_function.value(subcells.subcell_location(subcell)));
+      subcells.integrate();
+      subcells.set_dof_values(subcell_solution);
+    }
+  subcell_solution.update_ghost_values();
+
+  for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
+    {
+      subcells.reinit(cell);
+      subcells.gather_evaluate(subcell_solution,
+                               dealii::EvaluationFlags::values |
+                                 dealii::EvaluationFlags::gradients);
+
+      for (const unsigned int face_index : subcells.subcell_face_indices())
+        {
+          const unsigned int interior =
+            subcells.subcell_face_interior_exterior_indices(face_index).first;
+
+          TestUtils::expect_near(subcells.get_face_gradient(face_index),
+                                 linear_function.gradient(subcells.subcell_location(interior)),
                                  this->n_active_lanes(cell),
                                  tolerance);
         }

@@ -9,6 +9,7 @@
 #include <deal.II/matrix_free/matrix_free.h>
 #include <deal.II/matrix_free/tools.h>
 
+#include <meltpooldg/utilities/dealii_tensor.hpp>
 #include <meltpooldg/utilities/fe_integrator.hpp>
 
 #include <vector>
@@ -189,6 +190,31 @@ namespace MeltPoolDG
           }
       }
     return centers;
+  }
+
+  /**
+   * This function copies the SIMD lane @p lane of @p source into @p destination. The type
+   * @p value_type is a dealii::VectorizedArray or a dealii::Tensor of any rank with
+   * dealii::VectorizedArray entries, in which case the lane is copied for every entry. All other
+   * lanes of @p destination are left unchanged.
+   *
+   * @param source The value from which the lane is copied.
+   * @param lane Index of the SIMD lane to copy.
+   * @param destination The value into which the lane is copied.
+   */
+  template <typename value_type>
+  void
+  copy_simd_lane(const value_type &source, const unsigned int lane, value_type &destination)
+  {
+    if constexpr (is_dealii_tensor<value_type>::value)
+      {
+        for (unsigned int d = 0; d < value_type::dimension; ++d)
+          copy_simd_lane(source[d], lane, destination[d]);
+      }
+    else
+      {
+        destination[lane] = source[lane];
+      }
   }
 
   /// An enum of possible matrix representation types that can be computed from a matrix free

@@ -492,81 +492,131 @@ TYPED_TEST(FESubcellFaceEvaluationTest, SubcellSizes)
 }
 
 /**
- * Check that subcell_location(q) is the center of the subcell adjacent to subcell face q, i.e. the
- * cell quadrature point next to the face quadrature point q. On the Cartesian mesh (this test does
- * not work for non-cartesian meshes), it lies on the line through the face quadrature point along
- * the normal, at the distance of the first Gauss point from the face. Hence, this test checks the
- * mapping from face to cell quadrature points for every face number.
+ * Check that subcell_location(q) is the geometric center of the subcell adjacent to subcell face q
+ * and subcell_face_location(q) the geometric center of subcell face q. Then, the subcells on both
+ * sides lie half their width away from the subcell face, where the width of a subcell normal to the
+ * face is its size divided by the subcell face size. Since this only checks the relative positions,
+ * it is additionally checked that the size-weighted mean of the subcell face locations is the
+ * center of the face.
  */
 TYPED_TEST(FESubcellFaceEvaluationTest, SubcellLocations)
 {
-  constexpr int dim          = TypeParam::dim;
-  constexpr int n_components = TypeParam::n_components;
+  constexpr int dim = TypeParam::dim;
 
   typename TestFixture::SubcellFaceEvaluation phi_m(this->subcell_matrix_free, true);
   typename TestFixture::SubcellFaceEvaluation phi_p(this->subcell_matrix_free, false);
-  FEFaceIntegrator<dim, n_components, double> fe_face(this->matrix_free, true, 0, 0);
-  const double                                reference_distance = this->quadrature_1d.point(0)[0];
 
   for (const unsigned int face : this->all_face_batches())
     {
       phi_m.reinit(face);
-      fe_face.reinit(face);
       if (!phi_m.at_boundary())
         phi_p.reinit(face);
 
+      // Check the distances between the subcell face and the subcells on both sides.
       for (const unsigned int q : phi_m.subcell_face_indices())
         {
+          SCOPED_TRACE("Distance check for subcell face " + std::to_string(q) + " of face batch " +
+                       std::to_string(face));
           const dealii::Tensor<1, dim, VectorizedArrayType> normal = phi_m.normal_vector(q);
-          const dealii::Tensor<1, dim, VectorizedArrayType> offset =
-            reference_distance * this->cell_size_in_normal_direction(normal) * normal;
-          const dealii::Point<dim, VectorizedArrayType> face_point = fe_face.quadrature_point(q);
 
-          TestUtils::expect_near(face_point - phi_m.subcell_location(q),
-                                 offset,
+          TestUtils::expect_near(phi_m.subcell_face_location(q) - phi_m.subcell_location(q),
+                                 0.5 * phi_m.subcell_size(q) / phi_m.subcell_face_size(q) * normal,
                                  this->n_active_face_lanes(face),
                                  tolerance);
 
           if (!phi_m.at_boundary())
-            TestUtils::expect_near(phi_p.subcell_location(q) - face_point,
-                                   offset,
-                                   this->n_active_face_lanes(face),
-                                   tolerance);
+            {
+              TestUtils::expect_near(phi_p.subcell_face_location(q),
+                                     phi_m.subcell_face_location(q),
+                                     this->n_active_face_lanes(face),
+                                     tolerance);
+              TestUtils::expect_near(phi_p.subcell_location(q) - phi_p.subcell_face_location(q),
+                                     0.5 * phi_p.subcell_size(q) / phi_p.subcell_face_size(q) *
+                                       normal,
+                                     this->n_active_face_lanes(face),
+                                     tolerance);
+            }
         }
+
+      // Check that the size-weighted mean of the subcell face locations is the face center.
+      dealii::Tensor<1, dim, VectorizedArrayType> weighted_location_sum;
+      VectorizedArrayType                         total_size = 0.;
+      for (const unsigned int q : phi_m.subcell_face_indices())
+        {
+          weighted_location_sum += phi_m.subcell_face_size(q) * phi_m.subcell_face_location(q);
+          total_size += phi_m.subcell_face_size(q);
+        }
+
+      dealii::Tensor<1, dim, VectorizedArrayType> face_center;
+      for (unsigned int lane = 0; lane < this->n_active_face_lanes(face); ++lane)
+        {
+          const std::pair<typename dealii::DoFHandler<dim>::cell_iterator, unsigned int>
+            cell_and_face_no = this->matrix_free.get_face_iterator(face, lane);
+          for (unsigned int d = 0; d < dim; ++d)
+            face_center[d][lane] =
+              cell_and_face_no.first->face(cell_and_face_no.second)->center()[d];
+        }
+
+      TestUtils::expect_near(weighted_location_sum / total_size,
+                             face_center,
+                             this->n_active_face_lanes(face),
+                             tolerance);
     }
 }
 
 /**
  * The subcell values are the values of the DG solution at the cell quadrature points adjacent to
  * the face. For a linear function, which is represented exactly, they equal the function value at
- * subcell_location(q), on both sides of every face.
+ * the cell quadrature point adjacent to the face quadrature point q, on both sides of every face.
  */
 TYPED_TEST(FESubcellFaceEvaluationTest, ValuesOfLinearFunction)
 {
   typename TestFixture::SubcellFaceEvaluation phi_m(this->subcell_matrix_free, true);
   typename TestFixture::SubcellFaceEvaluation phi_p(this->subcell_matrix_free, false);
+
+  FEFaceIntegrator<TypeParam::dim, TypeParam::n_components, double> phi_fe_m(
+    this->subcell_matrix_free.get_matrix_free(), true, 0, 0);
+  FEFaceIntegrator<TypeParam::dim, TypeParam::n_components, double> phi_fe_p(
+    this->subcell_matrix_free.get_matrix_free(), false, 0, 0);
   const TestUtils::LinearFunction<TypeParam::dim, TypeParam::n_components> linear_function;
+  const double reference_distance = this->quadrature_1d.point(0)[0];
 
   for (const unsigned int face : this->all_face_batches())
     {
       phi_m.reinit(face);
       phi_m.gather_evaluate(this->solution, dealii::EvaluationFlags::values);
-      for (const unsigned int q : phi_m.subcell_face_indices())
-        TestUtils::expect_near(phi_m.get_value(q),
-                               linear_function.value(phi_m.subcell_location(q)),
-                               this->n_active_face_lanes(face),
-                               tolerance);
+      phi_fe_m.reinit(face);
+      for (const unsigned int s : phi_m.subcell_face_indices())
+        {
+          // We compute the actual cell quadrature point for the current subcell face by shifting
+          // the face quadrature point.
+          const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> offset =
+            reference_distance * this->cell_size_in_normal_direction(phi_m.normal_vector(s)) *
+            phi_m.normal_vector(s);
+          TestUtils::expect_near(phi_m.get_value(s),
+                                 linear_function.value(phi_fe_m.quadrature_point(s) - offset),
+                                 this->n_active_face_lanes(face),
+                                 tolerance);
+        }
 
       if (phi_m.at_boundary())
         continue;
 
       phi_p.reinit(face);
       phi_p.gather_evaluate(this->solution, dealii::EvaluationFlags::values);
-      for (const unsigned int q : phi_p.subcell_face_indices())
-        TestUtils::expect_near(phi_p.get_value(q),
-                               linear_function.value(phi_p.subcell_location(q)),
-                               this->n_active_face_lanes(face),
-                               tolerance);
+      phi_fe_p.reinit(face);
+      for (const unsigned int s : phi_p.subcell_face_indices())
+        {
+          // As before, we compute the actual cell quadrature point for the current subcell face by
+          // shifting the face quadrature point.
+          const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> offset =
+            reference_distance * this->cell_size_in_normal_direction(phi_p.normal_vector(s)) *
+            phi_p.normal_vector(s);
+          TestUtils::expect_near(phi_p.get_value(s),
+                                 linear_function.value(phi_fe_p.quadrature_point(s) + offset),
+                                 this->n_active_face_lanes(face),
+                                 tolerance);
+        }
     }
 }
 
