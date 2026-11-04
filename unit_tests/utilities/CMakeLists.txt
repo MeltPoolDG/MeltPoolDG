@@ -17,4 +17,5 @@ mpdg_setup_mpi_unit_tests(
     triangulation_utils.cpp
     numerical_admissibility_detection_01.cpp
     numerical_admissibility_detection_02.cpp
+    fe_subcell_face_evaluation_02.cpp
 )
