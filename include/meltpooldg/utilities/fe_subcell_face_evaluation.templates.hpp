@@ -15,6 +15,8 @@
 #include <deal.II/matrix_free/shape_info.h>
 
 #include <meltpooldg/utilities/fe_subcell_face_evaluation.hpp>
+#include <meltpooldg/utilities/subcell_evaluation_utils.hpp>
+#include <meltpooldg/utilities/subcell_matrix_free.hpp>
 
 #include <bitset>
 
@@ -23,13 +25,15 @@ namespace MeltPoolDG
   template <int dim, int n_components, typename number>
   FESubcellFaceEvaluation<dim, n_components, number>::FESubcellFaceEvaluation(
     const SubcellMatrixFree<dim, number> &subcell_matrix_free,
-    const bool                            is_interior_face)
+    const bool                            is_interior_face,
+    const BoundaryValueFunctionType      &boundary_value_function)
     : subcell_matrix_free(subcell_matrix_free)
     , subcell_shape_info(subcell_matrix_free.get_subcell_shape_info())
     , cell_index_info(subcell_matrix_free.get_subcell_shape_info().cell_index_info)
     , face_index_info(subcell_matrix_free.get_subcell_shape_info().face_index_info)
     , matrix_free(subcell_matrix_free.get_matrix_free())
     , is_interior_face(is_interior_face)
+    , boundary_value_function(boundary_value_function)
     , fe_cell_evaluator(subcell_matrix_free.get_matrix_free(),
                         subcell_matrix_free.get_dof_no(),
                         subcell_matrix_free.get_quad_no())
@@ -50,7 +54,7 @@ namespace MeltPoolDG
 
     is_boundary_face = face_batch_index >= matrix_free.n_inner_face_batches();
 
-    // Current implementation currently is only guaranteed to work for standard orientation
+    // The current implementation is only guaranteed to work for faces in standard orientation.
     Assert(dim < 3 or face_info.face_orientation == 0, dealii::ExcNotImplemented());
 
     // Currently the implementation does not support hanging faces.
@@ -84,36 +88,14 @@ namespace MeltPoolDG
     determine_subcell_locations();
     determine_subcell_face_locations();
 
+    compute_layer_extents();
+
     std::ranges::fill(submitted_fluxes, value_type());
 
-    is_reinitialized           = true;
-    dof_values_initialized     = false;
-    subcell_values_initialized = false;
-    subcell_fluxes_submitted   = false;
-  }
-
-  template <int dim, int n_components, typename number>
-  void
-  FESubcellFaceEvaluation<dim, n_components, number>::read_dof_values(
-    const dealii::LinearAlgebra::distributed::Vector<number> &src_vector,
-    const std::bitset<n_lanes>                               &mask)
-  {
-    Assert(is_reinitialized, dealii::ExcNotInitialized());
-    fe_cell_evaluator.read_dof_values(src_vector, 0, mask);
-
-    dof_values_initialized = true;
-  }
-
-  template <int dim, int n_components, typename number>
-  void
-  FESubcellFaceEvaluation<dim, n_components, number>::evaluate(
-    const dealii::EvaluationFlags::EvaluationFlags evaluation_flags)
-  {
-    Assert(dof_values_initialized,
-           dealii::ExcMessage(
-             "DoF values have not been initialized. Call read_dof_values() before evaluate()."));
-
-    project_dof_values_to_subcell_values(evaluation_flags);
+    is_reinitialized                 = true;
+    subcell_values_initialized       = false;
+    tangential_gradients_initialized = false;
+    subcell_fluxes_submitted         = false;
   }
 
   template <int dim, int n_components, typename number>
@@ -123,8 +105,14 @@ namespace MeltPoolDG
     const dealii::EvaluationFlags::EvaluationFlags            evaluation_flags,
     const std::bitset<n_lanes>                               &mask)
   {
-    read_dof_values(input_vector, mask);
-    evaluate(evaluation_flags);
+    fe_cell_evaluator.read_dof_values(input_vector, 0, mask);
+    project_dof_values_to_subcell_values();
+
+    if (evaluation_flags & dealii::EvaluationFlags::gradients)
+      {
+        fill_halo_subcell_values(input_vector, mask);
+        compute_subcell_tangential_gradients();
+      }
   }
 
   template <int dim, int n_components, typename number>
@@ -139,6 +127,113 @@ namespace MeltPoolDG
         "FESubcellFaceEvaluation has not been reinitialized. Call reinit() before get_interior_value()."));
     return layer_values[face_index_info.subcell_index_to_haloed_vector_index[subcell_index]];
   }
+
+  template <int dim, int n_components, typename number>
+  auto
+  FESubcellFaceEvaluation<dim, n_components, number>::get_face_gradient(
+    const unsigned int             subcell_index,
+    const FESubcellFaceEvaluation &opposite) const -> gradient_type
+  {
+    AssertIndexRange(subcell_index, cell_index_info.n_subcells_face);
+    Assert(not is_boundary_face,
+           dealii::ExcMessage("Cannot compute face gradient on boundary face with this function."));
+
+    Assert(subcell_values_initialized and opposite.subcell_values_initialized,
+           dealii::ExcNotInitialized());
+    Assert(tangential_gradients_initialized and opposite.tangential_gradients_initialized,
+           dealii::ExcNotInitialized());
+
+    Assert(
+      (opposite.face_batch_index == face_batch_index) and
+        (opposite.is_interior_face != is_interior_face),
+      dealii::ExcMessage(
+        "The opposite FESubcellFaceEvaluation object must represent the opposite side of the face."));
+
+    // The distance of the two subcell centers is computed from the widths of the subcells normal to
+    // the face, i.e. their sizes divided by the subcell face size, and not from their locations,
+    // since the two cells lie at opposite ends of the domain on periodic faces. Both sides compute
+    // the same derivative, swapping the sides flips the sign of both the difference and
+    // inverse_distance.
+    const VectorizedArrayType absolute_distance =
+      0.5 * (subcell_sizes[subcell_index] / subcell_face_sizes[subcell_index] +
+             opposite.subcell_sizes[subcell_index] / opposite.subcell_face_sizes[subcell_index]);
+    const VectorizedArrayType normal_component =
+      subcell_face_normals[subcell_index][face_normal_coordinate_direction];
+    const VectorizedArrayType inverse_distance =
+      (is_interior_face ? normal_component : -normal_component) / absolute_distance;
+
+    const value_type normal_derivative =
+      (opposite.get_value(subcell_index) - get_value(subcell_index)) * inverse_distance;
+
+    const gradient_type &this_tangential_gradient = tangential_subcell_gradients[subcell_index];
+    const gradient_type &opposite_tangential_gradient =
+      opposite.tangential_subcell_gradients[subcell_index];
+    gradient_type face_gradient;
+
+    for (unsigned int d = 0; d < dim; ++d)
+      {
+        if constexpr (n_components == 1)
+          {
+            face_gradient[d] =
+              (d == face_normal_coordinate_direction) ?
+                normal_derivative :
+                0.5 * (this_tangential_gradient[d] + opposite_tangential_gradient[d]);
+          }
+        else
+          {
+            for (unsigned int c = 0; c < n_components; ++c)
+              {
+                face_gradient[c][d] =
+                  (d == face_normal_coordinate_direction) ?
+                    normal_derivative[c] :
+                    0.5 * (this_tangential_gradient[c][d] + opposite_tangential_gradient[c][d]);
+              }
+          }
+      }
+
+    return face_gradient;
+  }
+
+  template <int dim, int n_components, typename number>
+  auto
+  FESubcellFaceEvaluation<dim, n_components, number>::get_face_gradient(
+    const unsigned int subcell_index) const -> gradient_type
+  {
+    AssertIndexRange(subcell_index, cell_index_info.n_subcells_face);
+    Assert(
+      is_boundary_face,
+      dealii::ExcMessage(
+        "This function can only be used on boundary faces. Use the other get_face_gradient() function for interior faces."));
+
+    Assert(subcell_values_initialized and tangential_gradients_initialized,
+           dealii::ExcNotInitialized());
+
+    // As in FESubcellEvaluation, the boundary value is located on the boundary face, i.e. at half
+    // the width of the subcell normal to the face from the subcell center. The normal vector points
+    // out of the domain, so its component in the face normal direction gives the orientation.
+    const value_type subcell_value  = get_value(subcell_index);
+    const value_type boundary_value = boundary_value_function(subcell_face_locations[subcell_index],
+                                                              subcell_face_normals[subcell_index],
+                                                              boundary_id(),
+                                                              subcell_value);
+
+    const VectorizedArrayType distance =
+      0.5 * subcell_sizes[subcell_index] / subcell_face_sizes[subcell_index];
+    const VectorizedArrayType inverse_distance =
+      subcell_face_normals[subcell_index][face_normal_coordinate_direction] / distance;
+
+    const value_type normal_derivative = (boundary_value - subcell_value) * inverse_distance;
+
+    gradient_type face_gradient = tangential_subcell_gradients[subcell_index];
+    if constexpr (n_components == 1)
+      face_gradient[face_normal_coordinate_direction] = normal_derivative;
+    else
+      for (unsigned int c = 0; c < n_components; ++c)
+        face_gradient[c][face_normal_coordinate_direction] = normal_derivative[c];
+
+    return face_gradient;
+  }
+
 
   template <int dim, int n_components, typename number>
   void
@@ -333,7 +428,11 @@ namespace MeltPoolDG
     AssertDimension(cell_index_info.n_subcells, fe_cell_evaluator.n_q_points);
     AssertDimension(cell_index_info.n_subcells_face, fe_face_evaluator.n_q_points);
 
-    layer_values.resize(face_index_info.n_haloed_subcells);
+    const unsigned int padded_size =
+      dealii::Utilities::fixed_power<dim - 1>(cell_index_info.n_subcells_1d + 2);
+    layer_values.resize(padded_size);
+    layer_extents.resize(padded_size);
+    tangential_subcell_gradients.resize(cell_index_info.n_subcells_face);
 
     submitted_fluxes.resize(cell_index_info.n_subcells_face);
     subcell_face_normals.resize(cell_index_info.n_subcells_face);
@@ -348,25 +447,265 @@ namespace MeltPoolDG
 
   template <int dim, int n_components, typename number>
   void
-  FESubcellFaceEvaluation<dim, n_components, number>::project_dof_values_to_subcell_values(
-    const dealii::EvaluationFlags::EvaluationFlags evaluation_flags)
+  FESubcellFaceEvaluation<dim, n_components, number>::project_dof_values_to_subcell_values()
   {
-    fe_cell_evaluator.evaluate(evaluation_flags);
-    if (evaluation_flags & dealii::EvaluationFlags::values)
+    fe_cell_evaluator.evaluate(dealii::EvaluationFlags::values);
+    for (const unsigned int subcell : subcell_face_indices())
       {
-        for (const unsigned int subcell : subcell_face_indices())
-          {
-            const unsigned int cell_q_index =
-              cell_index_info.face_to_cell_subcell_indices[face_no][subcell];
-            layer_values[face_index_info.subcell_index_to_haloed_vector_index[subcell]] =
-              fe_cell_evaluator.get_value(cell_q_index);
-          }
-
-        subcell_values_initialized = true;
+        const unsigned int cell_q_index =
+          cell_index_info.face_to_cell_subcell_indices[face_no][subcell];
+        layer_values[subcell_matrix_free.get_subcell_shape_info()
+                       .face_index_info.subcell_index_to_haloed_vector_index[subcell]] =
+          fe_cell_evaluator.get_value(cell_q_index);
       }
 
-    if (evaluation_flags & dealii::EvaluationFlags::gradients)
-      AssertThrow(false, dealii::ExcNotImplemented());
+    subcell_values_initialized = true;
+  }
+
+  template <int dim, int n_components, typename number>
+  void
+  FESubcellFaceEvaluation<dim, n_components, number>::fill_halo_subcell_values(
+    const dealii::LinearAlgebra::distributed::Vector<number> &src_vector,
+    const std::bitset<n_lanes>                               &mask)
+  {
+    // no halo subcells in 1D
+    if constexpr (dim == 1)
+      return;
+
+    dealii::FEEvaluation<dim, -1, 0, n_components, number, VectorizedArrayType>
+      fe_lateral_evaluator(subcell_matrix_free.get_matrix_free(),
+                           subcell_matrix_free.get_dof_no(),
+                           subcell_matrix_free.get_quad_no());
+
+    for (unsigned int edge_no = 0; edge_no < 2 * (dim - 1); ++edge_no)
+      {
+        const unsigned int face_coordinates_direction = edge_no / 2;
+        const unsigned int cell_coordinates_direction =
+          (face_normal_coordinate_direction + face_coordinates_direction + 1) % dim;
+        const unsigned int lateral_edge_face_no = 2 * cell_coordinates_direction + edge_no % 2;
+
+        const typename SubcellMatrixFree<dim, number>::FaceNeighbors lateral_neighbor_cells =
+          subcell_matrix_free.get_face_neighbors(
+            is_interior_face ? matrix_free.get_face_info(face_batch_index).cells_interior :
+                               matrix_free.get_face_info(face_batch_index).cells_exterior,
+            lateral_edge_face_no);
+
+        std::bitset<n_lanes> held_mask;
+        std::bitset<n_lanes> extra_mask;
+        std::bitset<n_lanes> at_boundary_mask;
+        for (unsigned int lane = 0; lane < n_lanes; ++lane)
+          {
+            if (mask[lane])
+              {
+                if (lateral_neighbor_cells.cell_ids[lane] != dealii::numbers::invalid_unsigned_int)
+                  held_mask.set(lane);
+                else if (lateral_neighbor_cells.extra_cell_ids[lane] !=
+                         dealii::numbers::invalid_unsigned_int)
+                  extra_mask.set(lane);
+                else if (lateral_neighbor_cells.boundary_ids[lane] !=
+                         dealii::numbers::invalid_boundary_id)
+                  at_boundary_mask.set(lane);
+              }
+          }
+
+        // First, we evaluate the lateral neighbors which are held or extra.
+        if (held_mask.any() or extra_mask.any())
+          {
+            fe_lateral_evaluator.reinit(lateral_neighbor_cells.cell_ids);
+            fe_lateral_evaluator.read_dof_values(src_vector, 0, held_mask);
+
+            // The extra neighbors are not held by the dealii::MatrixFree object, so their DoF
+            // values are written into their lanes directly. This must happen after
+            // read_dof_values(), which sets all lanes outside of held_mask to zero.
+            if (extra_mask.any())
+              {
+                Assert(
+                  subcell_matrix_free.has_ghost_values_of(src_vector),
+                  dealii::ExcMessage(
+                    "The DoF values of the extra cells have not been exchanged from the source "
+                    "vector. Call SubcellMatrixFree::update_ghost_values() before."));
+                for (unsigned int lane = 0; lane < n_lanes; ++lane)
+                  if (extra_mask[lane])
+                    subcell_matrix_free.read_extra_cell_dof_values(
+                      lateral_neighbor_cells.extra_cell_ids[lane],
+                      lane,
+                      fe_lateral_evaluator.begin_dof_values());
+              }
+
+            fe_lateral_evaluator.evaluate(dealii::EvaluationFlags::values);
+          }
+
+        const SubcellIndexInfo<dim - 1> &face_index_info = subcell_shape_info.face_index_info;
+        for (unsigned int s = 0; s < face_index_info.n_subcells_face; ++s)
+          {
+            const unsigned int subcell_index =
+              face_index_info.face_to_cell_subcell_indices[edge_no][s];
+
+            const unsigned int haloed_neighbor_index =
+              face_index_info.subcell_index_to_haloed_neighbor_vector_index[subcell_index][edge_no];
+
+            if (held_mask.any() or extra_mask.any())
+              {
+                const unsigned int neighbor_subcell_index =
+                  face_index_info.face_to_cell_subcell_indices[edge_no ^ 1][s];
+
+                layer_values[haloed_neighbor_index] = fe_lateral_evaluator.get_value(
+                  cell_index_info.face_to_cell_subcell_indices[face_no][neighbor_subcell_index]);
+              }
+
+            if (at_boundary_mask.any())
+              {
+                dealii::Point<dim, VectorizedArrayType> boundary_face_location =
+                  subcell_locations[subcell_index];
+                boundary_face_location[cell_coordinates_direction] +=
+                  0.5 *
+                  layer_extents[face_index_info.subcell_index_to_haloed_vector_index[subcell_index]]
+                               [face_coordinates_direction] *
+                  (edge_no % 2 == 0 ? -1. : 1.);
+
+                SubcellEvaluation::Internal::set_boundary_values(
+                  at_boundary_mask,
+                  lateral_neighbor_cells.boundary_ids,
+                  boundary_face_location,
+                  SubcellEvaluation::Internal::cell_face_normal_vector<dim, VectorizedArrayType>(
+                    lateral_edge_face_no),
+                  layer_values[face_index_info.subcell_index_to_haloed_vector_index[subcell_index]],
+                  layer_values[haloed_neighbor_index],
+                  boundary_value_function);
+              }
+          }
+      }
+  }
+
+  template <int dim, int n_components, typename number>
+  void
+  FESubcellFaceEvaluation<dim, n_components, number>::compute_layer_extents()
+  {
+    Assert(fe_cell_evaluator.get_cell_type() == dealii::internal::MatrixFreeFunctions::cartesian,
+           dealii::ExcNotImplemented());
+
+    const SubcellIndexInfo<dim - 1> &face_index_info = subcell_shape_info.face_index_info;
+    AssertDimension(layer_extents.size(), face_index_info.n_haloed_subcells);
+
+    const unsigned int n_subcells_1d = cell_index_info.n_subcells_1d;
+
+    // Face subcells: compute their extents in the face directions from the subcell widths on the
+    // unit cell and the size of the cell.
+    const dealii::Tensor<2, dim, VectorizedArrayType> inverse_jacobian =
+      fe_cell_evaluator.inverse_jacobian(0);
+    for (const unsigned int subcell : subcell_face_indices())
+      {
+        const unsigned int cell_subcell =
+          cell_index_info.face_to_cell_subcell_indices[face_no][subcell];
+        std::array<VectorizedArrayType, dim - 1> &extents =
+          layer_extents[face_index_info.subcell_index_to_haloed_vector_index[subcell]];
+
+        for (unsigned int k = 0; k < dim - 1; ++k)
+          {
+            const unsigned int direction = (face_normal_coordinate_direction + 1 + k) % dim;
+            const unsigned int index_1d =
+              cell_index_info.subcell_cartesian_indices[cell_subcell][direction];
+            extents[k] = subcell_shape_info.subcell_widths_1d[index_1d] /
+                         inverse_jacobian[direction][direction];
+          }
+      }
+
+    // The face subcells at the edge edge_no of the face (in 2D: at an end point of the face) need
+    // a halo subcell beyond this edge for the central difference in the face direction k. This
+    // halo subcell lies in the lateral neighbor across the cell face lateral_face_no and is the
+    // subcell of the lateral neighbor touching the face subcell, i.e. its last subcell in the
+    // cell direction `direction` for a lower edge and its first one for an upper edge:
+    // - Its extent in the face direction k is the extent of the lateral neighbor times the width of
+    //   this outermost subcell on the unit interval. At the domain boundary, the extent of the
+    //   lateral neighbor is zero, such that the halo subcell collapses onto the boundary, where
+    //   the boundary value is located.
+    // - In 3D, its extent in the other face direction is that of the face subcell, since the
+    //   neighbors are conforming.
+    const dealii::internal::MatrixFreeFunctions::FaceToCellTopology<n_lanes> &face_info =
+      matrix_free.get_face_info(face_batch_index);
+    const std::array<unsigned int, n_lanes> &cell_ids =
+      is_interior_face ? face_info.cells_interior : face_info.cells_exterior;
+    for (unsigned int edge_no = 0; edge_no < 2 * (dim - 1); ++edge_no)
+      {
+        const unsigned int        k         = edge_no / 2;
+        const unsigned int        direction = (face_normal_coordinate_direction + 1 + k) % dim;
+        const unsigned int        lateral_face_no = 2 * direction + edge_no % 2;
+        const VectorizedArrayType neighbor_extent =
+          subcell_matrix_free.get_face_neighbors(cell_ids, lateral_face_no).extents;
+        const number outermost_subcell_width =
+          subcell_shape_info.subcell_widths_1d[(edge_no % 2 == 0) ? n_subcells_1d - 1 : 0];
+
+        for (const unsigned int subcell : face_index_info.face_to_cell_subcell_indices[edge_no])
+          {
+            std::array<VectorizedArrayType, dim - 1> &halo_extents =
+              layer_extents[face_index_info
+                              .subcell_index_to_haloed_neighbor_vector_index[subcell][edge_no]];
+            halo_extents =
+              layer_extents[face_index_info.subcell_index_to_haloed_vector_index[subcell]];
+            halo_extents[k] = neighbor_extent * outermost_subcell_width;
+          }
+      }
+  }
+
+  template <int dim, int n_components, typename number>
+  void
+  FESubcellFaceEvaluation<dim, n_components, number>::compute_subcell_tangential_gradients()
+  {
+    const SubcellIndexInfo<dim - 1> &face_index_info = subcell_shape_info.face_index_info;
+
+    AssertDimension(tangential_subcell_gradients.size(), cell_index_info.n_subcells_face);
+    AssertDimension(layer_values.size(), face_index_info.n_haloed_subcells);
+    AssertDimension(layer_extents.size(), face_index_info.n_haloed_subcells);
+
+    Assert(subcell_values_initialized, dealii::ExcNotInitialized());
+
+    for (const unsigned int subcell : subcell_face_indices())
+      {
+        const unsigned int haloed_index =
+          face_index_info.subcell_index_to_haloed_vector_index[subcell];
+
+        tangential_subcell_gradients[subcell] = gradient_type();
+
+        for (unsigned int face_coordinates_direction = 0; face_coordinates_direction < dim - 1;
+             ++face_coordinates_direction)
+          {
+            const unsigned int neighbor_l_index =
+              face_index_info
+                .subcell_index_to_haloed_neighbor_vector_index[subcell]
+                                                              [2 * face_coordinates_direction];
+            const unsigned int neighbor_r_index =
+              face_index_info
+                .subcell_index_to_haloed_neighbor_vector_index[subcell]
+                                                              [2 * face_coordinates_direction + 1];
+
+            const VectorizedArrayType inverse_distance =
+              1. / (layer_extents[haloed_index][face_coordinates_direction] +
+                    0.5 * layer_extents[neighbor_l_index][face_coordinates_direction] +
+                    0.5 * layer_extents[neighbor_r_index][face_coordinates_direction]);
+
+            const value_type derivative =
+              (layer_values[neighbor_r_index] - layer_values[neighbor_l_index]) * inverse_distance;
+
+            // The derivative is taken along the face coordinate direction (dim-1 dimensions), but
+            // the gradient is stored in cell coordinates. Therefore, we need to map the face
+            // coordinate direction to the cell coordinate direction.
+            const unsigned int cell_coordinates_direction =
+              (face_normal_coordinate_direction + 1 + face_coordinates_direction) % dim;
+            if constexpr (n_components == 1)
+              {
+                tangential_subcell_gradients[subcell][cell_coordinates_direction] = derivative;
+              }
+            else
+              {
+                for (unsigned int c = 0; c < n_components; ++c)
+                  {
+                    tangential_subcell_gradients[subcell][c][cell_coordinates_direction] =
+                      derivative[c];
+                  }
+              }
+          }
+      }
+    tangential_gradients_initialized = true;
   }
 
   template <int dim, int n_components, typename number>
