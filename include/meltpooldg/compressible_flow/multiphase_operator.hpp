@@ -6,10 +6,10 @@
 #include <meltpooldg/compressible_flow/data_types.hpp>
 #include <meltpooldg/compressible_flow/kernels.hpp>
 #include <meltpooldg/compressible_flow/multiphase_band_solver.hpp>
+#include <meltpooldg/compressible_flow/multiphase_interface_coupling.hpp>
 #include <meltpooldg/compressible_flow/multiphase_level_set_advection.hpp>
 #include <meltpooldg/cut/util.hpp>
 #include <meltpooldg/flow/darcy_damping_model.hpp>
-#include <meltpooldg/phase_change/evaporation_model_knight.hpp>
 #include <meltpooldg/utilities/better_enum.hpp>
 #include <meltpooldg/utilities/dg_generic_convection_diffusion_worker.hpp>
 #include <meltpooldg/utilities/vector_tools.hpp>
@@ -207,17 +207,6 @@ namespace MeltPoolDG::Multiphase
     vmult(VectorType &dst, const VectorType &src) const;
 
     /**
-     * @brief Set the current time.
-     *
-     * @param current_time_in Current time.
-     */
-    void
-    set_current_time(const number &current_time_in)
-    {
-      current_time = current_time_in;
-    };
-
-    /**
      * @brief Add external fluid forces (e.g. gravity, ...).
      *
      * @param external_force A provided shared pointer to an external force definition.
@@ -338,10 +327,6 @@ namespace MeltPoolDG::Multiphase
     /// Number of DoFs per cell
     const unsigned int n_dofs_per_cell;
 
-    /// Weighting factors for Nitsche-type viscous interface flux
-    number visc_ave_weight_phase_liquid;
-    number visc_ave_weight_phase_gas;
-
     /// This pointer may hold an instance of an external fluid force contribution
     /// (e.g., gravity, body forces, or user - defined source terms)
     std::vector<std::shared_ptr<CompressibleFlow::ExternalFlowForce<dim, number>>> external_forces;
@@ -352,14 +337,18 @@ namespace MeltPoolDG::Multiphase
     /// Inverse time step size
     mutable number inv_time_step = 0.;
 
-    /// Current time
-    mutable number current_time = 0.;
-
     /// Object for the analytical advection of the level set field for 1D simulations
     mutable LevelSetAdvection<dim, number> level_set_advection_operator;
 
-    /// Pointer to the object for the evaluation of the Knight evaporation model
-    std::unique_ptr<Evaporation::EvaporationModelKnight<number>> evaporation_model_knight;
+    /// Convective interface coupling (HLLP0 approximate two-phase Riemann solver)
+    const HLLP0ConvectiveCoupling<dim, number> convective_coupling;
+
+    /// Viscous interface coupling for the chosen numerical method (SIPG or penalty)
+    const ViscousCoupling<dim, number> viscous_coupling;
+
+    /// Model for the interface jump conditions (evaporation mass flux, temperature jump, laser heat
+    /// source)
+    const InterfaceJumpModel<dim, number> jump_model;
 
     /// Darcy damping model for the computation of the damping coefficient
     Flow::DarcyDampingModel<number> darcy_damping_model;
@@ -437,6 +426,25 @@ namespace MeltPoolDG::Multiphase
       return {create_face_integrator(true, category, offset),
               create_face_integrator(false, category, offset)};
     };
+
+    /**
+     * @brief Evaluate the interface coupling terms of an intersected cell at all quadrature points on the
+     * immersed interface and integrate them into the local DoF values of the cell integrators.
+     *
+     * @param point_eval_liquid Point evaluator of the liquid phase.
+     * @param point_eval_gas Point evaluator of the gas phase.
+     * @param eval_liquid Cell integrator of the liquid phase, whose local DoF values of the
+     * given @p lane receive the integrated interface terms.
+     * @param eval_gas Cell integrator of the gas phase, whose local DoF values of the given
+     * @p lane receive the integrated interface terms.
+     * @param lane Lane of the considered cell within the cell batch.
+     */
+    void
+    apply_interface_terms(DomainPointEval<>                      &point_eval_liquid,
+                          DomainPointEval<>                      &point_eval_gas,
+                          FECellIntegrator<dim, dim + 2, number> &eval_liquid,
+                          FECellIntegrator<dim, dim + 2, number> &eval_gas,
+                          const unsigned int                      lane) const;
 
     /**
      * @brief Shared implementation of the matrix-free diagonal and system matrix assembly.

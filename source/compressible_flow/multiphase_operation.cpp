@@ -364,8 +364,6 @@ namespace MeltPoolDG::Multiphase
 
     std::visit(
       [&](auto &op) {
-        op.set_current_time(current_time);
-
         // compute rhs
         op.create_rhs(current_time,
                       time_step,
