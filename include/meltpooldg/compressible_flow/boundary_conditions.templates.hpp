@@ -11,7 +11,8 @@ namespace MeltPoolDG::CompressibleFlow
   MeltPoolDG::CompressibleFlow::BoundaryConditions<dim, number>::apply_slip_wall_boundary(
     DofReadView                                                    w_m,
     DofWriteView                                                   w_p,
-    const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal) const
+    const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
+    const bool                                                     use_mirror_principle) const
   {
     // homogeneous Neumann
     w_p.density()      = w_m.density();
@@ -21,10 +22,12 @@ namespace MeltPoolDG::CompressibleFlow
     VectorizedArrayType rho_u_dot_n = 0;
     for (unsigned int d = 0; d < dim; ++d)
       rho_u_dot_n += w_m.momentum(d) * normal[d];
-    // symmetry
+    // symmetry: the mirror principle reverses the normal momentum, while if no mirror value is used
+    // the value on the boundary has no normal momentum
+    const number normal_momentum_factor = use_mirror_principle ? 2. : 1.;
     for (unsigned int d = 0; d < dim; ++d)
       {
-        w_p.momentum(d) = w_m.momentum(d) - 2. * rho_u_dot_n * normal[d];
+        w_p.momentum(d) = w_m.momentum(d) - normal_momentum_factor * rho_u_dot_n * normal[d];
         w_p.grad_momentum(d) =
           w_m.grad_momentum(d) - 2. * scalar_product(w_m.grad_momentum(d), normal) * normal;
       }
@@ -210,12 +213,13 @@ namespace MeltPoolDG::CompressibleFlow
       const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
       dealii::types::boundary_id                                     boundary_id,
       const DofReadView                                             &w_m,
-      const DofWriteView                                            &w_p) const
+      const DofWriteView                                            &w_p,
+      const bool                                                     use_mirror_principle) const
   {
     if (const BoundaryType boundary_type = get_boundary_type(boundary_id);
         boundary_type == BoundaryType::slip_wall)
       {
-        apply_slip_wall_boundary(w_m, w_p, normal);
+        apply_slip_wall_boundary(w_m, w_p, normal, use_mirror_principle);
       }
     else if (boundary_type == BoundaryType::no_slip_wall)
       {
