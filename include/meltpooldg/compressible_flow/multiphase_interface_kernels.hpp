@@ -902,8 +902,38 @@ namespace MeltPoolDG::Multiphase
     const ConservedVariablesGradType viscous_flux_gas =
       diffusive_kernel_gas.flux(gas_state.value(), gas_state.gradient_value());
 
-    ConservedVariablesType penalty_term_dT;
-    penalty_term_dT[Idx::energy] =
+    ConservedVariablesType penalty_term;
+
+    // Weakly enforce tangential no-slip at the interface for dim>1 via a penalty approach.
+    if constexpr (dim > 1)
+      {
+        const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> jump_vel =
+          vel_liquid - vel_gas;
+        const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> jump_vel_t =
+          jump_vel - (jump_vel * normal) * normal;
+
+        const number average_viscosity =
+          0.5 * (multiphase_scratch_data.material_liquid.dynamic_viscosity +
+                 multiphase_scratch_data.material_gas.dynamic_viscosity);
+        const number slip_penalty = multiphase_scratch_data.phase_coupling.hllp0_and_penalty
+                                      .penalty_parameter_tangential_no_slip *
+                                    average_viscosity / cell_size;
+
+        for (unsigned int d = 0; d < dim; ++d)
+          {
+            penalty_term[Idx::momentum_x + d] = slip_penalty * jump_vel_t[d];
+            J_Rob[Idx::momentum_x + d]        = m_dot_evap * jump_vel_t[d];
+          }
+
+        // energy contribution from the tangential no-slip penalty term
+        // (jump_vel_t is tangential, so only the tangential part of the averaged velocity
+        // contributes to the work term)
+        const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> ave_vel =
+          0.5 * (vel_liquid + vel_gas);
+        penalty_term[Idx::energy] = slip_penalty * scalar_product(jump_vel_t, ave_vel);
+      }
+
+    penalty_term[Idx::energy] +=
       multiphase_scratch_data.phase_coupling.hllp0_and_penalty.penalty_parameter_temperature_jump *
       (liquid_state.thermal_conductivity() + gas_state.thermal_conductivity()) / (2. * cell_size) *
       ((liquid_state.temperature() - gas_state.temperature()) - delta_T);
@@ -916,10 +946,10 @@ namespace MeltPoolDG::Multiphase
         contract_tensor_with_vector(viscous_flux_gas, normal));
 
     const ConservedVariablesType total_viscous_flux_liquid =
-      -J_Rob * visc_ave_weight_phase_liquid - weighted_viscous_flux + penalty_term_dT;
+      -J_Rob * visc_ave_weight_phase_liquid - weighted_viscous_flux + penalty_term;
 
     const ConservedVariablesType total_viscous_flux_gas =
-      -J_Rob * visc_ave_weight_phase_gas + weighted_viscous_flux - penalty_term_dT;
+      -J_Rob * visc_ave_weight_phase_gas + weighted_viscous_flux - penalty_term;
 
     return {total_viscous_flux_liquid, total_viscous_flux_gas};
   }
