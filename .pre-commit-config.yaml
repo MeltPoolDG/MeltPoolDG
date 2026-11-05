@@ -33,6 +33,14 @@ repos:
         exclude: parameters\.schema\.json$
 -   repo: local
     hooks:
+    -   id: fix-json-schema-path
+        name: Fix "$schema" path in JSON input files
+        entry: scripts/parameters/fix_schema_path.py
+        language: system
+        files: ^applications/mp-[^/]+/.*\.json$
+        exclude: parameters\.schema\.json$
+-   repo: local
+    hooks:
     -   id: validate-json-schema
         name: Validate JSON input files against parameter schema
         entry: scripts/parameters/validate_schema_all.sh --tracked-only
