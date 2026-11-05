@@ -234,7 +234,7 @@ namespace MeltPoolDG::Simulation::LaserMeltingSimonds
    * a coupled melt-pool case.
    *
    * Simulation-specific parameters are registered in the
-   * `"simulation specific"` subsection. These include domain dimensions,
+   * `"case specific"` subsection. These include domain dimensions,
    * mesh repetitions, optional local refinement regions, initial temperature
    * values, prescribed level-set parameters, and boundary-condition data.
    *
