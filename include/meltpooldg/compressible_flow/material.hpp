@@ -7,7 +7,6 @@
 #include <array>
 #include <cstddef>
 #include <limits>
-#include <memory>
 
 namespace MeltPoolDG::CompressibleFlow
 {
@@ -19,6 +18,10 @@ namespace MeltPoolDG::CompressibleFlow
               stiffened_gas,
               noble_abel_stiffened_gas,
               weakly_compressible)
+
+  /// Enumeration for the currently supported gaseous species templates. These templates provide
+  /// predefined material parameters for specific gaseous species.
+  BETTER_ENUM(GaseousSpeciesTemplate, char, none, ss316l, argon);
 
   /**
    * @brief Collection of parameters related to the equation of state for a compressible or nearly
@@ -104,8 +107,15 @@ namespace MeltPoolDG::CompressibleFlow
     /// Molar mass of the species
     number molar_mass = std::numeric_limits<number>::max();
 
-    // Name of the species (for output purposes)
+    /// Name of the species (for output purposes)
     std::string name = "species";
+
+    /// For convenience, we allow to set the gaseous material parameters based on a predefined
+    /// template for a specific species. This is done by setting the species_template variable to
+    /// the corresponding enum value. If no template is used, the parameters can be set manually in
+    /// the input file. This is only support when using the ideal gas equation of state. For other
+    /// equations of state, the material parameters must be set manually.
+    GaseousSpeciesTemplate species_template = GaseousSpeciesTemplate::none;
 
     /**
      * Add material parameters for the species in the parameter handler.
@@ -121,6 +131,17 @@ namespace MeltPoolDG::CompressibleFlow
      */
     void
     add_parameters(dealii::ParameterHandler &prm, const unsigned species_number);
+
+    /**
+     * Perform post-processing on the material parameters. This involves setting the material
+     * parameters based on the selected species template, if any. This is only supported for gaseous
+     * species. For liquid species, the material parameters must be set manually.
+     *
+     * @param is_gas Boolean indicator specifying whether a gas or liquid phase is considered.
+     * @param eos_type The type of equation of state being used.
+     */
+    void
+    post(const bool is_gas, const EquationOfState eos_type);
 
   private:
     /**

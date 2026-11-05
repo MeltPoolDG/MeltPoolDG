@@ -4,6 +4,7 @@
 #include <deal.II/base/signaling_nan.h>
 
 #include <meltpooldg/compressible_flow/material.hpp>
+#include <meltpooldg/compressible_flow/material_templates.hpp>
 
 #include <meltpooldg/utilities/cpp23_functions.h>
 
@@ -143,7 +144,61 @@ MeltPoolDG::CompressibleFlow::MaterialSpeciesData<number>::add_parameters(
                     molar_mass,
                     "Molar mass.",
                     dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
+  prm.add_parameter(
+    "material template",
+    species_template,
+    "Material template for the species. If set to a specific template, the material parameters are set based on the template and the other parameters are ignored. This is only supported for gaseous species and when using the ideal gas equation of state.");
   eos_data.add_parameters(prm);
+}
+
+template <typename number>
+void
+MeltPoolDG::CompressibleFlow::MaterialSpeciesData<number>::post(const bool            is_gas,
+                                                                const EquationOfState eos_type)
+{
+  eos_data.post(eos_type);
+
+  if (is_gas)
+    {
+      auto set_species_template = [&](const auto &species_template) {
+        AssertThrow(
+          eos_type == EquationOfState::ideal_gas,
+          dealii::ExcMessage(
+            "Material templates are only available for gaseous species with the ideal gas equation of state. For other equations of state, the material parameters must be set manually."));
+
+        specific_isobaric_heat  = species_template.specific_isobaric_heat;
+        specific_isochoric_heat = species_template.specific_isochoric_heat;
+        dynamic_viscosity       = species_template.dynamic_viscosity;
+        gamma                   = species_template.gamma;
+        specific_gas_constant   = species_template.specific_gas_constant;
+        thermal_conductivity    = species_template.thermal_conductivity;
+        molar_mass              = species_template.molar_mass;
+        name                    = species_template.name;
+      };
+
+      switch (species_template)
+        {
+            case GaseousSpeciesTemplate::ss316l: {
+              const SS316LTemplate<number> ss316l;
+              set_species_template(ss316l);
+              break;
+            }
+            case GaseousSpeciesTemplate::argon: {
+              const ArgonTemplate<number> argon;
+              set_species_template(argon);
+              break;
+            }
+          case GaseousSpeciesTemplate::none:
+            break;
+        }
+    }
+  else
+    {
+      AssertThrow(
+        species_template == GaseousSpeciesTemplate::none,
+        dealii::ExcMessage(
+          "Material templates are only available for gaseous species. For liquid species, the material parameters must be set manually."));
+    }
 }
 
 template <typename number>
@@ -224,6 +279,8 @@ MeltPoolDG::CompressibleFlow::MaterialPhaseData<number>::post(const bool is_gas)
 {
   for (unsigned i = 0; i < number_of_species; ++i)
     {
+      species_data[i].post(is_gas, eos_type);
+
       // Set thermal conductivity, if not explicitly set by the user.
       // For physical consistency, set thermal conductivity based on the user-defined dynamic
       // viscosity, gamma and specific gas constant. The Prandtl number is currently set
@@ -236,8 +293,6 @@ MeltPoolDG::CompressibleFlow::MaterialPhaseData<number>::post(const bool is_gas)
             species_data[i].dynamic_viscosity * species_data[i].gamma *
             species_data[i].specific_gas_constant / (species_data[i].gamma - 1.) * 1. / Pr;
         }
-
-      species_data[i].eos_data.post(eos_type);
     }
 
   if (number_of_species == 1)
