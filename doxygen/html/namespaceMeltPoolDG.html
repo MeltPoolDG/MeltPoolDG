@@ -201,6 +201,8 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1SpeciesTransport" id="r_namespaceMeltPoolDG_1_1SpeciesTransport"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SpeciesTransport.html">SpeciesTransport</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceMeltPoolDG_1_1SubcellEvaluation" id="r_namespaceMeltPoolDG_1_1SubcellEvaluation"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1SubcellEvaluation.html">SubcellEvaluation</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceMeltPoolDG_1_1TimeIntegration" id="r_namespaceMeltPoolDG_1_1TimeIntegration"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG_1_1TimeIntegration.html">TimeIntegration</a></td></tr>
 <tr class="memdesc:namespaceMeltPoolDG_1_1TimeIntegration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class providing different low storage explicit Runge-Kutta schemes. The schemes implemented in this class are presented in. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -626,6 +628,9 @@ requires std::ranges::range&lt;ContainerType&gt;</td></tr>
 <tr class="memitem:a0b01feba302d2f6bfc78702564a1251a" id="r_a0b01feba302d2f6bfc78702564a1251a"><td class="memTemplParams" colspan="2">template&lt;int dim, typename number &gt; </td></tr>
 <tr class="memitem:a0b01feba302d2f6bfc78702564a1251a"><td class="memTemplItemLeft" align="right" valign="top">dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a0b01feba302d2f6bfc78702564a1251a">cell_batch_center</a> (const dealii::MatrixFree&lt; dim, number &gt; &amp;mf, const unsigned int cell_batch_id, const unsigned int dof_handler_index=0)</td></tr>
 <tr class="separator:a0b01feba302d2f6bfc78702564a1251a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a221f6e76fd59d82d4ee63c9d75a3cec7" id="r_a221f6e76fd59d82d4ee63c9d75a3cec7"><td class="memTemplParams" colspan="2">template&lt;typename value_type &gt; </td></tr>
+<tr class="memitem:a221f6e76fd59d82d4ee63c9d75a3cec7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#a221f6e76fd59d82d4ee63c9d75a3cec7">copy_simd_lane</a> (const value_type &amp;source, const unsigned int lane, value_type &amp;destination)</td></tr>
+<tr class="separator:a221f6e76fd59d82d4ee63c9d75a3cec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab23838164fc366b7dfb8d524e7d843f6" id="r_ab23838164fc366b7dfb8d524e7d843f6"><td class="memTemplParams" colspan="2">template&lt;int dim, int n_components, typename number , HasJacobianQuadraturePointKernels&lt; dim, number &gt; OperatorType&gt; </td></tr>
 <tr class="memitem:ab23838164fc366b7dfb8d524e7d843f6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMeltPoolDG.html#ab23838164fc366b7dfb8d524e7d843f6">compute_jacobian_matrix_representation</a> (const OperatorType &amp;implicit_operator, std::variant&lt; dealii::LinearAlgebra::distributed::Vector&lt; number &gt; *, dealii::TrilinosWrappers::SparseMatrix * &gt; dst, const <a class="el" href="namespaceMeltPoolDG.html#ae8ccc6771a919d5f9ff2de6a9c24e307">MatrixRepresentationType</a> type, const dealii::LinearAlgebra::distributed::Vector&lt; number &gt; &amp;current_solution, const dealii::MatrixFree&lt; dim, number &gt; &amp;matrix_free, const unsigned int dof_idx, const unsigned int quad_idx)</td></tr>
 <tr class="separator:ab23838164fc366b7dfb8d524e7d843f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1937,6 +1942,51 @@ template&lt;int dim_1, int dim_2, typename number &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Result of the contraction, i.e. result_i = tensor_ij * vector_j. The result has vector type 'Tensor&lt;1, dim_1, number&gt;'.</dd></dl>
 <p>@ note The dimensions of the provided tensor and the vector have to match, i.e. the second basis of the tensor and the vector must have the same dimension <code>dim_2</code>. </p>
+
+</div>
+</div>
+<a id="a221f6e76fd59d82d4ee63c9d75a3cec7" name="a221f6e76fd59d82d4ee63c9d75a3cec7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a221f6e76fd59d82d4ee63c9d75a3cec7">&#9670;&#160;</a></span>copy_simd_lane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename value_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void MeltPoolDG::copy_simd_lane </td>
+          <td>(</td>
+          <td class="paramtype">const value_type &amp;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>lane</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">value_type &amp;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function copies the SIMD lane <code>lane</code> of <code>source</code> into <code>destination</code>. The type <code>value_type</code> is a dealii::VectorizedArray or a dealii::Tensor of any rank with dealii::VectorizedArray entries, in which case the lane is copied for every entry. All other lanes of <code>destination</code> are left unchanged.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>The value from which the lane is copied. </td></tr>
+    <tr><td class="paramname">lane</td><td>Index of the SIMD lane to copy. </td></tr>
+    <tr><td class="paramname">destination</td><td>The value into which the lane is copied. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
