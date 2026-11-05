@@ -33,6 +33,14 @@ repos:
         exclude: parameters\.schema\.json$
 -   repo: local
     hooks:
+    -   id: validate-json-schema
+        name: Validate JSON input files against parameter schema
+        entry: scripts/parameters/validate_schema_all.sh --tracked-only
+        language: python
+        additional_dependencies: [jsonschema==4.25.0]
+        pass_filenames: false
+-   repo: local
+    hooks:
     -   id: format-all
         name: Check Code Formatting
         entry: scripts/formatting/format-all
