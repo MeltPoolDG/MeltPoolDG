@@ -207,66 +207,149 @@ TYPED_TEST(FESubcellEvaluationTest, SubcellSizes)
 }
 
 /**
- * Check that the location of a subcell is the quadrature point it is associated with.
+ * Check that the location of a subcell is the geometric center of the subcell. To test this
+ * without just rebuilding the implementation we want to check we use the fact that, the two
+ * subcells of an intra cell subcell face lie half their width away from the face on both sides,
+ * where the width of a subcell normal to the face is its size divided by the face size. Since this
+ * only checks the relative positions of the subcells, it is additionally checked that the
+ * size-weighted mean of the subcell locations is the center of the cell.
  */
 TYPED_TEST(FESubcellEvaluationTest, SubcellLocations)
 {
   FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
     this->subcell_matrix_free);
-  FECellIntegrator<TypeParam::dim, TypeParam::n_components, double> fe_eval(this->matrix_free,
-                                                                            0,
-                                                                            0);
 
   for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
     {
       subcells.reinit(cell);
-      fe_eval.reinit(cell);
 
+      // Check the distance between the two subcells of an intra cell face.
+      for (const unsigned int face : subcells.subcell_face_indices())
+        {
+          const std::pair<unsigned int, unsigned int> interior_exterior =
+            subcells.subcell_face_interior_exterior_indices(face);
+
+          const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> distance =
+            subcells.subcell_location(interior_exterior.second) -
+            subcells.subcell_location(interior_exterior.first);
+          const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> expected_distance =
+            0.5 *
+            (subcells.subcell_size(interior_exterior.first) +
+             subcells.subcell_size(interior_exterior.second)) /
+            subcells.subcell_face_size(face) * subcells.subcell_face_normal_vector(face);
+
+          TestUtils::expect_near(distance,
+                                 expected_distance,
+                                 this->n_active_lanes(cell),
+                                 tolerance);
+        }
+
+      // Check that the size-weighted mean of the subcell locations is the cell center.
+      dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> weighted_location_sum;
+      VectorizedArrayType                                    total_size = 0.;
       for (const unsigned int subcell : subcells.subcell_indices())
         {
-          TestUtils::expect_double_eq(subcells.subcell_location(subcell),
-                                      fe_eval.quadrature_point(subcell));
+          weighted_location_sum +=
+            subcells.subcell_size(subcell) * subcells.subcell_location(subcell);
+          total_size += subcells.subcell_size(subcell);
         }
+
+      dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> cell_center;
+      for (unsigned int lane = 0; lane < this->n_active_lanes(cell); ++lane)
+        for (unsigned int d = 0; d < TypeParam::dim; ++d)
+          cell_center[d][lane] = this->matrix_free.get_cell_iterator(cell, lane)->center()[d];
+
+      TestUtils::expect_near(weighted_location_sum / total_size,
+                             cell_center,
+                             this->n_active_lanes(cell),
+                             tolerance);
     }
 }
 
 /**
- * The subcell values and gradients are the values and gradients of the DG solution at the
- * quadrature points. To test this a linear function is used which is represented exactly by the DG
- * solution. It is then checked that the subcell values and gradients match the exact values of the
- * linear function at the corresponding quadrature points.
+ * The subcell values are the values of the DG solution at the quadrature points. To test this a
+ * linear function is used which is represented exactly by the DG solution. It is then checked that
+ * the subcell values match the exact values of the linear function at the corresponding quadrature
+ * points.
  */
-TYPED_TEST(FESubcellEvaluationTest, ValuesAndGradientsOfLinearFunction)
+TYPED_TEST(FESubcellEvaluationTest, ValuesOfLinearFunction)
 {
+  const TestUtils::LinearFunction<TypeParam::dim, TypeParam::n_components> linear_function;
+
   FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
     this->subcell_matrix_free);
   FECellIntegrator<TypeParam::dim, TypeParam::n_components, double> fe_eval(this->matrix_free,
                                                                             0,
                                                                             0);
-  const TestUtils::LinearFunction<TypeParam::dim, TypeParam::n_components> linear_function;
 
   for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
     {
       subcells.reinit(cell);
-      subcells.gather_evaluate(this->solution,
-                               dealii::EvaluationFlags::values |
-                                 dealii::EvaluationFlags::gradients);
+      subcells.gather_evaluate(this->solution, dealii::EvaluationFlags::values);
       fe_eval.reinit(cell);
 
       for (const unsigned int subcell : subcells.subcell_indices())
-        {
-          const dealii::Point<TypeParam::dim, VectorizedArrayType> location =
-            fe_eval.quadrature_point(subcell);
+        TestUtils::expect_near(subcells.get_value(subcell),
+                               linear_function.value(fe_eval.quadrature_point(subcell)),
+                               this->n_active_lanes(cell),
+                               tolerance);
+    }
+}
 
-          TestUtils::expect_near(subcells.get_value(subcell),
-                                 linear_function.value(location),
-                                 this->n_active_lanes(cell),
-                                 tolerance);
-          TestUtils::expect_near(subcells.get_gradient(subcell),
-                                 linear_function.gradient(location),
-                                 this->n_active_lanes(cell),
-                                 tolerance);
-        }
+/**
+ * This test checks that the subcell gradients are correctly reconstructed from the subcell values
+ * by central differences over the subcell locations, i.e. the geometric centers of the subcells.
+ * To test this, we consider subcell values given by a linear function at the subcell locations,
+ * for which this reconstruction is exact. The linear function subcell values are submitted on all
+ * cells and projected to a DG solution, and it is then checked that the subcell gradients of this
+ * solution match the gradient of the linear function. At the domain boundary, the boundary value
+ * function returns the linear function at the given point on the boundary face.
+ */
+TYPED_TEST(FESubcellEvaluationTest, GradientsOfLinearSubcellValues)
+{
+  const TestUtils::LinearFunction<TypeParam::dim, TypeParam::n_components> linear_function;
+
+  const std::function<value_type<TypeParam::n_components, VectorizedArrayType>(
+    const dealii::Point<TypeParam::dim, VectorizedArrayType> &,
+    const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> &,
+    const dealii::types::boundary_id,
+    const value_type<TypeParam::n_components, VectorizedArrayType> &)>
+    boundary_value_function =
+      [&linear_function](const dealii::Point<TypeParam::dim, VectorizedArrayType> &location,
+                         const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> &,
+                         const dealii::types::boundary_id,
+                         const value_type<TypeParam::n_components, VectorizedArrayType> &)
+    -> value_type<TypeParam::n_components, VectorizedArrayType> {
+    return linear_function.value(location);
+  };
+
+  FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
+    this->subcell_matrix_free, boundary_value_function);
+
+  VectorType subcell_solution;
+  this->matrix_free.initialize_dof_vector(subcell_solution);
+  for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
+    {
+      subcells.reinit(cell);
+      for (const unsigned int subcell : subcells.subcell_indices())
+        subcells.submit_value(subcell, linear_function.value(subcells.subcell_location(subcell)));
+      subcells.integrate();
+      subcells.set_dof_values(subcell_solution);
+    }
+  subcell_solution.update_ghost_values();
+
+  for (unsigned int cell = 0; cell < this->matrix_free.n_cell_batches(); ++cell)
+    {
+      subcells.reinit(cell);
+      subcells.gather_evaluate(subcell_solution,
+                               dealii::EvaluationFlags::values |
+                                 dealii::EvaluationFlags::gradients);
+
+      for (const unsigned int subcell : subcells.subcell_indices())
+        TestUtils::expect_near(subcells.get_gradient(subcell),
+                               linear_function.gradient(subcells.subcell_location(subcell)),
+                               this->n_active_lanes(cell),
+                               tolerance);
     }
 }
 
@@ -285,10 +368,24 @@ TYPED_TEST(FESubcellEvaluationTest, AccessingNotEvaluatedQuantityAsserts)
 
   TestUtils::ScopedThrowOnAssert scoped_throw_on_assert;
 
+  const std::function<value_type<TypeParam::n_components, VectorizedArrayType>(
+    const dealii::Point<TypeParam::dim, VectorizedArrayType> &,
+    const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> &,
+    const dealii::types::boundary_id,
+    const value_type<TypeParam::n_components, VectorizedArrayType> &)>
+    dummy_boundary_value_function =
+      [](const dealii::Point<TypeParam::dim, VectorizedArrayType> &,
+         const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> &,
+         const dealii::types::boundary_id,
+         const value_type<TypeParam::n_components, VectorizedArrayType> &)
+    -> value_type<TypeParam::n_components, VectorizedArrayType> {
+    return value_type<TypeParam::n_components, VectorizedArrayType>();
+  };
+
   FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> values_only(
-    this->subcell_matrix_free);
+    this->subcell_matrix_free, dummy_boundary_value_function);
   FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> grad_only(
-    this->subcell_matrix_free);
+    this->subcell_matrix_free, dummy_boundary_value_function);
 
   values_only.reinit(0);
   values_only.gather_evaluate(this->solution, dealii::EvaluationFlags::values);
@@ -300,7 +397,6 @@ TYPED_TEST(FESubcellEvaluationTest, AccessingNotEvaluatedQuantityAsserts)
   EXPECT_THROW(values_only.get_gradient(0), dealii::ExceptionBase);
 
   EXPECT_NO_THROW(grad_only.get_gradient(0));
-  EXPECT_THROW(grad_only.get_value(0), dealii::ExceptionBase);
 }
 
 /**

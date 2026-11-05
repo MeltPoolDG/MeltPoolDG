@@ -25,6 +25,9 @@ namespace MeltPoolDG
     const SubcellMatrixFree<dim, number> &subcell_matrix_free,
     const bool                            is_interior_face)
     : subcell_matrix_free(subcell_matrix_free)
+    , subcell_shape_info(subcell_matrix_free.get_subcell_shape_info())
+    , cell_index_info(subcell_matrix_free.get_subcell_shape_info().cell_index_info)
+    , face_index_info(subcell_matrix_free.get_subcell_shape_info().face_index_info)
     , matrix_free(subcell_matrix_free.get_matrix_free())
     , is_interior_face(is_interior_face)
     , fe_cell_evaluator(subcell_matrix_free.get_matrix_free(),
@@ -70,7 +73,8 @@ namespace MeltPoolDG
         face_no = face_info.exterior_face_no;
       }
 
-    this->face_batch_index = face_batch_index;
+    this->face_batch_index           = face_batch_index;
+    face_normal_coordinate_direction = face_no / 2;
 
     determine_subcell_face_sizes();
     determine_subcell_face_normals();
@@ -128,14 +132,12 @@ namespace MeltPoolDG
   FESubcellFaceEvaluation<dim, n_components, number>::get_value(
     const unsigned int subcell_index) const -> value_type
   {
-    AssertIndexRange(subcell_index,
-                     subcell_matrix_free.get_subcell_shape_info().cell_index_info.n_subcells_face);
+    AssertIndexRange(subcell_index, cell_index_info.n_subcells_face);
     Assert(
       subcell_values_initialized,
       dealii::ExcMessage(
         "FESubcellFaceEvaluation has not been reinitialized. Call reinit() before get_interior_value()."));
-    return layer_values[subcell_matrix_free.get_subcell_shape_info()
-                          .face_index_info.subcell_index_to_haloed_vector_index[subcell_index]];
+    return layer_values[face_index_info.subcell_index_to_haloed_vector_index[subcell_index]];
   }
 
   template <int dim, int n_components, typename number>
@@ -143,8 +145,7 @@ namespace MeltPoolDG
   FESubcellFaceEvaluation<dim, n_components, number>::submit_flux(const unsigned int subcell_index,
                                                                   const value_type  &normal_flux)
   {
-    AssertIndexRange(subcell_index,
-                     subcell_matrix_free.get_subcell_shape_info().cell_index_info.n_subcells_face);
+    AssertIndexRange(subcell_index, cell_index_info.n_subcells_face);
     Assert(is_reinitialized, dealii::ExcNotInitialized());
 
     submitted_fluxes[subcell_index] = normal_flux;
@@ -170,8 +171,7 @@ namespace MeltPoolDG
   std::ranges::iota_view<unsigned int, unsigned int>
   FESubcellFaceEvaluation<dim, n_components, number>::subcell_face_indices() const
   {
-    return std::ranges::iota_view{
-      0U, subcell_matrix_free.get_subcell_shape_info().cell_index_info.n_subcells_face};
+    return std::ranges::iota_view{0U, cell_index_info.n_subcells_face};
   }
 
   template <int dim, int n_components, typename number>
@@ -180,8 +180,7 @@ namespace MeltPoolDG
     const unsigned int subcell_index) const -> VectorizedArrayType
   {
     Assert(is_reinitialized, dealii::ExcNotInitialized());
-    AssertIndexRange(subcell_index,
-                     subcell_matrix_free.get_subcell_shape_info().cell_index_info.n_subcells_face);
+    AssertIndexRange(subcell_index, cell_index_info.n_subcells_face);
     return subcell_face_sizes[subcell_index];
   }
 
@@ -191,8 +190,7 @@ namespace MeltPoolDG
     const unsigned int subcell_index) const -> dealii::Point<dim, VectorizedArrayType>
   {
     Assert(is_reinitialized, dealii::ExcNotInitialized());
-    AssertIndexRange(subcell_index,
-                     subcell_matrix_free.get_subcell_shape_info().cell_index_info.n_subcells_face);
+    AssertIndexRange(subcell_index, cell_index_info.n_subcells_face);
     return subcell_locations[subcell_index];
   }
 
@@ -202,8 +200,7 @@ namespace MeltPoolDG
     const unsigned int subcell_index) const -> dealii::Point<dim, VectorizedArrayType>
   {
     Assert(is_reinitialized, dealii::ExcNotInitialized());
-    AssertIndexRange(subcell_index,
-                     subcell_matrix_free.get_subcell_shape_info().cell_index_info.n_subcells_face);
+    AssertIndexRange(subcell_index, cell_index_info.n_subcells_face);
     return subcell_face_locations[subcell_index];
   }
 
@@ -211,7 +208,7 @@ namespace MeltPoolDG
   unsigned
   FESubcellFaceEvaluation<dim, n_components, number>::n_subcell_faces() const
   {
-    return subcell_matrix_free.get_subcell_shape_info().cell_index_info.n_subcells_face;
+    return cell_index_info.n_subcells_face;
   }
 
   template <int dim, int n_components, typename number>
@@ -220,8 +217,7 @@ namespace MeltPoolDG
     const unsigned int subcell_index) const -> dealii::Tensor<1, dim, VectorizedArrayType>
   {
     Assert(is_reinitialized, dealii::ExcNotInitialized());
-    AssertIndexRange(subcell_index,
-                     subcell_matrix_free.get_subcell_shape_info().cell_index_info.n_subcells_face);
+    AssertIndexRange(subcell_index, cell_index_info.n_subcells_face);
     return subcell_face_normals[subcell_index];
   }
 
@@ -251,8 +247,7 @@ namespace MeltPoolDG
     const unsigned int subcell_index) const -> VectorizedArrayType
   {
     Assert(is_reinitialized, dealii::ExcNotInitialized());
-    AssertIndexRange(subcell_index,
-                     subcell_matrix_free.get_subcell_shape_info().cell_index_info.n_subcells_face);
+    AssertIndexRange(subcell_index, cell_index_info.n_subcells_face);
     return subcell_sizes[subcell_index];
   }
 
@@ -283,8 +278,7 @@ namespace MeltPoolDG
     for (const unsigned int q : subcell_face_indices())
       {
         subcell_sizes[q] =
-          fe_cell_evaluator.JxW(subcell_matrix_free.get_subcell_shape_info()
-                                  .cell_index_info.face_to_cell_subcell_indices[face_no][q]);
+          fe_cell_evaluator.JxW(cell_index_info.face_to_cell_subcell_indices[face_no][q]);
       }
   }
   template <int dim, int n_components, typename number>
@@ -307,8 +301,7 @@ namespace MeltPoolDG
     for (unsigned int subcell : subcell_face_indices())
       {
         const unsigned int cell_q_index =
-          subcell_matrix_free.get_subcell_shape_info()
-            .cell_index_info.face_to_cell_subcell_indices[face_no][subcell];
+          cell_index_info.face_to_cell_subcell_indices[face_no][subcell];
         const VectorizedArrayType scaling_factor =
           subcell_face_sizes[subcell] / subcell_sizes[subcell];
         if constexpr (n_components == 1)
@@ -337,13 +330,10 @@ namespace MeltPoolDG
   void
   FESubcellFaceEvaluation<dim, n_components, number>::setup_internal_data_structures()
   {
-    const SubcellIndexInfo<dim> &cell_index_info =
-      subcell_matrix_free.get_subcell_shape_info().cell_index_info;
     AssertDimension(cell_index_info.n_subcells, fe_cell_evaluator.n_q_points);
     AssertDimension(cell_index_info.n_subcells_face, fe_face_evaluator.n_q_points);
 
-    layer_values.resize(
-      subcell_matrix_free.get_subcell_shape_info().face_index_info.n_haloed_subcells);
+    layer_values.resize(face_index_info.n_haloed_subcells);
 
     submitted_fluxes.resize(cell_index_info.n_subcells_face);
     subcell_face_normals.resize(cell_index_info.n_subcells_face);
@@ -364,14 +354,11 @@ namespace MeltPoolDG
     fe_cell_evaluator.evaluate(evaluation_flags);
     if (evaluation_flags & dealii::EvaluationFlags::values)
       {
-        const SubcellShapeInfo<dim, number> &subcell_shape_info =
-          subcell_matrix_free.get_subcell_shape_info();
         for (const unsigned int subcell : subcell_face_indices())
           {
             const unsigned int cell_q_index =
-              subcell_shape_info.cell_index_info.face_to_cell_subcell_indices[face_no][subcell];
-            layer_values[subcell_shape_info.face_index_info
-                           .subcell_index_to_haloed_vector_index[subcell]] =
+              cell_index_info.face_to_cell_subcell_indices[face_no][subcell];
+            layer_values[face_index_info.subcell_index_to_haloed_vector_index[subcell]] =
               fe_cell_evaluator.get_value(cell_q_index);
           }
 
@@ -386,12 +373,23 @@ namespace MeltPoolDG
   void
   FESubcellFaceEvaluation<dim, n_components, number>::determine_subcell_locations()
   {
-    for (const unsigned int subcell : subcell_face_indices())
+    const dealii::internal::MatrixFreeFunctions::FaceToCellTopology<n_lanes> &face_info =
+      matrix_free.get_face_info(face_batch_index);
+    const dealii::Point<dim, VectorizedArrayType> cell_origin = subcell_matrix_free.get_cell_origin(
+      is_interior_face ? face_info.cells_interior : face_info.cells_exterior);
+    const dealii::Tensor<2, dim, VectorizedArrayType> inverse_jacobian =
+      fe_cell_evaluator.inverse_jacobian(0);
+
+    for (const unsigned int subcell_face_index : subcell_face_indices())
       {
-        const unsigned int cell_q_index =
-          subcell_matrix_free.get_subcell_shape_info()
-            .cell_index_info.face_to_cell_subcell_indices[face_no][subcell];
-        subcell_locations[subcell] = fe_cell_evaluator.quadrature_point(cell_q_index);
+        const unsigned int subcell_index =
+          cell_index_info.face_to_cell_subcell_indices[face_no][subcell_face_index];
+        for (unsigned int d = 0; d < dim; ++d)
+          subcell_locations[subcell_face_index][d] =
+            cell_origin[d] +
+            subcell_shape_info
+                .subcell_centers_1d[cell_index_info.subcell_cartesian_indices[subcell_index][d]] /
+              inverse_jacobian[d][d];
       }
   }
 
@@ -399,9 +397,14 @@ namespace MeltPoolDG
   void
   FESubcellFaceEvaluation<dim, n_components, number>::determine_subcell_face_locations()
   {
+    // The center of a subcell face is the center of the adjacent subcell projected onto the face,
+    // i.e. it has the tangential coordinates of the subcell center and the normal coordinate of
+    // the face quadrature points. Requires determine_subcell_locations() to be called before.
     for (const unsigned int subcell_face : subcell_face_indices())
       {
-        subcell_face_locations[subcell_face] = fe_face_evaluator.quadrature_point(subcell_face);
+        subcell_face_locations[subcell_face] = subcell_locations[subcell_face];
+        subcell_face_locations[subcell_face][face_normal_coordinate_direction] =
+          fe_face_evaluator.quadrature_point(subcell_face)[face_normal_coordinate_direction];
       }
   }
 } // namespace MeltPoolDG
