@@ -27,13 +27,19 @@
       "preconditioner type": "ILU",
       "abs tolerance": "1e-10"
     },
-    "tolerance": "1e-5",
     "type": "olsson2007",
+    "hyperbolic": {
+      "pseudo time stepping": {
+        "tolerance": "1e-5"
+      },
+      "Continuous Galerkin": {
+        "tangential diffusion factor": "EPSILON_T_FACTOR"
+      }
+    },
     "interface thickness parameter": {
       "type": "proportional_to_cell_size",
       "val": "EPSILON_N_FACTOR"
-    },
-    "tangential diffusion factor": "EPSILON_T_FACTOR"
+    }
   },
   "normal vector": {
     "compute normalized vector": "true",
@@ -42,7 +48,7 @@
       "preconditioner type": "ILU"
     }
   },
-  "simulation specific": {
+  "case specific": {
     "contact angle": "STATIC_CONTACT_ANGLE",
     "gamma factor": "GAMMA_FACTOR"
   }
