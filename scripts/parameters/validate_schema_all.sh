@@ -19,7 +19,4 @@ for app_dir in "$root"/mp-*; do
 done > "$pairs_file"
 
 python3 scripts/parameters/validate_schema.py --pairs-file "$pairs_file" \
-  --exclude-category "simulation specific" \
-  --exclude-category "application specific" \
-  --exclude-category "simulation specific domain" \
-  --exclude-category "simulation specific parameters"
+  --exclude-category "case specific" 
