@@ -14,8 +14,8 @@
  *
  * - "HLLP0 and SIPG": approximate HLLP0 Riemann solver for convective fluxes and Nitsche-type
  *   method for viscous fluxes, consistently aligned to the SIPG method for inner faces
- * - "penalty": strong enforcement of both convective and viscous fluxes in the weak form and
- *   penalty terms for Dirichlet density and temperature constraints for the gas phase
+ * - "HLLP0 and penalty": approximate HLLP0 Riemann solver for convective fluxes and a combination
+ *   of strong incorporation in the weak form and penalty terms for the viscous fluxes
  */
 
 #pragma once

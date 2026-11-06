@@ -27,6 +27,10 @@ namespace MeltPoolDG::Multiphase
     /// Evaporation model (Currently available: "constant" or "Knight")
     EvaporationModelType evaporation_model = EvaporationModelType::constant;
 
+    /// Prescribed temperature jump (T_liquid - T_gas)
+    /// (only relevant for EvaporationModelType = "constant") (SI: K)
+    number delta_T = 0.;
+
     /// Parameters for the laser heat source
     struct LaserHeatSource
     {
@@ -48,9 +52,6 @@ namespace MeltPoolDG::Multiphase
     {
       /// Symmetric interior penalty parameter for the viscous interface term
       number interior_penalty_parameter_interface = 1.;
-
-      /// Temperature jump (T_liquid - T_gas)
-      number delta_T = 0.;
     } hllp0_and_sipg;
 
     /// Parameters specifically for the HLLP0 and penalty interface numerical method
@@ -58,9 +59,6 @@ namespace MeltPoolDG::Multiphase
     {
       /// Penalty parameter for temperature jump constraint
       number penalty_parameter_temperature_jump = 1.;
-
-      /// Temperature jump (T_liquid - T_gas)
-      number delta_T = 0.;
 
       /// Penalty parameter for tangential velocity jump constraint (no-slip condition)
       number penalty_parameter_tangential_no_slip = 1.;
@@ -89,6 +87,10 @@ namespace MeltPoolDG::Multiphase
                           "Model for the computation of the evaporation mass flux. "
                           "The options are \"constant\", \"knight\".",
                           dealii::Patterns::Selection("constant|Knight"));
+        prm.add_parameter("delta T",
+                          delta_T,
+                          "Prescribed temperature jump at the interface.",
+                          dealii::Patterns::Double());
         prm.enter_subsection("laser heat source");
         prm.add_parameter("do ramp",
                           laser_heat_source.do_ramp,
@@ -106,8 +108,8 @@ namespace MeltPoolDG::Multiphase
         prm.add_parameter("type",
                           type,
                           "Numerical method for enforcing interface jump conditions. "
-                          "The options are \"penalty\", \"HLLP0_and_SIPG\", \"HLLP0_and_penalty\".",
-                          dealii::Patterns::Selection("penalty|HLLP0_and_SIPG|HLLP0_and_penalty"));
+                          "The options are \"HLLP0_and_SIPG\", \"HLLP0_and_penalty\".",
+                          dealii::Patterns::Selection("HLLP0_and_SIPG|HLLP0_and_penalty"));
         prm.enter_subsection("HLLP0 and SIPG");
         prm.add_parameter(
           "interior penalty parameter interface",
@@ -116,20 +118,12 @@ namespace MeltPoolDG::Multiphase
           "guess is O(1/cell_size). Increase the parameter in the case of instabilities at the "
           "interface. The minimum value is 0.",
           dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
-        prm.add_parameter("delta T",
-                          hllp0_and_sipg.delta_T,
-                          "Temperature jump at the interface.",
-                          dealii::Patterns::Double());
         prm.leave_subsection();
         prm.enter_subsection("HLLP0 and penalty");
         prm.add_parameter("penalty parameter temperature jump",
                           hllp0_and_penalty.penalty_parameter_temperature_jump,
                           "Penalty parameter for the temperature jump constraint.",
                           dealii::Patterns::Double(0., std::numeric_limits<number>::max()));
-        prm.add_parameter("delta T",
-                          hllp0_and_penalty.delta_T,
-                          "Temperature jump at the interface.",
-                          dealii::Patterns::Double());
         prm.add_parameter(
           "penalty parameter tangential no slip",
           hllp0_and_penalty.penalty_parameter_tangential_no_slip,
