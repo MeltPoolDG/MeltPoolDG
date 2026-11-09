@@ -215,7 +215,7 @@ namespace MeltPoolDG::Flow
                                                       ls_to_pressure_grad_interpolation_matrix);
               }
 
-            if (delta_phase_weighted or cut_type != CutUtil::CutPhaseType::not_cut)
+            if (delta_phase_weighted or solid_eval or cut_type != CutUtil::CutPhaseType::not_cut)
               used_heaviside_eval.evaluate(EvaluationFlags::values | EvaluationFlags::gradients);
             else
               used_heaviside_eval.evaluate(EvaluationFlags::gradients);
@@ -248,7 +248,9 @@ namespace MeltPoolDG::Flow
             for (const unsigned int q : surface_tension_eval.quadrature_point_indices())
               {
                 const auto mask =
-                  solid_eval ? 1. - solid_eval->get_value(q) : VectorizedArray<number>(1.0);
+                  solid_eval ? compute_surface_tension_solid_mask(used_heaviside_eval.get_value(q),
+                                                                  solid_eval->get_value(q)) :
+                               VectorizedArray<number>(1.0);
 
                 VectorizedArray<number> weight(1.0);
                 if (delta_phase_weighted)

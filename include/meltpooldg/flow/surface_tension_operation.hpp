@@ -13,6 +13,35 @@
 namespace MeltPoolDG::Flow
 {
   /**
+   * @brief Compute the factor by which the surface tension force is scaled if surface tension
+   * should vanish in the solid phase.
+   *
+   * The solid field @p solid_times_heaviside is not the plain solid fraction f_s, but the solid
+   * fraction weighted by the heaviside representation of the level set H, i.e. s = f_s H (see
+   * MeltFrontPropagation). The mask recovers the liquid fraction of the metal phase
+   *
+   *        H - s
+   *  m = ---------  ≈  1 - f_s ,
+   *        H + ε
+   *
+   * with ε = 1e-12 to avoid a division by zero in the gas phase (H = 0), where the mask vanishes.
+   * Thus, across the diffuse interface, surface tension vanishes in fully solid regions (f_s = 1)
+   * and acts with full strength in fully liquid regions (f_s = 0), independent of the local value
+   * of H.
+   *
+   * @param heaviside Heaviside representation of the level set H.
+   * @param solid_times_heaviside Solid fraction weighted by the heaviside representation, s = f_s H.
+   *
+   * @return Surface tension mask m.
+   */
+  template <typename Number>
+  inline Number
+  compute_surface_tension_solid_mask(const Number &heaviside, const Number &solid_times_heaviside)
+  {
+    return (heaviside - solid_times_heaviside) / (heaviside + Number(1.e-12));
+  }
+
+  /**
    *  @brief This class enables to compute the contribution to interfacial forces due
    *  to temperature-(in)dependent surface tension.
    *
@@ -92,7 +121,8 @@ namespace MeltPoolDG::Flow
      * which is required if surface tension should be zeroed out in the solid domain.
      *
      * @param solid_dof_idx Index for the solid DoFHandler.
-     * @param solid Pointer to the solid vector.
+     * @param solid Pointer to the solid vector, i.e. the solid fraction weighted by the heaviside
+     * representation of the level set (see compute_surface_tension_solid_mask()).
      */
     void
     register_solid_fraction(const unsigned int solid_dof_idx, const VectorType *solid);
