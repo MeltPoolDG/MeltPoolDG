@@ -224,9 +224,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a17b72335ad8ee9145a26c019c96225d2" id="r_a17b72335ad8ee9145a26c019c96225d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a17b72335ad8ee9145a26c019c96225d2">vmult</a> (<a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab7d227b749d19845f484c40ceea04dee">VectorType</a> &amp;dst, const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab7d227b749d19845f484c40ceea04dee">VectorType</a> &amp;src) const</td></tr>
 <tr class="memdesc:a17b72335ad8ee9145a26c019c96225d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function for the matrix-free matrix-vector product evaluation.  <br /></td></tr>
 <tr class="separator:a17b72335ad8ee9145a26c019c96225d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad315a625eb5864fe841bbddc173f9033" id="r_ad315a625eb5864fe841bbddc173f9033"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ad315a625eb5864fe841bbddc173f9033">set_current_time</a> (const number &amp;current_time_in)</td></tr>
-<tr class="memdesc:ad315a625eb5864fe841bbddc173f9033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current time.  <br /></td></tr>
-<tr class="separator:ad315a625eb5864fe841bbddc173f9033"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a756302a720bf7a5ccc40b587745f7141" id="r_a756302a720bf7a5ccc40b587745f7141"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a756302a720bf7a5ccc40b587745f7141">add_external_force</a> (std::shared_ptr&lt; <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForce.html">CompressibleFlow::ExternalFlowForce</a>&lt; dim, number &gt; &gt; external_force)</td></tr>
 <tr class="memdesc:a756302a720bf7a5ccc40b587745f7141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add external fluid forces (e.g. gravity, ...).  <br /></td></tr>
 <tr class="separator:a756302a720bf7a5ccc40b587745f7141"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -261,6 +258,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a17cc53c180b35a472660928ff7c10334" id="r_a17cc53c180b35a472660928ff7c10334"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator</a>&lt; dim, dim+2, number &gt;, <a class="el" href="namespaceMeltPoolDG.html#a3856136741da9c4cff969def99045d0e">FEFaceIntegrator</a>&lt; dim, dim+2, number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a17cc53c180b35a472660928ff7c10334">create_face_integrators</a> (const <a class="el" href="namespaceMeltPoolDG_1_1CutUtil.html#a27034c61403f17637b919d517870ea9d">CutUtil::CellCategory</a> category, const unsigned int offset=0) const</td></tr>
 <tr class="memdesc:a17cc53c180b35a472660928ff7c10334"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper for the generation of a pair of FEFaceIntegrator objects for the "interior" face and the "exterior" face.  <br /></td></tr>
 <tr class="separator:a17cc53c180b35a472660928ff7c10334"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2424a7d8a99caceb12eee44ee70e30e0" id="r_a2424a7d8a99caceb12eee44ee70e30e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a2424a7d8a99caceb12eee44ee70e30e0">apply_interface_terms</a> (<a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ac17f53610febdf9f8090886b52c8dbe0">DomainPointEval</a>&lt;&gt; &amp;point_eval_liquid, <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ac17f53610febdf9f8090886b52c8dbe0">DomainPointEval</a>&lt;&gt; &amp;point_eval_gas, <a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, dim+2, number &gt; &amp;eval_liquid, <a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, dim+2, number &gt; &amp;eval_gas, const unsigned int lane) const</td></tr>
+<tr class="memdesc:a2424a7d8a99caceb12eee44ee70e30e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate the interface coupling terms of an intersected cell at all quadrature points on the immersed interface and integrate them into the local DoF values of the cell integrators.  <br /></td></tr>
+<tr class="separator:a2424a7d8a99caceb12eee44ee70e30e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a537d2c4dc220b38e5bc08a1b0c61b171" id="r_a537d2c4dc220b38e5bc08a1b0c61b171"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a537d2c4dc220b38e5bc08a1b0c61b171">internal_compute_diagonal_or_system_matrix</a> (<a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab7d227b749d19845f484c40ceea04dee">VectorType</a> &amp;diagonal, dealii::TrilinosWrappers::SparseMatrix &amp;system_matrix, const bool do_diagonal) const</td></tr>
 <tr class="memdesc:a537d2c4dc220b38e5bc08a1b0c61b171"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shared implementation of the matrix-free diagonal and system matrix assembly.  <br /></td></tr>
 <tr class="separator:a537d2c4dc220b38e5bc08a1b0c61b171"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -285,11 +285,6 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:adc29ced94e429a56c17411833ad861b0" id="r_adc29ced94e429a56c17411833ad861b0"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#adc29ced94e429a56c17411833ad861b0">n_dofs_per_cell</a></td></tr>
 <tr class="memdesc:adc29ced94e429a56c17411833ad861b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of DoFs per cell.  <br /></td></tr>
 <tr class="separator:adc29ced94e429a56c17411833ad861b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab73cafb6ea05ccdb53ad6ac09829e574" id="r_ab73cafb6ea05ccdb53ad6ac09829e574"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab73cafb6ea05ccdb53ad6ac09829e574">visc_ave_weight_phase_liquid</a></td></tr>
-<tr class="memdesc:ab73cafb6ea05ccdb53ad6ac09829e574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weighting factors for Nitsche-type viscous interface flux.  <br /></td></tr>
-<tr class="separator:ab73cafb6ea05ccdb53ad6ac09829e574"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a7bcb66cff29627616e3572a1d00e38" id="r_a4a7bcb66cff29627616e3572a1d00e38"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a4a7bcb66cff29627616e3572a1d00e38">visc_ave_weight_phase_gas</a></td></tr>
-<tr class="separator:a4a7bcb66cff29627616e3572a1d00e38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60c5c6afaad34b28b735b1ebba909828" id="r_a60c5c6afaad34b28b735b1ebba909828"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="structMeltPoolDG_1_1CompressibleFlow_1_1ExternalFlowForce.html">CompressibleFlow::ExternalFlowForce</a>&lt; dim, number &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a60c5c6afaad34b28b735b1ebba909828">external_forces</a></td></tr>
 <tr class="separator:a60c5c6afaad34b28b735b1ebba909828"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca334043a9c4d4ac647e65f35056e0d5" id="r_aca334043a9c4d4ac647e65f35056e0d5"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#aca334043a9c4d4ac647e65f35056e0d5">time_step</a> = 0.</td></tr>
@@ -298,15 +293,17 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ae27d79f757fd73ffd5dfcd2fd2ce9342" id="r_ae27d79f757fd73ffd5dfcd2fd2ce9342"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ae27d79f757fd73ffd5dfcd2fd2ce9342">inv_time_step</a> = 0.</td></tr>
 <tr class="memdesc:ae27d79f757fd73ffd5dfcd2fd2ce9342"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inverse time step size.  <br /></td></tr>
 <tr class="separator:ae27d79f757fd73ffd5dfcd2fd2ce9342"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa62a3a8ad9bdfa75ef422b4e8cb3165b" id="r_aa62a3a8ad9bdfa75ef422b4e8cb3165b"><td class="memItemLeft" align="right" valign="top">number&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#aa62a3a8ad9bdfa75ef422b4e8cb3165b">current_time</a> = 0.</td></tr>
-<tr class="memdesc:aa62a3a8ad9bdfa75ef422b4e8cb3165b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current time.  <br /></td></tr>
-<tr class="separator:aa62a3a8ad9bdfa75ef422b4e8cb3165b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4d7624e93bfe7a880570dae3cb3b000" id="r_ab4d7624e93bfe7a880570dae3cb3b000"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1LevelSetAdvection.html">LevelSetAdvection</a>&lt; dim, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ab4d7624e93bfe7a880570dae3cb3b000">level_set_advection_operator</a></td></tr>
 <tr class="memdesc:ab4d7624e93bfe7a880570dae3cb3b000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object for the analytical advection of the level set field for 1D simulations.  <br /></td></tr>
 <tr class="separator:ab4d7624e93bfe7a880570dae3cb3b000"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adef38a4241b4fb91e61f7cf46e588cf8" id="r_adef38a4241b4fb91e61f7cf46e588cf8"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelKnight.html">Evaporation::EvaporationModelKnight</a>&lt; number &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#adef38a4241b4fb91e61f7cf46e588cf8">evaporation_model_knight</a></td></tr>
-<tr class="memdesc:adef38a4241b4fb91e61f7cf46e588cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the object for the evaluation of the Knight evaporation model.  <br /></td></tr>
-<tr class="separator:adef38a4241b4fb91e61f7cf46e588cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf5f8e4cdfa0697e6d23ca6470480fe5" id="r_acf5f8e4cdfa0697e6d23ca6470480fe5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1HLLP0ConvectiveCoupling.html">HLLP0ConvectiveCoupling</a>&lt; dim, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#acf5f8e4cdfa0697e6d23ca6470480fe5">convective_coupling</a></td></tr>
+<tr class="memdesc:acf5f8e4cdfa0697e6d23ca6470480fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convective interface coupling (HLLP0 approximate two-phase Riemann solver)  <br /></td></tr>
+<tr class="separator:acf5f8e4cdfa0697e6d23ca6470480fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaabf49c1990a2b952745211922ee1feb" id="r_aaabf49c1990a2b952745211922ee1feb"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a5c230e607baeac24b240f1c3173ca033">ViscousCoupling</a>&lt; dim, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#aaabf49c1990a2b952745211922ee1feb">viscous_coupling</a></td></tr>
+<tr class="memdesc:aaabf49c1990a2b952745211922ee1feb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Viscous interface coupling for the chosen numerical method (SIPG or penalty)  <br /></td></tr>
+<tr class="separator:aaabf49c1990a2b952745211922ee1feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a314ef1b966ca432bd482dadece7a4703" id="r_a314ef1b966ca432bd482dadece7a4703"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceJumpModel.html">InterfaceJumpModel</a>&lt; dim, number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#a314ef1b966ca432bd482dadece7a4703">jump_model</a></td></tr>
+<tr class="separator:a314ef1b966ca432bd482dadece7a4703"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd47351417882ef2c3374f954e829896" id="r_abd47351417882ef2c3374f954e829896"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMeltPoolDG_1_1Flow_1_1DarcyDampingModel.html">Flow::DarcyDampingModel</a>&lt; number &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#abd47351417882ef2c3374f954e829896">darcy_damping_model</a></td></tr>
 <tr class="memdesc:abd47351417882ef2c3374f954e829896"><td class="mdescLeft">&#160;</td><td class="mdescRight">Darcy damping model for the computation of the damping coefficient.  <br /></td></tr>
 <tr class="separator:abd47351417882ef2c3374f954e829896"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -743,6 +740,74 @@ template&lt;int dim, typename number , bool is_viscous_gas, bool is_viscous_liqu
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">external_force</td><td>A provided shared pointer to an external force definition. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2424a7d8a99caceb12eee44ee70e30e0" name="a2424a7d8a99caceb12eee44ee70e30e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2424a7d8a99caceb12eee44ee70e30e0">&#9670;&#160;</a></span>apply_interface_terms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous_gas, bool is_viscous_liquid&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperator</a>&lt; dim, number, is_viscous_gas, is_viscous_liquid &gt;::apply_interface_terms </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ac17f53610febdf9f8090886b52c8dbe0">DomainPointEval</a>&lt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>point_eval_liquid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html#ac17f53610febdf9f8090886b52c8dbe0">DomainPointEval</a>&lt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>point_eval_gas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, dim+2, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>eval_liquid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceMeltPoolDG.html#aeab3a15b4bcb11af3fd3e496734f9a8c">FECellIntegrator</a>&lt; dim, dim+2, number &gt; &amp;&#160;</td>
+          <td class="paramname"><em>eval_gas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>lane</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Evaluate the interface coupling terms of an intersected cell at all quadrature points on the immersed interface and integrate them into the local DoF values of the cell integrators. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">point_eval_liquid</td><td>Point evaluator of the liquid phase. </td></tr>
+    <tr><td class="paramname">point_eval_gas</td><td>Point evaluator of the gas phase. </td></tr>
+    <tr><td class="paramname">eval_liquid</td><td>Cell integrator of the liquid phase, whose local DoF values of the given <code>lane</code> receive the integrated interface terms. </td></tr>
+    <tr><td class="paramname">eval_gas</td><td>Cell integrator of the gas phase, whose local DoF values of the given <code>lane</code> receive the integrated interface terms. </td></tr>
+    <tr><td class="paramname">lane</td><td>Lane of the considered cell within the cell batch. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1544,42 +1609,6 @@ template&lt;int dim, typename number , bool is_viscous_gas, bool is_viscous_liqu
 
 </div>
 </div>
-<a id="ad315a625eb5864fe841bbddc173f9033" name="ad315a625eb5864fe841bbddc173f9033"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad315a625eb5864fe841bbddc173f9033">&#9670;&#160;</a></span>set_current_time()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number , bool is_viscous_gas = true, bool is_viscous_liquid = true&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperator</a>&lt; dim, number, is_viscous_gas, is_viscous_liquid &gt;::set_current_time </td>
-          <td>(</td>
-          <td class="paramtype">const number &amp;&#160;</td>
-          <td class="paramname"><em>current_time_in</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the current time. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">current_time_in</td><td>Current time. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a17b72335ad8ee9145a26c019c96225d2" name="a17b72335ad8ee9145a26c019c96225d2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a17b72335ad8ee9145a26c019c96225d2">&#9670;&#160;</a></span>vmult()</h2>
 
@@ -1668,8 +1697,8 @@ template&lt;int dim, typename number , bool is_viscous_gas, bool is_viscous_liqu
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="aa62a3a8ad9bdfa75ef422b4e8cb3165b" name="aa62a3a8ad9bdfa75ef422b4e8cb3165b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa62a3a8ad9bdfa75ef422b4e8cb3165b">&#9670;&#160;</a></span>current_time</h2>
+<a id="acf5f8e4cdfa0697e6d23ca6470480fe5" name="acf5f8e4cdfa0697e6d23ca6470480fe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf5f8e4cdfa0697e6d23ca6470480fe5">&#9670;&#160;</a></span>convective_coupling</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1680,17 +1709,17 @@ template&lt;int dim, typename number , bool is_viscous_gas = true, bool is_visco
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">number <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperator</a>&lt; dim, number, is_viscous_gas, is_viscous_liquid &gt;::current_time = 0.</td>
+          <td class="memname">const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1HLLP0ConvectiveCoupling.html">HLLP0ConvectiveCoupling</a>&lt;dim, number&gt; <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperator</a>&lt; dim, number, is_viscous_gas, is_viscous_liquid &gt;::convective_coupling</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Current time. </p>
+<p>Convective interface coupling (HLLP0 approximate two-phase Riemann solver) </p>
 
 </div>
 </div>
@@ -1717,32 +1746,6 @@ template&lt;int dim, typename number , bool is_viscous_gas = true, bool is_visco
 </div><div class="memdoc">
 
 <p>Darcy damping model for the computation of the damping coefficient. </p>
-
-</div>
-</div>
-<a id="adef38a4241b4fb91e61f7cf46e588cf8" name="adef38a4241b4fb91e61f7cf46e588cf8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adef38a4241b4fb91e61f7cf46e588cf8">&#9670;&#160;</a></span>evaporation_model_knight</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number , bool is_viscous_gas = true, bool is_viscous_liquid = true&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::unique_ptr&lt;<a class="el" href="classMeltPoolDG_1_1Evaporation_1_1EvaporationModelKnight.html">Evaporation::EvaporationModelKnight</a>&lt;number&gt; &gt; <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperator</a>&lt; dim, number, is_viscous_gas, is_viscous_liquid &gt;::evaporation_model_knight</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Pointer to the object for the evaluation of the Knight evaporation model. </p>
 
 </div>
 </div>
@@ -1849,6 +1852,31 @@ template&lt;int dim, typename number , bool is_viscous_gas = true, bool is_visco
 </div><div class="memdoc">
 
 <p>Inverse time step size. </p>
+
+</div>
+</div>
+<a id="a314ef1b966ca432bd482dadece7a4703" name="a314ef1b966ca432bd482dadece7a4703"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a314ef1b966ca432bd482dadece7a4703">&#9670;&#160;</a></span>jump_model</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , bool is_viscous_gas = true, bool is_viscous_liquid = true&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1InterfaceJumpModel.html">InterfaceJumpModel</a>&lt;dim, number&gt; <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperator</a>&lt; dim, number, is_viscous_gas, is_viscous_liquid &gt;::jump_model</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Model for the interface jump conditions (evaporation mass flux, temperature jump, laser heat source) </p>
 
 </div>
 </div>
@@ -2034,8 +2062,8 @@ template&lt;int dim, typename number , bool is_viscous_gas = true, bool is_visco
 
 </div>
 </div>
-<a id="a4a7bcb66cff29627616e3572a1d00e38" name="a4a7bcb66cff29627616e3572a1d00e38"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a7bcb66cff29627616e3572a1d00e38">&#9670;&#160;</a></span>visc_ave_weight_phase_gas</h2>
+<a id="aaabf49c1990a2b952745211922ee1feb" name="aaabf49c1990a2b952745211922ee1feb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaabf49c1990a2b952745211922ee1feb">&#9670;&#160;</a></span>viscous_coupling</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2046,7 +2074,7 @@ template&lt;int dim, typename number , bool is_viscous_gas = true, bool is_visco
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">number <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperator</a>&lt; dim, number, is_viscous_gas, is_viscous_liquid &gt;::visc_ave_weight_phase_gas</td>
+          <td class="memname">const <a class="el" href="namespaceMeltPoolDG_1_1Multiphase.html#a5c230e607baeac24b240f1c3173ca033">ViscousCoupling</a>&lt;dim, number&gt; <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperator</a>&lt; dim, number, is_viscous_gas, is_viscous_liquid &gt;::viscous_coupling</td>
         </tr>
       </table>
   </td>
@@ -2056,31 +2084,7 @@ template&lt;int dim, typename number , bool is_viscous_gas = true, bool is_visco
 </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="ab73cafb6ea05ccdb53ad6ac09829e574" name="ab73cafb6ea05ccdb53ad6ac09829e574"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab73cafb6ea05ccdb53ad6ac09829e574">&#9670;&#160;</a></span>visc_ave_weight_phase_liquid</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int dim, typename number , bool is_viscous_gas = true, bool is_viscous_liquid = true&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">number <a class="el" href="classMeltPoolDG_1_1Multiphase_1_1CompressibleMultiphaseOperator.html">MeltPoolDG::Multiphase::CompressibleMultiphaseOperator</a>&lt; dim, number, is_viscous_gas, is_viscous_liquid &gt;::visc_ave_weight_phase_liquid</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Weighting factors for Nitsche-type viscous interface flux. </p>
+<p>Viscous interface coupling for the chosen numerical method (SIPG or penalty) </p>
 
 </div>
 </div>
