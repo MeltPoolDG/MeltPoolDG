@@ -33,11 +33,19 @@
 namespace MeltPoolDG
 {
   // Requirements on a type describing one point for Postprocessor::process_points().
+  using PropertyInfo =
+    std::pair<std::vector<std::string>,
+              std::vector<dealii::DataComponentInterpretation::DataComponentInterpretation>>;
+
   template <typename T, int dim>
   concept PointOutputType =
     requires(const T &point_data, dealii::Point<dim> &point, double *properties) {
-      T::get_property_names_and_component_interpretation();
-      point_data.fill_output(point, properties);
+      {
+        T::get_property_names_and_component_interpretation()
+      } -> std::same_as<PropertyInfo>;
+      {
+        point_data.fill_output(point, properties)
+      } -> std::same_as<void>;
     };
 
   template <int dim, typename number>
@@ -88,6 +96,10 @@ namespace MeltPoolDG
      *     PointDataOut::build_patches(), and
      *   - a const member function `void fill_output(dealii::Point<dim> &point, double *properties)`
      *     that writes the point location and exactly names.size() property values.
+     *
+     * @param n_time_step Current time step number.
+     * @param time Current simulation time.
+     * @param point_data The vector of points to be written to file.
      */
     template <typename PointDataType>
       requires PointOutputType<PointDataType, dim>
