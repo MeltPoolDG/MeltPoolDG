@@ -145,8 +145,7 @@ namespace MeltPoolDG::CompressibleFlow
                                     flow_data.domain_representation_type,
                                     dof_idx);
 
-      if (flow_data.limiter_data.apply_limiter and
-          flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
+      if (flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
         {
           if (not subcell_matrix_free)
             subcell_matrix_free = std::make_unique<SubcellMatrixFree<dim, number>>();

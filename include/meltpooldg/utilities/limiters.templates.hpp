@@ -1,6 +1,5 @@
 #pragma once
 
-#include <deal.II/base/parameter_handler.h>
 #include <deal.II/base/tensor.h>
 #include <deal.II/base/utilities.h>
 #include <deal.II/base/vectorization.h>
@@ -11,123 +10,15 @@
 #include <deal.II/matrix_free/matrix_free.h>
 
 #include <meltpooldg/linear_algebra/utilities_matrixfree.hpp>
-#include <meltpooldg/utilities/better_enum.hpp>
 #include <meltpooldg/utilities/dealii_tensor.hpp>
 #include <meltpooldg/utilities/fe_integrator.hpp>
+#include <meltpooldg/utilities/limiter_functions.templates.hpp>
 #include <meltpooldg/utilities/limiters.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
-
-#include <boost/container/small_vector.hpp>
 
 #include <array>
 #include <functional>
 #include <vector>
-
-template <typename number>
-void
-MeltPoolDG::Utilities::LimiterData<number>::add_parameters(dealii::ParameterHandler &prm)
-{
-  prm.enter_subsection("limiter");
-  {
-    prm.add_parameter("apply", apply_limiter, "Whether to apply a limiter.");
-    prm.add_parameter(
-      "output troubled cells",
-      output_troubled_cells,
-      "Whether to output the troubled cell markers for the applied marking strategies.");
-    prm.add_parameter(
-      "tvb constant",
-      tvb_constant,
-      "The TVB constant used in the TVB minmod limiter. The constant has the dimension of a second derivative.");
-    prm.add_parameter("type", type, "The type of limiter to apply.");
-    prm.add_parameter(
-      "troubled cell marking strategy",
-      troubled_cell_marking_strategy,
-      "The troubled cell marking strategy used to identify cells that require limiting.");
-  }
-  prm.leave_subsection();
-}
-
-template <int n_components, typename TensorType, typename Container>
-TensorType
-MeltPoolDG::Utilities::tvd_minmod(const Container &values)
-{
-  Assert(values.begin() != values.end(), dealii::ExcMessage("Container must not be empty."));
-
-  TensorType result;
-  for (unsigned int i = 0; i < n_components; ++i)
-    {
-      // Check sign consistency
-      const bool all_positive =
-        std::all_of(values.begin(), values.end(), [i](TensorType v) { return v[i] > 0; });
-      const bool all_negative =
-        std::all_of(values.begin(), values.end(), [i](TensorType v) { return v[i] < 0; });
-
-      if (not(all_positive or all_negative))
-        {
-          result[i] = typename TensorType::value_type(0.);
-        }
-      else
-        {
-          // Find element with smallest absolute value
-          auto it = std::min_element(values.begin(),
-                                     values.end(),
-                                     [i](const TensorType &a, const TensorType &b) {
-                                       return std::abs(a[i]) < std::abs(b[i]);
-                                     });
-
-          result[i] = (*it)[i];
-        }
-    }
-
-  return result;
-}
-
-template <typename number, int n_components, typename TensorType, typename Container>
-TensorType
-MeltPoolDG::Utilities::tvb_minmod(const Container           &values,
-                                  const std::vector<number> &tvb_constant,
-                                  const number               cell_size)
-{
-  Assert(values.begin() != values.end(), dealii::ExcMessage("Container must not be empty."));
-  Assert(tvb_constant.size() == n_components,
-         dealii::ExcMessage(
-           "The size of the TVB constant vector must match the number of components."));
-
-  TensorType                     result;
-  std::array<bool, n_components> below_limit_mask;
-  for (unsigned int i = 0; i < n_components; ++i)
-    {
-      if (std::abs(values[0][i]) <= tvb_constant[i] * cell_size * cell_size)
-        {
-          below_limit_mask[i] = true;
-        }
-      else
-        {
-          below_limit_mask[i] = false;
-        }
-    }
-
-  if (std::all_of(below_limit_mask.begin(), below_limit_mask.end(), [](bool v) { return v; }))
-    {
-      for (unsigned int i = 0; i < n_components; ++i)
-        result[i] = values[0][i];
-    }
-  else
-    {
-      result = tvd_minmod<n_components, TensorType, Container>(values);
-
-      // TODO: Does this make sense to only apply the TVB modification to the components that are
-      // below the slope limit? Or should we rather apply the TVB modification to all components if
-      // at least one component is above the slope limit?
-      for (unsigned int i = 0; i < n_components; ++i)
-        {
-          if (below_limit_mask[i])
-            result[i] = values[0][i];
-        }
-    }
-
-  return result;
-}
 
 template <int dim, int n_components, typename number>
 std::array<dealii::Tensor<1, n_components, number>, dim>
@@ -142,11 +33,16 @@ MeltPoolDG::Utilities::compute_minmod_type_limited_slopes(
 
   for (unsigned int d = 0; d < dim; ++d)
     {
-      boost::container::small_vector<dealii::Tensor<1, n_components, number>, 3>
-        minmod_input_values;
-      minmod_input_values.emplace_back();
+      // Slope of the DG solution in the current cell in direction d
+      dealii::Tensor<1, n_components, number> cell_slope;
       for (unsigned int i = 0; i < n_components; ++i)
-        minmod_input_values[0][i] = cell_average_values[cell->active_cell_index()].second[i][d];
+        cell_slope[i] = cell_average_values[cell->active_cell_index()].second[i][d];
+
+      // Finite difference slopes of the cell averages towards the neighbor in negative
+      // (face_no = 0), i.e. u_{x,i-1/2}, and positive (face_no = 1), i.e. u_{x,i+1/2}, direction d.
+      // A slope is only available if the corresponding face is not at the domain boundary.
+      std::array<dealii::Tensor<1, n_components, number>, 2> difference_slopes;
+      std::array<bool, 2> has_difference_slope = {{false, false}};
       for (unsigned int face_no = 0; face_no < 2; ++face_no)
         {
           unsigned int face_index = 2 * d + face_no;
@@ -215,41 +111,50 @@ MeltPoolDG::Utilities::compute_minmod_type_limited_slopes(
 
               if (face_no == 0)
                 {
-                  minmod_input_values.push_back(
-                    (cell_average_values[cell->active_cell_index()].first -
-                     neighbor_cell_average_value) /
-                    distance_to_neighbor);
+                  difference_slopes[0] = (cell_average_values[cell->active_cell_index()].first -
+                                          neighbor_cell_average_value) /
+                                         distance_to_neighbor;
                 }
               else
                 {
-                  minmod_input_values.push_back(
-                    (neighbor_cell_average_value -
-                     cell_average_values[cell->active_cell_index()].first) /
-                    distance_to_neighbor);
+                  difference_slopes[1] = (neighbor_cell_average_value -
+                                          cell_average_values[cell->active_cell_index()].first) /
+                                         distance_to_neighbor;
                 }
+              has_difference_slope[face_no] = true;
             }
         }
 
-      switch (limiter_data.type)
+      // Without any neighbor in direction d, there is nothing to limit the DG slope against.
+      if (not has_difference_slope[0] and not has_difference_slope[1])
         {
-          case LimiterType::tvd_minmod:
-            limited_slopes[d] = tvd_minmod<
-              n_components,
-              dealii::Tensor<1, n_components, number>,
-              boost::container::small_vector<dealii::Tensor<1, n_components, number>, 3>>(
-              minmod_input_values);
-            break;
-          case LimiterType::tvb_minmod:
-            limited_slopes[d] = tvb_minmod<
-              number,
-              n_components,
-              dealii::Tensor<1, n_components, number>,
-              boost::container::small_vector<dealii::Tensor<1, n_components, number>, 3>>(
-              minmod_input_values, limiter_data.tvb_constant, cell->extent_in_direction(d));
-            break;
-          default:
-            AssertThrow(false, dealii::ExcMessage("Unknown limiter type."));
+          limited_slopes[d] = cell_slope;
+          continue;
         }
+
+      // Combine the available difference slopes into a single one. If both are available, the
+      // slope is limited with the ratio r = u_{x,i+1/2} / u_{x,i-1/2}
+      dealii::Tensor<1, n_components, number> limited_difference_slope;
+      if (has_difference_slope[0] and has_difference_slope[1])
+        {
+          const dealii::Tensor<1, n_components, number> phi =
+            tvd_minmod(compute_slope_ratio(difference_slopes[1], difference_slopes[0]));
+          for (unsigned int i = 0; i < n_components; ++i)
+            limited_difference_slope[i] = difference_slopes[0][i] * phi[i];
+        }
+      else if (has_difference_slope[0])
+        limited_difference_slope = difference_slopes[0];
+      else
+        limited_difference_slope = difference_slopes[1];
+
+      const dealii::Tensor<1, n_components, number> r =
+        compute_slope_ratio(limited_difference_slope, cell_slope);
+
+      const dealii::Tensor<1, n_components, number> phi =
+        evaluate_limiter_function(limiter_data.limiter_function_type, r);
+
+      for (unsigned int i = 0; i < n_components; ++i)
+        limited_slopes[d][i] = cell_slope[i] * phi[i];
     }
   return limited_slopes;
 }
@@ -266,7 +171,7 @@ MeltPoolDG::Utilities::apply_minmod_type_limiter(
   const VectorType                                 &src,
   const MeltPoolDG::Utilities::LimiterData<number> &limiter_data)
 {
-  if (not limiter_data.apply_limiter)
+  if (limiter_data.type != LimiterType::slope_limiter)
     return;
 
   AssertThrow(mf_context.mf.get_dof_handler(mf_context.dof_idx).get_fe().degree == 1,

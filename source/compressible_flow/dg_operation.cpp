@@ -20,7 +20,7 @@
 #include <meltpooldg/utilities/fe_integrator.hpp>
 #include <meltpooldg/utilities/fe_util.hpp>
 #include <meltpooldg/utilities/journal.hpp>
-#include <meltpooldg/utilities/limiters.hpp>
+#include <meltpooldg/utilities/limiters.templates.hpp>
 #include <meltpooldg/utilities/preprocessor_directives.hpp>
 #include <meltpooldg/utilities/scoped_name.hpp>
 #include <meltpooldg/utilities/troubled_cell_marker.templates.hpp>
@@ -114,8 +114,7 @@ namespace MeltPoolDG::CompressibleFlow
     time_integrator->reinit(flow_scratch_data.solution_history);
     std::visit([&](auto &operator_variant) { operator_variant.reinit(); }, flow_operator);
 
-    if (flow_scratch_data.flow_data.limiter_data.apply_limiter and
-        flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
+    if (flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
       troubled_cell_marker.reinit(*flow_scratch_data.subcell_matrix_free);
   }
 
@@ -156,9 +155,7 @@ namespace MeltPoolDG::CompressibleFlow
       [&](number time, number stage_time_step, VectorType &dst, const VectorType &src) {
         ScopedName         scope_stage_post("stage_post_processing");
         TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(), scope_stage_post);
-        if (flow_scratch_data.flow_data.limiter_data.apply_limiter and
-            (flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::tvd_minmod or
-             flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::tvb_minmod))
+        if (flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::slope_limiter)
           {
             Utilities::
               apply_minmod_type_limiter<dim, n_conserved_variables<dim, n_species>, number>(
@@ -174,8 +171,7 @@ namespace MeltPoolDG::CompressibleFlow
           [&](auto &comp_flow_operator) {
             using T = std::decay_t<decltype(comp_flow_operator)>;
 
-            if (flow_scratch_data.flow_data.limiter_data.apply_limiter and
-                flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
+            if (flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
               {
                 if constexpr (std::is_same_v<DGOperatorExplicit<dim, number, n_species>, T>)
                   {
@@ -824,8 +820,7 @@ namespace MeltPoolDG::CompressibleFlow
                                       flow_scratch_data.flow_data.output_variables);
 
     // Attach additional output vectors from the limiter's troubled cell marker if it exists
-    if (flow_scratch_data.flow_data.limiter_data.apply_limiter and
-        flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell and
+    if (flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell and
         flow_scratch_data.flow_data.limiter_data.output_troubled_cells)
       {
         const std::function<dealii::Vector<number>()> create_troubled_cell_vector = [&]() {
@@ -886,8 +881,7 @@ namespace MeltPoolDG::CompressibleFlow
     Profiling::ProfilingMonitor<number> &profiling_monitor,
     const Profiling::ProfilingVerbosity  verbosity)
   {
-    if (flow_scratch_data.flow_data.limiter_data.apply_limiter and
-        flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
+    if (flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
       {
         troubled_cell_monitor =
           std::make_unique<TroubledCellMonitor<dim, n_conserved_variables<dim, n_species>, number>>(

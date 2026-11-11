@@ -5,7 +5,7 @@
 #include <deal.II/base/vectorization.h>
 
 #include <meltpooldg/utilities/conditional_ostream.hpp>
-#include <meltpooldg/utilities/limiters.hpp>
+#include <meltpooldg/utilities/limiter_data.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
 #include <meltpooldg/utilities/profiling_data.hpp>
 #include <meltpooldg/utilities/profiling_monitor.hpp>

@@ -29,8 +29,7 @@ namespace MeltPoolDG::CompressibleFlow
   void
   DGOperatorExplicit<dim, number, n_species>::reinit()
   {
-    if (flow_scratch_data.flow_data.limiter_data.apply_limiter and
-        flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
+    if (flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::fv_subcell)
       {
         flow_scratch_data.scratch_data.get_matrix_free().initialize_dof_vector(fv_rhs);
         flow_scratch_data.scratch_data.get_matrix_free().initialize_dof_vector(

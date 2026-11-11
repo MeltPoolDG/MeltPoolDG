@@ -6,7 +6,7 @@
 
 #include <deal.II/lac/la_parallel_vector.h>
 
-#include <meltpooldg/utilities/limiters.hpp>
+#include <meltpooldg/utilities/limiter_data.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
 #include <meltpooldg/utilities/numerical_admissibility_detection.hpp>
 #include <meltpooldg/utilities/physical_admissibility_detection.hpp>

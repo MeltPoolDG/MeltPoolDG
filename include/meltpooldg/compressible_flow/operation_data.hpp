@@ -7,8 +7,7 @@
 #include <meltpooldg/time_integration/time_integrator_data.hpp>
 #include <meltpooldg/time_integration/time_integrator_util.hpp>
 #include <meltpooldg/utilities/better_enum.hpp>
-#include <meltpooldg/utilities/limiters.hpp>
-#include <meltpooldg/utilities/limiters.templates.hpp>
+#include <meltpooldg/utilities/limiter_data.hpp>
 
 #include <string>
 #include <vector>
