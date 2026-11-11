@@ -1,7 +1,7 @@
 mpdg_setup_serial_unit_tests(
     TEST_SOURCE_FILES
     dg_generic_convection_diffusion_worker.cpp
-    limiters.cpp
+    slope_limiter_01.cpp
     limiter_functions_01.cpp
     cell_monitor_01.cpp
     functions_01.cpp

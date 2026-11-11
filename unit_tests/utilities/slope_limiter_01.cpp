@@ -5,8 +5,8 @@
 #include <deal.II/grid/cell_id.h>
 #include <deal.II/grid/grid_generator.h>
 
-#include <meltpooldg/utilities/limiters.hpp>
-#include <meltpooldg/utilities/limiters.templates.hpp>
+#include <meltpooldg/utilities/slope_limiter.hpp>
+#include <meltpooldg/utilities/slope_limiter.templates.hpp>
 
 #include <vector>
 
@@ -19,15 +19,15 @@ namespace
 } // namespace
 
 /**
- * Evaluates the function `compute_minmod_type_limited_slopes()` across a 1D refined hyper-cube,
+ * Evaluates the function `compute_limited_slopes()` across a 1D refined hyper-cube,
  * verifying correct neighbor evaluation for both an internal cell (middle of domain) and a boundary
  * cell.
  */
-TEST(MinmodTypeLimiterSlopes, 1D)
+TEST(ComputeLimitedSlopes, 1D)
 {
   constexpr int dim = 1;
 
-  MeltPoolDG::Utilities::LimiterData<double> limiter_data;
+  MeltPoolDG::Utilities::LimiterData limiter_data;
   limiter_data.type                  = MeltPoolDG::Utilities::LimiterType::slope_limiter;
   limiter_data.limiter_function_type = MeltPoolDG::Utilities::LimiterFunctionType::tvd_minmod;
 
@@ -55,9 +55,9 @@ TEST(MinmodTypeLimiterSlopes, 1D)
   {
     SCOPED_TRACE("Cell in the middle of the domain.");
     auto limited_value =
-      MeltPoolDG::Utilities::compute_minmod_type_limited_slopes(cell_average_values,
-                                                                ++triangulation.begin_active(),
-                                                                limiter_data);
+      MeltPoolDG::Utilities::compute_limited_slopes(cell_average_values,
+                                                    ++triangulation.begin_active(),
+                                                    limiter_data);
 
     EXPECT_DOUBLE_EQ(limited_value[0][0], 0.0);
     EXPECT_DOUBLE_EQ(limited_value[0][1], -1.0);
@@ -69,10 +69,9 @@ TEST(MinmodTypeLimiterSlopes, 1D)
     average_cell_gradient[1][0] = -8.0;
     cell_average_values[triangulation.begin_active()->active_cell_index()].second =
       average_cell_gradient;
-    auto limited_value =
-      MeltPoolDG::Utilities::compute_minmod_type_limited_slopes(cell_average_values,
-                                                                triangulation.begin_active(),
-                                                                limiter_data);
+    auto limited_value = MeltPoolDG::Utilities::compute_limited_slopes(cell_average_values,
+                                                                       triangulation.begin_active(),
+                                                                       limiter_data);
 
     EXPECT_DOUBLE_EQ(limited_value[0][0], 0.0);
     EXPECT_DOUBLE_EQ(limited_value[0][1], -4.0);
@@ -81,15 +80,15 @@ TEST(MinmodTypeLimiterSlopes, 1D)
 }
 
 /**
- * Evaluates the function `compute_minmod_type_limited_slopes()` across a 2D refined hyper-cube,
+ * Evaluates the function `compute_limited_slopes()` across a 2D refined hyper-cube,
  * verifying correct neighbor evaluation for both an internal cell (middle of domain) and a boundary
  * cell (in the corner of the domain).
  */
-TEST(MinmodTypeLimiterSlopes, 2D)
+TEST(ComputeLimitedSlopes, 2D)
 {
   constexpr int dim = 2;
 
-  MeltPoolDG::Utilities::LimiterData<double> limiter_data;
+  MeltPoolDG::Utilities::LimiterData limiter_data;
   limiter_data.type                  = MeltPoolDG::Utilities::LimiterType::slope_limiter;
   limiter_data.limiter_function_type = MeltPoolDG::Utilities::LimiterFunctionType::tvd_minmod;
 
@@ -120,10 +119,10 @@ TEST(MinmodTypeLimiterSlopes, 2D)
   {
     SCOPED_TRACE("Cell in the middle of the domain.");
     auto limited_value =
-      MeltPoolDG::Utilities::compute_minmod_type_limited_slopes(cell_average_values,
-                                                                triangulation.create_cell_iterator(
-                                                                  dealii::CellId("0_2:03")),
-                                                                limiter_data);
+      MeltPoolDG::Utilities::compute_limited_slopes(cell_average_values,
+                                                    triangulation.create_cell_iterator(
+                                                      dealii::CellId("0_2:03")),
+                                                    limiter_data);
 
     EXPECT_DOUBLE_EQ(limited_value[0][0], 0.0);
     EXPECT_DOUBLE_EQ(limited_value[0][1], -1.0);
@@ -137,10 +136,10 @@ TEST(MinmodTypeLimiterSlopes, 2D)
   {
     SCOPED_TRACE("Cell at domain boundary.");
     auto limited_value =
-      MeltPoolDG::Utilities::compute_minmod_type_limited_slopes(cell_average_values,
-                                                                triangulation.create_cell_iterator(
-                                                                  dealii::CellId("0_2:00")),
-                                                                limiter_data);
+      MeltPoolDG::Utilities::compute_limited_slopes(cell_average_values,
+                                                    triangulation.create_cell_iterator(
+                                                      dealii::CellId("0_2:00")),
+                                                    limiter_data);
 
     EXPECT_DOUBLE_EQ(limited_value[0][0], 0.0);
     EXPECT_DOUBLE_EQ(limited_value[0][1], -1.0);
@@ -153,7 +152,8 @@ TEST(MinmodTypeLimiterSlopes, 2D)
 }
 
 /**
- * Unit test verifying the 2D Minmod-type slope limiter on a locally refined mesh.
+ * Unit test verifying the 2D slope limiter with the minmod limiter function on a locally refined
+ * mesh.
  *
  * The domain initially consist of five corse cells in the x-direction and one cell in the
  * y-direction. The rightmost coarse cell is refined once isotopically as illustrated below.
@@ -170,11 +170,11 @@ TEST(MinmodTypeLimiterSlopes, 2D)
  * 2. Coarser cell neighbor: Check that the limiter correctly works if a neighbor is coarser than
  * the current cell. The check is performed using the cell 2 in the above sketch.
  */
-TEST(MinmodTypeLimiterSlopes, 2D_local_mesh_refinement)
+TEST(ComputeLimitedSlopes, 2D_local_mesh_refinement)
 {
   constexpr int dim = 2;
 
-  MeltPoolDG::Utilities::LimiterData<double> limiter_data;
+  MeltPoolDG::Utilities::LimiterData limiter_data;
   limiter_data.type                  = MeltPoolDG::Utilities::LimiterType::slope_limiter;
   limiter_data.limiter_function_type = MeltPoolDG::Utilities::LimiterFunctionType::tvd_minmod;
 
@@ -213,10 +213,10 @@ TEST(MinmodTypeLimiterSlopes, 2D_local_mesh_refinement)
   {
     SCOPED_TRACE("Finer cell neighbors");
     auto limited_value =
-      MeltPoolDG::Utilities::compute_minmod_type_limited_slopes(cell_average_values,
-                                                                triangulation.create_cell_iterator(
-                                                                  dealii::CellId("3_0:0")),
-                                                                limiter_data);
+      MeltPoolDG::Utilities::compute_limited_slopes(cell_average_values,
+                                                    triangulation.create_cell_iterator(
+                                                      dealii::CellId("3_0:0")),
+                                                    limiter_data);
 
     EXPECT_DOUBLE_EQ(limited_value[0][0], 0.0);
     EXPECT_DOUBLE_EQ(limited_value[0][1], -1.0);
@@ -249,10 +249,10 @@ TEST(MinmodTypeLimiterSlopes, 2D_local_mesh_refinement)
       .first[2] = 20.0;
 
     auto limited_value =
-      MeltPoolDG::Utilities::compute_minmod_type_limited_slopes(cell_average_values,
-                                                                triangulation.create_cell_iterator(
-                                                                  dealii::CellId("4_1:2")),
-                                                                limiter_data);
+      MeltPoolDG::Utilities::compute_limited_slopes(cell_average_values,
+                                                    triangulation.create_cell_iterator(
+                                                      dealii::CellId("4_1:2")),
+                                                    limiter_data);
 
     EXPECT_DOUBLE_EQ(limited_value[0][0], 0.0);
     EXPECT_DOUBLE_EQ(limited_value[0][1], -5.5);

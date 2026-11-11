@@ -22,7 +22,7 @@ namespace MeltPoolDG
   template <int dim, int n_components, typename number>
   TroubledCellMonitor<dim, n_components, number>::TroubledCellMonitor(
     const TroubledCellMarker<dim, n_components, number> &troubled_cell_marker,
-    const Utilities::LimiterData<number>                &limiter_data,
+    const Utilities::LimiterData                        &limiter_data,
     const Profiling::ProfilingVerbosity                  profiling_verbosity)
     : troubled_cell_marker(troubled_cell_marker)
     , apply_pad(Utils::contains(limiter_data.troubled_cell_marking_strategy,

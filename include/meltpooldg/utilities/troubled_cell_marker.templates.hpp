@@ -26,7 +26,7 @@ namespace MeltPoolDG
 {
   template <int dim, int n_components, typename number>
   TroubledCellMarker<dim, n_components, number>::TroubledCellMarker(
-    const Utilities::LimiterData<number>             &limiter_data,
+    const Utilities::LimiterData                     &limiter_data,
     const std::function<MaskType(const ValueType &)> &physical_admissibility_check)
     : limiter_data(limiter_data)
     , physical_admissibility(physical_admissibility_check)

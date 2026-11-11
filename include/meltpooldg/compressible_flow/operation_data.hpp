@@ -59,7 +59,7 @@ namespace MeltPoolDG::CompressibleFlow
     /// Verbosity level
     int verbosity_level = -1;
 
-    Utilities::LimiterData<number> limiter_data;
+    Utilities::LimiterData limiter_data;
 
     /// Type of the variables added to the output
     std::vector<OutputType> output_variables = {OutputType::conserved_variables};

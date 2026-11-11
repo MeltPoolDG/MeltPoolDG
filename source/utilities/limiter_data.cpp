@@ -2,9 +2,8 @@
 
 namespace MeltPoolDG::Utilities
 {
-  template <typename number>
   void
-  LimiterData<number>::add_parameters(dealii::ParameterHandler &prm)
+  LimiterData::add_parameters(dealii::ParameterHandler &prm)
   {
     prm.enter_subsection("limiter");
     {
@@ -23,6 +22,4 @@ namespace MeltPoolDG::Utilities
     }
     prm.leave_subsection();
   }
-
-  template struct LimiterData<double>;
 } // namespace MeltPoolDG::Utilities

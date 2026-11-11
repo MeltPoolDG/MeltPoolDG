@@ -50,7 +50,7 @@ namespace MeltPoolDG
      * determines which statistics are recorded.
      */
     TroubledCellMonitor(const TroubledCellMarker<dim, n_components, number> &troubled_cell_marker,
-                        const Utilities::LimiterData<number>                &limiter_data,
+                        const Utilities::LimiterData                        &limiter_data,
                         const Profiling::ProfilingVerbosity                  profiling_verbosity);
 
     /**

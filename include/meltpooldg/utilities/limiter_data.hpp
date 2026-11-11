@@ -48,7 +48,6 @@ namespace MeltPoolDG::Utilities
   /**
    * A struct to hold the data for the limiters.
    */
-  template <typename number>
   struct LimiterData
   {
     /// Boolean flag indicating whether to add to the paraview output the troubled cell markers for

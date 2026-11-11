@@ -92,8 +92,7 @@ MeltPoolDG::Utilities::evaluate_limiter_function(const LimiterFunctionType limit
         return muscl(r);
       case LimiterFunctionType::harmonic:
         return harmonic(r);
-      default:
-        AssertThrow(false, dealii::ExcMessage("Unknown limiter function type."));
     }
+  AssertThrow(false, dealii::ExcMessage("Unknown limiter function type."));
   return dealii::Tensor<1, n_components, number>();
 }

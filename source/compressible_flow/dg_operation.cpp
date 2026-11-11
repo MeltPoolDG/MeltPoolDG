@@ -20,9 +20,9 @@
 #include <meltpooldg/utilities/fe_integrator.hpp>
 #include <meltpooldg/utilities/fe_util.hpp>
 #include <meltpooldg/utilities/journal.hpp>
-#include <meltpooldg/utilities/limiters.templates.hpp>
 #include <meltpooldg/utilities/preprocessor_directives.hpp>
 #include <meltpooldg/utilities/scoped_name.hpp>
+#include <meltpooldg/utilities/slope_limiter.templates.hpp>
 #include <meltpooldg/utilities/troubled_cell_marker.templates.hpp>
 #include <meltpooldg/utilities/troubled_cell_monitor.templates.hpp>
 #include <meltpooldg/utilities/vector_tools.templates.hpp>
@@ -157,14 +157,13 @@ namespace MeltPoolDG::CompressibleFlow
         TimerOutput::Scope t(flow_scratch_data.scratch_data.get_timer(), scope_stage_post);
         if (flow_scratch_data.flow_data.limiter_data.type == Utilities::LimiterType::slope_limiter)
           {
-            Utilities::
-              apply_minmod_type_limiter<dim, n_conserved_variables<dim, n_species>, number>(
-                {flow_scratch_data.scratch_data.get_matrix_free(),
-                 flow_scratch_data.dof_idx,
-                 flow_scratch_data.quad_idx},
-                dst,
-                src,
-                flow_scratch_data.flow_data.limiter_data);
+            Utilities::apply_slope_limiter<dim, n_conserved_variables<dim, n_species>, number>(
+              {flow_scratch_data.scratch_data.get_matrix_free(),
+               flow_scratch_data.dof_idx,
+               flow_scratch_data.quad_idx},
+              dst,
+              src,
+              flow_scratch_data.flow_data.limiter_data);
           }
 
         std::visit(

@@ -27,20 +27,18 @@ namespace MeltPoolDG::Utilities
    * domain.
    * @param cell The active cell iterator for the current cell for which the limited slopes are
    * being computed.
-   * @param average_cell_gradient The average cell gradient for the current cell, i.e. a linearized
-   * representation of the solution gradient in the cell.
    * @param limiter_data Struct containing the limiter type and relevant parameters for the limiter.
    *
    * @return An array of tensors containing the limited slopes for each spatial direction.
    */
   template <int dim, int n_components, typename number>
   std::array<dealii::Tensor<1, n_components, number>, dim>
-  compute_minmod_type_limited_slopes(
+  compute_limited_slopes(
     const std::vector<std::pair<dealii::Tensor<1, n_components, number>,
                                 dealii::Tensor<1, n_components, dealii::Tensor<1, dim, number>>>>
                                                                     &cell_average_values,
     const typename dealii::Triangulation<dim>::active_cell_iterator &cell,
-    const LimiterData<number>                                       &limiter_data);
+    const LimiterData                                               &limiter_data);
 
   /**
    * This function applies the slope limiter to the solution vector in a cell-wise manner using
@@ -63,9 +61,9 @@ namespace MeltPoolDG::Utilities
             typename VectorizedArrayType = dealii::VectorizedArray<number>,
             typename VectorType          = dealii::LinearAlgebra::distributed::Vector<number>>
   void
-  apply_minmod_type_limiter(const MatrixFreeContext<dim, number> &mf_context,
-                            VectorType                           &dst,
-                            const VectorType                     &src,
-                            const LimiterData<number>            &limiter_data);
+  apply_slope_limiter(const MatrixFreeContext<dim, number> &mf_context,
+                      VectorType                           &dst,
+                      const VectorType                     &src,
+                      const LimiterData                    &limiter_data);
 
 } // namespace MeltPoolDG::Utilities

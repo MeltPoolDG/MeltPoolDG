@@ -82,7 +82,7 @@ namespace MeltPoolDG::Utilities
   muscl(const dealii::Tensor<1, n_components, number> &r);
 
   /**
-   * Evaluates the van Leer limiter function
+   * Evaluates the harmonic (van Leer) limiter function
    * @f[
    *   \phi(r) = \frac{r + |r|}{1 + |r|}
    * @f]
