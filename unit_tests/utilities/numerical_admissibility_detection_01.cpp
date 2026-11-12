@@ -113,7 +113,7 @@ protected:
   dealii::AffineConstraints<double>                 constraints;
   ScratchData<dim, dim, double>                     scratch_data;
   FiniteElementData                                 fe_data;
-  Utilities::LimiterData<double>                    limiter_data;
+  Utilities::LimiterData                            limiter_data;
 };
 
 using TestConfigs = ::testing::

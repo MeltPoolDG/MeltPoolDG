@@ -172,7 +172,7 @@ protected:
   {
     const dealii::MatrixFree<dim, double> &matrix_free = scratch_data.get_matrix_free();
 
-    Utilities::LimiterData<double> limiter_data;
+    Utilities::LimiterData limiter_data;
     limiter_data.troubled_cell_marking_strategy = {
       Utilities::TroubledCellMarkingStrategy::subcell_nad};
     SubcellMatrixFree<dim, double> subcell_matrix_free;

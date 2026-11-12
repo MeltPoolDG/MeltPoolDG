@@ -7,8 +7,7 @@
 #include <meltpooldg/time_integration/time_integrator_data.hpp>
 #include <meltpooldg/time_integration/time_integrator_util.hpp>
 #include <meltpooldg/utilities/better_enum.hpp>
-#include <meltpooldg/utilities/limiters.hpp>
-#include <meltpooldg/utilities/limiters.templates.hpp>
+#include <meltpooldg/utilities/limiter_data.hpp>
 
 #include <string>
 #include <vector>
@@ -60,7 +59,7 @@ namespace MeltPoolDG::CompressibleFlow
     /// Verbosity level
     int verbosity_level = -1;
 
-    Utilities::LimiterData<number> limiter_data;
+    Utilities::LimiterData limiter_data;
 
     /// Type of the variables added to the output
     std::vector<OutputType> output_variables = {OutputType::conserved_variables};

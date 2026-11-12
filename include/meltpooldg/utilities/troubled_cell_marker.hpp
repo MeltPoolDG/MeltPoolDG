@@ -6,7 +6,7 @@
 
 #include <deal.II/lac/la_parallel_vector.h>
 
-#include <meltpooldg/utilities/limiters.hpp>
+#include <meltpooldg/utilities/limiter_data.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
 #include <meltpooldg/utilities/numerical_admissibility_detection.hpp>
 #include <meltpooldg/utilities/physical_admissibility_detection.hpp>
@@ -42,7 +42,7 @@ namespace MeltPoolDG
      * bitset in which the bits of the physically admissible lanes are set.
      */
     explicit TroubledCellMarker(
-      const Utilities::LimiterData<number>             &limiter_data,
+      const Utilities::LimiterData                     &limiter_data,
       const std::function<MaskType(const ValueType &)> &physical_admissibility_check = {});
 
     /**
@@ -104,7 +104,7 @@ namespace MeltPoolDG
   private:
     /// The limiter data holding the information which marking strategy to use for the troubled cell
     /// detection.
-    const Utilities::LimiterData<number> limiter_data;
+    const Utilities::LimiterData limiter_data;
 
     /// Troubled cell markers of the locally owned and ghost cell batches.
     ParallelDistributedCellData<dim, number> marked_cells;
