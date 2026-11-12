@@ -252,6 +252,11 @@ namespace MeltPoolDG::CompressibleFlow
      * @param boundary_id ID of the boundary.
      * @param w_m View for the conserved variables on the inner face.
      * @param w_p View for the conserved variables on the outer face, which shall be set by this function.
+     * @param use_mirror_principle If true, the values of @p w_p on slip walls are the mirrored
+     * values of @p w_m, as required by the numerical fluxes. If false, they are the values on the
+     * wall instead, i.e. the mean of the inner and the mirrored values, e.g. for finite difference
+     * gradients. Only slip walls are affected, since all other boundary types set the values on the
+     * boundary anyway. The gradients are not affected.
      */
     template <typename DofReadView, typename DofWriteView>
     void
@@ -260,7 +265,8 @@ namespace MeltPoolDG::CompressibleFlow
       const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
       dealii::types::boundary_id                                     boundary_id,
       const DofReadView                                             &w_m,
-      const DofWriteView                                            &w_p) const;
+      const DofWriteView                                            &w_p,
+      const bool use_mirror_principle = true) const;
 
     /**
      * This function sets the values of partial density in the case of multi-component flows on the
@@ -335,13 +341,16 @@ namespace MeltPoolDG::CompressibleFlow
      * @param w_m View for the conserved variables on the inner face.
      * @param w_p View for the conserved variables on the outer face, which shall be set by this function.
      * @param normal Outer facing normal vector.
+     * @param use_mirror_principle If true, the normal momentum of @p w_m is mirrored at the wall.
+     * If false, it is removed instead, which gives the values on the wall. The gradients are
+     * mirrored in both cases.
      */
     template <typename DofReadView, typename DofWriteView>
     void
-    apply_slip_wall_boundary(
-      DofReadView                                                    w_m,
-      DofWriteView                                                   w_p,
-      const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal) const;
+    apply_slip_wall_boundary(DofReadView                                                    w_m,
+                             DofWriteView                                                   w_p,
+                             const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
+                             const bool use_mirror_principle) const;
 
     /**
      * Apply the no-slip adiabatic wall boundary condition by setting the corresponding values in @p w_p

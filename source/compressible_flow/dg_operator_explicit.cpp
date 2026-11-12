@@ -1,3 +1,7 @@
+#include <deal.II/base/point.h>
+#include <deal.II/base/tensor.h>
+#include <deal.II/base/vectorization.h>
+
 #include <meltpooldg/compressible_flow/boundary_conditions.templates.hpp>
 #include <meltpooldg/compressible_flow/data_types.hpp>
 #include <meltpooldg/compressible_flow/dg_operator_explicit.hpp>
@@ -13,6 +17,9 @@
 #include <meltpooldg/utilities/preprocessor_directives.hpp>
 #include <meltpooldg/utilities/scoped_name.hpp>
 #include <meltpooldg/utilities/vector_tools.templates.hpp>
+
+#include <functional>
+#include <utility>
 
 
 namespace MeltPoolDG::CompressibleFlow
@@ -97,6 +104,8 @@ namespace MeltPoolDG::CompressibleFlow
         "The finite volume subcell limiter is only implemented for strong stability preserving time integration."));
     Assert(flow_scratch_data.subcell_matrix_free,
            ExcMessage("The subcell data of the finite volume subcell limiter is not set up."));
+
+    flow_scratch_data.subcell_matrix_free->update_ghost_values(previous_solution);
     current_time_step        = time_step;
     using local_applier_type = std::function<void(const dealii::MatrixFree<dim, number> &,
                                                   VectorType       &dst,
@@ -501,7 +510,8 @@ namespace MeltPoolDG::CompressibleFlow
     const dealii::AlignedVector<dealii::VectorizedArray<number>> &troubled_cells) const
   {
     FESubcellEvaluation<dim, n_conserved_variables<dim, n_species>, number> subcell_evaluation(
-      *flow_scratch_data.subcell_matrix_free);
+      *flow_scratch_data.subcell_matrix_free,
+      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_value, this, false));
 
     for (unsigned int cell = cell_range.first; cell < cell_range.second; ++cell)
       {
@@ -513,7 +523,13 @@ namespace MeltPoolDG::CompressibleFlow
         if (mask.none())
           continue;
 
-        subcell_evaluation.gather_evaluate(old_solution, EvaluationFlags::values, mask);
+        subcell_evaluation.gather_evaluate(old_solution,
+                                           EvaluationFlags::values |
+                                             (is_viscous_flow<number, n_species>(
+                                                flow_scratch_data.material) ?
+                                                EvaluationFlags::gradients :
+                                                EvaluationFlags::nothing),
+                                           mask);
 
         // source terms
         if (not external_forces.empty())
@@ -538,8 +554,14 @@ namespace MeltPoolDG::CompressibleFlow
             const ConservedVariables w_m = subcell_evaluation.get_face_value(subcell_face, true);
             const ConservedVariables w_p = subcell_evaluation.get_face_value(subcell_face, false);
 
-            const ConservedVariables numerical_flux = fv_subcell_convective_numerical_flux(
+            ConservedVariables numerical_flux = fv_subcell_convective_numerical_flux(
               w_m, w_p, subcell_evaluation.subcell_face_normal_vector(subcell_face));
+
+            if (is_viscous_flow<number, n_species>(flow_scratch_data.material))
+              numerical_flux += fv_subcell_viscous_numerical_flux(
+                0.5 * (w_m + w_p),
+                subcell_evaluation.get_face_gradient(subcell_face),
+                subcell_evaluation.subcell_face_normal_vector(subcell_face));
 
             subcell_evaluation.submit_flux(subcell_face, -numerical_flux);
           }
@@ -558,9 +580,13 @@ namespace MeltPoolDG::CompressibleFlow
     const dealii::AlignedVector<dealii::VectorizedArray<number>> &troubled_cells) const
   {
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> phi_m(
-      *flow_scratch_data.subcell_matrix_free, true);
+      *flow_scratch_data.subcell_matrix_free,
+      true,
+      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_value, this, false));
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> phi_p(
-      *flow_scratch_data.subcell_matrix_free, false);
+      *flow_scratch_data.subcell_matrix_free,
+      false,
+      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_value, this, false));
 
     for (unsigned int face = face_range.first; face < face_range.second; ++face)
       {
@@ -574,16 +600,27 @@ namespace MeltPoolDG::CompressibleFlow
         if (mask.none())
           continue;
 
-        phi_m.gather_evaluate(old_solution, dealii::EvaluationFlags::values, mask);
-        phi_p.gather_evaluate(old_solution, dealii::EvaluationFlags::values, mask);
+        const dealii::EvaluationFlags::EvaluationFlags evaluation_flags =
+          dealii::EvaluationFlags::values |
+          (is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
+             dealii::EvaluationFlags::gradients :
+             dealii::EvaluationFlags::nothing);
+        phi_m.gather_evaluate(old_solution, evaluation_flags, mask);
+        phi_p.gather_evaluate(old_solution, evaluation_flags, mask);
 
         for (const unsigned int subcell : phi_m.subcell_face_indices())
           {
             const ConservedVariables w_m = phi_m.get_value(subcell);
             const ConservedVariables w_p = phi_p.get_value(subcell);
 
-            const ConservedVariables numerical_flux =
+            ConservedVariables numerical_flux =
               fv_subcell_convective_numerical_flux(w_m, w_p, phi_m.normal_vector(subcell));
+
+            if (is_viscous_flow<number, n_species>(flow_scratch_data.material))
+              numerical_flux +=
+                fv_subcell_viscous_numerical_flux(0.5 * (w_m + w_p),
+                                                  phi_m.get_face_gradient(subcell, phi_p),
+                                                  phi_m.normal_vector(subcell));
 
             phi_m.submit_flux(subcell, -numerical_flux);
             phi_p.submit_flux(subcell, numerical_flux);
@@ -604,22 +641,9 @@ namespace MeltPoolDG::CompressibleFlow
     const dealii::AlignedVector<dealii::VectorizedArray<number>> &troubled_cells) const
   {
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> phi_m(
-      *flow_scratch_data.subcell_matrix_free, true);
-
-    using DofReaderType = NSpeciesDofValueAndGradientStateView<
-      dim,
-      n_species,
-      number,
-      const ConservedVariablesType<dim, number, n_species>,
-      const ConservedVariablesGradientType<dim, number, n_species>>;
-
-    using DofWriteType =
-      NSpeciesDofValueAndGradientStateView<dim,
-                                           n_species,
-                                           number,
-                                           ConservedVariablesType<dim, number, n_species>,
-                                           ConservedVariablesGradientType<dim, number, n_species>>;
-
+      *flow_scratch_data.subcell_matrix_free,
+      true,
+      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_value, this, false));
 
     for (unsigned int face = face_range.first; face < face_range.second; ++face)
       {
@@ -630,41 +654,45 @@ namespace MeltPoolDG::CompressibleFlow
         if (mask.none())
           continue;
 
-        phi_m.gather_evaluate(old_solution, EvaluationFlags::values, mask);
+        phi_m.gather_evaluate(old_solution,
+                              EvaluationFlags::values |
+                                (is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
+                                   EvaluationFlags::gradients :
+                                   EvaluationFlags::nothing),
+                              mask);
 
         for (const unsigned int subcell : phi_m.subcell_face_indices())
           {
-            const auto w_m = phi_m.get_value(subcell);
+            const ConservedVariables w_m = phi_m.get_value(subcell);
 
-            ConservedVariablesType<dim, number, n_species>         w_p;
-            ConservedVariablesGradientType<dim, number, n_species> grad_w_p;
+            // The convective numerical flux requires the mirrored state on slip walls, such that
+            // there is no mass flux through the wall.
+            const ConservedVariables w_p =
+              fv_subcell_boundary_value(true /* use mirror principle */,
+                                        phi_m.subcell_face_location(subcell),
+                                        phi_m.normal_vector(subcell),
+                                        phi_m.boundary_id(),
+                                        w_m);
 
-            // Note: currently the gradient is not used. Hence, we grad_w_p for the inner side
-            // knowing that this is not correct, but as we only use the value for the flux
-            // evaluation this is not a problem.
-            flow_scratch_data.boundary_conditions
-              .set_conserved_variables_boundary_value_and_gradient(
-                phi_m.subcell_face_location(subcell),
-                phi_m.normal_vector(subcell),
-                phi_m.boundary_id(),
-                DofReaderType(w_m, grad_w_p, flow_scratch_data.material),
-                DofWriteType(w_p, grad_w_p, flow_scratch_data.material));
-
-            if constexpr (n_species > 1)
-              {
-                // Using grad_w_p for inner side, see comment above.
-                flow_scratch_data.boundary_conditions
-                  .template set_partial_density_boundary_value_and_gradient<n_species,
-                                                                            DofReaderType,
-                                                                            DofWriteType>(
-                    phi_m.subcell_face_location(subcell),
-                    phi_m.boundary_id(),
-                    DofReaderType(w_m, grad_w_p, flow_scratch_data.material),
-                    DofWriteType(w_p, grad_w_p, flow_scratch_data.material));
-              }
-
-            const ConservedVariables numerical_flux =
+            ConservedVariables numerical_flux =
               fv_subcell_convective_numerical_flux(w_m, w_p, phi_m.normal_vector(subcell));
+
+            // The viscous numerical flux requires the state on the boundary face, which is also
+            // where the face gradient places the boundary value.
+            if (is_viscous_flow<number, n_species>(flow_scratch_data.material))
+              {
+                const ConservedVariables w_face =
+                  fv_subcell_boundary_value(false /* use mirror principle */,
+                                            phi_m.subcell_face_location(subcell),
+                                            phi_m.normal_vector(subcell),
+                                            phi_m.boundary_id(),
+                                            w_m);
+
+                numerical_flux +=
+                  fv_subcell_viscous_numerical_flux(w_face,
+                                                    phi_m.get_face_gradient(subcell),
+                                                    phi_m.normal_vector(subcell));
+              }
 
             phi_m.submit_flux(subcell, -numerical_flux);
           }
@@ -683,9 +711,13 @@ namespace MeltPoolDG::CompressibleFlow
     const dealii::AlignedVector<dealii::VectorizedArray<number>> &troubled_cells) const
   {
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> subcell_m(
-      *flow_scratch_data.subcell_matrix_free, true);
+      *flow_scratch_data.subcell_matrix_free,
+      true,
+      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_value, this, false));
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> subcell_p(
-      *flow_scratch_data.subcell_matrix_free, false);
+      *flow_scratch_data.subcell_matrix_free,
+      false,
+      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_value, this, false));
     FEFaceIntegrator<dim, n_conserved_variables<dim, n_species>, number> phi_m(
       matrix_free, true, flow_scratch_data.dof_idx, flow_scratch_data.quad_idx);
     FEFaceIntegrator<dim, n_conserved_variables<dim, n_species>, number> phi_p(
@@ -697,6 +729,12 @@ namespace MeltPoolDG::CompressibleFlow
         Utils::RiemannSolverType::lax_friedrichs;
 
     const ConvectiveKernel convective_kernel(flow_scratch_data.material);
+    const DiffusiveKernel  diffusive_kernel(flow_scratch_data.material);
+
+    const dealii::EvaluationFlags::EvaluationFlags evaluation_flags =
+      EvaluationFlags::values |
+      (is_viscous_flow<number, n_species>(flow_scratch_data.material) ? EvaluationFlags::gradients :
+                                                                        EvaluationFlags::nothing);
 
     for (unsigned int face = face_range.first; face < face_range.second; ++face)
       {
@@ -715,33 +753,62 @@ namespace MeltPoolDG::CompressibleFlow
         if (correct_m.none() and correct_p.none())
           continue;
 
-        subcell_m.gather_evaluate(old_solution, EvaluationFlags::values, correct_m | correct_p);
-        subcell_p.gather_evaluate(old_solution, EvaluationFlags::values, correct_m | correct_p);
+        subcell_m.gather_evaluate(old_solution, evaluation_flags, correct_m | correct_p);
+        subcell_p.gather_evaluate(old_solution, evaluation_flags, correct_m | correct_p);
         phi_m.reinit(face);
         phi_p.reinit(face);
-        phi_m.gather_evaluate(old_solution, EvaluationFlags::values);
-        phi_p.gather_evaluate(old_solution, EvaluationFlags::values);
+        phi_m.gather_evaluate(old_solution, evaluation_flags);
+        phi_p.gather_evaluate(old_solution, evaluation_flags);
 
         const VectorizedArray<number> weight_m = bitset_to_vectorized_mask<number>(correct_m);
         const VectorizedArray<number> weight_p = bitset_to_vectorized_mask<number>(correct_p);
+
+        const VectorizedArray<number> interior_penalty_parameter =
+          is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
+            flow_scratch_data.material.reference_dynamic_viscosity /
+              flow_scratch_data.material.reference_density *
+              std::max(phi_m.read_cell_data(flow_scratch_data.interior_penalty_parameter),
+                       phi_p.read_cell_data(flow_scratch_data.interior_penalty_parameter)) :
+            0.;
 
         // The subcell faces are numbered like the face quadrature points, so both fluxes refer to
         // the same point. The subcell face sizes equal JxW of the face quadrature, so that the
         // correction exactly balances the finite volume flux of the troubled cell.
         for (const unsigned int q : phi_m.quadrature_point_indices())
           {
-            const ConservedVariables fv_flux = ConvectionOperator::face(subcell_m.get_value(q),
-                                                                        subcell_p.get_value(q),
-                                                                        subcell_m.normal_vector(q),
-                                                                        convective_kernel,
-                                                                        numerical_flux_type)
-                                                 .outer_face_value;
-            const ConservedVariables dg_flux = ConvectionOperator::face(phi_m.get_value(q),
-                                                                        phi_p.get_value(q),
-                                                                        phi_m.normal_vector(q),
-                                                                        convective_kernel,
-                                                                        numerical_flux_type)
-                                                 .outer_face_value;
+            ConservedVariables fv_flux = ConvectionOperator::face(subcell_m.get_value(q),
+                                                                  subcell_p.get_value(q),
+                                                                  subcell_m.normal_vector(q),
+                                                                  convective_kernel,
+                                                                  numerical_flux_type)
+                                           .outer_face_value;
+            ConservedVariables dg_flux;
+
+            if (is_viscous_flow<number, n_species>(flow_scratch_data.material))
+              {
+                fv_flux +=
+                  fv_subcell_viscous_numerical_flux(0.5 * (subcell_m.get_value(q) +
+                                                           subcell_p.get_value(q)),
+                                                    subcell_m.get_face_gradient(q, subcell_p),
+                                                    subcell_m.normal_vector(q));
+                dg_flux = ConvectionDiffusionOperator::face(phi_m.get_value(q),
+                                                            phi_p.get_value(q),
+                                                            phi_m.get_gradient(q),
+                                                            phi_p.get_gradient(q),
+                                                            phi_m.normal_vector(q),
+                                                            interior_penalty_parameter,
+                                                            convective_kernel,
+                                                            diffusive_kernel,
+                                                            numerical_flux_type)
+                            .outer_face_value;
+              }
+            else
+              dg_flux = ConvectionOperator::face(phi_m.get_value(q),
+                                                 phi_p.get_value(q),
+                                                 phi_m.normal_vector(q),
+                                                 convective_kernel,
+                                                 numerical_flux_type)
+                          .outer_face_value;
 
             // the DG update contains -dg_flux on the interior and +dg_flux on the exterior side
             const ConservedVariables flux_difference = fv_flux - dg_flux;
@@ -793,6 +860,72 @@ namespace MeltPoolDG::CompressibleFlow
       }
 
     return numerical_flux;
+  }
+
+  template <int dim, typename number, int n_species>
+  ConservedVariablesType<dim, number, n_species>
+  DGOperatorExplicit<dim, number, n_species>::fv_subcell_viscous_numerical_flux(
+    const ConservedVariablesType<dim, number, n_species>          &w_face,
+    const ConservedVariablesGradientType<dim, number, n_species>  &grad_w,
+    const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal) const
+  {
+    const DiffusiveKernel diffusive_physical_flux(flow_scratch_data.material);
+
+    const FlowFluxType viscous_flux = diffusive_physical_flux.flux(w_face, grad_w);
+
+    return -contract_tensor_with_vector(viscous_flux, normal);
+  }
+
+  template <int dim, typename number, int n_species>
+  ConservedVariablesType<dim, number, n_species>
+  DGOperatorExplicit<dim, number, n_species>::fv_subcell_boundary_value(
+    const bool                                                     use_mirror_principle,
+    const dealii::Point<dim, dealii::VectorizedArray<number>>     &location,
+    const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
+    const dealii::types::boundary_id                               boundary_id,
+    const ConservedVariablesType<dim, number, n_species>          &w_m) const
+  {
+    using DofReaderType = NSpeciesDofValueAndGradientStateView<
+      dim,
+      n_species,
+      number,
+      const ConservedVariablesType<dim, number, n_species>,
+      const ConservedVariablesGradientType<dim, number, n_species>>;
+
+    using DofWriteType =
+      NSpeciesDofValueAndGradientStateView<dim,
+                                           n_species,
+                                           number,
+                                           ConservedVariablesType<dim, number, n_species>,
+                                           ConservedVariablesGradientType<dim, number, n_species>>;
+
+    ConservedVariablesType<dim, number, n_species>         w_p;
+    ConservedVariablesGradientType<dim, number, n_species> grad_w_p;
+
+    // Note: currently the gradient is not used. Hence, we use grad_w_p for the inner side
+    // knowing that this is not correct, but as we only use the value for the flux
+    // evaluation this is not a problem.
+    flow_scratch_data.boundary_conditions.set_conserved_variables_boundary_value_and_gradient(
+      location,
+      normal,
+      boundary_id,
+      DofReaderType(w_m, grad_w_p, flow_scratch_data.material),
+      DofWriteType(w_p, grad_w_p, flow_scratch_data.material),
+      use_mirror_principle);
+
+    if constexpr (n_species > 1)
+      {
+        // Using grad_w_p for inner side, see comment above.
+        flow_scratch_data.boundary_conditions
+          .template set_partial_density_boundary_value_and_gradient<n_species,
+                                                                    DofReaderType,
+                                                                    DofWriteType>(
+            location,
+            boundary_id,
+            DofReaderType(w_m, grad_w_p, flow_scratch_data.material),
+            DofWriteType(w_p, grad_w_p, flow_scratch_data.material));
+      }
+    return w_p;
   }
 
 
