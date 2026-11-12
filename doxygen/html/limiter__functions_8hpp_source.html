@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/utilities/limiter_functions.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/parameters/index.html">📦 Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/utilities/limiter_functions.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/limiter__functions_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-utilities-limiter-functions-hpp-source-file">
+<h1>include/meltpooldg/utilities/limiter_functions.hpp Source File<a class="headerlink" href="#include-meltpooldg-utilities-limiter-functions-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/utilities/limiter_functions.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_33f297a483115a9e2addf470c6b064fb.html">utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">limiter_functions.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="limiter__functions_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/tensor.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="limiter__data_8hpp.html">meltpooldg/utilities/limiter_data.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1Utilities.html">MeltPoolDG::Utilities</a></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_components, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  dealii::Tensor&lt;1, n_components, number&gt;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1Utilities.html#ac45623109da18beeea0f3a6e449e71e7">compute_slope_ratio</a>(<span class="keyword">const</span> dealii::Tensor&lt;1, n_components, number&gt; &amp;numerator,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                      <span class="keyword">const</span> dealii::Tensor&lt;1, n_components, number&gt; &amp;denominator);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_components, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  dealii::Tensor&lt;1, n_components, number&gt;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1Utilities.html#a78012b5551f4cffcbe5dbf9967a49649">tvd_minmod</a>(<span class="keyword">const</span> dealii::Tensor&lt;1, n_components, number&gt; &amp;r);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_components, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  dealii::Tensor&lt;1, n_components, number&gt;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1Utilities.html#a768d37578c791dd477ad6076dd543365">superbee</a>(<span class="keyword">const</span> dealii::Tensor&lt;1, n_components, number&gt; &amp;r);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_components, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  dealii::Tensor&lt;1, n_components, number&gt;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1Utilities.html#abe9295f22a2cd2c922ba3cd72fad7fe6">muscl</a>(<span class="keyword">const</span> dealii::Tensor&lt;1, n_components, number&gt; &amp;r);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_components, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  dealii::Tensor&lt;1, n_components, number&gt;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1Utilities.html#ab08850480a4377bdd266f16ba6579d85">harmonic</a>(<span class="keyword">const</span> dealii::Tensor&lt;1, n_components, number&gt; &amp;r);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> n_components, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  dealii::Tensor&lt;1, n_components, number&gt;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1Utilities.html#afbb228f75d6beddcfb00baafe438aeaf">evaluate_limiter_function</a>(<span class="keyword">const</span> LimiterFunctionType                      limiter_function_type,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                            <span class="keyword">const</span> dealii::Tensor&lt;1, n_components, number&gt; &amp;r);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>} <span class="comment">// namespace MeltPoolDG::Utilities</span></div>
+<div class="ttc" id="alimiter__data_8hpp_html"><div class="ttname"><a href="limiter__data_8hpp.html">limiter_data.hpp</a></div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Utilities_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Utilities.html">MeltPoolDG::Utilities</a></div><div class="ttdef"><b>Definition</b> utilities_matrixfree.hpp:13</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Utilities_html_a768d37578c791dd477ad6076dd543365"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Utilities.html#a768d37578c791dd477ad6076dd543365">MeltPoolDG::Utilities::superbee</a></div><div class="ttdeci">dealii::Tensor&lt; 1, n_components, number &gt; superbee(const dealii::Tensor&lt; 1, n_components, number &gt; &amp;r)</div><div class="ttdef"><b>Definition</b> limiter_functions.templates.hpp:45</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Utilities_html_a78012b5551f4cffcbe5dbf9967a49649"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Utilities.html#a78012b5551f4cffcbe5dbf9967a49649">MeltPoolDG::Utilities::tvd_minmod</a></div><div class="ttdeci">dealii::Tensor&lt; 1, n_components, number &gt; tvd_minmod(const dealii::Tensor&lt; 1, n_components, number &gt; &amp;r)</div><div class="ttdef"><b>Definition</b> limiter_functions.templates.hpp:34</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Utilities_html_ab08850480a4377bdd266f16ba6579d85"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Utilities.html#ab08850480a4377bdd266f16ba6579d85">MeltPoolDG::Utilities::harmonic</a></div><div class="ttdeci">dealii::Tensor&lt; 1, n_components, number &gt; harmonic(const dealii::Tensor&lt; 1, n_components, number &gt; &amp;r)</div><div class="ttdef"><b>Definition</b> limiter_functions.templates.hpp:71</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Utilities_html_abe9295f22a2cd2c922ba3cd72fad7fe6"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Utilities.html#abe9295f22a2cd2c922ba3cd72fad7fe6">MeltPoolDG::Utilities::muscl</a></div><div class="ttdeci">dealii::Tensor&lt; 1, n_components, number &gt; muscl(const dealii::Tensor&lt; 1, n_components, number &gt; &amp;r)</div><div class="ttdef"><b>Definition</b> limiter_functions.templates.hpp:58</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Utilities_html_ac45623109da18beeea0f3a6e449e71e7"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Utilities.html#ac45623109da18beeea0f3a6e449e71e7">MeltPoolDG::Utilities::compute_slope_ratio</a></div><div class="ttdeci">dealii::Tensor&lt; 1, n_components, number &gt; compute_slope_ratio(const dealii::Tensor&lt; 1, n_components, number &gt; &amp;numerator, const dealii::Tensor&lt; 1, n_components, number &gt; &amp;denominator)</div><div class="ttdef"><b>Definition</b> limiter_functions.templates.hpp:14</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1Utilities_html_afbb228f75d6beddcfb00baafe438aeaf"><div class="ttname"><a href="namespaceMeltPoolDG_1_1Utilities.html#afbb228f75d6beddcfb00baafe438aeaf">MeltPoolDG::Utilities::evaluate_limiter_function</a></div><div class="ttdeci">dealii::Tensor&lt; 1, n_components, number &gt; evaluate_limiter_function(const LimiterFunctionType limiter_function_type, const dealii::Tensor&lt; 1, n_components, number &gt; &amp;r)</div><div class="ttdef"><b>Definition</b> limiter_functions.templates.hpp:82</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
