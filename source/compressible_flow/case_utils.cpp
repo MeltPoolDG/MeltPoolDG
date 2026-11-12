@@ -79,7 +79,9 @@ namespace MeltPoolDG::CompressibleFlow
       prm.add_parameter(
         "free jet profile",
         free_jet_profile,
-        "The profile of the free jet velocity. There are two options: A 'constant' profile and a 'cosine' profile.");
+        "The profile of the free jet velocity. There are three options: A 'constant' profile, a "
+        "'continuous' (cosine) profile, which vanishes at the jet edge, and a 'smooth' (cosine "
+        "squared) profile, which vanishes together with its slope at the jet edge.");
       prm.add_parameter(
         "density",
         jet_hole_density,
