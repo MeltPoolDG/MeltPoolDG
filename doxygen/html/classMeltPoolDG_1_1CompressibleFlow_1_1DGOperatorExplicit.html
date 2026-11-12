@@ -217,6 +217,12 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a126c4314c346a5521c259d9934ca3a53" id="r_a126c4314c346a5521c259d9934ca3a53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a126c4314c346a5521c259d9934ca3a53">fv_subcell_convective_numerical_flux</a> (const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;w_m, const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;w_p, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal) const</td></tr>
 <tr class="memdesc:a126c4314c346a5521c259d9934ca3a53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convective numerical flux across a finite volume subcell face.  <br /></td></tr>
 <tr class="separator:a126c4314c346a5521c259d9934ca3a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af46f27dcc5159123e5f2be1cb18659f6" id="r_af46f27dcc5159123e5f2be1cb18659f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#af46f27dcc5159123e5f2be1cb18659f6">fv_subcell_viscous_numerical_flux</a> (const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;w_face, const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e39e12c307a8da07383fa6f8c07c222">ConservedVariablesGradientType</a>&lt; dim, number, n_species &gt; &amp;grad_w, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal) const</td></tr>
+<tr class="memdesc:af46f27dcc5159123e5f2be1cb18659f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Viscous numerical flux across a finite volume subcell face.  <br /></td></tr>
+<tr class="separator:af46f27dcc5159123e5f2be1cb18659f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a936021db0c231d69d850ef5acef75979" id="r_a936021db0c231d69d850ef5acef75979"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a936021db0c231d69d850ef5acef75979">fv_subcell_boundary_value</a> (const bool use_mirror_principle, const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;location, const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;normal, const dealii::types::boundary_id boundary_id, const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;w_m) const</td></tr>
+<tr class="memdesc:a936021db0c231d69d850ef5acef75979"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exterior state on a finite volume subcell face at the domain boundary.  <br /></td></tr>
+<tr class="separator:a936021db0c231d69d850ef5acef75979"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -526,7 +532,7 @@ template&lt;int dim, typename number , int n_species&gt; </div>
 </div><div class="memdoc">
 
 <p>Apply the finite volume subcell limiter to the candidate solution of a forward Euler step. </p>
-<p>In the troubled cells, the candidate solution is replaced by a forward Euler step of the finite volume subcell scheme starting from <code>previous_solution</code>. The finite volume right-hand side contains the convective fluxes and the external forces. Viscous terms are not considered yet.</p>
+<p>In the troubled cells, the candidate solution is replaced by a forward Euler step of the finite volume subcell scheme starting from <code>previous_solution</code>. The finite volume right-hand side contains the convective fluxes, the external forces and, for viscous flows, the viscous fluxes, which are computed from the finite difference gradients of the subcell values.</p>
 <p>In the untroubled neighbors of troubled cells, the update is corrected such that it uses the finite volume flux instead of the DG flux at the faces shared with troubled cells. Thus, both cells use the same flux at their common faces and the scheme remains conservative. In all other cells, the candidate solution is not changed.</p>
 <p>The correction of the untroubled neighbors assumes that <code>candidate_solution</code> is the result of a DG forward Euler step from <code>previous_solution</code> with the same <code>time_step</code>. Therefore, the limiter is only available for strong stability preserving Runge-Kutta schemes, where each stage is such a step, and an exception is thrown for other time integrators.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -599,6 +605,76 @@ template&lt;int dim, typename number , int n_species&gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a936021db0c231d69d850ef5acef75979" name="a936021db0c231d69d850ef5acef75979"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a936021db0c231d69d850ef5acef75979">&#9670;&#160;</a></span>fv_subcell_boundary_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">MeltPoolDG::CompressibleFlow::DGOperatorExplicit</a>&lt; dim, number, n_species &gt;::fv_subcell_boundary_value </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>use_mirror_principle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Point&lt; dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>location</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>normal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::types::boundary_id&#160;</td>
+          <td class="paramname"><em>boundary_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;&#160;</td>
+          <td class="paramname"><em>w_m</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Exterior state on a finite volume subcell face at the domain boundary. </p>
+<p>Evaluates the boundary conditions of the conserved variables and, for multiple species, of the partial densities. <code>use_mirror_principle</code> is the first parameter, such that the function can be bound with std::bind_front() to obtain the boundary value function of the subcell evaluators.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">use_mirror_principle</td><td>If true, the mirrored state is returned on slip walls, as needed by the convective numerical flux. If false, the state on the wall is returned, as needed by the subcell gradients and the viscous numerical flux. See <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1BoundaryConditions.html#a54a712311c375e0d36b9844950f127a1">BoundaryConditions::set_conserved_variables_boundary_value_and_gradient()</a>. </td></tr>
+    <tr><td class="paramname">location</td><td>Location on the boundary. </td></tr>
+    <tr><td class="paramname">normal</td><td>Unit outer normal vector of the boundary. </td></tr>
+    <tr><td class="paramname">boundary_id</td><td>ID of the boundary. </td></tr>
+    <tr><td class="paramname">w_m</td><td>State on the interior side of the boundary face.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Exterior state on the boundary face. </dd></dl>
 
 </div>
 </div>
@@ -713,7 +789,7 @@ template&lt;int dim, typename number , int n_species&gt; </div>
 </div><div class="memdoc">
 
 <p>Local boundary face applier of the finite volume subcell limiter. </p>
-<p>For boundary faces of troubled cells, computes the convective numerical fluxes across the subcell faces on the boundary from <code>old_solution</code>, with the exterior state given by the boundary conditions.</p>
+<p>For boundary faces of troubled cells, computes the convective and, for viscous flows, viscous numerical fluxes across the subcell faces on the boundary from <code>old_solution</code>, with the exterior state given by the boundary conditions.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">matrix_free</td><td>Matrix free object on which the applier works on. </td></tr>
@@ -782,7 +858,7 @@ template&lt;int dim, typename number , int n_species&gt; </div>
 </div><div class="memdoc">
 
 <p>Local cell applier of the finite volume subcell limiter. </p>
-<p>For the troubled cells, computes the external forces on the subcells and the convective numerical fluxes across the subcell faces inside the cell from <code>old_solution</code>. Untroubled cells are skipped.</p>
+<p>For the troubled cells, computes the external forces on the subcells and the convective and, for viscous flows, viscous numerical fluxes across the subcell faces inside the cell from <code>old_solution</code>. Untroubled cells are skipped.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">matrix_free</td><td>Matrix free object on which the applier works on. </td></tr>
@@ -851,7 +927,7 @@ template&lt;int dim, typename number , int n_species&gt; </div>
 </div><div class="memdoc">
 
 <p>Local face applier of the finite volume subcell limiter. </p>
-<p>For faces adjacent to at least one troubled cell, computes the convective numerical fluxes across the subcell faces on the face from <code>old_solution</code> and adds them to both cells. Only the contributions to the troubled cells are used.</p>
+<p>For faces adjacent to at least one troubled cell, computes the convective and, for viscous flows, viscous numerical fluxes across the subcell faces on the face from <code>old_solution</code> and adds them to both cells. Only the contributions to the troubled cells are used.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">matrix_free</td><td>Matrix free object on which the applier works on. </td></tr>
@@ -920,7 +996,7 @@ template&lt;int dim, typename number , int n_species&gt; </div>
 </div><div class="memdoc">
 
 <p>Local face applier for the conservation correction of the finite volume subcell limiter. </p>
-<p>At a face between a troubled and an untroubled cell, the troubled cell is updated with the finite volume flux, while the DG update of the untroubled cell contains the DG flux. For the untroubled cell, this function computes the face integral of the difference between the two fluxes, which replaces the DG flux by the finite volume flux once the inverse mass matrix is applied.</p>
+<p>At a face between a troubled and an untroubled cell, the troubled cell is updated with the finite volume flux, while the DG update of the untroubled cell contains the DG flux. For the untroubled cell, this function computes the face integral of the difference between the two fluxes, which replaces the DG flux by the finite volume flux once the inverse mass matrix is applied. For viscous flows, only the flux tested with the values is replaced, while the symmetric interior penalty term tested with the gradients is kept, since it does not affect the cell mean and thus the conservation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">matrix_free</td><td>Matrix free object on which the applier works on. </td></tr>
@@ -931,6 +1007,62 @@ template&lt;int dim, typename number , int n_species&gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="af46f27dcc5159123e5f2be1cb18659f6" name="af46f27dcc5159123e5f2be1cb18659f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af46f27dcc5159123e5f2be1cb18659f6">&#9670;&#160;</a></span>fv_subcell_viscous_numerical_flux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number , int n_species&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html">MeltPoolDG::CompressibleFlow::DGOperatorExplicit</a>&lt; dim, number, n_species &gt;::fv_subcell_viscous_numerical_flux </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#ac54e4194de7c0696b4f2bcdb801895cf">ConservedVariablesType</a>&lt; dim, number, n_species &gt; &amp;&#160;</td>
+          <td class="paramname"><em>w_face</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceMeltPoolDG_1_1CompressibleFlow.html#a8e39e12c307a8da07383fa6f8c07c222">ConservedVariablesGradientType</a>&lt; dim, number, n_species &gt; &amp;&#160;</td>
+          <td class="paramname"><em>grad_w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dealii::Tensor&lt; 1, dim, dealii::VectorizedArray&lt; number &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>normal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Viscous numerical flux across a finite volume subcell face. </p>
+<p>Evaluates the physical diffusive flux with the state and the gradient on the subcell face. Since the subcell face gradient is single-valued, no penalty term is needed. Used by the finite volume subcell limiter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w_face</td><td>State on the subcell face, i.e. the arithmetic mean of the two adjacent subcell values on inner faces and the boundary value on boundary faces. </td></tr>
+    <tr><td class="paramname">grad_w</td><td>Gradient of the conserved variables on the subcell face. </td></tr>
+    <tr><td class="paramname">normal</td><td>Unit normal vector of the face.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Viscous contribution to the numerical flux in the direction of <code>normal</code>, i.e. the negative diffusive flux contracted with <code>normal</code>, such that it is added to the result of <a class="el" href="classMeltPoolDG_1_1CompressibleFlow_1_1DGOperatorExplicit.html#a126c4314c346a5521c259d9934ca3a53" title="Convective numerical flux across a finite volume subcell face.">fv_subcell_convective_numerical_flux()</a>. </dd></dl>
 
 </div>
 </div>
