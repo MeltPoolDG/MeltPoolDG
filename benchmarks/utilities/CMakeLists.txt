@@ -1,0 +1,1 @@
+mpdg_auto_setup_benchmarks()
