@@ -77,6 +77,12 @@ namespace MeltPoolDG::RadiativeTransport
                           dealii::Patterns::Double(0));
       }
       prm.leave_subsection();
+      prm.add_parameter("maximum regula falsi iterations",
+                        regula_falsi_iteration_limit,
+                        "Maximum iterations for the Pegasus (regula falsi) root search.");
+      prm.add_parameter("regula falsi value tolerance",
+                        regula_falsi_tolerance,
+                        "Level set tolerance for the Pegasus (regula falsi) root search");
     }
     prm.leave_subsection();
   }

@@ -70,6 +70,16 @@ namespace MeltPoolDG::RadiativeTransport
     /// Geometrical tolerance of the marching-square/cube algorithm. (for raytracing)
     number marching_cube_tolerance = 1e-10;
 
+    /// Safety limit on traversed cells for raymarching, computed from the number of cells and
+    /// reflections during reinit()
+    unsigned int max_steps = 10000;
+
+    /// Maximum iterations for the Illinois (regula falsi) root search.
+    unsigned int regula_falsi_iteration_limit = 10000;
+
+    /// Tolerance for the level set value returned by the regula falsi root search
+    number regula_falsi_tolerance = 1e-16;
+
     void
     add_parameters(dealii::ParameterHandler &prm);
 
