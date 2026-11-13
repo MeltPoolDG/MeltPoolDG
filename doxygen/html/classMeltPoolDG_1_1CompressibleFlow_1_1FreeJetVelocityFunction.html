@@ -140,9 +140,6 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Enum for the type of velocity profile of a free jet inflow.  
- <a href="classMeltPoolDG_1_1CompressibleFlow_1_1FreeJetVelocityFunction.html#details">More...</a></p>
-
 <p><code>#include &lt;<a class="el" href="boundary__condition__functions_8hpp_source.html">boundary_condition_functions.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for MeltPoolDG::CompressibleFlow::FreeJetVelocityFunction&lt; dim, number &gt;:</div>
@@ -179,8 +176,11 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;int dim, typename number&gt;<br />
-class MeltPoolDG::CompressibleFlow::FreeJetVelocityFunction&lt; dim, number &gt;</div><p>Enum for the type of velocity profile of a free jet inflow. </p>
-<p>A function class that computes the velocity field for a free jet inflow boundary condition. The velocity is defined to be non-zero only within a circular area (the "jet hole") defined by its center and diameter. The velocity profile is calculated depending on the specified <code>FreeJetProfile</code>. Outside of the jet hole, the velocity is zero. </p>
+class MeltPoolDG::CompressibleFlow::FreeJetVelocityFunction&lt; dim, number &gt;</div><p>Enum for the type of velocity profile of a free jet inflow. With the distance r from the jet center, the jet radius R and the peak velocity u_peak, the profiles are:</p><ul>
+<li>constant: u = u_peak</li>
+<li>continuous: u = u_peak * cos(pi/2 * r/R), which vanishes at the jet edge but has a kink there</li>
+<li>smooth: u = u_peak * cos^2(pi/2 * r/R), which vanishes together with its slope at the jet edge and thus transitions smoothly (C^1-continuous) into the surrounding wall A function class that computes the velocity field for a free jet inflow boundary condition. The velocity is defined to be non-zero only within a circular area (the "jet hole") defined by its center and diameter. The velocity profile is calculated depending on the specified <code>FreeJetProfile</code>. Outside of the jet hole, the velocity is zero. </li>
+</ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae167d439901463e3307ed8adb91cdbd9" name="ae167d439901463e3307ed8adb91cdbd9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae167d439901463e3307ed8adb91cdbd9">&#9670;&#160;</a></span>FreeJetVelocityFunction()</h2>
