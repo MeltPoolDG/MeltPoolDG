@@ -165,8 +165,15 @@ namespace MeltPoolDG::CompressibleFlow
   };
 
 
-  /// Enum for the type of velocity profile of a free jet inflow.
-  BETTER_ENUM(FreeJetProfile, char, cosine, constant)
+  /**
+   * Enum for the type of velocity profile of a free jet inflow. With the distance r from the jet
+   * center, the jet radius R and the peak velocity u_peak, the profiles are:
+   * - constant:   u = u_peak
+   * - continuous: u = u_peak * cos(pi/2 * r/R), which vanishes at the jet edge but has a kink there
+   * - smooth:     u = u_peak * cos^2(pi/2 * r/R), which vanishes together with its slope at the jet
+   *   edge and thus transitions smoothly (C^1-continuous) into the surrounding wall
+   */
+  BETTER_ENUM(FreeJetProfile, char, continuous, constant, smooth)
 
   /**
    * A function class that computes the velocity field for a free jet inflow boundary condition. The

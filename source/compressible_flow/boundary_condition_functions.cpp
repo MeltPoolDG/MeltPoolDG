@@ -174,7 +174,7 @@ namespace MeltPoolDG::CompressibleFlow
         number velocity;
         switch (free_jet_profile)
           {
-              case FreeJetProfile::cosine: {
+              case FreeJetProfile::continuous: {
                 velocity =
                   peak_inflow_velocity * std::cos(free_jet_center.distance(location) /
                                                   free_jet_radius * 0.5 * std::numbers::pi);
@@ -182,6 +182,13 @@ namespace MeltPoolDG::CompressibleFlow
               }
               case FreeJetProfile::constant: {
                 velocity = peak_inflow_velocity;
+                break;
+              }
+              case FreeJetProfile::smooth: {
+                velocity =
+                  peak_inflow_velocity *
+                  dealii::Utilities::fixed_power<2>(std::cos(
+                    free_jet_center.distance(location) / free_jet_radius * 0.5 * std::numbers::pi));
                 break;
               }
               default: {
