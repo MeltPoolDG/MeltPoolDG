@@ -1,4 +1,5 @@
 #pragma once
+#include <deal.II/base/data_out_base.h>
 #include <deal.II/base/exceptions.h>
 #include <deal.II/base/mpi.h>
 
@@ -15,10 +16,13 @@
 
 #include <meltpooldg/post_processing/generic_data_out.hpp>
 #include <meltpooldg/post_processing/output_data.hpp>
+#include <meltpooldg/post_processing/point_data_out.hpp>
 #include <meltpooldg/time_integration/time_stepping_data.hpp>
 #include <meltpooldg/utilities/conditional_ostream.hpp>
+#include <meltpooldg/utilities/journal.hpp>
 
 #include <complex>
+#include <functional>
 #include <string>
 #include <utility>
 #include <vector>
@@ -28,6 +32,22 @@
 
 namespace MeltPoolDG
 {
+  // Requirements on a type describing one point for Postprocessor::process_points().
+  using PropertyInfo =
+    std::pair<std::vector<std::string>,
+              std::vector<dealii::DataComponentInterpretation::DataComponentInterpretation>>;
+
+  template <typename T, int dim>
+  concept PointOutputType =
+    requires(const T &point_data, dealii::Point<dim> &point, double *properties) {
+      {
+        T::get_property_names_and_component_interpretation()
+      } -> std::same_as<PropertyInfo>;
+      {
+        point_data.fill_output(point, properties)
+      } -> std::same_as<void>;
+    };
+
   template <int dim, typename number>
   class Postprocessor
   {
@@ -66,6 +86,46 @@ namespace MeltPoolDG
      */
     void
     process_particles(const int n_time_step, const number time);
+
+    /**
+     * Writes a set of points with properties to ParaView files.
+     *
+     * @tparam PointDataType Type describing one point. It must provide
+     *   - a static function `get_property_names_and_component_interpretation()` returning a pair
+     *     (names, interpretations) with one entry per property component, see
+     *     PointDataOut::build_patches(), and
+     *   - a const member function `void fill_output(dealii::Point<dim> &point, double *properties)`
+     *     that writes the point location and exactly names.size() property values.
+     *
+     * @param n_time_step Current time step number.
+     * @param time Current simulation time.
+     * @param point_data The vector of points to be written to file.
+     */
+    template <typename PointDataType>
+      requires PointOutputType<PointDataType, dim>
+    void
+    process_points(const int                         n_time_step,
+                   const number                      time,
+                   const std::vector<PointDataType> &point_data)
+    {
+      if (not is_output_timestep(n_time_step, time) or not output_data.point.enable)
+        return;
+
+      const auto [names, interpretations] =
+        PointDataType::get_property_names_and_component_interpretation();
+      const std::size_t n_properties = names.size();
+
+      std::vector<dealii::Point<dim>> points(point_data.size());
+      std::vector<double>             properties(point_data.size() * n_properties);
+      for (std::size_t i = 0; i < point_data.size(); ++i)
+        point_data[i].fill_output(points[i], properties.data() + i * n_properties);
+
+      PointDataOut<dim> point_data_out;
+      point_data_out.build_patches(points, properties, names, interpretations);
+      write_zero_dim_paraview_files(
+        point_data_out, output_data.point.filename, point_times_and_names, n_time_step, time);
+      time_at_last_output = time;
+    }
 
     /**
      * Determines whether postprocessing should be performed now.
@@ -148,6 +208,9 @@ namespace MeltPoolDG
     /// Times and filenames of previously written particle output
     std::vector<std::pair<number, std::string>> particle_times_and_names;
 
+    /// Times and filenames of previously written point output
+    std::vector<std::pair<number, std::string>> point_times_and_names;
+
     /**
      * @brief Clean non-existing *.pvtu files from the *.pvd file. This is required if we perform a
      * restart and write the output to a different directory compared to the original simulation.
@@ -176,6 +239,17 @@ namespace MeltPoolDG
      */
     void
     write_particle_paraview_files(const unsigned int n_time_step, const number time);
+
+    /**
+     * Writes the patches of @p data_out to *.vtu (and *.pvtu) files named after @p filename and
+     * appends the result to the *.pvd record kept in @p times_and_names.
+     */
+    void
+    write_zero_dim_paraview_files(const dealii::DataOutInterface<0, dim>      &data_out,
+                                  const std::string                           &filename,
+                                  std::vector<std::pair<number, std::string>> &times_and_names,
+                                  const unsigned int                           n_time_step,
+                                  const number                                 time);
 
     void
     print_boundary_ids();

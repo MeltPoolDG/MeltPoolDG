@@ -21,6 +21,19 @@ namespace MeltPoolDG
   }
 
   void
+  PointOutputData::add_parameters(dealii::ParameterHandler &prm)
+  {
+    prm.enter_subsection("points");
+    {
+      prm.add_parameter("enable",
+                        enable,
+                        "Set this parameter to true to activate point paraview output.");
+      prm.add_parameter("filename", filename, "Sets the base name for point output files.");
+    }
+    prm.leave_subsection();
+  }
+
+  void
   ParaviewData::add_parameters(dealii::ParameterHandler &prm)
   {
     prm.enter_subsection("paraview");
@@ -76,6 +89,7 @@ namespace MeltPoolDG
 
       paraview.add_parameters(prm);
       particle.add_parameters(prm);
+      point.add_parameters(prm);
     }
     prm.leave_subsection();
   }

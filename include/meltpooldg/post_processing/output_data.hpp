@@ -20,6 +20,18 @@ namespace MeltPoolDG
     add_parameters(dealii::ParameterHandler &prm);
   };
 
+  struct PointOutputData
+  {
+    /// If true, point output is generated for paraview
+    bool enable = false;
+
+    /// Base name for point output files
+    std::string filename = "points";
+
+    void
+    add_parameters(dealii::ParameterHandler &prm);
+  };
+
   struct ParaviewData
   {
     bool        enable                   = false;
@@ -46,6 +58,7 @@ namespace MeltPoolDG
     bool                     do_user_defined_postprocessing = false;
     ParaviewData             paraview;
     ParticleOutputData       particle;
+    PointOutputData          point;
 
     void
     add_parameters(dealii::ParameterHandler &prm);
