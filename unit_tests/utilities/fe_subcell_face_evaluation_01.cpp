@@ -211,7 +211,7 @@ protected:
     matrix_free.reinit(dealii::MappingQ1<dim>(),
                        dof_handler,
                        constraints,
-                       dealii::QGauss<1>(degree + 1),
+                       dealii::QGaussLobatto<1>(degree + 1),
                        additional_data);
 
     subcell_matrix_free.reinit(matrix_free, 0, 0);
@@ -304,16 +304,16 @@ protected:
     return volume;
   }
 
-  dealii::Triangulation<dim>        triangulation;
-  dealii::FESystem<dim>             fe;
-  dealii::DoFHandler<dim>           dof_handler;
-  dealii::AffineConstraints<double> constraints;
-  dealii::MatrixFree<dim, double>   matrix_free;
-  SubcellMatrixFree<dim, double>    subcell_matrix_free;
-  VectorType                        solution;
-  const dealii::QGauss<1>           quadrature_1d;
-  const dealii::QGauss<dim - 1>     face_quadrature;
-  std::array<double, dim>           cell_size;
+  dealii::Triangulation<dim>           triangulation;
+  dealii::FESystem<dim>                fe;
+  dealii::DoFHandler<dim>              dof_handler;
+  dealii::AffineConstraints<double>    constraints;
+  dealii::MatrixFree<dim, double>      matrix_free;
+  SubcellMatrixFree<dim, double>       subcell_matrix_free;
+  VectorType                           solution;
+  const dealii::QGaussLobatto<1>       quadrature_1d;
+  const dealii::QGaussLobatto<dim - 1> face_quadrature;
+  std::array<double, dim>              cell_size;
 };
 
 using TestConfigs = ::testing::Types<TestConfiguration<2, 1, 1>,
@@ -417,8 +417,8 @@ TYPED_TEST(FESubcellFaceEvaluationTest, NormalVectors)
 
 /**
  * Check that the subcell faces partition the cell face correctly: the size of subcell face q is the
- * weight of the tangential Gauss point q times the face size, and all sizes sum up to the face
- * size. Both evaluators of an inner face report the same sizes.
+ * weight of the tangential Gauss-Lobatto point q times the face size, and all sizes sum up to the
+ * face size. Both evaluators of an inner face report the same sizes.
  */
 TYPED_TEST(FESubcellFaceEvaluationTest, SubcellFaceSizes)
 {
@@ -455,16 +455,16 @@ TYPED_TEST(FESubcellFaceEvaluationTest, SubcellFaceSizes)
 
 /**
  * Check the size of the subcells adjacent to the face. On the Cartesian mesh, subcell q is the
- * product of the weight of the first Gauss point in normal direction, the weight of the tangential
- * Gauss point q, and the cell volume.
+ * product of the weight of the first Gauss-Lobatto point in normal direction, the weight of the
+ * tangential Gauss-Lobatto point q, and the cell volume.
  */
 TYPED_TEST(FESubcellFaceEvaluationTest, SubcellSizes)
 {
   typename TestFixture::SubcellFaceEvaluation phi_m(this->subcell_matrix_free, true);
   typename TestFixture::SubcellFaceEvaluation phi_p(this->subcell_matrix_free, false);
 
-  // make use og the fact that the first Gauss point in normal direction is symmetric to the last
-  // one
+  // make use of the fact that the first Gauss-Lobatto point in normal direction is symmetric to the
+  // last one
   const double normal_weight = this->quadrature_1d.weight(0);
 
   for (const unsigned int face : this->all_face_batches())
