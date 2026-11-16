@@ -9,6 +9,7 @@
 
 #include <deal.II/particles/data_out.h>
 
+#include <meltpooldg/post_processing/point_data_out.hpp>
 #include <meltpooldg/post_processing/postprocessor.hpp>
 #include <meltpooldg/utilities/journal.hpp>
 
@@ -102,6 +103,8 @@ namespace MeltPoolDG
     time_at_last_output = time;
   }
 
+  // If this is called in the same times tep as process(), the one called last would receive
+  // is_output_timestep() == false
   template <int dim, typename number>
   void
   Postprocessor<dim, number>::process_particles(const int n_time_step, const number time)
@@ -287,8 +290,6 @@ namespace MeltPoolDG
   {
     if (!output_data.particle.enable)
       return;
-
-    namespace fs = std::filesystem;
     Journal::print_line(pcout, "write paraview particle files", "postprocessor");
     dealii::Particles::DataOut<dim> particle_data_out;
 
@@ -296,47 +297,59 @@ namespace MeltPoolDG
                                     obstacle_output.property_names,
                                     obstacle_output.property_data_component_interpretation);
 
+    write_zero_dim_paraview_files(particle_data_out,
+                                  output_data.particle.filename,
+                                  particle_times_and_names,
+                                  n_time_step,
+                                  time);
+  }
+
+  template <int dim, typename number>
+  void
+  Postprocessor<dim, number>::write_zero_dim_paraview_files(
+    const dealii::DataOutInterface<0, dim>      &data_out,
+    const std::string                           &filename,
+    std::vector<std::pair<number, std::string>> &times_and_names,
+    const unsigned int                           n_time_step,
+    const number                                 time)
+  {
+    namespace fs = std::filesystem;
+
     std::string pvtu_filename;
     if (output_data.paraview.n_groups == 1)
       {
         pvtu_filename = fs::path(
-          output_data.particle.filename + "_" +
+          filename + "_" +
           dealii::Utilities::int_to_string(n_time_step, output_data.paraview.n_digits_timestep) +
           ".vtu");
 
-        particle_data_out.write_vtu_in_parallel(fs::path(output_data.directory) / pvtu_filename,
-                                                mpi_communicator);
+        data_out.write_vtu_in_parallel(fs::path(output_data.directory) / pvtu_filename,
+                                       mpi_communicator);
       }
     else
       {
-        pvtu_filename =
-          particle_data_out.write_vtu_with_pvtu_record(output_data.directory + "/",
-                                                       output_data.particle.filename,
-                                                       n_time_step,
-                                                       mpi_communicator,
-                                                       output_data.paraview.n_digits_timestep,
-                                                       output_data.paraview.n_groups);
+        pvtu_filename = data_out.write_vtu_with_pvtu_record(output_data.directory + "/",
+                                                            filename,
+                                                            n_time_step,
+                                                            mpi_communicator,
+                                                            output_data.paraview.n_digits_timestep,
+                                                            output_data.paraview.n_groups);
       }
-
-    // write a pvd file relating the pvtu-file to a simulation time
-    // if particle_times_and_names is not empty
-    const unsigned int len = particle_times_and_names.size();
 
     // Only append the *.pvtu-file to the *.pvd file, if the to be appended *.pvtu-file has not
     // been written before. This might happen in case of a restart, when the time of the last
     // written simulation output corresponds to the one in the initial state of the restart.
-    if (particle_times_and_names.empty() or
-        (particle_times_and_names[len - 1].first != time and
-         particle_times_and_names[len - 1].second != pvtu_filename))
-      particle_times_and_names.emplace_back(time, pvtu_filename);
+    const unsigned int len = times_and_names.size();
+    if (times_and_names.empty() or (times_and_names[len - 1].first != time and
+                                    times_and_names[len - 1].second != pvtu_filename))
+      times_and_names.emplace_back(time, pvtu_filename);
 
     if (dealii::Utilities::MPI::this_mpi_process(mpi_communicator) == 0 and time >= 0.0)
       {
-        clean_pvd(particle_times_and_names);
+        clean_pvd(times_and_names);
 
-        std::ofstream pvd_output(fs::path(output_data.directory) /
-                                 fs::path(output_data.particle.filename + ".pvd"));
-        dealii::DataOutBase::write_pvd_record(pvd_output, particle_times_and_names);
+        std::ofstream pvd_output(fs::path(output_data.directory) / fs::path(filename + ".pvd"));
+        dealii::DataOutBase::write_pvd_record(pvd_output, times_and_names);
       }
   }
 
