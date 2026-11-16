@@ -107,8 +107,8 @@ namespace
 /**
  * Test fixture setting up a DG discretization of a Cartesian, anisotropic box with cell sizes that
  * differ per direction, such that the Jacobian of the cells is not a multiple of the identity. The
- * quadrature uses degree + 1 Gauss points per direction, i.e., there are as many subcells as DoFs
- * per component.
+ * quadrature uses degree + 1 Gauss-Lobatto points per direction, i.e., there are as many subcells
+ * as DoFs per component.
  */
 template <typename ConfigType>
 class FESubcellEvaluationFaceTest : public ::testing::Test
@@ -134,7 +134,7 @@ protected:
     matrix_free.reinit(dealii::MappingQ1<dim>(),
                        dof_handler,
                        constraints,
-                       dealii::QGauss<1>(degree + 1),
+                       dealii::QGaussLobatto<1>(degree + 1),
                        additional_data);
 
     subcell_matrix_free.reinit(matrix_free, 0, 0);
