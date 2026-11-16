@@ -164,6 +164,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:acff43f5128d6e0ee3749878f63c2b3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a315edfea0e67fb55185f6234e5a66302" id="r_a315edfea0e67fb55185f6234e5a66302"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Postprocessor.html#a315edfea0e67fb55185f6234e5a66302">process_particles</a> (const int n_time_step, const number time)</td></tr>
 <tr class="separator:a315edfea0e67fb55185f6234e5a66302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4942ef56d6a1621d6119f68257fd40a6" id="r_a4942ef56d6a1621d6119f68257fd40a6"><td class="memTemplParams" colspan="2">template&lt;typename PointDataType &gt; <br />
+requires PointOutputType&lt;PointDataType, dim&gt;</td></tr>
+<tr class="memitem:a4942ef56d6a1621d6119f68257fd40a6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Postprocessor.html#a4942ef56d6a1621d6119f68257fd40a6">process_points</a> (const int n_time_step, const number time, const std::vector&lt; PointDataType &gt; &amp;point_data)</td></tr>
+<tr class="separator:a4942ef56d6a1621d6119f68257fd40a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada6a02368c7fba8a9aeeb3b976e2d3e5" id="r_ada6a02368c7fba8a9aeeb3b976e2d3e5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Postprocessor.html#ada6a02368c7fba8a9aeeb3b976e2d3e5">is_output_timestep</a> (const int n_time_step, const number time) const</td></tr>
 <tr class="separator:ada6a02368c7fba8a9aeeb3b976e2d3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a1d0546c8c56e4c77402101111676c7" id="r_a1a1d0546c8c56e4c77402101111676c7"><td class="memTemplParams" colspan="2">template&lt;class Archive &gt; </td></tr>
@@ -185,6 +189,8 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a8c118a269eb56d4da8879f5e66e5a857" id="r_a8c118a269eb56d4da8879f5e66e5a857"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Postprocessor.html#a8c118a269eb56d4da8879f5e66e5a857">write_particle_paraview_files</a> (const unsigned int n_time_step, const number time)</td></tr>
 <tr class="memdesc:a8c118a269eb56d4da8879f5e66e5a857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes particles from the registered particle handler to ParaView files, including their positions and properties for obstacle output.  <br /></td></tr>
 <tr class="separator:a8c118a269eb56d4da8879f5e66e5a857"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cdb4f1a513ad2e63c58a6f5e152201c" id="r_a2cdb4f1a513ad2e63c58a6f5e152201c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Postprocessor.html#a2cdb4f1a513ad2e63c58a6f5e152201c">write_zero_dim_paraview_files</a> (const dealii::DataOutInterface&lt; 0, dim &gt; &amp;data_out, const std::string &amp;filename, std::vector&lt; std::pair&lt; number, std::string &gt; &gt; &amp;times_and_names, const unsigned int n_time_step, const number time)</td></tr>
+<tr class="separator:a2cdb4f1a513ad2e63c58a6f5e152201c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2e509cdd390c0fa2aacfcb87a6175e2" id="r_ad2e509cdd390c0fa2aacfcb87a6175e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Postprocessor.html#ad2e509cdd390c0fa2aacfcb87a6175e2">print_boundary_ids</a> ()</td></tr>
 <tr class="separator:ad2e509cdd390c0fa2aacfcb87a6175e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -216,6 +222,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a22d6a45ab6e18c4eb110283370185641" id="r_a22d6a45ab6e18c4eb110283370185641"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; number, std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Postprocessor.html#a22d6a45ab6e18c4eb110283370185641">particle_times_and_names</a></td></tr>
 <tr class="memdesc:a22d6a45ab6e18c4eb110283370185641"><td class="mdescLeft">&#160;</td><td class="mdescRight">Times and filenames of previously written particle output.  <br /></td></tr>
 <tr class="separator:a22d6a45ab6e18c4eb110283370185641"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a663aad2ba341d8c9543466c12a3237db" id="r_a663aad2ba341d8c9543466c12a3237db"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; number, std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeltPoolDG_1_1Postprocessor.html#a663aad2ba341d8c9543466c12a3237db">point_times_and_names</a></td></tr>
+<tr class="memdesc:a663aad2ba341d8c9543466c12a3237db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Times and filenames of previously written point output.  <br /></td></tr>
+<tr class="separator:a663aad2ba341d8c9543466c12a3237db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a036bde3d33c85a42bb1a40287f5fa663" name="a036bde3d33c85a42bb1a40287f5fa663"></a>
@@ -560,6 +569,72 @@ template&lt;int dim, typename number &gt; </div>
 
 </div>
 </div>
+<a id="a4942ef56d6a1621d6119f68257fd40a6" name="a4942ef56d6a1621d6119f68257fd40a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4942ef56d6a1621d6119f68257fd40a6">&#9670;&#160;</a></span>process_points()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<div class="memtemplate">
+template&lt;typename PointDataType &gt; <br />
+requires PointOutputType&lt;PointDataType, dim&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Postprocessor.html">MeltPoolDG::Postprocessor</a>&lt; dim, number &gt;::process_points </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>n_time_step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>time</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; PointDataType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>point_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Writes a set of points with properties to ParaView files.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">PointDataType</td><td>Type describing one point. It must provide<ul>
+<li>a static function <code>get_property_names_and_component_interpretation()</code> returning a pair (names, interpretations) with one entry per property component, see <a class="el" href="classMeltPoolDG_1_1PointDataOut.html#a88fea6f65c18c5c1b0382060f8ffdd95">PointDataOut::build_patches()</a>, and</li>
+<li>a const member function <code>void fill_output(dealii::Point&lt;dim&gt; &amp;point, double *properties)</code> that writes the point location and exactly names.size() property values.</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n_time_step</td><td>Current time step number. </td></tr>
+    <tr><td class="paramname">time</td><td>Current simulation time. </td></tr>
+    <tr><td class="paramname">point_data</td><td>The vector of points to be written to file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a76f83b7cef7339e30dcfa8b9e8f92e02" name="a76f83b7cef7339e30dcfa8b9e8f92e02"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a76f83b7cef7339e30dcfa8b9e8f92e02">&#9670;&#160;</a></span>register_obstacle_output()</h2>
 
@@ -739,6 +814,63 @@ template&lt;int dim, typename number &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a2cdb4f1a513ad2e63c58a6f5e152201c" name="a2cdb4f1a513ad2e63c58a6f5e152201c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cdb4f1a513ad2e63c58a6f5e152201c">&#9670;&#160;</a></span>write_zero_dim_paraview_files()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMeltPoolDG_1_1Postprocessor.html">MeltPoolDG::Postprocessor</a>&lt; dim, number &gt;::write_zero_dim_paraview_files </td>
+          <td>(</td>
+          <td class="paramtype">const dealii::DataOutInterface&lt; 0, dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; number, std::string &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>times_and_names</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>n_time_step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const number&#160;</td>
+          <td class="paramname"><em>time</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Writes the patches of <code>data_out</code> to *.vtu (and *.pvtu) files named after <code>filename</code> and appends the result to the *.pvd record kept in <code>times_and_names</code>. </p>
 
 </div>
 </div>
@@ -958,6 +1090,32 @@ template&lt;int dim, typename number &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a663aad2ba341d8c9543466c12a3237db" name="a663aad2ba341d8c9543466c12a3237db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a663aad2ba341d8c9543466c12a3237db">&#9670;&#160;</a></span>point_times_and_names</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dim, typename number &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::pair&lt;number, std::string&gt; &gt; <a class="el" href="classMeltPoolDG_1_1Postprocessor.html">MeltPoolDG::Postprocessor</a>&lt; dim, number &gt;::point_times_and_names</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Times and filenames of previously written point output. </p>
 
 </div>
 </div>

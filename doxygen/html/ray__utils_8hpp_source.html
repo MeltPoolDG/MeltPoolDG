@@ -1,0 +1,472 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation: include/meltpooldg/radiative_transport/ray_utils.hpp Source File &mdash; MeltPoolDG  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=14a859fb" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/slideshow.js?v=87fe1203"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MeltPoolDG
+              <img src="../../_static/logo_icon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">⬇️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/parameters/index.html">📦 Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide.html">💻 Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">📚 Publications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MeltPoolDG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation: include/meltpooldg/radiative_transport/ray_utils.hpp Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/ray__utils_8hpp_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="include-meltpooldg-radiative-transport-ray-utils-hpp-source-file">
+<h1>include/meltpooldg/radiative_transport/ray_utils.hpp Source File<a class="headerlink" href="#include-meltpooldg-radiative-transport-ray-utils-hpp-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Developer Documentation: include/meltpooldg/radiative_transport/ray_utils.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Developer Documentation
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_8f99bfadfdcbaa65d0da694c66c754ed.html">meltpooldg</a></li><li class="navelem"><a class="el" href="dir_f103a4bf208ee4357eeb452eadcc1375.html">radiative_transport</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ray_utils.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ray__utils_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;deal.II/base/exceptions.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;deal.II/base/function.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;deal.II/base/parameter_handler.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;deal.II/base/point.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;deal.II/base/tensor.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;deal.II/numerics/data_component_interpretation.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMeltPoolDG_1_1RadiativeTransport.html">MeltPoolDG::RadiativeTransport</a></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacedealii.html">dealii</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html">   36</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html">Ray</a></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html#a76f089e2002d5bf01e63412a143d0665">   39</a></span>    dealii::Point&lt;dim&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html#a76f089e2002d5bf01e63412a143d0665">origin</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html#aca685dabe0e735b509a9c24461005496">   43</a></span>    dealii::Tensor&lt;1, dim, number&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html#aca685dabe0e735b509a9c24461005496">direction</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html#ae99d58d8bd830469bf01d2d5a92bbd84">   46</a></span>    number <a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html#ae99d58d8bd830469bf01d2d5a92bbd84">energy</a> = 0.0;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html#aaaa5e52168194b2afaf8714efc8ccc29">   49</a></span>    std::size_t <span class="keywordtype">id</span> = 0;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  };</div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="};">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html">   61</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html">Intersection</a></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#acd972cd8cb8a1f7b4b72144f2c1d0447">   66</a></span>    <a class="code hl_struct" href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html">Ray&lt;dim, number&gt;</a> <a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#acd972cd8cb8a1f7b4b72144f2c1d0447">absorbed_ray</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#a7fc39b53d597020516b1544c622ea2a3">   69</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#a7fc39b53d597020516b1544c622ea2a3">reflection</a> = 0;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#a2faab186d77ae7ddf0fc8868ed1f41bf">   72</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#a2faab186d77ae7ddf0fc8868ed1f41bf">cell_index</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// dealii::Point&lt;dim&gt; reference_location; // position of the hit in the reference cell</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">static</span> std::pair&lt;std::vector&lt;std::string&gt;,</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                     std::vector&lt;dealii::DataComponentInterpretation::DataComponentInterpretation&gt;&gt;</div>
+<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#af471a2d1becf391564d46dfb1eb012d3">   85</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#af471a2d1becf391564d46dfb1eb012d3">get_property_names_and_component_interpretation</a>()</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      <span class="keyword">namespace </span>DCI = dealii::DataComponentInterpretation;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      std::vector&lt;std::string&gt; names{<span class="stringliteral">&quot;energy&quot;</span>, <span class="stringliteral">&quot;ray_id&quot;</span>, <span class="stringliteral">&quot;reflection&quot;</span>};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      names.insert(names.end(), dim, <span class="stringliteral">&quot;ray_direction&quot;</span>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>      std::vector&lt;DCI::DataComponentInterpretation&gt; interpretations(3, DCI::component_is_scalar);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      interpretations.insert(interpretations.end(), dim, DCI::component_is_part_of_vector);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      <span class="keywordflow">return</span> {names, interpretations};</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
+</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#aaee867b15621213b1266438ddf702a1d">  108</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#aaee867b15621213b1266438ddf702a1d">fill_output</a>(dealii::Point&lt;dim&gt; &amp;location, <span class="keywordtype">double</span> *properties)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      location      = <a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#acd972cd8cb8a1f7b4b72144f2c1d0447">absorbed_ray</a>.origin;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      properties[0] = <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#acd972cd8cb8a1f7b4b72144f2c1d0447">absorbed_ray</a>.energy);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>      properties[1] = <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#acd972cd8cb8a1f7b4b72144f2c1d0447">absorbed_ray</a>.id);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>      properties[2] = <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#a7fc39b53d597020516b1544c622ea2a3">reflection</a>);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; dim; ++d)</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        properties[3 + d] = <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#acd972cd8cb8a1f7b4b72144f2c1d0447">absorbed_ray</a>.direction[d]);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
+</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> Archive&gt;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00125" data-start="{" data-end="}">
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#adf3b777295c6be5f17a77ef5c99a066c">  125</a></span>    <a class="code hl_function" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#adf3b777295c6be5f17a77ef5c99a066c">serialize</a>(Archive &amp;ar, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="comment">/*version*/</span>)</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>      ar &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#acd972cd8cb8a1f7b4b72144f2c1d0447">absorbed_ray</a>.origin &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#acd972cd8cb8a1f7b4b72144f2c1d0447">absorbed_ray</a>.direction &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#acd972cd8cb8a1f7b4b72144f2c1d0447">absorbed_ray</a>.energy &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#acd972cd8cb8a1f7b4b72144f2c1d0447">absorbed_ray</a></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        .id &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#a7fc39b53d597020516b1544c622ea2a3">reflection</a>                                                    &amp;<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#a2faab186d77ae7ddf0fc8868ed1f41bf">cell_index</a>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    }</div>
+</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  };</div>
+</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <span class="keyword">inline</span> number</div>
+<div class="foldopen" id="foldopen00145" data-start="{" data-end="}">
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#add52162630d6c83e45cc6aed58ac8fd5">  145</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#add52162630d6c83e45cc6aed58ac8fd5">fresnel_reflectivity</a>(<span class="keyword">const</span> number n1, <span class="keyword">const</span> number n2, <span class="keyword">const</span> number cos_theta_i)</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  {</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordflow">if</span> (n1 == n2)</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      <span class="keywordflow">return</span> 0.0;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keyword">const</span> number cos_i  = std::clamp(cos_theta_i, number(0), number(1));</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keyword">const</span> number sin2_i = std::max(number(0), number(1) - cos_i * cos_i);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keyword">const</span> number eta    = n1 / n2;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">const</span> number sin2_t = eta * eta * sin2_i;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="comment">// total internal reflection</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordflow">if</span> (sin2_t &gt;= 1.0)</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>      <span class="keywordflow">return</span> 1.0;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keyword">const</span> number cos_t = std::sqrt(number(1) - sin2_t);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keyword">const</span> number r_s = (n1 * cos_i - n2 * cos_t) / (n1 * cos_i + n2 * cos_t);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keyword">const</span> number r_p = (n2 * cos_i - n1 * cos_t) / (n2 * cos_i + n1 * cos_t);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordflow">return</span> number(0.5) * (r_s * r_s + r_p * r_p);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  }</div>
+</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="foldopen" id="foldopen00175" data-start="{" data-end="};">
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html">  175</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html">Reflection</a></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  {</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#ab64b2b3986985e61b279f4f9f12c262b">  178</a></span>    dealii::Tensor&lt;1, dim, number&gt; <a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#ab64b2b3986985e61b279f4f9f12c262b">direction</a>;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#a542eefb86f952a7225fddd26b6f766f7">  181</a></span>    number <a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#a542eefb86f952a7225fddd26b6f766f7">reflected_energy</a>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#aede4c9b50102722551a0459e598658be">  184</a></span>    number <a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#aede4c9b50102722551a0459e598658be">absorbed_energy</a>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  };</div>
+</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  <span class="keyword">inline</span> <a class="code hl_struct" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html">Reflection&lt;dim, number&gt;</a></div>
+<div class="foldopen" id="foldopen00201" data-start="{" data-end="}">
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#abd8d98dcb21f6f552fe743f61c67ad36">  201</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#abd8d98dcb21f6f552fe743f61c67ad36">reflect</a>(<span class="keyword">const</span> dealii::Tensor&lt;1, dim, number&gt; &amp;direction,</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>          dealii::Tensor&lt;1, dim, number&gt;        normal,</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>          <span class="keyword">const</span> number                          energy,</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>          <span class="keyword">const</span> number                          refractive_index_incident,</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>          <span class="keyword">const</span> number                          refractive_index_material)</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>  {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keyword">const</span> number normal_length = normal.norm();</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    AssertThrow(normal_length &gt; 0, dealii::ExcMessage(<span class="stringliteral">&quot;The interface normal must be non-zero.&quot;</span>));</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    normal /= normal_length;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordflow">if</span> (direction * normal &gt; 0.0)</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>      normal *= -1.0;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keyword">const</span> number cos_theta_i = std::clamp(-(direction * normal), number(0), number(1));</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keyword">const</span> number reflectivity =</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>      <a class="code hl_function" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#add52162630d6c83e45cc6aed58ac8fd5">fresnel_reflectivity</a>(refractive_index_incident, refractive_index_material, cos_theta_i);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <a class="code hl_struct" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html">Reflection&lt;dim, number&gt;</a> result;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    result.<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#ab64b2b3986985e61b279f4f9f12c262b">direction</a> = direction - number(2) * (direction * normal) * normal;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    result.<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#ab64b2b3986985e61b279f4f9f12c262b">direction</a> /= result.<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#ab64b2b3986985e61b279f4f9f12c262b">direction</a>.norm();</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    result.<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#a542eefb86f952a7225fddd26b6f766f7">reflected_energy</a> = reflectivity * energy;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    result.<a class="code hl_variable" href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#aede4c9b50102722551a0459e598658be">absorbed_energy</a>  = (number(1) - reflectivity) * energy;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>  }</div>
+</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  <span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim, <span class="keyword">typename</span> number&gt;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>  std::vector&lt;Ray&lt;dim, number&gt;&gt;</div>
+<div class="foldopen" id="foldopen00251" data-start="{" data-end="}">
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#a97572efb6d36e0d6debf377feb4d2455">  251</a></span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#a97572efb6d36e0d6debf377feb4d2455">make_laser_rays</a>(<span class="keyword">const</span> Point&lt;dim&gt;             &amp;center,</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                  <span class="keyword">const</span> Tensor&lt;1, dim, number&gt; &amp;beam_direction,</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>                  <span class="keyword">const</span> Function&lt;dim, number&gt;  &amp;intensity_profile,</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                  <span class="keyword">const</span> number                  radius,</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                  <span class="keyword">const</span> number                  spacing,</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>            rank,</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>            n_ranks)</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>  {</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    AssertThrow(radius &gt; 0, ExcMessage(<span class="stringliteral">&quot;The radius must be positive.&quot;</span>));</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    AssertThrow(spacing &gt; 0, ExcMessage(<span class="stringliteral">&quot;The ray spacing must be positive.&quot;</span>));</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    AssertThrow(n_ranks &gt; 0 &amp;&amp; rank &lt; n_ranks, ExcMessage(<span class="stringliteral">&quot;Invalid rank.&quot;</span>));</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    AssertThrow(beam_direction.norm() &gt; 0, ExcMessage(<span class="stringliteral">&quot;The beam direction must be non-zero.&quot;</span>));</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="keyword">const</span> Tensor&lt;1, dim, number&gt; direction = beam_direction / beam_direction.norm();</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="comment">// Orthonormal basis</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    std::array&lt;Tensor&lt;1, dim, number&gt;, dim - 1&gt; basis;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (dim == 2)</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>      {</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        basis[0][0] = -direction[1];</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        basis[0][1] = direction[0];</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>      }</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>      {</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>        <span class="comment">// Helper axis: the coordinate axis that is most perpendicular to the beam.</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> axis = 0;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 1; d &lt; dim; ++d)</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>          <span class="keywordflow">if</span> (std::abs(direction[d]) &lt; std::abs(direction[axis]))</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>            axis = d;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        Tensor&lt;1, dim, number&gt; helper;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>        helper[axis] = 1;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>        basis[0] = cross_product_3d(direction, helper);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        basis[0] /= basis[0].norm();</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>        basis[1] = cross_product_3d(direction, basis[0]);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>      }</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="comment">// Regular grid over [-R, R] per lateral direction</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="keyword">const</span> std::size_t n_per_direction =</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>      std::max&lt;std::size_t&gt;(1, <span class="keyword">static_cast&lt;</span>std::size_t<span class="keyword">&gt;</span>(std::ceil(2 * radius / spacing)));</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keyword">const</span> number delta = 2 * radius / n_per_direction;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    std::size_t n_rays  = 1;</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    number      measure = 1; <span class="comment">// area (3D) or length (2D) represented by one ray</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> k = 0; k &lt; dim - 1; ++k)</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>      {</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        n_rays *= n_per_direction;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>        measure *= delta;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>      }</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    std::vector&lt;Ray&lt;dim, number&gt;&gt; rays;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    rays.reserve(n_rays / n_ranks + 1);</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="comment">// Round-robin over the ranks: ray i is created on rank i % n_ranks</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <span class="keywordflow">for</span> (std::size_t <span class="keywordtype">id</span> = rank; <span class="keywordtype">id</span> &lt; n_rays; <span class="keywordtype">id</span> += n_ranks)</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>      {</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        Point&lt;dim&gt;  origin = center;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        std::size_t rest   = id;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> k = 0; k &lt; dim - 1; ++k)</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>          {</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>            <span class="keyword">const</span> number offset = (rest % n_per_direction + number(0.5)) * delta - radius;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>            origin += offset * basis[k];</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>            rest /= n_per_direction;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>          }</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        rays.push_back({origin, direction, intensity_profile.value(origin) * measure, <span class="keywordtype">id</span>});</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>      }</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="keywordflow">return</span> rays;</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>  }</div>
+</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#a69f5e71f8cd54b07e0822f8130b6397a">  322</a></span>  <span class="keyword">template</span> std::vector&lt;Ray&lt;2, float&gt;&gt;</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#a69f5e71f8cd54b07e0822f8130b6397a">make_laser_rays&lt;2, float&gt;</a>(<span class="keyword">const</span> Point&lt;2&gt; &amp;,</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>                            <span class="keyword">const</span> Tensor&lt;1, 2, float&gt; &amp;,</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>                            <span class="keyword">const</span> Function&lt;2, float&gt; &amp;,</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>                            <span class="keyword">const</span> <span class="keywordtype">float</span>,</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>                            <span class="keyword">const</span> <span class="keywordtype">float</span>,</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>                            <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>,</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>                            <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#af229099512b30e7b12abd5810bfe573e">  330</a></span>  <span class="keyword">template</span> std::vector&lt;Ray&lt;2, double&gt;&gt;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#af229099512b30e7b12abd5810bfe573e">make_laser_rays&lt;2, double&gt;</a>(<span class="keyword">const</span> Point&lt;2&gt; &amp;,</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>                             <span class="keyword">const</span> Tensor&lt;1, 2, double&gt; &amp;,</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>                             <span class="keyword">const</span> Function&lt;2, double&gt; &amp;,</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>                             <span class="keyword">const</span> <span class="keywordtype">double</span>,</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>                             <span class="keyword">const</span> <span class="keywordtype">double</span>,</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>                             <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>,</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>                             <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>);</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#a26f664afbc3ccf19dd6a764b6f6a366e">  338</a></span>  <span class="keyword">template</span> std::vector&lt;Ray&lt;3, float&gt;&gt;</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#a26f664afbc3ccf19dd6a764b6f6a366e">make_laser_rays&lt;3, float&gt;</a>(<span class="keyword">const</span> Point&lt;3&gt; &amp;,</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>                            <span class="keyword">const</span> Tensor&lt;1, 3, float&gt; &amp;,</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>                            <span class="keyword">const</span> Function&lt;3, float&gt; &amp;,</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>                            <span class="keyword">const</span> <span class="keywordtype">float</span>,</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>                            <span class="keyword">const</span> <span class="keywordtype">float</span>,</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>                            <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>,</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>                            <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>);</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno"><a class="line" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#a4a5439540d9faf667da440a39b1424a6">  346</a></span>  <span class="keyword">template</span> std::vector&lt;Ray&lt;3, double&gt;&gt;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>  <a class="code hl_function" href="namespaceMeltPoolDG_1_1RadiativeTransport.html#a4a5439540d9faf667da440a39b1424a6">make_laser_rays&lt;3, double&gt;</a>(<span class="keyword">const</span> Point&lt;3&gt; &amp;,</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>                             <span class="keyword">const</span> Tensor&lt;1, 3, double&gt; &amp;,</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>                             <span class="keyword">const</span> Function&lt;3, double&gt; &amp;,</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>                             <span class="keyword">const</span> <span class="keywordtype">double</span>,</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>                             <span class="keyword">const</span> <span class="keywordtype">double</span>,</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>                             <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>,</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>                             <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>);</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>} <span class="comment">// namespace MeltPoolDG::RadiativeTransport</span></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1RadiativeTransport_html"><div class="ttname"><a href="namespaceMeltPoolDG_1_1RadiativeTransport.html">MeltPoolDG::RadiativeTransport</a></div><div class="ttdoc">Types and functions shared by the ray tracers in MeltPoolDG::RadiativeTransport (RayTracing: marching...</div><div class="ttdef"><b>Definition</b> pseudo_rte_data.hpp:9</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1RadiativeTransport_html_a26f664afbc3ccf19dd6a764b6f6a366e"><div class="ttname"><a href="namespaceMeltPoolDG_1_1RadiativeTransport.html#a26f664afbc3ccf19dd6a764b6f6a366e">MeltPoolDG::RadiativeTransport::make_laser_rays&lt; 3, float &gt;</a></div><div class="ttdeci">template std::vector&lt; Ray&lt; 3, float &gt; &gt; make_laser_rays&lt; 3, float &gt;(const Point&lt; 3 &gt; &amp;, const Tensor&lt; 1, 3, float &gt; &amp;, const Function&lt; 3, float &gt; &amp;, const float, const float, const unsigned int, const unsigned int)</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1RadiativeTransport_html_a4a5439540d9faf667da440a39b1424a6"><div class="ttname"><a href="namespaceMeltPoolDG_1_1RadiativeTransport.html#a4a5439540d9faf667da440a39b1424a6">MeltPoolDG::RadiativeTransport::make_laser_rays&lt; 3, double &gt;</a></div><div class="ttdeci">template std::vector&lt; Ray&lt; 3, double &gt; &gt; make_laser_rays&lt; 3, double &gt;(const Point&lt; 3 &gt; &amp;, const Tensor&lt; 1, 3, double &gt; &amp;, const Function&lt; 3, double &gt; &amp;, const double, const double, const unsigned int, const unsigned int)</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1RadiativeTransport_html_a69f5e71f8cd54b07e0822f8130b6397a"><div class="ttname"><a href="namespaceMeltPoolDG_1_1RadiativeTransport.html#a69f5e71f8cd54b07e0822f8130b6397a">MeltPoolDG::RadiativeTransport::make_laser_rays&lt; 2, float &gt;</a></div><div class="ttdeci">template std::vector&lt; Ray&lt; 2, float &gt; &gt; make_laser_rays&lt; 2, float &gt;(const Point&lt; 2 &gt; &amp;, const Tensor&lt; 1, 2, float &gt; &amp;, const Function&lt; 2, float &gt; &amp;, const float, const float, const unsigned int, const unsigned int)</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1RadiativeTransport_html_a97572efb6d36e0d6debf377feb4d2455"><div class="ttname"><a href="namespaceMeltPoolDG_1_1RadiativeTransport.html#a97572efb6d36e0d6debf377feb4d2455">MeltPoolDG::RadiativeTransport::make_laser_rays</a></div><div class="ttdeci">std::vector&lt; Ray&lt; dim, number &gt; &gt; make_laser_rays(const Point&lt; dim &gt; &amp;center, const Tensor&lt; 1, dim, number &gt; &amp;beam_direction, const Function&lt; dim, number &gt; &amp;intensity_profile, const number radius, const number spacing, const unsigned int rank, const unsigned int n_ranks)</div><div class="ttdoc">Create the rays of a laser beam on a regular grid over the beam cross section.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:251</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1RadiativeTransport_html_abd8d98dcb21f6f552fe743f61c67ad36"><div class="ttname"><a href="namespaceMeltPoolDG_1_1RadiativeTransport.html#abd8d98dcb21f6f552fe743f61c67ad36">MeltPoolDG::RadiativeTransport::reflect</a></div><div class="ttdeci">Reflection&lt; dim, number &gt; reflect(const dealii::Tensor&lt; 1, dim, number &gt; &amp;direction, dealii::Tensor&lt; 1, dim, number &gt; normal, const number energy, const number refractive_index_incident, const number refractive_index_material)</div><div class="ttdoc">Specular reflection with Fresnel energy split.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:201</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1RadiativeTransport_html_add52162630d6c83e45cc6aed58ac8fd5"><div class="ttname"><a href="namespaceMeltPoolDG_1_1RadiativeTransport.html#add52162630d6c83e45cc6aed58ac8fd5">MeltPoolDG::RadiativeTransport::fresnel_reflectivity</a></div><div class="ttdeci">number fresnel_reflectivity(const number n1, const number n2, const number cos_theta_i)</div><div class="ttdoc">Fresnel reflectivity for unpolarized light and real-valued refractive indices.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:145</div></div>
+<div class="ttc" id="anamespaceMeltPoolDG_1_1RadiativeTransport_html_af229099512b30e7b12abd5810bfe573e"><div class="ttname"><a href="namespaceMeltPoolDG_1_1RadiativeTransport.html#af229099512b30e7b12abd5810bfe573e">MeltPoolDG::RadiativeTransport::make_laser_rays&lt; 2, double &gt;</a></div><div class="ttdeci">template std::vector&lt; Ray&lt; 2, double &gt; &gt; make_laser_rays&lt; 2, double &gt;(const Point&lt; 2 &gt; &amp;, const Tensor&lt; 1, 2, double &gt; &amp;, const Function&lt; 2, double &gt; &amp;, const double, const double, const unsigned int, const unsigned int)</div></div>
+<div class="ttc" id="anamespacedealii_html"><div class="ttname"><a href="namespacedealii.html">dealii</a></div><div class="ttdef"><b>Definition</b> dealii_tensor.hpp:10</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Intersection_html"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html">MeltPoolDG::RadiativeTransport::Intersection</a></div><div class="ttdoc">Information associated with one ray-interface interaction.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:62</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Intersection_html_a2faab186d77ae7ddf0fc8868ed1f41bf"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#a2faab186d77ae7ddf0fc8868ed1f41bf">MeltPoolDG::RadiativeTransport::Intersection::cell_index</a></div><div class="ttdeci">unsigned int cell_index</div><div class="ttdoc">active_cell_index of the cell containing the hit, rank-local</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:72</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Intersection_html_a7fc39b53d597020516b1544c622ea2a3"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#a7fc39b53d597020516b1544c622ea2a3">MeltPoolDG::RadiativeTransport::Intersection::reflection</a></div><div class="ttdeci">unsigned int reflection</div><div class="ttdoc">Reflection index. The first intersection has index zero.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:69</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Intersection_html_aaee867b15621213b1266438ddf702a1d"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#aaee867b15621213b1266438ddf702a1d">MeltPoolDG::RadiativeTransport::Intersection::fill_output</a></div><div class="ttdeci">void fill_output(dealii::Point&lt; dim &gt; &amp;location, double *properties) const</div><div class="ttdoc">Write the location and the properties of this intersection.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:108</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Intersection_html_acd972cd8cb8a1f7b4b72144f2c1d0447"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#acd972cd8cb8a1f7b4b72144f2c1d0447">MeltPoolDG::RadiativeTransport::Intersection::absorbed_ray</a></div><div class="ttdeci">Ray&lt; dim, number &gt; absorbed_ray</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:66</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Intersection_html_adf3b777295c6be5f17a77ef5c99a066c"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#adf3b777295c6be5f17a77ef5c99a066c">MeltPoolDG::RadiativeTransport::Intersection::serialize</a></div><div class="ttdeci">void serialize(Archive &amp;ar, const unsigned int)</div><div class="ttdoc">Serialize the intersection, e.g. to send it between MPI ranks.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:125</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Intersection_html_af471a2d1becf391564d46dfb1eb012d3"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Intersection.html#af471a2d1becf391564d46dfb1eb012d3">MeltPoolDG::RadiativeTransport::Intersection::get_property_names_and_component_interpretation</a></div><div class="ttdeci">static std::pair&lt; std::vector&lt; std::string &gt;, std::vector&lt; dealii::DataComponentInterpretation::DataComponentInterpretation &gt; &gt; get_property_names_and_component_interpretation()</div><div class="ttdoc">Names and interpretations of the properties written by fill_output().</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:85</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Ray_html"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html">MeltPoolDG::RadiativeTransport::Ray</a></div><div class="ttdoc">Representation of a ray.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:37</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Ray_html_a76f089e2002d5bf01e63412a143d0665"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html#a76f089e2002d5bf01e63412a143d0665">MeltPoolDG::RadiativeTransport::Ray::origin</a></div><div class="ttdeci">dealii::Point&lt; dim &gt; origin</div><div class="ttdoc">Current ray origin.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:39</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Ray_html_aca685dabe0e735b509a9c24461005496"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html#aca685dabe0e735b509a9c24461005496">MeltPoolDG::RadiativeTransport::Ray::direction</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim, number &gt; direction</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:43</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Ray_html_ae99d58d8bd830469bf01d2d5a92bbd84"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Ray.html#ae99d58d8bd830469bf01d2d5a92bbd84">MeltPoolDG::RadiativeTransport::Ray::energy</a></div><div class="ttdeci">number energy</div><div class="ttdoc">Current ray energy.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:46</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Reflection_html"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html">MeltPoolDG::RadiativeTransport::Reflection</a></div><div class="ttdoc">Result of one specular reflection at the interface.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:176</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Reflection_html_a542eefb86f952a7225fddd26b6f766f7"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#a542eefb86f952a7225fddd26b6f766f7">MeltPoolDG::RadiativeTransport::Reflection::reflected_energy</a></div><div class="ttdeci">number reflected_energy</div><div class="ttdoc">Energy carried on by the reflected ray, R * E_in.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:181</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Reflection_html_ab64b2b3986985e61b279f4f9f12c262b"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#ab64b2b3986985e61b279f4f9f12c262b">MeltPoolDG::RadiativeTransport::Reflection::direction</a></div><div class="ttdeci">dealii::Tensor&lt; 1, dim, number &gt; direction</div><div class="ttdoc">Normalized reflected direction.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:178</div></div>
+<div class="ttc" id="astructMeltPoolDG_1_1RadiativeTransport_1_1Reflection_html_aede4c9b50102722551a0459e598658be"><div class="ttname"><a href="structMeltPoolDG_1_1RadiativeTransport_1_1Reflection.html#aede4c9b50102722551a0459e598658be">MeltPoolDG::RadiativeTransport::Reflection::absorbed_energy</a></div><div class="ttdeci">number absorbed_energy</div><div class="ttdoc">Energy absorbed at the interface, (1 - R) * E_in.</div><div class="ttdef"><b>Definition</b> ray_utils.hpp:184</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MeltPoolDG.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
