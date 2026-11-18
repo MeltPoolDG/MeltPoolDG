@@ -79,6 +79,17 @@ else()
 endif()
 
 # ------------------------------------------------------------------------------
+#  check for ray tracing support (requires deal.II configured with ArborX >= 2.1)
+# ------------------------------------------------------------------------------
+if(DEAL_II_WITH_ARBORX AND DEAL_II_ARBORX_VERSION VERSION_GREATER_EQUAL 2.1)
+    set(MELTPOOLDG_WITH_RAY_TRACING ON)
+    message(STATUS "Ray tracing: enabled (ArborX ${DEAL_II_ARBORX_VERSION})")
+else()
+    set(MELTPOOLDG_WITH_RAY_TRACING OFF)
+    message(STATUS "Ray tracing: disabled (requires deal.II configured with ArborX >= 2.1)")
+endif()
+
+# ------------------------------------------------------------------------------
 # build meltpooldg library
 # ------------------------------------------------------------------------------
 deal_ii_initialize_cached_variables()
@@ -102,6 +113,10 @@ if(ADAFLO)
     target_compile_definitions(${MELTPOOLDG_LIB} PUBLIC MPDG_ENABLE_ADAFLO)
     target_include_directories(${MELTPOOLDG_LIB} PUBLIC ${ADAFLO_INCLUDE})
     target_link_libraries(${MELTPOOLDG_LIB} ${ADAFLO})
+endif()
+
+if(MELTPOOLDG_WITH_RAY_TRACING)
+    target_compile_definitions(${MELTPOOLDG_LIB} PUBLIC MELTPOOLDG_WITH_RAY_TRACING)
 endif()
 
 target_compile_definitions(${MELTPOOLDG_LIB} PRIVATE SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")

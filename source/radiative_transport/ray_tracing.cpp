@@ -1,20 +1,21 @@
-#include <deal.II/base/bounding_box.h>
-#include <deal.II/base/exception_macros.h>
-#include <deal.II/base/exceptions.h>
-#include <deal.II/base/utilities.h>
+#ifdef MELTPOOLDG_WITH_RAY_TRACING
+#  include <deal.II/base/bounding_box.h>
+#  include <deal.II/base/exception_macros.h>
+#  include <deal.II/base/exceptions.h>
+#  include <deal.II/base/utilities.h>
 
-#include <deal.II/grid/filtered_iterator.h>
-#include <deal.II/grid/grid_tools.h>
+#  include <deal.II/grid/filtered_iterator.h>
+#  include <deal.II/grid/grid_tools.h>
 
-#include <deal.II/numerics/data_out.h>
+#  include <deal.II/numerics/data_out.h>
 
-#include <deal.II/particles/particle_handler.h>
+#  include <deal.II/particles/particle_handler.h>
 
-#include <meltpooldg/radiative_transport/ray_tracing.hpp>
+#  include <meltpooldg/radiative_transport/ray_tracing.hpp>
 
-#include <algorithm>
-#include <array>
-#include <cmath>
+#  include <algorithm>
+#  include <array>
+#  include <cmath>
 
 namespace MeltPoolDG::RadiativeTransport
 {
@@ -27,7 +28,6 @@ namespace MeltPoolDG::RadiativeTransport
                                                             const PrimitiveType &surface_primitive,
                                                             const OutputFunctor &out) const
   {
-#ifdef MELTPOOLDG_WITH_RAY_TRACING
     const auto &primitive = surface_primitive.geometry;
     const auto &query     = ArborX::getGeometry(predicate);
 
@@ -121,9 +121,6 @@ namespace MeltPoolDG::RadiativeTransport
 
         out(HitCandidate{distance, nx, ny, nz, surface_primitive.cell_index, rank});
       }
-#else
-    AssertThrow(false, ExcNotImplemented());
-#endif
   }
 
   template <int dim, typename number>
@@ -135,16 +132,12 @@ namespace MeltPoolDG::RadiativeTransport
     , parameters(parameters_in)
     , mapping(1) // TODO: Allow user to specify mapping degree.
   {
-#ifdef MELTPOOLDG_WITH_RAY_TRACING
     AssertThrow(dim == 2 or dim == 3, ExcMessage("RayTracing only supports dim=2 and dim=3."));
     parameters.check_input_parameters();
     AssertThrow(Kokkos::is_initialized(),
                 ExcMessage("Kokkos must be initialized before constructing RayTracing."));
 
     reinit(level_set_dof_handler, level_set);
-#else
-    AssertThrow(false, ExcNotImplemented());
-#endif
   }
 
   template <int dim, typename number>
@@ -152,7 +145,6 @@ namespace MeltPoolDG::RadiativeTransport
   RayTracing<dim, number>::reinit(const DoFHandler<dim> &level_set_dof_handler,
                                   const VectorType      &level_set)
   {
-#ifdef MELTPOOLDG_WITH_RAY_TRACING
     local_surface_vertices.clear();
     local_surface_cells.clear();
     parameters.absolute_epsilon =
@@ -258,16 +250,12 @@ namespace MeltPoolDG::RadiativeTransport
 
     tree =
       std::make_unique<Tree>(mpi_communicator, execution_space, local_primitives, GeometryGetter{});
-#else
-    AssertThrow(false, ExcNotImplemented());
-#endif
   }
 
   template <int dim, typename number>
   std::vector<typename RayTracing<dim, number>::FirstHit>
   RayTracing<dim, number>::compute_first_hits(const std::vector<Ray> &rays) const
   {
-#ifdef MELTPOOLDG_WITH_RAY_TRACING
     Kokkos::View<Predicate *, MemorySpace> predicates("ray_tracing_predicates", rays.size());
 
     for (unsigned int i = 0; i < rays.size(); ++i)
@@ -371,16 +359,12 @@ namespace MeltPoolDG::RadiativeTransport
       }
 
     return result;
-#else
-    AssertThrow(false, ExcNotImplemented());
-#endif
   }
 
   template <int dim, typename number>
   std::vector<typename RayTracing<dim, number>::Intersection>
   RayTracing<dim, number>::trace(const std::vector<Ray> &initial_rays) const
   {
-#ifdef MELTPOOLDG_WITH_RAY_TRACING
     std::vector<Ray> active_rays;
     active_rays.reserve(initial_rays.size());
 
@@ -460,9 +444,6 @@ namespace MeltPoolDG::RadiativeTransport
         intersections.insert(intersections.end(), vec.begin(), vec.end());
       }
     return intersections;
-#else
-    AssertThrow(false, ExcNotImplemented());
-#endif
   }
 
 
@@ -470,7 +451,6 @@ namespace MeltPoolDG::RadiativeTransport
   void
   RayTracing<dim, number>::write_surface(const std::string &basename) const
   {
-#ifdef MELTPOOLDG_WITH_RAY_TRACING
     const unsigned int has_surface = local_surface_cells.empty() ? 0 : 1;
     if (Utilities::MPI::max(has_surface, mpi_communicator) == 0)
       return;
@@ -491,9 +471,6 @@ namespace MeltPoolDG::RadiativeTransport
     const std::string filename = basename + ".vtu";
 
     data_out.write_vtu_in_parallel(filename, mpi_communicator);
-#else
-    AssertThrow(false, ExcNotImplemented());
-#endif
   }
 
   template <int dim, typename number>
@@ -506,3 +483,4 @@ namespace MeltPoolDG::RadiativeTransport
   template class RayTracing<2, double>;
   template class RayTracing<3, double>;
 } // namespace MeltPoolDG::RadiativeTransport
+#endif
