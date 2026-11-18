@@ -34,7 +34,7 @@
 #include <string>
 #include <vector>
 
-#include "test_utils/ray_test_level_sets.hpp"
+#include "../test_utils/ray_test_level_sets.hpp"
 
 using namespace dealii;
 using namespace MeltPoolDG;

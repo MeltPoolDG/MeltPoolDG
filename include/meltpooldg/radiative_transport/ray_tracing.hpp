@@ -1,45 +1,40 @@
 #pragma once
 
-#include <deal.II/base/mpi.h>
-#include <deal.II/base/point.h>
-#include <deal.II/base/tensor.h>
-
-#include <deal.II/dofs/dof_handler.h>
-
-#include <deal.II/fe/mapping_q_generic.h>
-
-#include <deal.II/grid/cell_data.h>
-#include <deal.II/grid/tria.h>
-
-#include <deal.II/lac/la_parallel_vector.h>
-
-#include <deal.II/numerics/data_component_interpretation.h>
-
-#include <deal.II/particles/particle_handler.h>
-
-#include <meltpooldg/radiative_transport/ray_data.hpp>
-#include <meltpooldg/radiative_transport/ray_utils.hpp>
-
-#ifdef DEAL_II_WITH_ARBORX
-#  include <ArborX.hpp>
-
-#  if defined(ARBORX_VERSION) && ARBORX_VERSION >= 20100
-#    define MELTPOOLDG_WITH_RAY_TRACING
-#  endif
-#endif
-
+// MELTPOOLDG_WITH_RAY_TRACING is defined by CMake if deal.II is configured
+// with ArborX >= 2.1.
 #ifdef MELTPOOLDG_WITH_RAY_TRACING
+
+#  include <deal.II/base/mpi.h>
+#  include <deal.II/base/point.h>
+#  include <deal.II/base/tensor.h>
+
+#  include <deal.II/dofs/dof_handler.h>
+
+#  include <deal.II/fe/mapping_q_generic.h>
+
+#  include <deal.II/grid/cell_data.h>
+#  include <deal.II/grid/tria.h>
+
+#  include <deal.II/lac/la_parallel_vector.h>
+
+#  include <deal.II/numerics/data_component_interpretation.h>
+
+#  include <deal.II/particles/particle_handler.h>
+
+#  include <meltpooldg/radiative_transport/ray_data.hpp>
+#  include <meltpooldg/radiative_transport/ray_utils.hpp>
+
+#  include <ArborX.hpp>
 #  include <ArborX_Ray.hpp>
 #  include <ArborX_Segment.hpp>
 #  include <ArborX_Triangle.hpp>
 #  include <Kokkos_Core.hpp>
-#endif
 
-#include <limits>
-#include <memory>
-#include <string>
-#include <type_traits>
-#include <vector>
+#  include <limits>
+#  include <memory>
+#  include <string>
+#  include <type_traits>
+#  include <vector>
 
 namespace MeltPoolDG::RadiativeTransport
 {
@@ -170,7 +165,6 @@ namespace MeltPoolDG::RadiativeTransport
     n_local_interface_cells() const;
 
   private:
-#ifdef MELTPOOLDG_WITH_RAY_TRACING
     using ExecutionSpace = Kokkos::DefaultHostExecutionSpace;
     using MemorySpace    = typename ExecutionSpace::memory_space;
 
@@ -324,7 +318,7 @@ namespace MeltPoolDG::RadiativeTransport
 
     /// Distributed ArborX tree.
     std::unique_ptr<Tree> tree;
-#endif
   };
 
 } // namespace MeltPoolDG::RadiativeTransport
+#endif
