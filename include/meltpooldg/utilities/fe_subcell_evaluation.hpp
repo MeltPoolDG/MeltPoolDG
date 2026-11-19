@@ -1,6 +1,7 @@
 #pragma once
 
 #include <deal.II/base/aligned_vector.h>
+#include <deal.II/base/array_view.h>
 #include <deal.II/base/point.h>
 #include <deal.II/base/tensor.h>
 #include <deal.II/base/types.h>
@@ -17,6 +18,7 @@
 #include <meltpooldg/utilities/matrix_free_util.hpp>
 #include <meltpooldg/utilities/subcell_matrix_free.hpp>
 
+#include <array>
 #include <bitset>
 #include <functional>
 #include <ranges>
@@ -164,17 +166,25 @@ namespace MeltPoolDG
    * gather_evaluate(), the halo is not filled, and the gradients are meaningless.
    *
    * At the domain boundary, the neighbor is replaced by the boundary value located on the boundary
-   * face. It is provided by the `boundary_value_function` passed to the constructor, which is
-   * called as `boundary_value_function(x, n, boundary_id, u)` with
-   * - the center of the subcell adjacent to the boundary projected onto the boundary face `x`,
-   * - the outward unit normal vector `n` of the boundary face,
-   * - the boundary id of the boundary face, and
-   * - the value `u` of the subcell adjacent to the boundary.
+   * face. It is provided by the `boundary_value_function` passed to the constructor. For each face
+   * of the cell batch at which some lanes lie on the domain boundary, the function is called once
+   * as `boundary_value_function(boundary_ids, x, n, u, u_boundary)` with
+   * - the boundary id of each lane `boundary_ids`, and dealii::numbers::invalid_boundary_id for a
+   *   lane whose neighbor across the face is an inner cell or that is not active in the mask
+   *   passed to gather_evaluate(),
+   * - the centers of the subcells adjacent to the face projected onto the face `x`,
+   * - the outward unit normal vectors `n` of the face at these locations,
+   * - the values `u` of the subcells adjacent to the face, and
+   * - the array `u_boundary`, into which the function writes the values on the boundary face at
+   *   the locations `x`.
    *
-   * It should return the value on the boundary face, i.e. the same as the exterior value used for
-   * the fluxes on the boundary faces in FESubcellFaceEvaluation. Since the lanes of a cell batch
-   * may lie on boundaries with different ids, the function is called once per boundary id, and its
-   * result is only used in the lanes on a boundary with this id.
+   * The arrays hold one entry per subcell adjacent to the face, in the order of
+   * SubcellIndexInfo::face_to_cell_subcell_indices. The values on the boundary face should be the
+   * same as the exterior values used for the fluxes on the boundary faces in
+   * FESubcellFaceEvaluation. Since the lanes of a cell batch may lie on boundaries with different
+   * ids, the function evaluates the boundary condition of each lane according to its boundary id.
+   * Only the lanes on the boundary are copied from `u_boundary` into the halo, and the entries of
+   * the other lanes are ignored.
    *
    * ## Usage Example
    *
@@ -275,17 +285,19 @@ namespace MeltPoolDG
      * @param subcell_matrix_free The SubcellMatrixFree object providing the dealii::MatrixFree
      * object, the DoF and quadrature index of the finite element solution and the subcell index
      * data.
-     * @param boundary_value_function The function returning the values on the domain boundary for
-     * the subcell gradients, see the section on subcell gradients in the class documentation. It is
-     * only called if gradients are evaluated on cells at the domain boundary and may be left empty
-     * otherwise.
+     * @param boundary_value_function The function computing the values on the domain boundary for
+     * the subcell gradients, called once per face of the cell batch at the domain boundary, see the
+     * section on subcell gradients in the class documentation. It is only called if gradients are
+     * evaluated on cells at the domain boundary and may be left empty otherwise.
      */
     explicit FESubcellEvaluation(
-      const SubcellMatrixFree<dim, number>                &subcell_matrix_free,
-      const std::function<value_type(const dealii::Point<dim, VectorizedArrayType> &,
-                                     const dealii::Tensor<1, dim, VectorizedArrayType> &,
-                                     const dealii::types::boundary_id,
-                                     const value_type &)> &boundary_value_function = {});
+      const SubcellMatrixFree<dim, number> &subcell_matrix_free,
+      const std::function<
+        void(const std::array<dealii::types::boundary_id, VectorizedArrayType::size()> &,
+             const dealii::ArrayView<const dealii::Point<dim, VectorizedArrayType>> &,
+             const dealii::ArrayView<const dealii::Tensor<1, dim, VectorizedArrayType>> &,
+             const dealii::ArrayView<const value_type> &,
+             const dealii::ArrayView<value_type> &)> &boundary_value_function = {});
 
     /**
      * Reinitialize the FESubcellEvaluation object for a specific cell batch. This function must be
@@ -554,12 +566,14 @@ namespace MeltPoolDG
     /// The index data of the subcells of a cell.
     const SubcellIndexInfo<dim> &cell_index_info;
 
-    /// The function returning the values on the domain boundary for the subcell gradients, see the
+    /// The function computing the values on the domain boundary for the subcell gradients, see the
     /// class documentation.
-    const std::function<value_type(const dealii::Point<dim, VectorizedArrayType> &,
-                                   const dealii::Tensor<1, dim, VectorizedArrayType> &,
-                                   const dealii::types::boundary_id,
-                                   const value_type &)>
+    const std::function<
+      void(const std::array<dealii::types::boundary_id, VectorizedArrayType::size()> &,
+           const dealii::ArrayView<const dealii::Point<dim, VectorizedArrayType>> &,
+           const dealii::ArrayView<const dealii::Tensor<1, dim, VectorizedArrayType>> &,
+           const dealii::ArrayView<const value_type> &,
+           const dealii::ArrayView<value_type> &)>
       boundary_value_function;
 
     /// The cell batch index of the cell on which this FESubcellEvaluation object is currently
@@ -629,6 +643,25 @@ namespace MeltPoolDG
     /// A buffer used for projecting the subcell values to the finite element solution space. The
     /// buffer is a class member to avoid repeated allocations memory.
     std::vector<VectorizedArrayType> subcell_values_to_project_buffer;
+
+    /// A vector storing the locations of the subcells next to the face that is currently passed
+    /// to the boundary value function, projected onto that face. The index is the index of the
+    /// subcell next to the face.
+    std::vector<dealii::Point<dim, VectorizedArrayType>> boundary_locations;
+
+    /// A vector storing the outward unit normal vectors of the face that is currently passed to the
+    /// boundary value function, at the locations in #boundary_locations. The index is the index of
+    /// the subcell next to the face.
+    std::vector<dealii::Tensor<1, dim, VectorizedArrayType>> boundary_normals;
+
+    /// A vector storing the values of the subcells next to the face that is currently passed to
+    /// the boundary value function. The index is the index of the subcell next to the face.
+    std::vector<value_type> boundary_interior_values;
+
+    /// A vector storing the boundary values written by the boundary value function, from which
+    /// the lanes on the boundary are copied into the halo. The index is the index of the subcell
+    /// next to the face.
+    std::vector<value_type> boundary_values;
 
     /// A flag indicating whether the FESubcellEvaluation object has been reinitialized for a cell.
     /// Used for debug information.

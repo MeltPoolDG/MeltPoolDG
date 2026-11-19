@@ -1,5 +1,7 @@
+#include <deal.II/base/array_view.h>
 #include <deal.II/base/point.h>
 #include <deal.II/base/tensor.h>
+#include <deal.II/base/types.h>
 #include <deal.II/base/vectorization.h>
 
 #include <meltpooldg/compressible_flow/boundary_conditions.templates.hpp>
@@ -19,8 +21,10 @@
 #include <meltpooldg/utilities/scoped_name.hpp>
 #include <meltpooldg/utilities/vector_tools.templates.hpp>
 
+#include <array>
 #include <functional>
 #include <utility>
+#include <vector>
 
 
 namespace MeltPoolDG::CompressibleFlow
@@ -480,9 +484,18 @@ namespace MeltPoolDG::CompressibleFlow
     const std::pair<unsigned int, unsigned int>                  &cell_range,
     const dealii::AlignedVector<dealii::VectorizedArray<number>> &troubled_cells) const
   {
+    // The subcell evaluators compute their boundary values with one evaluator per local applier,
+    // so its buffers are allocated once.
+    BoundaryStateEvaluation<dim, number, n_species> subcell_boundary_state(
+      flow_scratch_data.boundary_conditions,
+      flow_scratch_data.subcell_matrix_free->get_subcell_shape_info()
+        .cell_index_info.n_subcells_face);
+
     FESubcellEvaluation<dim, n_conserved_variables<dim, n_species>, number> subcell_evaluation(
       *flow_scratch_data.subcell_matrix_free,
-      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_value, this, false));
+      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_values,
+                      this,
+                      std::ref(subcell_boundary_state)));
 
     for (unsigned int cell = cell_range.first; cell < cell_range.second; ++cell)
       {
@@ -550,14 +563,25 @@ namespace MeltPoolDG::CompressibleFlow
     const std::pair<unsigned int, unsigned int>                  &face_range,
     const dealii::AlignedVector<dealii::VectorizedArray<number>> &troubled_cells) const
   {
+    // The subcell evaluators compute their boundary values with one evaluator per local applier,
+    // so its buffers are allocated once.
+    BoundaryStateEvaluation<dim, number, n_species> subcell_boundary_state(
+      flow_scratch_data.boundary_conditions,
+      flow_scratch_data.subcell_matrix_free->get_subcell_shape_info()
+        .cell_index_info.n_subcells_face);
+
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> phi_m(
       *flow_scratch_data.subcell_matrix_free,
       true,
-      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_value, this, false));
+      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_values,
+                      this,
+                      std::ref(subcell_boundary_state)));
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> phi_p(
       *flow_scratch_data.subcell_matrix_free,
       false,
-      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_value, this, false));
+      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_values,
+                      this,
+                      std::ref(subcell_boundary_state)));
 
     for (unsigned int face = face_range.first; face < face_range.second; ++face)
       {
@@ -611,10 +635,40 @@ namespace MeltPoolDG::CompressibleFlow
     const std::pair<unsigned int, unsigned int>                  &face_range,
     const dealii::AlignedVector<dealii::VectorizedArray<number>> &troubled_cells) const
   {
+    const bool         is_viscous = is_viscous_flow<number, n_species>(flow_scratch_data.material);
+    const unsigned int n_subcells_face =
+      flow_scratch_data.subcell_matrix_free->get_subcell_shape_info()
+        .cell_index_info.n_subcells_face;
+
+    // The subcell evaluator computes its boundary values for the face gradients with a separate
+    // evaluator, since each evaluation overwrites the buffers of an evaluator.
+    BoundaryStateEvaluation<dim, number, n_species> subcell_boundary_state(
+      flow_scratch_data.boundary_conditions, n_subcells_face);
+
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> phi_m(
       *flow_scratch_data.subcell_matrix_free,
       true,
-      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_value, this, false));
+      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_values,
+                      this,
+                      std::ref(subcell_boundary_state)));
+
+    // The convective numerical flux requires the mirrored state on slip walls, such that there is
+    // no mass flux through the wall. The viscous numerical flux requires the state on the boundary
+    // face, which is also where the face gradient places the boundary value. Since each evaluation
+    // overwrites the buffers of an evaluator, the two states need two evaluators.
+    BoundaryStateEvaluation<dim, number, n_species> mirrored_boundary_state(
+      flow_scratch_data.boundary_conditions, n_subcells_face);
+    BoundaryStateEvaluation<dim, number, n_species> boundary_face_state(
+      flow_scratch_data.boundary_conditions, n_subcells_face);
+
+    // The subcell face evaluator returns these by value, while the boundary state evaluators take
+    // them as arrays over the subcell faces of a face batch.
+    std::vector<ConservedVariables> interior_values(n_subcells_face);
+    std::vector<dealii::Point<dim, dealii::VectorizedArray<number>>> subcell_face_locations(
+      n_subcells_face);
+    std::vector<dealii::Tensor<1, dim, dealii::VectorizedArray<number>>> subcell_face_normals(
+      n_subcells_face);
+    std::array<dealii::types::boundary_id, dealii::VectorizedArray<number>::size()> boundary_ids;
 
     for (unsigned int face = face_range.first; face < face_range.second; ++face)
       {
@@ -626,44 +680,53 @@ namespace MeltPoolDG::CompressibleFlow
           continue;
 
         phi_m.gather_evaluate(old_solution,
-                              EvaluationFlags::values |
-                                (is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
-                                   EvaluationFlags::gradients :
-                                   EvaluationFlags::nothing),
+                              EvaluationFlags::values | (is_viscous ? EvaluationFlags::gradients :
+                                                                      EvaluationFlags::nothing),
                               mask);
 
         for (const unsigned int subcell : phi_m.subcell_face_indices())
           {
-            const ConservedVariables w_m = phi_m.get_value(subcell);
+            interior_values[subcell]        = phi_m.get_value(subcell);
+            subcell_face_locations[subcell] = phi_m.subcell_face_location(subcell);
+            subcell_face_normals[subcell]   = phi_m.normal_vector(subcell);
+          }
 
-            // The convective numerical flux requires the mirrored state on slip walls, such that
-            // there is no mass flux through the wall.
-            const ConservedVariables w_p =
-              fv_subcell_boundary_value(true /* use mirror principle */,
-                                        phi_m.subcell_face_location(subcell),
-                                        phi_m.normal_vector(subcell),
-                                        phi_m.boundary_id(),
-                                        w_m);
+        // All lanes of a boundary face batch lie on the same boundary.
+        boundary_ids.fill(phi_m.boundary_id());
 
+        mirrored_boundary_state.evaluate(
+          boundary_ids,
+          dealii::make_array_view(subcell_face_locations),
+          dealii::make_array_view(subcell_face_normals),
+          dealii::make_array_view(interior_values),
+          dealii::ArrayView<const ConservedVariablesGradientType<dim, number, n_species>>(),
+          flow_scratch_data.material,
+          EvaluationFlags::values,
+          true /* use mirror principle */);
+
+        if (is_viscous)
+          boundary_face_state.evaluate(
+            boundary_ids,
+            dealii::make_array_view(subcell_face_locations),
+            dealii::make_array_view(subcell_face_normals),
+            dealii::make_array_view(interior_values),
+            dealii::ArrayView<const ConservedVariablesGradientType<dim, number, n_species>>(),
+            flow_scratch_data.material,
+            EvaluationFlags::values,
+            false /* use mirror principle */);
+
+        for (const unsigned int subcell : phi_m.subcell_face_indices())
+          {
             ConservedVariables numerical_flux =
-              fv_subcell_convective_numerical_flux(w_m, w_p, phi_m.normal_vector(subcell));
+              fv_subcell_convective_numerical_flux(interior_values[subcell],
+                                                   mirrored_boundary_state.get_value(subcell),
+                                                   subcell_face_normals[subcell]);
 
-            // The viscous numerical flux requires the state on the boundary face, which is also
-            // where the face gradient places the boundary value.
-            if (is_viscous_flow<number, n_species>(flow_scratch_data.material))
-              {
-                const ConservedVariables w_face =
-                  fv_subcell_boundary_value(false /* use mirror principle */,
-                                            phi_m.subcell_face_location(subcell),
-                                            phi_m.normal_vector(subcell),
-                                            phi_m.boundary_id(),
-                                            w_m);
-
-                numerical_flux +=
-                  fv_subcell_viscous_numerical_flux(w_face,
-                                                    phi_m.get_face_gradient(subcell),
-                                                    phi_m.normal_vector(subcell));
-              }
+            if (is_viscous)
+              numerical_flux +=
+                fv_subcell_viscous_numerical_flux(boundary_face_state.get_value(subcell),
+                                                  phi_m.get_face_gradient(subcell),
+                                                  subcell_face_normals[subcell]);
 
             phi_m.submit_flux(subcell, -numerical_flux);
           }
@@ -681,14 +744,25 @@ namespace MeltPoolDG::CompressibleFlow
     const std::pair<unsigned int, unsigned int>                  &face_range,
     const dealii::AlignedVector<dealii::VectorizedArray<number>> &troubled_cells) const
   {
+    // The subcell evaluators compute their boundary values with one evaluator per local applier,
+    // so its buffers are allocated once.
+    BoundaryStateEvaluation<dim, number, n_species> subcell_boundary_state(
+      flow_scratch_data.boundary_conditions,
+      flow_scratch_data.subcell_matrix_free->get_subcell_shape_info()
+        .cell_index_info.n_subcells_face);
+
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> subcell_m(
       *flow_scratch_data.subcell_matrix_free,
       true,
-      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_value, this, false));
+      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_values,
+                      this,
+                      std::ref(subcell_boundary_state)));
     FESubcellFaceEvaluation<dim, n_conserved_variables<dim, n_species>, number> subcell_p(
       *flow_scratch_data.subcell_matrix_free,
       false,
-      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_value, this, false));
+      std::bind_front(&DGOperatorExplicit::fv_subcell_boundary_values,
+                      this,
+                      std::ref(subcell_boundary_state)));
     FEFaceIntegrator<dim, n_conserved_variables<dim, n_species>, number> phi_m(
       matrix_free, true, flow_scratch_data.dof_idx, flow_scratch_data.quad_idx);
     FEFaceIntegrator<dim, n_conserved_variables<dim, n_species>, number> phi_p(
@@ -848,55 +922,32 @@ namespace MeltPoolDG::CompressibleFlow
   }
 
   template <int dim, typename number, int n_species>
-  ConservedVariablesType<dim, number, n_species>
-  DGOperatorExplicit<dim, number, n_species>::fv_subcell_boundary_value(
-    const bool                                                     use_mirror_principle,
-    const dealii::Point<dim, dealii::VectorizedArray<number>>     &location,
-    const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
-    const dealii::types::boundary_id                               boundary_id,
-    const ConservedVariablesType<dim, number, n_species>          &w_m) const
+  void
+  DGOperatorExplicit<dim, number, n_species>::fv_subcell_boundary_values(
+    BoundaryStateEvaluation<dim, number, n_species> &boundary_state,
+    const std::array<dealii::types::boundary_id, dealii::VectorizedArray<number>::size()>
+      &boundary_ids,
+    const dealii::ArrayView<const dealii::Point<dim, dealii::VectorizedArray<number>>> &locations,
+    const dealii::ArrayView<const dealii::Tensor<1, dim, dealii::VectorizedArray<number>>> &normals,
+    const dealii::ArrayView<const ConservedVariablesType<dim, number, n_species>>          &values,
+    const dealii::ArrayView<ConservedVariablesType<dim, number, n_species>> &boundary_values) const
   {
-    using DofReaderType = NSpeciesDofValueAndGradientStateView<
-      dim,
-      n_species,
-      number,
-      const ConservedVariablesType<dim, number, n_species>,
-      const ConservedVariablesGradientType<dim, number, n_species>>;
+    AssertDimension(boundary_values.size(), values.size());
 
-    using DofWriteType =
-      NSpeciesDofValueAndGradientStateView<dim,
-                                           n_species,
-                                           number,
-                                           ConservedVariablesType<dim, number, n_species>,
-                                           ConservedVariablesGradientType<dim, number, n_species>>;
+    // The subcell gradients place the boundary value on the boundary face, so they need the state
+    // on the boundary and not the mirrored state.
+    boundary_state.evaluate(
+      boundary_ids,
+      locations,
+      normals,
+      values,
+      dealii::ArrayView<const ConservedVariablesGradientType<dim, number, n_species>>(),
+      flow_scratch_data.material,
+      EvaluationFlags::values,
+      false /* use mirror principle */);
 
-    ConservedVariablesType<dim, number, n_species>         w_p;
-    ConservedVariablesGradientType<dim, number, n_species> grad_w_p;
-
-    // Note: currently the gradient is not used. Hence, we use grad_w_p for the inner side
-    // knowing that this is not correct, but as we only use the value for the flux
-    // evaluation this is not a problem.
-    flow_scratch_data.boundary_conditions.set_conserved_variables_boundary_value_and_gradient(
-      location,
-      normal,
-      boundary_id,
-      DofReaderType(w_m, grad_w_p, flow_scratch_data.material),
-      DofWriteType(w_p, grad_w_p, flow_scratch_data.material),
-      use_mirror_principle);
-
-    if constexpr (n_species > 1)
-      {
-        // Using grad_w_p for inner side, see comment above.
-        flow_scratch_data.boundary_conditions
-          .template set_partial_density_boundary_value_and_gradient<n_species,
-                                                                    DofReaderType,
-                                                                    DofWriteType>(
-            location,
-            boundary_id,
-            DofReaderType(w_m, grad_w_p, flow_scratch_data.material),
-            DofWriteType(w_p, grad_w_p, flow_scratch_data.material));
-      }
-    return w_p;
+    for (unsigned int q = 0; q < values.size(); ++q)
+      boundary_values[q] = boundary_state.get_value(q);
   }
 
 

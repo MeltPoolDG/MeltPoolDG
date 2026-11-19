@@ -66,6 +66,75 @@ namespace MeltPoolDG::CompressibleFlow
   }
 
   template <int dim, typename number, int n_species>
+  template <IsBoundaryStateView<dim, number, n_species> ReadView>
+  void
+  BoundaryStateEvaluation<dim, number, n_species>::evaluate(
+    const std::array<dealii::types::boundary_id, dealii::VectorizedArray<number>::size()>
+      &boundary_ids,
+    const dealii::ArrayView<const dealii::Point<dim, dealii::VectorizedArray<number>>> &locations,
+    const dealii::ArrayView<const dealii::Tensor<1, dim, dealii::VectorizedArray<number>>> &normals,
+    const dealii::ArrayView<const ConservedVariablesType<dim, number, n_species>> &interior_values,
+    const dealii::ArrayView<const ConservedVariablesGradientType<dim, number, n_species>>
+                                                  &interior_gradients,
+    const MaterialPhaseData<number>               &material,
+    const dealii::EvaluationFlags::EvaluationFlags evaluation_flags,
+    const bool                                     use_mirror_principle)
+  {
+    constexpr unsigned int n_lanes  = dealii::VectorizedArray<number>::size();
+    const unsigned int     n_points = interior_values.size();
+
+    Assert(evaluation_flags == dealii::EvaluationFlags::values or
+             evaluation_flags ==
+               (dealii::EvaluationFlags::values | dealii::EvaluationFlags::gradients),
+           dealii::ExcMessage("BoundaryStateEvaluation::evaluate() only accepts "
+                              "EvaluationFlags::values or "
+                              "EvaluationFlags::values | EvaluationFlags::gradients."));
+    Assert(n_points <= exterior_values.size(),
+           dealii::ExcMessage("The number of points of the batch exceeds the number of points for "
+                              "which the buffers were allocated."));
+    AssertDimension(locations.size(), n_points);
+    AssertDimension(normals.size(), n_points);
+    Assert(interior_gradients.empty() or interior_gradients.size() == n_points,
+           dealii::ExcMessage("The interior gradients must be empty or given at all points."));
+
+    n_evaluated_points = n_points;
+    evaluated_flags    = evaluation_flags;
+
+    // The existing boundary types do not read the interior gradient for the exterior values.
+    const ConservedVariablesGradientType<dim, number, n_species> zero_gradient{};
+
+    // Keep track of which lanes have already been handled, as the boundary ids may be different for
+    // each lane of the batch.
+    std::bitset<n_lanes> handled_lanes;
+    for (unsigned int lane = 0; lane < n_lanes; ++lane)
+      {
+        if (handled_lanes[lane] or boundary_ids[lane] == dealii::numbers::invalid_boundary_id)
+          continue;
+
+        const dealii::types::boundary_id boundary_id = boundary_ids[lane];
+
+        std::bitset<n_lanes> lanes_of_boundary;
+        for (unsigned int other_lane = lane; other_lane < n_lanes; ++other_lane)
+          if (boundary_ids[other_lane] == boundary_id)
+            lanes_of_boundary.set(other_lane);
+        handled_lanes |= lanes_of_boundary;
+
+        for (unsigned int q = 0; q < n_points; ++q)
+          evaluate_point<ReadView>(q,
+                                   boundary_id,
+                                   lanes_of_boundary,
+                                   locations[q],
+                                   normals[q],
+                                   interior_values[q],
+                                   interior_gradients.empty() ? zero_gradient :
+                                                                interior_gradients[q],
+                                   material,
+                                   evaluation_flags,
+                                   use_mirror_principle);
+      }
+  }
+
+  template <int dim, typename number, int n_species>
   const ConservedVariablesType<dim, number, n_species> &
   BoundaryStateEvaluation<dim, number, n_species>::get_value(const unsigned int q) const
   {
