@@ -3,6 +3,7 @@
 #include <deal.II/base/vectorization.h>
 
 #include <meltpooldg/compressible_flow/boundary_conditions.templates.hpp>
+#include <meltpooldg/compressible_flow/boundary_state_evaluation.templates.hpp>
 #include <meltpooldg/compressible_flow/data_types.hpp>
 #include <meltpooldg/compressible_flow/dg_operator_explicit.hpp>
 #include <meltpooldg/compressible_flow/kernels.hpp>
@@ -403,25 +404,21 @@ namespace MeltPoolDG::CompressibleFlow
     FEFaceIntegrator<dim, n_conserved_variables<dim, n_species>, number> phi_m(
       mf, true, flow_scratch_data.dof_idx, flow_scratch_data.quad_idx);
 
-    using DofReaderType = NSpeciesDofValueAndGradientStateView<
-      dim,
-      n_species,
-      number,
-      const ConservedVariablesType<dim, number, n_species>,
-      const ConservedVariablesGradientType<dim, number, n_species>>;
+    BoundaryStateEvaluation<dim, number, n_species> boundary_state(
+      flow_scratch_data.boundary_conditions, phi_m.n_q_points);
 
-    using DofWriteType =
-      NSpeciesDofValueAndGradientStateView<dim,
-                                           n_species,
-                                           number,
-                                           ConservedVariablesType<dim, number, n_species>,
-                                           ConservedVariablesGradientType<dim, number, n_species>>;
-
+    // The convective flux only needs the exterior values, the viscous flux also their gradients.
+    const EvaluationFlags::EvaluationFlags boundary_state_flags =
+      is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
+        EvaluationFlags::values | EvaluationFlags::gradients :
+        EvaluationFlags::values;
 
     for (unsigned int face = face_range.first; face < face_range.second; ++face)
       {
         phi_m.reinit(face);
         phi_m.gather_evaluate(src, EvaluationFlags::values | EvaluationFlags::gradients);
+
+        boundary_state.evaluate(phi_m, flow_scratch_data.material, boundary_state_flags);
 
         const VectorizedArray<number> interior_penalty_parameter =
           is_viscous_flow<number, n_species>(flow_scratch_data.material) ?
@@ -432,40 +429,14 @@ namespace MeltPoolDG::CompressibleFlow
 
         for (const unsigned int q : phi_m.quadrature_point_indices())
           {
-            const auto w_m      = phi_m.get_value(q);
-            const auto grad_w_m = phi_m.get_gradient(q);
-
-            ConservedVariablesType<dim, number, n_species>         w_p;
-            ConservedVariablesGradientType<dim, number, n_species> grad_w_p;
-
-            flow_scratch_data.boundary_conditions
-              .set_conserved_variables_boundary_value_and_gradient(
-                phi_m.quadrature_point(q),
-                phi_m.normal_vector(q),
-                phi_m.boundary_id(),
-                DofReaderType(w_m, grad_w_m, flow_scratch_data.material),
-                DofWriteType(w_p, grad_w_p, flow_scratch_data.material));
-
-            if constexpr (n_species > 1)
-              {
-                flow_scratch_data.boundary_conditions
-                  .template set_partial_density_boundary_value_and_gradient<n_species,
-                                                                            DofReaderType,
-                                                                            DofWriteType>(
-                    phi_m.quadrature_point(q),
-                    phi_m.boundary_id(),
-                    DofReaderType(w_m, grad_w_m, flow_scratch_data.material),
-                    DofWriteType(w_p, grad_w_p, flow_scratch_data.material));
-              }
-
             FaceFluxType<dim, number, n_species> flux_m;
             if (is_viscous_flow<number, n_species>(flow_scratch_data.material))
               {
                 const auto flux = ConvectionDiffusionOperator::face(
                   phi_m.get_value(q),
-                  w_p,
+                  boundary_state.get_value(q),
                   phi_m.get_gradient(q),
-                  grad_w_p,
+                  boundary_state.get_gradient(q),
                   phi_m.normal_vector(q),
                   interior_penalty_parameter,
                   ConvectiveKernel(flow_scratch_data.material),
@@ -480,7 +451,7 @@ namespace MeltPoolDG::CompressibleFlow
               {
                 const auto flux =
                   ConvectionOperator::face(phi_m.get_value(q),
-                                           w_p,
+                                           boundary_state.get_value(q),
                                            phi_m.normal_vector(q),
                                            ConvectiveKernel(flow_scratch_data.material),
                                            to_riemann_solver_type(

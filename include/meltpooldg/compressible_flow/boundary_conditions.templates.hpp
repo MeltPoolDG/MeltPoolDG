@@ -1,3 +1,5 @@
+#pragma once
+
 #include <deal.II/base/vectorization.h>
 
 #include <meltpooldg/compressible_flow/boundary_conditions.hpp>
