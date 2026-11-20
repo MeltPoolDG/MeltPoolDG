@@ -8,6 +8,7 @@
 
 #include <gtest/gtest.h>
 
+#include <deal.II/base/array_view.h>
 #include <deal.II/base/mpi.h>
 #include <deal.II/base/point.h>
 #include <deal.II/base/quadrature_lib.h>
@@ -150,8 +151,8 @@ TYPED_TEST_SUITE(FESubcellFaceEvaluationGradientTest, TestConfigs);
  * subcell face locations. The test checks this for all inner faces, including those at the
  * partition boundary, and with lateral neighbors that are ghost cells.
  *
- * In addition the test defines a boundary value function that returns the linear function at the
- * given point on the boundary face, such that the test also checks the correct usage of the
+ * In addition the test defines a boundary value function that writes the linear function at the
+ * given points on the boundary face, such that the test also checks the correct usage of the
  * boundary value function for inner faces that are adjacent to a subcell which also has another
  * face at the domain boundary.
  */
@@ -173,17 +174,32 @@ TYPED_TEST(FESubcellFaceEvaluationGradientTest, InnerFaceGradientsOfLinearFuncti
   const typename FESubcellFaceEvaluation<dim, n_components, double>::BoundaryValueFunctionType
     boundary_value_function =
       [&linear_function, &n_boundary_value_calls](
-        const dealii::Point<dim, VectorizedArrayType>     &location,
-        const dealii::Tensor<1, dim, VectorizedArrayType> &normal,
-        const dealii::types::boundary_id                   boundary_id,
-        const typename FESubcellFaceEvaluation<dim, n_components, double>::value_type &) ->
-    typename FESubcellFaceEvaluation<dim, n_components, double>::value_type {
-      for (unsigned int d = 0; d < dim; ++d)
-        EXPECT_EQ(normal[d][0], (d == boundary_id / 2) ? ((boundary_id % 2 == 0) ? -1. : 1.) : 0.)
-          << "boundary id " << boundary_id << ", direction " << d;
-      ++n_boundary_value_calls;
-      return linear_function.value(location);
-    };
+        const std::array<dealii::types::boundary_id, n_lanes>                      &boundary_ids,
+        const dealii::ArrayView<const dealii::Point<dim, VectorizedArrayType>>     &locations,
+        const dealii::ArrayView<const dealii::Tensor<1, dim, VectorizedArrayType>> &normals,
+        const dealii::ArrayView<
+          const typename FESubcellFaceEvaluation<dim, n_components, double>::value_type> &,
+        const dealii::ArrayView<
+          typename FESubcellFaceEvaluation<dim, n_components, double>::value_type>
+          &boundary_values) {
+        for (unsigned int i = 0; i < locations.size(); ++i)
+          {
+            for (unsigned int lane = 0; lane < n_lanes; ++lane)
+              if (boundary_ids[lane] != dealii::numbers::invalid_boundary_id)
+                {
+                  for (unsigned int d = 0; d < dim; ++d)
+                    {
+                      EXPECT_EQ(normals[i][d][lane],
+                                (d == boundary_ids[lane] / 2) ?
+                                  ((boundary_ids[lane] % 2 == 0) ? -1. : 1.) :
+                                  0.)
+                        << "boundary id " << boundary_ids[lane] << ", direction " << d;
+                    }
+                }
+            boundary_values[i] = linear_function.value(locations[i]);
+          }
+        ++n_boundary_value_calls;
+      };
 
   // Set the subcell values to the linear function at the subcell locations. Interpolating the
   // linear function would give its values at the cell quadrature points instead, which differ from
@@ -240,7 +256,7 @@ TYPED_TEST(FESubcellFaceEvaluationGradientTest, InnerFaceGradientsOfLinearFuncti
 /**
  * Same as the previous test, but for the boundary faces, where the face gradient is computed by
  * FESubcellFaceEvaluation::get_face_gradient() from the boundary value instead of an exterior
- * object. The boundary value function returns the linear function at the given point on the
+ * object. The boundary value function writes the linear function at the given points on the
  * boundary face, such that the face gradients of the linear function are exact again.
  */
 TYPED_TEST(FESubcellFaceEvaluationGradientTest, BoundaryFaceGradientsOfLinearFunctionAreExact)
@@ -258,13 +274,17 @@ TYPED_TEST(FESubcellFaceEvaluationGradientTest, BoundaryFaceGradientsOfLinearFun
   const typename FESubcellFaceEvaluation<dim, n_components, double>::BoundaryValueFunctionType
     boundary_value_function =
       [&linear_function](
-        const dealii::Point<dim, VectorizedArrayType> &location,
-        const dealii::Tensor<1, dim, VectorizedArrayType> &,
-        const dealii::types::boundary_id,
-        const typename FESubcellFaceEvaluation<dim, n_components, double>::value_type &) ->
-    typename FESubcellFaceEvaluation<dim, n_components, double>::value_type {
-      return linear_function.value(location);
-    };
+        const std::array<dealii::types::boundary_id, n_lanes> &,
+        const dealii::ArrayView<const dealii::Point<dim, VectorizedArrayType>> &locations,
+        const dealii::ArrayView<const dealii::Tensor<1, dim, VectorizedArrayType>> &,
+        const dealii::ArrayView<
+          const typename FESubcellFaceEvaluation<dim, n_components, double>::value_type> &,
+        const dealii::ArrayView<
+          typename FESubcellFaceEvaluation<dim, n_components, double>::value_type>
+          &boundary_values) {
+        for (unsigned int i = 0; i < locations.size(); ++i)
+          boundary_values[i] = linear_function.value(locations[i]);
+      };
 
   VectorType solution;
   this->scratch_data.initialize_dof_vector(solution, 0);
@@ -326,11 +346,17 @@ TYPED_TEST(FESubcellFaceEvaluationGradientTest, InteriorAndExteriorFaceGradients
 
   const typename FESubcellFaceEvaluation<dim, n_components, double>::BoundaryValueFunctionType
     boundary_value_function =
-      [](const dealii::Point<dim, VectorizedArrayType> &,
-         const dealii::Tensor<1, dim, VectorizedArrayType> &,
-         const dealii::types::boundary_id,
-         const typename FESubcellFaceEvaluation<dim, n_components, double>::value_type &value) ->
-    typename FESubcellFaceEvaluation<dim, n_components, double>::value_type { return value; };
+      [](const std::array<dealii::types::boundary_id, n_lanes> &,
+         const dealii::ArrayView<const dealii::Point<dim, VectorizedArrayType>> &,
+         const dealii::ArrayView<const dealii::Tensor<1, dim, VectorizedArrayType>> &,
+         const dealii::ArrayView<
+           const typename FESubcellFaceEvaluation<dim, n_components, double>::value_type> &values,
+         const dealii::ArrayView<
+           typename FESubcellFaceEvaluation<dim, n_components, double>::value_type>
+           &boundary_values) {
+        for (unsigned int i = 0; i < values.size(); ++i)
+          boundary_values[i] = values[i];
+      };
 
   VectorType solution;
   this->scratch_data.initialize_dof_vector(solution, 0);
@@ -408,11 +434,17 @@ TYPED_TEST(FESubcellFaceEvaluationGradientTest, NormalDerivativeAcrossPeriodicFa
   // The boundary values only enter the tangential components, which are not checked.
   const typename FESubcellFaceEvaluation<dim, n_components, double>::BoundaryValueFunctionType
     boundary_value_function =
-      [](const dealii::Point<dim, VectorizedArrayType> &,
-         const dealii::Tensor<1, dim, VectorizedArrayType> &,
-         const dealii::types::boundary_id,
-         const typename FESubcellFaceEvaluation<dim, n_components, double>::value_type &value) ->
-    typename FESubcellFaceEvaluation<dim, n_components, double>::value_type { return value; };
+      [](const std::array<dealii::types::boundary_id, n_lanes> &,
+         const dealii::ArrayView<const dealii::Point<dim, VectorizedArrayType>> &,
+         const dealii::ArrayView<const dealii::Tensor<1, dim, VectorizedArrayType>> &,
+         const dealii::ArrayView<
+           const typename FESubcellFaceEvaluation<dim, n_components, double>::value_type> &values,
+         const dealii::ArrayView<
+           typename FESubcellFaceEvaluation<dim, n_components, double>::value_type>
+           &boundary_values) {
+        for (unsigned int i = 0; i < values.size(); ++i)
+          boundary_values[i] = values[i];
+      };
 
   FESubcellFaceEvaluation<dim, n_components, double> phi_m(subcell_matrix_free,
                                                            true,
@@ -480,11 +512,17 @@ TYPED_TEST(FESubcellFaceEvaluationGradientTest, InvalidUsageAsserts)
 
   const typename FESubcellFaceEvaluation<dim, n_components, double>::BoundaryValueFunctionType
     boundary_value_function =
-      [](const dealii::Point<dim, VectorizedArrayType> &,
-         const dealii::Tensor<1, dim, VectorizedArrayType> &,
-         const dealii::types::boundary_id,
-         const typename FESubcellFaceEvaluation<dim, n_components, double>::value_type &value) ->
-    typename FESubcellFaceEvaluation<dim, n_components, double>::value_type { return value; };
+      [](const std::array<dealii::types::boundary_id, n_lanes> &,
+         const dealii::ArrayView<const dealii::Point<dim, VectorizedArrayType>> &,
+         const dealii::ArrayView<const dealii::Tensor<1, dim, VectorizedArrayType>> &,
+         const dealii::ArrayView<
+           const typename FESubcellFaceEvaluation<dim, n_components, double>::value_type> &values,
+         const dealii::ArrayView<
+           typename FESubcellFaceEvaluation<dim, n_components, double>::value_type>
+           &boundary_values) {
+        for (unsigned int i = 0; i < values.size(); ++i)
+          boundary_values[i] = values[i];
+      };
 
   VectorType solution;
   this->scratch_data.initialize_dof_vector(solution, 0);

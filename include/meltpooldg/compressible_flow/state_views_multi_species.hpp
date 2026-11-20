@@ -219,6 +219,18 @@ namespace MeltPoolDG::CompressibleFlow
     using state_type    = std::remove_cvref_t<Value>;
     using gradient_type = std::remove_cvref_t<Gradient>;
 
+    /**
+     * @brief The same view family with the value type @p OtherValue and the gradient type
+     * @p OtherGradient.
+     *
+     * Used to derive the view of another state of the same kind, e.g. the write view from a read
+     * view as `rebind<state_type, gradient_type>`, which drops the const of the read view.
+     */
+    template <IsConservedStateCompatible<dim>    OtherValue,
+              IsConservedGradientCompatible<dim> OtherGradient>
+    using rebind =
+      MultiSpeciesDofValueAndGradientStateView<dim, n_species, number, OtherValue, OtherGradient>;
+
     // Only ideal gas is supported for multi-species flow
     static constexpr std::array<EquationOfState, 1> supported_eos = {{EquationOfState::ideal_gas}};
 

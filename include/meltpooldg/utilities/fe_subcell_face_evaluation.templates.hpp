@@ -1,5 +1,6 @@
 #pragma once
 
+#include <deal.II/base/array_view.h>
 #include <deal.II/base/exceptions.h>
 #include <deal.II/base/point.h>
 #include <deal.II/base/tensor.h>
@@ -15,9 +16,11 @@
 #include <deal.II/matrix_free/shape_info.h>
 
 #include <meltpooldg/utilities/fe_subcell_face_evaluation.hpp>
+#include <meltpooldg/utilities/matrix_free_util.hpp>
 #include <meltpooldg/utilities/subcell_evaluation_utils.hpp>
 #include <meltpooldg/utilities/subcell_matrix_free.hpp>
 
+#include <array>
 #include <bitset>
 
 namespace MeltPoolDG
@@ -112,6 +115,8 @@ namespace MeltPoolDG
       {
         fill_halo_subcell_values(input_vector, mask);
         compute_subcell_tangential_gradients();
+        if (is_boundary_face)
+          compute_boundary_face_values();
       }
   }
 
@@ -211,11 +216,8 @@ namespace MeltPoolDG
     // As in FESubcellEvaluation, the boundary value is located on the boundary face, i.e. at half
     // the width of the subcell normal to the face from the subcell center. The normal vector points
     // out of the domain, so its component in the face normal direction gives the orientation.
-    const value_type subcell_value  = get_value(subcell_index);
-    const value_type boundary_value = boundary_value_function(subcell_face_locations[subcell_index],
-                                                              subcell_face_normals[subcell_index],
-                                                              boundary_id(),
-                                                              subcell_value);
+    const value_type  subcell_value  = get_value(subcell_index);
+    const value_type &boundary_value = boundary_face_values[subcell_index];
 
     const VectorizedArrayType distance =
       0.5 * subcell_sizes[subcell_index] / subcell_face_sizes[subcell_index];
@@ -443,6 +445,16 @@ namespace MeltPoolDG
     subcell_locations.resize(cell_index_info.n_subcells_face);
     subcell_face_locations.resize(cell_index_info.n_subcells_face);
     integrated_subcell_values_buffer.resize(n_components * fe_cell_evaluator.n_q_points);
+
+    // The scratch members are allocated for the largest call of the boundary value function. The
+    // call for the face itself, i.e. if the complete face lies at the domain boundary, gathers the
+    // values of all n^(dim-1) face subcells into boundary_interior_values, while a lateral face
+    // passes only the n^(dim-2) subcells along one edge of the face.
+    boundary_face_values.resize(cell_index_info.n_subcells_face);
+    boundary_locations.resize(cell_index_info.n_subcells_face);
+    boundary_normals.resize(cell_index_info.n_subcells_face);
+    boundary_interior_values.resize(cell_index_info.n_subcells_face);
+    boundary_values.resize(cell_index_info.n_subcells_face);
   }
 
   template <int dim, int n_components, typename number>
@@ -508,7 +520,8 @@ namespace MeltPoolDG
               }
           }
 
-        // First, we evaluate the lateral neighbors which are held or extra.
+        // If there are any held or extra neighbors, we read their DoF values into the evaluator and
+        // evaluate the values at the quadrature points.
         if (held_mask.any() or extra_mask.any())
           {
             fe_lateral_evaluator.reinit(lateral_neighbor_cells.cell_ids);
@@ -536,42 +549,78 @@ namespace MeltPoolDG
           }
 
         const SubcellIndexInfo<dim - 1> &face_index_info = subcell_shape_info.face_index_info;
-        for (unsigned int s = 0; s < face_index_info.n_subcells_face; ++s)
-          {
-            const unsigned int subcell_index =
-              face_index_info.face_to_cell_subcell_indices[edge_no][s];
+        const unsigned int               n_edge_subcells = face_index_info.n_subcells_face;
 
-            const unsigned int haloed_neighbor_index =
-              face_index_info.subcell_index_to_haloed_neighbor_vector_index[subcell_index][edge_no];
+        // If there are any held or extra neighbors, we copy the values of the subcells, evaluated
+        // in the corresponding FE evaluators, at this edge of the face into the halo of the current
+        // cell.
+        if (held_mask.any() or extra_mask.any())
+          for (unsigned int s = 0; s < n_edge_subcells; ++s)
+            {
+              const unsigned int subcell_index =
+                face_index_info.face_to_cell_subcell_indices[edge_no][s];
+              const unsigned int neighbor_subcell_index =
+                face_index_info.face_to_cell_subcell_indices[edge_no ^ 1][s];
 
-            if (held_mask.any() or extra_mask.any())
-              {
-                const unsigned int neighbor_subcell_index =
-                  face_index_info.face_to_cell_subcell_indices[edge_no ^ 1][s];
-
-                layer_values[haloed_neighbor_index] = fe_lateral_evaluator.get_value(
+              layer_values[face_index_info.subcell_index_to_haloed_neighbor_vector_index
+                             [subcell_index][edge_no]] =
+                fe_lateral_evaluator.get_value(
                   cell_index_info.face_to_cell_subcell_indices[face_no][neighbor_subcell_index]);
+            }
+
+        // At the lateral domain boundary, the boundary value function is called once for all
+        // subcells at this edge of the face, and only the lanes on the boundary are copied into
+        // the halo.
+        if (at_boundary_mask.any())
+          {
+            std::array<dealii::types::boundary_id, n_lanes> boundary_ids;
+            boundary_ids.fill(dealii::numbers::invalid_boundary_id);
+            for (unsigned int lane = 0; lane < n_lanes; ++lane)
+              if (at_boundary_mask[lane])
+                boundary_ids[lane] = lateral_neighbor_cells.boundary_ids[lane];
+
+            const dealii::Tensor<1, dim, VectorizedArrayType> normal_vector =
+              SubcellEvaluation::Internal::cell_face_normal_vector<dim, VectorizedArrayType>(
+                lateral_edge_face_no);
+
+            // Gather the inputs for the subcells at this edge. The location is the center of the
+            // subcell projected onto the lateral boundary face.
+            for (unsigned int s = 0; s < n_edge_subcells; ++s)
+              {
+                const unsigned int subcell_index =
+                  face_index_info.face_to_cell_subcell_indices[edge_no][s];
+                const unsigned int haloed_index =
+                  face_index_info.subcell_index_to_haloed_vector_index[subcell_index];
+
+                boundary_locations[s] = subcell_locations[subcell_index];
+                boundary_locations[s][cell_coordinates_direction] +=
+                  0.5 * layer_extents[haloed_index][face_coordinates_direction] *
+                  (edge_no % 2 == 0 ? -1. : 1.);
+                boundary_normals[s]         = normal_vector;
+                boundary_interior_values[s] = layer_values[haloed_index];
               }
 
-            if (at_boundary_mask.any())
-              {
-                dealii::Point<dim, VectorizedArrayType> boundary_face_location =
-                  subcell_locations[subcell_index];
-                boundary_face_location[cell_coordinates_direction] +=
-                  0.5 *
-                  layer_extents[face_index_info.subcell_index_to_haloed_vector_index[subcell_index]]
-                               [face_coordinates_direction] *
-                  (edge_no % 2 == 0 ? -1. : 1.);
+            boundary_value_function(boundary_ids,
+                                    dealii::make_array_view(boundary_locations, 0, n_edge_subcells),
+                                    dealii::make_array_view(boundary_normals, 0, n_edge_subcells),
+                                    dealii::make_array_view(boundary_interior_values,
+                                                            0,
+                                                            n_edge_subcells),
+                                    dealii::make_array_view(boundary_values, 0, n_edge_subcells));
 
-                SubcellEvaluation::Internal::set_boundary_values(
-                  at_boundary_mask,
-                  lateral_neighbor_cells.boundary_ids,
-                  boundary_face_location,
-                  SubcellEvaluation::Internal::cell_face_normal_vector<dim, VectorizedArrayType>(
-                    lateral_edge_face_no),
-                  layer_values[face_index_info.subcell_index_to_haloed_vector_index[subcell_index]],
-                  layer_values[haloed_neighbor_index],
-                  boundary_value_function);
+            // Copy the boundary values into the halo, but only in the lanes on the boundary. The
+            // other lanes keep the values of the lateral neighbors written above.
+            for (unsigned int s = 0; s < n_edge_subcells; ++s)
+              {
+                const unsigned int subcell_index =
+                  face_index_info.face_to_cell_subcell_indices[edge_no][s];
+
+                value_type &halo_value =
+                  layer_values[face_index_info.subcell_index_to_haloed_neighbor_vector_index
+                                 [subcell_index][edge_no]];
+                for (unsigned int lane = 0; lane < n_lanes; ++lane)
+                  if (at_boundary_mask[lane])
+                    copy_simd_lane(boundary_values[s], lane, halo_value);
               }
           }
       }
@@ -706,6 +755,29 @@ namespace MeltPoolDG
           }
       }
     tangential_gradients_initialized = true;
+  }
+
+  template <int dim, int n_components, typename number>
+  void
+  FESubcellFaceEvaluation<dim, n_components, number>::compute_boundary_face_values()
+  {
+    Assert(is_boundary_face, dealii::ExcInternalError());
+    Assert(subcell_values_initialized, dealii::ExcNotInitialized());
+
+    // All lanes of a boundary face batch lie on the same boundary.
+    std::array<dealii::types::boundary_id, n_lanes> boundary_ids;
+    boundary_ids.fill(boundary_id());
+
+    // The subcell face locations and normals are already stored in the order of the subcell face
+    // indices, while the values of the face subcells are gathered from the haloed layout.
+    for (const unsigned int subcell : subcell_face_indices())
+      boundary_interior_values[subcell] = get_value(subcell);
+
+    boundary_value_function(boundary_ids,
+                            dealii::make_array_view(subcell_face_locations),
+                            dealii::make_array_view(subcell_face_normals),
+                            dealii::make_array_view(boundary_interior_values),
+                            dealii::make_array_view(boundary_face_values));
   }
 
   template <int dim, int n_components, typename number>

@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <deal.II/base/array_view.h>
 #include <deal.II/base/mpi.h>
 #include <deal.II/base/point.h>
 #include <deal.II/base/tensor.h>
@@ -28,6 +29,7 @@
 
 #include <benchmark/benchmark.h>
 
+#include <array>
 #include <cmath>
 
 namespace MeltPoolDG::Benchmarks
@@ -124,17 +126,22 @@ namespace MeltPoolDG::Benchmarks
 
   /**
    * The boundary value function passed to the subcell evaluators for the subcell gradients at the
-   * domain boundary. It returns the value @p value of the adjacent subcell, i.e. a zero normal
-   * gradient, such that its cost is negligible compared to the evaluators.
+   * domain boundary. It writes the values @p values of the subcells next to the face into
+   * @p boundary_values, i.e. a zero normal gradient, such that its cost is negligible compared to
+   * the evaluators.
    */
   template <int dim, int n_components>
-  typename FECellIntegrator<dim, n_components, double>::value_type
+  void
   zero_gradient_boundary_value(
-    const dealii::Point<dim, dealii::VectorizedArray<double>> &,
-    const dealii::Tensor<1, dim, dealii::VectorizedArray<double>> &,
-    const dealii::types::boundary_id,
-    const typename FECellIntegrator<dim, n_components, double>::value_type &value)
+    const std::array<dealii::types::boundary_id, dealii::VectorizedArray<double>::size()> &,
+    const dealii::ArrayView<const dealii::Point<dim, dealii::VectorizedArray<double>>> &,
+    const dealii::ArrayView<const dealii::Tensor<1, dim, dealii::VectorizedArray<double>>> &,
+    const dealii::ArrayView<const typename FECellIntegrator<dim, n_components, double>::value_type>
+      &values,
+    const dealii::ArrayView<typename FECellIntegrator<dim, n_components, double>::value_type>
+      &boundary_values)
   {
-    return value;
+    for (unsigned int i = 0; i < values.size(); ++i)
+      boundary_values[i] = values[i];
   }
 } // namespace MeltPoolDG::Benchmarks
