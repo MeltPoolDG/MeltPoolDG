@@ -528,51 +528,52 @@ namespace MeltPoolDG
         // At the domain boundary, the halo subcell collapses onto the boundary face, see
         // compute_subcell_extents(). Its value is the prescribed boundary value of the boundary
         // condition at the location of the adjacent subcell projected onto the boundary face.
-        {
-          std::array<dealii::types::boundary_id, n_lanes> boundary_ids;
-          boundary_ids.fill(dealii::numbers::invalid_boundary_id);
-          for (unsigned int lane = 0; lane < n_lanes; ++lane)
-            if (boundary_lanes[lane])
-              boundary_ids[lane] = neighbors.boundary_ids[lane];
+        if (boundary_lanes.any())
+          {
+            std::array<dealii::types::boundary_id, n_lanes> boundary_ids;
+            boundary_ids.fill(dealii::numbers::invalid_boundary_id);
+            for (unsigned int lane = 0; lane < n_lanes; ++lane)
+              if (boundary_lanes[lane])
+                boundary_ids[lane] = neighbors.boundary_ids[lane];
 
-          const dealii::Tensor<1, dim, VectorizedArrayType> normal_vector =
-            SubcellEvaluation::Internal::cell_face_normal_vector<dim, VectorizedArrayType>(face_no);
+            const dealii::Tensor<1, dim, VectorizedArrayType> normal_vector =
+              SubcellEvaluation::Internal::cell_face_normal_vector<dim, VectorizedArrayType>(
+                face_no);
 
-          // Gather the inputs for the boundary value function for the subcells adjacent to this
-          // face.
-          for (unsigned int q_face = 0; q_face < cell_index_info.n_subcells_face; ++q_face)
-            {
-              const unsigned int subcell =
-                cell_index_info.face_to_cell_subcell_indices[face_no][q_face];
+            // Gather the inputs for the boundary value function for the subcells adjacent to this
+            // face.
+            for (unsigned int q_face = 0; q_face < cell_index_info.n_subcells_face; ++q_face)
+              {
+                const unsigned int subcell =
+                  cell_index_info.face_to_cell_subcell_indices[face_no][q_face];
 
-              boundary_locations[q_face] = subcell_location(subcell);
-              move_location_across_face(boundary_locations[q_face], face_no);
-              boundary_normals[q_face] = normal_vector;
-              boundary_interior_values[q_face] =
-                subcell_values[cell_index_info.subcell_index_to_haloed_vector_index[subcell]];
-            }
+                boundary_locations[q_face] = subcell_location(subcell);
+                move_location_across_face(boundary_locations[q_face], face_no);
+                boundary_normals[q_face] = normal_vector;
+                boundary_interior_values[q_face] =
+                  subcell_values[cell_index_info.subcell_index_to_haloed_vector_index[subcell]];
+              }
 
-          boundary_value_function(boundary_ids,
-                                  dealii::make_array_view(boundary_locations),
-                                  dealii::make_array_view(boundary_normals),
-                                  dealii::make_array_view(boundary_interior_values),
-                                  dealii::make_array_view(boundary_values));
+            boundary_value_function(boundary_ids,
+                                    dealii::make_array_view(boundary_locations),
+                                    dealii::make_array_view(boundary_normals),
+                                    dealii::make_array_view(boundary_interior_values),
+                                    dealii::make_array_view(boundary_values));
 
-          // Copy the boundary values into the halo, but only in the lanes on the boundary. The
-          // other lanes keep the values of the face neighbors written above.
-          for (unsigned int q_face = 0; q_face < cell_index_info.n_subcells_face; ++q_face)
-            {
-              const unsigned int subcell =
-                cell_index_info.face_to_cell_subcell_indices[face_no][q_face];
+            // Copy the boundary values into the halo, but only in the lanes on the boundary. The
+            // other lanes keep the values of the face neighbors written above.
+            for (unsigned int q_face = 0; q_face < cell_index_info.n_subcells_face; ++q_face)
+              {
+                const unsigned int subcell =
+                  cell_index_info.face_to_cell_subcell_indices[face_no][q_face];
 
-              value_type &halo_value =
-                subcell_values[cell_index_info
-                                 .subcell_index_to_haloed_neighbor_vector_index[subcell][face_no]];
-              for (unsigned int lane = 0; lane < n_lanes; ++lane)
-                if (boundary_lanes[lane])
-                  copy_simd_lane(boundary_values[q_face], lane, halo_value);
-            }
-        }
+                value_type &halo_value = subcell_values
+                  [cell_index_info.subcell_index_to_haloed_neighbor_vector_index[subcell][face_no]];
+                for (unsigned int lane = 0; lane < n_lanes; ++lane)
+                  if (boundary_lanes[lane])
+                    copy_simd_lane(boundary_values[q_face], lane, halo_value);
+              }
+          }
       }
 
     halo_subcell_values_filled = true;
