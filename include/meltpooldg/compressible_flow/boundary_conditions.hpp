@@ -245,7 +245,9 @@ namespace MeltPoolDG::CompressibleFlow
       bool                                                           is_gas_phase = true) const;
 
     /**
-     * As above but based on views.
+     * As above but based on views. It is essentially a thin wrapper around
+     * BoundaryStateEvaluation::compute_exterior_state(), which contains the logic of the boundary
+     * types.
      *
      * @param q_point Location of the quadrature points at which the values shall be computed.
      * @param normal Outer facing normal vector.
@@ -270,7 +272,9 @@ namespace MeltPoolDG::CompressibleFlow
 
     /**
      * This function sets the values of partial density in the case of multi-component flows on the
-     * fictional outer face if the face is located at a boundary.
+     * fictional outer face if the face is located at a boundary. It is essentially a thin wrapper
+     * around BoundaryStateEvaluation::compute_exterior_partial_densities(), which contains the
+     * logic of the boundary types.
      *
      * @param q_point Location of the quadrature points at which the values shall be computed.
      * @param boundary_id ID of the boundary.
@@ -333,113 +337,5 @@ namespace MeltPoolDG::CompressibleFlow
     /// Sets of boundary IDs.
     std::set<dealii::types::boundary_id> slip_wall_boundaries;
     std::set<dealii::types::boundary_id> no_slip_adiabatic_wall_boundaries;
-
-    /**
-     * Apply the slip wall boundary condition by setting the corresponding values in @p w_p based on
-     * the values in @p w_m and the normal vector @p normal.
-     *
-     * @param w_m View for the conserved variables on the inner face.
-     * @param w_p View for the conserved variables on the outer face, which shall be set by this function.
-     * @param normal Outer facing normal vector.
-     * @param use_mirror_principle If true, the normal momentum of @p w_m is mirrored at the wall.
-     * If false, it is removed instead, which gives the values on the wall. The gradients are
-     * mirrored in both cases.
-     */
-    template <typename DofReadView, typename DofWriteView>
-    void
-    apply_slip_wall_boundary(DofReadView                                                    w_m,
-                             DofWriteView                                                   w_p,
-                             const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
-                             const bool use_mirror_principle) const;
-
-    /**
-     * Apply the no-slip adiabatic wall boundary condition by setting the corresponding values in @p w_p
-     * based on the values in @p w_m.
-     *
-     * @param w_m View for the conserved variables on the inner face.
-     * @param w_p View for the conserved variables on the outer face, which shall be set by this function.
-     */
-    template <typename DofReadView, typename DofWriteView>
-    void
-    apply_no_slip_wall_boundary(DofReadView w_m, DofWriteView w_p) const;
-
-    /**
-     * Apply the inflow boundary condition by setting the corresponding values in @p w_p based on the
-     * values in @p w_m and the boundary function corresponding to the inflow boundary with id @p boundary_id
-     * evaluated at the coordinates @p q_point.
-     *
-     * @param boundary_id ID of the boundary at which the inflow boundary condition is applied.
-     * @param q_point Coordinates at which the boundary function is evaluated.
-     * @param w_m View for the conserved variables on the inner face.
-     * @param w_p View for the conserved variables on the outer face, which shall be set by this function.
-     * @param bc_value_type Type of the boundary condition, from which the Dirichlet boundary values are obtained.
-     *
-     * @tparam DirichletValueInterpretation A struct defining an enum to interpret the components of the vector
-     * returned by the boundary function. This allows to use the same function for different types
-     * of boundary conditions, where the interpretation of the returned vector can differ.
-     */
-    template <typename DofReadView,
-              typename DofWriteView,
-              typename DirichletValueInterpretation = InflowValueInterpretation<dim>>
-    void
-    apply_inflow_boundary(const dealii::types::boundary_id                           boundary_id,
-                          const dealii::Point<dim, dealii::VectorizedArray<number>> &q_point,
-                          DofReadView                                                w_m,
-                          DofWriteView                                               w_p,
-                          const BoundaryType bc_value_type = BoundaryType::inflow) const;
-
-    /**
-     * Apply the subsonic outflow boundary condition with fixed pressure by setting the corresponding values in @p w_p
-     * based on the values in @p w_m and the boundary function corresponding to the boundary.
-     *
-     * @param boundary_id ID of the boundary at which the subsonic outflow with fixed pressure boundary condition is applied.
-     * @param q_point Coordinates at which the boundary function is evaluated.
-     * @param w_m View for the conserved variables on the inner face.
-     * @param w_p View for the conserved variables on the outer face, which shall be set by this function.
-     */
-    template <typename DofReadView, typename DofWriteView>
-    void
-    apply_subsonic_outflow_with_fixed_pressure_boundary(
-      const dealii::types::boundary_id                           boundary_id,
-      const dealii::Point<dim, dealii::VectorizedArray<number>> &q_point,
-      DofReadView                                                w_m,
-      DofWriteView                                               w_p) const;
-
-    /**
-     * Apply the subsonic outflow boundary condition with fixed energy by setting the corresponding values in @p w_p
-     * based on the values in @p w_m and the boundary function corresponding to the boundary.
-     *
-     * @param boundary_id ID of the boundary at which the subsonic outflow with fixed energy boundary condition is applied.
-     * @param q_point Coordinates at which the boundary function is evaluated.
-     * @param w_m View for the conserved variables on the inner face.
-     * @param w_p View for the conserved variables on the outer face, which shall be set by this function.
-     */
-    template <typename DofReadView, typename DofWriteView>
-    void
-    apply_subsonic_outflow_with_fixed_energy_boundary(
-      const dealii::types::boundary_id                           boundary_id,
-      const dealii::Point<dim, dealii::VectorizedArray<number>> &q_point,
-      DofReadView                                                w_m,
-      DofWriteView                                               w_p) const;
-
-    /**
-     * Apply the combined inflow and no-slip wall boundary condition by setting the corresponding values in @p w_p
-     * based on the values in @p w_m and the boundary function corresponding to the boundary. For points located
-     * in the inflow region of the boundary, the values are set based on the boundary function,
-     * while for points located in the wall region, the no-slip wall condition is applied.
-     *
-     * @param boundary_id ID of the boundary at which the combined inflow and no-slip wall boundary condition
-     * is applied.
-     * @param q_point Coordinates at which the boundary function is evaluated.
-     * @param w_m View for the conserved variables on the inner face.
-     * @param w_p View for the conserved variables on the outer face, which shall be set by this function.
-     */
-    template <typename DofReadView, typename DofWriteView>
-    void
-    apply_combined_inflow_no_slip_wall_boundary(
-      const dealii::types::boundary_id                           boundary_id,
-      const dealii::Point<dim, dealii::VectorizedArray<number>> &q_point,
-      DofReadView                                                w_m,
-      DofWriteView                                               w_p) const;
   };
 } // namespace MeltPoolDG::CompressibleFlow

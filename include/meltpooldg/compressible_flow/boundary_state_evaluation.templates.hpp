@@ -2,9 +2,11 @@
 
 #include <deal.II/base/exceptions.h>
 
-#include <meltpooldg/compressible_flow/boundary_conditions.templates.hpp>
 #include <meltpooldg/compressible_flow/boundary_state_evaluation.hpp>
+#include <meltpooldg/species_transport/boundary_conditions.hpp>
 #include <meltpooldg/utilities/matrix_free_util.hpp>
+
+#include <format>
 
 namespace MeltPoolDG::CompressibleFlow
 {
@@ -154,6 +156,361 @@ namespace MeltPoolDG::CompressibleFlow
   }
 
   template <int dim, typename number, int n_species>
+  template <typename ReadView, typename WriteView>
+  void
+  BoundaryStateEvaluation<dim, number, n_species>::compute_exterior_state(
+    const BoundaryConditions<dim, number>                         &boundary_conditions,
+    const dealii::Point<dim, dealii::VectorizedArray<number>>     &location,
+    const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
+    const dealii::types::boundary_id                               boundary_id,
+    const ReadView                                                &w_m,
+    const WriteView                                               &w_p,
+    const bool                                                     use_mirror_principle)
+  {
+    if (const BoundaryConditionType boundary_type =
+          boundary_conditions.get_boundary_type(boundary_id);
+        boundary_type == BoundaryConditionType::slip_wall)
+      {
+        apply_slip_wall_boundary(w_m, w_p, normal, use_mirror_principle);
+      }
+    else if (boundary_type == BoundaryConditionType::no_slip_wall)
+      {
+        apply_no_slip_wall_boundary(w_m, w_p);
+      }
+    else if (boundary_type == BoundaryConditionType::inflow)
+      {
+        apply_inflow_boundary(boundary_conditions, boundary_id, location, w_m, w_p);
+      }
+    else if (boundary_type == BoundaryConditionType::subsonic_outflow_fixed_pressure)
+      {
+        apply_subsonic_outflow_with_fixed_pressure_boundary(
+          boundary_conditions, boundary_id, location, w_m, w_p);
+      }
+    else if (boundary_type == BoundaryConditionType::subsonic_outflow_fixed_energy)
+      {
+        apply_subsonic_outflow_with_fixed_energy_boundary(
+          boundary_conditions, boundary_id, location, w_m, w_p);
+      }
+    else if (boundary_type == BoundaryConditionType::combined_inflow_no_slip_wall)
+      {
+        apply_combined_inflow_no_slip_wall_boundary(
+          boundary_conditions, boundary_id, location, w_m, w_p);
+      }
+    else
+      {
+        AssertThrow(false,
+                    dealii::ExcMessage(
+                      std::format("Unknown boundary condition {} at the boundary with boundary id "
+                                  "{}. Did you set a boundary condition for this part of the "
+                                  "domain boundary?",
+                                  boundary_type._to_string(),
+                                  boundary_id)));
+      }
+  }
+
+  template <int dim, typename number, int n_species>
+  template <typename ReadView, typename WriteView>
+  void
+  BoundaryStateEvaluation<dim, number, n_species>::compute_exterior_partial_densities(
+    const BoundaryConditions<dim, number>                     &boundary_conditions,
+    const dealii::Point<dim, dealii::VectorizedArray<number>> &location,
+    const dealii::types::boundary_id                           boundary_id,
+    const ReadView                                            &w_m,
+    const WriteView                                           &w_p)
+  {
+    if (const BoundaryConditionType boundary_type =
+          boundary_conditions.get_boundary_type(boundary_id);
+        boundary_type == BoundaryConditionType::inflow)
+      {
+        // For inflow boundary conditions we assume that the partial densities are given and we set
+        // them as Dirichlet values.
+
+        // Remember for compressible flow we only need to prescribe n_species - 1 partial densities.
+        std::array<dealii::VectorizedArray<number>, n_species - 1> dirichlet_boundary_values;
+
+        for (unsigned int species = 0; species < n_species - 1; ++species)
+          {
+            dirichlet_boundary_values[species] = boundary_conditions.get_boundary_value(
+              boundary_id,
+              BoundaryConditionType::inflow,
+              location,
+              CompressibleFlow::n_conserved_variables<dim, 1> + species);
+          }
+
+
+        SpeciesTransport::set_boundary_value_and_gradient(
+          w_p, w_m, SpeciesTransport::BoundaryConditionType::dirichlet, dirichlet_boundary_values);
+      }
+    else if (boundary_type == BoundaryConditionType::combined_inflow_no_slip_wall)
+      {
+        dealii::VectorizedArray<number> mask = boundary_conditions.get_boundary_value(
+          boundary_id,
+          BoundaryConditionType::combined_inflow_no_slip_wall,
+          location,
+          CombinedInflowNoSlipWallValueInterpretation<dim>::inside_flow);
+
+        std::array<dealii::VectorizedArray<number>, n_species - 1> dirichlet_boundary_values;
+        for (unsigned int species = 0; species < n_species - 1; ++species)
+          {
+            dirichlet_boundary_values[species] = boundary_conditions.get_boundary_value(
+              boundary_id,
+              BoundaryConditionType::combined_inflow_no_slip_wall,
+              location,
+              CombinedInflowNoSlipWallValueInterpretation<dim>::mass_fractions + species);
+          }
+
+        SpeciesTransport::set_boundary_value_and_gradient(
+          w_p, w_m, SpeciesTransport::BoundaryConditionType::dirichlet, dirichlet_boundary_values);
+
+        std::vector<dealii::VectorizedArray<number>> w_p_partial_densities(n_species - 1);
+        for (unsigned int species = 0; species < n_species - 1; ++species)
+          w_p_partial_densities[species] = w_p.partial_density(species);
+
+        std::vector<dealii::Tensor<1, dim, dealii::VectorizedArray<number>>>
+          w_p_partial_density_gradients(n_species - 1);
+        for (unsigned int species = 0; species < n_species - 1; ++species)
+          w_p_partial_density_gradients[species] = w_p.grad_partial_density(species);
+
+        SpeciesTransport::set_boundary_value_and_gradient<n_species - 1,
+                                                          dealii::VectorizedArray<number>,
+                                                          ReadView,
+                                                          WriteView>(
+          w_p, w_m, SpeciesTransport::BoundaryConditionType::neumann);
+
+        for (unsigned int species = 0; species < n_species - 1; ++species)
+          {
+            w_p.partial_density(species) =
+              dealii::compare_and_apply_mask<dealii::SIMDComparison::equal>(
+                mask,
+                dealii::VectorizedArray<number>(1.0),
+                w_p_partial_densities[species],
+                w_p.partial_density(species));
+
+            for (unsigned int d = 0; d < dim; ++d)
+              w_p.grad_partial_density(species)[d] =
+                dealii::compare_and_apply_mask<dealii::SIMDComparison::equal>(
+                  mask,
+                  dealii::VectorizedArray<number>(1.0),
+                  w_p_partial_density_gradients[species][d],
+                  w_p.grad_partial_density(species)[d]);
+          }
+      }
+    else
+      {
+        // For all other boundary conditions we assume homogeneous Neumann for the partial
+        // densities.
+        SpeciesTransport::set_boundary_value_and_gradient<n_species - 1,
+                                                          dealii::VectorizedArray<number>,
+                                                          ReadView,
+                                                          WriteView>(
+          w_p, w_m, SpeciesTransport::BoundaryConditionType::neumann);
+      }
+  }
+
+  template <int dim, typename number, int n_species>
+  template <typename DofReadView, typename DofWriteView>
+  void
+  BoundaryStateEvaluation<dim, number, n_species>::apply_slip_wall_boundary(
+    DofReadView                                                    w_m,
+    DofWriteView                                                   w_p,
+    const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
+    const bool                                                     use_mirror_principle)
+  {
+    // homogeneous Neumann
+    w_p.density()      = w_m.density();
+    w_p.grad_density() = -(w_m.grad_density());
+
+    // homogeneous Neumann
+    dealii::VectorizedArray<number> rho_u_dot_n = 0;
+    for (unsigned int d = 0; d < dim; ++d)
+      rho_u_dot_n += w_m.momentum(d) * normal[d];
+    // symmetry: the mirror principle reverses the normal momentum, while if no mirror value is used
+    // the value on the boundary has no normal momentum
+    const number normal_momentum_factor = use_mirror_principle ? 2. : 1.;
+    for (unsigned int d = 0; d < dim; ++d)
+      {
+        w_p.momentum(d) = w_m.momentum(d) - normal_momentum_factor * rho_u_dot_n * normal[d];
+        w_p.grad_momentum(d) =
+          w_m.grad_momentum(d) - 2. * scalar_product(w_m.grad_momentum(d), normal) * normal;
+      }
+    // homogeneous Neumann
+    w_p.grad_total_energy() = -(w_m.grad_total_energy());
+    w_p.total_energy()      = w_m.total_energy();
+  }
+
+  template <int dim, typename number, int n_species>
+  template <typename DofReadView, typename DofWriteView>
+  void
+  BoundaryStateEvaluation<dim, number, n_species>::apply_no_slip_wall_boundary(DofReadView  w_m,
+                                                                               DofWriteView w_p)
+  {
+    // homogeneous Neumann
+    w_p.density()      = w_m.density();
+    w_p.grad_density() = -(w_m.grad_density());
+
+    // Dirichlet
+    for (unsigned int d = 0; d < dim; ++d)
+      {
+        w_p.momentum(d)      = 0.;
+        w_p.grad_momentum(d) = w_m.grad_momentum(d);
+      }
+    // homogeneous Neumann
+    w_p.grad_total_energy() = -(w_m.grad_total_energy());
+    w_p.total_energy()      = w_m.total_energy();
+  }
+
+  template <int dim, typename number, int n_species>
+  template <typename DofReadView, typename DofWriteView, typename DirichletValueInterpretation>
+  void
+  BoundaryStateEvaluation<dim, number, n_species>::apply_inflow_boundary(
+    const BoundaryConditions<dim, number>                     &boundary_conditions,
+    const dealii::types::boundary_id                           boundary_id,
+    const dealii::Point<dim, dealii::VectorizedArray<number>> &q_point,
+    DofReadView                                                w_m,
+    DofWriteView                                               w_p,
+    const BoundaryConditionType                                bc_value_type)
+  {
+    w_p.density()      = boundary_conditions.get_boundary_value(boundary_id,
+                                                           bc_value_type,
+                                                           q_point,
+                                                           DirichletValueInterpretation::density);
+    w_p.grad_density() = w_m.grad_density();
+
+    for (unsigned int d = 0; d < dim; ++d)
+      {
+        w_p.momentum(d) = boundary_conditions.get_boundary_value(
+          boundary_id, bc_value_type, q_point, DirichletValueInterpretation::velocity + d);
+        w_p.grad_momentum(d) = w_m.grad_momentum(d);
+      }
+
+    w_p.total_energy() = boundary_conditions.get_boundary_value(
+      boundary_id, bc_value_type, q_point, DirichletValueInterpretation::energy);
+    w_p.grad_total_energy() = w_m.grad_total_energy();
+  }
+
+  template <int dim, typename number, int n_species>
+  template <typename DofReadView, typename DofWriteView>
+  void
+  BoundaryStateEvaluation<dim, number, n_species>::
+    apply_subsonic_outflow_with_fixed_pressure_boundary(
+      const BoundaryConditions<dim, number>                     &boundary_conditions,
+      const dealii::types::boundary_id                           boundary_id,
+      const dealii::Point<dim, dealii::VectorizedArray<number>> &q_point,
+      DofReadView                                                w_m,
+      DofWriteView                                               w_p)
+  {
+    // homogeneous Neumann
+    w_p.density()      = w_m.density();
+    w_p.grad_density() = -(w_m.grad_density());
+
+    for (unsigned int d = 0; d < dim; ++d)
+      {
+        w_p.momentum(d)      = w_m.momentum(d);
+        w_p.grad_momentum(d) = -(w_m.grad_momentum(d));
+      }
+
+    // Dirichlet
+    auto p_dyn = dealii::VectorizedArray<number>(0.);
+    for (unsigned int i = 0; i < dim; ++i)
+      p_dyn += w_m.momentum(i) * w_m.momentum(i);
+
+    p_dyn /= (w_m.density() * 2.);
+    const dealii::VectorizedArray<number> pressure = boundary_conditions.get_boundary_value(
+      boundary_id, BoundaryConditionType::subsonic_outflow_fixed_pressure, q_point, 0);
+
+    // consider equation of state for computation of inner energy from given pressure
+    const dealii::VectorizedArray<number> inner_energy = w_m.inner_energy_from_pressure(pressure);
+
+    w_p.total_energy()      = inner_energy + p_dyn;
+    w_p.grad_total_energy() = w_m.grad_total_energy();
+  }
+
+  template <int dim, typename number, int n_species>
+  template <typename DofReadView, typename DofWriteView>
+  void
+  BoundaryStateEvaluation<dim, number, n_species>::
+    apply_subsonic_outflow_with_fixed_energy_boundary(
+      const BoundaryConditions<dim, number>                     &boundary_conditions,
+      const dealii::types::boundary_id                           boundary_id,
+      const dealii::Point<dim, dealii::VectorizedArray<number>> &q_point,
+      DofReadView                                                w_m,
+      DofWriteView                                               w_p)
+  {
+    // homogeneous Neumann
+    w_p.density()      = w_m.density();
+    w_p.grad_density() = -(w_m.grad_density());
+    for (unsigned int i = 0; i < dim; ++i)
+      {
+        w_p.momentum(i)      = w_m.momentum(i);
+        w_p.grad_momentum(i) = -(w_m.grad_momentum(i));
+      }
+
+    // Dirichlet
+    w_p.total_energy() = boundary_conditions.get_boundary_value(
+      boundary_id, BoundaryConditionType::subsonic_outflow_fixed_energy, q_point, 0);
+    w_p.grad_total_energy() = w_m.grad_total_energy();
+  }
+
+  template <int dim, typename number, int n_species>
+  template <typename DofReadView, typename DofWriteView>
+  void
+  BoundaryStateEvaluation<dim, number, n_species>::apply_combined_inflow_no_slip_wall_boundary(
+    const BoundaryConditions<dim, number>                     &boundary_conditions,
+    const dealii::types::boundary_id                           boundary_id,
+    const dealii::Point<dim, dealii::VectorizedArray<number>> &q_point,
+    DofReadView                                                w_m,
+    DofWriteView                                               w_p)
+  {
+    dealii::VectorizedArray<number> is_inflow = boundary_conditions.get_boundary_value(
+      boundary_id,
+      BoundaryConditionType::combined_inflow_no_slip_wall,
+      q_point,
+      CombinedInflowNoSlipWallValueInterpretation<dim>::inside_flow);
+
+    apply_inflow_boundary<DofReadView,
+                          DofWriteView,
+                          CombinedInflowNoSlipWallValueInterpretation<dim>>(
+      boundary_conditions,
+      boundary_id,
+      q_point,
+      w_m,
+      w_p,
+      BoundaryConditionType::combined_inflow_no_slip_wall);
+
+    auto inflow_density  = w_p.density();
+    auto inflow_momentum = w_p.momentum();
+    auto inflow_energy   = w_p.total_energy();
+
+    auto inflow_grad_density  = w_p.grad_density();
+    auto inflow_grad_momentum = w_p.grad_momentum();
+    auto inflow_grad_energy   = w_p.grad_total_energy();
+
+    apply_no_slip_wall_boundary(w_m, w_p);
+
+    auto apply_mask = [](auto mask, auto true_value, auto false_value) -> auto {
+      return dealii::compare_and_apply_mask<dealii::SIMDComparison::equal>(
+        mask, dealii::VectorizedArray<number>(1.0), true_value, false_value);
+    };
+
+    w_p.density() = apply_mask(is_inflow, inflow_density, w_p.density());
+    for (unsigned int d = 0; d < dim; ++d)
+      w_p.grad_density()[d] = apply_mask(is_inflow, inflow_grad_density[d], w_p.grad_density()[d]);
+
+    w_p.total_energy() = apply_mask(is_inflow, inflow_energy, w_p.total_energy());
+    for (unsigned int d = 0; d < dim; ++d)
+      w_p.grad_total_energy()[d] =
+        apply_mask(is_inflow, inflow_grad_energy[d], w_p.grad_total_energy()[d]);
+
+    for (unsigned int d = 0; d < dim; ++d)
+      {
+        w_p.momentum(d) = apply_mask(is_inflow, inflow_momentum[d], w_p.momentum(d));
+        for (unsigned int d2 = 0; d2 < dim; ++d2)
+          w_p.grad_momentum(d)[d2] =
+            apply_mask(is_inflow, inflow_grad_momentum[d][d2], w_p.grad_momentum(d)[d2]);
+      }
+  }
+
+  template <int dim, typename number, int n_species>
   template <typename ReadView>
   void
   BoundaryStateEvaluation<dim, number, n_species>::evaluate_point(
@@ -176,12 +533,12 @@ namespace MeltPoolDG::CompressibleFlow
                                              typename ReadView::gradient_type>
       exterior(exterior_value, exterior_gradient, material);
 
-    boundary_conditions.set_conserved_variables_boundary_value_and_gradient(
-      location, normal, boundary_id, interior, exterior, use_mirror_principle);
+    compute_exterior_state(
+      boundary_conditions, location, normal, boundary_id, interior, exterior, use_mirror_principle);
 
     if constexpr (n_species > 1)
-      boundary_conditions.template set_partial_density_boundary_value_and_gradient<n_species>(
-        location, boundary_id, interior, exterior);
+      compute_exterior_partial_densities(
+        boundary_conditions, location, boundary_id, interior, exterior);
 
     // Copy only the lanes on this boundary.
     if (lanes.all())

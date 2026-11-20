@@ -4,7 +4,6 @@
 #include <deal.II/base/types.h>
 #include <deal.II/base/vectorization.h>
 
-#include <meltpooldg/compressible_flow/boundary_conditions.templates.hpp>
 #include <meltpooldg/compressible_flow/boundary_state_evaluation.templates.hpp>
 #include <meltpooldg/compressible_flow/data_types.hpp>
 #include <meltpooldg/compressible_flow/dg_operator_explicit.hpp>
