@@ -220,7 +220,8 @@ namespace MeltPoolDG::LevelSet::Tools
                         const bool                               use_mca)
   {
     // data structures for marching-cube algorithm
-    const dealii::QGauss<dim == 1 ? 1 : dim - 1> surface_quad(dof_handler.get_fe().degree + 1);
+    const dealii::QGaussSimplex<dim == 1 ? 1 : dim - 1> surface_quad(dof_handler.get_fe().degree +
+                                                                     1);
 
     dealii::GridTools::MarchingCubeAlgorithm<dim,
                                              dealii::LinearAlgebra::distributed::Vector<number>>
@@ -360,6 +361,8 @@ namespace MeltPoolDG::LevelSet::Tools
               // loop over all cells ...
               for (const auto &sub_cell : surface_triangulation.active_cell_iterators())
                 {
+                  Assert(sub_cell->reference_cell().is_simplex(),
+                         dealii::ExcMessage("MCA subcells are expected to be simplices."));
                   fe_eval.reinit(sub_cell);
 
                   // ... and collect quadrature points and weights
