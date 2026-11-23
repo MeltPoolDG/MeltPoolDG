@@ -1,12 +1,17 @@
 #pragma once
 
 #include <deal.II/base/aligned_vector.h>
+#include <deal.II/base/array_view.h>
+#include <deal.II/base/point.h>
+#include <deal.II/base/tensor.h>
+#include <deal.II/base/types.h>
 #include <deal.II/base/vectorization.h>
 
 #include <deal.II/lac/la_parallel_vector.h>
 
 #include <deal.II/matrix_free/matrix_free.h>
 
+#include <meltpooldg/compressible_flow/boundary_state_evaluation.hpp>
 #include <meltpooldg/compressible_flow/convective_kernels.hpp>
 #include <meltpooldg/compressible_flow/kernels_n_species.hpp>
 #include <meltpooldg/compressible_flow/operation_scratch_data.hpp>
@@ -14,6 +19,7 @@
 #include <meltpooldg/compressible_flow/viscous_kernels.hpp>
 #include <meltpooldg/utilities/dg_generic_convection_diffusion_worker.hpp>
 
+#include <array>
 #include <functional>
 #include <memory>
 #include <utility>
@@ -340,29 +346,33 @@ namespace MeltPoolDG::CompressibleFlow
       const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal) const;
 
     /**
-     * @brief Exterior state on a finite volume subcell face at the domain boundary.
+     * @brief Compute the boundary values of the subcells next to a face for the subcell
+     * evaluators.
      *
-     * Evaluates the boundary conditions of the conserved variables and, for multiple species, of
-     * the partial densities. @p use_mirror_principle is the first parameter, such that the
-     * function can be bound with std::bind_front() to obtain the boundary value function of the
-     * subcell evaluators.
+     * Implements the boundary value function of FESubcellEvaluation and FESubcellFaceEvaluation.
+     * It forwards to the plain-array overload of BoundaryStateEvaluation::evaluate() with the state
+     * on the boundary, i.e. `use_mirror_principle = false`, and values only, and copies the
+     * exterior values into @p boundary_values. The local applier constructs @p boundary_state
+     * once and binds it together with `this` through `std::bind_front`, so its buffers are
+     * allocated once per applier.
      *
-     * @param use_mirror_principle If true, the mirrored state is returned on slip walls, as needed
-     * by the convective numerical flux. If false, the state on the wall is returned, as needed by
-     * the subcell gradients and the viscous numerical flux. See
-     * BoundaryConditions::set_conserved_variables_boundary_value_and_gradient().
-     * @param location Location on the boundary.
-     * @param normal Unit outer normal vector of the boundary.
-     * @param boundary_id ID of the boundary.
-     * @param w_m State on the interior side of the boundary face.
-     *
-     * @return Exterior state on the boundary face.
+     * @param boundary_state The evaluator used for all calls within one local applier.
+     * @param boundary_ids The boundary id of each lane, see FESubcellFaceEvaluation.
+     * @param locations The locations of the subcells next to the face projected onto the face.
+     * @param normals The outward unit normal vectors of the face at these locations.
+     * @param values The values of the subcells next to the face.
+     * @param boundary_values The boundary values of these subcells, written by this function.
      */
-    ConservedVariablesType<dim, number, n_species>
-    fv_subcell_boundary_value(const bool use_mirror_principle,
-                              const dealii::Point<dim, dealii::VectorizedArray<number>> &location,
-                              const dealii::Tensor<1, dim, dealii::VectorizedArray<number>> &normal,
-                              const dealii::types::boundary_id                      boundary_id,
-                              const ConservedVariablesType<dim, number, n_species> &w_m) const;
+    void
+    fv_subcell_boundary_values(
+      BoundaryStateEvaluation<dim, number, n_species> &boundary_state,
+      const std::array<dealii::types::boundary_id, dealii::VectorizedArray<number>::size()>
+        &boundary_ids,
+      const dealii::ArrayView<const dealii::Point<dim, dealii::VectorizedArray<number>>> &locations,
+      const dealii::ArrayView<const dealii::Tensor<1, dim, dealii::VectorizedArray<number>>>
+                                                                                    &normals,
+      const dealii::ArrayView<const ConservedVariablesType<dim, number, n_species>> &values,
+      const dealii::ArrayView<ConservedVariablesType<dim, number, n_species>> &boundary_values)
+      const;
   };
 } // namespace MeltPoolDG::CompressibleFlow

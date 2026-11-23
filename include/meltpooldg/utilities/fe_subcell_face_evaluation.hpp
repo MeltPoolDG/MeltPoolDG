@@ -1,5 +1,9 @@
 #pragma once
 
+#include <deal.II/base/array_view.h>
+#include <deal.II/base/point.h>
+#include <deal.II/base/tensor.h>
+#include <deal.II/base/types.h>
 #include <deal.II/base/vectorization.h>
 
 #include <deal.II/matrix_free/fe_evaluation.h>
@@ -99,17 +103,32 @@ namespace MeltPoolDG
    *
    * At the domain boundary, the lateral neighbor is replaced by the boundary value located on the
    * lateral boundary face. It is provided by the `boundary_value_function` passed to the
-   * constructor, which should return the boundary value prescribed by the corresponding boundary
-   * condition. It is called as `boundary_value_function(x, n, boundary_id, u)` with
-   * - the center of the subcell adjacent to the face projected onto the lateral boundary face `x`,
-   * - the outward unit normal vector `n` of the lateral boundary face,
-   * - the boundary id of the lateral boundary face, and
-   * - the value `u` of the subcell adjacent to the face.
+   * constructor, which should compute the boundary values prescribed by the corresponding boundary
+   * condition. For each lateral face of the face batch at which some lanes lie on the domain
+   * boundary, the function is called once as `boundary_value_function(boundary_ids, x, n, u,
+   * u_boundary)` with
+   * - the boundary id of each lane `boundary_ids`, and dealii::numbers::invalid_boundary_id for a
+   *   lane whose lateral neighbor is a cell or that is not active in the mask passed to
+   *   gather_evaluate(),
+   * - the centers of the subcells adjacent to both the face and the lateral face, projected onto
+   *   the lateral boundary face `x`,
+   * - the outward unit normal vectors `n` of the lateral boundary face at these locations,
+   * - the values `u` of these subcells, and
+   * - the array `u_boundary`, into which the function writes the values on the lateral boundary
+   *   face at the locations `x`.
+   *
+   * Since the lanes of a face batch may lie on boundaries with different ids, the function
+   * evaluates the boundary condition of each lane according to its boundary id. Only the lanes on
+   * the boundary are copied from `u_boundary` into the halo, and the entries of the other lanes
+   * are ignored.
    *
    * On a boundary face, there is no exterior object. The face gradient is computed by
    * get_face_gradient(s) without a second argument from the boundary value on subcell face `s`.
-   * Instead the function gets the boundary value from the `boundary_value_function` passed to the
-   * constructor.
+   * These boundary values are computed in gather_evaluate() if gradients are requested, by one
+   * more call of the `boundary_value_function` for the face itself. In this call, all lanes get
+   * the boundary id of the face batch, and `x`, `n` and `u` are the subcell face locations, the
+   * normal vectors of the subcell faces and the values of the subcells adjacent to the face, in the
+   * order of the subcell face indices.
    *
    * ## Submitting fluxes
    * submit_flux(s, flux) stores a flux for subcell face `s`, and integrate_scatter() adds the
@@ -198,15 +217,23 @@ namespace MeltPoolDG
     using gradient_type = dealii::
       FEFaceEvaluation<dim, -1, 0, n_components, number, VectorizedArrayType>::gradient_type;
 
-    /// The type of the function returning the values on the domain boundary for the subcell
-    /// gradients, called with the location on the boundary face, the outward unit normal vector,
-    /// the boundary id and the value of the adjacent subcell. See the section on subcell gradients
-    /// in the class documentation.
-    using BoundaryValueFunctionType =
-      std::function<value_type(const dealii::Point<dim, VectorizedArrayType> &,
-                               const dealii::Tensor<1, dim, VectorizedArrayType> &,
-                               const dealii::types::boundary_id,
-                               const value_type &)>;
+    /// The type of the function computing the boundary values for the subcell gradients. It is
+    /// called once for each lateral face of the batch at which some lanes lie on the domain
+    /// boundary and, on a boundary face batch, once for the face itself, with
+    /// - the boundary id of each lane, and dealii::numbers::invalid_boundary_id for a lane whose
+    ///   neighbor across the face is an inner cell,
+    /// - the locations of the subcells next to the face projected onto the face,
+    /// - the outward unit normal vectors of the face at these locations,
+    /// - the values of the subcells next to the face,
+    /// - the array into which the boundary values of these subcells are written.
+    /// Only the entries of lanes on the boundary are used. See the section on subcell gradients in
+    /// the class documentation.
+    using BoundaryValueFunctionType = std::function<
+      void(const std::array<dealii::types::boundary_id, VectorizedArrayType::size()> &,
+           const dealii::ArrayView<const dealii::Point<dim, VectorizedArrayType>> &,
+           const dealii::ArrayView<const dealii::Tensor<1, dim, VectorizedArrayType>> &,
+           const dealii::ArrayView<const value_type> &,
+           const dealii::ArrayView<value_type> &)>;
 
     /**
      * Constructor. Allocates required memory and sets up internal data structures. The object is
@@ -216,9 +243,10 @@ namespace MeltPoolDG
      * object, the DoF and quadrature index of the finite element field to evaluate and the subcell
      * index data.
      * @param is_interior_face Whether this object represents the interior side of a face.
-     * @param boundary_value_function The function returning the values on the domain boundary for
-     * the subcell gradients, see the section on subcell gradients in the class documentation. The
-     * parameter may be omitted for inner domain cells or if no gradients are evaluated.
+     * @param boundary_value_function The function computing the values on the domain boundary for
+     * the subcell gradients, see BoundaryValueFunctionType and the section on subcell gradients in
+     * the class documentation. The parameter may be omitted for inner domain cells or if no
+     * gradients are evaluated.
      */
     FESubcellFaceEvaluation(const SubcellMatrixFree<dim, number> &subcell_matrix_free,
                             const bool                            is_interior_face,
@@ -290,8 +318,9 @@ namespace MeltPoolDG
     /**
      * Return the gradient of the solution on the subcell face @p subcell_index of a boundary face,
      * where no opposite object exists. Instead, the value on the boundary face is taken from the
-     * boundary value function passed to the constructor. For details, see the section on subcell
-     * gradients in the class documentation.
+     * boundary values that gather_evaluate() computed with the boundary value function passed to
+     * the constructor. For details, see the section on subcell gradients in the class
+     * documentation.
      *
      * A call to this function requires that gather_evaluate() has been called with
      * dealii::EvaluationFlags::gradients for the current face batch.
@@ -496,7 +525,7 @@ namespace MeltPoolDG
     /// same on the interior and the exterior side.
     unsigned int face_normal_coordinate_direction = dealii::numbers::invalid_unsigned_int;
 
-    /// The function returning the values on the domain boundary for the halo subcells at the
+    /// The function computing the values on the domain boundary for the halo subcells at the
     /// lateral domain boundary and for the face gradients on boundary faces, see the section on
     /// subcell gradients in the class documentation.
     const BoundaryValueFunctionType boundary_value_function;
@@ -600,6 +629,30 @@ namespace MeltPoolDG
 
     /// Scratch buffer for integrate() holding one value per component and subcell.
     std::vector<VectorizedArrayType> integrated_subcell_values_buffer;
+
+    /// A vector storing the boundary values on the face of a boundary face batch, from which
+    /// get_face_gradient() computes the normal derivative. The index is the subcell face index. It
+    /// is filled in gather_evaluate() if gradients are requested on a boundary face batch.
+    std::vector<value_type> boundary_face_values;
+
+    /// A vector storing the locations of the subcells next to the face that is currently passed
+    /// to the boundary value function, projected onto that face. The index is the index of the
+    /// subcell next to the face.
+    std::vector<dealii::Point<dim, VectorizedArrayType>> boundary_locations;
+
+    /// A vector storing the outward unit normal vectors of the face that is currently passed to the
+    /// boundary value function, at the locations in #boundary_locations. The index is the index of
+    /// the subcell next to the face.
+    std::vector<dealii::Tensor<1, dim, VectorizedArrayType>> boundary_normals;
+
+    /// A vector storing the values of the subcells next to the face that is currently passed to
+    /// the boundary value function. The index is the index of the subcell next to the face.
+    std::vector<value_type> boundary_interior_values;
+
+    /// A vector storing the boundary values written by the boundary value function, from which
+    /// the lanes on the boundary are copied into the halo. The index is the index of the subcell
+    /// next to the face.
+    std::vector<value_type> boundary_values;
 
     /// A flag indicating whether the object has been reinitialized for a face batch. Used for debug
     /// information.
@@ -712,6 +765,17 @@ namespace MeltPoolDG
      */
     void
     compute_subcell_tangential_gradients();
+
+    /**
+     * Compute the boundary values on the face of a boundary face batch with the boundary value
+     * function and store them in boundary_face_values. All lanes get the boundary id of the face
+     * batch.
+     *
+     * @note This function requires the members subcell_face_locations and subcell_face_normals to
+     * be filled beforehand.
+     */
+    void
+    compute_boundary_face_values();
   };
 
   template <int dim, int n_components, typename number>

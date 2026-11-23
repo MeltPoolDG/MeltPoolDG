@@ -8,10 +8,12 @@
 
 #include <gtest/gtest.h>
 
+#include <deal.II/base/array_view.h>
 #include <deal.II/base/function.h>
 #include <deal.II/base/point.h>
 #include <deal.II/base/quadrature_lib.h>
 #include <deal.II/base/tensor.h>
+#include <deal.II/base/types.h>
 
 #include <deal.II/dofs/dof_handler.h>
 
@@ -36,6 +38,7 @@
 #include <meltpooldg/utilities/matrix_free_util.hpp>
 #include <meltpooldg/utilities/subcell_matrix_free.templates.hpp>
 
+#include <array>
 #include <cmath>
 #include <functional>
 #include <set>
@@ -323,26 +326,31 @@ TYPED_TEST(FESubcellEvaluationFaceTest, IntraCellFaceValues)
  * averaged central differences in the tangential directions are exact. Hence, such subcell values
  * are submitted on all cells and projected to a DG solution, and it is then checked that the
  * gradients on the intra cell subcell faces match the gradient of the linear function. At the
- * domain boundary, the boundary value function returns the linear function at the given point on
+ * domain boundary, the boundary value function writes the linear function at the given points on
  * the boundary face.
  */
 TYPED_TEST(FESubcellEvaluationFaceTest, IntraCellFaceGradients)
 {
   const TestUtils::LinearFunction<TypeParam::dim, TypeParam::n_components> linear_function;
 
-  const std::function<value_type<TypeParam::n_components, VectorizedArrayType>(
-    const dealii::Point<TypeParam::dim, VectorizedArrayType> &,
-    const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> &,
-    const dealii::types::boundary_id,
-    const value_type<TypeParam::n_components, VectorizedArrayType> &)>
+  const std::function<
+    void(const std::array<dealii::types::boundary_id, VectorizedArrayType::size()> &,
+         const dealii::ArrayView<const dealii::Point<TypeParam::dim, VectorizedArrayType>> &,
+         const dealii::ArrayView<const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType>> &,
+         const dealii::ArrayView<const value_type<TypeParam::n_components, VectorizedArrayType>> &,
+         const dealii::ArrayView<value_type<TypeParam::n_components, VectorizedArrayType>> &)>
     boundary_value_function =
-      [&linear_function](const dealii::Point<TypeParam::dim, VectorizedArrayType> &location,
-                         const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType> &,
-                         const dealii::types::boundary_id,
-                         const value_type<TypeParam::n_components, VectorizedArrayType> &)
-    -> value_type<TypeParam::n_components, VectorizedArrayType> {
-    return linear_function.value(location);
-  };
+      [&linear_function](
+        const std::array<dealii::types::boundary_id, VectorizedArrayType::size()> &,
+        const dealii::ArrayView<const dealii::Point<TypeParam::dim, VectorizedArrayType>>
+          &locations,
+        const dealii::ArrayView<const dealii::Tensor<1, TypeParam::dim, VectorizedArrayType>> &,
+        const dealii::ArrayView<const value_type<TypeParam::n_components, VectorizedArrayType>> &,
+        const dealii::ArrayView<value_type<TypeParam::n_components, VectorizedArrayType>>
+          &boundary_values) {
+        for (unsigned int i = 0; i < locations.size(); ++i)
+          boundary_values[i] = linear_function.value(locations[i]);
+      };
 
   FESubcellEvaluation<TypeParam::dim, TypeParam::n_components, double> subcells(
     this->subcell_matrix_free, boundary_value_function);

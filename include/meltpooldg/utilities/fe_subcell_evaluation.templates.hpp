@@ -1,7 +1,9 @@
 #pragma once
 
+#include <deal.II/base/array_view.h>
 #include <deal.II/base/point.h>
 #include <deal.II/base/tensor.h>
+#include <deal.II/base/types.h>
 #include <deal.II/base/vectorization.h>
 
 #include <deal.II/lac/la_parallel_vector.h>
@@ -14,6 +16,7 @@
 #include <meltpooldg/utilities/subcell_evaluation_utils.hpp>
 #include <meltpooldg/utilities/subcell_matrix_free.hpp>
 
+#include <array>
 #include <cmath>
 #include <ranges>
 
@@ -21,11 +24,13 @@ namespace MeltPoolDG
 {
   template <int dim, int n_components, typename number>
   FESubcellEvaluation<dim, n_components, number>::FESubcellEvaluation(
-    const SubcellMatrixFree<dim, number>                &subcell_matrix_free,
-    const std::function<value_type(const dealii::Point<dim, VectorizedArrayType> &,
-                                   const dealii::Tensor<1, dim, VectorizedArrayType> &,
-                                   const dealii::types::boundary_id,
-                                   const value_type &)> &boundary_value_function)
+    const SubcellMatrixFree<dim, number> &subcell_matrix_free,
+    const std::function<
+      void(const std::array<dealii::types::boundary_id, VectorizedArrayType::size()> &,
+           const dealii::ArrayView<const dealii::Point<dim, VectorizedArrayType>> &,
+           const dealii::ArrayView<const dealii::Tensor<1, dim, VectorizedArrayType>> &,
+           const dealii::ArrayView<const value_type> &,
+           const dealii::ArrayView<value_type> &)> &boundary_value_function)
     : subcell_matrix_free(subcell_matrix_free)
     , subcell_shape_info(subcell_matrix_free.get_subcell_shape_info())
     , cell_index_info(subcell_shape_info.cell_index_info)
@@ -358,6 +363,10 @@ namespace MeltPoolDG
     subcell_values_to_project_buffer.resize(n_components * cell_index_info.n_subcells);
     integrated_values_buffer.resize(cell_index_info.n_subcells);
     intra_cell_face_gradients.resize(cell_index_info.n_intra_cell_faces);
+    boundary_locations.resize(cell_index_info.n_subcells_face);
+    boundary_normals.resize(cell_index_info.n_subcells_face);
+    boundary_interior_values.resize(cell_index_info.n_subcells_face);
+    boundary_values.resize(cell_index_info.n_subcells_face);
   }
 
   template <int dim, int n_components, typename number>
@@ -517,25 +526,54 @@ namespace MeltPoolDG
           }
 
         // At the domain boundary, the halo subcell collapses onto the boundary face, see
-        // compute_subcell_extents(). Its value is the boundary value at the location of the
-        // adjacent subcell projected onto the boundary face.
+        // compute_subcell_extents(). Its value is the prescribed boundary value of the boundary
+        // condition at the location of the adjacent subcell projected onto the boundary face.
         if (boundary_lanes.any())
-          for (const unsigned int subcell : cell_index_info.face_to_cell_subcell_indices[face_no])
-            {
-              dealii::Point<dim, VectorizedArrayType> boundary_point = subcell_location(subcell);
-              move_location_across_face(boundary_point, face_no);
+          {
+            std::array<dealii::types::boundary_id, n_lanes> boundary_ids;
+            boundary_ids.fill(dealii::numbers::invalid_boundary_id);
+            for (unsigned int lane = 0; lane < n_lanes; ++lane)
+              if (boundary_lanes[lane])
+                boundary_ids[lane] = neighbors.boundary_ids[lane];
 
-              SubcellEvaluation::Internal::set_boundary_values(
-                boundary_lanes,
-                neighbors.boundary_ids,
-                boundary_point,
-                SubcellEvaluation::Internal::cell_face_normal_vector<dim, VectorizedArrayType>(
-                  face_no),
-                subcell_values[cell_index_info.subcell_index_to_haloed_vector_index[subcell]],
-                subcell_values[cell_index_info
-                                 .subcell_index_to_haloed_neighbor_vector_index[subcell][face_no]],
-                boundary_value_function);
-            }
+            const dealii::Tensor<1, dim, VectorizedArrayType> normal_vector =
+              SubcellEvaluation::Internal::cell_face_normal_vector<dim, VectorizedArrayType>(
+                face_no);
+
+            // Gather the inputs for the boundary value function for the subcells adjacent to this
+            // face.
+            for (unsigned int q_face = 0; q_face < cell_index_info.n_subcells_face; ++q_face)
+              {
+                const unsigned int subcell =
+                  cell_index_info.face_to_cell_subcell_indices[face_no][q_face];
+
+                boundary_locations[q_face] = subcell_location(subcell);
+                move_location_across_face(boundary_locations[q_face], face_no);
+                boundary_normals[q_face] = normal_vector;
+                boundary_interior_values[q_face] =
+                  subcell_values[cell_index_info.subcell_index_to_haloed_vector_index[subcell]];
+              }
+
+            boundary_value_function(boundary_ids,
+                                    dealii::make_array_view(boundary_locations),
+                                    dealii::make_array_view(boundary_normals),
+                                    dealii::make_array_view(boundary_interior_values),
+                                    dealii::make_array_view(boundary_values));
+
+            // Copy the boundary values into the halo, but only in the lanes on the boundary. The
+            // other lanes keep the values of the face neighbors written above.
+            for (unsigned int q_face = 0; q_face < cell_index_info.n_subcells_face; ++q_face)
+              {
+                const unsigned int subcell =
+                  cell_index_info.face_to_cell_subcell_indices[face_no][q_face];
+
+                value_type &halo_value = subcell_values
+                  [cell_index_info.subcell_index_to_haloed_neighbor_vector_index[subcell][face_no]];
+                for (unsigned int lane = 0; lane < n_lanes; ++lane)
+                  if (boundary_lanes[lane])
+                    copy_simd_lane(boundary_values[q_face], lane, halo_value);
+              }
+          }
       }
 
     halo_subcell_values_filled = true;
