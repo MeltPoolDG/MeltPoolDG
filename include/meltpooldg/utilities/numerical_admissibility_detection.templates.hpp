@@ -27,15 +27,19 @@ namespace MeltPoolDG
                      const dealii::Tensor<1, n_components, dealii::VectorizedArray<number>> &M)
   {
     constexpr number delta_0 = 1e-4;
-    constexpr number epsilon = 1e-5;
+    constexpr number epsilon = 1e-3;
 
     std::bitset<dealii::VectorizedArray<number>::size()> mask;
     mask.set();
     for (unsigned int c = 0; c < n_components; ++c)
       for (unsigned int lane = 0; lane < dealii::VectorizedArray<number>::size(); ++lane)
         {
-          const number delta = std::max(delta_0, epsilon * (M[c][lane] - m[c][lane]));
-          if (lower[c][lane] < m[c][lane] - delta or upper[c][lane] > M[c][lane] + delta)
+          // Adapt the tolerance to the magnitude of the solution
+          const number magnitude =
+            std::max({number(1), std::abs(m[c][lane]), std::abs(M[c][lane])});
+          const number delta = std::max(delta_0 * magnitude, epsilon * (M[c][lane] - m[c][lane]));
+
+          if (not(lower[c][lane] >= m[c][lane] - delta and upper[c][lane] <= M[c][lane] + delta))
             mask.reset(lane);
         }
     return mask;

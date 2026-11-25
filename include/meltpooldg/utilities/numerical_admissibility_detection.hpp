@@ -19,10 +19,10 @@ namespace MeltPoolDG
    * check is performed for each component and each vectorized lane, and the result is returned as a
    * bitset where each bit corresponds to a lane.
    *
-   * The function checks if the lower value is greater than or equal to the minimum value minus a
-   * small tolerance, using the tolerance defined in [1], and if the upper value is less than or
-   * equal to the maximum value plus a small tolerance. The tolerance is computed as the maximum of
-   * a small constant and a fraction of the range between the maximum and minimum values.
+   * The bit of a lane is set if, for every component, the lower value is not below the minimum
+   * and the upper value is not above the maximum, both relaxed by a tolerance. As in [1], the
+   * tolerance is the maximum of a small constant and a fraction of the range between the minimum
+   * and the maximum, except that the constant is scaled by the magnitude of the bounds.
    *
    * [1] Dumbser et al., A posteriori subcell limiting of the discontinuous Galerkin finite element
    * method for hyperbolic conservation laws, J. Comput. Phys. 278, 2014.
